@@ -31,42 +31,42 @@ function loadAudio() {
 }
 
 function setFormat() {
-    const audio = new Audio();
-    if (audio.canPlayType("audio/mp3")) {
-        audioFormat = ".mp3";
-    } else {
-        audioFormat = ".ogg";
-    }
+	const audio = new Audio();
+	if (audio.canPlayType("audio/mp3")) {
+		audioFormat = ".mp3";
+	} else {
+		audioFormat = ".ogg";
+	}
 }
 
 function backgroundMusicClass() {	
-    this.loopSong = function(filenameWithPath) {
-        setFormat(); // calling this to ensure that audioFormat is set before needed
+	this.loopSong = function(filenameWithPath) {
+		setFormat(); // calling this to ensure that audioFormat is set before needed
 
-        if (musicSound != null) {
-            musicSound.pause();
-            musicSound = null;
-        }
-        musicSound = new Audio(filenameWithPath + audioFormat);
-        musicSound.loop = true;
-        this.setVolume(musicVolume);
-    }
+		if (musicSound != null) {
+			musicSound.pause();
+			musicSound = null;
+		}
+		musicSound = new Audio(filenameWithPath + audioFormat);
+		musicSound.loop = true;
+		this.setVolume(musicVolume);
+	};
 
-    this.pauseSound = function() {
-        musicSound.pause();
-    }
+	this.pauseSound = function() {
+		musicSound.pause();
+	};
 
-    this.resumeSound = function() {
-        musicSound.play();
-    }
+	this.resumeSound = function() {
+		musicSound.play();
+	};
 
-    this.startOrStopMusic = function() {
-        if (musicSound.paused) {
-            musicSound.play();
-        } else {
-            musicSound.pause();
-        }
-    }
+	this.startOrStopMusic = function() {
+		if (musicSound.paused) {
+			musicSound.play();
+		} else {
+			musicSound.pause();
+		}
+	};
 	
 	this.setVolume = function(volume) {
 		// Multipliction by a boolean serves as 1 for true and 0 for false
@@ -82,26 +82,26 @@ function backgroundMusicClass() {
 		} else if (musicSound.paused) {
 			musicSound.play();
 		}
-	}
+	};
 }
 
 function SoundOverlapsClass(filenameWithPath) {
-    setFormat();
+	setFormat();
 
-    const fullFilename = filenameWithPath;
+	const fullFilename = filenameWithPath;
 	let soundIndex = 0;
-    const sounds = [new Audio(fullFilename + audioFormat), new Audio(fullFilename + audioFormat)];
+	const sounds = [new Audio(fullFilename + audioFormat), new Audio(fullFilename + audioFormat)];
 
-    this.play = function() {
-				if(!sounds[soundIndex].paused) {
-					sounds.splice(soundIndex, 0, new Audio(fullFilename + audioFormat));
-				}
-        sounds[soundIndex].currentTime = 0;
-        sounds[soundIndex].volume = Math.pow(getRandomVolume() * effectsVolume * !isMuted, 2);
-        sounds[soundIndex].play();
+	this.play = function() {
+		if(!sounds[soundIndex].paused) {
+			sounds.splice(soundIndex, 0, new Audio(fullFilename + audioFormat));
+		}
+		sounds[soundIndex].currentTime = 0;
+		sounds[soundIndex].volume = Math.pow(getRandomVolume() * effectsVolume * !isMuted, 2);
+		sounds[soundIndex].play();
 
-        soundIndex = (++soundIndex) % sounds.length;
-    }
+		soundIndex = (++soundIndex) % sounds.length;
+	};
 }
 
 function getRandomVolume(){

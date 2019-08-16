@@ -26,7 +26,7 @@ function Chronogram() {
 	
 	this.updateEvent = function(eventName) {
 		const thisTime = Date.now();
-		const deltaTime = thisTime - events[eventName].lastUpdate
+		const deltaTime = thisTime - events[eventName].lastUpdate;
 		events[eventName].lastUpdate = thisTime;
 		return deltaTime;
 	};

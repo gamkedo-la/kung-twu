@@ -27,16 +27,16 @@ let player = null;
 const localStorageKey = {
 	MusicVolume:"musicVolume",
 	SFXVolume:"effectsVolume",
-    Language:"language",
-    FirstLoad:"firstLoad"
-}
+	Language:"language",
+	FirstLoad:"firstLoad"
+};
 
 //----------State Management----------//
 let pauseManager;
 const CAUSE = {
-	Keypress: 'keypress',
-	Focus: 'focus',
-}
+	Keypress: "keypress",
+	Focus: "focus",
+};
 
 const SCENE = {
 	LOADING:"loading",
@@ -47,7 +47,7 @@ const SCENE = {
 	PAUSE:"pause",
 	GAME:"game",
 	ENDING:"ending"
-}
+};
 
 let firstLoad = localStorage.getItem(localStorageKey.FirstLoad);
 let timer;
@@ -57,7 +57,7 @@ let worldSpeed = 1;
 const assetPath = {
 	Audio:"./audio/",
 	Image:"images/"
-}
+};
 
 //---------------Audio------------------//
 let isMuted = false;

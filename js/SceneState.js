@@ -4,18 +4,18 @@ const SceneState = {
 	currentScene: SCENE.TITLE,
 	pauseCause:null,
 	scenes: {
-//		[SCENE.LOADING]: new LoadingScreen(),
+		//		[SCENE.LOADING]: new LoadingScreen(),
 		[SCENE.TITLE]: new TitleScene(),
-        [SCENE.SETTINGS]: new SettingsScene(),
+		[SCENE.SETTINGS]: new SettingsScene(),
 		[SCENE.CREDITS]: new CreditsScene(),
 		[SCENE.HELP]: new HelpScene(),
 		[SCENE.GAME]: new GameScene(),
-//		[SCENE.GAMEOVER]: new GameOverScene(),
-//		[SCENE.ENDING]: new EndgameScene()
+		//		[SCENE.GAMEOVER]: new GameOverScene(),
+		//		[SCENE.ENDING]: new EndgameScene()
 	},
 	setState: function(newScene, properties) {
-        this.scenes[this.currentScene].transitionOut();
-        this.log.push(this.currentScene);
+		this.scenes[this.currentScene].transitionOut();
+		this.log.push(this.currentScene);
 		this.currentScene = newScene;
 		this.scenes[this.currentScene].properties = properties;
 		this.scenes[this.currentScene].transitionIn();
@@ -26,9 +26,9 @@ const SceneState = {
 	},
 	run: function(deltaTime) {
 		if(!pauseManager.getIsPaused()) {
-		    this.scenes[this.currentScene].run(deltaTime);
+			this.scenes[this.currentScene].run(deltaTime);
 		} else if(this.currentScene === SCENE.GAME) {
-		    this.scenes[SCENE.GAME].runPausedOptions(deltaTime);
+			this.scenes[SCENE.GAME].runPausedOptions(deltaTime);
 		}
 
 		if (isMuted) {
@@ -37,5 +37,5 @@ const SceneState = {
 	},
 	control: function(newKeyEvent, pressed, pressedKeys) {
 		return this.scenes[this.currentScene].control(newKeyEvent, pressed, pressedKeys);
-    }
+	}
 };

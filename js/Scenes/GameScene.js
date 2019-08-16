@@ -1,24 +1,24 @@
 //Game Play scene
 function GameScene() {
-    this.transitionIn = function() {
-        if(player === null) {
-            player = new Player();
-        }
-    }
+	this.transitionIn = function() {
+		if(player === null) {
+			player = new Player();
+		}
+	};
 
-    this.transitionOut = function() {
+	this.transitionOut = function() {
 
-    }
+	};
 
-    this.run = function(deltaTime) {
-        update(deltaTime);
+	this.run = function(deltaTime) {
+		update(deltaTime);
 
-        draw(deltaTime);
-    }
+		draw(deltaTime);
+	};
 
-    this.control = function(newKeyEvent, pressed, pressedKeys) {
-        switch (newKeyEvent) {
-/*            case ALIAS.JUMP:
+	this.control = function(newKeyEvent, pressed, pressedKeys) {
+		switch (newKeyEvent) {
+		/*            case ALIAS.JUMP:
                 console.log("Jumping?");
                 return true;
             case ALIAS.LEFT:
@@ -37,26 +37,26 @@ function GameScene() {
                 return true;
             case ALIAS.KICK:
                 console.log("Kicking?");*/
-            case ALIAS.CHEATS:
-                CHEATS_ACTIVE = !CHEATS_ACTIVE;
-                return true;
-            case ALIAS.DEBUG:
-                DEBUG = !DEBUG;
-                console.log("Debug? " + DEBUG);
-                return true;
-        }
+		case ALIAS.CHEATS:
+			CHEATS_ACTIVE = !CHEATS_ACTIVE;
+			return true;
+		case ALIAS.DEBUG:
+			DEBUG = !DEBUG;
+			console.log("Debug? " + DEBUG);
+			return true;
+		}
         
-        return false;
-    };
+		return false;
+	};
 
-    const update = function(deltaTime) {
-        player.update(deltaTime);
-    }
+	const update = function(deltaTime) {
+		player.update(deltaTime);
+	};
 
-    const draw = function(deltaTime) {
-        drawRect(0, 0, canvas.width, canvas.height, 'blue');
-        canvasContext.drawImage(tempBackground, 0, 0, canvas.width, canvas.height);
+	const draw = function(deltaTime) {
+		drawRect(0, 0, canvas.width, canvas.height, "blue");
+		canvasContext.drawImage(tempBackground, 0, 0, canvas.width, canvas.height);
 
-        player.draw(deltaTime);
-    }
+		player.draw(deltaTime);
+	};
 }

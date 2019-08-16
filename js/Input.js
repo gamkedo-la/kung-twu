@@ -54,8 +54,8 @@ const KEY_TILDE = 192;
 
 let mouseY = 0;
 let mouseX = 0;
-const LEFT_MOUSE_BUTTON = 'LeftMouseButton';
-const RIGHT_MOUSE_BUTTON = 'RightMouseButton';
+const LEFT_MOUSE_BUTTON = "LeftMouseButton";
+const RIGHT_MOUSE_BUTTON = "RightMouseButton";
 
 const heldButtons = [];
 const ALIAS = {
@@ -77,14 +77,14 @@ const ALIAS = {
 	DEBUG:KEY_B,
 	POINTER:LEFT_MOUSE_BUTTON,
 	CONTEXT:RIGHT_MOUSE_BUTTON
-}
+};
 
 function initializeInput() {
 	document.addEventListener("keydown",keyPress);
 	document.addEventListener("keyup",keyRelease);
 	document.addEventListener("mousedown", mouseButtonPressed);
 	document.addEventListener("mouseup", mouseButtonReleased);
-	document.addEventListener('mousemove', calculateMousePos);
+	document.addEventListener("mousemove", calculateMousePos);
 }
 
 function notifyCurrentScene(newInput, pressed) {
@@ -152,9 +152,9 @@ function mouseButtonReleased(evt) {
 }
 
 function calculateMousePos(evt) {
-    const rect = canvas.getBoundingClientRect();
-    mouseX = evt.clientX - rect.left;
-    mouseY = evt.clientY - rect.top;
+	const rect = canvas.getBoundingClientRect();
+	mouseX = evt.clientX - rect.left;
+	mouseY = evt.clientY - rect.top;
 }
 
 function mouseInside(x, y, width, height) {

@@ -1,137 +1,138 @@
 //Help Scene
 function HelpScene() {
-    const HELP_BG_COLOR = "#010139";
+	const HELP_BG_COLOR = "#010139";
 
-    let selectorPositionsIndex = 0;
-    const selections = [
-        SCENE.TITLE,
-        SCENE.GAME
-    ];
-    const buttonHeight = 25;//TODO: Adjust this size based on custom font
-    const buttonTitlePadding = 2;
-    const buttons = [];
+	let selectorPositionsIndex = 0;
+	const selections = [
+		SCENE.TITLE,
+		SCENE.GAME
+	];
+	const buttonHeight = 25;//TODO: Adjust this size based on custom font
+	const buttonTitlePadding = 2;
+	const buttons = [];
 
 
-    this.transitionIn = function() {
-        let mainMenuX = 0;
-        const mainMenuY = canvas.height - canvas.height / 20;
+	this.transitionIn = function() {
+		let mainMenuX = 0;
+		const mainMenuY = canvas.height - canvas.height / 20;
         
-        if(buttons.length === 0) {
-            buttons.push(buildBackButton(canvas.width / 40, mainMenuY, buttonHeight, buttonTitlePadding));
-            buttons.push(buildPlayButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
+		if(buttons.length === 0) {
+			buttons.push(buildBackButton(canvas.width / 40, mainMenuY, buttonHeight, buttonTitlePadding));
+			buttons.push(buildPlayButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
 
-            mainMenuX = canvas.width - (buttons[1].getBounds().width + canvas.width / 40);
-            buttons[1].updateXPosition(mainMenuX);
-        } else {
-            updateButtonTitles();
-        }
+			mainMenuX = canvas.width - (buttons[1].getBounds().width + canvas.width / 40);
+			buttons[1].updateXPosition(mainMenuX);
+		} else {
+			updateButtonTitles();
+		}
 
-        selectorPositionsIndex = 0;
-    }
+		selectorPositionsIndex = 0;
+	};
 
-    this.transitionOut = function() {
+	this.transitionOut = function() {
 
-    }
+	};
 
-    this.run = function(deltaTime) {
-        update(deltaTime);
+	this.run = function(deltaTime) {
+		update(deltaTime);
 
-        draw(deltaTime, buttons, selectorPositionsIndex);
-    }
+		draw(deltaTime, buttons, selectorPositionsIndex);
+	};
 
-    this.control = function(newKeyEvent, pressed, pressedKeys) {
-        if (pressed) {//only act on key released events => prevent multiple changes on single press
-            return false;
-        }
+	this.control = function(newKeyEvent, pressed, pressedKeys) {
+		if (pressed) {//only act on key released events => prevent multiple changes on single press
+			return false;
+		}
         
-        switch (newKeyEvent) {
-            case ALIAS.UP:
-            case ALIAS.LEFT:
-                selectorPositionsIndex--;
-                if (selectorPositionsIndex < 0) {
-                    selectorPositionsIndex += selections.length;
-                }
-                return true;
-            case ALIAS.DOWN:
-            case ALIAS.RIGHT:
-                selectorPositionsIndex++;
-                if (selectorPositionsIndex >= selections.length) {
-                    selectorPositionsIndex = 0;
-                }
-                return true;
-            case ALIAS.SELECT1:
-                console.log("Activated the current button");
-                SceneState.setState(selections[selectorPositionsIndex]);
-                return true;
-            case ALIAS.SELECT2:
-                console.log("Selected the Play button");
-                SceneState.setState(SCENE.GAME);
-            case ALIAS.POINTER:
-                checkButtons();
-                return true;
-        }
+		switch (newKeyEvent) {
+		case ALIAS.UP:
+		case ALIAS.LEFT:
+			selectorPositionsIndex--;
+			if (selectorPositionsIndex < 0) {
+				selectorPositionsIndex += selections.length;
+			}
+			return true;
+		case ALIAS.DOWN:
+		case ALIAS.RIGHT:
+			selectorPositionsIndex++;
+			if (selectorPositionsIndex >= selections.length) {
+				selectorPositionsIndex = 0;
+			}
+			return true;
+		case ALIAS.SELECT1:
+			console.log("Activated the current button");
+			SceneState.setState(selections[selectorPositionsIndex]);
+			return true;
+		case ALIAS.SELECT2:
+			console.log("Selected the Play button");
+			SceneState.setState(SCENE.GAME);
+			return true;
+		case ALIAS.POINTER:
+			checkButtons();
+			return true;
+		}
         
-        return false;
-    }
+		return false;
+	};
 
-    const update = function(deltaTime) {
+	const update = function(deltaTime) {
 
-    }
+	};
 
-    const checkButtons = function() {
-        let wasClicked = false;
-        for(let i = 0; i < buttons.length; i++) {
-            wasClicked = buttons[i].respondIfClicked(mouseX, mouseY);
-            if(wasClicked) {break;}
-        }
-    }
+	const checkButtons = function() {
+		let wasClicked = false;
+		for(let i = 0; i < buttons.length; i++) {
+			wasClicked = buttons[i].respondIfClicked(mouseX, mouseY);
+			if(wasClicked) {break;}
+		}
+	};
 
-    const buildPlayButton = function(x, y, height, padding) {
-        const thisClick = function() {
-            console.log("Clicked the Play Button");
-            SceneState.setState(SCENE.GAME);
-        }
+	const buildPlayButton = function(x, y, height, padding) {
+		const thisClick = function() {
+			console.log("Clicked the Play Button");
+			SceneState.setState(SCENE.GAME);
+		};
 
-        return new UIButton(STRINGS_KEY.Play, x, y, height, padding, thisClick, Color.Aqua);
-    }
+		return new UIButton(STRINGS_KEY.Play, x, y, height, padding, thisClick, Color.Aqua);
+	};
 
-    const buildBackButton = function(x, y, height, padding) {
-        const thisClick = function() {
-            console.log("Clicked the Back Button");
-            SceneState.setState(SCENE.TITLE);
-        }
+	const buildBackButton = function(x, y, height, padding) {
+		const thisClick = function() {
+			console.log("Clicked the Back Button");
+			SceneState.setState(SCENE.TITLE);
+		};
 
-        return new UIButton(STRINGS_KEY.Back, x, y, height, padding, thisClick, Color.Purple);
-    }
+		return new UIButton(STRINGS_KEY.Back, x, y, height, padding, thisClick, Color.Purple);
+	};
 
-    const updateButtonTitles = function() {
-        for(let i = 0; i < buttons.length; i++) {
-            buttons[i].updateTitle();
-        }
-    }
+	const updateButtonTitles = function() {
+		for(let i = 0; i < buttons.length; i++) {
+			buttons[i].updateTitle();
+		}
+	};
 
-    const printNavigation = function(navItems) {
-        for(let i = 0; i < navItems.length; i++) {
-            navItems[i].draw();
-        }
-	}
+	const printNavigation = function(navItems) {
+		for(let i = 0; i < navItems.length; i++) {
+			navItems[i].draw();
+		}
+	};
 
-    const draw = function(deltaTime, buttons, selectorPositionIndex) {
+	const draw = function(deltaTime, buttons, selectorPositionIndex) {
 		// render the menu background
-        drawBG();
+		drawBG();
         
 		drawTitle();
 
-        // render menu
-        printNavigation(buttons, selectorPositionIndex);        
-	}
+		// render menu
+		printNavigation(buttons, selectorPositionIndex);        
+	};
 	
 	const drawBG = function() {
-        // fill the background since there is no image for now
-        drawRect(0, 0, canvas.width, canvas.height, HELP_BG_COLOR);
-    }
+		// fill the background since there is no image for now
+		drawRect(0, 0, canvas.width, canvas.height, HELP_BG_COLOR);
+	};
     
-    const drawTitle = function() {
-	    colorText(getLocalizedStringForKey(STRINGS_KEY.HelpScreenTitle), canvas.width / 2, canvas.height / 3, Color.White, Fonts.MainTitle, TextAlignment.Center);
-    }
+	const drawTitle = function() {
+		colorText(getLocalizedStringForKey(STRINGS_KEY.HelpScreenTitle), canvas.width / 2, canvas.height / 3, Color.White, Fonts.MainTitle, TextAlignment.Center);
+	};
 }
