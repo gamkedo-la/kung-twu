@@ -66,10 +66,6 @@ function beginLoadingImage(imgVar, fileName) {
 
 function loadImages() {
     const imageList = [
-
-		//temp image
-		{imgName: tempPic, theFile: "TiledScreenCapture.gif"},//,
-
         // enemies
 //        { imgName: alienPic, theFile: "alien-anim.png" },
 
