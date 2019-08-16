@@ -1,8 +1,8 @@
 //Player
 function Player() {
-	const scale = 4;//TODO: Make player sprite larger so this can be a 1
+	const scale = 1;//TODO: Make player sprite larger so this can be a 1
 	let currentAnimation;
-	let position = {x:canvas.width / 2, y:canvas.height / 2};
+	let position = {x:canvas.width / 2, y:3 * canvas.height / 5};
     
 	let isOnGround = true;
 	let isCrouching = false;
@@ -122,7 +122,7 @@ function Player() {
 	const initializeAnimations = function() {
 		const anims = {};
 
-		anims.idle = new SpriteAnimation("idle", tempPlayer, [0], 11, 58, [64], false, true);
+		anims.idle = new SpriteAnimation("idle", tempPlayer, [0], tempPlayer.width * scale, tempPlayer.height * scale, [64], false, true);
 		anims.idle.scale = scale;
 		//        animations.jumping = ...
 		//        animations.crouching = ...
