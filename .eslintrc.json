@@ -31,6 +31,10 @@
                 "ignoreRestSiblings": false 
             }
         ],
-        "no-undef":"off"
+        "no-undef":"off",
+        "no-console":"warn",
+        "no-warning-comments": ["warn", 
+            {   "terms": ["todo", "fixme"], 
+                "location": "anywhere" }]
     }
 }

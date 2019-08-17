@@ -48,7 +48,8 @@ function loadStartImagePic() {
 //-----Load the rest of the game images----//
 const tempPic = document.createElement("img");
 const tempBackground = document.createElement("img");
-const tempPlayer = document.createElement("img");
+const tempPlayerPic = document.createElement("img");
+const tempEnemyPic = document.createElement("img");
 
 let picsToLoad = 0;
 
@@ -67,7 +68,7 @@ function beginLoadingImage(imgVar, fileName) {
 function loadImages() {
 	const imageList = [
 		// enemies
-		//        { imgName: alienPic, theFile: "alien-anim.png" },
+		{ imgName: tempEnemyPic, theFile: "tempEnemy.png" },
 
 		// backgrounds
 		{ imgName: tempBackground, theFile: "TempBackground.png" },
@@ -76,7 +77,7 @@ function loadImages() {
 		//        { imgName: shieldPowerUpPic, theFile: "shieldPowerUp.png" },
 
 		// player related
-		{ imgName: tempPlayer, theFile: "TempPlayer.png" },
+		{ imgName: tempPlayerPic, theFile: "TempPlayer.png" },
 
 		// UI
 		//        { imgName: heartPic, theFile: "heart.png" },

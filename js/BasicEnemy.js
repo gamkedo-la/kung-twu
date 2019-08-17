@@ -1,5 +1,5 @@
-//Player
-function Player(config) {
+//Basic Enemy
+function BasicEnemy(config) {
 	const scale = 1;
 	let currentAnimation;
 	let position = {x:0, y:0};
@@ -8,7 +8,7 @@ function Player(config) {
 	let isCrouching = false;
 	let isBlocking = false;
 	let isDashing = false;
-
+	
 	let hasDash = false;
 	let hasSweep = false;
 	let hasJumpKick = false;
@@ -26,45 +26,15 @@ function Player(config) {
 	this.update = function(deltaTime) {
 		currentAnimation.update(deltaTime);
 
-		processInput();
+		doAI();
 	};
 
-	const processInput = function() {
+	const doAI = function() {
 		let stillCrouching = false;
 		let stillBlocking = false;
 		let stillDashing = false;
 
-		for(let i = 0; i < heldButtons.length; i++) {
-			switch(heldButtons[i]) {
-			case ALIAS.LEFT:
-				moveLeft();
-				break;
-			case ALIAS.RIGHT:
-				moveRight();
-				break;
-			case ALIAS.JUMP:
-				jump();
-				break;
-			case ALIAS.CROUCH:
-				stillCrouching = true;
-				crouch();
-				break;
-			case ALIAS.BLOCK:
-				stillBlocking = true;
-				block();
-				break;
-			case ALIAS.DASH:
-				stillDashing = true;
-				dash();
-				break;
-			case ALIAS.PUNCH:
-				punch();
-				break;
-			case ALIAS.KICK:
-				kick();
-				break;
-			}
-		}
+		//TODO: Need to do stuff here
 
 		if(!stillCrouching) {isCrouching = false;}
 		if(!stillBlocking) {isBlocking = false;}
@@ -96,7 +66,7 @@ function Player(config) {
 	};
 
 	const block = function() {
-		if(isOnGround && hasBlock && !isBlocking) {
+		if(isOnGround && !isBlocking) {
 			console.log("I'm blocking now");
 			isBlocking = true;
 			//currentAnimation = animations.blocking;
@@ -147,7 +117,7 @@ function Player(config) {
 	const initializeAnimations = function() {
 		const anims = {};
 
-		anims.idle = new SpriteAnimation("idle", tempPlayerPic, [0], tempPlayerPic.width * scale, tempPlayerPic.height * scale, [64], false, true);
+		anims.idle = new SpriteAnimation("idle", tempEnemyPic, [0], tempEnemyPic.width * scale, tempEnemyPic.height * scale, [64], false, true);
 		anims.idle.scale = scale;
 		//animations.jumping = ...
 		//animations.crouching = ...
@@ -157,7 +127,7 @@ function Player(config) {
 		//animations.dashing = ...
 		//animations.sweeping = ...
 		//animations.jumpKicking = ...
-		// animations.helicopterKicking = ...
+		//animations.helicopterKicking = ...
 
 		return anims;
 	};

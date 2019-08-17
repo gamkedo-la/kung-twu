@@ -1,9 +1,12 @@
 //Game Play scene
 function GameScene() {
+	let testEnemy = null;//TODO: need another way to do this
 	this.transitionIn = function() {
-		if(player === null) {
-			player = new Player();
-		}
+		initializePlayerIfReqd();
+
+		initializeEnemies();
+		
+		initializeLevel();
 	};
 
 	this.transitionOut = function() {
@@ -16,27 +19,8 @@ function GameScene() {
 		draw(deltaTime);
 	};
 
-	this.control = function(newKeyEvent, pressed, pressedKeys) {
+	this.control = function(newKeyEvent) {
 		switch (newKeyEvent) {
-		/*            case ALIAS.JUMP:
-                console.log("Jumping?");
-                return true;
-            case ALIAS.LEFT:
-                console.log("Moving left?");
-                player.moveLeft();
-                return true;
-            case ALIAS.CROUCH:
-                console.log("Crouching?");
-                return true;
-            case ALIAS.RIGHT:
-                console.log("Moving right?");
-                player.moveRight();
-                return true;
-            case ALIAS.PUNCH:
-                console.log("Punching?");
-                return true;
-            case ALIAS.KICK:
-                console.log("Kicking?");*/
 		case ALIAS.CHEATS:
 			CHEATS_ACTIVE = !CHEATS_ACTIVE;
 			return true;
@@ -50,6 +34,8 @@ function GameScene() {
 	};
 
 	const update = function(deltaTime) {
+		testEnemy.update(deltaTime);
+
 		player.update(deltaTime);
 	};
 
@@ -57,6 +43,34 @@ function GameScene() {
 		drawRect(0, 0, canvas.width, canvas.height, "blue");
 		canvasContext.drawImage(tempBackground, 0, 0, canvas.width, canvas.height);
 
+		testEnemy.draw(deltaTime);
+
 		player.draw(deltaTime);
+	};
+
+	const initializePlayerIfReqd = function() {
+		if(player === null) {			
+			const config = {
+				x:2 * canvas.width / 3, 
+				y:3 * canvas.height / 5
+			};
+
+			player = new Player(config);
+		}
+	};
+
+	const initializeLevel = function() {
+
+	};
+
+	const initializeEnemies = function() {
+		if(testEnemy === null) {
+			const config = {
+				x:canvas.width / 3, 
+				y:3 * canvas.height / 5
+			};
+
+			testEnemy = new BasicEnemy(config);
+		}
 	};
 }
