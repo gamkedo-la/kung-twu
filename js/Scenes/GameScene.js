@@ -1,6 +1,7 @@
 //Game Play scene
 function GameScene() {
-	let testEnemy = null;//TODO: need another way to do this
+	let testEnemy1 = null;//TODO: need another way to do this
+	let testEnemy2 = null;//TODO: need another way to do this
 	this.transitionIn = function() {
 		initializePlayerIfReqd();
 
@@ -34,7 +35,8 @@ function GameScene() {
 	};
 
 	const update = function(deltaTime) {
-		testEnemy.update(deltaTime);
+		testEnemy1.update(deltaTime);
+		testEnemy2.update(deltaTime);
 
 		player.update(deltaTime);
 	};
@@ -43,7 +45,8 @@ function GameScene() {
 		drawRect(0, 0, canvas.width, canvas.height, "blue");
 		canvasContext.drawImage(tempBackground, 0, 0, canvas.width, canvas.height);
 
-		testEnemy.draw(deltaTime);
+		testEnemy1.draw(deltaTime);
+		testEnemy2.draw(deltaTime);
 
 		player.draw(deltaTime);
 	};
@@ -64,13 +67,22 @@ function GameScene() {
 	};
 
 	const initializeEnemies = function() {
-		if(testEnemy === null) {
+		if(testEnemy1 === null) {
 			const config = {
 				x:canvas.width / 3, 
 				y:3 * canvas.height / 5
 			};
 
-			testEnemy = new BasicEnemy(config);
+			testEnemy1 = new BasicEnemy(config);
+		}
+
+		if(testEnemy2 === null) {
+			const config = {
+				x:canvas.width / 8, 
+				y:3 * canvas.height / 5
+			};
+
+			testEnemy2 = new BasicEnemy(config);
 		}
 	};
 }
