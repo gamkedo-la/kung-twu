@@ -36,6 +36,14 @@ function SpriteAnimation(name, //string identifier for this animation
 			x, y, thisFrameRect.width * this.scale, thisFrameRect.height * this.scale);
 	};
 
+	this.getWidth = function() {
+		return frameWidth;
+	};
+
+	this.getHeight = function() {
+		return frameHeight;
+	};
+
 	const getCurrentFrameRect = function() {
 		const nowFrameIndex = frames[currentFrameIndex];
 		const xClipPos = frameWidth * (nowFrameIndex % framesPerRow);

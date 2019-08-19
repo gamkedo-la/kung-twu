@@ -2,6 +2,7 @@
 function Player(config) {
 	const SCALE = 1;
 	const WALK_SPEED = 200;
+	const JUMP_SPEED = -300;
 	let currentAnimation;
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
@@ -25,13 +26,23 @@ function Player(config) {
 		if(config.hasHelicopterKick != undefined) {hasHelicopterKick = config.hasHelicopterKick;}
 	}
 
-	this.update = function(deltaTime) {
+	this.update = function(deltaTime, gravity) {
 		currentAnimation.update(deltaTime);
 
 		processInput();
 
-		position.x += velocity.x * deltaTime / 1000;//deltaTime is
-		position.y += velocity.y * deltaTime / 1000;//in milliseconds
+		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
+
+		position.x += velocity.x * timeStep;
+
+		velocity.y += gravity * timeStep;
+		position.y += velocity.y * timeStep;
+
+		//TODO: Temporary to keep player from falling off the canvas
+		if(position.y > canvas.height - currentAnimation.getHeight()) {
+			position.y = canvas.height - currentAnimation.getHeight();
+			isOnGround = true;
+		}
 	};
 
 	const processInput = function() {
@@ -87,6 +98,7 @@ function Player(config) {
 	const jump = function() {
 		if(isOnGround) {
 			isOnGround = false;
+			velocity.y = JUMP_SPEED;
 			//currentAnimation = animations.jumping;
 			console.log("Need to jump now, also need some gravity to make you land");
 		}

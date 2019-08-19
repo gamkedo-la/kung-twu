@@ -1,5 +1,6 @@
 //Game Play scene
 function GameScene() {
+	const GRAVITY = 500;
 	let testEnemy1 = null;//TODO: need another way to do this
 	let testEnemy2 = null;//TODO: need another way to do this
 	this.transitionIn = function() {
@@ -35,10 +36,10 @@ function GameScene() {
 	};
 
 	const update = function(deltaTime) {
-		testEnemy1.update(deltaTime);
-		testEnemy2.update(deltaTime);
+		testEnemy1.update(deltaTime, GRAVITY);
+		testEnemy2.update(deltaTime, GRAVITY);
 
-		player.update(deltaTime);
+		player.update(deltaTime, GRAVITY);
 	};
 
 	const draw = function(deltaTime) {
