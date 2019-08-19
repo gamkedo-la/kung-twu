@@ -3,6 +3,7 @@ function Player(config) {
 	const SCALE = 1;
 	const WALK_SPEED = 200;
 	const JUMP_SPEED = -300;
+
 	let currentAnimation;
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
@@ -35,14 +36,18 @@ function Player(config) {
 
 		position.x += velocity.x * timeStep;
 
-		velocity.y += gravity * timeStep;
-		position.y += velocity.y * timeStep;
+		fallDueToGravity(timeStep, gravity);
 
 		//TODO: Temporary to keep player from falling off the canvas
 		if(position.y > canvas.height - currentAnimation.getHeight()) {
 			position.y = canvas.height - currentAnimation.getHeight();
 			isOnGround = true;
 		}
+	};
+
+	const fallDueToGravity = function(timeStep, gravity) {
+		velocity.y += gravity * timeStep;
+		position.y += velocity.y * timeStep;
 	};
 
 	const processInput = function() {

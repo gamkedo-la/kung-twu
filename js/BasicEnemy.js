@@ -1,8 +1,12 @@
 //Basic Enemy
 function BasicEnemy(config) {
-	const scale = 1;
+	const SCALE = 1;
+	const WALK_SPEED = 200;
+	const JUMP_SPEED = -300;
+
 	let currentAnimation;
 	let position = {x:0, y:0};
+	let velocity = {x:0, y:0};
     
 	let isOnGround = true;
 	let isCrouching = false;
@@ -23,10 +27,27 @@ function BasicEnemy(config) {
 		if(config.hasHelicopterKick != undefined) {hasHelicopterKick = config.hasHelicopterKick;}
 	}
 
-	this.update = function(deltaTime) {
+	this.update = function(deltaTime, gravity) {
 		currentAnimation.update(deltaTime);
 
+		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
+
+		position.x += velocity.x * timeStep;
+		
+		fallDueToGravity(timeStep, gravity);
+
+		//TODO: Temporary to keep player from falling off the canvas
+		if(position.y > canvas.height - currentAnimation.getHeight()) {
+			position.y = canvas.height - currentAnimation.getHeight();
+			isOnGround = true;
+		}		
+
 		doAI();
+	};
+
+	const fallDueToGravity = function(timeStep, gravity) {
+		velocity.y += gravity * timeStep;
+		position.y += velocity.y * timeStep;
 	};
 
 	const doAI = function() {
@@ -117,8 +138,8 @@ function BasicEnemy(config) {
 	const initializeAnimations = function() {
 		const anims = {};
 
-		anims.idle = new SpriteAnimation("idle", tempEnemyPic, [0], tempEnemyPic.width * scale, tempEnemyPic.height * scale, [64], false, true);
-		anims.idle.scale = scale;
+		anims.idle = new SpriteAnimation("idle", tempEnemyPic, [0], tempEnemyPic.width * SCALE, tempEnemyPic.height * SCALE, [64], false, true);
+		anims.idle.SCALE = SCALE;
 		//animations.jumping = ...
 		//animations.crouching = ...
 		//animations.punching = ...
