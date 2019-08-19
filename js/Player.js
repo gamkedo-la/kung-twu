@@ -1,8 +1,10 @@
 //Player
 function Player(config) {
-	const scale = 1;
+	const SCALE = 1;
+	const WALK_SPEED = 200;
 	let currentAnimation;
 	let position = {x:0, y:0};
+	let velocity = {x:0, y:0};
     
 	let isOnGround = true;
 	let isCrouching = false;
@@ -27,20 +29,26 @@ function Player(config) {
 		currentAnimation.update(deltaTime);
 
 		processInput();
+
+		position.x += velocity.x * deltaTime / 1000;//deltaTime is
+		position.y += velocity.y * deltaTime / 1000;//in milliseconds
 	};
 
 	const processInput = function() {
 		let stillCrouching = false;
 		let stillBlocking = false;
 		let stillDashing = false;
+		let stillWalking = false;
 
 		for(let i = 0; i < heldButtons.length; i++) {
 			switch(heldButtons[i]) {
 			case ALIAS.LEFT:
-				moveLeft();
+				stillWalking = true;
+				walk(-WALK_SPEED);
 				break;
 			case ALIAS.RIGHT:
-				moveRight();
+				stillWalking = true;
+				walk(WALK_SPEED);
 				break;
 			case ALIAS.JUMP:
 				jump();
@@ -69,14 +77,11 @@ function Player(config) {
 		if(!stillCrouching) {isCrouching = false;}
 		if(!stillBlocking) {isBlocking = false;}
 		if(!stillDashing) {isDashing = false;}
+		if(!stillWalking) {walk(0);}
 	};
 
-	const moveLeft = function() {
-		position.x -= 10;
-	};
-
-	const moveRight = function() {
-		position.x += 10;
+	const walk = function(speed) {
+		velocity.x = speed;
 	};
 
 	const jump = function() {
@@ -147,8 +152,8 @@ function Player(config) {
 	const initializeAnimations = function() {
 		const anims = {};
 
-		anims.idle = new SpriteAnimation("idle", tempPlayerPic, [0], tempPlayerPic.width * scale, tempPlayerPic.height * scale, [64], false, true);
-		anims.idle.scale = scale;
+		anims.idle = new SpriteAnimation("idle", tempPlayerPic, [0], tempPlayerPic.width * SCALE, tempPlayerPic.height * SCALE, [64], false, true);
+		anims.idle.SCALE = SCALE;
 		//animations.jumping = ...
 		//animations.crouching = ...
 		//animations.punching = ...
