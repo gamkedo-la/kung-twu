@@ -36,10 +36,11 @@ function GameScene() {
 	};
 
 	const update = function(deltaTime) {
-		testEnemy1.update(deltaTime, GRAVITY);
-		testEnemy2.update(deltaTime, GRAVITY);
-
 		player.update(deltaTime, GRAVITY);
+
+		const playerPos = player.getPosition();
+		testEnemy1.update(deltaTime, GRAVITY, playerPos);
+		testEnemy2.update(deltaTime, GRAVITY, playerPos);
 	};
 
 	const draw = function(deltaTime) {

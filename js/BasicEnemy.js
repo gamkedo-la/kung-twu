@@ -3,6 +3,7 @@ function BasicEnemy(config) {
 	const SCALE = 1;
 	const WALK_SPEED = 200;
 	const JUMP_SPEED = -300;
+	const ATTACK_RANGE = 100;
 
 	let currentAnimation;
 	let position = {x:0, y:0};
@@ -27,7 +28,7 @@ function BasicEnemy(config) {
 		if(config.hasHelicopterKick != undefined) {hasHelicopterKick = config.hasHelicopterKick;}
 	}
 
-	this.update = function(deltaTime, gravity) {
+	this.update = function(deltaTime, gravity, playerPos) {
 		currentAnimation.update(deltaTime);
 
 		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
@@ -42,7 +43,7 @@ function BasicEnemy(config) {
 			isOnGround = true;
 		}		
 
-		doAI();
+		doAI(playerPos);
 	};
 
 	const fallDueToGravity = function(timeStep, gravity) {
@@ -50,11 +51,16 @@ function BasicEnemy(config) {
 		position.y += velocity.y * timeStep;
 	};
 
-	const doAI = function() {
+	const doAI = function(playerPos) {
 		let stillCrouching = false;
 		let stillBlocking = false;
 		let stillDashing = false;
 
+		if(playerPos.x > position.x + ATTACK_RANGE) {
+			moveRight();
+		} else if(playerPos.x < position.x - ATTACK_RANGE) {
+			moveLeft();
+		}
 		//TODO: Need to do stuff here
 
 		if(!stillCrouching) {isCrouching = false;}

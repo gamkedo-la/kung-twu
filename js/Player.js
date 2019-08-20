@@ -45,6 +45,10 @@ function Player(config) {
 		}
 	};
 
+	this.getPosition = function() {
+		return {x:position.x, y:position.y};
+	};
+
 	const fallDueToGravity = function(timeStep, gravity) {
 		velocity.y += gravity * timeStep;
 		position.y += velocity.y * timeStep;
