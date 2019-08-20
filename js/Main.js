@@ -8,6 +8,7 @@ window.onload = function() {
 	document.body.appendChild(canvas);
 	canvas.width = 800;
 	canvas.height = 600;
+	configureGameField();
 	drawRect(0, 0, canvas.width, canvas.height, Color.White);
 	
 	currentLanguage = localStorage.getItem(localStorageKey.Language);
@@ -30,6 +31,17 @@ window.onload = function() {
 	//	currentBackgroundMusic.loopSong(menuMusic);//TODO: Restore once there is background music
 	loadGamkedoLogo();
 };
+
+function configureGameField() {
+	GAME_FIELD.x = 0;
+	GAME_FIELD.y = 0;
+	GAME_FIELD.width = canvas.width;
+	GAME_FIELD.height = canvas.height;
+	GAME_FIELD.right = canvas.x + canvas.width;
+	GAME_FIELD.bottom = canvas.y + canvas.height;
+	GAME_FIELD.midX = canvas.x + canvas.width / 2;
+	GAME_FIELD.midY = canvas.y + canvas.height / 2;
+}
 
 function loadingDoneSoStartGame() {
 	if(finishedLoading) {

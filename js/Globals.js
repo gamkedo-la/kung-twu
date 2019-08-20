@@ -59,6 +59,20 @@ const assetPath = {
 	Image:"images/"
 };
 
+//----------Collision Management---------//
+const GAME_FIELD = {//configured in Main.js
+	x:0,
+	y:0,
+	width:0,
+	height:0,
+	right:0,
+	bottom:0,
+	midX:0,
+	midY:0
+};
+
+const DRAW_COLLIDERS = false;
+
 //---------------Audio------------------//
 let isMuted = false;
 

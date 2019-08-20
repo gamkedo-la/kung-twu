@@ -60,8 +60,9 @@ function BasicEnemy(config) {
 			moveRight();
 		} else if(playerPos.x < position.x - ATTACK_RANGE) {
 			moveLeft();
+		} else {
+			//TODO: Logic to determine what kind of attack to do
 		}
-		//TODO: Need to do stuff here
 
 		if(!stillCrouching) {isCrouching = false;}
 		if(!stillBlocking) {isBlocking = false;}
