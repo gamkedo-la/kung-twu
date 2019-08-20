@@ -28,7 +28,8 @@ const SceneState = {
 		if(!pauseManager.getIsPaused()) {
 			this.scenes[this.currentScene].run(deltaTime);
 		} else if(this.currentScene === SCENE.GAME) {
-			this.scenes[SCENE.GAME].runPausedOptions(deltaTime);
+            if (this.scenes[SCENE.GAME].runPausedOptions) // exists?
+			    this.scenes[SCENE.GAME].runPausedOptions(deltaTime);
 		}
 
 		if (isMuted) {
