@@ -1,6 +1,7 @@
 //Game Play scene
 function GameScene() {
 	const GRAVITY = 500;
+	const collisionManager = new CollisionManager(player);
 	let testEnemy1 = null;//TODO: need another way to do this
 	let testEnemy2 = null;//TODO: need another way to do this
 	let camera = new Camera();
@@ -19,6 +20,8 @@ function GameScene() {
 
 	this.run = function(deltaTime) {
 		update(deltaTime);
+
+		collisionManager.doCollisionChecks();
 
 		draw();
 	};
@@ -50,14 +53,14 @@ function GameScene() {
 	const draw = function() {
 		// Pan the camera by centering the canvas on the player's position
 		// TODO: Implement a camera system that can follow objects or be attached to static position
-		camera.draw(deltaTime);
+		camera.draw();
 		drawRect(0, 0, canvas.width, canvas.height, "blue");
 		canvasContext.drawImage(tempBackground, 0, 0, canvas.width, canvas.height);
 
-		testEnemy1.draw(deltaTime);
-		testEnemy2.draw(deltaTime);
+		testEnemy1.draw();
+		testEnemy2.draw();
 
-		player.draw(deltaTime);
+		player.draw();
 	};
 
 	const initializePlayerIfReqd = function() {

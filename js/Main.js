@@ -82,14 +82,6 @@ function startGame() {
 	windowState.playing = true;
 }
 
-function drawAll() {
-
-}
-
-function moveAll() {
-
-}
-
 function windowOnFocus() {
 	pauseManager.resumeGame(CAUSE.Focus);
 }
