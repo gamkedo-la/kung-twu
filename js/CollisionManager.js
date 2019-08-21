@@ -181,7 +181,7 @@ function CollisionManager(player) {
 		for(let entity of entities) {
 			const entityPosition = entity.getPosition();
 			if( (entityPosition.x > GAME_FIELD.right) || 
-				(entityPosition.x < GAME_FIELD.x - entity.size.width)) {continue;}//entity is not on screen => bail out early
+				(entityPosition.x < GAME_FIELD.x - entity.getWidth())) {continue;}//entity is not on screen => bail out early
 
 			doPlayerCollision(entity, this.player);            
 		}

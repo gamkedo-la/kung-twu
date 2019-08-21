@@ -18,7 +18,10 @@ function Player(config) {
 	let hasJumpKick = false;
 	let hasHelicopterKick = false;
 
-	this.hitbox;//initialized down below definition of buildBodyCollider() function
+	this.type = ENTITY_TYPE.Player;
+	this.collisionBody;//initialized down below definition of buildBodyCollider() function
+	this.fistBox = null;//TODO: Need to create
+	this.footBox = null;//TODO: Need to create
 
 	if(config != undefined) {
 		if(config.x != undefined) {position.x = config.x;}
@@ -46,11 +49,15 @@ function Player(config) {
 			isOnGround = true;
 		}
 
-		this.hitbox.setPosition(position);//keep collider in sync with sprite position
+		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
 	};
 
 	this.getPosition = function() {
 		return {x:position.x, y:position.y};
+	};
+
+	this.getWidth = function() {
+		return currentAnimation.getWidth();
 	};
 
 	const fallDueToGravity = function(timeStep, gravity) {
@@ -172,7 +179,7 @@ function Player(config) {
 	this.draw = function() {
 		currentAnimation.drawAt(position.x, position.y);
 
-		this.hitbox.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
+		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
 	};
 
 	const initializeAnimations = function() {
@@ -234,9 +241,9 @@ function Player(config) {
 		
 		return new Collider(colliderType, colliderData);
 	};
-	this.hitbox = buildBodyCollider();
+	this.collisionBody = buildBodyCollider();
 
 	this.didCollideWith = function(otherEntity) {
-		console.log(`Got hit by ${otherEntity}`);
+//		console.log(`Got hit by ${otherEntity.type}`);
 	};
 }

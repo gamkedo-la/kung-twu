@@ -1,13 +1,13 @@
 //Game Play scene
 function GameScene() {
 	const GRAVITY = 500;
-	const collisionManager = new CollisionManager(player);
-	let testEnemy1 = null;//TODO: need another way to do this
-	let testEnemy2 = null;//TODO: need another way to do this
-	let camera = new Camera();
+	let collisionManager;
+	const enemies = [];
+	const camera = new Camera();
 
 	this.transitionIn = function() {
 		initializePlayerIfReqd();
+		collisionManager = new CollisionManager(player);
 
 		initializeEnemies();
 		
@@ -44,8 +44,9 @@ function GameScene() {
 		player.update(deltaTime, GRAVITY);
 
 		const playerPos = player.getPosition();
-		testEnemy1.update(deltaTime, GRAVITY, playerPos);
-		testEnemy2.update(deltaTime, GRAVITY, playerPos);
+		for(let i = 0; i < enemies.length; i++) {
+			enemies[i].update(deltaTime, GRAVITY, playerPos);
+		}
 
 		camera.update(deltaTime);
 	};
@@ -54,11 +55,11 @@ function GameScene() {
 		// Pan the camera by centering the canvas on the player's position
 		// TODO: Implement a camera system that can follow objects or be attached to static position
 		camera.draw();
-		drawRect(0, 0, canvas.width, canvas.height, "blue");
 		canvasContext.drawImage(tempBackground, 0, 0, canvas.width, canvas.height);
 
-		testEnemy1.draw();
-		testEnemy2.draw();
+		for(let i = 0; i < enemies.length; i++) {
+			enemies[i].draw();
+		}
 
 		player.draw();
 	};
@@ -79,22 +80,15 @@ function GameScene() {
 	};
 
 	const initializeEnemies = function() {
-		if(testEnemy1 === null) {
+		for(let i = 1; i < 3; i++) {
 			const config = {
-				x:canvas.width / 3, 
+				x:i * canvas.width / 7, 
 				y:3 * canvas.height / 5
 			};
 
-			testEnemy1 = new BasicEnemy(config);
-		}
-
-		if(testEnemy2 === null) {
-			const config = {
-				x:canvas.width / 8, 
-				y:3 * canvas.height / 5
-			};
-
-			testEnemy2 = new BasicEnemy(config);
+			const anEnemy = new BasicEnemy(config);
+			collisionManager.addEntity(anEnemy);
+			enemies.push(anEnemy);
 		}
 	};
 }

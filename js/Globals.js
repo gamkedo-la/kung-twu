@@ -75,6 +75,12 @@ const GAME_FIELD = {//configured in Main.js
 const DRAW_COLLIDERS = true;
 const COLLIDER_COLOR = "yellow";
 
+const ENTITY_TYPE = {
+	Player:"player",
+	BasicEnemy:"basicEnemy",
+	Floor:"floor"
+};
+
 //---------------Audio------------------//
 let isMuted = false;
 

@@ -19,6 +19,9 @@ function BasicEnemy(config) {
 	let hasJumpKick = false;
 	let hasHelicopterKick = false;
 
+	this.type = ENTITY_TYPE.BasicEnemy;
+	this.collisionBody;//initialized down below definition of buildBodyCollider() function
+
 	if(config != undefined) {
 		if(config.x != undefined) {position.x = config.x;}
 		if(config.y != undefined) {position.y = config.y;}
@@ -27,6 +30,14 @@ function BasicEnemy(config) {
 		if(config.hasJumpKick != undefined) {hasJumpKick = config.hasJumpKick;}
 		if(config.hasHelicopterKick != undefined) {hasHelicopterKick = config.hasHelicopterKick;}
 	}
+
+	this.getPosition = function() {
+		return {x:position.x, y:position.y};
+	};
+
+	this.getWidth = function() {
+		return currentAnimation.getWidth();
+	};
 
 	this.update = function(deltaTime, gravity, playerPos) {
 		currentAnimation.update(deltaTime);
@@ -44,6 +55,8 @@ function BasicEnemy(config) {
 		}		
 
 		doAI(playerPos);
+
+		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
 	};
 
 	const fallDueToGravity = function(timeStep, gravity) {
@@ -138,8 +151,10 @@ function BasicEnemy(config) {
 		}
 	};
 
-	this.draw = function(deltaTime) {
+	this.draw = function() {
 		currentAnimation.drawAt(position.x, position.y);
+
+		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
 	};
 
 	const initializeAnimations = function() {
@@ -184,5 +199,26 @@ function BasicEnemy(config) {
 		} else {
 			return false;
 		}
+	};
+
+	const buildBodyCollider = function() {
+		const colliderType = ColliderType.Polygon;
+		const colliderData = {};
+		colliderData.position = position;
+
+		const points = [];
+		points.push({x:position.x, y:position.y});
+		points.push({x:position.x, y:position.y + currentAnimation.getHeight()});
+		points.push({x:position.x + currentAnimation.getWidth(), y:position.y + currentAnimation.getHeight()});
+		points.push({x:position.x + currentAnimation.getWidth(), y:position.y});
+		
+		colliderData.points = points;
+		
+		return new Collider(colliderType, colliderData);
+	};
+	this.collisionBody = buildBodyCollider();
+
+	this.didCollideWith = function(otherEntity) {
+//		console.log(`Got hit by ${otherEntity.type}`);
 	};
 }
