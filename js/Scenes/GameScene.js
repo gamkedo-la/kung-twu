@@ -44,6 +44,11 @@ function GameScene() {
 	};
 
 	const draw = function(deltaTime) {
+		// Pan the camera by centering the canvas on the player's position
+		// TODO: Implement a camera system that can follow objects or be attached to static position
+		canvasContext.resetTransform()
+		canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+		canvasContext.translate(-player.getPosition().x + (canvas.width / 2), 0);
 		drawRect(0, 0, canvas.width, canvas.height, "blue");
 		canvasContext.drawImage(tempBackground, 0, 0, canvas.width, canvas.height);
 
