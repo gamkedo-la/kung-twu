@@ -169,7 +169,7 @@ function Player(config) {
 		}
 	};
 
-	this.draw = function(deltaTime) {
+	this.draw = function() {
 		currentAnimation.drawAt(position.x, position.y);
 
 		this.hitbox.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
@@ -235,4 +235,8 @@ function Player(config) {
 		return new Collider(colliderType, colliderData);
 	};
 	this.hitbox = buildBodyCollider();
+
+	this.didCollideWith = function(otherEntity) {
+		console.log(`Got hit by ${otherEntity}`);
+	};
 }

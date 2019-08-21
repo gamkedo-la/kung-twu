@@ -3,7 +3,7 @@ function GameScene() {
 	const GRAVITY = 500;
 	let testEnemy1 = null;//TODO: need another way to do this
 	let testEnemy2 = null;//TODO: need another way to do this
-    let camera = new Camera();
+	let camera = new Camera();
 
 	this.transitionIn = function() {
 		initializePlayerIfReqd();
@@ -20,7 +20,7 @@ function GameScene() {
 	this.run = function(deltaTime) {
 		update(deltaTime);
 
-		draw(deltaTime);
+		draw();
 	};
 
 	this.control = function(newKeyEvent) {
@@ -44,13 +44,13 @@ function GameScene() {
 		testEnemy1.update(deltaTime, GRAVITY, playerPos);
 		testEnemy2.update(deltaTime, GRAVITY, playerPos);
 
-		camera.update(deltaTime)
+		camera.update(deltaTime);
 	};
 
-	const draw = function(deltaTime) {
+	const draw = function() {
 		// Pan the camera by centering the canvas on the player's position
 		// TODO: Implement a camera system that can follow objects or be attached to static position
-        camera.draw(deltaTime);
+		camera.draw(deltaTime);
 		drawRect(0, 0, canvas.width, canvas.height, "blue");
 		canvasContext.drawImage(tempBackground, 0, 0, canvas.width, canvas.height);
 
@@ -72,7 +72,7 @@ function GameScene() {
 	};
 
 	const initializeLevel = function() {
-	    camera.attach(player);
+		camera.attach(player);
 	};
 
 	const initializeEnemies = function() {
