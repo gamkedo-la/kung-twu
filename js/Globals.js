@@ -22,6 +22,7 @@ const Color = {
 
 //--------------Player-----------------//
 let player = null;
+let deadZoneHalfWidth = 25;
 
 //---------------Persistence-----------//
 const localStorageKey = {

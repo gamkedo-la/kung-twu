@@ -3,6 +3,8 @@ function GameScene() {
 	const GRAVITY = 500;
 	let testEnemy1 = null;//TODO: need another way to do this
 	let testEnemy2 = null;//TODO: need another way to do this
+    let camera = new Camera();
+
 	this.transitionIn = function() {
 		initializePlayerIfReqd();
 
@@ -41,14 +43,14 @@ function GameScene() {
 		const playerPos = player.getPosition();
 		testEnemy1.update(deltaTime, GRAVITY, playerPos);
 		testEnemy2.update(deltaTime, GRAVITY, playerPos);
+
+		camera.update(deltaTime)
 	};
 
 	const draw = function(deltaTime) {
 		// Pan the camera by centering the canvas on the player's position
 		// TODO: Implement a camera system that can follow objects or be attached to static position
-		canvasContext.resetTransform()
-		canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-		canvasContext.translate(-player.getPosition().x + (canvas.width / 2), 0);
+        camera.draw(deltaTime);
 		drawRect(0, 0, canvas.width, canvas.height, "blue");
 		canvasContext.drawImage(tempBackground, 0, 0, canvas.width, canvas.height);
 
@@ -70,7 +72,7 @@ function GameScene() {
 	};
 
 	const initializeLevel = function() {
-
+	    camera.attach(player);
 	};
 
 	const initializeEnemies = function() {
