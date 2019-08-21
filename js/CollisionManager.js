@@ -14,7 +14,7 @@ function Collider(type, data) {
 		this.points[i] = {x:data.points[i].x, y:data.points[i].y};
 	}
 
-	this.position = data.position;
+	let position = {x:data.position.x, y:data.position.y};
 	
 	this.findCenterAndRadiusOfPoints = function(points) {
 		let minX = points[0].x;
@@ -50,9 +50,8 @@ function Collider(type, data) {
 	}
 	
 	this.setPosition = function(newPosition) {
-		const deltaX = newPosition.x - this.position.x;
-		const deltaY = newPosition.y - this.position.y;
-//		console.log(`Position:(${deltaX}, ${deltaY})`);
+		const deltaX = newPosition.x - position.x;
+		const deltaY = newPosition.y - position.y;
 
 		if(this.type === ColliderType.Polygon) {
 			for(let i = 0; i < this.points.length; i++) {
@@ -64,8 +63,12 @@ function Collider(type, data) {
 		this.center.x += deltaX;
 		this.center.y += deltaY;
 		
-		this.position.x = newPosition.x;
-		this.position.y = newPosition.y;
+		position.x = newPosition.x;
+		position.y = newPosition.y;
+	};
+
+	this.getPosition = function() {
+		return {x:position.x, y:position.y};
 	};
 	
 	this.draw = function() {
@@ -176,8 +179,9 @@ function CollisionManager(player) {
 		const collisions = [];
 
 		for(let entity of entities) {
-			if( (entity.position.x > GAME_FIELD.right) || 
-				(entity.position.x < GAME_FIELD.x - entity.size.width)) {continue;}//entity is not on screen => bail out early
+			const entityPosition = entity.getPosition();
+			if( (entityPosition.x > GAME_FIELD.right) || 
+				(entityPosition.x < GAME_FIELD.x - entity.size.width)) {continue;}//entity is not on screen => bail out early
 
 			doPlayerCollision(entity, this.player);            
 		}

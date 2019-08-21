@@ -113,7 +113,6 @@ function Player(config) {
 			isOnGround = false;
 			velocity.y = JUMP_SPEED;
 			//currentAnimation = animations.jumping;
-			console.log("Need to jump now, also need some gravity to make you land");
 		}
 	};
 
