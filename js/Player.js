@@ -18,6 +18,8 @@ function Player(config) {
 	let hasJumpKick = false;
 	let hasHelicopterKick = false;
 
+	this.hitbox;//initialized down below definition of buildBodyCollider() function
+
 	if(config != undefined) {
 		if(config.x != undefined) {position.x = config.x;}
 		if(config.y != undefined) {position.y = config.y;}
@@ -43,6 +45,8 @@ function Player(config) {
 			position.y = canvas.height - currentAnimation.getHeight();
 			isOnGround = true;
 		}
+
+		this.hitbox.setPosition(position);//keep collider in sync with sprite position
 	};
 
 	this.getPosition = function() {
@@ -168,6 +172,8 @@ function Player(config) {
 
 	this.draw = function(deltaTime) {
 		currentAnimation.drawAt(position.x, position.y);
+
+		this.hitbox.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
 	};
 
 	const initializeAnimations = function() {
@@ -213,4 +219,21 @@ function Player(config) {
 			return false;
 		}
 	};
+
+	const buildBodyCollider = function() {
+		const colliderType = ColliderType.Polygon;
+		const colliderData = {};
+		colliderData.position = position;
+
+		const points = [];
+		points.push({x:position.x, y:position.y});
+		points.push({x:position.x, y:position.y + currentAnimation.getHeight()});
+		points.push({x:position.x + currentAnimation.getWidth(), y:position.y + currentAnimation.getHeight()});
+		points.push({x:position.x + currentAnimation.getWidth(), y:position.y});
+		
+		colliderData.points = points;
+		
+		return new Collider(colliderType, colliderData);
+	};
+	this.hitbox = buildBodyCollider();
 }

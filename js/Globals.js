@@ -71,7 +71,8 @@ const GAME_FIELD = {//configured in Main.js
 	midY:0
 };
 
-const DRAW_COLLIDERS = false;
+const DRAW_COLLIDERS = true;
+const COLLIDER_COLOR = "yellow";
 
 //---------------Audio------------------//
 let isMuted = false;

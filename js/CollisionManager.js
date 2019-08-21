@@ -52,6 +52,7 @@ function Collider(type, data) {
 	this.setPosition = function(newPosition) {
 		const deltaX = newPosition.x - this.position.x;
 		const deltaY = newPosition.y - this.position.y;
+//		console.log(`Position:(${deltaX}, ${deltaY})`);
 
 		if(this.type === ColliderType.Polygon) {
 			for(let i = 0; i < this.points.length; i++) {
