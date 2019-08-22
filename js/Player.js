@@ -7,7 +7,7 @@ function Player(config) {
 	let currentAnimation;
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
-    
+
 	let isOnGround = true;
 	let isCrouching = false;
 	let isBlocking = false;
@@ -46,6 +46,7 @@ function Player(config) {
 		//TODO: Temporary to keep player from falling off the canvas
 		if(position.y > canvas.height - currentAnimation.getHeight()) {
 			position.y = canvas.height - currentAnimation.getHeight();
+			velocity.y = 0;
 			isOnGround = true;
 		}
 
@@ -54,6 +55,14 @@ function Player(config) {
 
 	this.getPosition = function() {
 		return {x:position.x, y:position.y};
+	};
+
+	this.getVelocity = function () {
+		return {x: velocity.x, y: velocity.y}
+	};
+
+	this.isMoving = function () {
+		return velocity.x != 0 || velocity.y != 0;
 	};
 
 	this.getWidth = function() {
@@ -236,9 +245,9 @@ function Player(config) {
 		points.push({x:position.x, y:position.y + currentAnimation.getHeight()});
 		points.push({x:position.x + currentAnimation.getWidth(), y:position.y + currentAnimation.getHeight()});
 		points.push({x:position.x + currentAnimation.getWidth(), y:position.y});
-		
+
 		colliderData.points = points;
-		
+
 		return new Collider(colliderType, colliderData);
 	};
 	this.collisionBody = buildBodyCollider();

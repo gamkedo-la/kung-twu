@@ -23,10 +23,16 @@ function Camera() {
 			let deadZoneLeft = position.x - deadZoneHalfWidth;
 			let deadZoneRight = position.x + deadZoneHalfWidth;
 
-			if (parent.getPosition().x < deadZoneLeft) {
-				position.x = position.x + (parent.getPosition().x - deadZoneLeft);
-			} else if (parent.getPosition().x > deadZoneRight) {
-				position.x = position.x + (parent.getPosition().x - deadZoneRight);
+			if (parent.isMoving()) {
+				if (parent.getPosition().x < deadZoneLeft) {
+					position.x = position.x + (parent.getPosition().x - deadZoneLeft);
+				} else if (parent.getPosition().x > deadZoneRight) {
+					position.x = position.x + (parent.getPosition().x - deadZoneRight);
+				}
+			} else if (position.x != parent.getPosition().x) {
+				position.x = lerp(position.x, parent.getPosition().x, 0.1);
+				if (Math.abs(position.x - parent.getPosition().x) < 1)
+					position.x = parent.getPosition().x;
 			}
 		}
 	};
