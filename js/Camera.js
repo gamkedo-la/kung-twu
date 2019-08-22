@@ -23,7 +23,7 @@ function Camera() {
 			let deadZoneLeft = position.x - deadZoneHalfWidth;
 			let deadZoneRight = position.x + deadZoneHalfWidth;
 
-			if (parent.isMoving()) {
+			if (parent.getVelocity().x != 0) {
 				if (parent.getPosition().x < deadZoneLeft) {
 					position.x = position.x + (parent.getPosition().x - deadZoneLeft);
 				} else if (parent.getPosition().x > deadZoneRight) {
