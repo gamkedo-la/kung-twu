@@ -167,11 +167,10 @@ function CollisionManager(player) {
 	};
     
 	const doPlayerCollision = function(entity, player) {
-		if((entity.type === player.fistBox) ||
-           (entity.type === player.footBox)) {
-			return;//ignore collisions with player hitboxes (player can't inflict self-damage)
+		if(entity.type === ENTITY_TYPE.Player) {
+			return;//ignore collisions with player (player can't inflict self-damage)
 		}
-        
+
 		actualCollisionCheck(entity, player);
 	};
     

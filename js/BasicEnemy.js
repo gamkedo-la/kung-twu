@@ -5,9 +5,11 @@ function BasicEnemy(config) {
 	const JUMP_SPEED = -300;
 	const ATTACK_RANGE = 100;
 
+	let currentDamage = 0;
 	let currentAnimation;
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
+	let health = 10;
     
 	let isOnGround = true;
 	let isCrouching = false;
@@ -29,6 +31,7 @@ function BasicEnemy(config) {
 		if(config.hasSweep != undefined) {hasSweep = config.hasSweep;}
 		if(config.hasJumpKick != undefined) {hasJumpKick = config.hasJumpKick;}
 		if(config.hasHelicopterKick != undefined) {hasHelicopterKick = config.hasHelicopterKick;}
+		if(config.health != undefined) {health = config.health;}
 	}
 
 	this.getPosition = function() {
@@ -37,6 +40,14 @@ function BasicEnemy(config) {
 
 	this.getWidth = function() {
 		return currentAnimation.getWidth();
+	};
+
+	this.getHeight = function() {
+		return currentAnimation.getHeight();
+	};
+
+	this.getCurrentDamage = function() {
+		return currentDamage;
 	};
 
 	this.update = function(deltaTime, gravity, playerPos) {
@@ -84,17 +95,19 @@ function BasicEnemy(config) {
 
 	const moveLeft = function() {
 		position.x -= 10;
+		currentDamage = 0;
 	};
 
 	const moveRight = function() {
 		position.x += 10;
+		currentDamage = 0;
 	};
 
 	const jump = function() {
 		if(isOnGround) {
 			isOnGround = false;
 			//currentAnimation = animations.jumping;
-			console.log("Need to jump now, also need some gravity to make you land");
+			currentDamage = 0;
 		}
 	};
 
@@ -103,6 +116,7 @@ function BasicEnemy(config) {
 			console.log("I'm crouching now");
 			isCrouching = true;
 			//currentAnimation = animations.crouching;
+			currentDamage = 0;
 		}
 	};
 
@@ -111,6 +125,7 @@ function BasicEnemy(config) {
 			console.log("I'm blocking now");
 			isBlocking = true;
 			//currentAnimation = animations.blocking;
+			currentDamage = 0;
 		}
 	};
 
@@ -119,6 +134,7 @@ function BasicEnemy(config) {
 			console.log("I'm dashing now");
 			isDashing = true;
 			//currentAnimation = animations.dashing;
+			currentDamage = 0;
 		}
 	};
 
@@ -128,6 +144,7 @@ function BasicEnemy(config) {
 		} else {
 			console.log("Trying to punch");
 			//currentAnimation = animations.punching;
+			currentDamage = 10;
 		}
 	};
 
@@ -141,12 +158,15 @@ function BasicEnemy(config) {
 			if(hasHelicopterKick && isHoldingLeftorRight()) {
 				console.log("Helicopter Kick!!!!");
 				//currentAnimation = animations.helicopterKicking;
+				currentDamage = 40;
 			} else if(hasJumpKick) {
 				console.log("Jump Kick");
 				//currentAnimation = animations.jumpKicking;
+				currentDamage = 30;
 			} else if(hasSweep) {
 				console.log("Sweep");
 				//currentAnimation = animations.sweeping;
+				currentDamage = 20;
 			}
 		}
 	};
@@ -219,6 +239,15 @@ function BasicEnemy(config) {
 	this.collisionBody = buildBodyCollider();
 
 	this.didCollideWith = function(otherEntity) {
-//		console.log(`Got hit by ${otherEntity.type}`);
+		currentDamage = 10;//TODO: Remove this once enemies can attack
+		if(isBlocking) {
+			health -= (Math.ceil(otherEntity.getCurrentDamage() / 10));
+		} else {
+			health -= otherEntity.getCurrentDamage();
+		}
+		
+		if(health <= 0) {
+			console.log("Enemy defeated.");
+		}
 	};
 }

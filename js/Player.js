@@ -4,14 +4,19 @@ function Player(config) {
 	const WALK_SPEED = 200;
 	const JUMP_SPEED = -300;
 
+	let health = 100;
+	let currentDamage = 0;
+
 	let currentAnimation;
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
 
+	let isFacingLeft = true;
 	let isOnGround = true;
 	let isCrouching = false;
 	let isBlocking = false;
 	let isDashing = false;
+	let isKnockingBack = false;
 
 	let hasDash = false;
 	let hasSweep = false;
@@ -35,7 +40,25 @@ function Player(config) {
 	this.update = function(deltaTime, gravity) {
 		currentAnimation.update(deltaTime);
 
-		processInput();
+		if(!isKnockingBack) {
+			processInput();
+		} else {
+			if(isFacingLeft) {
+				velocity.x -= 10;
+				if(velocity.x <= 0) {
+					velocity.x = 0;
+				}
+			} else {
+				velocity.x += 10;
+				if(velocity.x >= 0) {
+					velocity.x = 0;
+				}
+			}
+
+			if((velocity.x == 0) && (isOnGround)) {
+				isKnockingBack = false;
+			}
+		}
 
 		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
 
@@ -58,7 +81,7 @@ function Player(config) {
 	};
 
 	this.getVelocity = function () {
-		return {x: velocity.x, y: velocity.y}
+		return {x: velocity.x, y: velocity.y};
 	};
 
 	this.isMoving = function () {
@@ -67,6 +90,14 @@ function Player(config) {
 
 	this.getWidth = function() {
 		return currentAnimation.getWidth();
+	};
+
+	this.getHeight = function() {
+		return currentAnimation.getHeight();
+	};
+
+	this.getCurrentDamage = function() {
+		return currentDamage;
 	};
 
 	const fallDueToGravity = function(timeStep, gravity) {
@@ -85,10 +116,12 @@ function Player(config) {
 			case ALIAS.LEFT:
 				stillWalking = true;
 				walk(-WALK_SPEED);
+				isFacingLeft = true;
 				break;
 			case ALIAS.RIGHT:
 				stillWalking = true;
 				walk(WALK_SPEED);
+				isFacingLeft = false;
 				break;
 			case ALIAS.JUMP:
 				jump();
@@ -253,6 +286,25 @@ function Player(config) {
 	this.collisionBody = buildBodyCollider();
 
 	this.didCollideWith = function(otherEntity) {
-//		console.log(`Got hit by ${otherEntity.type}`);
+		if(isBlocking) {
+			health -= (Math.ceil(otherEntity.getCurrentDamage() / 10));
+		} else {
+			health -= otherEntity.getCurrentDamage();
+
+			isKnockingBack = true;
+
+			velocity.y = -150;
+			isOnGround = false;
+			if(isFacingLeft) {
+				velocity.x += 150;
+			} else {
+				velocity.x -= 150;
+			}
+		}
+
+		if(health <= 0) {
+			console.log("Your attempt failed.  Try again.");
+			//TODO: Go to game over screen
+		}
 	};
 }
