@@ -2,7 +2,8 @@
 const Language = {
 	English:"English",
 	Spanish:"Spanish",
-	Japanese:"Japanese"
+	Japanese:"Japanese",
+	French:"French"
 };
 
 const STRINGS_KEY = {
@@ -19,6 +20,7 @@ const STRINGS_KEY = {
 	English:"English",
 	Spanish:"Spanish",
 	Japanese:"Japanese",
+	French:"French",
 	EnterToReturn:"EnterToReturn",
 	HowToPlay:"HowToPlay",
 	Muted:"Muted",
@@ -47,6 +49,7 @@ const userStrings = {
 		[STRINGS_KEY.English]:"English",
 		[STRINGS_KEY.Spanish]:"Español",
 		[STRINGS_KEY.Japanese]:"日本人",
+		[STRINGS_KEY.French]:"Français",
 		[STRINGS_KEY.EnterToReturn]:"Press [ENTER] to Return",
 		[STRINGS_KEY.HowToPlay]:"How to Play",
 		[STRINGS_KEY.Muted]:"Muted",
@@ -70,6 +73,7 @@ const userStrings = {
 		[STRINGS_KEY.English]:"English",
 		[STRINGS_KEY.Spanish]:"Español",
 		[STRINGS_KEY.Japanese]:"日本人",
+		[STRINGS_KEY.French]:"Français",
 		[STRINGS_KEY.EnterToReturn]:"Presiona [Enter] para Regresar",
 		[STRINGS_KEY.HowToPlay]:"Cómo Jugar",
 		[STRINGS_KEY.Muted]:"Silenciado",
@@ -93,6 +97,7 @@ const userStrings = {
 		[STRINGS_KEY.English]:"English",
 		[STRINGS_KEY.Spanish]:"Español",
 		[STRINGS_KEY.Japanese]:"日本人",
+		[STRINGS_KEY.French]:"Français",
 		[STRINGS_KEY.EnterToReturn]:"Press [ENTER] to Return",
 		[STRINGS_KEY.HowToPlay]:"How to Play",
 		[STRINGS_KEY.Muted]:"Muted",
@@ -101,4 +106,28 @@ const userStrings = {
 		[STRINGS_KEY.SettingsScreenTitle]:"SETTINGS",
 		[STRINGS_KEY.CreditsScreenTitle]:"CREDITS"
 	},
+
+	French: {
+		[STRINGS_KEY.Help]:"[H] for Help",
+		[STRINGS_KEY.Credits]:"[C] for Credits",
+		[STRINGS_KEY.Settings]:"[S] for Settings",
+		[STRINGS_KEY.Play]:"[SPACE] to Play",
+		[STRINGS_KEY.MusicVolume]:"Music Volume",
+		[STRINGS_KEY.SFXVolume]:"SFX Volume",
+		[STRINGS_KEY.Loading]:"LOADING...",
+		[STRINGS_KEY.Paused]:"- P A U S E D -",
+		[STRINGS_KEY.Title]:"Kung Twu",
+		[STRINGS_KEY.Subtitle]:"A Martial Arts Tale",
+		[STRINGS_KEY.English]:"English",
+		[STRINGS_KEY.Spanish]:"Español",
+		[STRINGS_KEY.Japanese]:"日本人",
+		[STRINGS_KEY.French]:"Français",
+		[STRINGS_KEY.EnterToReturn]:"Press [ENTER] to Return",
+		[STRINGS_KEY.HowToPlay]:"How to Play",
+		[STRINGS_KEY.Muted]:"Muted",
+		[STRINGS_KEY.Back]:"Back",
+		[STRINGS_KEY.HelpScreenTitle]:"HELP",
+		[STRINGS_KEY.SettingsScreenTitle]:"SETTINGS",
+		[STRINGS_KEY.CreditsScreenTitle]:"CREDITS"
+	}
 };
