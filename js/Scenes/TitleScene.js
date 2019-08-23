@@ -69,23 +69,18 @@ function TitleScene() {
 			}
 			return true;
 		case ALIAS.SELECT1:
-			console.log("Activated the current button");
 			SceneState.setState(selections[selectorPositionsIndex]);
 			return true;
 		case ALIAS.SELECT2:
-			console.log("Selected the Play button");
 			SceneState.setState(SCENE.GAME);
 			return true;
 		case ALIAS.HELP:
-			console.log("Selected the Help Button");
 			SceneState.setState(SCENE.HELP);
 			return true;
 		case ALIAS.CREDITS:
-			console.log("Selected the Credits Button");
 			SceneState.setState(SCENE.CREDITS);
 			return true;
 		case ALIAS.SETTINGS:
-			console.log("Selected the Settings Button");
 			SceneState.setState(SCENE.SETTINGS);
 			return true;
 		case ALIAS.CHEATS:
@@ -93,7 +88,6 @@ function TitleScene() {
 			return true;
 		case ALIAS.DEBUG:
 			DEBUG = !DEBUG;
-			console.log("Debug? " + DEBUG);
 			return true;
 		case ALIAS.POINTER:
 			checkButtons();
@@ -105,7 +99,6 @@ function TitleScene() {
 
 	const buildPlayButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			console.log("Clicked the Play Button");
 			SceneState.setState(SCENE.GAME);
 		};
 
@@ -115,7 +108,6 @@ function TitleScene() {
 
 	const buildHelpButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			console.log("Clicked the Help Button");
 			SceneState.setState(SCENE.HELP);
 		};
 
@@ -124,7 +116,6 @@ function TitleScene() {
 
 	const buildSettingsButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			console.log("Clicked the Settings Button");
 			SceneState.setState(SCENE.SETTINGS);
 		};
 
@@ -133,7 +124,6 @@ function TitleScene() {
 
 	const buildCreditsButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			console.log("Clicked the Credits Button");
 			SceneState.setState(SCENE.CREDITS);
 		};
 
@@ -150,7 +140,8 @@ function TitleScene() {
 		const languages = Object.keys(Language);
 
 		const interButtonPadding = 3 * buttonHeight / 2;
-		let xPos = interButtonPadding;
+		let xPos = 0;//interButtonPadding;
+		let totalButtonWidth = 0;
 		const languageButtons = [];
 		for(let i = 0; i < languages.length; i++) {
 			const thisClick = function() {
@@ -163,14 +154,12 @@ function TitleScene() {
 				xPos, canvas.height - (3 * buttonHeight / 2), 
 				buttonHeight, buttonTitlePadding, thisClick, Color.Red));
 
-			xPos += (buttons[buttons.length - 1].getBounds().width);
-			xPos += interButtonPadding;
+			totalButtonWidth += (languageButtons[languageButtons.length - 1].getBounds().width);
 		}
 
-		const leftMost = languageButtons[0].getBounds().x;
-		const lastButton = languageButtons[languageButtons.length - 1];
-		const rightMost = lastButton.getBounds().x + lastButton.getBounds().width;
-		let currentX = (canvas.width - (rightMost - leftMost)) / 2;
+		totalButtonWidth += ((languages.length - 1) * interButtonPadding);
+
+		let currentX = ((canvas.width - totalButtonWidth) / 2);
 
 		for(let i = 0; i < languageButtons.length; i++) {
 			const thisButton = languageButtons[i];
