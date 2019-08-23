@@ -147,6 +147,18 @@ function Player(config) {
 			}
 		}
 
+		if (gamepadAPI.buttons.held(PAD_ALIAS.LEFT)) {
+			stillWalking = true;
+			walk(-WALK_SPEED);
+			isFacingLeft = true;
+		} else if (gamepadAPI.buttons.held(PAD_ALIAS.RIGHT)) {
+			stillWalking = true;
+			walk(WALK_SPEED);
+			isFacingLeft = false;
+		} else if (gamepadAPI.buttons.held(PAD_ALIAS.UP)) {
+			jump()
+		}
+
 		if(!stillCrouching) {isCrouching = false;}
 		if(!stillBlocking) {isBlocking = false;}
 		if(!stillDashing) {isDashing = false;}
@@ -246,9 +258,9 @@ function Player(config) {
 
 	const isHoldingLeftorRight = function() {
 		for(let i = 0; i < heldButtons.length; i++) {
-			if(heldButtons[i] === ALIAS.LEFT) {
+			if(heldButtons[i] === ALIAS.LEFT || gamepadAPI.buttons.held(PAD_ALIAS.LEFT)) {
 				return true;
-			} else if(heldButtons[i] === ALIAS.RIGHT) {
+			} else if(heldButtons[i] === ALIAS.RIGHT || gamepadAPI.buttons.held(PAD_ALIAS.RIGHT)) {
 				return true;
 			}
 		}

@@ -57,6 +57,11 @@ let mouseX = 0;
 const LEFT_MOUSE_BUTTON = "LeftMouseButton";
 const RIGHT_MOUSE_BUTTON = "RightMouseButton";
 
+const DPAD_UP = 'DPad-Up';
+const DPAD_DOWN = 'DPad-Down';
+const DPAD_LEFT = 'DPad-Left';
+const DPAD_RIGHT = "DPad-Right";
+
 const heldButtons = [];
 const ALIAS = {
 	UP:KEY_UP,
@@ -79,6 +84,85 @@ const ALIAS = {
 	POINTER:LEFT_MOUSE_BUTTON,
 	CONTEXT:RIGHT_MOUSE_BUTTON
 };
+const PAD_ALIAS = {
+	UP: DPAD_UP,
+	DOWN: DPAD_DOWN,
+	LEFT: DPAD_LEFT,
+	RIGHT: DPAD_RIGHT
+}
+
+let gamepadAPI = {
+	controllerIndex: undefined,
+	active: false,
+	connect: function (evt) {
+		gamepadAPI.controllerIndex = evt.gamepad.index;
+		gamepadAPI.active = true;
+		console.log('Gamepad connected.');
+	},
+	disconnect: function (evt) {
+		gamepadAPI.active = false;
+		delete gamepadAPI.controllerIndex;
+		console.log('Gamepad disconnected.')
+	},
+	update: function () {
+		gamepadAPI.buttons.cache = [];
+		for (let i = 0; i < gamepadAPI.buttons.status.length; i++) {
+			gamepadAPI.buttons.cache[i] = gamepadAPI.buttons.status[i];
+		}
+		gamepadAPI.buttons.status = [];
+		let c = navigator.getGamepads()[gamepadAPI.controllerIndex] || {};
+		let pressed = [];
+		if (c.buttons) {
+			for (let i = 0, l = c.buttons.length; i < l; i++) {
+				if (c.buttons[i].pressed) {
+					pressed[i] = gamepadAPI.buttons.layout[i];
+				}
+			}
+		}
+		let axes = [];
+		if (c.axes) {
+			for (let i = 0, l = c.axes.length; i < l; i++) {
+				axes[i] = c.axes[i].toFixed(2);
+			}
+		}
+		gamepadAPI.axes.status = axes;
+		gamepadAPI.buttons.status = pressed;
+
+		return pressed;
+	},
+	buttons: {
+		layout: {
+			12: DPAD_UP,
+			13: DPAD_DOWN,
+			14: DPAD_LEFT,
+			15: DPAD_RIGHT
+		},
+		cache: [],
+		status: [],
+		pressed: function (button, hold) {
+			let newPress = false;
+			for (let i = 0, l = gamepadAPI.buttons.status.length; i < l; i++) {
+				if (gamepadAPI.buttons.status[i] == button) {
+					newPress = true;
+					if (!hold) {
+						for (let j = 0, len=gamepadAPI.buttons.cache.length; j < len; j++) {
+							if (gamepadAPI.buttons.cache[j] == button) {
+								newPress = false;
+							}
+						}
+					}
+				}
+			}
+			return newPress;
+		},
+		held: function (button) {
+			return gamepadAPI.buttons.pressed(button, 'hold');
+		}
+	},
+	axes: {
+		status: []
+	}
+}
 
 function initializeInput() {
 	document.addEventListener("keydown",keyPress);
@@ -86,6 +170,9 @@ function initializeInput() {
 	document.addEventListener("mousedown", mouseButtonPressed);
 	document.addEventListener("mouseup", mouseButtonReleased);
 	document.addEventListener("mousemove", calculateMousePos);
+	// The following events don't work on document it appears
+	window.addEventListener("gamepadconnected", gamepadAPI.connect);
+	window.addEventListener("gamepaddisconnected", gamepadAPI.disconnect);
 }
 
 function notifyCurrentScene(newInput, pressed) {

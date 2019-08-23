@@ -61,6 +61,11 @@ function updateButtonText() {
 
 function update() {
 	const deltaTime = timer.update();
+
+	if (gamepadAPI.active) {
+		gamepadAPI.update();
+	}
+
 	SceneState.run(deltaTime);
 	if(!pauseManager.getIsPaused()) {
 		requestAnimationFrame(update);
