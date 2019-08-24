@@ -69,7 +69,7 @@ function beginLoadingImage(imgVar, fileName) {
 function loadImages() {
 	const imageList = [
 		// enemies
-		{ imgName: tempEnemyPic, theFile: "tempEnemy.png" },
+		{ imgName: tempEnemyPic, theFile: "TempEnemy.png" },
 
 		// backgrounds
 		{ imgName: tempBackground, theFile: "TempBackground.png" },
