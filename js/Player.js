@@ -37,7 +37,7 @@ function Player(config) {
 		if(config.hasHelicopterKick != undefined) {hasHelicopterKick = config.hasHelicopterKick;}
 	}
 
-	this.update = function(deltaTime, gravity) {
+	this.update = function(deltaTime, gravity, floorHeight) {
 		currentAnimation.update(deltaTime);
 
 		if(!isKnockingBack) {
@@ -67,8 +67,8 @@ function Player(config) {
 		fallDueToGravity(timeStep, gravity);
 
 		//TODO: Temporary to keep player from falling off the canvas
-		if(position.y > canvas.height - currentAnimation.getHeight()) {
-			position.y = canvas.height - currentAnimation.getHeight();
+		if(position.y > floorHeight - currentAnimation.getHeight()) {
+			position.y = floorHeight - currentAnimation.getHeight();
 			velocity.y = 0;
 			isOnGround = true;
 		}

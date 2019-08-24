@@ -48,6 +48,7 @@ function loadStartImagePic() {
 //-----Load the rest of the game images----//
 const tempPic = document.createElement("img");
 const tempBackground = document.createElement("img");
+const singlePlank = document.createElement("img");
 const tempPlayerPic = document.createElement("img");
 const tempEnemyPic = document.createElement("img");
 
@@ -72,6 +73,7 @@ function loadImages() {
 
 		// backgrounds
 		{ imgName: tempBackground, theFile: "TempBackground.png" },
+		{ imgName: singlePlank, theFile: "SinglePlank.png" },
 
 		// power ups
 		//        { imgName: shieldPowerUpPic, theFile: "shieldPowerUp.png" },

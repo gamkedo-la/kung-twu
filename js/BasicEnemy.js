@@ -50,7 +50,7 @@ function BasicEnemy(config) {
 		return currentDamage;
 	};
 
-	this.update = function(deltaTime, gravity, playerPos) {
+	this.update = function(deltaTime, gravity, playerPos, floorHeight) {
 		currentAnimation.update(deltaTime);
 
 		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
@@ -60,8 +60,8 @@ function BasicEnemy(config) {
 		fallDueToGravity(timeStep, gravity);
 
 		//TODO: Temporary to keep player from falling off the canvas
-		if(position.y > canvas.height - currentAnimation.getHeight()) {
-			position.y = canvas.height - currentAnimation.getHeight();
+		if(position.y > floorHeight - currentAnimation.getHeight()) {
+			position.y = floorHeight - currentAnimation.getHeight();
 			isOnGround = true;
 		}		
 

@@ -4,10 +4,15 @@ function GameScene() {
 	let collisionManager;
 	const enemies = [];
 	const camera = new Camera();
+	const floor = new InfiniteFloor();
+	let floorMidHeight = 0;
 
 	this.transitionIn = function() {
 		initializePlayerIfReqd();
 		collisionManager = new CollisionManager(player);
+		floor.setYPos(canvas.height - singlePlank.height);
+		floor.setTotalWidth(canvas.width);
+		floorMidHeight = floor.getMidHeight();
 
 		initializeEnemies();
 		
@@ -41,11 +46,12 @@ function GameScene() {
 	};
 
 	const update = function(deltaTime) {
-		player.update(deltaTime, GRAVITY);
+
+		player.update(deltaTime, GRAVITY, floorMidHeight);
 
 		const playerPos = player.getPosition();
 		for(let i = 0; i < enemies.length; i++) {
-			enemies[i].update(deltaTime, GRAVITY, playerPos);
+			enemies[i].update(deltaTime, GRAVITY, playerPos, floorMidHeight);
 		}
 
 		camera.update(deltaTime);
@@ -56,6 +62,7 @@ function GameScene() {
 		// TODO: Implement a camera system that can follow objects or be attached to static position
 		camera.draw();
 		canvasContext.drawImage(tempBackground, 0, 0, canvas.width, canvas.height);
+		floor.draw();
 
 		for(let i = 0; i < enemies.length; i++) {
 			enemies[i].draw();
