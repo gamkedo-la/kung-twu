@@ -147,15 +147,17 @@ function Player(config) {
 			}
 		}
 
-		if (gamepadAPI.buttons.held(PAD_ALIAS.LEFT)) {
+		if (getAxis(HORIZONTAL_AXIS) < 0) {
 			stillWalking = true;
 			walk(-WALK_SPEED);
 			isFacingLeft = true;
-		} else if (gamepadAPI.buttons.held(PAD_ALIAS.RIGHT)) {
+		} else if (getAxis(HORIZONTAL_AXIS) > 0) {
 			stillWalking = true;
 			walk(WALK_SPEED);
 			isFacingLeft = false;
-		} else if (gamepadAPI.buttons.held(PAD_ALIAS.UP)) {
+		}
+
+		if (getAxis(VERTICAL_AXIS) < 0) {
 			jump()
 		}
 

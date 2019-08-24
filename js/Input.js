@@ -84,13 +84,16 @@ const ALIAS = {
 	POINTER:LEFT_MOUSE_BUTTON,
 	CONTEXT:RIGHT_MOUSE_BUTTON
 };
+
 const PAD_ALIAS = {
 	UP: DPAD_UP,
 	DOWN: DPAD_DOWN,
 	LEFT: DPAD_LEFT,
 	RIGHT: DPAD_RIGHT
-}
-
+};
+const AXIS_PRECISION = 0.2;
+const HORIZONTAL_AXIS = "horizontal";
+const VERTICAL_AXIS = "vertical";
 let gamepadAPI = {
 	controllerIndex: undefined,
 	active: false,
@@ -162,6 +165,46 @@ let gamepadAPI = {
 	axes: {
 		status: []
 	}
+};
+
+function getAxis(axis) {
+	if (HORIZONTAL_AXIS.localeCompare(axis, undefined, { sensitivity: "accent" }) == 0) {
+		for (let i = 0; i < heldButtons.length; i++) {
+			if (heldButtons[i] === ALIAS.LEFT)
+				return -1.0;
+			else if (heldButtons[i] === ALIAS.RIGHT)
+				return 1.0;
+		}
+
+		if (gamepadAPI.active) {
+			if (gamepadAPI.buttons.held(PAD_ALIAS.LEFT))
+				return -1.0;
+			else if (gamepadAPI.buttons.held(PAD_ALIAS.RIGHT))
+				return 1.0;
+
+			let axis = gamepadAPI.axes.status[0];
+			return axis > -AXIS_PRECISION && axis < AXIS_PRECISION ? 0.0 : axis;
+		}
+	} else if (VERTICAL_AXIS.localeCompare(axis, undefined, { sensitivity: "accent" }) == 0) {
+		for (let i = 0; i < heldButtons.length; i++) {
+			if (heldButtons[i] === ALIAS.UP)
+				return -1.0;
+			else if (heldButtons[i] === ALIAS.DOWN)
+				return 1.0;
+		}
+
+		if (gamepadAPI.active) {
+			if (gamepadAPI.buttons.held(PAD_ALIAS.UP))
+				return -1.0;
+			else if (gamepadAPI.buttons.held(PAD_ALIAS.DOWN))
+				return 1.0;
+
+			let axis = gamepadAPI.axes.status[1];
+			return axis > -AXIS_PRECISION && axis < AXIS_PRECISION ? 0.0 : axis;
+		}
+	}
+
+	return 0.0;
 }
 
 function initializeInput() {
