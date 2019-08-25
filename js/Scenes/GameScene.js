@@ -4,15 +4,14 @@ function GameScene() {
 	let collisionManager;
 	const enemies = [];
 	const camera = new Camera();
-	const floor = new InfiniteFloor();
+	let floor;
 	let floorMidHeight = 0;
 
 	this.transitionIn = function() {
+		floor = new InfiniteFloor();
+		floorMidHeight = floor.getMidHeight();
 		initializePlayerIfReqd();
 		collisionManager = new CollisionManager(player);
-		floor.setYPos(canvas.height - singlePlank.height);
-		floor.setTotalWidth(canvas.width);
-		floorMidHeight = floor.getMidHeight();
 
 		initializeEnemies();
 		
@@ -46,6 +45,7 @@ function GameScene() {
 	};
 
 	const update = function(deltaTime) {
+		floor.update(camera.getPosition().x);
 
 		player.update(deltaTime, GRAVITY, floorMidHeight);
 
