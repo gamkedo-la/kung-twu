@@ -241,7 +241,7 @@ function Player(config) {
 	const initializeAnimations = function() {
 		const anims = {};
 
-		anims.idle = new SpriteAnimation("idle", tempPlayerPic, [0], tempPlayerPic.width * SCALE, tempPlayerPic.height * SCALE, [64], false, true);
+		anims.idle = new SpriteAnimation("idle", playerIdle, [0, 1], playerIdle.width * SCALE * 0.5, playerIdle.height * SCALE, [200], false, true);
 		anims.idle.SCALE = SCALE;
 		//animations.jumping = ...
 		//animations.crouching = ...

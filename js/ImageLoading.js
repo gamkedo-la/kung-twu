@@ -50,6 +50,7 @@ const tempPic = document.createElement("img");
 const tempBackground = document.createElement("img");
 const floorboardSheet = document.createElement("img");
 const tempPlayerPic = document.createElement("img");
+const playerIdle = document.createElement("img");
 const tempEnemyPic = document.createElement("img");
 
 let picsToLoad = 0;
@@ -80,6 +81,7 @@ function loadImages() {
 
 		// player related
 		{ imgName: tempPlayerPic, theFile: "TempPlayer.png" },
+		{ imgName: playerIdle, theFile: "Player_Idle_Condensed.png"},
 
 		// UI
 		//        { imgName: heartPic, theFile: "heart.png" },
