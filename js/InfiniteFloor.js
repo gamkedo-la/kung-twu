@@ -18,15 +18,21 @@ function InfiniteFloor() {
 			initializePlanks();
 		}
 
+		let shifts = 0;
+
 		while(planks[0].isOnScreen(cameraXPos)) {
 			insertPlank();
 			shiftImages(1);
+			shifts++;
 		}
 
 		while(planks[planks.length - 1].isOnScreen(cameraXPos)) {
 			addPlank();
 			shiftImages(-1);
+			shifts--;
 		}
+
+		return shifts;
 	};
 
 	this.draw = function() {
