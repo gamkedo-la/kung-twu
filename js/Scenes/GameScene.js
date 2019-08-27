@@ -78,7 +78,7 @@ function GameScene() {
 
 		player.draw();
 
-		columnManager.draw();
+		columnManager.draw(camera.getPosition().x);
 	};
 
 	const initializeFloor = function() {

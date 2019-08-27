@@ -24,9 +24,9 @@ function InfiniteColumn() {
 		}
 	};
 
-	this.draw = function() {
-		column1.draw();
-		column2.draw();
+	this.draw = function(cameraXPos) {
+		column1.draw(cameraXPos);
+		column2.draw(cameraXPos);
 	};
 
 	const updateColumnLocation = function(offscreen, onscreen, cameraXPos) {
@@ -50,6 +50,7 @@ function InfiniteColumn() {
 	function Column() {
 		let xPos = 0;
 		let yPos = 0;
+		const fadeZone = 6 * deadZoneHalfWidth;
 		this.setPosition = function(newX, newY) {
 			xPos = newX;
 			yPos = newY;
@@ -59,8 +60,15 @@ function InfiniteColumn() {
 			return {x:xPos, y:yPos};
 		};
 
-		this.draw = function() {
+		this.draw = function(cameraXPos) {
+			canvasContext.save();
+
+			if(isInDeadZone(cameraXPos)) {
+				canvasContext.globalAlpha = 0.7;
+			}
 			canvasContext.drawImage(tempColumn, xPos, yPos);
+
+			canvasContext.restore();
 		};
 
 		this.isOnScreen = function(cameraXPos) {
@@ -70,6 +78,16 @@ function InfiniteColumn() {
 			}
 
 			return false;
+		};
+
+		const isInDeadZone = function(cameraXPos) {
+			const deadZoneLeft = cameraXPos - (fadeZone);
+			if(xPos < deadZoneLeft) {return false;}
+
+			const deadZoneRight = cameraXPos + (fadeZone);
+			if(xPos > deadZoneRight) {return false;}
+
+			return true;
 		};
 	}
 }

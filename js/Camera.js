@@ -18,7 +18,7 @@ function Camera() {
 		parent = null;
 	};
 
-	this.update = function(deltaTime) {
+	this.update = function() {
 		if (parent != null) {
 			let deadZoneLeft = position.x - deadZoneHalfWidth;
 			let deadZoneRight = position.x + deadZoneHalfWidth;
