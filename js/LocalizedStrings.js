@@ -3,7 +3,8 @@ const Language = {
 	English:"English",
 	Spanish:"Spanish",
 	Japanese:"Japanese",
-	French:"French"
+	French:"French",
+	Russian:"Russian"
 };
 
 const STRINGS_KEY = {
@@ -21,6 +22,7 @@ const STRINGS_KEY = {
 	Spanish:"Spanish",
 	Japanese:"Japanese",
 	French:"French",
+	Russian:"Russian",
 	EnterToReturn:"EnterToReturn",
 	HowToPlay:"HowToPlay",
 	Muted:"Muted",
@@ -50,6 +52,7 @@ const userStrings = {
 		[STRINGS_KEY.Spanish]:"Español",
 		[STRINGS_KEY.French]:"Français",
 		[STRINGS_KEY.Japanese]:"にほんご",
+		[STRINGS_KEY.Russian]:"Русский",
 		[STRINGS_KEY.EnterToReturn]:"Press [ENTER] to Return",
 		[STRINGS_KEY.HowToPlay]:"How to Play",
 		[STRINGS_KEY.Muted]:"Muted",
@@ -74,6 +77,7 @@ const userStrings = {
 		[STRINGS_KEY.Spanish]:"Español",
 		[STRINGS_KEY.Japanese]:"にほんご",
 		[STRINGS_KEY.French]:"Français",
+		[STRINGS_KEY.Russian]:"Русский",
 		[STRINGS_KEY.EnterToReturn]:"Presiona [Enter] para Regresar",
 		[STRINGS_KEY.HowToPlay]:"Cómo Jugar",
 		[STRINGS_KEY.Muted]:"Silenciado",
@@ -98,6 +102,7 @@ const userStrings = {
 		[STRINGS_KEY.Spanish]:"Español",
 		[STRINGS_KEY.Japanese]:"にほんご",
 		[STRINGS_KEY.French]:"Français",
+		[STRINGS_KEY.Russian]:"Русский",
 		[STRINGS_KEY.EnterToReturn]:"Press [ENTER] to Return",
 		[STRINGS_KEY.HowToPlay]:"あそびかた",
 		[STRINGS_KEY.Muted]:"ミュート",
@@ -122,6 +127,7 @@ const userStrings = {
 		[STRINGS_KEY.Spanish]:"Español",
 		[STRINGS_KEY.Japanese]:"にほんご",
 		[STRINGS_KEY.French]:"Français",
+		[STRINGS_KEY.Russian]:"Русский",
 		[STRINGS_KEY.EnterToReturn]:"Press [ENTER] to Return",
 		[STRINGS_KEY.HowToPlay]:"How to Play",
 		[STRINGS_KEY.Muted]:"Muted",
@@ -129,5 +135,30 @@ const userStrings = {
 		[STRINGS_KEY.HelpScreenTitle]:"HELP",
 		[STRINGS_KEY.SettingsScreenTitle]:"SETTINGS",
 		[STRINGS_KEY.CreditsScreenTitle]:"CREDITS"
+	},
+
+	Russian: {
+		[STRINGS_KEY.Help]:"[H] Помощь",
+		[STRINGS_KEY.Credits]:"[C] Титры",
+		[STRINGS_KEY.Settings]:"[S] Опции",
+		[STRINGS_KEY.Play]:"[ПРОБЕЛ] Играть",
+		[STRINGS_KEY.MusicVolume]:"Громкость музыки",
+		[STRINGS_KEY.SFXVolume]:"Громкость эффектов",
+		[STRINGS_KEY.Loading]:"ЗАГРУЖАЕТСЯ...",
+		[STRINGS_KEY.Paused]:"- П А У З А -",
+		[STRINGS_KEY.Title]:"Кунг Ту",
+		[STRINGS_KEY.Subtitle]:"Сказание о боевых искусствах",
+		[STRINGS_KEY.English]:"English",
+		[STRINGS_KEY.Spanish]:"Español",
+		[STRINGS_KEY.French]:"Français",
+		[STRINGS_KEY.Japanese]:"にほんご",
+		[STRINGS_KEY.Russian]:"Русский",
+		[STRINGS_KEY.EnterToReturn]:"Нажмите [ENTER], чтобы вернуться назад",
+		[STRINGS_KEY.HowToPlay]:"Как играть",
+		[STRINGS_KEY.Muted]:"Без звука",
+		[STRINGS_KEY.Back]:"Вернуться",
+		[STRINGS_KEY.HelpScreenTitle]:"ПОМОЩЬ",
+		[STRINGS_KEY.SettingsScreenTitle]:"ОПЦИИ",
+		[STRINGS_KEY.CreditsScreenTitle]:"ТИТРЫ"
 	}
 };
