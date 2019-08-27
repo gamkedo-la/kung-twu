@@ -5,12 +5,14 @@ function GameScene() {
 	const enemies = [];
 	const camera = new Camera();
 	const bkgdManager = new BackgroundManager();
+	const columnManager = new InfiniteColumn();
 	let floor;
 	let floorMidHeight = 0;
 
 	this.transitionIn = function() {
 		initializeFloor();
 		initializeBackgroundManager();
+		initializeColumnPositions();
 		
 		initializePlayerIfReqd();
 		
@@ -51,7 +53,7 @@ function GameScene() {
 		const newCameraX = camera.getPosition().x;
 		const floorImageShifts = floor.update(newCameraX);
 		bkgdManager.update(floorImageShifts);
-
+		columnManager.update(newCameraX);
 
 		player.update(deltaTime, GRAVITY, floorMidHeight);
 
@@ -75,6 +77,8 @@ function GameScene() {
 		}
 
 		player.draw();
+
+		columnManager.draw();
 	};
 
 	const initializeFloor = function() {
@@ -96,6 +100,10 @@ function GameScene() {
 	const initializeBackgroundManager = function() {
 		const backWall = new BackgroundImage(-2, tempBackground, {x:0, y:0});
 		bkgdManager.addImage(backWall);
+	};
+
+	const initializeColumnPositions = function() {
+		columnManager.positionFirstColumn(100 + camera.getPosition().x + 2 * canvas.width / 3);
 	};
 
 	const initializeCollisionManager = function(player) {

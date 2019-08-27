@@ -49,6 +49,7 @@ function loadStartImagePic() {
 const tempPic = document.createElement("img");
 const tempBackground = document.createElement("img");
 const floorboardSheet = document.createElement("img");
+const tempColumn = document.createElement("img");
 const tempPlayerPic = document.createElement("img");
 const playerIdle = document.createElement("img");
 const tempEnemyPic = document.createElement("img");
@@ -75,6 +76,7 @@ function loadImages() {
 		// backgrounds
 		{ imgName: tempBackground, theFile: "TempBackground.png" },
 		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },
+		{ imgName: tempColumn, theFile: "TempColumn.png" },
 
 		// power ups
 		//        { imgName: shieldPowerUpPic, theFile: "shieldPowerUp.png" },

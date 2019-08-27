@@ -37,11 +37,11 @@ function SpriteAnimation(name, //string identifier for this animation
 	};
 
 	this.getWidth = function() {
-		return frameWidth;
+		return (frameWidth * this.scale);
 	};
 
 	this.getHeight = function() {
-		return frameHeight;
+		return (frameHeight * this.scale);
 	};
 
 	const getCurrentFrameRect = function() {

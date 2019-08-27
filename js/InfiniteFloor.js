@@ -6,7 +6,7 @@ function InfiniteFloor() {
 	const FIRST_PLANK_INDEX = 0;
 	const LAST_PLANK_INDEX = 58;
 
-	let yPos = canvas.height - PLANK_HEIGHT;
+	const yPos = canvas.height - PLANK_HEIGHT;
 	const planks = [];
 
 	this.getMidHeight = function() {

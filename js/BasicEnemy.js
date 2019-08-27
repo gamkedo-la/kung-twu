@@ -180,8 +180,8 @@ function BasicEnemy(config) {
 	const initializeAnimations = function() {
 		const anims = {};
 
-		anims.idle = new SpriteAnimation("idle", tempEnemyPic, [0], tempEnemyPic.width * SCALE, tempEnemyPic.height * SCALE, [64], false, true);
-		anims.idle.SCALE = SCALE;
+		anims.idle = new SpriteAnimation("idle", tempEnemyPic, [0], tempEnemyPic.width, tempEnemyPic.height, [64], false, true);
+		anims.idle.scale = SCALE;
 		//animations.jumping = ...
 		//animations.crouching = ...
 		//animations.punching = ...

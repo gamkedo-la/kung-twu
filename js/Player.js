@@ -1,6 +1,6 @@
 //Player
 function Player(config) {
-	const SCALE = 1;
+	const SCALE = 2;
 	const WALK_SPEED = 200;
 	const JUMP_SPEED = -300;
 
@@ -241,8 +241,8 @@ function Player(config) {
 	const initializeAnimations = function() {
 		const anims = {};
 
-		anims.idle = new SpriteAnimation("idle", playerIdle, [0, 1], playerIdle.width * SCALE * 0.5, playerIdle.height * SCALE, [200], false, true);
-		anims.idle.SCALE = SCALE;
+		anims.idle = new SpriteAnimation("idle", playerIdle, [0, 1], playerIdle.width * 0.5, playerIdle.height, [200], false, true);
+		anims.idle.scale = SCALE;
 		//animations.jumping = ...
 		//animations.crouching = ...
 		//animations.punching = ...
