@@ -158,7 +158,7 @@ function Player(config) {
 		}
 
 		if (getAxis(VERTICAL_AXIS) < 0) {
-			jump()
+			jump();
 		}
 
 		if(!stillCrouching) {isCrouching = false;}
@@ -233,7 +233,7 @@ function Player(config) {
 	};
 
 	this.draw = function() {
-		currentAnimation.drawAt(position.x, position.y);
+		currentAnimation.drawAt(position.x, position.y, isFacingLeft);
 
 		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
 	};

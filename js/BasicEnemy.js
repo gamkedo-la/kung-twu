@@ -10,7 +10,8 @@ function BasicEnemy(config) {
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
 	let health = 10;
-    
+	
+	let isFacingLeft = true;
 	let isOnGround = true;
 	let isCrouching = false;
 	let isBlocking = false;
@@ -96,11 +97,13 @@ function BasicEnemy(config) {
 	const moveLeft = function() {
 		position.x -= 10;
 		currentDamage = 0;
+		isFacingLeft = true;
 	};
 
 	const moveRight = function() {
 		position.x += 10;
 		currentDamage = 0;
+		isFacingLeft = false;
 	};
 
 	const jump = function() {
@@ -172,7 +175,7 @@ function BasicEnemy(config) {
 	};
 
 	this.draw = function() {
-		currentAnimation.drawAt(position.x, position.y);
+		currentAnimation.drawAt(position.x, position.y, isFacingLeft);
 
 		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
 	};
