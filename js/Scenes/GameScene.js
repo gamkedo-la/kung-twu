@@ -18,7 +18,7 @@ function GameScene() {
 		
 		initializeCollisionManager(player);
 
-//		initializeEnemies();
+		initializeEnemies();
 		
 		initializeLevel();
 	};

@@ -1,6 +1,6 @@
 //Basic Enemy
 function BasicEnemy(config) {
-	const SCALE = 1;
+	const SCALE = 2;
 	const WALK_SPEED = 200;
 	const JUMP_SPEED = -300;
 	const ATTACK_RANGE = 100;
@@ -180,7 +180,7 @@ function BasicEnemy(config) {
 	const initializeAnimations = function() {
 		const anims = {};
 
-		anims.idle = new SpriteAnimation("idle", tempEnemyPic, [0], tempEnemyPic.width, tempEnemyPic.height, [64], false, true);
+		anims.idle = new SpriteAnimation("idle", tempEnemyPic, [0, 1], tempEnemyPic.width / 2, tempEnemyPic.height, [200], false, true);
 		anims.idle.scale = SCALE;
 		//animations.jumping = ...
 		//animations.crouching = ...
