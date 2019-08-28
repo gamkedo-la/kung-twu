@@ -57,9 +57,9 @@ let mouseX = 0;
 const LEFT_MOUSE_BUTTON = "LeftMouseButton";
 const RIGHT_MOUSE_BUTTON = "RightMouseButton";
 
-const DPAD_UP = 'DPad-Up';
-const DPAD_DOWN = 'DPad-Down';
-const DPAD_LEFT = 'DPad-Left';
+const DPAD_UP = "DPad-Up";
+const DPAD_DOWN = "DPad-Down";
+const DPAD_LEFT = "DPad-Left";
 const DPAD_RIGHT = "DPad-Right";
 
 const heldButtons = [];
@@ -100,13 +100,15 @@ let gamepadAPI = {
 	connect: function (evt) {
 		gamepadAPI.controllerIndex = evt.gamepad.index;
 		gamepadAPI.active = true;
-		console.log('Gamepad connected.');
+		console.log("Gamepad connected.");
 	},
-	disconnect: function (evt) {
+
+	disconnect: function () {
 		gamepadAPI.active = false;
 		delete gamepadAPI.controllerIndex;
-		console.log('Gamepad disconnected.')
+		console.log("Gamepad disconnected.");
 	},
+
 	update: function () {
 		gamepadAPI.buttons.cache = [];
 		for (let i = 0; i < gamepadAPI.buttons.status.length; i++) {
@@ -159,7 +161,7 @@ let gamepadAPI = {
 			return newPress;
 		},
 		held: function (button) {
-			return gamepadAPI.buttons.pressed(button, 'hold');
+			return gamepadAPI.buttons.pressed(button, "hold");
 		}
 	},
 	axes: {
