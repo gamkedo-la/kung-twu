@@ -38,7 +38,7 @@ function Player(config) {
 	}
 
 	this.update = function(deltaTime, gravity, floorHeight) {
-		currentAnimation.update(deltaTime);
+		updateAnimation(deltaTime);
 
 		if(!isKnockingBack) {
 			processInput();
@@ -66,14 +66,25 @@ function Player(config) {
 
 		fallDueToGravity(timeStep, gravity);
 
-		//TODO: Temporary to keep player from falling off the canvas
 		if(position.y > floorHeight - currentAnimation.getHeight()) {
+//			console.log("Falling?");
 			position.y = floorHeight - currentAnimation.getHeight();
 			velocity.y = 0;
 			isOnGround = true;
 		}
 
+		console.log(position.y);
+
 		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
+	};
+
+	const updateAnimation = function(deltaTime) {
+		currentAnimation.update(deltaTime);
+		
+		if(currentAnimation.isFinished()) {
+			currentAnimation.reset();
+			currentAnimation = animations.idle;
+		}
 	};
 
 	this.getPosition = function() {
@@ -204,20 +215,19 @@ function Player(config) {
 	};
 
 	const punch = function() {
-		if((currentAnimation === animations.punching) && (!currentAnimation.isFinished)) {
+		if((currentAnimation === animations.punching) && (!currentAnimation.isFinished())) {
 			return;
 		} else {
 			console.log("Trying to punch");
-			//currentAnimation = animations.punching;
+			currentAnimation = animations.punching;
 		}
 	};
 
 	const kick = function() {
 		if(isStillKicking()) {return;}
 
-		console.log("Trying to kick");
 		if(isOnGround) {
-			//currentAnimation = animations.kicking;
+			currentAnimation = animations.kicking;
 		} else {
 			if(hasHelicopterKick && isHoldingLeftorRight()) {
 				console.log("Helicopter Kick!!!!");
@@ -241,17 +251,21 @@ function Player(config) {
 	const initializeAnimations = function() {
 		const anims = {};
 
-		anims.idle = new SpriteAnimation("idle", playerIdle, [0, 1], playerIdle.width * 0.5, playerIdle.height, [200], false, true);
-		anims.idle.scale = SCALE;
-		//animations.jumping = ...
-		//animations.crouching = ...
-		//animations.punching = ...
-		//animations.kicking = ...
-		//animations.blocking = ...
-		//animations.dashing = ...
-		//animations.sweeping = ...
-		//animations.jumpKicking = ...
-		// animations.helicopterKicking = ...
+		anims.idle = new SpriteAnimation("idle", playerIdle, [0, 1], playerIdle.width / 2, playerIdle.height, [200], false, true);
+		//anims.jumping = ...
+		//anims.crouching = ...
+		anims.punching = new SpriteAnimation("punching", playerPunch, [0, 1, 2, 1], playerPunch.width / 3, playerPunch.height, [50, 100, 125, 50], false, false);
+		anims.kicking = new SpriteAnimation("kicking", playerKick, [0, 1, 2, 1], playerKick.width  / 3, playerKick.height, [50, 100, 125, 50], false, false);
+		//anims.blocking = ...
+		//anims.dashing = ...
+		//anims.sweeping = ...
+		//anims.jumpKicking = ...
+		//anims.helicopterKicking = ...
+
+		const animationKeys = Object.keys(anims);
+		for(let i = 0; i < animationKeys.length; i++) {
+			anims[animationKeys[i]].scale = SCALE;
+		}
 
 		return anims;
 	};
@@ -275,7 +289,7 @@ function Player(config) {
         (currentAnimation === animations.sweeping) ||
         (currentAnimation === animations.jumpKicking) ||
         (currentAnimation === animations.helicopterKicking)) &&
-        (!currentAnimation.isFinished)) {
+        (!currentAnimation.isFinished())) {
 			return true;
 		} else {
 			return false;

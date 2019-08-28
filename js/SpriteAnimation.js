@@ -10,14 +10,24 @@ function SpriteAnimation(name, //string identifier for this animation
 
 	this.name = name;
 	this.scale = 1;
-	this.isFinished = false; //only becomes true if reverses is false and loops is false (i.e. does neither)
+	let finished = false; //only becomes true if reverses is false and loops is false (i.e. does neither)
+	this.isFinished = function() {
+		return finished;
+	};
 
 	let times;
 	let isInReverse = false;
-	let currentFrameIndex = 0;
+	let currentFrameIndex = frames[0];
 	const framesPerRow = Math.round(image.width / frameWidth);
     
 	let remainderTime = 0;
+
+	this.reset = function() {
+		remainderTime = 0;
+		isInReverse = false;
+		currentFrameIndex = frames[0];
+		finished = false;
+	};
     
 	this.update = function(deltaTime) {
 		if(times == null) {return;}
@@ -97,7 +107,7 @@ function SpriteAnimation(name, //string identifier for this animation
 					newFrameIndex = 0;
 				} else {
 					newFrameIndex = currentFrame;
-					this.isFinished = true;
+					finished = true;
 				}
 			}
 		}

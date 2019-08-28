@@ -46,14 +46,14 @@ function loadStartImagePic() {
 }
 
 //-----Load the rest of the game images----//
-const tempPic = document.createElement("img");
 const tempBackground = document.createElement("img");
 const tempOverhead = document.createElement("img");
 const floorboardSheet = document.createElement("img");
 const tempColumn = document.createElement("img");
-const tempPlayerPic = document.createElement("img");
+const tempEnemyIdlePic = document.createElement("img");
 const playerIdle = document.createElement("img");
-const tempEnemyPic = document.createElement("img");
+const playerPunch = document.createElement("img");
+const playerKick = document.createElement("img");
 
 let picsToLoad = 0;
 
@@ -72,7 +72,7 @@ function beginLoadingImage(imgVar, fileName) {
 function loadImages() {
 	const imageList = [
 		// enemies
-		{ imgName: tempEnemyPic, theFile: "TempEnemy.png" },
+		{ imgName: tempEnemyIdlePic, theFile: "TempEnemy.png" },
 
 		// backgrounds
 		{ imgName: tempBackground, theFile: "TempBackground.png" },
@@ -84,8 +84,9 @@ function loadImages() {
 		//        { imgName: shieldPowerUpPic, theFile: "shieldPowerUp.png" },
 
 		// player related
-		{ imgName: tempPlayerPic, theFile: "TempPlayer.png" },
 		{ imgName: playerIdle, theFile: "Player_Idle_Condensed.png"},
+		{ imgName: playerPunch, theFile: "Player_Punch_Condensed.png"},
+		{ imgName: playerKick, theFile: "Player_Kick_Condensed.png"},
 
 		// UI
 		//        { imgName: heartPic, theFile: "heart.png" },
