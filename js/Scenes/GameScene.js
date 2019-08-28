@@ -98,10 +98,10 @@ function GameScene() {
 	};
 
 	const initializeBackgroundManager = function() {
-		const backWall = new BackgroundImage(-2, tempBackground, {x:0, y:0});
+		const backWall = new BackgroundImage(-2, tempBackground, {x:0, y:canvas.height - tempBackground.height});
 		bkgdManager.addImage(backWall);
 
-		const overhead = new BackgroundImage(0, tempOverhead, {x:-25, y:0});
+		const overhead = new BackgroundImage(0, tempOverhead, {x:-25, y:backWall.getPosition().y});
 		bkgdManager.addImage(overhead);
 	};
 

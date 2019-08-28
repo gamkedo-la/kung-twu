@@ -7,7 +7,7 @@ window.onload = function() {
 	canvasContext = canvas.getContext("2d");
 	document.body.appendChild(canvas);
 	canvas.width = 800;
-	canvas.height = 600;
+	canvas.height = 800;
 	configureGameField();
 	drawRect(0, 0, canvas.width, canvas.height, Color.White);
 	

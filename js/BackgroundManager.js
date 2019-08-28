@@ -3,6 +3,9 @@ function BackgroundImage(shiftDelta, anImage, aPosition) {
 	const deltaPerShift = shiftDelta;
 	const image = anImage;
 	let position = aPosition;
+	this.getPosition = function() {
+		return {x:position.x, y:position.y};
+	};
 
 	this.update = function(shifts) {
 		position.x += (deltaPerShift * shifts);

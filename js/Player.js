@@ -67,13 +67,10 @@ function Player(config) {
 		fallDueToGravity(timeStep, gravity);
 
 		if(position.y > floorHeight - currentAnimation.getHeight()) {
-//			console.log("Falling?");
 			position.y = floorHeight - currentAnimation.getHeight();
 			velocity.y = 0;
 			isOnGround = true;
 		}
-
-		console.log(position.y);
 
 		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
 	};
