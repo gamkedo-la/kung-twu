@@ -39,6 +39,7 @@ function Player(config) {
 
 	this.update = function(deltaTime, gravity, floorHeight) {
 		updateAnimation(deltaTime);
+		this.collisionBody.points = getColliderPoints();
 
 		if(!isKnockingBack) {
 			processInput();
@@ -215,7 +216,6 @@ function Player(config) {
 		if((currentAnimation === animations.punching) && (!currentAnimation.isFinished())) {
 			return;
 		} else {
-			console.log("Trying to punch");
 			currentAnimation = animations.punching;
 			playerPunchSound.play();
 		}
@@ -245,35 +245,11 @@ function Player(config) {
 		if(isFacingLeft) {
 			deltaXForFacing = (animations.idle.getWidth() - currentAnimation.getWidth());
 		}
-		
+
 		currentAnimation.drawAt(position.x + deltaXForFacing, position.y, isFacingLeft);
 
 		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
 	};
-
-	const initializeAnimations = function() {
-		const anims = {};
-
-		anims.idle = new SpriteAnimation("idle", playerIdle, [0, 1], playerIdle.width / 2, playerIdle.height, [200], false, true);
-		//anims.jumping = ...
-		//anims.crouching = ...
-		anims.punching = new SpriteAnimation("punching", playerPunch, [0, 1, 2, 1], playerPunch.width / 3, playerPunch.height, [50, 100, 125, 50], false, false);
-		anims.kicking = new SpriteAnimation("kicking", playerKick, [0, 1, 2, 1], playerKick.width  / 3, playerKick.height, [50, 100, 125, 50], false, false);
-		//anims.blocking = ...
-		//anims.dashing = ...
-		//anims.sweeping = ...
-		//anims.jumpKicking = ...
-		//anims.helicopterKicking = ...
-
-		const animationKeys = Object.keys(anims);
-		for(let i = 0; i < animationKeys.length; i++) {
-			anims[animationKeys[i]].scale = SCALE;
-		}
-
-		return anims;
-	};
-	const animations = initializeAnimations();
-	currentAnimation = animations.idle;
 
 	const isHoldingLeftorRight = function() {
 		for(let i = 0; i < heldButtons.length; i++) {
@@ -299,21 +275,56 @@ function Player(config) {
 		}
 	};
 
+	const getColliderPoints = function() {
+		let deltaXForFacing = 0;
+		if(isFacingLeft) {
+			deltaXForFacing = (animations.idle.getWidth() - currentAnimation.getWidth());
+		}
+
+		const points = [];
+		points.push({x:position.x + deltaXForFacing, y:position.y});
+		points.push({x:position.x + deltaXForFacing, y:position.y + currentAnimation.getHeight()});
+		points.push({x:position.x + deltaXForFacing + currentAnimation.getWidth(), y:position.y + currentAnimation.getHeight()});
+		points.push({x:position.x + deltaXForFacing + currentAnimation.getWidth(), y:position.y});
+
+		return points;
+	};
+
 	const buildBodyCollider = function() {
 		const colliderType = ColliderType.Polygon;
 		const colliderData = {};
 		colliderData.position = position;
 
-		const points = [];
-		points.push({x:position.x, y:position.y});
-		points.push({x:position.x, y:position.y + currentAnimation.getHeight()});
-		points.push({x:position.x + currentAnimation.getWidth(), y:position.y + currentAnimation.getHeight()});
-		points.push({x:position.x + currentAnimation.getWidth(), y:position.y});
+		points = getColliderPoints();
 
 		colliderData.points = points;
 
 		return new Collider(colliderType, colliderData);
 	};
+
+	const initializeAnimations = function() {
+		const anims = {};
+
+		anims.idle = new SpriteAnimation("idle", playerIdle, [0, 1], playerIdle.width / 2, playerIdle.height, [200], false, true);
+		//anims.jumping = ...
+		//anims.crouching = ...
+		anims.punching = new SpriteAnimation("punching", playerPunch, [0, 1, 2, 1], playerPunch.width / 3, playerPunch.height, [50, 100, 125, 50], false, false);
+		anims.kicking = new SpriteAnimation("kicking", playerKick, [0, 1, 2, 1], playerKick.width  / 3, playerKick.height, [50, 100, 125, 50], false, false);
+		//anims.blocking = ...
+		//anims.dashing = ...
+		//anims.sweeping = ...
+		//anims.jumpKicking = ...
+		//anims.helicopterKicking = ...
+
+		const animationKeys = Object.keys(anims);
+		for(let i = 0; i < animationKeys.length; i++) {
+			anims[animationKeys[i]].scale = SCALE;
+		}
+
+		return anims;
+	};
+	const animations = initializeAnimations();
+	currentAnimation = animations.idle;
 	this.collisionBody = buildBodyCollider();
 
 	this.didCollideWith = function(otherEntity) {
