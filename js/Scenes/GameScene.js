@@ -1,6 +1,6 @@
 //Game Play scene
 function GameScene() {
-	const GRAVITY = 500;
+	const GRAVITY = 1500;
 	let collisionManager;
 	const enemies = [];
 	const camera = new Camera();
