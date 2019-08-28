@@ -27,6 +27,7 @@ function configureGameAudio() {
 function loadAudio() {
 	pauseSound = new SoundOverlapsClass(assetPath.Audio + "PauseSound");
 	resumeSound = new SoundOverlapsClass(assetPath.Audio + "ResumeSound");
+	playerPunchSound = new SoundOverlapsClass(assetPath.Audio + "PlayerPunch");
 //	menuMusic = assetPath.Audio + "beeblebrox";
 }
 

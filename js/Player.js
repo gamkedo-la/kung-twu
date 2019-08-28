@@ -217,6 +217,7 @@ function Player(config) {
 		} else {
 			console.log("Trying to punch");
 			currentAnimation = animations.punching;
+			playerPunchSound.play();
 		}
 	};
 
@@ -240,7 +241,12 @@ function Player(config) {
 	};
 
 	this.draw = function() {
-		currentAnimation.drawAt(position.x, position.y, isFacingLeft);
+		let deltaXForFacing = 0;
+		if(isFacingLeft) {
+			deltaXForFacing = (animations.idle.getWidth() - currentAnimation.getWidth());
+		}
+		
+		currentAnimation.drawAt(position.x + deltaXForFacing, position.y, isFacingLeft);
 
 		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
 	};
