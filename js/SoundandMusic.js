@@ -12,8 +12,8 @@ const VOLUME_INCREMENT = 0.05;
 function configureGameAudio() {
 //	currentBackgroundMusic = new backgroundMusicClass();//TODO: Restore once there is background music
 	
-	musicVolume = parseFloat(localStorage.getItem(localStorageKey.MusicVolume));
-	effectsVolume = parseFloat(localStorage.getItem(localStorageKey.SFXVolume));
+	musicVolume = parseFloat(localStorageHelper.getItem(localStorageKey.MusicVolume));
+	effectsVolume = parseFloat(localStorageHelper.getItem(localStorageKey.SFXVolume));
 	
 	if(isNaN(musicVolume)) {
 		musicVolume = 1;

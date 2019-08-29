@@ -209,7 +209,7 @@ function Player(config) {
 	};
 
 	const block = function() {
-		if(isOnGround && hasBlock && !isBlocking) {
+		if(isOnGround && !isBlocking) {
 			console.log("I'm blocking now");
 			isBlocking = true;
 			//currentAnimation = animations.blocking;

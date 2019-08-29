@@ -27,6 +27,7 @@ let player = null;
 const deadZoneHalfWidth = 25;
 
 //---------------Persistence-----------//
+let localStorageHelper;
 const localStorageKey = {
 	MusicVolume:"musicVolume",
 	SFXVolume:"effectsVolume",
@@ -52,7 +53,7 @@ const SCENE = {
 	ENDING:"ending"
 };
 
-let firstLoad = localStorage.getItem(localStorageKey.FirstLoad);
+let firstLoad;
 let timer;
 let worldSpeed = 1;
 

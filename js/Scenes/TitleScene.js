@@ -146,7 +146,7 @@ function TitleScene() {
 		for(let i = 0; i < languages.length; i++) {
 			const thisClick = function() {
 				currentLanguage = STRINGS_KEY[languages[i]];
-				localStorage.setItem(localStorageKey.Language, currentLanguage);
+				localStorageHelper.setItem(localStorageKey.Language, currentLanguage);
 				updateButtonTitles();
 			};
 

@@ -10,11 +10,15 @@ window.onload = function() {
 	canvas.height = 800;
 	configureGameField();
 	drawRect(0, 0, canvas.width, canvas.height, Color.White);
+
+	localStorageHelper = new LocalStorageHelper();
+
+	firstLoad = localStorage.getItem(localStorageKey.FirstLoad);
 	
-	currentLanguage = localStorage.getItem(localStorageKey.Language);
+	currentLanguage = localStorageHelper.getItem(localStorageKey.Language);
 	if((currentLanguage === null) || (currentLanguage === undefined)) {
 		currentLanguage = Language.English;
-		localStorage.setItem(localStorageKey.Language, currentLanguage);
+		localStorageHelper.setItem(localStorageKey.Language, currentLanguage);
 	}
 
 	colorText(getLocalizedStringForKey(STRINGS_KEY.Loading), canvas.width / 2, canvas.height / 2, Color.White, Fonts.Subtitle, TextAlignment.Center, opacity = 1);
@@ -75,7 +79,7 @@ function update() {
 function startGame() {
 	if((firstLoad === null) || (firstLoad === undefined)) {
 		firstLoad = false;
-		localStorage.setItem(localStorageKey.FirstLoad, firstLoad);
+		localStorageHelper.setItem(localStorageKey.FirstLoad, firstLoad);
 
 		openHelp();
 		
