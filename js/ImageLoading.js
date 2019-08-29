@@ -52,6 +52,8 @@ const floorboardSheet = document.createElement("img");
 const tempColumn = document.createElement("img");
 const tempEnemyIdlePic = document.createElement("img");
 const playerIdle = document.createElement("img");
+const playerWalkFwd = document.createElement("img");
+const playerWalkBack = document.createElement("img");
 const playerPunch = document.createElement("img");
 const playerKick = document.createElement("img");
 
@@ -85,6 +87,8 @@ function loadImages() {
 
 		// player related
 		{ imgName: playerIdle, theFile: "Player_Idle_Condensed.png"},
+		{ imgName: playerWalkFwd, theFile: "Player_Walk-Forward_Condensed.png"},
+		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
 		{ imgName: playerPunch, theFile: "Player_Punch_Condensed.png"},
 		{ imgName: playerKick, theFile: "Player_Kick_Condensed.png"},
 

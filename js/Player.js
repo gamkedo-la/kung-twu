@@ -118,6 +118,8 @@ function Player(config) {
 		let stillCrouching = false;
 		let stillBlocking = false;
 		let stillDashing = false;
+		let stillPunching = false;
+		let stillKicking = false;
 		let stillWalking = false;
 
 		for(let i = 0; i < heldButtons.length; i++) {
@@ -148,9 +150,11 @@ function Player(config) {
 				dash();
 				break;
 			case ALIAS.PUNCH:
+				stillPunching = true;
 				punch();
 				break;
 			case ALIAS.KICK:
+				stillKicking = true;
 				kick();
 				break;
 			}
@@ -173,11 +177,19 @@ function Player(config) {
 		if(!stillCrouching) {isCrouching = false;}
 		if(!stillBlocking) {isBlocking = false;}
 		if(!stillDashing) {isDashing = false;}
-		if(!stillWalking) {walk(0);}
+		if((!stillWalking) && (!stillPunching) && (!stillKicking)) {
+			walk(0);
+		}
 	};
 
 	const walk = function(speed) {
 		velocity.x = speed;
+
+		if(speed == 0) {
+			currentAnimation = animations.idle;
+		} else {
+			currentAnimation = animations.walkingFwd;
+		}
 	};
 
 	const jump = function() {
@@ -213,6 +225,7 @@ function Player(config) {
 	};
 
 	const punch = function() {
+		console.log("Punching");
 		if((currentAnimation === animations.punching) && (!currentAnimation.isFinished())) {
 			return;
 		} else {
@@ -222,6 +235,7 @@ function Player(config) {
 	};
 
 	const kick = function() {
+		console.log("Kicking");
 		if(isStillKicking()) {return;}
 
 		if(isOnGround) {
@@ -306,6 +320,8 @@ function Player(config) {
 		const anims = {};
 
 		anims.idle = new SpriteAnimation("idle", playerIdle, [0, 1], playerIdle.width / 2, playerIdle.height, [200], false, true);
+		anims.walkingFwd = new SpriteAnimation("walk_fwd", playerWalkFwd, [0, 1, 2], playerWalkFwd.width / 3, playerIdle.height, [200], false, true);
+		anims.walkingBack = new SpriteAnimation("walk_back", playerWalkBack, [0, 1, 2], playerWalkBack.width / 3, playerIdle.height, [200], false, true);
 		//anims.jumping = ...
 		//anims.crouching = ...
 		anims.punching = new SpriteAnimation("punching", playerPunch, [0, 1, 2, 1], playerPunch.width / 3, playerPunch.height, [50, 100, 125, 50], false, false);
