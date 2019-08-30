@@ -127,43 +127,43 @@ function japaneseFont(image, charSize, context) {
                 return {x:3 * charSize.width, y:2 * charSize.height};
             /////
             case "だ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:4 * charSize.width, y:2 * charSize.height};
             case "ぢ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:5 * charSize.width, y:2 * charSize.height};
             case "づ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:6 * charSize.width, y:2 * charSize.height};
             case "で":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:7 * charSize.width, y:2 * charSize.height};
             case "ど":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:8 * charSize.width, y:2 * charSize.height};
             case "ば":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:9 * charSize.width, y:2 * charSize.height};
             case "び":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:10 * charSize.width, y:2 * charSize.height};
             case "ぶ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:11 * charSize.width, y:2 * charSize.height};
             case "べ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:12 * charSize.width, y:2 * charSize.height};
             case "ぼ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:13 * charSize.width, y:2 * charSize.height};
             case "ぱ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:14 * charSize.width, y:2 * charSize.height};
             case "ぴ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:15 * charSize.width, y:2 * charSize.height};
             case "ぷ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:16 * charSize.width, y:2 * charSize.height};
             case "ぺ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:17 * charSize.width, y:2 * charSize.height};
             case "ぽ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:18 * charSize.width, y:2 * charSize.height};
             case "ゃ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:19 * charSize.width, y:2 * charSize.height};
             case "ゅ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:20 * charSize.width, y:2 * charSize.height};
             case "ょ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:21 * charSize.width, y:2 * charSize.height};
             case "っ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:22 * charSize.width, y:2 * charSize.height};
             ////////////////////////////////////////////////////////
             case "ア": 
                 return {x:0, y:0};
@@ -279,45 +279,45 @@ function japaneseFont(image, charSize, context) {
                 return {x:3 * charSize.width, y:2 * charSize.height};
             /****/
             case "ダ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:4 * charSize.width, y:2 * charSize.height};
             case "ヂ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:5 * charSize.width, y:2 * charSize.height};
             case "ヅ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:6 * charSize.width, y:2 * charSize.height};
             case "デ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:7 * charSize.width, y:2 * charSize.height};
             case "ド":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:8 * charSize.width, y:2 * charSize.height};
             case "バ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:9 * charSize.width, y:2 * charSize.height};
             case "ビ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:10 * charSize.width, y:2 * charSize.height};
             case "ブ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:11 * charSize.width, y:2 * charSize.height};
             case "ベ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:12 * charSize.width, y:2 * charSize.height};
             case "ボ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:13 * charSize.width, y:2 * charSize.height};
             case "パ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:14 * charSize.width, y:2 * charSize.height};
             case "ピ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:15 * charSize.width, y:2 * charSize.height};
             case "プ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:16 * charSize.width, y:2 * charSize.height};
             case "ペ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:17 * charSize.width, y:2 * charSize.height};
             case "ポ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:18 * charSize.width, y:2 * charSize.height};
             case "ﾔ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:19 * charSize.width, y:2 * charSize.height};
             case "ﾕ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:20 * charSize.width, y:2 * charSize.height};
             case "ﾖ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:21 * charSize.width, y:2 * charSize.height};
             case "ッ":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:22 * charSize.width, y:2 * charSize.height};
             case "ー":
-                return {x:3 * charSize.width, y:2 * charSize.height};
+                return {x:23 * charSize.width, y:2 * charSize.height};
             
         
 			default:
