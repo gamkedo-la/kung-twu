@@ -28,6 +28,7 @@ function loadAudio() {
 	pauseSound = new SoundOverlapsClass(assetPath.Audio + "PauseSound");
 	resumeSound = new SoundOverlapsClass(assetPath.Audio + "ResumeSound");
 	playerPunchSound = new SoundOverlapsClass(assetPath.Audio + "PlayerPunch");
+	playerKickSound = new SoundOverlapsClass(assetPath.Audio + "PlayerKick");
 //	menuMusic = assetPath.Audio + "beeblebrox";
 }
 
