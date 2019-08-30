@@ -240,6 +240,7 @@ function Player(config) {
 
 		if(isOnGround) {
 			currentAnimation = animations.kicking;
+			playerKickSound.play();
 		} else {
 			if(hasHelicopterKick && isHoldingLeftorRight()) {
 				console.log("Helicopter Kick!!!!");
