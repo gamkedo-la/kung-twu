@@ -98,5 +98,3 @@ function windowOnFocus() {
 function windowOnBlur() {
 	pauseManager.pauseGame(CAUSE.Focus);
 }
-
-// test code will remove! :)
