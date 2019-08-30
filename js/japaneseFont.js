@@ -2,7 +2,16 @@ function japaneseFont(image, charSize, context) {
     let string;
     let letter;
 
-    const printLetter = function(character) {
+    this.printTextAt = function(text, position) {
+		for(let i = 0; i < text.length; i++) {
+			const thisFrame = this.findLetterCorner(text.charAt(i));
+			
+            context.drawImage(image, thisFrame.x, thisFrame.y, charSize.width, charSize.height, position.x + (i * charSize.width), position.y, charSize.width, charSize.height);
+		}
+	};
+
+
+    this.findLetterCorner = function(character) {
 		switch(character) {
 			case "あ": 
 				return {x:0, y:0};
