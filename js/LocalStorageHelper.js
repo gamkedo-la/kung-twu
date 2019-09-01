@@ -34,6 +34,20 @@ function LocalStorageHelper() {
 			return null;
 		}
 	};
+
+	/**
+	 * A safe wrapper around the Storage.removeItem() function. According to the MDN documentation:
+	 * `The removeItem() method of the Storage interface, when passed a key name, will remove that key from the given Storage object if it exists. If there is no item associated with the given key, this method will do nothing.`
+	 * @param {string} keyName A DOMString containing the name of the key you want to create/update.
+	 */
+	this.removeItem = function(keyName) {
+		try {
+			return window.localStorage.removeItem(keyName);
+		}
+		catch(e) {
+			return null;
+		}
+	};
   
 	// Boolean values
   

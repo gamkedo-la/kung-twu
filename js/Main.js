@@ -77,11 +77,19 @@ function update() {
 }
 
 function startGame() {
+	const lastVersion = localStorageHelper.getFloat(localStorageKey.Version);
+	if((lastVersion == undefined) || (lastVersion == null) || (lastVersion < version)) {
+		const storageKeys = Object.keys(localStorageKey);
+		for(let i = 0; i < storageKeys.length; i++) {
+			localStorageHelper.removeItem(storageKeys[i]);
+		}
+
+		localStorageHelper.setItem(localStorageKey.Version, version.toString());
+	}
+
 	if((firstLoad === null) || (firstLoad === undefined)) {
 		firstLoad = false;
 		localStorageHelper.setItem(localStorageKey.FirstLoad, firstLoad);
-
-		openHelp();
 		
 		return;
 	} 

@@ -27,12 +27,14 @@ let player = null;
 const deadZoneHalfWidth = 25;
 
 //---------------Persistence-----------//
+const version = 0.1;
 let localStorageHelper;
 const localStorageKey = {
-	MusicVolume:"musicVolume",
-	SFXVolume:"effectsVolume",
-	Language:"language",
-	FirstLoad:"firstLoad"
+	Version:"kungTwu-Version",
+	MusicVolume:"kungTwu-MusicVolume",
+	SFXVolume:"kungTwu-EffectsVolume",
+	Language:"kungTwu-Language",
+	FirstLoad:"kungTwu-FirstLoad"
 };
 
 //----------State Management----------//
