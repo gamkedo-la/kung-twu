@@ -291,17 +291,114 @@ function Player(config) {
 	};
 
 	const getColliderPoints = function() {
-		let deltaXForFacing = 0;
-		if(isFacingLeft) {
-			deltaXForFacing = (animations.idle.getWidth() - currentAnimation.getWidth());
-		}
-
 		const points = [];
-		points.push({x:position.x + deltaXForFacing, y:position.y});
-		points.push({x:position.x + deltaXForFacing, y:position.y + currentAnimation.getHeight()});
-		points.push({x:position.x + deltaXForFacing + currentAnimation.getWidth(), y:position.y + currentAnimation.getHeight()});
-		points.push({x:position.x + deltaXForFacing + currentAnimation.getWidth(), y:position.y});
+		switch(currentAnimation) {
+		case animations.idle:
+			if(isFacingLeft) {
+				points.push({x:position.x + 34, y:position.y + 6});
+				points.push({x:position.x + 34, y:position.y + 106});
+				points.push({x:position.x + 64, y:position.y + 106});
+				points.push({x:position.x + 64, y:position.y + 6});
 
+			} else {
+				points.push({x:position.x + 8, y:position.y + 3});
+				points.push({x:position.x + 8, y:position.y + 106});
+				points.push({x:position.x + 44, y:position.y + 106});
+				points.push({x:position.x + 44, y:position.y + 3});
+			}
+			break;
+		case animations.walkingFwd:
+			if(isFacingLeft) {
+				points.push({x:position.x + 38, y:position.y + 6});
+				points.push({x:position.x + 38, y:position.y + 106});
+				points.push({x:position.x + 68, y:position.y + 106});
+				points.push({x:position.x + 68, y:position.y + 6});
+	
+			} else {
+				points.push({x:position.x + 6, y:position.y + 3});
+				points.push({x:position.x + 6, y:position.y + 106});
+				points.push({x:position.x + 38, y:position.y + 106});
+				points.push({x:position.x + 38, y:position.y + 3});
+			}
+			break;
+/*		case animations.walkingBack:
+			if(isFacingLeft) {
+
+			} else {
+					
+			}
+			break;
+		case animations.jumping:
+			if(isFacingLeft) {
+
+			} else {
+					
+			}
+			break;
+		case animations.crouching:
+			if(isFacingLeft) {
+
+			} else {
+					
+			}
+			break;*/
+		case animations.punching:
+			if(isFacingLeft) {
+				points.push({x:position.x + 24, y:position.y + 6});
+				points.push({x:position.x + 24, y:position.y + 106});
+				points.push({x:position.x + 44, y:position.y + 106});
+				points.push({x:position.x + 44, y:position.y + 6});
+
+			} else {
+				points.push({x:position.x + 24, y:position.y + 3});
+				points.push({x:position.x + 24, y:position.y + 106});
+				points.push({x:position.x + 44, y:position.y + 106});
+				points.push({x:position.x + 44, y:position.y + 3});
+			}
+			break;
+/*		case animations.kicking:
+			if(isFacingLeft) {
+
+			} else {
+					
+			}
+			break;
+		case animations.blocking:
+			if(isFacingLeft) {
+
+			} else {
+					
+			}
+			break;
+		case animations.dashing:
+			if(isFacingLeft) {
+
+			} else {
+					
+			}
+			break;
+		case animations.sweeping:
+			if(isFacingLeft) {
+
+			} else {
+					
+			}
+			break;
+		case animations.jumpKicking:
+			if(isFacingLeft) {
+
+			} else {
+					
+			}
+			break;
+		case animations.helicopterKicking:
+			if(isFacingLeft) {
+
+			} else {
+					
+			}
+			break;*/
+		}
 		return points;
 	};
 
