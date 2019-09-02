@@ -356,14 +356,21 @@ function Player(config) {
 				points.push({x:position.x + 44, y:position.y + 3});
 			}
 			break;
-/*		case animations.kicking:
+		case animations.kicking:
 			if(isFacingLeft) {
+				points.push({x:position.x + 44, y:position.y + 10});
+				points.push({x:position.x + 44, y:position.y + 106});
+				points.push({x:position.x + 64, y:position.y + 106});
+				points.push({x:position.x + 64, y:position.y + 10});
 
 			} else {
-					
+				points.push({x:position.x + 8, y:position.y + 10});
+				points.push({x:position.x + 8, y:position.y + 106});
+				points.push({x:position.x + 36, y:position.y + 106});
+				points.push({x:position.x + 36, y:position.y + 10});
 			}
 			break;
-		case animations.blocking:
+/*		case animations.blocking:
 			if(isFacingLeft) {
 
 			} else {

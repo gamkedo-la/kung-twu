@@ -75,18 +75,18 @@ function Collider(type, data) {
 		if(DRAW_COLLIDERS) {
 			switch(this.type) {
 			case ColliderType.Polygon:
-            // fix: some kick frames have no this.points defined
-            if (this.points && this.points.length) { // does data exist?
-                canvasContext.beginPath();
-                canvasContext.strokeStyle = COLLIDER_COLOR;
-                canvasContext.moveTo(this.points[0].x, this.points[0].y);
-                for(let i = 0; i < this.points.length; i++) {
-                    canvasContext.lineTo(this.points[i].x, this.points[i].y);
-                }
-                canvasContext.lineTo(this.points[0].x, this.points[0].y);
-                canvasContext.stroke();
-            }
-    		break;
+				// fix: some kick frames have no this.points defined
+				if (this.points && this.points.length) { // does data exist?
+					canvasContext.beginPath();
+					canvasContext.strokeStyle = COLLIDER_COLOR;
+					canvasContext.moveTo(this.points[0].x, this.points[0].y);
+					for(let i = 0; i < this.points.length; i++) {
+						canvasContext.lineTo(this.points[i].x, this.points[i].y);
+					}
+					canvasContext.lineTo(this.points[0].x, this.points[0].y);
+					canvasContext.stroke();
+				}
+				break;
 			case ColliderType.Circle:
 				canvasContext.beginPath();
 				canvasContext.strokeStyle = COLLIDER_COLOR;
