@@ -32,7 +32,6 @@ window.onload = function() {
 	initializeInput();
 	configureGameAudio();
 	loadAudio();
-	//	currentBackgroundMusic.loopSong(menuMusic);//TODO: Restore once there is background music
 	loadGamkedoLogo();
 };
 

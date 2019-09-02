@@ -29,11 +29,14 @@ function loadAudio() {
 	resumeSound = new SoundOverlapsClass(assetPath.Audio + "ResumeSound");
 	playerPunchSound = new SoundOverlapsClass(assetPath.Audio + "PlayerPunch");
 	playerKickSound = new SoundOverlapsClass(assetPath.Audio + "PlayerKick");
+	menuMusic = assetPath.Audio + "gameplayMusicV1";
+	gameMusic = assetPath.Audio + "DragonPulse";
+
 	//menuMusic = new backgroundMusicClass(assetPath.Audio + "gameplayMusicV1");
 	//gameMusic = new backgroundMusicClass(assetPath.Audio + "DragonPulse");
 
 	currentBackgroundMusic = new backgroundMusicClass()
-	currentBackgroundMusic.loopSong(assetPath.Audio + "gameplayMusicV1");
+	
 
 }
 

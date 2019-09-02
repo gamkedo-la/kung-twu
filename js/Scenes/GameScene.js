@@ -21,6 +21,8 @@ function GameScene() {
 //		initializeEnemies();
 		
 		initializeLevel();
+
+		currentBackgroundMusic.loopSong(gameMusic);
 	};
 
 	this.transitionOut = function() {
