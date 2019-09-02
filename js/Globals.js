@@ -55,6 +55,7 @@ const SCENE = {
 	ENDING:"ending"
 };
 
+let didInteract = false;
 let firstLoad;
 let timer;
 let worldSpeed = 1;

@@ -49,6 +49,11 @@ function TitleScene() {
 	};
 
 	this.control = function(newKeyEvent, pressed, pressedKeys) {
+		if((!didInteract) && ((newKeyEvent == LEFT_MOUSE_BUTTON) || (newKeyEvent == RIGHT_MOUSE_BUTTON))) {
+			didInteract = true;
+			currentBackgroundMusic.loopSong(menuMusic);
+		}
+
 		if (pressed) {//only act on key released events => prevent multiple changes on single press
 			return false;
 		}

@@ -4,6 +4,7 @@ let musicSound = null;
 let pauseSound;
 let resumeSound;
 let menuMusic;
+let gameMusic;
 let musicVolume;
 let effectsVolume;
 let currentBackgroundMusic;
@@ -32,12 +33,7 @@ function loadAudio() {
 	menuMusic = assetPath.Audio + "gameplayMusicV1";
 	gameMusic = assetPath.Audio + "DragonPulse";
 
-	//menuMusic = new backgroundMusicClass(assetPath.Audio + "gameplayMusicV1");
-	//gameMusic = new backgroundMusicClass(assetPath.Audio + "DragonPulse");
-
-	currentBackgroundMusic = new backgroundMusicClass()
-	
-
+	currentBackgroundMusic = new backgroundMusicClass();
 }
 
 function setFormat() {
@@ -103,6 +99,7 @@ function SoundOverlapsClass(filenameWithPath) {
 	const sounds = [new Audio(fullFilename + audioFormat), new Audio(fullFilename + audioFormat)];
 
 	this.play = function() {
+		if(!didInteract) {return;}
 		if(!sounds[soundIndex].paused) {
 			sounds.splice(soundIndex, 0, new Audio(fullFilename + audioFormat));
 		}
