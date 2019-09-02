@@ -29,8 +29,12 @@ function loadAudio() {
 	resumeSound = new SoundOverlapsClass(assetPath.Audio + "ResumeSound");
 	playerPunchSound = new SoundOverlapsClass(assetPath.Audio + "PlayerPunch");
 	playerKickSound = new SoundOverlapsClass(assetPath.Audio + "PlayerKick");
-	gameplayMusic1 = new backgroundMusicClass(assetPath.Audio + "gameplayMusicV1")
-//	menuMusic = assetPath.Audio + "beeblebrox";
+	//menuMusic = new backgroundMusicClass(assetPath.Audio + "gameplayMusicV1");
+	//gameMusic = new backgroundMusicClass(assetPath.Audio + "DragonPulse");
+
+	currentBackgroundMusic = new backgroundMusicClass()
+	currentBackgroundMusic.loopSong(assetPath.Audio + "gameplayMusicV1");
+
 }
 
 function setFormat() {
@@ -116,7 +120,7 @@ function getRandomVolume(){
 
 function toggleMute() {
 	isMuted = !isMuted;
-//	currentBackgroundMusic.setVolume(musicVolume);//TODO: restore once there is background music
+	currentBackgroundMusic.setVolume(musicVolume);
 }
 
 function setEffectsVolume(amount)
@@ -136,7 +140,7 @@ function setMusicVolume(amount){
 	} else if (musicVolume < 0.0) {
 		musicVolume = 0.0;
 	}
-//	currentBackgroundMusic.setVolume(musicVolume);//TODO:Restore once there is background music
+	currentBackgroundMusic.setVolume(musicVolume);
 }
 
 function turnVolumeUp() {
