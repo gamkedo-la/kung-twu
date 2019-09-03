@@ -245,7 +245,7 @@ function BasicEnemy(config) {
 	};
 	this.collisionBody = buildBodyCollider();
 
-	this.didCollideWith = function(otherEntity) {
+	this.didCollideWith = function(thiscollider, otherEntity) {
 		currentDamage = 10;//TODO: Remove this once enemies can attack
 		if(isBlocking) {
 			health -= (Math.ceil(otherEntity.getCurrentDamage() / 10));

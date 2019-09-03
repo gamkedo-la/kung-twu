@@ -157,14 +157,14 @@ function CollisionManager(player) {
 			//if both objects are circles, the above check is a valid collision
 			if((entity1.collisionBody.type === ColliderType.Circle) &&
                (entity2.collisionBody.type === ColliderType.Circle)) {
-				entity1.didCollideWith(entity2);
-				entity2.didCollideWith(entity1);
+				entity1.didCollideWith(entity1.collisionBody, entity2);
+				entity2.didCollideWith(entity2.collisionBody, entity1);
 				return;
 			}
             
 			if(checkCollisionBetween(entity1.collisionBody, entity2.collisionBody)) {
-				entity1.didCollideWith(entity2);
-				entity2.didCollideWith(entity1);
+				entity1.didCollideWith(entity1.collisionBody, entity2);
+				entity2.didCollideWith(entity2.collisionBody, entity1);
 			}
 		}
 	};

@@ -343,6 +343,7 @@ function StateManager(theAnimations, isPlayerManager) {
 	let isOnGround = true;
 	let didGetHit = false;
 	let isFacingLeft = true;
+	let knockBackDidEnd = false;
 
 	this.setNewBelt = function(newBelt) {
 		belt = newBelt;
@@ -351,6 +352,9 @@ function StateManager(theAnimations, isPlayerManager) {
 	this.didLand = function() {
 		landed = true;
 		isOnGround = true;
+		if(currentState === KNOCK_BACK_STATE) {
+			knockBackDidEnd = true;
+		}
 	};
 
 	this.getIsOnGround = function() {
@@ -359,6 +363,7 @@ function StateManager(theAnimations, isPlayerManager) {
 
 	this.wasHit = function() {
 		didGetHit = true;
+		isOnGround = false;
 	};
 
 	this.getCurrentAnimation = function() {
@@ -406,6 +411,13 @@ function StateManager(theAnimations, isPlayerManager) {
 		currentAnimation.update(deltaTime);
 		isNewState = false;
 		let newState;
+
+		if(knockBackDidEnd) {
+			knockBackDidEnd = false;
+			newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.End));
+			setNewState(newState);
+		}
+
 		if(currentAnimation.isFinished()) {
 			newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.End));
 			setNewState(newState);
@@ -608,6 +620,30 @@ function StateManager(theAnimations, isPlayerManager) {
 			return BLOCK_STATE;
 		case STATE.KnockBack:
 			return KNOCK_BACK_STATE;
+		case IDLE_STATE:
+			return STATE.Idle;
+		case WALK_STATE:
+			return STATE.Walk;
+		case JUMP_STATE:
+			return STATE.Jump;
+		case CROUCH_STATE:
+			return STATE.Crouch;
+		case DASH_STATE:
+			return STATE.Dash;
+		case SWEEP_STATE:
+			return STATE.Sweep;
+		case J_KICK_STATE:
+			return STATE.J_Kick;
+		case H_KICK_STATE:
+			return STATE.H_Kick;
+		case PUNCH_STATE:
+			return STATE.Punch;
+		case KICK_STATE:
+			return STATE.Kick;
+		case BLOCK_STATE:
+			return STATE.Block;
+		case KNOCK_BACK_STATE:
+			return STATE.KnockBack;
 		}
 	};
 
