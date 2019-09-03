@@ -50,9 +50,8 @@ function Player(config) {
 	};
 
 	stateManager = new StateManager(initializeAnimations(), true);
-	this.collisionBody = hitBoxManager.bodyColliderForState(stateManager.getCurrentState(), position, stateManager.getIsFacingLeft());
-	this.fistBox = null;//TODO: Need to create
-	this.footBox = null;//TODO: Need to create
+	this.collisionBody = hitBoxManager.bodyColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
+	this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
 
 	this.getPosition = function() {
 		return {x:position.x, y:position.y};
@@ -87,12 +86,16 @@ function Player(config) {
 		updateForState(stateManager.getCurrentState());
 
 		if(stateManager.getIsNewState()) {
-			this.collisionBody.points = hitBoxManager.bodyPointsForState(stateManager.getCurrentState(), position, stateManager.getIsFacingLeft());
+			this.collisionBody.points = hitBoxManager.bodyPointsForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
+			this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
 		}
 
 		updatePosition(deltaTime, gravity, floorHeight);
 
 		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
+		if(this.attackBody != null) {
+			this.attackBody.setPosition(position);
+		}
 	};
 
 	const updateForState = function(currentState) {
@@ -240,6 +243,9 @@ function Player(config) {
 		stateManager.drawAt(position.x, position.y);
 
 		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
+		if(this.attackBody != null) {
+			this.attackBody.draw();
+		}
 	};
 
 	this.didCollideWith = function(thiscollider, otherEntity) {
