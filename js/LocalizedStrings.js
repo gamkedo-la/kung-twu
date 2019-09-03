@@ -1,4 +1,8 @@
-//Localized Strings
+// Localized Strings
+
+// Refer to Polyglot db for common words (but please translate by hand):
+// https://docs.google.com/spreadsheets/d/17f0dQawb-s_Fd7DHgmVvJoEGDMH_yoSd8EYigrb0zmM/edit#gid=310116733
+
 const Language = {
 	English:"English",
 	Spanish:"Spanish",
@@ -112,29 +116,29 @@ const userStrings = {
 		[STRINGS_KEY.CreditsScreenTitle]:"クレジット"
 	},
 
-	French: {
-		[STRINGS_KEY.Help]:"[H] for Help",
-		[STRINGS_KEY.Credits]:"[C] for Credits",
-		[STRINGS_KEY.Settings]:"[S] for Settings",
-		[STRINGS_KEY.Play]:"[SPACE] to Play",
-		[STRINGS_KEY.MusicVolume]:"Music Volume",
-		[STRINGS_KEY.SFXVolume]:"SFX Volume",
-		[STRINGS_KEY.Loading]:"LOADING...",
-		[STRINGS_KEY.Paused]:"- P A U S E D -",
+    French: {
+		[STRINGS_KEY.Help]:"[H] Aide",
+		[STRINGS_KEY.Credits]:"[C] Remerciements",
+		[STRINGS_KEY.Settings]:"[S] Options",
+		[STRINGS_KEY.Play]:"[SPACE] Jouer",
+		[STRINGS_KEY.MusicVolume]:"Volume de la musique",
+		[STRINGS_KEY.SFXVolume]:"Volume des effets sonores",
+		[STRINGS_KEY.Loading]:"CHARGEMENT...",
+		[STRINGS_KEY.Paused]:"- EN PAUSE -",
 		[STRINGS_KEY.Title]:"Kung Twu",
-		[STRINGS_KEY.Subtitle]:"A Martial Arts Tale",
+		[STRINGS_KEY.Subtitle]:"Un Conte D'Arts Martiaux",
 		[STRINGS_KEY.English]:"English",
 		[STRINGS_KEY.Spanish]:"Español",
 		[STRINGS_KEY.Japanese]:"にほんご",
 		[STRINGS_KEY.French]:"Français",
 		[STRINGS_KEY.Russian]:"Русский",
-		[STRINGS_KEY.EnterToReturn]:"Press [ENTER] to Return",
-		[STRINGS_KEY.HowToPlay]:"How to Play",
-		[STRINGS_KEY.Muted]:"Muted",
-		[STRINGS_KEY.Back]:"Back",
-		[STRINGS_KEY.HelpScreenTitle]:"HELP",
-		[STRINGS_KEY.SettingsScreenTitle]:"SETTINGS",
-		[STRINGS_KEY.CreditsScreenTitle]:"CREDITS"
+		[STRINGS_KEY.EnterToReturn]:"Appuyez sur [ENTER] pour retourner", // not sure about this one
+		[STRINGS_KEY.HowToPlay]:"Comment Jouer",
+		[STRINGS_KEY.Muted]:"Mode Silencieux", // extremely not sure about this one
+		[STRINGS_KEY.Back]:"Retourner",
+		[STRINGS_KEY.HelpScreenTitle]:"AIDE",
+		[STRINGS_KEY.SettingsScreenTitle]:"OPTIONS",
+		[STRINGS_KEY.CreditsScreenTitle]:"REMERCIEMENTS"
 	},
 
 	Russian: {
