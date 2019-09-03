@@ -39,7 +39,7 @@ function SpriteAnimation(name, //string identifier for this animation
 		}
 	};
 
-	this.drawAt = function(x = 0, y = 0, flipped) {
+	this.drawAt = function(x = 0, y = 0, flipped = false) {
 		const thisFrameRect = getCurrentFrameRect();
 		
 		canvasContext.save();

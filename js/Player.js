@@ -7,21 +7,12 @@ function Player(config) {
 	let health = 100;
 	let currentDamage = 0;
 
-	let currentAnimation;
+	let stateManager;
+
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
 
-	let isFacingLeft = true;
-	let isOnGround = true;
-	let isCrouching = false;
 	let isBlocking = false;
-	let isDashing = false;
-	let isKnockingBack = false;
-
-	let hasDash = false;
-	let hasSweep = false;
-	let hasJumpKick = false;
-	let hasHelicopterKick = false;
 
 	this.type = ENTITY_TYPE.Player;
 	this.collisionBody;//initialized down below definition of buildBodyCollider() function
@@ -38,50 +29,84 @@ function Player(config) {
 	}
 
 	this.update = function(deltaTime, gravity, floorHeight) {
-		updateAnimation(deltaTime);
-		this.collisionBody.points = getColliderPoints();
+		stateManager.update(deltaTime);
+		updateForState(stateManager.getCurrentState());
 
-		if(!isKnockingBack) {
-			processInput();
-		} else {
-			if(isFacingLeft) {
-				velocity.x -= 10;
-				if(velocity.x <= 0) {
-					velocity.x = 0;
-				}
-			} else {
-				velocity.x += 10;
-				if(velocity.x >= 0) {
-					velocity.x = 0;
-				}
-			}
-
-			if((velocity.x == 0) && (isOnGround)) {
-				isKnockingBack = false;
-			}
+		if(stateManager.getIsNewState()) {
+			this.collisionBody.points = getColliderPoints();
 		}
 
-		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
-
-		position.x += velocity.x * timeStep;
-
-		fallDueToGravity(timeStep, gravity);
-
-		if(position.y > floorHeight - currentAnimation.getHeight()) {
-			position.y = floorHeight - currentAnimation.getHeight();
-			velocity.y = 0;
-			isOnGround = true;
-		}
+		updatePosition(deltaTime, gravity, floorHeight);
 
 		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
 	};
 
-	const updateAnimation = function(deltaTime) {
-		currentAnimation.update(deltaTime);
-		
-		if(currentAnimation.isFinished()) {
-			currentAnimation.reset();
-			currentAnimation = animations.idle;
+	const updateForState = function(currentState) {
+		switch(currentState) {
+		case STATE.Walk:
+			walk();
+			break;
+		case STATE.Jump:
+			jump();
+			break;
+			/*case STATE.Crouch:
+			crouch();
+			break;
+		case STATE.Dash:
+			dash();
+			break;*/
+		case STATE.Idle:
+			idle();
+			break;
+			/*case STATE.J_Kick:
+			j_Kick();
+			break;
+		case STATE.Sweep:
+			sweep();
+			break;
+		case STATE.H_Kick:
+			h_kick();
+			break;*/
+		case STATE.Punch:
+			punch();
+			break;
+		case STATE.Kick:
+			kick();
+			break;
+			/*case STATE.Block:
+			block();
+			break;*/
+		case STATE.KnockBack:
+			respondToKnockBack();
+			break;
+		}
+	};
+
+	const updatePosition = function(deltaTime, gravity, floorHeight) {
+		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
+		position.x += velocity.x * timeStep;
+		fallDueToGravity(timeStep, gravity);
+
+		if(position.y > floorHeight - stateManager.getCurrentAnimation().getHeight()) {
+			position.y = floorHeight - stateManager.getCurrentAnimation().getHeight();
+			velocity.y = 0;
+			if(!stateManager.getIsOnGround()) {
+				stateManager.didLand();
+			}
+		}
+	};
+
+	const respondToKnockBack = function() {
+		if(stateManager.getIsFacingLeft()) {
+			velocity.x -= 10;
+			if(velocity.x <= 0) {
+				velocity.x = 0;
+			}
+		} else {
+			velocity.x += 10;
+			if(velocity.x >= 0) {
+				velocity.x = 0;
+			}
 		}
 	};
 
@@ -98,15 +123,19 @@ function Player(config) {
 	};
 
 	this.getWidth = function() {
-		return currentAnimation.getWidth();
+		return stateManager.getCurrentAnimation().getWidth();
 	};
 
 	this.getHeight = function() {
-		return currentAnimation.getHeight();
+		return stateManager.getCurrentAnimation().getHeight();
 	};
 
 	this.getCurrentDamage = function() {
 		return currentDamage;
+	};
+
+	this.setNewBelt = function(newBelt) {
+		stateManager.setNewBelt(newBelt);
 	};
 
 	const fallDueToGravity = function(timeStep, gravity) {
@@ -114,187 +143,84 @@ function Player(config) {
 		position.y += velocity.y * timeStep;
 	};
 
-	const processInput = function() {
-		let stillCrouching = false;
-		let stillBlocking = false;
-		let stillDashing = false;
-		let stillPunching = false;
-		let stillKicking = false;
-		let stillWalking = false;
+	const walk = function() {
+		let speed = WALK_SPEED;
+		if(stateManager.getIsFacingLeft()) {
+			speed = -WALK_SPEED;
+		} 
 
-		for(let i = 0; i < heldButtons.length; i++) {
-			switch(heldButtons[i]) {
-			case ALIAS.LEFT:
-				stillWalking = true;
-				walk(-WALK_SPEED);
-				isFacingLeft = true;
-				break;
-			case ALIAS.RIGHT:
-				stillWalking = true;
-				walk(WALK_SPEED);
-				isFacingLeft = false;
-				break;
-			case ALIAS.JUMP:
-				jump();
-				break;
-			case ALIAS.CROUCH:
-				stillCrouching = true;
-				crouch();
-				break;
-			case ALIAS.BLOCK:
-				stillBlocking = true;
-				block();
-				break;
-			case ALIAS.DASH:
-				stillDashing = true;
-				dash();
-				break;
-			case ALIAS.PUNCH:
-				stillPunching = true;
-				punch();
-				break;
-			case ALIAS.KICK:
-				stillKicking = true;
-				kick();
-				break;
-			}
-		}
-
-		if (getAxis(HORIZONTAL_AXIS) < 0) {
-			stillWalking = true;
-			walk(-WALK_SPEED);
-			isFacingLeft = true;
-		} else if (getAxis(HORIZONTAL_AXIS) > 0) {
-			stillWalking = true;
-			walk(WALK_SPEED);
-			isFacingLeft = false;
-		}
-
-		if (getAxis(VERTICAL_AXIS) < 0) {
-			jump();
-		}
-
-		if(!stillCrouching) {isCrouching = false;}
-		if(!stillBlocking) {isBlocking = false;}
-		if(!stillDashing) {isDashing = false;}
-		if((!stillWalking) && (!stillPunching) && (!stillKicking)) {
-			walk(0);
-		}
-	};
-
-	const walk = function(speed) {
 		velocity.x = speed;
-
-		if(speed == 0) {
-			currentAnimation = animations.idle;
-		} else {
-			currentAnimation = animations.walkingFwd;
-		}
 	};
 
 	const jump = function() {
-		if(isOnGround) {
-			isOnGround = false;
+		if(stateManager.getIsNewState()) {
 			velocity.y = JUMP_SPEED;
-			//currentAnimation = animations.jumping;
+			//playerJumpSound.play();
 		}
 	};
 
 	const crouch = function() {
-		if(isOnGround && !isCrouching) {
-			console.log("I'm crouching now");
-			isCrouching = true;
-			//currentAnimation = animations.crouching;
-		}
-	};
-
-	const block = function() {
-		if(isOnGround && !isBlocking) {
-			console.log("I'm blocking now");
-			isBlocking = true;
-			//currentAnimation = animations.blocking;
+		console.log("I'm crouching now");
+		if(stateManager.getIsNewState()) {
+			//playerCrouchSound.play();
 		}
 	};
 
 	const dash = function() {
-		if(isOnGround && hasDash && !isDashing) {
-			console.log("I'm dashing now");
-			isDashing = true;
-			//currentAnimation = animations.dashing;
+		console.log("I'm dashing now");
+		if(stateManager.getIsNewState()) {
+			//playerDashSound.play();
+		}
+	};
+
+	const idle = function() {
+		velocity.x = 0;
+	};
+
+	const block = function() {
+		console.log("I'm blocking now");
+		if(stateManager.getIsNewState()) {
+			//playerBlockSound.play();
 		}
 	};
 
 	const punch = function() {
-		console.log("Punching");
-		if((currentAnimation === animations.punching) && (!currentAnimation.isFinished())) {
-			return;
-		} else {
-			currentAnimation = animations.punching;
+		if(stateManager.getIsNewState()) {
 			playerPunchSound.play();
 		}
 	};
 
 	const kick = function() {
-		console.log("Kicking");
-		if(isStillKicking()) {return;}
-
-		if(isOnGround) {
-			currentAnimation = animations.kicking;
+		if(stateManager.getIsNewState()) {
 			playerKickSound.play();
-		} else {
-			if(hasHelicopterKick && isHoldingLeftorRight()) {
-				console.log("Helicopter Kick!!!!");
-				//currentAnimation = animations.helicopterKicking;
-			} else if(hasJumpKick) {
-				console.log("Jump Kick");
-				//currentAnimation = animations.jumpKicking;
-			} else if(hasSweep) {
-				console.log("Sweep");
-				//currentAnimation = animations.sweeping;
-			}
+		}
+	};
+
+	const j_Kick = function() {
+		console.log("Jump Kicking");
+		if(stateManager.getIsNewState()) {
+			//playerJumpKickSound.play();
+		}
+	};
+
+	const h_kick = function() {
+		console.log("Helicopter Kicking");
+		if(stateManager.getIsNewState()) {
+			//playerJumpKickSound.play();
 		}
 	};
 
 	this.draw = function() {
-		let deltaXForFacing = 0;
-		if(isFacingLeft) {
-			deltaXForFacing = (animations.idle.getWidth() - currentAnimation.getWidth());
-		}
-
-		currentAnimation.drawAt(position.x + deltaXForFacing, position.y, isFacingLeft);
+		stateManager.drawAt(position.x, position.y);
 
 		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
 	};
 
-	const isHoldingLeftorRight = function() {
-		for(let i = 0; i < heldButtons.length; i++) {
-			if(heldButtons[i] === ALIAS.LEFT || gamepadAPI.buttons.held(PAD_ALIAS.LEFT)) {
-				return true;
-			} else if(heldButtons[i] === ALIAS.RIGHT || gamepadAPI.buttons.held(PAD_ALIAS.RIGHT)) {
-				return true;
-			}
-		}
-
-		return false;
-	};
-
-	const isStillKicking = function() {
-		if(((currentAnimation === animations.kicking) ||
-        (currentAnimation === animations.sweeping) ||
-        (currentAnimation === animations.jumpKicking) ||
-        (currentAnimation === animations.helicopterKicking)) &&
-        (!currentAnimation.isFinished())) {
-			return true;
-		} else {
-			return false;
-		}
-	};
-
 	const getColliderPoints = function() {
 		const points = [];
-		switch(currentAnimation) {
-		case animations.idle:
-			if(isFacingLeft) {
+		switch(stateManager.getCurrentState()) {
+		case STATE.Idle:
+			if(stateManager.getIsFacingLeft()) {
 				points.push({x:position.x + 34, y:position.y + 6});
 				points.push({x:position.x + 34, y:position.y + 106});
 				points.push({x:position.x + 64, y:position.y + 106});
@@ -307,8 +233,8 @@ function Player(config) {
 				points.push({x:position.x + 44, y:position.y + 3});
 			}
 			break;
-		case animations.walkingFwd:
-			if(isFacingLeft) {
+		case STATE.Walk:
+			if(stateManager.getIsFacingLeft()) {
 				points.push({x:position.x + 38, y:position.y + 6});
 				points.push({x:position.x + 38, y:position.y + 106});
 				points.push({x:position.x + 68, y:position.y + 106});
@@ -321,29 +247,22 @@ function Player(config) {
 				points.push({x:position.x + 38, y:position.y + 3});
 			}
 			break;
-/*		case animations.walkingBack:
-			if(isFacingLeft) {
+			/*case STATE.Jump:
+			if(stateManager.getIsFacingLeft()) {
 
 			} else {
 					
 			}
 			break;
-		case animations.jumping:
-			if(isFacingLeft) {
-
-			} else {
-					
-			}
-			break;
-		case animations.crouching:
-			if(isFacingLeft) {
+		case STATE.Crouch:
+			if(stateManager.getIsFacingLeft()) {
 
 			} else {
 					
 			}
 			break;*/
-		case animations.punching:
-			if(isFacingLeft) {
+		case STATE.Punch:
+			if(stateManager.getIsFacingLeft()) {
 				points.push({x:position.x + 24, y:position.y + 6});
 				points.push({x:position.x + 24, y:position.y + 106});
 				points.push({x:position.x + 44, y:position.y + 106});
@@ -356,8 +275,8 @@ function Player(config) {
 				points.push({x:position.x + 44, y:position.y + 3});
 			}
 			break;
-		case animations.kicking:
-			if(isFacingLeft) {
+		case STATE.Kick:
+			if(stateManager.getIsFacingLeft()) {
 				points.push({x:position.x + 44, y:position.y + 10});
 				points.push({x:position.x + 44, y:position.y + 106});
 				points.push({x:position.x + 64, y:position.y + 106});
@@ -370,36 +289,36 @@ function Player(config) {
 				points.push({x:position.x + 36, y:position.y + 10});
 			}
 			break;
-/*		case animations.blocking:
-			if(isFacingLeft) {
+/*		case STATE.Block:
+			if(stateManager.getIsFacingLeft()) {
 
 			} else {
 					
 			}
 			break;
-		case animations.dashing:
-			if(isFacingLeft) {
+		case STATE.Dash:
+			if(stateManager.getIsFacingLeft()) {
 
 			} else {
 					
 			}
 			break;
-		case animations.sweeping:
-			if(isFacingLeft) {
+		case STATE.Sweep:
+			if(stateManager.getIsFacingLeft()) {
 
 			} else {
 					
 			}
 			break;
-		case animations.jumpKicking:
-			if(isFacingLeft) {
+		case STATE.J-Kick:
+			if(stateManager.getIsFacingLeft()) {
 
 			} else {
 					
 			}
 			break;
-		case animations.helicopterKicking:
-			if(isFacingLeft) {
+		case STATE.H-Kick:
+			if(stateManager.getIsFacingLeft()) {
 
 			} else {
 					
@@ -424,18 +343,18 @@ function Player(config) {
 	const initializeAnimations = function() {
 		const anims = {};
 
-		anims.idle = new SpriteAnimation("idle", playerIdle, [0, 1], playerIdle.width / 2, playerIdle.height, [200], false, true);
-		anims.walkingFwd = new SpriteAnimation("walk_fwd", playerWalkFwd, [0, 1, 2], playerWalkFwd.width / 3, playerIdle.height, [200], false, true);
-		anims.walkingBack = new SpriteAnimation("walk_back", playerWalkBack, [0, 1, 2], playerWalkBack.width / 3, playerIdle.height, [200], false, true);
-		//anims.jumping = ...
-		//anims.crouching = ...
-		anims.punching = new SpriteAnimation("punching", playerPunch, [0, 1, 2, 1], playerPunch.width / 3, playerPunch.height, [50, 100, 125, 50], false, false);
-		anims.kicking = new SpriteAnimation("kicking", playerKick, [0, 1, 2, 1], playerKick.width  / 3, playerKick.height, [50, 100, 125, 50], false, false);
-		//anims.blocking = ...
-		//anims.dashing = ...
-		//anims.sweeping = ...
-		//anims.jumpKicking = ...
-		//anims.helicopterKicking = ...
+		anims.idle = new SpriteAnimation(STATE.Idle, playerIdle, [0, 1], playerIdle.width / 2, playerIdle.height, [200], false, true);
+		anims.walk = new SpriteAnimation(STATE.Walk, playerWalkFwd, [0, 1, 2], playerWalkFwd.width / 3, playerIdle.height, [200], false, true);
+		anims.dash = new SpriteAnimation(STATE.Dash, playerWalkBack, [0, 1, 2], playerWalkBack.width / 3, playerIdle.height, [200], false, true);
+		//anims.jump = ...
+		//anims.crouch = ...
+		anims.punch = new SpriteAnimation(STATE.Punch, playerPunch, [0, 1, 2, 1], playerPunch.width / 3, playerPunch.height, [50, 100, 125, 50], false, false);
+		anims.kick = new SpriteAnimation(STATE.Kick, playerKick, [0, 1, 2, 1], playerKick.width  / 3, playerKick.height, [50, 100, 125, 50], false, false);
+		//anims.block = ...
+		//anims.sweep = ...
+		//anims.j-kick = ...
+		//anims.h-kick = ...
+		//anims.knockback = ...
 
 		const animationKeys = Object.keys(anims);
 		for(let i = 0; i < animationKeys.length; i++) {
@@ -444,8 +363,8 @@ function Player(config) {
 
 		return anims;
 	};
-	const animations = initializeAnimations();
-	currentAnimation = animations.idle;
+
+	stateManager = new StateManager(initializeAnimations(), true);
 	this.collisionBody = buildBodyCollider();
 
 	this.didCollideWith = function(otherEntity) {
@@ -458,7 +377,7 @@ function Player(config) {
 
 			velocity.y = -150;
 			isOnGround = false;
-			if(isFacingLeft) {
+			if(stateManager.getIsFacingLeft()) {
 				velocity.x += 150;
 			} else {
 				velocity.x -= 150;
