@@ -118,13 +118,13 @@ const userStrings = {
 
     French: {
 		[STRINGS_KEY.Help]:"[H] Aide",
-		[STRINGS_KEY.Credits]:"[C] Remerciements",
+		[STRINGS_KEY.Credits]:"[C] Crédits",
 		[STRINGS_KEY.Settings]:"[S] Options",
 		[STRINGS_KEY.Play]:"[SPACE] Jouer",
 		[STRINGS_KEY.MusicVolume]:"Volume de la musique",
 		[STRINGS_KEY.SFXVolume]:"Volume des effets sonores",
 		[STRINGS_KEY.Loading]:"CHARGEMENT...",
-		[STRINGS_KEY.Paused]:"- EN PAUSE -",
+		[STRINGS_KEY.Paused]:"- PAUSE -",
 		[STRINGS_KEY.Title]:"Kung Twu",
 		[STRINGS_KEY.Subtitle]:"Un Conte D'Arts Martiaux",
 		[STRINGS_KEY.English]:"English",
@@ -132,13 +132,13 @@ const userStrings = {
 		[STRINGS_KEY.Japanese]:"にほんご",
 		[STRINGS_KEY.French]:"Français",
 		[STRINGS_KEY.Russian]:"Русский",
-		[STRINGS_KEY.EnterToReturn]:"Appuyez sur [ENTER] pour retourner", // not sure about this one
+		[STRINGS_KEY.EnterToReturn]:"Appuyez sur [ENTER] pour revenir",
 		[STRINGS_KEY.HowToPlay]:"Comment Jouer",
 		[STRINGS_KEY.Muted]:"Mode Silencieux", // extremely not sure about this one
-		[STRINGS_KEY.Back]:"Retourner",
+		[STRINGS_KEY.Back]:"Retour",
 		[STRINGS_KEY.HelpScreenTitle]:"AIDE",
 		[STRINGS_KEY.SettingsScreenTitle]:"OPTIONS",
-		[STRINGS_KEY.CreditsScreenTitle]:"REMERCIEMENTS"
+		[STRINGS_KEY.CreditsScreenTitle]:"CRÉDITS" // This one could be something like 
 	},
 
 	Russian: {
