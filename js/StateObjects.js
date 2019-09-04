@@ -510,6 +510,7 @@ function StateManager(theAnimations, isPlayerManager) {
 			switch(currentState) {
 			case WALK_STATE:
 				if(currentButton === ALIAS.JUMP) {
+					isOnGround = false;
 					return ACTION.Jump;
 				}
 				break;
