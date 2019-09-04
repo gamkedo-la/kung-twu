@@ -1,6 +1,6 @@
 //Infinite Roof
 function InfiniteRoof(posY) {
-	const TILE_WIDTH = 72;
+	const TILE_WIDTH = 71;
 	const TILES = [];
 	let oldCameraX = 0;
 
