@@ -53,6 +53,16 @@ const WALK_STATE = {
 			return STATE.KnockBack;
 		} else if(action === ACTION.Jump) {
 			return STATE.Jump;
+		} else if(action === ACTION.Crouch) {
+			return STATE.Crouch;
+		} else if(action === ACTION.Dash) {
+			return STATE.Dash;
+		} else if(action === ACTION.Punch) {
+			return STATE.Punch;
+		} else if(action === ACTION.Kick) {
+			return STATE.Kick;
+		} else if(action === ACTION.Block) {
+			return STATE.Block;
 		} else if(action === ACTION.Release) {
 			return STATE.Idle;
 		} else {
@@ -531,6 +541,16 @@ function StateManager(theAnimations, isPlayerManager) {
 				if(currentButton === ALIAS.JUMP) {
 					isOnGround = false;
 					return ACTION.Jump;
+				} else if(currentButton === ALIAS.CROUCH) {
+					return ACTION.Crouch;
+				} else if(currentButton === ALIAS.DASH) {
+					return ACTION.Dash;
+				} else if(currentButton === ALIAS.PUNCH) {
+					return ACTION.Punch;
+				} else if(currentButton === ALIAS.KICK) {
+					return ACTION.Kick;
+				} else if(currentButton === ALIAS.BLOCK) {
+					return ACTION.Block;
 				} else if(currentButton === ALIAS.LEFT) {
 					isFacingLeft = true;	//Changing to face left
 					isNewState = true;		//is like a state change

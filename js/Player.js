@@ -215,12 +215,14 @@ function Player(config) {
 
 	const punch = function() {
 		if(stateManager.getIsNewState()) {
+			velocity.x = 0;
 			playerPunchSound.play();
 		}
 	};
 
 	const kick = function() {
 		if(stateManager.getIsNewState()) {
+			velocity.x = 0;
 			playerKickSound.play();
 		}
 	};
@@ -236,6 +238,14 @@ function Player(config) {
 		console.log("Helicopter Kicking");
 		if(stateManager.getIsNewState()) {
 			//playerJumpKickSound.play();
+		}
+	};
+
+	const sweep = function() {
+		console.log("Sweeping !!!");
+		if(stateManager.getIsNewState()) {
+			//playerSweepSound.play();
+			velocity.x = 0;
 		}
 	};
 
