@@ -44,7 +44,7 @@ function InfiniteRoof(posY) {
 	};
 
 	const initializeTiles = function() {
-		const tileCount = 2 + Math.floor(canvas.width / TILE_WIDTH);
+		const tileCount = 4 + Math.floor(canvas.width / TILE_WIDTH);
 
 		let currentXPos = -TILE_WIDTH / 2;
 		for(let i = 0; i < tileCount; i++) {
