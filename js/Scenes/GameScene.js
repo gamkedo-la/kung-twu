@@ -7,10 +7,12 @@ function GameScene() {
 	const bkgdManager = new BackgroundManager();
 	const columnManager = new InfiniteColumn();
 	let floor;
+	let roof;
 	let floorMidHeight = 0;
 
 	this.transitionIn = function() {
 		initializeFloor();
+		InitializeRoof();
 		initializeBackgroundManager();
 		initializeColumnPositions();
 		
@@ -56,6 +58,7 @@ function GameScene() {
 		const floorImageShifts = floor.update(newCameraX);
 		bkgdManager.update(floorImageShifts);
 		columnManager.update(newCameraX);
+		roof.update(newCameraX, floorImageShifts);
 
 		player.update(deltaTime, GRAVITY, floorMidHeight);
 
@@ -81,11 +84,16 @@ function GameScene() {
 		player.draw();
 
 		columnManager.draw(camera.getPosition().x);
+		roof.draw();
 	};
 
 	const initializeFloor = function() {
 		floor = new InfiniteFloor();
 		floorMidHeight = floor.getMidHeight();
+	};
+
+	const InitializeRoof = function() {
+		roof = new InfiniteRoof(canvas.height - tempBackground.height);
 	};
 
 	const initializePlayerIfReqd = function() {
@@ -102,9 +110,6 @@ function GameScene() {
 	const initializeBackgroundManager = function() {
 		const backWall = new BackgroundImage(-2, tempBackground, {x:0, y:canvas.height - tempBackground.height});
 		bkgdManager.addImage(backWall);
-
-		const overhead = new BackgroundImage(0, tempOverhead, {x:-25, y:backWall.getPosition().y});
-		bkgdManager.addImage(overhead);
 	};
 
 	const initializeColumnPositions = function() {

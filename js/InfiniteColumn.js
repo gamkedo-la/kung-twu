@@ -9,7 +9,7 @@ function InfiniteColumn() {
 	let yPos;
 
 	this.positionFirstColumn = function(xPos) {
-		yPos = canvas.height - COLUMN_HEIGHT;
+		yPos = canvas.height - COLUMN_HEIGHT - 12;
 		column1.setPosition(xPos, yPos);
 		column2.setPosition(xPos - COLUMN_SPACING, yPos);
 	};

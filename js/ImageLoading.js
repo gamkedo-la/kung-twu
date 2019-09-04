@@ -48,6 +48,7 @@ function loadStartImagePic() {
 //-----Load the rest of the game images----//
 const tempBackground = document.createElement("img");
 const tempOverhead = document.createElement("img");
+const roofTile = document.createElement("img");
 const floorboardSheet = document.createElement("img");
 const tempColumn = document.createElement("img");
 const tempEnemyIdlePic = document.createElement("img");
@@ -79,6 +80,7 @@ function loadImages() {
 		// backgrounds
 		{ imgName: tempBackground, theFile: "TempBackground.png" },
 		{ imgName: tempOverhead, theFile: "TempOverhead.png" },
+		{ imgName: roofTile, theFile: "roof-tile.png" },
 		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },
 		{ imgName: tempColumn, theFile: "TempColumn.png" },
 
