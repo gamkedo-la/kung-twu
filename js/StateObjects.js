@@ -344,6 +344,7 @@ function StateManager(theAnimations, isPlayerManager) {
 	let didGetHit = false;
 	let isFacingLeft = true;
 	let knockBackDidEnd = false;
+	let attemptingToWalk = null;
 
 	this.setNewBelt = function(newBelt) {
 		belt = newBelt;
@@ -441,6 +442,17 @@ function StateManager(theAnimations, isPlayerManager) {
 		newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, action));
 		setNewState(newState);
 
+		if(currentState === IDLE_STATE) {
+			if(attemptingToWalk === ALIAS.LEFT) {
+				newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Left));
+				setNewState(newState);
+			} else if(attemptingToWalk === ALIAS.RIGHT) {
+				newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Right));
+				setNewState(newState);
+			}
+		} 
+			
+
 		if(didGetHit) {
 			didGetHit = false;
 
@@ -479,6 +491,7 @@ function StateManager(theAnimations, isPlayerManager) {
 	};
 
 	const deltaInput = function(input) {
+		attemptingToWalk = null;
 		const mutableInput = input.slice();
 
 		for(let i = oldInput.length - 1; i >= 0; i--) {
@@ -488,6 +501,12 @@ function StateManager(theAnimations, isPlayerManager) {
 				if(anOldInput == thisInput) {
 					oldInput.splice(i, 1);
 					mutableInput.splice(j, 1);
+				}
+
+				if(thisInput === ALIAS.LEFT) {
+					attemptingToWalk = ALIAS.LEFT;
+				} else if(thisInput === ALIAS.RIGHT) {
+					attemptingToWalk = ALIAS.RIGHT;
 				}
 			}
 		}
@@ -512,6 +531,14 @@ function StateManager(theAnimations, isPlayerManager) {
 				if(currentButton === ALIAS.JUMP) {
 					isOnGround = false;
 					return ACTION.Jump;
+				} else if(currentButton === ALIAS.LEFT) {
+					isFacingLeft = true;	//Changing to face left
+					isNewState = true;		//is like a state change
+					return ACTION.Left;
+				} else if(currentButton === ALIAS.RIGHT) {
+					isFacingLeft = false;	//Changing to face right
+					isNewState = true;		//is like a state change
+					return ACTION.Right;
 				}
 				break;
 			case JUMP_STATE:
@@ -592,7 +619,7 @@ function StateManager(theAnimations, isPlayerManager) {
 			currentState = newState;
 			currentAnimation = animationForState(currentState);
 			isNewState = true;
-		}
+		} 
 	};
 
 	const stateTranslator = function(state) {
