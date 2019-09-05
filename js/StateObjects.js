@@ -714,7 +714,7 @@ function StateManager(theAnimations, isPlayerManager) {
 			return theAnimations.idle;//TODO: delete this line once there is a Sweep Anmiation
 			return theAnimations.sweep;
 		case J_KICK_STATE:
-			return theAnimations.idle;//TODO: delete this line once there is a Jump Kick Anmiation
+			return theAnimations.kick;//TODO: delete this line once there is a Jump Kick Anmiation
 			return theAnimations.j_kick;
 		case H_KICK_STATE:
 			return theAnimations.idle;//TODO: delete this line once there is a Helicopter Kick Anmiation

@@ -61,21 +61,24 @@ function PlayerHitBoxManager() {
 	};
 
 	const pointsForJump = function(position, scale, facingLeft) {
-		const points = [];
+		return pointsForIdle(position, scale, facingLeft);
+/*		const points = [];
 
-		return points;
+		return points;*/
 	};	
 	
 	const pointsForCrouch = function(position, scale, facingLeft) {
-		const points = [];
+		return pointsForIdle(position, scale, facingLeft);
+/*		const points = [];
 
-		return points;
+		return points;*/
 	};
 
 	const pointsForDash = function(position, scale, facingLeft) {
-		const points = [];
+		return pointsForIdle(position, scale, facingLeft);
+/*		const points = [];
 
-		return points;
+		return points;*/
 	};	
 	
 	const pointsForIdle = function(position, scale, facingLeft) {
@@ -97,21 +100,24 @@ function PlayerHitBoxManager() {
 	};
 
 	const pointsForJ_Kick = function(position, scale, facingLeft) {
+		return pointsForJump(position, scale, facingLeft);
 		const points = [];
 
 		return points;
 	};	
 	
 	const pointsForSweep = function(position, scale, facingLeft) {
-		const points = [];
+		return pointsForIdle(position, scale, facingLeft);
+/*		const points = [];
 
-		return points;
+		return points;*/
 	};
 
 	const pointsForH_kick = function(position, scale, facingLeft) {
-		const points = [];
+		return pointsForIdle(position, scale, facingLeft);
+/*		const points = [];
 
-		return points;
+		return points;*/
 	};	
 	
 	const pointsForPunch = function(position, scale, facingLeft) {
@@ -153,15 +159,17 @@ function PlayerHitBoxManager() {
 	};	
 	
 	const pointsForBlock = function(position, scale, facingLeft) {
-		const points = [];
+		return pointsForIdle(position, scale, facingLeft);
+/*		const points = [];
 
-		return points;
+		return points;*/
 	};
 
 	const pointsForKnockBack = function(position, scale, facingLeft) {
-		const points = [];
+		return pointsForIdle(position, scale, facingLeft);
+/*		const points = [];
 
-		return points;
+		return points;*/
 	};
 
 	this.attackColliderForState = function(state, position, scale, facingLeft) {
@@ -217,9 +225,10 @@ function PlayerHitBoxManager() {
 	};
 
 	const attackPointsForJ_Kick = function(position, scale, facingLeft) {
-		const points = [];
+/*		const points = [];
 
-		return points;
+		return points;*/
+		return attackPointsForKick(position, scale, facingLeft);
 	};	
 	
 	const attackPointsForSweep = function(position, scale, facingLeft) {
@@ -256,16 +265,15 @@ function PlayerHitBoxManager() {
 		const points = [];
 
 		if(facingLeft) {
-			points.push({x:position.x + (scale * 22), y:position.y + (scale * 5)});
-			points.push({x:position.x + (scale * 22), y:position.y + (scale * 53)});
-			points.push({x:position.x + (scale * 32), y:position.y + (scale * 53)});
-			points.push({x:position.x + (scale * 32), y:position.y + (scale * 5)});
-
+			points.push({x:position.x + (scale * 23), y:position.y + (scale * 19)});
+			points.push({x:position.x + (scale * 23), y:position.y + (scale * 36)});
+			points.push({x:position.x - (scale * 13), y:position.y + (scale * 36)});
+			points.push({x:position.x - (scale * 13), y:position.y + (scale * 19)});
 		} else {
-			points.push({x:position.x + (scale * 4), y:position.y + (scale * 5)});
-			points.push({x:position.x + (scale * 4), y:position.y + (scale * 53)});
-			points.push({x:position.x + (scale * 18), y:position.y + (scale * 53)});
-			points.push({x:position.x + (scale * 18), y:position.y + (scale * 5)});
+			points.push({x:position.x + (scale * 13), y:position.y + (scale * 19)});
+			points.push({x:position.x + (scale * 13), y:position.y + (scale * 36)});
+			points.push({x:position.x + (scale * 48), y:position.y + (scale * 36)});
+			points.push({x:position.x + (scale * 48), y:position.y + (scale * 19)});
 		}
 
 		return points;

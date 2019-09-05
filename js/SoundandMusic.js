@@ -3,8 +3,10 @@ let audioFormat;
 let musicSound = null;
 let pauseSound;
 let resumeSound;
+let playerJumpSound;
 let playerPunchSound;
 let playerKickSound;
+let playerBlockSound;
 let playerHitSound;
 let playerFailedSound;
 let menuMusic;
@@ -32,8 +34,10 @@ function configureGameAudio() {
 function loadAudio() {
 	pauseSound = new SoundOverlapsClass(assetPath.Audio + "PauseSound");
 	resumeSound = new SoundOverlapsClass(assetPath.Audio + "ResumeSound");
+	playerJumpSound = new SoundOverlapsClass(assetPath.Audio + "PlayerJump");
 	playerPunchSound = new SoundOverlapsClass(assetPath.Audio + "PlayerPunch");
 	playerKickSound = new SoundOverlapsClass(assetPath.Audio + "PlayerKick");
+	playerBlockSound = new SoundOverlapsClass(assetPath.Audio + "PlayerBlocking");
 	playerHitSound = new SoundOverlapsClass(assetPath.Audio + "PlayerHit");
 	playerFailedSound = new SoundOverlapsClass(assetPath.Audio + "PlayerFailed");
 	menuMusic = assetPath.Audio + "gameplayMusicV1";

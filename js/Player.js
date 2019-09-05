@@ -115,10 +115,10 @@ function Player(config) {
 		case STATE.Idle:
 			idle();
 			break;
-			/*case STATE.J_Kick:
+		case STATE.J_Kick:
 			j_Kick();
 			break;
-		case STATE.Sweep:
+		/*case STATE.Sweep:
 			sweep();
 			break;
 		case STATE.H_Kick:
@@ -184,7 +184,7 @@ function Player(config) {
 	const jump = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.y = JUMP_SPEED;
-			//playerJumpSound.play();
+			playerJumpSound.play();
 		}
 	};
 
@@ -209,7 +209,7 @@ function Player(config) {
 	const block = function() {
 		console.log("I'm blocking now");
 		if(stateManager.getIsNewState()) {
-			//playerBlockSound.play();
+			playerBlockSound.play();
 		}
 	};
 
@@ -230,14 +230,14 @@ function Player(config) {
 	const j_Kick = function() {
 		console.log("Jump Kicking");
 		if(stateManager.getIsNewState()) {
-			//playerJumpKickSound.play();
+			playerKickSound.play();
 		}
 	};
 
 	const h_kick = function() {
 		console.log("Helicopter Kicking");
 		if(stateManager.getIsNewState()) {
-			//playerJumpKickSound.play();
+			//playerHelicopterKickSound.play();
 		}
 	};
 
@@ -284,7 +284,7 @@ function Player(config) {
 			} else {
 				velocity.x -= KNOCK_BACK_SPEED;
 			}
-			
+
 			health -= otherEntity.getCurrentDamage();
 		}
 
