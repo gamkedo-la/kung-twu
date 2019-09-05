@@ -2,15 +2,12 @@
 function InfiniteRoof(posY) {
 	const TILE_WIDTH = 71;
 	const TILES = [];
-	let oldCameraX = 0;
 
 	this.update = function(cameraXPos, shifts) {
 		if(TILES.length === 0) {
-			oldCameraX = cameraXPos;
 			initializeTiles();
 		}
 
-		const deltaX = (cameraXPos - oldCameraX);
 		for(let i = 0; i < TILES.length; i++) {
 			TILES[i].update(shifts);
 		}
@@ -33,8 +30,6 @@ function InfiniteRoof(posY) {
 				TILES.unshift(rightMostTile);
 			}
 		}
-
-		oldCameraX = cameraXPos;
 	};
 
 	this.draw = function() {

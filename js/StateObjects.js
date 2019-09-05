@@ -456,12 +456,13 @@ function StateManager(theAnimations, isPlayerManager) {
 			if(attemptingToWalk === ALIAS.LEFT) {
 				newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Left));
 				setNewState(newState);
+				isFacingLeft = true;
 			} else if(attemptingToWalk === ALIAS.RIGHT) {
 				newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Right));
 				setNewState(newState);
+				isFacingLeft = false;
 			}
-		} 
-			
+		}
 
 		if(didGetHit) {
 			didGetHit = false;
