@@ -3,6 +3,10 @@ let audioFormat;
 let musicSound = null;
 let pauseSound;
 let resumeSound;
+let playerPunchSound;
+let playerKickSound;
+let playerHitSound;
+let playerFailedSound;
 let menuMusic;
 let gameMusic;
 let musicVolume;
@@ -30,6 +34,8 @@ function loadAudio() {
 	resumeSound = new SoundOverlapsClass(assetPath.Audio + "ResumeSound");
 	playerPunchSound = new SoundOverlapsClass(assetPath.Audio + "PlayerPunch");
 	playerKickSound = new SoundOverlapsClass(assetPath.Audio + "PlayerKick");
+	playerHitSound = new SoundOverlapsClass(assetPath.Audio + "PlayerHit");
+	playerFailedSound = new SoundOverlapsClass(assetPath.Audio + "PlayerFailed");
 	menuMusic = assetPath.Audio + "gameplayMusicV1";
 	gameMusic = assetPath.Audio + "DragonPulse";
 

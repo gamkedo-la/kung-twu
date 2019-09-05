@@ -278,19 +278,22 @@ function Player(config) {
 		} else {//just got hit
 			stateManager.wasHit();
 
-			health -= otherEntity.getCurrentDamage();
-
 			velocity.y = -KNOCK_BACK_SPEED / 2;
 			if(stateManager.getIsFacingLeft()) {
 				velocity.x += KNOCK_BACK_SPEED;
 			} else {
 				velocity.x -= KNOCK_BACK_SPEED;
 			}
+			
+			health -= otherEntity.getCurrentDamage();
 		}
 
 		if(health <= 0) {
+			playerFailedSound.play();
 			console.log("Your attempt failed.  Try again.");
 			//TODO: Go to game over screen
+		} else {
+			playerHitSound.play();
 		}
 	};
 }
