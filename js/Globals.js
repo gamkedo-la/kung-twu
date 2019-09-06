@@ -22,6 +22,7 @@ const Color = {
 
 //--------------Player-----------------//
 let player = null;
+let aiManager = null;
 
 //-------------Camera------------------//
 const deadZoneHalfWidth = 25;

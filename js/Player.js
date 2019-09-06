@@ -50,7 +50,7 @@ function Player(config) {
 		return anims;
 	};
 
-	stateManager = new StateManager(initializeAnimations(), AITYPE.Player);
+	stateManager = new StateManager(initializeAnimations(), true, null);
 	this.collisionBody = hitBoxManager.bodyColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
 	this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
 
@@ -111,7 +111,7 @@ function Player(config) {
 	};
 
 	this.update = function(deltaTime, gravity, floorHeight) {
-		stateManager.update(deltaTime);
+		stateManager.update(deltaTime, this.getPosition());
 		updateForState(stateManager.getCurrentState());
 
 		if(stateManager.getIsNewState()) {

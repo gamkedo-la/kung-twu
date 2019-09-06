@@ -343,7 +343,7 @@ const KNOCK_BACK_STATE = {
 };
 
 //Character State
-function StateManager(theAnimations, isPlayerManager) {
+function StateManager(theAnimations, isPlayerManager, aiType) {
 	let currentState = IDLE_STATE;
 	let isNewState = true;
 	let currentAnimation = theAnimations.idle;
@@ -355,6 +355,7 @@ function StateManager(theAnimations, isPlayerManager) {
 	let isFacingLeft = true;
 	let knockBackDidEnd = false;
 	let attemptingToWalk = null;
+	let timeSinceAction = 0;
 
 	this.setNewBelt = function(newBelt) {
 		belt = newBelt;
@@ -426,11 +427,28 @@ function StateManager(theAnimations, isPlayerManager) {
 		}
 	};
 
-	this.update = function(deltaTime) {
+	this.update = function(deltaTime, playerPos) {
 		currentAnimation.update(deltaTime);
 		isNewState = false;
 		let newState;
 
+		checkAutoStateChanges();
+
+		if(isPlayerManager) {
+			updateStateWithUserInput(heldButtons);
+		} else {
+			updateStateWithAI(deltaTime, playerPos);
+		}
+
+		if(didGetHit) {
+			didGetHit = false;
+
+			newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Hit));
+			setNewState(newState);
+		}
+	};
+
+	const checkAutoStateChanges = function() {
 		if(knockBackDidEnd) {
 			knockBackDidEnd = false;
 			newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.End));
@@ -448,20 +466,21 @@ function StateManager(theAnimations, isPlayerManager) {
 			newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Land));
 			setNewState(newState);
 		}
+	};
 
-		if(isPlayerManager) {
-			action = actionForInput(heldButtons);
-		} else {
-			//TODO: Need AI to provide actions
+	const updateStateWithAI = function(deltaTime, playerPos) {
+		let action = aiManager.actionForTypeTimeStateAndPos(aiType, timeSinceAction, currentState, playerPos);
+		if((action === null) || (action === undefined)) {
 			action = ACTION.Idle;
 		}
 
-		if(didGetHit) {
-			didGetHit = false;
-
-			newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Hit));
-			setNewState(newState);
+		newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, action));
+		if(newState != currentState) {
+			timeSinceAction = 0;
+		} else {
+			timeSinceAction += deltaTime;
 		}
+		setNewState(newState);
 	};
 
 	this.drawAt = function(x = 0, y = 0) {
@@ -472,7 +491,7 @@ function StateManager(theAnimations, isPlayerManager) {
 		currentAnimation.drawAt(x + deltaXForFacing, y, isFacingLeft);
 	};
 
-	const actionForInput = function(input) {
+	const updateStateWithUserInput = function(input) {
 		const delta = deltaInput(input);
 
 		if(delta.newInput != null) {

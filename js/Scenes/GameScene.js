@@ -16,6 +16,7 @@ function GameScene() {
 		initializeBackgroundManager();
 		initializeColumnPositions();
 		
+		aiManager = new AIManager();
 		initializePlayerIfReqd();
 		
 		initializeCollisionManager(player);
