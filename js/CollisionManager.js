@@ -233,7 +233,57 @@ function CollisionManager(player) {
 			}
 		}
 
+		//line/polygon collision check in case points are outside, but lines pass through
+		for(let i = 0; i < body1Points.length; i++) {
+			const body1Line = {};
+			body1Line.x1 = body1Points[i].x;
+			body1Line.y1 = body1Points[i].y;
+
+			if(i < body1Points.length - 1) {
+				body1Line.x2 = body1Points[i + 1].x;
+				body1Line.y2 = body1Points[i + 1].y;
+			} else {
+				body1Line.x2 = body1Points[0].x;
+				body1Line.y2 = body1Points[0].y;
+			}
+
+			for(let j = 0; j < body2Points.length; j++) {
+				
+				const body2Line = {};
+				body2Line.x1 = body2Points[j].x;
+				body2Line.y1 = body2Points[j].y;
+	
+				if(j < body2Points.length - 1) {
+					body2Line.x2 = body2Points[j + 1].x;
+					body2Line.y2 = body2Points[j + 1].y;
+				} else {
+					body2Line.x2 = body2Points[0].x;
+					body2Line.y2 = body2Points[0].y;
+				}
+
+				if(lineVLine(body1Line, body2Line)) {
+					return true;
+				}
+			}
+		}
+
 		return false;
+	};
+
+	const lineVLine = function(line1, line2) {
+		// calculate the direction of the lines (i.e. the slope or the rise/run)
+		const uA = ((line2.x2-line2.x1)*(line1.y1-line2.y1) - (line2.y2-line2.y1)*(line1.x1-line2.x1)) / 
+		((line2.y2-line2.y1)*(line1.x2-line1.x1) - (line2.x2-line2.x1)*(line1.y2-line1.y1));
+
+		const uB = ((line1.x2-line1.x1)*(line1.y1-line2.y1) - (line1.y2-line1.y1)*(line1.x1-line2.x1)) / 
+		((line2.y2-line2.y1)*(line1.x2-line1.x1) - (line2.x2-line2.x1)*(line1.y2-line1.y1));
+
+		// if uA and uB are between 0-1, lines are colliding
+		if (uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1) {
+			return true;
+		} else {
+			return false;
+		}
 	};
 
 	const pointInPolygon = function(target, polygon) {

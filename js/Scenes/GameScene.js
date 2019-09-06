@@ -40,15 +40,17 @@ function GameScene() {
 		draw();
 	};
 
-	this.control = function(newKeyEvent) {
-		switch (newKeyEvent) {
-		case ALIAS.CHEATS:
-			CHEATS_ACTIVE = !CHEATS_ACTIVE;
-			return true;
-		case ALIAS.DEBUG:
-			DEBUG = !DEBUG;
-			console.log("Debug? " + DEBUG);
-			return true;
+	this.control = function(newKeyEvent, pressed, pressedKeys) {
+		if(!pressed) {
+			switch (newKeyEvent) {
+			case ALIAS.CHEATS:
+				CHEATS_ACTIVE = !CHEATS_ACTIVE;
+				return true;
+			case ALIAS.DEBUG:
+				DEBUG = !DEBUG;
+				console.log("Debug? " + DEBUG);
+				return true;
+			}		
 		}
         
 		return false;
@@ -141,7 +143,7 @@ function GameScene() {
 	};
 
 	const initializeEnemies = function() {
-		for(let i = 1; i < 3; i++) {
+		for(let i = 1; i < 2; i++) {
 			const config = {
 				x:i * canvas.width / 7, 
 				y:3 * canvas.height / 5

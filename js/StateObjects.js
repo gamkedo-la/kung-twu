@@ -449,27 +449,11 @@ function StateManager(theAnimations, isPlayerManager) {
 			setNewState(newState);
 		}
 
-		let action;
 		if(isPlayerManager) {
 			action = actionForInput(heldButtons);
 		} else {
 			//TODO: Need AI to provide actions
 			action = ACTION.Idle;
-		}
-
-		newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, action));
-		setNewState(newState);
-
-		if(currentState === IDLE_STATE) {
-			if(attemptingToWalk === ALIAS.LEFT) {
-				newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Left));
-				setNewState(newState);
-				isFacingLeft = true;
-			} else if(attemptingToWalk === ALIAS.RIGHT) {
-				newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Right));
-				setNewState(newState);
-				isFacingLeft = false;
-			}
 		}
 
 		if(didGetHit) {
@@ -495,18 +479,28 @@ function StateManager(theAnimations, isPlayerManager) {
 			let aNewInput = processNewInput(delta.newInput);
 
 			if(aNewInput != null) {
-				return aNewInput;
+				setNewState(stateTranslator(currentState.nextStateForActionWithBelt(belt, aNewInput)));
 			}
 		}
 
 		if(delta.released != null) {
 			let aReleasedInput = processReleasedInput(delta.released);
 			if(aReleasedInput != null) {
-				return aReleasedInput;
+				setNewState(stateTranslator(currentState.nextStateForActionWithBelt(belt, aReleasedInput)));
+			}
+		}		
+
+		if(currentState === IDLE_STATE) {
+			if(attemptingToWalk === ALIAS.LEFT) {
+				newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Left));
+				setNewState(newState);
+				isFacingLeft = true;
+			} else if(attemptingToWalk === ALIAS.RIGHT) {
+				newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Right));
+				setNewState(newState);
+				isFacingLeft = false;
 			}
 		}
-
-		return null;
 	};
 
 	const deltaInput = function(input) {
