@@ -47,6 +47,8 @@ function loadStartImagePic() {
 
 //-----Load the rest of the game images----//
 const tempBackground = document.createElement("img");
+const tempWindowedWall = document.createElement("img");
+const tempTiledWall = document.createElement("img");
 const jpFont = document.createElement("img");
 const tempOverhead = document.createElement("img");
 const roofTile = document.createElement("img");
@@ -80,6 +82,8 @@ function loadImages() {
 
 		// backgrounds
 		{ imgName: tempBackground, theFile: "TempBackground.png" },
+		{ imgName: tempWindowedWall, theFile: "TempTiledBackground.png" },
+		{ imgName: tempTiledWall, theFile: "TempTiledBackgroundWall.png" },
 		{ imgName: tempOverhead, theFile: "TempOverhead.png" },
 		{ imgName: roofTile, theFile: "roof-tile.png" },
 		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },

@@ -8,11 +8,13 @@ function GameScene() {
 	const columnManager = new InfiniteColumn();
 	let floor;
 	let roof;
+	let wall;
 	let floorMidHeight = 0;
 
 	this.transitionIn = function() {
 		initializeFloor();
 		InitializeRoof();
+		InitializeBackWall();
 		initializeBackgroundManager();
 		initializeColumnPositions();
 		
@@ -78,6 +80,7 @@ function GameScene() {
 		bkgdManager.update(floorImageShifts);
 		columnManager.update(newCameraX);
 		roof.update(newCameraX, floorImageShifts);
+		wall.update(newCameraX, floorImageShifts);
 
 		player.update(deltaTime, GRAVITY, floorMidHeight);
 
@@ -93,7 +96,8 @@ function GameScene() {
 		// Pan the camera by centering the canvas on the player's position
 		// TODO: Implement a camera system that can follow objects or be attached to static position
 		camera.draw();
-		bkgdManager.draw();
+		wall.draw();
+//		bkgdManager.draw();
 		floor.draw();
 
 		for(let i = 0; i < enemies.length; i++) {
@@ -115,6 +119,10 @@ function GameScene() {
 		roof = new InfiniteRoof(canvas.height - tempBackground.height);
 	};
 
+	const InitializeBackWall = function() {
+		wall = new InfiniteWall(canvas.height - tempBackground.height);
+	};
+
 	const initializePlayerIfReqd = function() {
 		if(player === null) {			
 			const config = {
@@ -127,7 +135,7 @@ function GameScene() {
 	};
 
 	const initializeBackgroundManager = function() {
-		const backWall = new BackgroundImage(-2, tempBackground, {x:0, y:canvas.height - tempBackground.height});
+		const backWall = new BackgroundImage(-2, tempWindowedWall, {x:0, y:canvas.height - tempBackground.height});
 		bkgdManager.addImage(backWall);
 	};
 
