@@ -1,4 +1,4 @@
-function japaneseFont(image, charSize, context) {
+function japaneseFont(jpFont, charSize, context) {
     let string;
     let letter;
 
@@ -6,7 +6,7 @@ function japaneseFont(image, charSize, context) {
 		for(let i = 0; i < text.length; i++) {
 			const thisFrame = this.findLetterCorner(text.charAt(i));
 			
-            context.drawImage(image, thisFrame.x, thisFrame.y, charSize.width, charSize.height, position.x + (i * charSize.width), position.y, charSize.width, charSize.height);
+            context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, position.x + (i * charSize.width), position.y, charSize.width, charSize.height);
 		}
 	};
 

@@ -47,6 +47,7 @@ function loadStartImagePic() {
 
 //-----Load the rest of the game images----//
 const tempBackground = document.createElement("img");
+const jpFont = document.createElement("img");
 const tempOverhead = document.createElement("img");
 const roofTile = document.createElement("img");
 const floorboardSheet = document.createElement("img");
@@ -96,6 +97,7 @@ function loadImages() {
 
 		// UI
 		//        { imgName: heartPic, theFile: "heart.png" },
+		{ imgName: jpFont, theFile: "JPFont.png"},
 	];
 
 	picsToLoad = imageList.length;
