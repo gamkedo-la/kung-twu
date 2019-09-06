@@ -5,17 +5,17 @@ function Player(config) {
 	const JUMP_SPEED = -500;
 	const KNOCK_BACK_SPEED = 800;
 
-	this.health = 100;
 	const BASE_DAMAGE = 10;
 	const DELTA_DAMAGE = 5;
 
 	let stateManager;
-	let hitBoxManager = new PlayerHitBoxManager();
+	let hitBoxManager = new HitBoxManager(PlayerCollisionBodyData, PlayerAttackBodyData);
 
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
 
 	this.type = ENTITY_TYPE.Player;
+	this.health = 100;
 
 	if(config != undefined) {
 		if(config.x != undefined) {position.x = config.x;}
