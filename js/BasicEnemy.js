@@ -3,28 +3,19 @@ function BasicEnemy(config) {
 	const SCALE = 2;
 	const WALK_SPEED = 200;
 	const JUMP_SPEED = -300;
+	const KNOCK_BACK_SPEED = 800;
 	const ATTACK_RANGE = 100;
 
-	let belt = BELT.White;//TODO: Use the state manager for this instead
 	const BASE_DAMAGE = 5;
 	const DELTA_DAMAGE = 5;
 
-	let currentAnimation;
+	let stateManager;
+	let hitBoxManager = new HitBoxManager(PlayerCollisionBodyData, PlayerAttackBodyData);
+
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
 	this.health = 15;
 	
-	let isFacingLeft = true;
-	let isOnGround = true;
-	let isCrouching = false;
-	let isBlocking = false;
-	let isDashing = false;
-	
-	let hasDash = false;
-	let hasSweep = false;
-	let hasJumpKick = false;
-	let hasHelicopterKick = false;
-
 	this.type = ENTITY_TYPE.BasicEnemy;
 	this.collisionBody;//initialized down below definition of buildBodyCollider() function
 
@@ -38,141 +29,6 @@ function BasicEnemy(config) {
 		if(config.health != undefined) {this.health = config.health;}
 		if(config.belt != undefined) {belt = config.belt;}//TODO: use the state manager for this instead
 	}
-
-	this.getPosition = function() {
-		return {x:position.x, y:position.y};
-	};
-
-	this.getWidth = function() {
-		return currentAnimation.getWidth();
-	};
-
-	this.getHeight = function() {
-		return currentAnimation.getHeight();
-	};
-
-	this.getCurrentDamage = function() {
-		return BASE_DAMAGE + belt * DELTA_DAMAGE;//TODO: use the state manager for this instead
-	};
-
-	this.update = function(deltaTime, gravity, playerPos, floorHeight) {
-		currentAnimation.update(deltaTime);
-
-		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
-
-		position.x += velocity.x * timeStep;
-		
-		fallDueToGravity(timeStep, gravity);
-
-		//TODO: Temporary to keep player from falling off the canvas
-		if(position.y > floorHeight - currentAnimation.getHeight()) {
-			position.y = floorHeight - currentAnimation.getHeight();
-			isOnGround = true;
-		}		
-
-		doAI(playerPos);
-
-		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
-	};
-
-	const fallDueToGravity = function(timeStep, gravity) {
-		velocity.y += gravity * timeStep;
-		position.y += velocity.y * timeStep;
-	};
-
-	const doAI = function(playerPos) {
-		let stillCrouching = false;
-		let stillBlocking = false;
-		let stillDashing = false;
-
-		if(playerPos.x > position.x + ATTACK_RANGE) {
-			moveRight();
-		} else if(playerPos.x < position.x - ATTACK_RANGE) {
-			moveLeft();
-		} else {
-			//TODO: Logic to determine what kind of attack to do
-		}
-
-		if(!stillCrouching) {isCrouching = false;}
-		if(!stillBlocking) {isBlocking = false;}
-		if(!stillDashing) {isDashing = false;}
-	};
-
-	const moveLeft = function() {
-		position.x -= 10;
-		isFacingLeft = true;
-	};
-
-	const moveRight = function() {
-		position.x += 10;
-		isFacingLeft = false;
-	};
-
-	const jump = function() {
-		if(isOnGround) {
-			isOnGround = false;
-			//currentAnimation = animations.jumping;
-		}
-	};
-
-	const crouch = function() {
-		if(isOnGround && !isCrouching) {
-			console.log("Basic Enemy crouching now");
-			isCrouching = true;
-			//currentAnimation = animations.crouching;
-		}
-	};
-
-	const block = function() {
-		if(isOnGround && !isBlocking) {
-			console.log("Basic Enemy blocking now");
-			isBlocking = true;
-			//currentAnimation = animations.blocking;
-		}
-	};
-
-	const dash = function() {
-		if(isOnGround && hasDash && !isDashing) {
-			console.log("Basic Enemy dashing now");
-			isDashing = true;
-			//currentAnimation = animations.dashing;
-		}
-	};
-
-	const punch = function() {
-		if((currentAnimation === animations.punching) && (!currentAnimation.isFinished())) {
-			return;
-		} else {
-			console.log("Basic Enemy Trying to punch");
-			//currentAnimation = animations.punching;
-		}
-	};
-
-	const kick = function() {
-		if(isStillKicking()) {return;}
-
-		console.log("Basic Enemy Trying to kick");
-		if(isOnGround) {
-			//currentAnimation = animations.kicking;
-		} else {
-			if(hasHelicopterKick && isHoldingLeftorRight()) {
-				console.log("Basic Enemy Helicopter Kick!!!!");
-				//currentAnimation = animations.helicopterKicking;
-			} else if(hasJumpKick) {
-				console.log("Basic Enemy Jump Kick");
-				//currentAnimation = animations.jumpKicking;
-			} else if(hasSweep) {
-				console.log("Basic Enemy Sweep");
-				//currentAnimation = animations.sweeping;
-			}
-		}
-	};
-
-	this.draw = function() {
-		currentAnimation.drawAt(position.x, position.y, isFacingLeft);
-
-		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
-	};
 
 	const initializeAnimations = function() {
 		const anims = {};
@@ -195,65 +51,270 @@ function BasicEnemy(config) {
 
 		return anims;
 	};
-	const animations = initializeAnimations();
-	currentAnimation = animations.idle;
+	stateManager = new StateManager(initializeAnimations(), false);
+	this.collisionBody = hitBoxManager.bodyColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
+	this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
 
-	const isHoldingLeftorRight = function() {
-		for(let i = 0; i < heldButtons.length; i++) {
-			if(heldButtons[i] === ALIAS.LEFT) {
-				return true;
-			} else if(heldButtons[i] === ALIAS.RIGHT) {
-				return true;
+	this.getPosition = function() {
+		return {x:position.x, y:position.y};
+	};
+
+	this.getWidth = function() {
+		return stateManager.getCurrentAnimation().getWidth();
+	};
+
+	this.getHeight = function() {
+		return stateManager.getCurrentAnimation().getHeight();
+	};
+
+	this.getCurrentDamage = function() {
+		return (damageForState() + stateManager.getCurrentBelt() * DELTA_DAMAGE);
+	};
+
+	const damageForState = function() {
+		const aState = stateManager.getCurrentState();
+		switch(aState) {
+		case STATE.Walk:
+		case STATE.Jump:
+		case STATE.Crouch:
+		case STATE.Dash:
+		case STATE.Idle:
+		case STATE.Block:
+		case STATE.KnockBack:
+			return 0;
+		case STATE.Punch:
+			return 1 * BASE_DAMAGE;
+		case STATE.Kick:
+			return 2 * BASE_DAMAGE;
+		case STATE.J_Kick:
+			return 3 * BASE_DAMAGE;
+		case STATE.Sweep:
+			return 3 * BASE_DAMAGE;
+		case STATE.H_Kick:
+			return 4 * BASE_DAMAGE;
+		}
+	};
+
+	this.setNewBelt = function(newBelt) {
+		stateManager.setNewBelt(newBelt);
+	};
+
+	this.incrementBelt = function() {
+		stateManager.incrementBelt();
+	};
+
+	this.update = function(deltaTime, gravity, playerPos, floorHeight) {
+		stateManager.update(deltaTime);
+		updateForState(stateManager.getCurrentState());
+
+		if(stateManager.getIsNewState()) {
+			this.collisionBody.points = hitBoxManager.bodyPointsForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
+			this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
+			if(this.attackBody != null) {
+				this.attackBody.isActive = true;
 			}
 		}
 
-		return false;
+		updatePosition(deltaTime, gravity, floorHeight);
+
+		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
+		if(this.attackBody != null) {
+			this.attackBody.setPosition(position);
+		}
+
+//		doAI(playerPos);
 	};
 
-	const isStillKicking = function() {
-		if(((currentAnimation === animations.kicking) ||
-        (currentAnimation === animations.sweeping) ||
-        (currentAnimation === animations.jumpKicking) ||
-        (currentAnimation === animations.helicopterKicking)) &&
-        (!currentAnimation.isFinished())) {
-			return true;
-		} else {
-			return false;
+	const updateForState = function(currentState) {
+		switch(currentState) {
+		case STATE.Walk:
+			walk();
+			break;
+		case STATE.Jump:
+			jump();
+			break;
+		case STATE.Crouch:
+			crouch();
+			break;
+		case STATE.Dash:
+			dash();
+			break;
+		case STATE.Idle:
+			idle();
+			break;
+		case STATE.J_Kick:
+			j_Kick();
+			break;
+		case STATE.Sweep:
+			sweep();
+			break;
+		case STATE.H_Kick:
+			h_kick();
+			break;
+		case STATE.Punch:
+			punch();
+			break;
+		case STATE.Kick:
+			kick();
+			break;
+		case STATE.Block:
+			block();
+			break;
+		case STATE.KnockBack:
+			respondToKnockBack();
+			break;
 		}
 	};
 
-	const buildBodyCollider = function() {
-		const colliderType = ColliderType.Polygon;
-		const colliderData = {};
-		colliderData.position = position;
+	const updatePosition = function(deltaTime, gravity, floorHeight) {
+		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
+		position.x += velocity.x * timeStep;
+		fallDueToGravity(timeStep, gravity);
 
-		const points = [];
-		points.push({x:position.x, y:position.y});
-		points.push({x:position.x, y:position.y + currentAnimation.getHeight()});
-		points.push({x:position.x + currentAnimation.getWidth(), y:position.y + currentAnimation.getHeight()});
-		points.push({x:position.x + currentAnimation.getWidth(), y:position.y});
-		
-		colliderData.points = points;
-		
-		return new Collider(colliderType, colliderData);
+		if(position.y > floorHeight - stateManager.getCurrentAnimation().getHeight()) {
+			position.y = floorHeight - stateManager.getCurrentAnimation().getHeight();
+			velocity.y = 0;
+			if(!stateManager.getIsOnGround()) {
+				stateManager.didLand();
+			}
+		}
 	};
-	this.collisionBody = buildBodyCollider();
-	this.attackBody = null;//TODO: Update once enemies can attack
+
+	const respondToKnockBack = function() {
+		if(stateManager.getIsFacingLeft()) {
+			velocity.x -= KNOCK_BACK_SPEED / 25;
+			if(velocity.x <= 0) {
+				velocity.x = 0;
+			}
+		} else {
+			velocity.x += KNOCK_BACK_SPEED / 25;
+			if(velocity.x >= 0) {
+				velocity.x = 0;
+			}
+		}
+	};
+
+	const fallDueToGravity = function(timeStep, gravity) {
+		velocity.y += gravity * timeStep;
+		position.y += velocity.y * timeStep;
+	};
+
+	const walk = function() {
+		let speed = WALK_SPEED;
+		if(stateManager.getIsFacingLeft()) {
+			speed = -WALK_SPEED;
+		} 
+
+		velocity.x = speed;
+	};
+
+	const jump = function() {
+		if(stateManager.getIsNewState()) {
+			velocity.y = JUMP_SPEED;
+			//enemyJumpSound.play();//Is there going to be one of these?
+		}
+	};
+
+	const crouch = function() {
+		if(stateManager.getIsNewState()) {
+			console.log("Basic Enemy is Crouching now");
+			//enemyCrouchSound.play();//Is there going to be one of these?
+		}
+	};
+
+	const block = function() {
+		if(stateManager.getIsNewState()) {
+			console.log("Basic Enemy is Blocking now");
+			//enemyBlockSound.play();//Is there going to be one of these?
+		}
+	};
+
+	const dash = function() {
+		if(stateManager.getIsNewState()) {
+			console.log("Basic Enemy is dashing now");
+			//enemyDashSound.play();//Is there going to be one of these?
+		}
+	};
+
+	const idle = function() {
+		velocity.x = 0;
+	};
+
+	const punch = function() {
+		if(stateManager.getIsNewState()) {
+			console.log("Basic Enemy is punching now");
+			velocity.x = 0;
+			//enemyPunchSound.play();//Is there going to be one of these?
+		}
+	};
+
+	const kick = function() {
+		if(stateManager.getIsNewState()) {
+			console.log("Basic Enemy is kicking now");
+			velocity.x = 0;
+			//enemyKickSound.play();//Is there going to be one of these?
+		}
+	};
+
+	const j_Kick = function() {
+		if(stateManager.getIsNewState()) {
+			console.log("Basic Enemy is Jump Kicking now");
+			//enemyKickSound.play();//Is there going to be one of these?
+		}
+	};
+
+	const h_kick = function() {
+		if(stateManager.getIsNewState()) {
+			console.log("Basic Enemy is Helicopter Kicking now");
+			//enemyKickSound.play();//Is there going to be one of these?
+		}
+	};
+
+	const sweep = function() {
+		if(stateManager.getIsNewState()) {
+			console.log("Basic Enemy is Sweeping now");
+			//enemySweepSound.play();//Is there going to be one of these?
+			velocity.x = 0;
+		}
+	};
+
+	this.draw = function() {
+		stateManager.drawAt(position.x, position.y);
+
+		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
+		if(this.attackBody != null) {
+			this.attackBody.draw();
+		}
+	};
 
 	this.wasHitBy = function(otherEntity) {
-		if(isBlocking) {
+		if(stateManager.getCurrentState() === STATE.Block) {
 			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10));
-		} else {
+		} else if(stateManager.getCurrentState() === STATE.KnockBack) {
+		//do nothing for now
+		} else {//just got hit
+			stateManager.wasHit();
+
+			velocity.y = -KNOCK_BACK_SPEED / 2;
+			if(stateManager.getIsFacingLeft()) {
+				velocity.x += KNOCK_BACK_SPEED;
+			} else {
+				velocity.x -= KNOCK_BACK_SPEED;
+			}
+
 			this.health -= otherEntity.getCurrentDamage();
 		}
-		
+
 		if(this.health <= 0) {
-			console.log("Basic Enemy defeated.");
+			//enemyDefeatedSound.play();//TODO: get one of these
+			console.log("Basic Enemy Defeated.");
+		} else {
+			//enemyHitSound.play();//TODO: get one of these
 		}
 	};
 
 	this.didHit = function() {
-		console.log("Basic Enemy Hit the Player!");
+		this.attackBody.isActive = false;
+		console.log("Hit the player!");
 	};
-
 }

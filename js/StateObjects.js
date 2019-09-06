@@ -705,38 +705,50 @@ function StateManager(theAnimations, isPlayerManager) {
 	};
 
 	const animationForState = function(state) {
+		let selectedAnimation;
 		switch(state) {
 		case IDLE_STATE:
-			return theAnimations.idle;
+			selectedAnimation = theAnimations.idle;
+			break;
 		case WALK_STATE:
-			return theAnimations.walk;
+			selectedAnimation = theAnimations.walk;
+			break;
 		case JUMP_STATE:
-			return theAnimations.idle;//TODO: delete this line once there is a Jump Anmiation
-			return theAnimations.jump;
+			selectedAnimation = theAnimations.jump;
+			break;
 		case CROUCH_STATE:
-			return theAnimations.idle;//TODO: delete this line once there is a Crouch Anmiation
-			return theAnimations.crouch;
+			selectedAnimation = theAnimations.crouch;
+			break;
 		case DASH_STATE:
-			return theAnimations.dash;
+			selectedAnimation = theAnimations.dash;
+			break;
 		case SWEEP_STATE:
-			return theAnimations.idle;//TODO: delete this line once there is a Sweep Anmiation
-			return theAnimations.sweep;
+			selectedAnimation = theAnimations.sweep;
+			break;
 		case J_KICK_STATE:
-			return theAnimations.kick;//TODO: delete this line once there is a Jump Kick Anmiation
-			return theAnimations.j_kick;
+			selectedAnimation = theAnimations.j_kick;
+			break;
 		case H_KICK_STATE:
-			return theAnimations.idle;//TODO: delete this line once there is a Helicopter Kick Anmiation
-			return theAnimations.h_kick;
+			selectedAnimation = theAnimations.h_kick;
+			break;
 		case PUNCH_STATE:
-			return theAnimations.punch;
+			selectedAnimation = theAnimations.punch;
+			break;
 		case KICK_STATE:
-			return theAnimations.kick;
+			selectedAnimation = theAnimations.kick;
+			break;
 		case BLOCK_STATE:
-			return theAnimations.idle;//TODO: delete this line once there is a Block Anmiation
-			return theAnimations.block;
+			selectedAnimation = theAnimations.block;
+			break;
 		case KNOCK_BACK_STATE:
-			return theAnimations.idle;//TODO: delete this line once there is a Knockback Anmiation
-			return theAnimations.knockback;
+			selectedAnimation = theAnimations.knockback;
+			break;
+		}
+
+		if(selectedAnimation === undefined) {
+			return theAnimations.idle;
+		} else {
+			return selectedAnimation;
 		}
 	};
 }

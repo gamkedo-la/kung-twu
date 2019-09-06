@@ -50,7 +50,7 @@ function Player(config) {
 		return anims;
 	};
 
-	stateManager = new StateManager(initializeAnimations(), true);
+	stateManager = new StateManager(initializeAnimations(), AITYPE.Player);
 	this.collisionBody = hitBoxManager.bodyColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
 	this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
 
@@ -294,7 +294,7 @@ function Player(config) {
 		if(stateManager.getCurrentState() === STATE.Block) {
 			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10));
 		} else if(stateManager.getCurrentState() === STATE.KnockBack) {
-		//do nothing for a minute
+		//do nothing for now
 		} else {//just got hit
 			stateManager.wasHit();
 
