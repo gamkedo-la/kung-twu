@@ -9,6 +9,7 @@ function Collider(type, data) {
 	this.center = {x:0, y:0};
 	this.radius = 1;
 	this.points = [];
+	this.isActive = true;
 	
 	for(let i = 0; i < data.points.length; i++) {
 		this.points[i] = {x:data.points[i].x, y:data.points[i].y};
@@ -102,44 +103,19 @@ function Collider(type, data) {
 //Collision Manager
 function CollisionManager(player) {
 	const entities = new Set();
-	const terrain = new Set();
 	this.player = player;
+	this.defeatedEntities = [];
 
 	this.addEntity = function(newEntity) {
-		if(isTerrain(newEntity)) {
-			addTerrain(newEntity);
-		}
-
 		const beforeLength = entities.size;
 		entities.add(newEntity);
 
 		return (!(beforeLength === entities.size));
 	};
-
-	const addTerrain = function(newTerrain) {
-		const beforeLength = terrain.size;
-		terrain.add(newTerrain);
-
-		return (!(beforeLength === terrain.size));
-	};
 	
 	this.removeEntity = function(entityToRemove) {
-		if(isTerrain(entityToRemove)) {
-			removeTerrain(entityToRemove);
-		} 
-
 		if(entities.has(entityToRemove)) {
 			entities.delete(entityToRemove);
-
-			return true;
-		}
-
-		return false;
-	};
-
-	const removeTerrain = function(terrainToRemove) {
-		if(terrain.has(terrainToRemove)) {
-			terrain.delete(terrainToRemove);
 
 			return true;
 		}
@@ -149,46 +125,71 @@ function CollisionManager(player) {
 	
 	this.clearWorld = function() {
 		entities.clear();
-		terrain.clear();
 	};
-    
-	const actualCollisionCheck = function(entity1, entity2) {
-		if(withinSquareRadii(entity1.collisionBody, entity2.collisionBody)) {
+
+	const checkEntityAttack = function(entity1, entity2) {
+		if((entity1.attackBody != null) && (entity1.attackBody.isActive)) {
+			return colliderCheck(entity1.attackBody, entity2.collisionBody);
+		}
+
+		return false;
+	};
+	
+	const colliderCheck = function(collider1, collider2) {
+		if(withinSquareRadii(collider1, collider2)) {
 			//if both objects are circles, the above check is a valid collision
-			if((entity1.collisionBody.type === ColliderType.Circle) &&
-               (entity2.collisionBody.type === ColliderType.Circle)) {
-				entity1.didCollideWith(entity1.collisionBody, entity2);
-				entity2.didCollideWith(entity2.collisionBody, entity1);
-				return;
+			if((collider1.type === ColliderType.Circle) &&
+               (collider2.type === ColliderType.Circle)) {
+				return true;
 			}
             
-			if(checkCollisionBetween(entity1.collisionBody, entity2.collisionBody)) {
-				entity1.didCollideWith(entity1.collisionBody, entity2);
-				entity2.didCollideWith(entity2.collisionBody, entity1);
+			if(checkCollisionBetween(collider1, collider2)) {
+				return true;
 			}
 		}
+
+		return false;
 	};
     
-	const doPlayerCollision = function(entity, player) {
+	const checkAttacks = function(entity, player) {
 		if(entity.type === ENTITY_TYPE.Player) {
 			return;//ignore collisions with player (player can't inflict self-damage)
 		}
 
-		actualCollisionCheck(entity, player);
+		const defeated = {entity:false, player:false};
+
+		if(checkEntityAttack(entity, player)) {
+			//entity successfully hit player
+			player.wasHitBy(entity);
+			if(player.health <= 0) {defeated.player = true;}
+			entity.didHit(player);
+		}
+
+		if(checkEntityAttack(player, entity)) {
+			entity.wasHitBy(player);
+			if(entity.health <= 0) {defeated.entity = true;}
+			player.didHit(entity);
+		}
+
+		return defeated;
 	};
     
 	this.doCollisionChecks = function() {
-		const collisions = [];
+		this.defeatedEntities.length = 0;//Empties the array - Don't you love JavaScript?
 
 		for(let entity of entities) {
 			const entityPosition = entity.getPosition();
 			if( (entityPosition.x > GAME_FIELD.right) || 
 				(entityPosition.x < GAME_FIELD.x - entity.getWidth())) {continue;}//entity is not on screen => bail out early
 
-			doPlayerCollision(entity, this.player);            
-		}
-		
-		return collisions;
+			const wasDefeated = checkAttacks(entity, this.player);
+			if(wasDefeated.entity) {
+				this.defeatedEntities.push(entity);
+			} else if(wasDefeated.player) {
+				this.defeatedEntities.push(player);
+				return;//player has been defeated - we're done here
+			}
+		}		
 	};
 
 	const withinSquareRadii = function(body1, body2) {

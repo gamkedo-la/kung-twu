@@ -35,6 +35,7 @@ function GameScene() {
 		update(deltaTime);
 
 		collisionManager.doCollisionChecks();
+		processDefeatedEntities(collisionManager.defeatedEntities);
 
 		draw();
 	};
@@ -51,6 +52,21 @@ function GameScene() {
 		}
         
 		return false;
+	};
+
+	const processDefeatedEntities = function(defeatedEntities) {
+		for(let defeatedEntity of defeatedEntities) {
+			if(defeatedEntity === player) {
+				console.log("Game over man! Game Over!");
+			} else {
+				const enemyIndex = enemies.findIndex(function(element) {
+					return (element === defeatedEntity);
+				});
+	
+				enemies.splice(enemyIndex, 1);
+				collisionManager.removeEntity(defeatedEntity);
+			}
+		}
 	};
 
 	const update = function(deltaTime) {

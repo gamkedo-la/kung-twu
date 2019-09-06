@@ -360,6 +360,14 @@ function StateManager(theAnimations, isPlayerManager) {
 		belt = newBelt;
 	};
 
+	this.incrementBelt = function() {
+		this.setNewBelt(belt + 1);
+	};
+
+	this.getCurrentBelt = function() {
+		return belt;
+	};
+
 	this.didLand = function() {
 		landed = true;
 		isOnGround = true;

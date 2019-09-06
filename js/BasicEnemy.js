@@ -5,11 +5,14 @@ function BasicEnemy(config) {
 	const JUMP_SPEED = -300;
 	const ATTACK_RANGE = 100;
 
-	let currentDamage = 0;
+	let belt = BELT.White;//TODO: Use the state manager for this instead
+	const BASE_DAMAGE = 5;
+	const DELTA_DAMAGE = 5;
+
 	let currentAnimation;
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
-	let health = 10;
+	this.health = 15;
 	
 	let isFacingLeft = true;
 	let isOnGround = true;
@@ -32,7 +35,8 @@ function BasicEnemy(config) {
 		if(config.hasSweep != undefined) {hasSweep = config.hasSweep;}
 		if(config.hasJumpKick != undefined) {hasJumpKick = config.hasJumpKick;}
 		if(config.hasHelicopterKick != undefined) {hasHelicopterKick = config.hasHelicopterKick;}
-		if(config.health != undefined) {health = config.health;}
+		if(config.health != undefined) {this.health = config.health;}
+		if(config.belt != undefined) {belt = config.belt;}//TODO: use the state manager for this instead
 	}
 
 	this.getPosition = function() {
@@ -48,7 +52,7 @@ function BasicEnemy(config) {
 	};
 
 	this.getCurrentDamage = function() {
-		return currentDamage;
+		return BASE_DAMAGE + belt * DELTA_DAMAGE;//TODO: use the state manager for this instead
 	};
 
 	this.update = function(deltaTime, gravity, playerPos, floorHeight) {
@@ -96,13 +100,11 @@ function BasicEnemy(config) {
 
 	const moveLeft = function() {
 		position.x -= 10;
-		currentDamage = 0;
 		isFacingLeft = true;
 	};
 
 	const moveRight = function() {
 		position.x += 10;
-		currentDamage = 0;
 		isFacingLeft = false;
 	};
 
@@ -110,34 +112,30 @@ function BasicEnemy(config) {
 		if(isOnGround) {
 			isOnGround = false;
 			//currentAnimation = animations.jumping;
-			currentDamage = 0;
 		}
 	};
 
 	const crouch = function() {
 		if(isOnGround && !isCrouching) {
-			console.log("I'm crouching now");
+			console.log("Basic Enemy crouching now");
 			isCrouching = true;
 			//currentAnimation = animations.crouching;
-			currentDamage = 0;
 		}
 	};
 
 	const block = function() {
 		if(isOnGround && !isBlocking) {
-			console.log("I'm blocking now");
+			console.log("Basic Enemy blocking now");
 			isBlocking = true;
 			//currentAnimation = animations.blocking;
-			currentDamage = 0;
 		}
 	};
 
 	const dash = function() {
 		if(isOnGround && hasDash && !isDashing) {
-			console.log("I'm dashing now");
+			console.log("Basic Enemy dashing now");
 			isDashing = true;
 			//currentAnimation = animations.dashing;
-			currentDamage = 0;
 		}
 	};
 
@@ -145,31 +143,27 @@ function BasicEnemy(config) {
 		if((currentAnimation === animations.punching) && (!currentAnimation.isFinished())) {
 			return;
 		} else {
-			console.log("Trying to punch");
+			console.log("Basic Enemy Trying to punch");
 			//currentAnimation = animations.punching;
-			currentDamage = 10;
 		}
 	};
 
 	const kick = function() {
 		if(isStillKicking()) {return;}
 
-		console.log("Trying to kick");
+		console.log("Basic Enemy Trying to kick");
 		if(isOnGround) {
 			//currentAnimation = animations.kicking;
 		} else {
 			if(hasHelicopterKick && isHoldingLeftorRight()) {
-				console.log("Helicopter Kick!!!!");
+				console.log("Basic Enemy Helicopter Kick!!!!");
 				//currentAnimation = animations.helicopterKicking;
-				currentDamage = 40;
 			} else if(hasJumpKick) {
-				console.log("Jump Kick");
+				console.log("Basic Enemy Jump Kick");
 				//currentAnimation = animations.jumpKicking;
-				currentDamage = 30;
 			} else if(hasSweep) {
-				console.log("Sweep");
+				console.log("Basic Enemy Sweep");
 				//currentAnimation = animations.sweeping;
-				currentDamage = 20;
 			}
 		}
 	};
@@ -244,17 +238,22 @@ function BasicEnemy(config) {
 		return new Collider(colliderType, colliderData);
 	};
 	this.collisionBody = buildBodyCollider();
+	this.attackBody = null;//TODO: Update once enemies can attack
 
-	this.didCollideWith = function(thiscollider, otherEntity) {
-		currentDamage = 10;//TODO: Remove this once enemies can attack
+	this.wasHitBy = function(otherEntity) {
 		if(isBlocking) {
-			health -= (Math.ceil(otherEntity.getCurrentDamage() / 10));
+			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10));
 		} else {
-			health -= otherEntity.getCurrentDamage();
+			this.health -= otherEntity.getCurrentDamage();
 		}
 		
-		if(health <= 0) {
-			console.log("Enemy defeated.");
+		if(this.health <= 0) {
+			console.log("Basic Enemy defeated.");
 		}
 	};
+
+	this.didHit = function() {
+		console.log("Basic Enemy Hit the Player!");
+	};
+
 }
