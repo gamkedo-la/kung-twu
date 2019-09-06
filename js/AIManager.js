@@ -13,20 +13,71 @@ const AITYPE = {
 };
 
 function AIManager() {
-	this.actionForTypeTimeStateAndPos = function(type, state, newInput) {
+	this.actionForTypeTimeStateAndPos = function(type, timeSinceAction, currentState, distToPlayer) {
+		if((distToPlayer > maxApproachDistanceForType(type)) || (distToPlayer < -maxApproachDistanceForType(type))) {
+			return ACTION.Release;
+		} else if(distToPlayer > maxStrikeDistanceForType(type)) {
+			return ACTION.Right;
+		} else if(distToPlayer < -maxStrikeDistanceForType(type)) {
+			return ACTION.Left;
+		} else {
+			return attackIfAppropriateFor(type, timeSinceAction, currentState, distToPlayer);
+		}
+	};
 
+	const maxApproachDistanceForType = function(type) {
 		switch(type) {
 		case AITYPE.BasicWhite:
 		case AITYPE.BasicYellow:
 		case AITYPE.BasicTan:
 		case AITYPE.BasicBrown:
-		case AITYPE.BasicRed:	
+		case AITYPE.BasicRed:
+			return 10000;
 		case AITYPE.BossYellow:
 		case AITYPE.BossTan:
 		case AITYPE.BossBrown:
 		case AITYPE.BossRed:
 		case AITYPE.BossBlack:
-			return ACTION.Idle;
+			return 200;
+		}
+	};
+
+	const maxStrikeDistanceForType = function(type) {
+		switch(type) {
+		case AITYPE.BasicWhite:
+		case AITYPE.BasicYellow:
+		case AITYPE.BasicTan:
+		case AITYPE.BasicBrown:
+		case AITYPE.BasicRed:
+			return 60;
+		case AITYPE.BossYellow:
+		case AITYPE.BossTan:
+		case AITYPE.BossBrown:
+		case AITYPE.BossRed:
+		case AITYPE.BossBlack:
+			return 80;
+		}
+	};
+
+	const attackIfAppropriateFor = function(type, timeSinceAction, currentState, distToPlayer) {
+		switch(type) {
+		case AITYPE.BasicWhite:
+			if(timeSinceAction > 500) {
+				return ACTION.Kick;
+			} else {
+				return ACTION.Release;
+			}
+		case AITYPE.BasicYellow:
+		case AITYPE.BasicTan:
+		case AITYPE.BasicBrown:
+		case AITYPE.BasicRed:
+			return ACTION.Kick;
+		case AITYPE.BossYellow:
+		case AITYPE.BossTan:
+		case AITYPE.BossBrown:
+		case AITYPE.BossRed:
+		case AITYPE.BossBlack:
+			return ACTION.Release;
 		}
 	};
 }

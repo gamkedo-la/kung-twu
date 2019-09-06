@@ -34,15 +34,17 @@ function BasicEnemy(config) {
 		const anims = {};
 
 		anims.idle = new SpriteAnimation("idle", tempEnemyIdlePic, [0, 1], tempEnemyIdlePic.width / 2, tempEnemyIdlePic.height, [200], false, true);
-		//anims.jumping = ...
-		//anims.crouching = ...
-		//anims.punching = ...
-		//anims.kicking = ...
-		//anims.blocking = ...
-		//anims.dashing = ...
-		//anims.sweeping = ...
-		//anims.jumpKicking = ...
-		//anims.helicopterKicking = ...
+		anims.walk = new SpriteAnimation(STATE.Walk, playerWalkFwd, [0, 1, 2], playerWalkFwd.width / 3, playerIdle.height, [200], false, true);
+		anims.dash = new SpriteAnimation(STATE.Dash, playerWalkBack, [0, 1, 2], playerWalkBack.width / 3, playerIdle.height, [200], false, true);
+		//anims.jump = ...
+		//anims.crouch = ...
+		anims.punch = new SpriteAnimation(STATE.Punch, playerPunch, [0, 1, 2, 1], playerPunch.width / 3, playerPunch.height, [50, 100, 125, 50], false, false);
+		anims.kick = new SpriteAnimation(STATE.Kick, playerKick, [0, 1, 2, 1], playerKick.width  / 3, playerKick.height, [50, 100, 125, 50], false, false);
+		//anims.block = ...
+		//anims.sweep = ...
+		//anims.j-kick = ...
+		//anims.h-kick = ...
+		//anims.knockback = ...
 
 		const animationKeys = Object.keys(anims);
 		for(let i = 0; i < animationKeys.length; i++) {
@@ -51,7 +53,7 @@ function BasicEnemy(config) {
 
 		return anims;
 	};
-	stateManager = new StateManager(initializeAnimations(), false);
+	stateManager = new StateManager(initializeAnimations(), false, AITYPE.BasicWhite);
 	this.collisionBody = hitBoxManager.bodyColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
 	this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
 
@@ -104,7 +106,8 @@ function BasicEnemy(config) {
 	};
 
 	this.update = function(deltaTime, gravity, playerPos, floorHeight) {
-		stateManager.update(deltaTime);
+		const distToPlayer = playerPos.x - position.x;
+		stateManager.update(deltaTime, distToPlayer);
 		updateForState(stateManager.getCurrentState());
 
 		if(stateManager.getIsNewState()) {
@@ -121,8 +124,6 @@ function BasicEnemy(config) {
 		if(this.attackBody != null) {
 			this.attackBody.setPosition(position);
 		}
-
-//		doAI(playerPos);
 	};
 
 	const updateForState = function(currentState) {
@@ -218,6 +219,7 @@ function BasicEnemy(config) {
 	const crouch = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Crouching now");
+			velocity.x = 0;
 			//enemyCrouchSound.play();//Is there going to be one of these?
 		}
 	};
@@ -225,6 +227,7 @@ function BasicEnemy(config) {
 	const block = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Blocking now");
+			velocity.x = 0;
 			//enemyBlockSound.play();//Is there going to be one of these?
 		}
 	};
@@ -250,7 +253,6 @@ function BasicEnemy(config) {
 
 	const kick = function() {
 		if(stateManager.getIsNewState()) {
-			console.log("Basic Enemy is kicking now");
 			velocity.x = 0;
 			//enemyKickSound.play();//Is there going to be one of these?
 		}
@@ -315,6 +317,5 @@ function BasicEnemy(config) {
 
 	this.didHit = function() {
 		this.attackBody.isActive = false;
-		console.log("Hit the player!");
 	};
 }

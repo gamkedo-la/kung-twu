@@ -111,7 +111,7 @@ function Player(config) {
 	};
 
 	this.update = function(deltaTime, gravity, floorHeight) {
-		stateManager.update(deltaTime, this.getPosition());
+		stateManager.update(deltaTime);
 		updateForState(stateManager.getCurrentState());
 
 		if(stateManager.getIsNewState()) {

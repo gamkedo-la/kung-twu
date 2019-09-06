@@ -54,6 +54,7 @@ const WALK_STATE = {
 		} else if(action === ACTION.Jump) {
 			return STATE.Jump;
 		} else if(action === ACTION.Crouch) {
+			console.log(action);
 			return STATE.Crouch;
 		} else if(action === ACTION.Dash) {
 			return STATE.Dash;
@@ -427,7 +428,7 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 		}
 	};
 
-	this.update = function(deltaTime, playerPos) {
+	this.update = function(deltaTime, distToPlayer = 0) {
 		currentAnimation.update(deltaTime);
 		isNewState = false;
 		let newState;
@@ -437,7 +438,7 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 		if(isPlayerManager) {
 			updateStateWithUserInput(heldButtons);
 		} else {
-			updateStateWithAI(deltaTime, playerPos);
+			updateStateWithAI(deltaTime, distToPlayer);
 		}
 
 		if(didGetHit) {
@@ -468,15 +469,21 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 		}
 	};
 
-	const updateStateWithAI = function(deltaTime, playerPos) {
-		let action = aiManager.actionForTypeTimeStateAndPos(aiType, timeSinceAction, currentState, playerPos);
-		if((action === null) || (action === undefined)) {
-			action = ACTION.Idle;
-		}
+	const updateStateWithAI = function(deltaTime, distToPlayer) {
+		let action = aiManager.actionForTypeTimeStateAndPos(aiType, timeSinceAction, currentState, distToPlayer);
 
 		newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, action));
 		if(newState != currentState) {
 			timeSinceAction = 0;
+
+			if(action === ACTION.Left) {
+				isFacingLeft = true;
+			} else if(action === ACTION.Right) {
+				isFacingLeft = false;
+			} else if(action === ACTION.Jump) {
+				isOnGround = false;
+			}
+
 		} else {
 			timeSinceAction += deltaTime;
 		}
