@@ -9,8 +9,11 @@ let playerKickSound;
 let playerBlockSound;
 let playerHitSound;
 let playerFailedSound;
+const EFFECTS_BASE = 0.4;
 let menuMusic;
 let gameMusic;
+const GAMEPLAY_BASE = 1.0;
+const DRAGON_BASE = 0.5;
 let musicVolume;
 let effectsVolume;
 let currentBackgroundMusic;
@@ -32,8 +35,8 @@ function configureGameAudio() {
 }
 
 function loadAudio() {
-	pauseSound = new SoundOverlapsClass(assetPath.Audio + "PauseSound");
-	resumeSound = new SoundOverlapsClass(assetPath.Audio + "ResumeSound");
+	pauseSound = new SoundOverlapsClass(assetPath.Audio + "PauseSoundLow");
+	resumeSound = new SoundOverlapsClass(assetPath.Audio + "ResumeSoundLow");
 	playerJumpSound = new SoundOverlapsClass(assetPath.Audio + "PlayerJump");
 	playerPunchSound = new SoundOverlapsClass(assetPath.Audio + "PlayerPunch");
 	playerKickSound = new SoundOverlapsClass(assetPath.Audio + "PlayerKick");
@@ -65,15 +68,20 @@ function backgroundMusicClass() {
 		}
 		musicSound = new Audio(filenameWithPath + audioFormat);
 		musicSound.loop = true;
+		musicSound.baseVolume = getBaseVolumeForTrack(filenameWithPath);
 		this.setVolume(musicVolume);
 	};
 
 	this.pauseSound = function() {
-		musicSound.pause();
+		if(musicSound != null) {
+			musicSound.pause();
+		}
 	};
 
 	this.resumeSound = function() {
-		musicSound.play();
+		if(musicSound != null) {
+			musicSound.play();
+		}
 	};
 
 	this.startOrStopMusic = function() {
@@ -85,18 +93,25 @@ function backgroundMusicClass() {
 	};
 	
 	this.setVolume = function(volume) {
-		// Multipliction by a boolean serves as 1 for true and 0 for false
-		console.log("Music Sound: " + musicSound + ", musicSound.volume: " + musicSound.volume);
 		if(isMuted) {
 			musicSound.volume = 0;
 		} else {
-			musicSound.volume = Math.pow(volume, 2);
+			musicSound.volume = Math.pow(musicSound.baseVolume * volume, 2);
 		}
 		
-		if(musicSound.volume == 0) {
+		if(musicSound.volume === 0) {
 			musicSound.pause();
 		} else if (musicSound.paused) {
 			musicSound.play();
+		}
+	};
+
+	const getBaseVolumeForTrack = function(newTrack) {
+		switch(newTrack) {
+		case menuMusic:
+			return GAMEPLAY_BASE;
+		case gameMusic:
+			return DRAGON_BASE;
 		}
 	};
 }
@@ -114,18 +129,11 @@ function SoundOverlapsClass(filenameWithPath) {
 			sounds.splice(soundIndex, 0, new Audio(fullFilename + audioFormat));
 		}
 		sounds[soundIndex].currentTime = 0;
-		sounds[soundIndex].volume = Math.pow(getRandomVolume() * effectsVolume * !isMuted, 2);
+		sounds[soundIndex].volume = Math.pow(EFFECTS_BASE * effectsVolume * !isMuted, 2);
 		sounds[soundIndex].play();
 
 		soundIndex = (++soundIndex) % sounds.length;
 	};
-}
-
-function getRandomVolume(){
-	var min = 0.9;
-	var max = 1;
-	var randomVolume = Math.random() * (max - min) + min;
-	return randomVolume.toFixed(2);
 }
 
 function toggleMute() {
@@ -133,14 +141,15 @@ function toggleMute() {
 	currentBackgroundMusic.setVolume(musicVolume);
 }
 
-function setEffectsVolume(amount)
-{
+function setEffectsVolume(amount) {
 	effectsVolume = amount;
 	if(effectsVolume > 1.0) {
 		effectsVolume = 1.0;
 	} else if (effectsVolume < 0.0) {
 		effectsVolume = 0.0;
 	}
+
+	localStorageHelper.setItem(localStorageKey.SFXVolume, effectsVolume);
 }
 
 function setMusicVolume(amount){
@@ -151,6 +160,7 @@ function setMusicVolume(amount){
 		musicVolume = 0.0;
 	}
 	currentBackgroundMusic.setVolume(musicVolume);
+	localStorageHelper.setItem(localStorageKey.MusicVolume, musicVolume);
 }
 
 function turnVolumeUp() {

@@ -34,11 +34,11 @@ function PauseManager() {
 
 		if(cause === null) {
 			resumeSound.play();
-			//			currentBackgroundMusic.pauseSound();//TODO: restore once there is background music
+			currentBackgroundMusic.resumeSound();
 			requestAnimationFrame(update);
 		} else {
 			pauseSound.play();
-			//			currentBackgroundMusic.resumeSound();//TODO: restore once there is background music
+			currentBackgroundMusic.pauseSound();
 		}
 	};
 }

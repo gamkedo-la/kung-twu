@@ -37,6 +37,16 @@ const SceneState = {
 		}
 	},
 	control: function(newKeyEvent, pressed, pressedKeys) {
+		if((newKeyEvent === ALIAS.VOLUME_UP) && (!pressed)) {
+			turnVolumeUp();
+			return true;
+		} else if((newKeyEvent === ALIAS.VOLUME_DOWN) && (!pressed)) {
+			turnVolumeDown();
+			return true;
+		} else if((newKeyEvent === ALIAS.PAUSE) && (!pressed)) {
+			pauseManager.togglePause(CAUSE.Keypress);
+		}
+
 		return this.scenes[this.currentScene].control(newKeyEvent, pressed, pressedKeys);
 	}
 };
