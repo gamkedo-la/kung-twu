@@ -9,11 +9,12 @@ let playerKickSound;
 let playerBlockSound;
 let playerHitSound;
 let playerFailedSound;
-const EFFECTS_BASE = 0.4;
+let basicEnemyHitSound;
+const EFFECTS_BASE = 0.5;
 let menuMusic;
 let gameMusic;
 const GAMEPLAY_BASE = 1.0;
-const DRAGON_BASE = 0.5;
+const DRAGON_BASE = 0.35;
 let musicVolume;
 let effectsVolume;
 let currentBackgroundMusic;
@@ -43,6 +44,7 @@ function loadAudio() {
 	playerBlockSound = new SoundOverlapsClass(assetPath.Audio + "PlayerBlocking");
 	playerHitSound = new SoundOverlapsClass(assetPath.Audio + "PlayerHit");
 	playerFailedSound = new SoundOverlapsClass(assetPath.Audio + "PlayerFailed");
+	basicEnemyHitSound = new SoundOverlapsClass(assetPath.Audio + "BasicEnemyHit");
 	menuMusic = assetPath.Audio + "gameplayMusicV1";
 	gameMusic = assetPath.Audio + "DragonPulse";
 

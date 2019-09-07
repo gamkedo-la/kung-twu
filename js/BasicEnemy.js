@@ -311,7 +311,7 @@ function BasicEnemy(config) {
 			//enemyDefeatedSound.play();//TODO: get one of these
 			console.log("Basic Enemy Defeated.");
 		} else {
-			//enemyHitSound.play();//TODO: get one of these
+			basicEnemyHitSound.play();
 		}
 	};
 

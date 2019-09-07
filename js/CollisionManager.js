@@ -263,6 +263,8 @@ function CollisionManager(player) {
 
 				if(lineVLine(body1Line, body2Line)) {
 					return true;
+				} else {
+					console.log(`No line collision`);
 				}
 			}
 		}

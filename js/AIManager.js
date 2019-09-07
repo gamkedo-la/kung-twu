@@ -12,6 +12,15 @@ const AITYPE = {
 	BossBlack:"bossBlack",
 };
 
+const COOLDOWN = {
+	White:900,
+	Yellow:850,
+	Tan:800,
+	Brown:750,
+	Red:650,
+	Black:550
+};
+
 function AIManager() {
 	this.actionForTypeTimeStateAndPos = function(type, timeSinceAction, currentState, distToPlayer) {
 		if((distToPlayer > maxApproachDistanceForType(type)) || (distToPlayer < -maxApproachDistanceForType(type))) {
@@ -62,7 +71,7 @@ function AIManager() {
 	const attackIfAppropriateFor = function(type, timeSinceAction, currentState, distToPlayer) {
 		switch(type) {
 		case AITYPE.BasicWhite:
-			if(timeSinceAction > 500) {
+			if(timeSinceAction > COOLDOWN.White) {
 				return ACTION.Kick;
 			} else {
 				return ACTION.Release;

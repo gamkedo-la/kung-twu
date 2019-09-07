@@ -76,6 +76,7 @@ function GameScene() {
 
 	const update = function(deltaTime) {
 		const newCameraX = camera.getPosition().x;
+		updateGameField(newCameraX);
 		const floorImageShifts = floor.update(newCameraX);
 		columnManager.update(newCameraX);
 		roof.update(newCameraX, floorImageShifts);
@@ -107,6 +108,12 @@ function GameScene() {
 
 		columnManager.draw(camera.getPosition().x);
 		roof.draw();
+	};
+
+	const updateGameField = function(newCameraX) {
+		GAME_FIELD.x = newCameraX - canvas.width / 2;
+		GAME_FIELD.right = newCameraX + canvas.width / 2;
+		GAME_FIELD.midX = newCameraX;
 	};
 
 	const initializeFloor = function() {
