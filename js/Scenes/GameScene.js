@@ -18,7 +18,7 @@ function GameScene() {
 		initializeColumnPositions();
 		
 		aiManager = new AIManager();
-		timer.registerEvent("lastEnemySpawn");
+		timer.registerEvent(EVENT.EnemySpawn);
 		initializePlayerIfReqd();
 		
 		initializeCollisionManager(player);
@@ -92,8 +92,6 @@ function GameScene() {
 	};
 
 	const draw = function() {
-		// Pan the camera by centering the canvas on the player's position
-		// TODO: Implement a camera system that can follow objects or be attached to static position
 		camera.draw();
 		wall.draw();
 		floor.draw();
@@ -152,10 +150,10 @@ function GameScene() {
 
 	const spawnNewEnemies = function(cameraXPos) {
 		if(enemies.length >= 6) {return;}
-		const timeSince = timer.timeSinceUpdateForEvent("lastEnemySpawn");
+		const timeSince = timer.timeSinceUpdateForEvent(EVENT.EnemySpawn);
 		if(timeSince > timeTilSpawn) {
-			timer.updateEvent("lastEnemySpawn");
-			timeTilSpawn = 1000 + Math.ceil(5000 * Math.random());
+			timer.updateEvent(EVENT.EnemySpawn);
+			timeTilSpawn = 250 + ((TOTAL_LEVELS - currentLevel) * 250) + Math.ceil(1250 * Math.random()) + Math.ceil(1250 * Math.random());
 			spawnEnemyAtLeft(cameraXPos, (timeTilSpawn % 2) === 0);
 		}
 	};

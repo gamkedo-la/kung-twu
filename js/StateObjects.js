@@ -474,24 +474,20 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 
 		newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, action));
 		if(newState != currentState) {
-			if(timeSinceAction > aiManager.coolDownForBelt(belt) / 2) {
-				if(action === ACTION.Left) {
-					isFacingLeft = true;
-					timeSinceAction = 0;
-				} else if(action === ACTION.Right) {
-					isFacingLeft = false;
-					timeSinceAction = 0;
-				} else if(action === ACTION.Jump) {
-					isOnGround = false;
-					timeSinceAction = 0;
-				}	
+			timeSinceAction = 0;
+
+			if(action === ACTION.Left) {
+				isFacingLeft = true;
+			} else if(action === ACTION.Right) {
+				isFacingLeft = false;
+			} else if(action === ACTION.Jump) {
+				isOnGround = false;	
 			}
 
-			setNewState(newState);
-			timeSinceAction = 0;
-		} 
-
-		timeSinceAction += deltaTime;
+		} else {
+			timeSinceAction += deltaTime;
+		}
+		setNewState(newState);
 	};
 
 	this.drawAt = function(x = 0, y = 0) {

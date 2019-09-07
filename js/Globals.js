@@ -59,7 +59,8 @@ const SCENE = {
 let didInteract = false;
 let firstLoad;
 let timer;
-let worldSpeed = 1;
+const TOTAL_LEVELS = 5;
+let currentLevel = 1;
 
 //------------Asset Management----------//
 const assetPath = {

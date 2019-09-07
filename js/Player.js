@@ -2,7 +2,7 @@
 function Player(config) {
 	const SCALE = 2;
 	const WALK_SPEED = 200;
-	const JUMP_SPEED = -500;
+	const JUMP_SPEED = -600;
 	const KNOCK_BACK_SPEED = 800;
 
 	const BASE_DAMAGE = 10;

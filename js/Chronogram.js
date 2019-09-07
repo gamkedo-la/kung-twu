@@ -1,3 +1,8 @@
+const EVENT = {
+	EnemySpawn:"lastEnemySpawn",
+	LevelStart:"levelStart"
+};
+
 //Chronogram
 function Chronogram() {
 	let lastUpdate = Date.now();
@@ -10,7 +15,7 @@ function Chronogram() {
 	this.update = function() {
 		const previousLastUpdate = lastUpdate;
 		lastUpdate = Date.now();
-		return (worldSpeed * (lastUpdate - previousLastUpdate));
+		return (lastUpdate - previousLastUpdate);
 	};
 	
 	this.timeSinceUpdate = function() {
@@ -34,7 +39,7 @@ function Chronogram() {
 	this.timeSinceUpdateForEvent = function(eventName) {
 		if(events[eventName] === undefined) {return null;}
 		
-		return (worldSpeed * (Date.now() - events[eventName].lastUpdate));
+		return (Date.now() - events[eventName].lastUpdate);
 	};
 	
 	return this;
