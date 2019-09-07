@@ -72,7 +72,7 @@ function AIManager() {
 		switch(type) {
 		case AITYPE.BasicWhite:
 			if(timeSinceAction > COOLDOWN.White) {
-				return ACTION.Kick;
+				return attackActionForWhiteBelt();
 			} else {
 				return ACTION.Release;
 			}
@@ -87,6 +87,15 @@ function AIManager() {
 		case AITYPE.BossRed:
 		case AITYPE.BossBlack:
 			return ACTION.Release;
+		}
+	};
+
+	const attackActionForWhiteBelt = function() {
+		const rnd = Math.floor(10 * Math.random());
+		if(rnd % 3 < 2) {
+			return ACTION.Punch;
+		} else {
+			return ACTION.Kick;
 		}
 	};
 }
