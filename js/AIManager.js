@@ -21,6 +21,8 @@ const COOLDOWN = {
 	Black:550
 };
 
+const IDEAL_STRIKE_DIST = 60;
+
 function AIManager() {
 	this.actionForTypeTimeStateAndPos = function(type, timeSinceAction, currentState, distToPlayer) {
 		if((distToPlayer > maxApproachDistanceForType(type)) || (distToPlayer < -maxApproachDistanceForType(type))) {
@@ -54,18 +56,23 @@ function AIManager() {
 	const maxStrikeDistanceForType = function(type) {
 		switch(type) {
 		case AITYPE.BasicWhite:
+			return maxStrikeDistanceForWhiteBelt();
 		case AITYPE.BasicYellow:
 		case AITYPE.BasicTan:
 		case AITYPE.BasicBrown:
 		case AITYPE.BasicRed:
-			return 60;
 		case AITYPE.BossYellow:
 		case AITYPE.BossTan:
 		case AITYPE.BossBrown:
 		case AITYPE.BossRed:
 		case AITYPE.BossBlack:
-			return 80;
+			return IDEAL_STRIKE_DIST;
 		}
+	};
+
+	const maxStrikeDistanceForWhiteBelt = function() {
+		const rnd = Math.floor(40 * Math.random()) - 20;
+		return (IDEAL_STRIKE_DIST + rnd);
 	};
 
 	const attackIfAppropriateFor = function(type, timeSinceAction, currentState, distToPlayer) {
