@@ -22,8 +22,6 @@ function GameScene() {
 		initializePlayerIfReqd();
 		
 		initializeCollisionManager(player);
-
-		initializeEnemies();
 		
 		initializeLevel();
 
@@ -152,20 +150,8 @@ function GameScene() {
 		camera.attach(player);
 	};
 
-	const initializeEnemies = function() {
-		for(let i = 1; i < 2; i++) {
-			const config = {
-				x:i * canvas.width / 7, 
-				y:3 * canvas.height / 5
-			};
-
-			const anEnemy = new BasicEnemy(config);
-			collisionManager.addEntity(anEnemy);
-			enemies.push(anEnemy);
-		}
-	};
-
 	const spawnNewEnemies = function(cameraXPos) {
+		if(enemies.length >= 6) {return;}
 		const timeSince = timer.timeSinceUpdateForEvent("lastEnemySpawn");
 		if(timeSince > timeTilSpawn) {
 			timer.updateEvent("lastEnemySpawn");
@@ -175,9 +161,9 @@ function GameScene() {
 	};
 
 	const spawnEnemyAtLeft = function(cameraXPos, atLeft) {
-		let xPos = cameraXPos + canvas.width / 2;
+		let xPos = cameraXPos + (1.5 * canvas.width / 2);
 		if(atLeft) {
-			xPos -= (1.1 * canvas.width);
+			xPos = cameraXPos - (1.5 * canvas.width / 2);
 		}
 
 		const config = {
