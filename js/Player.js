@@ -319,6 +319,5 @@ function Player(config) {
 
 	this.didHit = function() {
 		this.attackBody.isActive = false;
-		console.log("Hit another student!");
 	};
 }

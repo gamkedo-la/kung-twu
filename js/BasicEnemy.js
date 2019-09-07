@@ -245,7 +245,6 @@ function BasicEnemy(config) {
 
 	const punch = function() {
 		if(stateManager.getIsNewState()) {
-			console.log("Basic Enemy is punching now");
 			velocity.x = 0;
 			//enemyPunchSound.play();//Is there going to be one of these?
 		}
@@ -309,7 +308,6 @@ function BasicEnemy(config) {
 
 		if(this.health <= 0) {
 			//enemyDefeatedSound.play();//TODO: get one of these
-			console.log("Basic Enemy Defeated.");
 		} else {
 			basicEnemyHitSound.play();
 		}

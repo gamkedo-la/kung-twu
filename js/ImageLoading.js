@@ -59,18 +59,16 @@ function loadStartImagePic() {
 		loadImages();
 	};
     
-	startImagePic.src = assetPath.Image + "TempKungTuStart.png";
+	startImagePic.src = assetPath.Image + "title_screen.png";
 }
 
 //-----Load the rest of the game images----//
 const titleScreen = document.createElement("img");
 const titleBlock = document.createElement("img");
 const selector = document.createElement("img");
-const tempBackground = document.createElement("img");
 const tempWindowedWall = document.createElement("img");
 const tempTiledWall = document.createElement("img");
 const jpFont = document.createElement("img");
-const tempOverhead = document.createElement("img");
 const roofTileTop = document.createElement("img");
 const roofTileBottom = document.createElement("img");
 const floorboardSheet = document.createElement("img");
@@ -102,17 +100,12 @@ function loadImages() {
 		{ imgName: tempEnemyIdlePic, theFile: "TempEnemy.png" },
 
 		// backgrounds
-		{ imgName: tempBackground, theFile: "TempBackground.png" },
 		{ imgName: tempWindowedWall, theFile: "TempTiledBackground.png" },
 		{ imgName: tempTiledWall, theFile: "TempTiledBackgroundWall.png" },
-		{ imgName: tempOverhead, theFile: "TempOverhead.png" },
 		{ imgName: roofTileTop, theFile: "roof-tile-top.png" },
 		{ imgName: roofTileBottom, theFile: "roof-tile-bottom.png" },
 		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },
 		{ imgName: tempColumn, theFile: "column_01.png" },
-
-		// power ups
-		//        { imgName: shieldPowerUpPic, theFile: "shieldPowerUp.png" },
 
 		// player related
 		{ imgName: playerIdle, theFile: "Player_Idle_Condensed.png"},
@@ -122,7 +115,6 @@ function loadImages() {
 		{ imgName: playerKick, theFile: "Player_Kick_Condensed.png"},
 
 		// UI
-		//        { imgName: heartPic, theFile: "heart.png" },
 		{ imgName: titleScreen, theFile: "title_screen.png"},
 		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
 		{ imgName: selector, theFile: "title_screen_yinyang_selector.png"},
