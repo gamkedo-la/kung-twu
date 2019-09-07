@@ -66,14 +66,14 @@ function loadStartImagePic() {
 const titleScreen = document.createElement("img");
 const titleBlock = document.createElement("img");
 const selector = document.createElement("img");
-const tempWindowedWall = document.createElement("img");
-const tempTiledWall = document.createElement("img");
+const windowedWall = document.createElement("img");
+const tiledWall = document.createElement("img");
 const jpFont = document.createElement("img");
 const roofTileTop = document.createElement("img");
 const roofTileBottom = document.createElement("img");
 const floorboardSheet = document.createElement("img");
-const tempColumn = document.createElement("img");
-const tempEnemyIdlePic = document.createElement("img");
+const column = document.createElement("img");
+const basicEnemyIdle = document.createElement("img");
 const playerIdle = document.createElement("img");
 const playerWalkFwd = document.createElement("img");
 const playerWalkBack = document.createElement("img");
@@ -97,15 +97,15 @@ function beginLoadingImage(imgVar, fileName) {
 function loadImages() {
 	const imageList = [
 		// enemies
-		{ imgName: tempEnemyIdlePic, theFile: "TempEnemy.png" },
+		{ imgName: basicEnemyIdle, theFile: "TempEnemy.png" },
 
 		// backgrounds
-		{ imgName: tempWindowedWall, theFile: "TempTiledBackground.png" },
-		{ imgName: tempTiledWall, theFile: "TempTiledBackgroundWall.png" },
+		{ imgName: windowedWall, theFile: "TempTiledBackground.png" },
+		{ imgName: tiledWall, theFile: "TempTiledBackgroundWall.png" },
 		{ imgName: roofTileTop, theFile: "roof-tile-top.png" },
 		{ imgName: roofTileBottom, theFile: "roof-tile-bottom.png" },
 		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },
-		{ imgName: tempColumn, theFile: "column_01.png" },
+		{ imgName: column, theFile: "column_01.png" },
 
 		// player related
 		{ imgName: playerIdle, theFile: "Player_Idle_Condensed.png"},

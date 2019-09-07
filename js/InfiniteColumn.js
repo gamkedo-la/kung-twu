@@ -66,13 +66,13 @@ function InfiniteColumn() {
 			if(isInDeadZone(cameraXPos)) {
 				canvasContext.globalAlpha = 0.7;
 			}
-			canvasContext.drawImage(tempColumn, xPos, yPos);
+			canvasContext.drawImage(column, xPos, yPos);
 
 			canvasContext.restore();
 		};
 
 		this.isOnScreen = function(cameraXPos) {
-			if( (xPos + tempColumn.width > cameraXPos - (canvas.width / 2)) &&
+			if( (xPos + column.width > cameraXPos - (canvas.width / 2)) &&
 				(xPos < cameraXPos + canvas.width / 2)) {
 				return true;
 			}

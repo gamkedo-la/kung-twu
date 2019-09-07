@@ -33,7 +33,7 @@ function BasicEnemy(config) {
 	const initializeAnimations = function() {
 		const anims = {};
 
-		anims.idle = new SpriteAnimation("idle", tempEnemyIdlePic, [0, 1], tempEnemyIdlePic.width / 2, tempEnemyIdlePic.height, [200], false, true);
+		anims.idle = new SpriteAnimation("idle", basicEnemyIdle, [0, 1], basicEnemyIdle.width / 2, basicEnemyIdle.height, [200], false, true);
 		anims.walk = new SpriteAnimation(STATE.Walk, playerWalkFwd, [0, 1, 2], playerWalkFwd.width / 3, playerIdle.height, [200], false, true);
 		anims.dash = new SpriteAnimation(STATE.Dash, playerWalkBack, [0, 1, 2], playerWalkBack.width / 3, playerIdle.height, [200], false, true);
 		//anims.jump = ...

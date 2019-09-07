@@ -122,11 +122,11 @@ function GameScene() {
 	};
 
 	const InitializeRoof = function() {
-		roof = new InfiniteRoof(canvas.height - tempTiledWall.height);
+		roof = new InfiniteRoof(canvas.height - tiledWall.height);
 	};
 
 	const InitializeBackWall = function() {
-		wall = new InfiniteWall(canvas.height - tempTiledWall.height);
+		wall = new InfiniteWall(canvas.height - tiledWall.height);
 	};
 
 	const initializePlayerIfReqd = function() {

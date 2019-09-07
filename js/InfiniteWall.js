@@ -44,9 +44,9 @@ function InfiniteWall(posY) {
 
 		let currentXPos = -TILE_WIDTH / 2;
 		for(let i = 0; i < tileCount; i++) {
-			let imageToUse = tempWindowedWall;
+			let imageToUse = windowedWall;
 			if(i % 2 === 0) {
-				imageToUse = tempTiledWall;
+				imageToUse = tiledWall;
 			}
 			TILES.push(new WallTile(imageToUse, currentXPos + (i * TILE_WIDTH), posY));
 		}
