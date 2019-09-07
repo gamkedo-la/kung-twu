@@ -4,21 +4,21 @@ function GameScene() {
 	let collisionManager;
 	const enemies = [];
 	const camera = new Camera();
-	const bkgdManager = new BackgroundManager();
 	const columnManager = new InfiniteColumn();
 	let floor;
 	let roof;
 	let wall;
 	let floorMidHeight = 0;
+	let timeTilSpawn = 0;
 
 	this.transitionIn = function() {
 		initializeFloor();
 		InitializeRoof();
 		InitializeBackWall();
-		initializeBackgroundManager();
 		initializeColumnPositions();
 		
 		aiManager = new AIManager();
+		timer.registerEvent("lastEnemySpawn");
 		initializePlayerIfReqd();
 		
 		initializeCollisionManager(player);
@@ -77,7 +77,6 @@ function GameScene() {
 	const update = function(deltaTime) {
 		const newCameraX = camera.getPosition().x;
 		const floorImageShifts = floor.update(newCameraX);
-		bkgdManager.update(floorImageShifts);
 		columnManager.update(newCameraX);
 		roof.update(newCameraX, floorImageShifts);
 		wall.update(newCameraX, floorImageShifts);
@@ -85,6 +84,7 @@ function GameScene() {
 		player.update(deltaTime, GRAVITY, floorMidHeight);
 
 		const playerPos = player.getPosition();
+		spawnNewEnemies(newCameraX);
 		for(let i = 0; i < enemies.length; i++) {
 			enemies[i].update(deltaTime, GRAVITY, playerPos, floorMidHeight);
 		}
@@ -97,7 +97,6 @@ function GameScene() {
 		// TODO: Implement a camera system that can follow objects or be attached to static position
 		camera.draw();
 		wall.draw();
-//		bkgdManager.draw();
 		floor.draw();
 
 		for(let i = 0; i < enemies.length; i++) {
@@ -134,11 +133,6 @@ function GameScene() {
 		}
 	};
 
-	const initializeBackgroundManager = function() {
-		const backWall = new BackgroundImage(-2, tempWindowedWall, {x:0, y:canvas.height - tempBackground.height});
-		bkgdManager.addImage(backWall);
-	};
-
 	const initializeColumnPositions = function() {
 		columnManager.positionFirstColumn(100 + camera.getPosition().x + 2 * canvas.width / 3);
 	};
@@ -162,5 +156,30 @@ function GameScene() {
 			collisionManager.addEntity(anEnemy);
 			enemies.push(anEnemy);
 		}
+	};
+
+	const spawnNewEnemies = function(cameraXPos) {
+		const timeSince = timer.timeSinceUpdateForEvent("lastEnemySpawn");
+		if(timeSince > timeTilSpawn) {
+			timer.updateEvent("lastEnemySpawn");
+			timeTilSpawn = 1000 + Math.ceil(5000 * Math.random());
+			spawnEnemyAtLeft(cameraXPos, (timeTilSpawn % 2) === 0);
+		}
+	};
+
+	const spawnEnemyAtLeft = function(cameraXPos, atLeft) {
+		let xPos = cameraXPos + canvas.width / 2;
+		if(atLeft) {
+			xPos -= (1.1 * canvas.width);
+		}
+
+		const config = {
+			x:xPos, 
+			y:3 * canvas.height / 5
+		};
+
+		const anEnemy = new BasicEnemy(config);
+		collisionManager.addEntity(anEnemy);
+		enemies.push(anEnemy);
 	};
 }
