@@ -7,7 +7,6 @@ function InfiniteWall(posY) {
 	this.update = function(cameraXPos, shifts) {
 		if(TILES.length === 0) {
 			initializeTiles();
-			console.log(`Tile Count: ${TILES.length}`);
 		}
 
 		for(let i = 0; i < TILES.length; i++) {

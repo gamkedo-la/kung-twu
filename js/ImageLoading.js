@@ -68,7 +68,8 @@ const tempWindowedWall = document.createElement("img");
 const tempTiledWall = document.createElement("img");
 const jpFont = document.createElement("img");
 const tempOverhead = document.createElement("img");
-const roofTile = document.createElement("img");
+const roofTileTop = document.createElement("img");
+const roofTileBottom = document.createElement("img");
 const floorboardSheet = document.createElement("img");
 const tempColumn = document.createElement("img");
 const tempEnemyIdlePic = document.createElement("img");
@@ -102,7 +103,8 @@ function loadImages() {
 		{ imgName: tempWindowedWall, theFile: "TempTiledBackground.png" },
 		{ imgName: tempTiledWall, theFile: "TempTiledBackgroundWall.png" },
 		{ imgName: tempOverhead, theFile: "TempOverhead.png" },
-		{ imgName: roofTile, theFile: "roof-tile.png" },
+		{ imgName: roofTileTop, theFile: "roof-tile-top.png" },
+		{ imgName: roofTileBottom, theFile: "roof-tile-bottom.png" },
 		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },
 		{ imgName: tempColumn, theFile: "TempColumn.png" },
 
