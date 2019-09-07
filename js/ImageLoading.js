@@ -109,7 +109,7 @@ function loadImages() {
 		{ imgName: roofTileTop, theFile: "roof-tile-top.png" },
 		{ imgName: roofTileBottom, theFile: "roof-tile-bottom.png" },
 		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },
-		{ imgName: tempColumn, theFile: "TempColumn.png" },
+		{ imgName: tempColumn, theFile: "column_01.png" },
 
 		// power ups
 		//        { imgName: shieldPowerUpPic, theFile: "shieldPowerUp.png" },
