@@ -1,10 +1,9 @@
 //Basic Enemy
 function BasicEnemy(config) {
 	const SCALE = 2;
-	const WALK_SPEED = 200;
+	const WALK_SPEED = 220;
 	const JUMP_SPEED = -300;
 	const KNOCK_BACK_SPEED = 800;
-	const ATTACK_RANGE = 100;
 
 	const BASE_DAMAGE = 5;
 	const DELTA_DAMAGE = 5;

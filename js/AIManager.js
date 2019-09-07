@@ -24,6 +24,23 @@ const COOLDOWN = {
 const IDEAL_STRIKE_DIST = 60;
 
 function AIManager() {
+	this.coolDownForBelt = function(belt) {
+		switch(belt) {
+		case BELT.White:
+			return COOLDOWN.White;
+		case BELT.Yellow:
+			return COOLDOWN.Yellow;
+		case BELT.Tan:
+			return COOLDOWN.Tan;
+		case BELT.Brown:
+			return COOLDOWN.Brown;
+		case BELT.Red:
+			return COOLDOWN.Red;
+		case BELT.Black:
+			return COOLDOWN.Black;																														
+		}
+	};
+
 	this.actionForTypeTimeStateAndPos = function(type, timeSinceAction, currentState, distToPlayer) {
 		if((distToPlayer > maxApproachDistanceForType(type)) || (distToPlayer < -maxApproachDistanceForType(type))) {
 			return ACTION.Release;
