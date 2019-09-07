@@ -13,22 +13,39 @@ function showStartImage() {
 }
 
 //-----Load the Gamkedo Logo-----//
-const gamkedoLogoPic = document.createElement("img");
+const HTGDLogoPic = document.createElement("img");
 function loadGamkedoLogo() {
-	gamkedoLogoPic.onload = function() {
+	HTGDLogoPic.onload = function() {
 		//Draw the Gamkedo Logo Image
 		canvasContext.drawImage(this, 0, 0);
 
 		//Begin loading the Start Image
 		loadStartImagePic();
 
-		//Show the Gamkedo Logo Image for 1 second
+		//Show the HTGD Logo Image for 1 second
 		setTimeout(function() {
-			showStartImage();
-		}, 1000);
+			kenBurnsAffect();
+		}, 25);
 	};
     
-	gamkedoLogoPic.src = assetPath.Image + "TempGamkedoLogo.png";
+	HTGDLogoPic.src = assetPath.Image + "HTGDLogo.png";
+}
+
+let kenBurns = 0;
+function kenBurnsAffect() {
+	kenBurns++;
+	if(kenBurns < 40) {
+		setTimeout(function() {
+			kenBurnsAffect();
+		}, 25);
+		canvasContext.drawImage(HTGDLogoPic, 
+			0, 0, HTGDLogoPic.width, HTGDLogoPic.height, 
+			-kenBurns, -kenBurns, HTGDLogoPic.width + (2 * kenBurns), HTGDLogoPic.height + (2 * kenBurns));
+	} else {
+		setTimeout(function() {
+			showStartImage();
+		}, 25);
+	}
 }
 
 //-----Load the title screen image-----//
