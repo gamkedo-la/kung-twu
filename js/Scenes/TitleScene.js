@@ -182,9 +182,9 @@ function TitleScene() {
 	};
 
 	const buildBirds = function() {
-		birds.push(new Bird({x:600, y: 100}, {x:-10, y:10}));
-		birds.push(new Bird({x:200, y: 400}, {x:8, y:-5}));
-		birds.push(new Bird({x:100, y: 100}, {x:7, y:7}));
+		birds.push(new Bird({x:600, y: 100}, {x:-6, y:6}, 0.5));
+		birds.push(new Bird({x:200, y: 400}, {x:12, y:-10}, 1.25));
+		birds.push(new Bird({x:100, y: 100}, {x:7, y:7}, 0.5));
 	};
 
 	const checkButtons = function() {
@@ -237,7 +237,7 @@ function TitleScene() {
 	return this;
 }
 
-function Bird(pos, vel) {
+function Bird(pos, vel, scale = 1) {
 	this.position = pos;
 	this.velocity = vel;
 	const soarAdjustment = Math.floor(1000 * Math.random());
@@ -249,6 +249,7 @@ function Bird(pos, vel) {
 		[64, 64, 64, 64, 64, 3000 + soarAdjustment],//array of milliseconds to show each frame
 		false, //boolean indicates if animation reverses (true)
 		true); //boolean indicates if animation loops (true)
+	this.animation.scale = scale;
 	this.update = function(deltaTime) {
 		this.position.x += (this.velocity.x * deltaTime / 1000);
 		this.position.y += (this.velocity.y * deltaTime / 1000);
