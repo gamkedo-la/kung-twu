@@ -17,14 +17,18 @@ function TitleScene() {
 
 	this.transitionIn = function() {
 		let mainMenuX = 0;
-		const mainMenuY = canvas.height / 2;
-		const deltaY = 1.25 * buttonHeight;
+		const BUTTON_PADDING = 0.9 * buttonHeight;
+		const mainMenuY = BUTTON_PADDING + (canvas.height / 2);
+		const deltaY = 2 * BUTTON_PADDING;
         
 		if(buttons.length === 0) {
 			buttons.push(buildPlayButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
 
 			mainMenuX = (canvas.width / 2) - (buttons[0].getBounds().width / 2);
 			buttons[0].updateXPosition(mainMenuX);
+
+			selectorPosition.x = mainMenuX - selector.width - (BUTTON_PADDING / 2);
+			selectorPosition.y = mainMenuY + (buttonHeight / 2) - (selector.height / 2);
 
 			buttons.push(buildHelpButton(mainMenuX, mainMenuY + deltaY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildSettingsButton(mainMenuX, mainMenuY + 2 * deltaY, buttonHeight, buttonTitlePadding));
@@ -156,7 +160,7 @@ function TitleScene() {
 			};
 
 			languageButtons.push(new UIButton(STRINGS_KEY[languages[i]], 
-				xPos, canvas.height - (3 * buttonHeight / 2), 
+				xPos, canvas.height - (9 * buttonHeight / 2), 
 				buttonHeight, buttonTitlePadding, thisClick, Color.Red));
 
 			totalButtonWidth += (languageButtons[languageButtons.length - 1].getBounds().width);
@@ -202,14 +206,15 @@ function TitleScene() {
 	};
 	
 	const drawBG = function() {
-		//drawRect(0, 0, canvas.width, canvas.height, MENU_BG_COLORb);
-		canvasContext.drawImage(titleScreen,0,0);
+		canvasContext.drawImage(titleScreenBG,0,0);
+		canvasContext.drawImage(titleScreenDecore,0,0);
 		canvasContext.drawImage(titleBlock,canvas.width/3,canvas.height/2);
-		canvasContext.drawImage(selector,canvas.width/3,canvas.height/2);
+		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 	};
     
 	const drawTitle = function() {
-		colorText(getLocalizedStringForKey(STRINGS_KEY.Title), canvas.width / 2, canvas.height / 3, Color.White, Fonts.MainTitle, TextAlignment.Center);
+		const titleXPos = (canvas.width - titleImage.width) / 2;
+		canvasContext.drawImage(titleImage, titleXPos, canvas.height / 10);
 		colorText(getLocalizedStringForKey(STRINGS_KEY.Subtitle), canvas.width / 2, canvas.height / 3 + 40, Color.White, Fonts.Subtitle, TextAlignment.Center);
 	};
         

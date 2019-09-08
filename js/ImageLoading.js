@@ -59,11 +59,13 @@ function loadStartImagePic() {
 		loadImages();
 	};
     
-	startImagePic.src = assetPath.Image + "title_screen.png";
+	startImagePic.src = assetPath.Image + "title_screen_bg.png";
 }
 
 //-----Load the rest of the game images----//
-const titleScreen = document.createElement("img");
+const titleScreenBG = document.createElement("img");
+const titleImage = document.createElement("img");
+const titleScreenDecore = document.createElement("img");
 const titleBlock = document.createElement("img");
 const selector = document.createElement("img");
 const windowedWall = document.createElement("img");
@@ -115,7 +117,9 @@ function loadImages() {
 		{ imgName: playerKick, theFile: "Player_Kick_Condensed.png"},
 
 		// UI
-		{ imgName: titleScreen, theFile: "title_screen.png"},
+		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
+		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
+		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
 		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
 		{ imgName: selector, theFile: "title_screen_yinyang_selector.png"},
 		{ imgName: jpFont, theFile: "JPFont.png"},
