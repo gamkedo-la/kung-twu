@@ -38,8 +38,6 @@ function TitleScene() {
 		} else {
 			updateButtonTitles();
 		}
-
-		selectorPositionsIndex = 0;
 	};
 
 	this.transitionOut = function() {
@@ -69,6 +67,7 @@ function TitleScene() {
 			if (selectorPositionsIndex < 0) {
 				selectorPositionsIndex += selections.length;
 			}
+			selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
 			return true;
 		case ALIAS.DOWN:
 		case ALIAS.RIGHT:
@@ -76,6 +75,7 @@ function TitleScene() {
 			if (selectorPositionsIndex >= selections.length) {
 				selectorPositionsIndex = 0;
 			}
+			selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
 			return true;
 		case ALIAS.SELECT1:
 			SceneState.setState(selections[selectorPositionsIndex]);
