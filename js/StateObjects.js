@@ -54,9 +54,8 @@ const WALK_STATE = {
 		} else if(action === ACTION.Jump) {
 			return STATE.Jump;
 		} else if(action === ACTION.Crouch) {
-			console.log(action);
 			return STATE.Crouch;
-		} else if(action === ACTION.Dash) {
+		} else if((action === ACTION.Dash) && (belt >= BELT.Yellow)) {
 			return STATE.Dash;
 		} else if(action === ACTION.Punch) {
 			return STATE.Punch;
@@ -179,7 +178,7 @@ const IDLE_STATE = {
 			return STATE.Jump;
 		} else if(action === ACTION.Down) {
 			return STATE.Crouch;
-		} else if(action === ACTION.Dash) {
+		} else if((action === ACTION.Dash) && (belt >= BELT.Yellow)) {
 			return STATE.Dash;
 		} else if(action === ACTION.Punch) {
 			return STATE.Punch;

@@ -30,8 +30,8 @@ function Player(config) {
 		const anims = {};
 
 		anims.idle = new SpriteAnimation(STATE.Idle, playerIdle, [0, 1], playerIdle.width / 2, playerIdle.height, [200], false, true);
-		anims.walk = new SpriteAnimation(STATE.Walk, playerWalkFwd, [0, 1, 2], playerWalkFwd.width / 3, playerIdle.height, [200], false, true);
-		anims.dash = new SpriteAnimation(STATE.Dash, playerWalkBack, [0, 1, 2], playerWalkBack.width / 3, playerIdle.height, [200], false, true);
+		anims.walk = new SpriteAnimation(STATE.Walk, playerWalkFwd, [0, 1, 2], playerWalkFwd.width / 3, playerWalkFwd.height, [200], false, true);
+		anims.dash = new SpriteAnimation(STATE.Dash, playerWalkBack, [0, 1, 2], playerWalkBack.width / 3, playerWalkBack.height, [50], false, false);
 		//anims.jump = ...
 		//anims.crouch = ...
 		anims.punch = new SpriteAnimation(STATE.Punch, playerPunch, [0, 1, 2, 1], playerPunch.width / 3, playerPunch.height, [50, 100, 125, 50], false, false);
@@ -92,13 +92,13 @@ function Player(config) {
 		case STATE.Punch:
 			return 1 * BASE_DAMAGE;
 		case STATE.Kick:
-			return 2 * BASE_DAMAGE;
+			return 1.25 * BASE_DAMAGE;
 		case STATE.J_Kick:
-			return 3 * BASE_DAMAGE;
+			return 1.5 * BASE_DAMAGE;
 		case STATE.Sweep:
-			return 3 * BASE_DAMAGE;
+			return 1.5 * BASE_DAMAGE;
 		case STATE.H_Kick:
-			return 4 * BASE_DAMAGE;
+			return 2 * BASE_DAMAGE;
 		}
 	};
 
@@ -228,8 +228,13 @@ function Player(config) {
 	};
 
 	const dash = function() {
-		console.log("I'm dashing now");
 		if(stateManager.getIsNewState()) {
+			let speed = -4 * WALK_SPEED;
+			if(stateManager.getIsFacingLeft()) {
+				speed = 4 * WALK_SPEED;
+			} 
+
+			velocity.x = speed;
 			//playerDashSound.play();
 		}
 	};
