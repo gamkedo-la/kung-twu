@@ -67,6 +67,7 @@ const titleScreenBG = document.createElement("img");
 const titleImage = document.createElement("img");
 const titleScreenDecore = document.createElement("img");
 const titleBlock = document.createElement("img");
+const titleScreenBird = document.createElement("img");
 const selector = document.createElement("img");
 const windowedWall = document.createElement("img");
 const tiledWall = document.createElement("img");
@@ -121,6 +122,7 @@ function loadImages() {
 		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
 		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
+		{ imgName: titleScreenBird, theFile: "bird_sprite-flap-sheet.png"},
 		{ imgName: selector, theFile: "title_screen_yinyang_selector.png"},
 		{ imgName: jpFont, theFile: "JPFont.png"},
 	];

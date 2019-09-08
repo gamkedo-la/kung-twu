@@ -14,6 +14,7 @@ function TitleScene() {
 	const buttonHeight = 25;//TODO: Adjust this size based on custom font
 	const buttonTitlePadding = 2;
 	const buttons = [];
+	const birds = [];
 
 	this.transitionIn = function() {
 		let mainMenuX = 0;
@@ -35,6 +36,8 @@ function TitleScene() {
 			buttons.push(buildCreditsButton(mainMenuX, mainMenuY + 3 * deltaY, buttonHeight, buttonTitlePadding));
 
 			buildLanguageButtons();
+
+			buildBirds();
 		} else {
 			updateButtonTitles();
 		}
@@ -178,6 +181,12 @@ function TitleScene() {
 		}
 	};
 
+	const buildBirds = function() {
+		birds.push(new Bird({x:600, y: 100}, {x:-10, y:10}));
+		birds.push(new Bird({x:200, y: 400}, {x:8, y:-5}));
+		birds.push(new Bird({x:100, y: 100}, {x:7, y:7}));
+	};
+
 	const checkButtons = function() {
 		let wasClicked = false;
 		for(let i = 0; i < buttons.length; i++) {
@@ -193,16 +202,23 @@ function TitleScene() {
 	};
 	
 	const update = function(deltaTime) {
+		for(let i = 0; i < birds.length; i++) {
+			birds[i].update(deltaTime);
+		}
 	};
 	
 	const draw = function(deltaTime, buttons, selectorPositionIndex) {
 		// render the menu background
 		drawBG();
-        
+		
+		for(let i = 0; i < birds.length; i++) {
+			birds[i].draw();
+		}
+
 		drawTitle();
 
 		// render menu
-		printMenu(buttons, selectorPositionIndex);        
+		printMenu(buttons, selectorPositionIndex); 		
 	};
 	
 	const drawBG = function() {
@@ -219,4 +235,26 @@ function TitleScene() {
 	};
         
 	return this;
+}
+
+function Bird(pos, vel) {
+	this.position = pos;
+	this.velocity = vel;
+	const soarAdjustment = Math.floor(1000 * Math.random());
+	this.animation = new SpriteAnimation(name, //string identifier for this animation
+		titleScreenBird, //image in which the frames reside
+		[0, 1, 2, 3, 0, 1], //array of frame indexes to use for this animation
+		41, //width of each frame
+		24, //height of each frame
+		[64, 64, 64, 64, 64, 3000 + soarAdjustment],//array of milliseconds to show each frame
+		false, //boolean indicates if animation reverses (true)
+		true); //boolean indicates if animation loops (true)
+	this.update = function(deltaTime) {
+		this.position.x += (this.velocity.x * deltaTime / 1000);
+		this.position.y += (this.velocity.y * deltaTime / 1000);
+		this.animation.update(deltaTime);
+	};
+	this.draw = function() {
+		this.animation.drawAt(this.position.x, this.position.y, false);
+	};
 }
