@@ -202,8 +202,10 @@ function TitleScene() {
 	};
 	
 	const drawBG = function() {
-		// fill the background since there is no image for now
-		drawRect(0, 0, canvas.width, canvas.height, MENU_BG_COLOR);
+		//drawRect(0, 0, canvas.width, canvas.height, MENU_BG_COLORb);
+		canvasContext.drawImage(titleScreen,0,0);
+		canvasContext.drawImage(titleBlock,canvas.width/3,canvas.height/2);
+		canvasContext.drawImage(selector,canvas.width/3,canvas.height/2);
 	};
     
 	const drawTitle = function() {

@@ -63,6 +63,9 @@ function loadStartImagePic() {
 }
 
 //-----Load the rest of the game images----//
+const titleScreen = document.createElement("img");
+const titleBlock = document.createElement("img");
+const selector = document.createElement("img");
 const tempBackground = document.createElement("img");
 const tempWindowedWall = document.createElement("img");
 const tempTiledWall = document.createElement("img");
@@ -120,6 +123,9 @@ function loadImages() {
 
 		// UI
 		//        { imgName: heartPic, theFile: "heart.png" },
+		{ imgName: titleScreen, theFile: "title_screen.png"},
+		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
+		{ imgName: selector, theFile: "title_screen_yinyang_selector.png"},
 		{ imgName: jpFont, theFile: "JPFont.png"},
 	];
 
