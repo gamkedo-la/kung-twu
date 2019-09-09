@@ -33,7 +33,7 @@ const SceneState = {
 		}
 
 		if (isMuted) {
-			gameFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Muted), {x:760, y: 10}, 14, textAlignment.Left);
+			// gameFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Muted), {x:760, y: 10}, 14, textAlignment.Left);
 		}
 	},
 	control: function(newKeyEvent, pressed, pressedKeys) {
@@ -45,6 +45,8 @@ const SceneState = {
 			return true;
 		} else if((newKeyEvent === ALIAS.PAUSE) && (!pressed)) {
 			pauseManager.togglePause(CAUSE.Keypress);
+		} else if((newKeyEvent === ALIAS.MUTE) && (!pressed)) {
+			toggleMute();
 		}
 
 		return this.scenes[this.currentScene].control(newKeyEvent, pressed, pressedKeys);
