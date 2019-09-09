@@ -182,9 +182,9 @@ function TitleScene() {
 	};
 
 	const buildBirds = function() {
-		birds.push(new Bird({x:600, y: 100}, {x:-6, y:6}, 0.5));
-		birds.push(new Bird({x:200, y: 400}, {x:12, y:-10}, 1.25));
-		birds.push(new Bird({x:100, y: 100}, {x:7, y:7}, 0.5));
+		birds.push(new Bird({x:600, y: 100}, {x:-6, y:6}, 0.75));
+		birds.push(new Bird({x:200, y: 400}, {x:18, y:-15}, 1.25));
+		birds.push(new Bird({x:100, y: 100}, {x:7, y:7}, 0.75));
 	};
 
 	const checkButtons = function() {
@@ -212,10 +212,18 @@ function TitleScene() {
 		drawBG();
 		
 		for(let i = 0; i < birds.length; i++) {
-			birds[i].draw();
+			if(birds[i].scale < 1.0) {
+				birds[i].draw();
+			}
 		}
 
 		drawTitle();
+
+		for(let i = 0; i < birds.length; i++) {
+			if(birds[i].scale >= 1.0) {
+				birds[i].draw();
+			}
+		}
 
 		// render menu
 		printMenu(buttons, selectorPositionIndex); 		
@@ -240,6 +248,8 @@ function TitleScene() {
 function Bird(pos, vel, scale = 1) {
 	this.position = pos;
 	this.velocity = vel;
+	this.scale = scale;
+	const DELTA_SCALE = -0.00025;
 	const soarAdjustment = Math.floor(1000 * Math.random());
 	this.animation = new SpriteAnimation(name, //string identifier for this animation
 		titleScreenBird, //image in which the frames reside
@@ -254,6 +264,11 @@ function Bird(pos, vel, scale = 1) {
 		this.position.x += (this.velocity.x * deltaTime / 1000);
 		this.position.y += (this.velocity.y * deltaTime / 1000);
 		this.animation.update(deltaTime);
+		this.scale += DELTA_SCALE;
+		this.velocity.x *= (1.0 + DELTA_SCALE);
+		this.velocity.y *= (1.0 + DELTA_SCALE);
+		if(this.scale < 0.1) {this.scale = 0.1;}
+		this.animation.scale = this.scale;
 	};
 	this.draw = function() {
 		this.animation.drawAt(this.position.x, this.position.y, false);

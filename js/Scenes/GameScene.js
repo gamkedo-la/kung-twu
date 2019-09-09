@@ -93,6 +93,9 @@ function GameScene() {
 
 	const draw = function() {
 		camera.draw();
+		const cameraX = camera.getPosition().x;
+		const roofTop = roof.getTop();
+		drawBackground(cameraX, roofTop);
 		wall.draw();
 		floor.draw();
 
@@ -102,8 +105,9 @@ function GameScene() {
 
 		player.draw();
 
-		columnManager.draw(camera.getPosition().x);
+		columnManager.draw(cameraX);
 		roof.draw();
+//		drawBackground(cameraX, roofTop);
 	};
 
 	const updateGameField = function(newCameraX) {
@@ -146,6 +150,15 @@ function GameScene() {
 
 	const initializeLevel = function() {
 		camera.attach(player);
+	};
+
+	const drawBackground = function(cameraX, roofTop) {
+		const vertAmtToClip = 175;//175 based on back wall image
+		const startClippingY = titleScreenBG.height - vertAmtToClip - ((currentLevel) * 100);//100 makes it look good
+		const startDrawingY = roofTop + 215;//215 based on back wall image
+		canvasContext.drawImage(titleScreenBG, 
+			0, startClippingY, titleScreenBG.width, vertAmtToClip, 
+			cameraX - canvas.width / 2, startDrawingY, canvas.width, vertAmtToClip);
 	};
 
 	const spawnNewEnemies = function(cameraXPos) {

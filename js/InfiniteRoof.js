@@ -5,6 +5,10 @@ function InfiniteRoof(posY) {
 	const TILE_TOPS = [];
 	const TILE_BOTS = [];
 
+	this.getTop = function() {
+		return TILE_TOPS[0].getYPos();
+	};
+
 	this.update = function(cameraXPos, shifts) {
 		if(TILE_TOPS.length === 0) {
 			initializeTiles();
@@ -81,6 +85,10 @@ function RoofTile(isTop, posX, posY) {
 
 	this.setXPos = function(newXPos) {
 		xPos = newXPos;
+	};
+
+	this.getYPos = function() {
+		return yPos;
 	};
 
 	this.update = function(deltaX) {
