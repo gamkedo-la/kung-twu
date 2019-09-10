@@ -71,6 +71,7 @@ const titleScreenBird = document.createElement("img");
 const selector = document.createElement("img");
 const windowedWall = document.createElement("img");
 const tiledWall = document.createElement("img");
+const wallGradient = document.createElement("img");
 const jpFont = document.createElement("img");
 const roofTileTop = document.createElement("img");
 const roofTileBottom = document.createElement("img");
@@ -109,6 +110,10 @@ function loadImages() {
 		{ imgName: roofTileBottom, theFile: "roof-tile-bottom.png" },
 		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },
 		{ imgName: column, theFile: "column_01.png" },
+		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
+		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
+		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
+		{ imgName: wallGradient, theFile: "wall-gradient.png"},
 
 		// player related
 		{ imgName: playerIdle, theFile: "Player_Idle_Condensed.png"},
@@ -118,9 +123,6 @@ function loadImages() {
 		{ imgName: playerKick, theFile: "Player_Kick_Condensed.png"},
 
 		// UI
-		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
-		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
-		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
 		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
 		{ imgName: titleScreenBird, theFile: "bird_sprite-flap-sheet.png"},
 		{ imgName: selector, theFile: "title_screen_yinyang_selector.png"},
