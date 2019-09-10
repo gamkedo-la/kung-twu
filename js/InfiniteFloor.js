@@ -1,12 +1,12 @@
 //Infinite Floor
-function InfiniteFloor() {
+function InfiniteFloor(verticalOffset) {
 	const CENTER_PLANK_INDEX = 29;	//Based on
 	const PLANK_WIDTH = 17;			//
 	const PLANK_HEIGHT = 104;		//the image
 	const FIRST_PLANK_INDEX = 0;
 	const LAST_PLANK_INDEX = 58;
 
-	const yPos = canvas.height - PLANK_HEIGHT;
+	const yPos = canvas.height - PLANK_HEIGHT - verticalOffset;
 	const planks = [];
 
 	this.getMidHeight = function() {

@@ -1,15 +1,16 @@
 //Infinite Columns
-function InfiniteColumn() {
-	const COLUMN_WIDTH = 43;
+function InfiniteColumn(verticalOffset) {
+	const COLUMN_WIDTH = 53;
 	const COLUMN_HEIGHT = 473;
 	const COLUMN_SPACING = 600;
+	const VERTICAL_INSET = 12;
 	const column1 = new Column();
 	const column2 = new Column();
 
 	let yPos;
 
 	this.positionFirstColumn = function(xPos) {
-		yPos = canvas.height - COLUMN_HEIGHT - 12;
+		yPos = canvas.height - COLUMN_HEIGHT - VERTICAL_INSET - verticalOffset;
 		column1.setPosition(xPos, yPos);
 		column2.setPosition(xPos - COLUMN_SPACING, yPos);
 	};

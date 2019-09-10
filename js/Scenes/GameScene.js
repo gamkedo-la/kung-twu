@@ -4,7 +4,9 @@ function GameScene() {
 	let collisionManager;
 	const enemies = [];
 	const camera = new Camera();
-	const columnManager = new InfiniteColumn();
+	const VERTICAL_OFFSET = 50;
+	const columnManager = new InfiniteColumn(VERTICAL_OFFSET);
+	let subfloor;
 	let floor;
 	let roof;
 	let wall;
@@ -12,7 +14,7 @@ function GameScene() {
 	let timeTilSpawn = 0;
 
 	this.transitionIn = function() {
-		initializeFloor();
+		initializeFloor(VERTICAL_OFFSET);
 		InitializeRoof();
 		InitializeBackWall();
 		initializeColumnPositions();
@@ -77,6 +79,7 @@ function GameScene() {
 		updateGameField(newCameraX);
 		const floorImageShifts = floor.update(newCameraX);
 		columnManager.update(newCameraX);
+		subfloor.update(newCameraX, floorImageShifts);
 		roof.update(newCameraX, floorImageShifts);
 		wall.update(newCameraX, floorImageShifts);
 
@@ -97,6 +100,7 @@ function GameScene() {
 		const roofTop = roof.getTop();
 		drawBackground(cameraX, roofTop);
 		wall.draw();
+		subfloor.draw();
 		floor.draw();
 
 		for(let i = 0; i < enemies.length; i++) {
@@ -107,7 +111,6 @@ function GameScene() {
 
 		columnManager.draw(cameraX);
 		roof.draw();
-//		drawBackground(cameraX, roofTop);
 	};
 
 	const updateGameField = function(newCameraX) {
@@ -116,8 +119,12 @@ function GameScene() {
 		GAME_FIELD.midX = newCameraX;
 	};
 
-	const initializeFloor = function() {
-		floor = new InfiniteFloor();
+	const initializeFloor = function(verticalOffset) {
+		subfloor = new InfiniteSubFloor();
+		subfloor.initializeForLevel(currentLevel);
+		subfloor.positionFirstColumn(100 + camera.getPosition().x + 2 * canvas.width / 3);
+
+		floor = new InfiniteFloor(verticalOffset);
 		floorMidHeight = floor.getMidHeight();
 	};
 
