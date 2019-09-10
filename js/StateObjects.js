@@ -491,10 +491,11 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 
 	this.drawAt = function(x = 0, y = 0) {
 		let deltaXForFacing = 0;
+		let deltaY = currentAnimation.getHeight() - animationForState(IDLE_STATE).getHeight();
 		if(isFacingLeft) {
 			deltaXForFacing = (theAnimations.idle.getWidth() - currentAnimation.getWidth());
 		}
-		currentAnimation.drawAt(x + deltaXForFacing, y, isFacingLeft);
+		currentAnimation.drawAt(x + deltaXForFacing, y + deltaY, isFacingLeft);
 	};
 
 	const updateStateWithUserInput = function(input) {
