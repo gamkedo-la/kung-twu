@@ -86,7 +86,7 @@ function GameScene() {
 		player.update(deltaTime, GRAVITY, floorMidHeight);
 
 		const playerPos = player.getPosition();
-		spawnNewEnemies(newCameraX);
+//		spawnNewEnemies(newCameraX);
 		for(let i = 0; i < enemies.length; i++) {
 			enemies[i].update(deltaTime, GRAVITY, playerPos, floorMidHeight);
 		}
