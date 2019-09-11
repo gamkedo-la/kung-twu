@@ -80,7 +80,7 @@ const GAME_FIELD = {//configured in Main.js
 	midY:0
 };
 
-const DRAW_COLLIDERS = true;
+const DRAW_COLLIDERS = false;
 const COLLIDER_COLOR = "yellow";
 
 const ENTITY_TYPE = {

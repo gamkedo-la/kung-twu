@@ -79,6 +79,9 @@ const roofTileBottom = document.createElement("img");
 const floorboardSheet = document.createElement("img");
 const column = document.createElement("img");
 const basicEnemyIdle = document.createElement("img");
+const basicEnemyWalk = document.createElement("img");
+const basicEnemyKick = document.createElement("img");
+const basicEnemyPunch = document.createElement("img");
 const playerIdle = document.createElement("img");
 const playerWalkFwd = document.createElement("img");
 const playerWalkBack = document.createElement("img");
@@ -103,6 +106,9 @@ function loadImages() {
 	const imageList = [
 		// enemies
 		{ imgName: basicEnemyIdle, theFile: "TempEnemy.png" },
+		{ imgName: basicEnemyWalk, theFile: "EnemyWalking.png" },
+		{ imgName: basicEnemyKick, theFile: "EnemyKicking.png" },
+		{ imgName: basicEnemyPunch, theFile: "EnemyPunching.png" },
 
 		// backgrounds
 		{ imgName: windowedWall, theFile: "TempTiledBackground.png" },
