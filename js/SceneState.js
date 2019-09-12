@@ -51,6 +51,8 @@ const SceneState = {
 			currentLevel++;
 			if(currentLevel > 5) currentLevel = 1;
 			console.log(`Current Level: ${currentLevel}`);
+		} else if((newKeyEvent === ALIAS.BACK) && (this.currentScene != SCENE.GAME) && (!pressed)) {
+			this.setState(SCENE.TITLE);
 		}
 
 		return this.scenes[this.currentScene].control(newKeyEvent, pressed, pressedKeys);
