@@ -124,7 +124,7 @@ function GameScene() {
 		subfloor.initializeForLevel(currentLevel);
 		subfloor.positionFirstColumn(100 + camera.getPosition().x + 2 * canvas.width / 3);
 
-		floor = new InfiniteFloor(verticalOffset);
+		floor = new InfiniteSurface(FLOOR_CONFIG, verticalOffset);
 		floorMidHeight = floor.getMidHeight();
 	};
 
