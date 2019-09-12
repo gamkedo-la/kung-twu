@@ -176,11 +176,13 @@ function Player(config) {
 		position.x += velocity.x * timeStep;
 		fallDueToGravity(timeStep, gravity);
 
-		if(position.y > floorHeight - stateManager.getCurrentAnimation().getHeight()) {
-			position.y = floorHeight - stateManager.getCurrentAnimation().getHeight();
-			velocity.y = 0;
-			if(!stateManager.getIsOnGround()) {
-				stateManager.didLand();
+		if(velocity.y > 0) {
+			if(position.y > floorHeight - stateManager.getCurrentAnimation().getHeight()) {
+				position.y = floorHeight - stateManager.getCurrentAnimation().getHeight();
+				velocity.y = 0;
+				if(!stateManager.getIsOnGround()) {
+					stateManager.didLand();
+				}
 			}
 		}
 	};
