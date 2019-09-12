@@ -86,7 +86,8 @@ const ALIAS = {
 	PAUSE:KEY_P,
 	VOLUME_UP:KEY_PLUS,
 	VOLUME_DOWN:KEY_MINUS,
-	MUTE:KEY_M
+	MUTE:KEY_M,
+	LEVEL_UP:KEY_L //Debug mode input
 };
 
 const PAD_ALIAS = {

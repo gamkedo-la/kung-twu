@@ -47,6 +47,10 @@ const SceneState = {
 			pauseManager.togglePause(CAUSE.Keypress);
 		} else if((newKeyEvent === ALIAS.MUTE) && (!pressed)) {
 			toggleMute();
+		} else if((DEBUG) && (newKeyEvent === ALIAS.LEVEL_UP) && (!pressed)) {
+			currentLevel++;
+			if(currentLevel > 5) currentLevel = 1;
+			console.log(`Current Level: ${currentLevel}`);
 		}
 
 		return this.scenes[this.currentScene].control(newKeyEvent, pressed, pressedKeys);

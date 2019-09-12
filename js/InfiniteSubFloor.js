@@ -18,9 +18,9 @@ function InfiniteSubFloor() {
 		column2.setPosition(xPos - COLUMN_SPACING, yPos);
 	};
 
-	this.initializeForLevel = function(currentLevel) {
+	this.initializeForLevel = function(aLevel) {
 		yPos = canvas.height - COLUMN_CLIP.height;
-		if(currentLevel === 1) {
+		if(aLevel === 1) {
 			isColumn = true;
 		} else {
 			isColumn = false;
@@ -30,6 +30,10 @@ function InfiniteSubFloor() {
 	};
 
 	this.update = function(cameraXPos, shifts) {
+		if(isColumn && currentLevel > 1) {
+			this.initializeForLevel(currentLevel);
+		}
+
 		if(isColumn) {
 			undergroundXPos = cameraXPos - canvas.width / 2;
 			updateColumn(cameraXPos);
