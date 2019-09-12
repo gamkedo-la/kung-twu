@@ -1,11 +1,12 @@
 //Game Play scene
 function GameScene() {
 	const GRAVITY = 1500;
-	let collisionManager;
 	const enemies = [];
 	const camera = new Camera();
 	const VERTICAL_OFFSET = 50;
 	const columnManager = new InfiniteColumn(VERTICAL_OFFSET);
+	let levelData;
+	let collisionManager;
 	let subfloor;
 	let floor;
 	let roof;
@@ -14,6 +15,7 @@ function GameScene() {
 	let timeTilSpawn = 0;
 
 	this.transitionIn = function() {
+		levelData = dataForCurrentLevel();
 		initializeFloor(VERTICAL_OFFSET);
 		InitializeRoof();
 		InitializeBackWall();
@@ -36,10 +38,6 @@ function GameScene() {
 
 	this.run = function(deltaTime) {
 		update(deltaTime);
-
-		collisionManager.doCollisionChecks();
-		processDefeatedEntities(collisionManager.defeatedEntities);
-
 		draw();
 	};
 
@@ -59,6 +57,53 @@ function GameScene() {
 		return false;
 	};
 
+	const update = function(deltaTime) {
+		if(DEBUG) {
+			levelData = dataForCurrentLevel();
+		}
+
+		const newCameraX = camera.getPosition().x;
+		updateEnvironment(newCameraX);
+
+		player.update(deltaTime, GRAVITY, floorMidHeight);
+
+		updateEnemies(deltaTime, newCameraX);
+
+		camera.update(deltaTime);
+
+		collisionManager.doCollisionChecks();
+
+		processDefeatedEntities(collisionManager.defeatedEntities);
+	};
+
+	const updateEnvironment = function(newCameraX) {
+		updateGameField(newCameraX);
+		const floorImageShifts = floor.update(newCameraX);
+		columnManager.update(newCameraX);
+		subfloor.update(newCameraX, floorImageShifts);
+		roof.update(newCameraX, floorImageShifts);
+		wall.update(newCameraX, floorImageShifts);
+	};
+
+	const updateEnemies = function(deltaTime, newCameraX) {
+		const playerPos = player.getPosition();
+		spawnNewEnemies(newCameraX);
+		for(let i = 0; i < enemies.length; i++) {
+			enemies[i].update(deltaTime, GRAVITY, playerPos, floorMidHeight);
+		}
+	};
+
+	const spawnNewEnemies = function(cameraXPos) {
+		if(enemies.length >= levelData.maxEnemies) return;
+
+		const timeSince = timer.timeSinceUpdateForEvent(EVENT.EnemySpawn);
+		if(timeSince > timeTilSpawn) {
+			timer.updateEvent(EVENT.EnemySpawn);
+			timeTilSpawn = levelData.spawnRate();
+			spawnEnemy(cameraXPos, timeTilSpawn);
+		}
+	};
+
 	const processDefeatedEntities = function(defeatedEntities) {
 		for(let defeatedEntity of defeatedEntities) {
 			if(defeatedEntity === player) {
@@ -72,26 +117,6 @@ function GameScene() {
 				collisionManager.removeEntity(defeatedEntity);
 			}
 		}
-	};
-
-	const update = function(deltaTime) {
-		const newCameraX = camera.getPosition().x;
-		updateGameField(newCameraX);
-		const floorImageShifts = floor.update(newCameraX);
-		columnManager.update(newCameraX);
-		subfloor.update(newCameraX, floorImageShifts);
-		roof.update(newCameraX, floorImageShifts);
-		wall.update(newCameraX, floorImageShifts);
-
-		player.update(deltaTime, GRAVITY, floorMidHeight);
-
-		const playerPos = player.getPosition();
-		spawnNewEnemies(newCameraX);
-		for(let i = 0; i < enemies.length; i++) {
-			enemies[i].update(deltaTime, GRAVITY, playerPos, floorMidHeight);
-		}
-
-		camera.update(deltaTime);
 	};
 
 	const draw = function() {
@@ -187,25 +212,32 @@ function GameScene() {
 	};
 
 	const drawBackground = function(cameraX, roofTop) {
-		const vertAmtToClip = 175;//175 based on back wall image
-		const startClippingY = titleScreenBG.height - vertAmtToClip - ((currentLevel) * 100);//100 makes it look good
-		const startDrawingY = roofTop + 215;//215 based on back wall image
+		const vertAmtToClip = levelData.wallWindowHeight;
+		const startClippingY = titleScreenBG.height - vertAmtToClip - levelData.backgroundClipLevel;//100 makes it look good
+		const startDrawingY = roofTop + levelData.wallWindowTop;//215 based on back wall image
+
 		canvasContext.drawImage(titleScreenBG, 
 			0, startClippingY, titleScreenBG.width, vertAmtToClip, 
 			cameraX - canvas.width / 2, startDrawingY, canvas.width, vertAmtToClip);
 	};
 
-	const spawnNewEnemies = function(cameraXPos) {
-		if(enemies.length >= 6) {return;}
-		const timeSince = timer.timeSinceUpdateForEvent(EVENT.EnemySpawn);
-		if(timeSince > timeTilSpawn) {
-			timer.updateEvent(EVENT.EnemySpawn);
-			timeTilSpawn = 250 + ((TOTAL_LEVELS - currentLevel) * 250) + Math.ceil(1250 * Math.random()) + Math.ceil(1250 * Math.random());
-			spawnEnemyAtLeft(cameraXPos, (timeTilSpawn % 2) === 0);
+	const dataForCurrentLevel = function() {
+		switch(currentLevel) {
+		case 1: return Level1Data;
+		case 2: return Level2Data;
+		case 3: return Level3Data;
+		case 4: return Level4Data;
+		case 5: return Level5Data;
 		}
 	};
 
-	const spawnEnemyAtLeft = function(cameraXPos, atLeft) {
+	const spawnEnemy = function(cameraXPos, timeTilSpawn) {
+		let atLeft = (timeTilSpawn % 3 < 2);//prefers spawning at left 2:1
+
+		if(!levelData.scrollsLeft) {//prefer not at left if level doesn't scroll left
+			atLeft = !atLeft;
+		}
+
 		let xPos = cameraXPos + (1.5 * canvas.width / 2);
 		if(atLeft) {
 			xPos = cameraXPos - (1.5 * canvas.width / 2);
@@ -221,3 +253,73 @@ function GameScene() {
 		enemies.push(anEnemy);
 	};
 }
+
+const Level1Data = {
+	maxEnemies: 4,
+	spawnRate:function() {
+		return (1250 + Math.ceil(1250 * Math.random()) + Math.ceil(1250 * Math.random()));
+	},
+	scrollsLeft:true,
+	allowedTime:999,
+	enemyBelt:BELT.White,
+	bossBelt:BELT.Yellow,
+	wallWindowHeight:175,
+	wallWindowTop:215,
+	backgroundClipLevel:100
+};
+
+const Level2Data = {
+	maxEnemies: 4,
+	spawnRate:function() {
+		return (900 + Math.ceil(1225 * Math.random()) + Math.ceil(1225 * Math.random()));
+	},
+	scrollsLeft:false,
+	allowedTime:899,
+	enemyBelt:BELT.Yellow,
+	bossBelt:BELT.Tan,
+	wallWindowHeight:175,
+	wallWindowTop:215,
+	backgroundClipLevel:200
+};
+
+const Level3Data = {
+	maxEnemies: 5,
+	spawnRate:function() {
+		return (600 + Math.ceil(1200 * Math.random()) + Math.ceil(1200 * Math.random()));
+	},
+	scrollsLeft:true,
+	allowedTime:799,
+	enemyBelt:BELT.Tan,
+	bossBelt:BELT.Brown,
+	wallWindowHeight:175,
+	wallWindowTop:215,
+	backgroundClipLevel:300
+};
+
+const Level4Data = {
+	maxEnemies: 5,
+	spawnRate:function() {
+		return (350 + Math.ceil(1175 * Math.random()) + Math.ceil(1175 * Math.random()));
+	},
+	scrollsLeft:false,
+	allowedTime:699,
+	enemyBelt:BELT.Brown,
+	bossBelt:BELT.Red,
+	wallWindowHeight:175,
+	wallWindowTop:215,
+	backgroundClipLevel:400
+};
+
+const Level5Data = {
+	maxEnemies: 6,
+	spawnRate:function() {
+		return (150 + Math.ceil(1150 * Math.random()) + Math.ceil(1150 * Math.random()));
+	},
+	scrollsLeft:true,
+	allowedTime:599,
+	enemyBelt:BELT.Red,
+	bossBelt:BELT.Black,
+	wallWindowHeight:175,
+	wallWindowTop:215,
+	backgroundClipLevel:500
+};

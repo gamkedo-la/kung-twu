@@ -20,7 +20,7 @@ function InfiniteSubFloor() {
 
 	this.initializeForLevel = function(aLevel) {
 		yPos = canvas.height - COLUMN_CLIP.height;
-		if(aLevel === 1) {
+		if((DEBUG) && (aLevel === 1)) {
 			isColumn = true;
 		} else {
 			isColumn = false;
