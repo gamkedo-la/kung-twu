@@ -14,6 +14,7 @@ function BasicEnemy(config) {
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
 	this.health = 15;
+	this.score = 100;
 	
 	this.type = ENTITY_TYPE.BasicEnemy;
 	this.collisionBody;//initialized down below definition of buildBodyCollider() function
@@ -21,12 +22,7 @@ function BasicEnemy(config) {
 	if(config != undefined) {
 		if(config.x != undefined) {position.x = config.x;}
 		if(config.y != undefined) {position.y = config.y;}
-		if(config.hasDash != undefined) {hasDash = config.hasDash;}
-		if(config.hasSweep != undefined) {hasSweep = config.hasSweep;}
-		if(config.hasJumpKick != undefined) {hasJumpKick = config.hasJumpKick;}
-		if(config.hasHelicopterKick != undefined) {hasHelicopterKick = config.hasHelicopterKick;}
 		if(config.health != undefined) {this.health = config.health;}
-		if(config.belt != undefined) {belt = config.belt;}//TODO: use the state manager for this instead
 	}
 
 	const initializeAnimations = function() {
@@ -53,6 +49,17 @@ function BasicEnemy(config) {
 		return anims;
 	};
 	stateManager = new StateManager(initializeAnimations(), false, AITYPE.BasicWhite);
+	if(config.belt == undefined) {
+		stateManager.setNewBelt(BELT.White);
+	} else {
+		stateManager.setNewBelt(config.belt);
+	}
+	
+	const scoreForBelt = function(belt) {
+		return (100 + belt * 50);
+	};
+
+	this.score = scoreForBelt(stateManager.getCurrentBelt());
 	this.collisionBody = hitBoxManager.bodyColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
 	this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
 
@@ -86,22 +93,14 @@ function BasicEnemy(config) {
 		case STATE.Punch:
 			return 1 * BASE_DAMAGE;
 		case STATE.Kick:
-			return 2 * BASE_DAMAGE;
+			return 1.25 * BASE_DAMAGE;
 		case STATE.J_Kick:
-			return 3 * BASE_DAMAGE;
+			return 1.5 * BASE_DAMAGE;
 		case STATE.Sweep:
-			return 3 * BASE_DAMAGE;
+			return 1.5 * BASE_DAMAGE;
 		case STATE.H_Kick:
-			return 4 * BASE_DAMAGE;
+			return 2 * BASE_DAMAGE;
 		}
-	};
-
-	this.setNewBelt = function(newBelt) {
-		stateManager.setNewBelt(newBelt);
-	};
-
-	this.incrementBelt = function() {
-		stateManager.incrementBelt();
 	};
 
 	this.update = function(deltaTime, gravity, playerPos, floorHeight) {
@@ -306,6 +305,7 @@ function BasicEnemy(config) {
 		}
 
 		if(this.health <= 0) {
+			console.log(`Player just earned ${this.score} points`);
 			//enemyDefeatedSound.play();//TODO: get one of these
 		} else {
 			basicEnemyHitSound.play();

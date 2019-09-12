@@ -20,10 +20,6 @@ function Player(config) {
 	if(config != undefined) {
 		if(config.x != undefined) {position.x = config.x;}
 		if(config.y != undefined) {position.y = config.y;}
-		if(config.hasDash != undefined) {hasDash = config.hasDash;}
-		if(config.hasSweep != undefined) {hasSweep = config.hasSweep;}
-		if(config.hasJumpKick != undefined) {hasJumpKick = config.hasJumpKick;}
-		if(config.hasHelicopterKick != undefined) {hasHelicopterKick = config.hasHelicopterKick;}
 	}
 
 	const initializeAnimations = function() {
