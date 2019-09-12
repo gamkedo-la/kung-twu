@@ -31,8 +31,8 @@ const STRINGS_KEY = {
 	HowToPlay:"HowToPlay",
 	Muted:"Muted",
 	Back:"Back",
-    HelpScreenTitle:"Help Title",
-    HelpScreenContents:"Help Screen Contents",
+	HelpScreenTitle:"Help Title",
+	HelpScreenContents:"Help Screen Contents",
 	SettingsScreenTitle:"Settings Title",
 	CreditsScreenTitle:"Credits Title",
 	Score:"Score",
@@ -71,8 +71,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToPlay]:"How to Play",
 		[STRINGS_KEY.Muted]:"Muted",
 		[STRINGS_KEY.Back]:"[ENTER] Back",
-        [STRINGS_KEY.HelpScreenTitle]:"HELP",
-        [STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
+		[STRINGS_KEY.HelpScreenTitle]:"HELP",
 		[STRINGS_KEY.SettingsScreenTitle]:"SETTINGS",
 		[STRINGS_KEY.CreditsScreenTitle]:"CREDITS",
 		[STRINGS_KEY.Score]:"SCORE:",
@@ -83,16 +82,9 @@ const userStrings = {
 		[STRINGS_KEY.Level2]:"Crane",
 		[STRINGS_KEY.Level3]:"Leopard",
 		[STRINGS_KEY.Level4]:"Snake",
-		[STRINGS_KEY.Level5]:"Dragon"
+		[STRINGS_KEY.Level5]:"Dragon",
+		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
 	},
-
-	/*
-Level 1 - obtain Yellow belt - Tiger Theme
-Level 2 - obtain Tan belt - Crane Theme
-Level 3 - obtain Brown belt - Leopard Theme
-Level 4 - obtain Red belt - Snake Theme
-Level 5 - obtain Black belt (finish) - Dragon Theme
-*/
     
 	Spanish: {
 		[STRINGS_KEY.Help]:"[H] Ayuda",
@@ -115,8 +107,8 @@ Level 5 - obtain Black belt (finish) - Dragon Theme
 		[STRINGS_KEY.Muted]:"Silenciado",
 		[STRINGS_KEY.Back]:"[ENTER] Retroceder",
 		[STRINGS_KEY.HelpScreenTitle]:"[HELP]",
-        [STRINGS_KEY.HelpScreenContents]:"",
-        [STRINGS_KEY.SettingsScreenTitle]:"[SETTINGS]",
+		[STRINGS_KEY.HelpScreenContents]:"",
+		[STRINGS_KEY.SettingsScreenTitle]:"[SETTINGS]",
 		[STRINGS_KEY.CreditsScreenTitle]:"[CREDITS]",
 
 		[STRINGS_KEY.Score]:"SCORE:",
@@ -127,7 +119,8 @@ Level 5 - obtain Black belt (finish) - Dragon Theme
 		[STRINGS_KEY.Level2]:"Crane",
 		[STRINGS_KEY.Level3]:"Leopard",
 		[STRINGS_KEY.Level4]:"Snake",
-		[STRINGS_KEY.Level5]:"Dragon"
+		[STRINGS_KEY.Level5]:"Dragon",
+		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
 	},
 
 	Japanese: {
@@ -151,8 +144,8 @@ Level 5 - obtain Black belt (finish) - Dragon Theme
 		[STRINGS_KEY.Muted]:"ミュート",
 		[STRINGS_KEY.Back]:"[ENTER] まえのがめんにもどす",
 		[STRINGS_KEY.HelpScreenTitle]:"てつだい",
-        [STRINGS_KEY.HelpScreenContents]:"",
-        [STRINGS_KEY.SettingsScreenTitle]:"せってい",
+		[STRINGS_KEY.HelpScreenContents]:"",
+		[STRINGS_KEY.SettingsScreenTitle]:"せってい",
 		[STRINGS_KEY.CreditsScreenTitle]:"クレジット",
 
 		[STRINGS_KEY.Score]:"SCORE:",
@@ -163,7 +156,8 @@ Level 5 - obtain Black belt (finish) - Dragon Theme
 		[STRINGS_KEY.Level2]:"Crane",
 		[STRINGS_KEY.Level3]:"Leopard",
 		[STRINGS_KEY.Level4]:"Snake",
-		[STRINGS_KEY.Level5]:"Dragon"
+		[STRINGS_KEY.Level5]:"Dragon",
+		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
 	},
 
 	French: {
@@ -187,8 +181,8 @@ Level 5 - obtain Black belt (finish) - Dragon Theme
 		[STRINGS_KEY.Muted]:"Mode Silencieux",
 		[STRINGS_KEY.Back]:"[ENTER] Retour",
 		[STRINGS_KEY.HelpScreenTitle]:"AIDE",
-        [STRINGS_KEY.HelpScreenContents]:"",
-        [STRINGS_KEY.SettingsScreenTitle]:"OPTIONS",
+		[STRINGS_KEY.HelpScreenContents]:"",
+		[STRINGS_KEY.SettingsScreenTitle]:"OPTIONS",
 		[STRINGS_KEY.CreditsScreenTitle]:"CRÉDITS",
 
 		[STRINGS_KEY.Score]:"SCORE:",
@@ -199,7 +193,8 @@ Level 5 - obtain Black belt (finish) - Dragon Theme
 		[STRINGS_KEY.Level2]:"Crane",
 		[STRINGS_KEY.Level3]:"Leopard",
 		[STRINGS_KEY.Level4]:"Snake",
-		[STRINGS_KEY.Level5]:"Dragon"
+		[STRINGS_KEY.Level5]:"Dragon",
+		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
 	},
 
 	Russian: {
@@ -223,8 +218,8 @@ Level 5 - obtain Black belt (finish) - Dragon Theme
 		[STRINGS_KEY.Muted]:"Без звука",
 		[STRINGS_KEY.Back]:"[ENTER] Вернуться",
 		[STRINGS_KEY.HelpScreenTitle]:"ПОМОЩЬ",
-        [STRINGS_KEY.HelpScreenContents]:"",
-        [STRINGS_KEY.SettingsScreenTitle]:"ОПЦИИ",
+		[STRINGS_KEY.HelpScreenContents]:"",
+		[STRINGS_KEY.SettingsScreenTitle]:"ОПЦИИ",
 		[STRINGS_KEY.CreditsScreenTitle]:"ТИТРЫ",
 
 		[STRINGS_KEY.Score]:"SCORE:",
@@ -235,6 +230,7 @@ Level 5 - obtain Black belt (finish) - Dragon Theme
 		[STRINGS_KEY.Level2]:"Crane",
 		[STRINGS_KEY.Level3]:"Leopard",
 		[STRINGS_KEY.Level4]:"Snake",
-		[STRINGS_KEY.Level5]:"Dragon"
+		[STRINGS_KEY.Level5]:"Dragon",
+		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
 	}
 };
