@@ -111,6 +111,33 @@ function GameScene() {
 
 		columnManager.draw(cameraX);
 		roof.draw();
+
+		drawUI(cameraX);
+	};
+
+	const drawUI = function(cameraX) {//TODO: We need a way to find out how wide these strings will be, should be easy with a custom font
+		const screenLeft = cameraX - canvas.width / 2;
+		colorText(getLocalizedStringForKey(STRINGS_KEY.Score), screenLeft + 40, 40, Color.White, Fonts.Subtitle, TextAlignment.Left);
+		colorText(getLocalizedStringForKey(STRINGS_KEY.Health), screenLeft + 40, 80, Color.White, Fonts.Subtitle, TextAlignment.Left);
+		colorText(getLocalizedStringForKey(STRINGS_KEY.Time), screenLeft + 40, 120, Color.White, Fonts.Subtitle, TextAlignment.Left);
+		colorText(getLocalizedStringForKey(STRINGS_KEY.Level), screenLeft + 40, 160, Color.White, Fonts.Subtitle, TextAlignment.Left);
+		const keyForThisLevelName = stringsKeyForLevel(currentLevel);
+		colorText(getLocalizedStringForKey(keyForThisLevelName), screenLeft + 180, 160, Color.White, Fonts.Subtitle, TextAlignment.Left);
+	};
+
+	const stringsKeyForLevel = function(level) {
+		switch(level) {
+		case 1:
+			return STRINGS_KEY.Level1;
+		case 2:
+			return STRINGS_KEY.Level2;
+		case 3:
+			return STRINGS_KEY.Level3;
+		case 4:
+			return STRINGS_KEY.Level4;
+		case 5:
+			return STRINGS_KEY.Level5;
+		}
 	};
 
 	const updateGameField = function(newCameraX) {

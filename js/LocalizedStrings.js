@@ -33,7 +33,16 @@ const STRINGS_KEY = {
 	Back:"Back",
 	HelpScreenTitle:"Help Title",
 	SettingsScreenTitle:"Settings Title",
-	CreditsScreenTitle:"Credits Title"
+	CreditsScreenTitle:"Credits Title",
+	Score:"Score",
+	Health:"Health",
+	Time:"Time",
+	Level:"Level",
+	Level1:"Level1",
+	Level2:"Level2",
+	Level3:"Level3",
+	Level4:"Level4",
+	Level5:"Level5",
 };
 
 function getLocalizedStringForKey(key) {
@@ -63,8 +72,25 @@ const userStrings = {
 		[STRINGS_KEY.Back]:"[ENTER] Back",
 		[STRINGS_KEY.HelpScreenTitle]:"HELP",
 		[STRINGS_KEY.SettingsScreenTitle]:"SETTINGS",
-		[STRINGS_KEY.CreditsScreenTitle]:"CREDITS"
+		[STRINGS_KEY.CreditsScreenTitle]:"CREDITS",
+		[STRINGS_KEY.Score]:"SCORE:",
+		[STRINGS_KEY.Health]:"HEALTH:",
+		[STRINGS_KEY.Time]:"TIME:",
+		[STRINGS_KEY.Level]:"LEVEL:",
+		[STRINGS_KEY.Level1]:"Tiger",
+		[STRINGS_KEY.Level2]:"Crane",
+		[STRINGS_KEY.Level3]:"Leopard",
+		[STRINGS_KEY.Level4]:"Snake",
+		[STRINGS_KEY.Level5]:"Dragon"
 	},
+
+	/*
+Level 1 - obtain Yellow belt - Tiger Theme
+Level 2 - obtain Tan belt - Crane Theme
+Level 3 - obtain Brown belt - Leopard Theme
+Level 4 - obtain Red belt - Snake Theme
+Level 5 - obtain Black belt (finish) - Dragon Theme
+*/
     
 	Spanish: {
 		[STRINGS_KEY.Help]:"[H] Ayuda",
@@ -88,7 +114,17 @@ const userStrings = {
 		[STRINGS_KEY.Back]:"[ENTER] Retroceder",
 		[STRINGS_KEY.HelpScreenTitle]:"[HELP]",
 		[STRINGS_KEY.SettingsScreenTitle]:"[SETTINGS]",
-		[STRINGS_KEY.CreditsScreenTitle]:"[CREDITS]"
+		[STRINGS_KEY.CreditsScreenTitle]:"[CREDITS]",
+
+		[STRINGS_KEY.Score]:"SCORE:",
+		[STRINGS_KEY.Health]:"HEALTH:",
+		[STRINGS_KEY.Time]:"TIME:",
+		[STRINGS_KEY.Level]:"LEVEL:",
+		[STRINGS_KEY.Level1]:"Tiger",
+		[STRINGS_KEY.Level2]:"Crane",
+		[STRINGS_KEY.Level3]:"Leopard",
+		[STRINGS_KEY.Level4]:"Snake",
+		[STRINGS_KEY.Level5]:"Dragon"
 	},
 
 	Japanese: {
@@ -113,7 +149,17 @@ const userStrings = {
 		[STRINGS_KEY.Back]:"[ENTER] まえのがめんにもどす",
 		[STRINGS_KEY.HelpScreenTitle]:"てつだい",
 		[STRINGS_KEY.SettingsScreenTitle]:"せってい",
-		[STRINGS_KEY.CreditsScreenTitle]:"クレジット"
+		[STRINGS_KEY.CreditsScreenTitle]:"クレジット",
+
+		[STRINGS_KEY.Score]:"SCORE:",
+		[STRINGS_KEY.Health]:"HEALTH:",
+		[STRINGS_KEY.Time]:"TIME:",
+		[STRINGS_KEY.Level]:"LEVEL:",
+		[STRINGS_KEY.Level1]:"Tiger",
+		[STRINGS_KEY.Level2]:"Crane",
+		[STRINGS_KEY.Level3]:"Leopard",
+		[STRINGS_KEY.Level4]:"Snake",
+		[STRINGS_KEY.Level5]:"Dragon"
 	},
 
 	French: {
@@ -138,7 +184,17 @@ const userStrings = {
 		[STRINGS_KEY.Back]:"[ENTER] Retour",
 		[STRINGS_KEY.HelpScreenTitle]:"AIDE",
 		[STRINGS_KEY.SettingsScreenTitle]:"OPTIONS",
-		[STRINGS_KEY.CreditsScreenTitle]:"CRÉDITS"
+		[STRINGS_KEY.CreditsScreenTitle]:"CRÉDITS",
+
+		[STRINGS_KEY.Score]:"SCORE:",
+		[STRINGS_KEY.Health]:"HEALTH:",
+		[STRINGS_KEY.Time]:"TIME:",
+		[STRINGS_KEY.Level]:"LEVEL:",
+		[STRINGS_KEY.Level1]:"Tiger",
+		[STRINGS_KEY.Level2]:"Crane",
+		[STRINGS_KEY.Level3]:"Leopard",
+		[STRINGS_KEY.Level4]:"Snake",
+		[STRINGS_KEY.Level5]:"Dragon"
 	},
 
 	Russian: {
@@ -163,6 +219,16 @@ const userStrings = {
 		[STRINGS_KEY.Back]:"[ENTER] Вернуться",
 		[STRINGS_KEY.HelpScreenTitle]:"ПОМОЩЬ",
 		[STRINGS_KEY.SettingsScreenTitle]:"ОПЦИИ",
-		[STRINGS_KEY.CreditsScreenTitle]:"ТИТРЫ"
+		[STRINGS_KEY.CreditsScreenTitle]:"ТИТРЫ",
+
+		[STRINGS_KEY.Score]:"SCORE:",
+		[STRINGS_KEY.Health]:"HEALTH:",
+		[STRINGS_KEY.Time]:"TIME:",
+		[STRINGS_KEY.Level]:"LEVEL:",
+		[STRINGS_KEY.Level1]:"Tiger",
+		[STRINGS_KEY.Level2]:"Crane",
+		[STRINGS_KEY.Level3]:"Leopard",
+		[STRINGS_KEY.Level4]:"Snake",
+		[STRINGS_KEY.Level5]:"Dragon"
 	}
 };
