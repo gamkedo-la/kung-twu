@@ -1,6 +1,6 @@
 //Infinite Roof
 function InfiniteRoof(posY) {
-	const TILE_WIDTH = 71;
+	const TILE_WIDTH = 72;
 	const TOP_HEIGHT = 88;
 	const POST_WIDTH = 88; 
 	const POST_HEIGHT = 60;
