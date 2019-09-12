@@ -570,13 +570,20 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 				if(currentButton === ALIAS.JUMP) {
 					isOnGround = false;
 					return ACTION.Jump;
+                } else if(currentButton === ALIAS.JUMP2) {
+					isOnGround = false;
+					return ACTION.Jump;
 				} else if(currentButton === ALIAS.CROUCH) {
 					return ACTION.Crouch;
 				} else if(currentButton === ALIAS.DASH) {
 					return ACTION.Dash;
 				} else if(currentButton === ALIAS.PUNCH) {
 					return ACTION.Punch;
+				} else if(currentButton === ALIAS.PUNCH2) {
+					return ACTION.Punch;
 				} else if(currentButton === ALIAS.KICK) {
+					return ACTION.Kick;
+				} else if(currentButton === ALIAS.KICK2) {
 					return ACTION.Kick;
 				} else if(currentButton === ALIAS.BLOCK) {
 					return ACTION.Block;
@@ -616,13 +623,20 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 				} else if(currentButton === ALIAS.JUMP) {
 					isOnGround = false;
 					return ACTION.Jump;
+				} else if(currentButton === ALIAS.JUMP2) {
+					isOnGround = false;
+					return ACTION.Jump;
 				} else if(currentButton === ALIAS.DOWN) {
 					return ACTION.Down;
 				} else if(currentButton === ALIAS.DASH) {
 					return ACTION.Dash;
 				} else if(currentButton === ALIAS.PUNCH) {
 					return ACTION.Punch;
+				} else if(currentButton === ALIAS.PUNCH2) {
+					return ACTION.Punch;
 				} else if(currentButton === ALIAS.KICK) {
+					return ACTION.Kick;
+				} else if(currentButton === ALIAS.KICK2) {
 					return ACTION.Kick;
 				} else if(currentButton === ALIAS.BLOCK) {
 					return ACTION.Block;
