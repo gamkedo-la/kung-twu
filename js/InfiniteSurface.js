@@ -9,7 +9,8 @@ const FLOOR_CONFIG = {
 	spriteWidth:74,
 	spriteHeight:104,
 	deltaBaseOffset:2,
-	spriteSheet:floorboardSheet
+	spriteSheet:floorboardSheet,
+	zPos:1
 };
 
 const ROOF_CONFIG = {
@@ -22,7 +23,8 @@ const ROOF_CONFIG = {
 	spriteWidth:74,
 	spriteHeight:52,
 	deltaBaseOffset:2,
-	spriteSheet:floorboardSheet //TODO: Switch to the correct spritesheet
+	spriteSheet:roofboardSheet,
+	zPos:-1
 };
 
 //Infinite Surface (works for roof and floor)

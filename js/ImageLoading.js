@@ -74,7 +74,7 @@ const tiledWall = document.createElement("img");
 const wallGradient = document.createElement("img");
 const jpFont = document.createElement("img");
 const roofTileTop = document.createElement("img");
-const roofPosts = document.createElement("img");
+const roofboardSheet = document.createElement("img");
 const roofTileBottom = document.createElement("img");
 const floorboardSheet = document.createElement("img");
 const column = document.createElement("img");
@@ -114,10 +114,8 @@ function loadImages() {
 		{ imgName: windowedWall, theFile: "TempTiledBackground.png" },
 		{ imgName: tiledWall, theFile: "TempTiledBackgroundWall.png" },
 		{ imgName: roofTileTop, theFile: "RoofBricks.png" },
-//		{ imgName: roofTileTop, theFile: "Rounded_Roof_Tile.png" },
-		{ imgName: roofPosts, theFile: "perspective_Posts.png" },
-//		{ imgName: roofTileTop, theFile: "roof-tile-top.png" },
 		{ imgName: roofTileBottom, theFile: "roof-tile-bottom.png" },
+		{ imgName: roofboardSheet, theFile: "Roof-Frames.png" },
 		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },
 		{ imgName: column, theFile: "column_01.png" },
 		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
