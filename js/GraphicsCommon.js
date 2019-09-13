@@ -18,14 +18,13 @@ function colorText(showWords,textX,textY,fillColor,fontface,textAlign = "left",o
 	canvasContext.restore();
 }
 
+// FIXME: this looks brittle - can it be relied on? 
+// is it cross browser and future proof?
 function getFontWeight(font) {
 	canvasContext.save();
-	canvasContext.font = this.buttonFont;
-  
-	var weight = parseInt(font.match(/\d+/)[0]); //regex match the first string of digits
-  
+	canvasContext.font = this.buttonFont; // FIXME: not the font in the params?
+    var weight = parseInt(font.match(/\d+/)[0]); //regex match the first string of digits
 	canvasContext.restore();
-  
 	return weight;
 }
 
