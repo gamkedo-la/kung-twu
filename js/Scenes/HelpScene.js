@@ -138,17 +138,17 @@ function HelpScene() {
 	};
     
 	const drawTitle = function() {
-        colorTextShadow(getLocalizedStringForKey(STRINGS_KEY.HelpScreenTitle), 
-            canvas.width / 2, canvas.height / 3, Color.White, Fonts.MainTitle, TextAlignment.Center);
+        colorText(getLocalizedStringForKey(STRINGS_KEY.HelpScreenTitle), 
+            canvas.width / 2, canvas.height / 3, Color.White, Fonts.MainTitle, TextAlignment.Center, true);
 	};
 
     const drawHelpScreenContents = function() {
         const LINE_HEIGHT = 24;
         let lines = getLocalizedStringForKey(STRINGS_KEY.HelpScreenContents).split("\n");
         for (let num=0; num<lines.length; num++) {
-            colorTextShadow(lines[num], 
+            colorText(lines[num], 
             canvas.width / 2, canvas.height / 2 + (num*LINE_HEIGHT), Color.White, 
-            Fonts.CreditsText,TextAlignment.Center);
+            Fonts.CreditsText,TextAlignment.Center,true);
         }
     }
    
