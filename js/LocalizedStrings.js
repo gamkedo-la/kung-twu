@@ -133,8 +133,8 @@ const userStrings = {
 		[STRINGS_KEY.Loading]:"LOADING...",
 		[STRINGS_KEY.Paused]:"- き ゅ う し -",
 		[STRINGS_KEY.Title]:"Kung Twu",
-        // see https://twitter.com/McFunkypants/status/1172283461559734272
-        [STRINGS_KEY.Subtitle]:"武芸伝", // alternately: 武伝 or 武道伝説 or 武芸伝　（ぶげいでん）
+		// see https://twitter.com/McFunkypants/status/1172283461559734272
+		[STRINGS_KEY.Subtitle]:"ぶげいでん", //"武芸伝", alternately: 武伝 or 武道伝説 or 武芸伝　（ぶげいでん）
 		[STRINGS_KEY.English]:"English",
 		[STRINGS_KEY.Spanish]:"Español",
 		[STRINGS_KEY.Japanese]:"にほんご",
