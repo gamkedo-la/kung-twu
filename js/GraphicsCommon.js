@@ -14,6 +14,15 @@ function colorText(showWords,textX,textY,fillColor,fontface,textAlign = "left",o
 	canvasContext.restore();
 }
 
+function colorTextShadow(showWords,textX,textY,fillColor,fontface,textAlign = "left",opacity = 1) {
+    // avoid blurry text
+    textX = Math.round(textX);
+    textY = Math.round(textY);
+    // draw twice, once in black
+    colorText(showWords,textX+1,textY+1,"black",fontface,textAlign,opacity);
+    colorText(showWords,textX,textY,fillColor,fontface,textAlign,opacity);
+}
+
 function getFontWeight(font) {
 	canvasContext.save();
 	canvasContext.font = this.buttonFont;
