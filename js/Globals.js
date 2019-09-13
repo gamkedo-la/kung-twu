@@ -23,6 +23,8 @@ const Color = {
 //--------------Player-----------------//
 let player = null;
 let aiManager = null;
+let keyMapper = null;
+let inputProcessor = null;
 
 //-------------Camera------------------//
 const deadZoneHalfWidth = 25;
@@ -35,7 +37,15 @@ const localStorageKey = {
 	MusicVolume:"kungTwu-MusicVolume",
 	SFXVolume:"kungTwu-EffectsVolume",
 	Language:"kungTwu-Language",
-	FirstLoad:"kungTwu-FirstLoad"
+	FirstLoad:"kungTwu-FirstLoad",
+	WalkLeftKeys:"kungTwu-WalkLeft",
+	WalkRightKeys:"kungTwu-WalkRight",
+	JumpKeys:"kungTwu-Jump",
+	DashKeys:"kungTwu-Dash",
+	BlockKeys:"kungTwu-Block",
+	CrouchKeys:"kungTwu-Crouch",
+	KickKeys:"kungTwu-Kick",
+	PunchKeys:"kungTwu-Punch"
 };
 
 //----------State Management----------//

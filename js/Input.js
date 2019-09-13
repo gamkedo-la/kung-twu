@@ -242,6 +242,10 @@ function notifyCurrentScene(newInput, pressed) {
 function keyPress(evt) {
 	evt.preventDefault();
 
+	if(inputProcessor != null) {
+		inputProcessor.addActiveKey(evt.keyCode);
+	}
+
 	let isNewKey = true;
 	for(let i = 0; i < heldButtons.length; i++) {
 		if(heldButtons[i] === evt.keyCode) {
@@ -259,6 +263,10 @@ function keyPress(evt) {
 
 function keyRelease(evt) {
 	evt.preventDefault();
+
+	if(inputProcessor != null) {
+		inputProcessor.releaseKey(evt.keyCode);
+	}
 	
 	const index = heldButtons.indexOf(evt.keyCode);
 	if(index >= 0) {

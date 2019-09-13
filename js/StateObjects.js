@@ -16,7 +16,7 @@ const STATE = {
 const ACTION = {
 	Left:"left",
 	Right:"right",
-	Down:"down",
+	Crouch:"crouch",
 	Hit:"hit",
 	Jump:"jump",
 	Release:"release",
@@ -97,7 +97,7 @@ const JUMP_STATE = {
 
 const CROUCH_STATE = {
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
-		if((currentState === STATE.Idle) && (action === ACTION.Down)) {
+		if((currentState === STATE.Idle) && (action === ACTION.Crouch)) {
 			return true;
 		}
 
@@ -498,178 +498,70 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 		currentAnimation.drawAt(x + deltaXForFacing, y + deltaY, isFacingLeft);
 	};
 
-	const updateStateWithUserInput = function(input) {
-		const delta = deltaInput(input);
-
-		if(delta.newInput != null) {
-			let aNewInput = processNewInput(delta.newInput);
-
-			if(aNewInput != null) {
-				setNewState(stateTranslator(currentState.nextStateForActionWithBelt(belt, aNewInput)));
+	const updateStateWithUserInput = function() {
+		const releasedKeys = inputProcessor.getNewlyReleasedKeys();
+		for(let i = 0; i < releasedKeys.length; i++) {
+			const releasedAction = keyMapper.getActionForKey(releasedKeys[i]);
+			if(releasedAction != null) {//released something I care about
+				setNewState(stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Release)));
 			}
 		}
 
-		if(delta.released != null) {
-			let aReleasedInput = processReleasedInput(delta.released);
-			if(aReleasedInput != null) {
-				setNewState(stateTranslator(currentState.nextStateForActionWithBelt(belt, aReleasedInput)));
-			}
-		}		
-
-		if(currentState === IDLE_STATE) {
-			if(attemptingToWalk === ALIAS.LEFT) {
-				newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Left));
-				setNewState(newState);
-				isFacingLeft = true;
-			} else if(attemptingToWalk === ALIAS.RIGHT) {
-				newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Right));
-				setNewState(newState);
-				isFacingLeft = false;
+		const activeKeys = inputProcessor.getCurrentlyActiveKeys();
+		for(let i = 0; i < activeKeys.length; i++) {
+			const activeAction = keyMapper.getActionForKey(activeKeys[i]);
+			if(activeAction != null) {//something I care about is pressed
+				const thisState = stateTranslator(currentState.nextStateForActionWithBelt(belt, activeAction));
+				setNewState(thisState, activeAction);
+//				if(inputProcessor.newlyActiveKeysHas(activeKeys[i])) {//something I care about was JUST pressed
+//					isNewState = true;
+//				}
 			}
 		}
+
+		inputProcessor.update();
 	};
 
-	const deltaInput = function(input) {
-		attemptingToWalk = null;
-		const mutableInput = input.slice();
-
-		for(let i = oldInput.length - 1; i >= 0; i--) {
-			const anOldInput = oldInput[i];
-			for(let j = mutableInput.length; j >= 0; j--) {
-				const thisInput = mutableInput[j];
-				if(anOldInput == thisInput) {
-					oldInput.splice(i, 1);
-					mutableInput.splice(j, 1);
-				}
-
-				if(thisInput === ALIAS.LEFT) {
-					attemptingToWalk = ALIAS.LEFT;
-				} else if(thisInput === ALIAS.RIGHT) {
-					attemptingToWalk = ALIAS.RIGHT;
-				}
-			}
-		}
-
-		let released = null;
-		let newlyPressed = null;
-		if(oldInput.length > 0) {released = oldInput;}
-		if(mutableInput.length > 0) {newlyPressed = mutableInput;}
-
-		oldInput = input.slice();
-
-		return {released:released, newInput:newlyPressed};
-	};
-
-	const processNewInput = function(newInput) {
-		//just pushed some new keys => have new actions to process
-		for(let i = 0; i < newInput.length; i++) {
-			const currentButton = newInput[i];
-
-			switch(currentState) {
-			case WALK_STATE:
-				if(currentButton === ALIAS.JUMP || currentButton === ALIAS.JUMP2 || currentButton === ALIAS.UP || currentButton === ALIAS.UP2) {
-					isOnGround = false;
-					return ACTION.Jump;
-				} else if(currentButton === ALIAS.CROUCH) {
-					return ACTION.Crouch;
-				} else if(currentButton === ALIAS.DASH) {
-					return ACTION.Dash;
-				} else if(currentButton === ALIAS.PUNCH || currentButton === ALIAS.PUNCH2) {
-					return ACTION.Punch;
-				} else if(currentButton === ALIAS.KICK || currentButton === ALIAS.KICK2) {
-					return ACTION.Kick;
-				} else if(currentButton === ALIAS.BLOCK) {
-					return ACTION.Block;
-				} else if(currentButton === ALIAS.LEFT || currentButton === ALIAS.LEFT2) {
-					isFacingLeft = true;	//Changing to face left
-					isNewState = true;		//is like a state change
-					return ACTION.Left;
-				} else if(currentButton === ALIAS.RIGHT || currentButton === ALIAS.RIGHT2) {
-					isFacingLeft = false;	//Changing to face right
-					isNewState = true;		//is like a state change
-					return ACTION.Right;
-				}
-				break;
-			case JUMP_STATE:
-				if(currentButton === ALIAS.KICK) {
-					return ACTION.Kick;
-				}
-				break;
-			case CROUCH_STATE:
-				if(currentButton === ALIAS.KICK) {
-					return ACTION.Sweep;
-				}
-				break;
-			case DASH_STATE:
-				if(currentButton === ALIAS.KICK) {
-					isOnGround = false;//H_Kick
-					return ACTION.Kick;
-				}
-				break;
-			case IDLE_STATE:
-				if(currentButton === ALIAS.LEFT || currentButton === ALIAS.LEFT2) {
-					isFacingLeft = true;
-					return ACTION.Left;
-				} else if(currentButton === ALIAS.RIGHT || currentButton === ALIAS.RIGHT2) {
-					isFacingLeft = false;
-					return ACTION.Right;
-				} else if(currentButton === ALIAS.JUMP || currentButton === ALIAS.JUMP2 || currentButton === ALIAS.UP || currentButton === ALIAS.UP2) {
-					isOnGround = false;
-					return ACTION.Jump;
-				} else if(currentButton === ALIAS.DOWN) {
-					return ACTION.Down;
-				} else if(currentButton === ALIAS.DASH) {
-					return ACTION.Dash;
-				} else if(currentButton === ALIAS.PUNCH || currentButton === ALIAS.PUNCH2) {
-					return ACTION.Punch;
-				} else if(currentButton === ALIAS.KICK || currentButton === ALIAS.KICK2) {
-					return ACTION.Kick;
-				} else if(currentButton === ALIAS.BLOCK) {
-					return ACTION.Block;
-				}
-				break;
-			}
-		}
-
-		return null;
-	};
-
-	const processReleasedInput = function(released) {
-		//released some keys => have released actions
-		for(let i = 0; i < released.length; i++) {
-			const currentButton = released[i];
-
-			switch(currentState) {
-			case WALK_STATE:
-                if(currentButton === ALIAS.LEFT || currentButton === ALIAS.RIGHT ||
-                    currentButton === ALIAS.LEFT2 || currentButton === ALIAS.RIGHT2) {
-					return ACTION.Release;
-				}
-				break;
-			case CROUCH_STATE:
-				if(currentButton === ALIAS.DOWN || currentButton === ALIAS.DOWN2) {
-					return ACTION.Release;
-				}
-				break;
-			case BLOCK_STATE:
-				if(currentButton === ALIAS.DASH) {
-					return ACTION.Release;
-				}
-				break;
-			}
-		}
-
-		return null;
-	};
-
-	const setNewState = function(newState) {
+	const setNewState = function(newState, action) {
 		if(newState != currentState) {
+			if(action != undefined) {
+				updateLocalStateWithAction(action);
+			}
+			
 			currentAnimation.reset();
 
 			currentState = newState;
 			currentAnimation = animationForState(currentState);
 			isNewState = true;
 		} 
+	};
+
+	const updateLocalStateWithAction = function(action) {
+		switch(currentState) {
+		case WALK_STATE:
+			if(action === ACTION.Jump) {
+				isOnGround = false;
+			} else if(action === ACTION.Left) {
+				isFacingLeft = true;
+			} else if(action === ACTION.Right) {
+				isFacingLeft = false;
+			}
+			break;
+		case DASH_STATE:
+			if(action === ACTION.Kick) {
+				isOnGround = false;//H_Kick
+			}
+			break;
+		case IDLE_STATE:
+			if(action === ACTION.Left) {
+				isFacingLeft = true;
+			} else if(action === ACTION.Right) {
+				isFacingLeft = false;
+			} else if(action === ACTION.Jump) {
+				isOnGround = false;
+			}
+			break;
+		}
 	};
 
 	const stateTranslator = function(state) {

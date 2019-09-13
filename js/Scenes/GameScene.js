@@ -15,6 +15,10 @@ function GameScene() {
 	let timeTilSpawn = 0;
 
 	this.transitionIn = function() {
+		if(keyMapper === null) {
+			keyMapper = new KeyMapper();
+			inputProcessor = new InputProcessor();
+		}
 		levelData = dataForCurrentLevel();
 		initializeFloor(VERTICAL_OFFSET);
 		InitializeRoof();

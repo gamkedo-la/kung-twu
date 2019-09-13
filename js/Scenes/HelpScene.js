@@ -60,11 +60,9 @@ function HelpScene() {
 			}
 			return true;
 		case ALIAS.SELECT1:
-			console.log("Activated the current button");
 			SceneState.setState(selections[selectorPositionsIndex]);
 			return true;
 		case ALIAS.SELECT2:
-			console.log("Selected the Play button");
 			SceneState.setState(SCENE.GAME);
 			return true;
 		case ALIAS.POINTER:
@@ -89,7 +87,6 @@ function HelpScene() {
 
 	const buildPlayButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			console.log("Clicked the Play Button");
 			SceneState.setState(SCENE.GAME);
 		};
 
@@ -98,7 +95,6 @@ function HelpScene() {
 
 	const buildBackButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			console.log("Clicked the Back Button");
 			SceneState.setState(SCENE.TITLE);
 		};
 
