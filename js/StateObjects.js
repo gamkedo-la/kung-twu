@@ -1,6 +1,7 @@
 const STATE = {
 	Idle:"idle",
-	Walk:"walk",
+	WalkLeft:"walkLeft",
+	WalkRight:"walkRight",
 	Jump:"jump",
 	Crouch:"crouch",
 	Dash:"dash",
@@ -37,19 +38,21 @@ const BELT = {
 	Black:5
 };
 
-const WALK_STATE = {
+const WALK_LEFT_STATE = {
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
-		if(currentState === STATE.Idle) {
-			if((action === ACTION.Right) || (action === ACTION.Left)) {
+		if(action === ACTION.Left) {
+			if((currentState === STATE.Idle) || (currentLevel === STATE.WalkRight)) {
 				return true;
 			}
-		} 
+		}
 
 		return false;
 	},
 
 	nextStateForActionWithBelt:function(belt, action) {
-		if(action === ACTION.Hit) {
+		if(action === ACTION.Right) {
+			return STATE.WalkRight;	
+		} else if(action === ACTION.Hit) {
 			return STATE.KnockBack;
 		} else if(action === ACTION.Jump) {
 			return STATE.Jump;
@@ -66,7 +69,43 @@ const WALK_STATE = {
 		} else if(action === ACTION.Release) {
 			return STATE.Idle;
 		} else {
-			return STATE.Walk;
+			return STATE.WalkLeft;
+		}
+	}
+};
+
+const WALK_RIGHT_STATE = {
+	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
+		if(action === ACTION.Right) {
+			if((currentState === STATE.Idle) || (currentLevel === STATE.WalkLeft)) {
+				return true;
+			}
+		}
+
+		return false;
+	},
+
+	nextStateForActionWithBelt:function(belt, action) {
+		if(action === ACTION.Left) {
+			return STATE.WalkLeft;
+		} else if(action === ACTION.Hit) {
+			return STATE.KnockBack;
+		} else if(action === ACTION.Jump) {
+			return STATE.Jump;
+		} else if(action === ACTION.Crouch) {
+			return STATE.Crouch;
+		} else if((action === ACTION.Dash) && (belt >= BELT.Yellow)) {
+			return STATE.Dash;
+		} else if(action === ACTION.Punch) {
+			return STATE.Punch;
+		} else if(action === ACTION.Kick) {
+			return STATE.Kick;
+		} else if(action === ACTION.Block) {
+			return STATE.Block;
+		} else if(action === ACTION.Release) {
+			return STATE.Idle;
+		} else {
+			return STATE.WalkRight;
 		}
 	}
 };
@@ -74,7 +113,9 @@ const WALK_STATE = {
 const JUMP_STATE = {
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Jump) {
-			if((currentState === STATE.Walk) || (currentState === STATE.Idle)) {
+			if((currentState === STATE.WalkRight) || 
+			(currentState === STATE.WalkLeft) || 
+			(currentState === STATE.Idle)) {
 				return true;
 			}
 		}
@@ -120,7 +161,9 @@ const CROUCH_STATE = {
 const DASH_STATE = {
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(belt >= BELT.Yellow) {
-			if((currentState === STATE.Walk) || (currentState === STATE.Idle)) {
+			if((currentState === STATE.WalkRight) || 
+			(currentState === STATE.WalkLeft) || 
+			(currentState === STATE.Idle)) {
 				return true;
 			}
 		}
@@ -159,7 +202,8 @@ const IDLE_STATE = {
 				return true;
 			}
 		} else if(action === ACTION.Release) {
-			if((currentState === STATE.Walk) || 
+			if((currentState === STATE.WalkRight) ||
+			(currentState === STATE.WalkLeft) || 
 			(currentState === STATE.Crouch) || 
 			(currentState === STATE.Block)) {
 				return true;
@@ -172,8 +216,10 @@ const IDLE_STATE = {
 	nextStateForActionWithBelt:function(belt, action) {
 		if(action === ACTION.Hit) {
 			return STATE.KnockBack;
-		} else if((action === ACTION.Left) || (action === ACTION.Right)) {
-			return STATE.Walk;
+		} else if(action === ACTION.Right) {
+			return STATE.WalkRight;
+		} else if(action === ACTION.Left) {
+			return STATE.WalkLeft;
 		} else if(action === ACTION.Jump) {
 			return STATE.Jump;
 		} else if(action === ACTION.Down) {
@@ -259,7 +305,9 @@ const H_KICK_STATE = {
 const PUNCH_STATE = {
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Punch) {
-			if((currentState === STATE.Walk) || (currentState === STATE.Idle)) {
+			if((currentState === STATE.WalkRight) || 
+			(currentState === STATE.WalkLeft) || 
+			(currentState === STATE.Idle)) {
 				return true;
 			}
 		}
@@ -281,7 +329,9 @@ const PUNCH_STATE = {
 const KICK_STATE = {
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Kick) {
-			if((currentState === STATE.Walk) || (currentState === STATE.Idle)) {
+			if((currentState === STATE.WalkRight) || 
+			(currentState === STATE.WalkLeft) || 
+			(currentState === STATE.Idle)) {
 				return true;
 			}
 		}
@@ -303,7 +353,8 @@ const KICK_STATE = {
 const BLOCK_STATE = {
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Block) {
-			if((currentState === STATE.Walk) || 
+			if((currentState === STATE.WalkRight) ||
+			(currentState === STATE.WalkLeft) || 
 			(currentState === STATE.Idle) || 
 			(currentState === STATE.Crouch)) {//TODO: Might need to change this (block crouch?)
 				return true;
@@ -400,8 +451,10 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 
 	this.getCurrentState = function() {
 		switch(currentState) {
-		case WALK_STATE:
-			return STATE.Walk;
+		case WALK_RIGHT_STATE:
+			return STATE.WalkRight;
+		case WALK_LEFT_STATE:
+			return STATE.WalkLeft;
 		case JUMP_STATE:
 			return STATE.Jump;
 		case CROUCH_STATE:
@@ -513,9 +566,9 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 			if(activeAction != null) {//something I care about is pressed
 				const thisState = stateTranslator(currentState.nextStateForActionWithBelt(belt, activeAction));
 				setNewState(thisState, activeAction);
-//				if(inputProcessor.newlyActiveKeysHas(activeKeys[i])) {//something I care about was JUST pressed
-//					isNewState = true;
-//				}
+				//				if(inputProcessor.newlyActiveKeysHas(activeKeys[i])) {//something I care about was JUST pressed
+				//					isNewState = true;
+				//				}
 			}
 		}
 
@@ -538,14 +591,21 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 
 	const updateLocalStateWithAction = function(action) {
 		switch(currentState) {
-		case WALK_STATE:
+		case WALK_RIGHT_STATE:
 			if(action === ACTION.Jump) {
 				isOnGround = false;
 			} else if(action === ACTION.Left) {
 				isFacingLeft = true;
+				isNewState = true;
+			} 
+			break;
+		case WALK_LEFT_STATE:
+			if(action === ACTION.Jump) {
+				isOnGround = false;
 			} else if(action === ACTION.Right) {
 				isFacingLeft = false;
-			}
+				isNewState = true;
+			} 
 			break;
 		case DASH_STATE:
 			if(action === ACTION.Kick) {
@@ -568,8 +628,10 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 		switch(state) {
 		case STATE.Idle:
 			return IDLE_STATE;
-		case STATE.Walk:
-			return WALK_STATE;
+		case STATE.WalkRight:
+			return WALK_RIGHT_STATE;
+		case STATE.WalkLeft:
+			return WALK_LEFT_STATE;
 		case STATE.Jump:
 			return JUMP_STATE;
 		case STATE.Crouch:
@@ -592,8 +654,10 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 			return KNOCK_BACK_STATE;
 		case IDLE_STATE:
 			return STATE.Idle;
-		case WALK_STATE:
-			return STATE.Walk;
+		case WALK_RIGHT_STATE:
+			return STATE.WalkRight;
+		case WALK_LEFT_STATE:
+			return STATE.WalkLeft;
 		case JUMP_STATE:
 			return STATE.Jump;
 		case CROUCH_STATE:
@@ -623,7 +687,8 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 		case IDLE_STATE:
 			selectedAnimation = theAnimations.idle;
 			break;
-		case WALK_STATE:
+		case WALK_RIGHT_STATE:
+		case WALK_LEFT_STATE:
 			selectedAnimation = theAnimations.walk;
 			break;
 		case JUMP_STATE:

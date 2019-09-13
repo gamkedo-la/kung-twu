@@ -26,7 +26,7 @@ function Player(config) {
 		const anims = {};
 
 		anims.idle = new SpriteAnimation(STATE.Idle, playerIdle, [0, 1], playerIdle.width / 2, playerIdle.height, [200], false, true);
-		anims.walk = new SpriteAnimation(STATE.Walk, playerWalkFwd, [0, 1, 2], playerWalkFwd.width / 3, playerWalkFwd.height, [200], false, true);
+		anims.walk = new SpriteAnimation(STATE.WalkRight, playerWalkFwd, [0, 1, 2], playerWalkFwd.width / 3, playerWalkFwd.height, [200], false, true);
 		anims.dash = new SpriteAnimation(STATE.Dash, playerWalkBack, [0, 1, 2], playerWalkBack.width / 3, playerWalkBack.height, [50], false, false);
 		//anims.jump = ...
 		//anims.crouch = ...
@@ -77,7 +77,8 @@ function Player(config) {
 	const damageForState = function() {
 		const aState = stateManager.getCurrentState();
 		switch(aState) {
-		case STATE.Walk:
+		case STATE.WalkRight:
+		case STATE.WalkLeft:
 		case STATE.Jump:
 		case STATE.Crouch:
 		case STATE.Dash:
@@ -128,8 +129,11 @@ function Player(config) {
 
 	const updateForState = function(currentState) {
 		switch(currentState) {
-		case STATE.Walk:
-			walk();
+		case STATE.WalkRight:
+			walkRight();
+			break;
+		case STATE.WalkLeft:
+			walkLeft();
 			break;
 		case STATE.Jump:
 			jump();
@@ -202,13 +206,13 @@ function Player(config) {
 		position.y += velocity.y * timeStep;
 	};
 
-	const walk = function() {
-		let speed = WALK_SPEED;
-		if(stateManager.getIsFacingLeft()) {
-			speed = -WALK_SPEED;
-		} 
+	const walkRight = function() {
+		velocity.x = WALK_SPEED;
+	};
 
-		velocity.x = speed;
+
+	const walkLeft = function() {
+		velocity.x = -WALK_SPEED;
 	};
 
 	const jump = function() {

@@ -16,12 +16,11 @@ function HitBoxManager(bodyData, attackData) {
 		let theseData;
 
 		switch(state) {
-		case STATE.Walk:
-			if(facingLeft) {
-				theseData = bodyData.walk.left;
-			} else {
-				theseData = bodyData.walk.right;
-			}
+		case STATE.WalkRight:
+			theseData = bodyData.walk.right;
+			break;
+		case STATE.WalkLeft:
+			theseData = bodyData.walk.left;
 			break;
 		case STATE.Jump:
 			if(facingLeft) {
@@ -135,7 +134,8 @@ function HitBoxManager(bodyData, attackData) {
 	const isAttackingState = function(state) {
 		switch(state) {
 		case STATE.Idle:
-		case STATE.Walk:
+		case STATE.WalkRight:
+		case STATE.WalkLeft:
 		case STATE.Jump:
 		case STATE.Crouch:
 		case STATE.Dash:

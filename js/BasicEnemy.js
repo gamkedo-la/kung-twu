@@ -28,8 +28,8 @@ function BasicEnemy(config) {
 	const initializeAnimations = function() {
 		const anims = {};
 
-		anims.idle = new SpriteAnimation("idle", basicEnemyIdle, [0, 1], basicEnemyIdle.width / 2, basicEnemyIdle.height, [200], false, true);
-		anims.walk = new SpriteAnimation(STATE.Walk, basicEnemyWalk, [0, 1, 2], basicEnemyWalk.width / 3, basicEnemyWalk.height, [200], false, true);
+		anims.idle = new SpriteAnimation(STATE.Idle, basicEnemyIdle, [0, 1], basicEnemyIdle.width / 2, basicEnemyIdle.height, [200], false, true);
+		anims.walk = new SpriteAnimation(STATE.WalkRight, basicEnemyWalk, [0, 1, 2], basicEnemyWalk.width / 3, basicEnemyWalk.height, [200], false, true);
 		anims.dash = new SpriteAnimation(STATE.Dash, playerWalkBack, [0, 1, 2], playerWalkBack.width / 3, playerIdle.height, [200], false, true);
 		//anims.jump = ...
 		//anims.crouch = ...
@@ -82,7 +82,8 @@ function BasicEnemy(config) {
 	const damageForState = function() {
 		const aState = stateManager.getCurrentState();
 		switch(aState) {
-		case STATE.Walk:
+		case STATE.WalkRight:
+		case STATE.WalkLeft:
 		case STATE.Jump:
 		case STATE.Crouch:
 		case STATE.Dash:
@@ -126,8 +127,11 @@ function BasicEnemy(config) {
 
 	const updateForState = function(currentState) {
 		switch(currentState) {
-		case STATE.Walk:
-			walk();
+		case STATE.WalkRight:
+			walkRight();
+			break;
+		case STATE.WalkLeft:
+			walkLeft();
 			break;
 		case STATE.Jump:
 			jump();
@@ -198,13 +202,12 @@ function BasicEnemy(config) {
 		position.y += velocity.y * timeStep;
 	};
 
-	const walk = function() {
-		let speed = WALK_SPEED;
-		if(stateManager.getIsFacingLeft()) {
-			speed = -WALK_SPEED;
-		} 
+	const walkRight = function() {
+		velocity.x = WALK_SPEED;
+	};
 
-		velocity.x = speed;
+	const walkLeft = function() {
+		velocity.x = -WALK_SPEED;
 	};
 
 	const jump = function() {
