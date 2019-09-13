@@ -308,7 +308,6 @@ function BasicEnemy(config) {
 		}
 
 		if(this.health <= 0) {
-			console.log(`Player just earned ${this.score} points`);
 			//enemyDefeatedSound.play();//TODO: get one of these
 		} else {
 			basicEnemyHitSound.play();

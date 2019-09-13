@@ -17,7 +17,8 @@ const Color = {
 	Black:"black",
 	Yellow:"yellow",
 	Purple:"purple",
-	Aqua:"aqua"
+	Aqua:"aqua",
+	Orange:"orange"
 };
 
 //--------------Player-----------------//

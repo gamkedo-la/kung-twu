@@ -20,7 +20,9 @@ function GameScene() {
 			keyMapper = new KeyMapper();
 			inputProcessor = new InputProcessor();
 		}
+
 		levelData = dataForCurrentLevel();
+		camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
 		initializeFloor(VERTICAL_OFFSET);
 		InitializeRoof();
 		InitializeBackWall();
@@ -65,12 +67,13 @@ function GameScene() {
 	const update = function(deltaTime) {
 		if(DEBUG) {
 			levelData = dataForCurrentLevel();
+			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
 		}
 
 		const newCameraX = camera.getPosition().x;
 		updateEnvironment(newCameraX);
 
-		player.update(deltaTime, GRAVITY, floorMidHeight);
+		player.update(deltaTime, GRAVITY, floorMidHeight, levelData.cameraMin - canvas.width / 2, levelData.cameraMax + canvas.width / 2);
 
 		updateEnemies(deltaTime, newCameraX);
 
@@ -148,7 +151,7 @@ function GameScene() {
 
 	const drawUI = function(cameraX) {//TODO: We need a way to find out how wide these strings will be, should be easy with a custom font
 		const screenLeft = cameraX - canvas.width / 2;
-		drawRect( screenLeft + 180, 60, 160,22, "orange");
+		drawRect( screenLeft + 180, 60, 160,22, Color.Orange);
 		drawRect(38,67, Math.ceil(getLocalizedStringForKey(STRINGS_KEY.Health / getLocalizedStringForKey(STRINGS_KEY.maxHealth)* 160)),22, "#cd1616");
 		colorText(getLocalizedStringForKey(STRINGS_KEY.Score), screenLeft + 40, 40, Color.White, Fonts.Subtitle, TextAlignment.Left);
 		let stringScore = score.toString();
@@ -278,7 +281,9 @@ const Level1Data = {
 	bossBelt:BELT.Yellow,
 	wallWindowHeight:175,
 	wallWindowTop:215,
-	backgroundClipLevel:100
+	backgroundClipLevel:100,
+	cameraMin:-1000,
+	cameraMax:350
 };
 
 const Level2Data = {
@@ -292,7 +297,9 @@ const Level2Data = {
 	bossBelt:BELT.Tan,
 	wallWindowHeight:175,
 	wallWindowTop:215,
-	backgroundClipLevel:200
+	backgroundClipLevel:200,
+	cameraMin:-100,
+	cameraMax:2000
 };
 
 const Level3Data = {
@@ -306,7 +313,9 @@ const Level3Data = {
 	bossBelt:BELT.Brown,
 	wallWindowHeight:175,
 	wallWindowTop:215,
-	backgroundClipLevel:300
+	backgroundClipLevel:300,
+	cameraMin:-1000,
+	cameraMax:350
 };
 
 const Level4Data = {
@@ -320,7 +329,9 @@ const Level4Data = {
 	bossBelt:BELT.Red,
 	wallWindowHeight:175,
 	wallWindowTop:215,
-	backgroundClipLevel:400
+	backgroundClipLevel:400,
+	cameraMin:-100,
+	cameraMax:2000
 };
 
 const Level5Data = {
@@ -334,5 +345,7 @@ const Level5Data = {
 	bossBelt:BELT.Black,
 	wallWindowHeight:175,
 	wallWindowTop:215,
-	backgroundClipLevel:500
+	backgroundClipLevel:500,
+	cameraMin:-1000,
+	cameraMax:350
 };

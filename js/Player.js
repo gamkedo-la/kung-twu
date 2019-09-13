@@ -1,6 +1,7 @@
 //Player
 function Player(config) {
 	const SCALE = 2;
+	const SCREEN_MARGIN = 10;
 	const WALK_SPEED = 200;
 	const JUMP_SPEED = -600;
 	const KNOCK_BACK_SPEED = 800;
@@ -107,7 +108,7 @@ function Player(config) {
 		stateManager.incrementBelt();
 	};
 
-	this.update = function(deltaTime, gravity, floorHeight) {
+	this.update = function(deltaTime, gravity, floorHeight, levelMin, levelMax) {
 		stateManager.update(deltaTime);
 		updateForState(stateManager.getCurrentState());
 
@@ -119,7 +120,7 @@ function Player(config) {
 			}
 		}
 
-		updatePosition(deltaTime, gravity, floorHeight);
+		updatePosition(deltaTime, gravity, floorHeight, levelMin, levelMax);
 
 		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
 		if(this.attackBody != null) {
@@ -171,9 +172,16 @@ function Player(config) {
 		}
 	};
 
-	const updatePosition = function(deltaTime, gravity, floorHeight) {
+	const updatePosition = function(deltaTime, gravity, floorHeight, levelMin, levelMax) {
 		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
 		position.x += velocity.x * timeStep;
+
+		if(position.x < levelMin + SCREEN_MARGIN) {
+			position.x = levelMin + SCREEN_MARGIN;
+		} else if(position.x > levelMax - SCREEN_MARGIN - stateManager.getCurrentAnimation().getWidth()) {
+			position.x = levelMax - SCREEN_MARGIN - stateManager.getCurrentAnimation().getWidth();
+		}
+
 		fallDueToGravity(timeStep, gravity);
 
 		if(velocity.y > 0) {
