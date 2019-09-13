@@ -13,6 +13,7 @@ function GameScene() {
 	let wall;
 	let floorMidHeight = 0;
 	let timeTilSpawn = 0;
+	let score = 0;
 
 	this.transitionIn = function() {
 		if(keyMapper === null) {
@@ -117,7 +118,8 @@ function GameScene() {
 					return (element === defeatedEntity);
 				});
 	
-				enemies.splice(enemyIndex, 1);
+				const anEnemy = enemies.splice(enemyIndex, 1)[0];//returns an array, we only want the first element
+				score += anEnemy.score;
 				collisionManager.removeEntity(defeatedEntity);
 			}
 		}
@@ -149,6 +151,11 @@ function GameScene() {
 		drawRect( screenLeft + 180, 60, 160,22, "orange");
 		drawRect(38,67, Math.ceil(getLocalizedStringForKey(STRINGS_KEY.Health / getLocalizedStringForKey(STRINGS_KEY.maxHealth)* 160)),22, "#cd1616");
 		colorText(getLocalizedStringForKey(STRINGS_KEY.Score), screenLeft + 40, 40, Color.White, Fonts.Subtitle, TextAlignment.Left);
+		let stringScore = score.toString();
+		while(stringScore.length < 9) {
+			stringScore = "0" + stringScore;
+		} 
+		colorText(stringScore, screenLeft + 180, 40, Color.White, Fonts.Subtitle, TextAlignment.Left);
 		colorText(getLocalizedStringForKey(STRINGS_KEY.Health), screenLeft + 40, 80, Color.White, Fonts.Subtitle, TextAlignment.Left);
 		colorText(getLocalizedStringForKey(STRINGS_KEY.Time), screenLeft + 40, 120, Color.White, Fonts.Subtitle, TextAlignment.Left);
 		colorText(getLocalizedStringForKey(STRINGS_KEY.Level), screenLeft + 40, 160, Color.White, Fonts.Subtitle, TextAlignment.Left);
