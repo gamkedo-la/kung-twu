@@ -83,7 +83,7 @@ const userStrings = {
 		[STRINGS_KEY.Level3]:"Leopard",
 		[STRINGS_KEY.Level4]:"Snake",
 		[STRINGS_KEY.Level5]:"Dragon",
-		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
+		[STRINGS_KEY.HelpScreenContents]:"[ARROWS or WASD] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
 	},
     
 	Spanish: {

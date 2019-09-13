@@ -567,31 +567,24 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 
 			switch(currentState) {
 			case WALK_STATE:
-				if(currentButton === ALIAS.JUMP) {
-					isOnGround = false;
-					return ACTION.Jump;
-                } else if(currentButton === ALIAS.JUMP2) {
+				if(currentButton === ALIAS.JUMP || currentButton === ALIAS.JUMP2 || currentButton === ALIAS.UP || currentButton === ALIAS.UP2) {
 					isOnGround = false;
 					return ACTION.Jump;
 				} else if(currentButton === ALIAS.CROUCH) {
 					return ACTION.Crouch;
 				} else if(currentButton === ALIAS.DASH) {
 					return ACTION.Dash;
-				} else if(currentButton === ALIAS.PUNCH) {
+				} else if(currentButton === ALIAS.PUNCH || currentButton === ALIAS.PUNCH2) {
 					return ACTION.Punch;
-				} else if(currentButton === ALIAS.PUNCH2) {
-					return ACTION.Punch;
-				} else if(currentButton === ALIAS.KICK) {
-					return ACTION.Kick;
-				} else if(currentButton === ALIAS.KICK2) {
+				} else if(currentButton === ALIAS.KICK || currentButton === ALIAS.KICK2) {
 					return ACTION.Kick;
 				} else if(currentButton === ALIAS.BLOCK) {
 					return ACTION.Block;
-				} else if(currentButton === ALIAS.LEFT) {
+				} else if(currentButton === ALIAS.LEFT || currentButton === ALIAS.LEFT2) {
 					isFacingLeft = true;	//Changing to face left
 					isNewState = true;		//is like a state change
 					return ACTION.Left;
-				} else if(currentButton === ALIAS.RIGHT) {
+				} else if(currentButton === ALIAS.RIGHT || currentButton === ALIAS.RIGHT2) {
 					isFacingLeft = false;	//Changing to face right
 					isNewState = true;		//is like a state change
 					return ACTION.Right;
@@ -614,29 +607,22 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 				}
 				break;
 			case IDLE_STATE:
-				if(currentButton === ALIAS.LEFT) {
+				if(currentButton === ALIAS.LEFT || currentButton === ALIAS.LEFT2) {
 					isFacingLeft = true;
 					return ACTION.Left;
-				} else if(currentButton === ALIAS.RIGHT) {
+				} else if(currentButton === ALIAS.RIGHT || currentButton === ALIAS.RIGHT2) {
 					isFacingLeft = false;
 					return ACTION.Right;
-				} else if(currentButton === ALIAS.JUMP) {
-					isOnGround = false;
-					return ACTION.Jump;
-				} else if(currentButton === ALIAS.JUMP2) {
+				} else if(currentButton === ALIAS.JUMP || currentButton === ALIAS.JUMP2 || currentButton === ALIAS.UP || currentButton === ALIAS.UP2) {
 					isOnGround = false;
 					return ACTION.Jump;
 				} else if(currentButton === ALIAS.DOWN) {
 					return ACTION.Down;
 				} else if(currentButton === ALIAS.DASH) {
 					return ACTION.Dash;
-				} else if(currentButton === ALIAS.PUNCH) {
+				} else if(currentButton === ALIAS.PUNCH || currentButton === ALIAS.PUNCH2) {
 					return ACTION.Punch;
-				} else if(currentButton === ALIAS.PUNCH2) {
-					return ACTION.Punch;
-				} else if(currentButton === ALIAS.KICK) {
-					return ACTION.Kick;
-				} else if(currentButton === ALIAS.KICK2) {
+				} else if(currentButton === ALIAS.KICK || currentButton === ALIAS.KICK2) {
 					return ACTION.Kick;
 				} else if(currentButton === ALIAS.BLOCK) {
 					return ACTION.Block;
@@ -655,12 +641,13 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 
 			switch(currentState) {
 			case WALK_STATE:
-				if((currentButton === ALIAS.LEFT) || (currentButton === ALIAS.RIGHT)) {
+                if(currentButton === ALIAS.LEFT || currentButton === ALIAS.RIGHT ||
+                    currentButton === ALIAS.LEFT2 || currentButton === ALIAS.RIGHT2) {
 					return ACTION.Release;
 				}
 				break;
 			case CROUCH_STATE:
-				if(currentButton === ALIAS.DOWN) {
+				if(currentButton === ALIAS.DOWN || currentButton === ALIAS.DOWN2) {
 					return ACTION.Release;
 				}
 				break;
