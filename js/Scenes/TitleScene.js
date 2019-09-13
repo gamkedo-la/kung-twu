@@ -1,10 +1,7 @@
 //TitleScene
 function TitleScene() {
-	const MENU_BG_COLOR = "#010139";
-
 	let selectorPositionsIndex = 0;
 	let selectorPosition = {x:0, y:0};
-	let selectorSprite;
 	const selections = [
 		SCENE.GAME,
 		SCENE.HELP,

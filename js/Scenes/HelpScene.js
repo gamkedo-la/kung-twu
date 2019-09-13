@@ -1,7 +1,6 @@
 //Help Scene
 function HelpScene() {
-	const HELP_BG_COLOR = "#010139";
-
+	const TITLE_Y_POS = 100;
 	let selectorPositionsIndex = 0;
 	const selections = [
 		SCENE.TITLE,
@@ -14,7 +13,7 @@ function HelpScene() {
 
 	this.transitionIn = function() {
 		let mainMenuX = 0;
-		const mainMenuY = canvas.height - canvas.height / 20;
+		const mainMenuY = canvas.height - (9 * buttonHeight / 2);
         
 		if(buttons.length === 0) {
 			buttons.push(buildBackButton(canvas.width / 40, mainMenuY, buttonHeight, buttonTitlePadding));
@@ -113,40 +112,36 @@ function HelpScene() {
 		}
 	};
 
-    const draw = function(deltaTime, buttons, selectorPositionIndex) {
+	const draw = function(deltaTime, buttons, selectorPositionIndex) {
 		// render the menu background
-        drawBG();
+		drawBG();
         
-        drawTitle();
+		drawTitle();
         
-        drawHelpScreenContents();
+		drawHelpScreenContents();
 
 		// render menu
 		printNavigation(buttons, selectorPositionIndex);        
 	};
 	
 	const drawBG = function() {
-		// fill the background since there is no image for now
-        //drawRect(0, 0, canvas.width, canvas.height, HELP_BG_COLOR);
-        canvasContext.drawImage(titleScreenBG,0,0);
-        canvasContext.drawImage(titleScreenDecore,0,0);        
-        canvasContext.drawImage(titleBlock,canvas.width/2-titleBlock.width/2,canvas.height/2-38);        
+		canvasContext.drawImage(titleScreenBG,0,0);
+		canvasContext.drawImage(titleScreenDecore,0,0);        
+		canvasContext.drawImage(titleBlock,canvas.width/2-titleBlock.width/2,canvas.height/2-38);        
 	};
     
 	const drawTitle = function() {
-        colorText(getLocalizedStringForKey(STRINGS_KEY.HelpScreenTitle), 
-            canvas.width / 2, canvas.height / 3, Color.White, Fonts.MainTitle, TextAlignment.Center, true);
+		colorText(getLocalizedStringForKey(STRINGS_KEY.HelpScreenTitle), 
+			canvas.width / 2, TITLE_Y_POS, Color.White, Fonts.MainTitle, TextAlignment.Center, true);
 	};
 
-    const drawHelpScreenContents = function() {
-        const LINE_HEIGHT = 24;
-        let lines = getLocalizedStringForKey(STRINGS_KEY.HelpScreenContents).split("\n");
-        for (let num=0; num<lines.length; num++) {
-            colorText(lines[num], 
-            canvas.width / 2, canvas.height / 2 + (num*LINE_HEIGHT), Color.White, 
-            Fonts.CreditsText,TextAlignment.Center,true);
-        }
-    }
-   
-
+	const drawHelpScreenContents = function() {
+		const LINE_HEIGHT = 24;
+		let lines = getLocalizedStringForKey(STRINGS_KEY.HelpScreenContents).split("\n");
+		for (let num=0; num<lines.length; num++) {
+			colorText(lines[num], 
+				canvas.width / 2, canvas.height / 2 + (num*LINE_HEIGHT), Color.White, 
+				Fonts.CreditsText,TextAlignment.Center,true);
+		}
+	};
 }

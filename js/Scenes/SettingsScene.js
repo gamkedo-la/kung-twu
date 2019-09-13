@@ -1,7 +1,6 @@
 //Settings Scene
 function SettingsScene() {
-	const SETTINGS_BG_COLOR = "#010139";
-
+	const TITLE_Y_POS = 100;
 	let selectorPositionsIndex = 0;
 	const selections = [
 		SCENE.TITLE,
@@ -14,7 +13,7 @@ function SettingsScene() {
 
 	this.transitionIn = function() {
 		let mainMenuX = 0;
-		const mainMenuY = canvas.height - canvas.height / 20;
+		const mainMenuY = canvas.height - (9 * buttonHeight / 2);
         
 		if(buttons.length === 0) {
 			buttons.push(buildBackButton(canvas.width / 40, mainMenuY, buttonHeight, buttonTitlePadding));
@@ -124,11 +123,11 @@ function SettingsScene() {
 	};
 	
 	const drawBG = function() {
-		// fill the background since there is no image for now
-		drawRect(0, 0, canvas.width, canvas.height, SETTINGS_BG_COLOR);
+		canvasContext.drawImage(titleScreenBG,0,0);
+		canvasContext.drawImage(titleScreenDecore,0,0);        
 	};
     
 	const drawTitle = function() {
-		colorText(getLocalizedStringForKey(STRINGS_KEY.SettingsScreenTitle), canvas.width / 2, canvas.height / 3, Color.White, Fonts.MainTitle, TextAlignment.Center);
+		colorText(getLocalizedStringForKey(STRINGS_KEY.SettingsScreenTitle), canvas.width / 2, TITLE_Y_POS, Color.White, Fonts.MainTitle, TextAlignment.Center);
 	};
 }
