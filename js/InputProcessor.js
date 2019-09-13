@@ -4,7 +4,7 @@ function InputProcessor() {
 	const currentKeys = new Set();
 	const releasedKeys = new Set();
 
-	this.update = function() {
+	this.clear = function() {
 		newKeys.clear();
 		releasedKeys.clear();
 	};

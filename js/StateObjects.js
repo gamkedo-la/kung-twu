@@ -399,12 +399,12 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 	let isNewState = true;
 	let currentAnimation = theAnimations.idle;
 	let belt = BELT.White;
+
 	let landed = false;
 	let isOnGround = true;
 	let didGetHit = false;
 	let isFacingLeft = true;
 	let knockBackDidEnd = false;
-	let attemptingToWalk = null;
 	let timeSinceAction = 0;
 
 	this.setNewBelt = function(newBelt) {
@@ -565,13 +565,10 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 			if(activeAction != null) {//something I care about is pressed
 				const thisState = stateTranslator(currentState.nextStateForActionWithBelt(belt, activeAction));
 				setNewState(thisState, activeAction);
-				//				if(inputProcessor.newlyActiveKeysHas(activeKeys[i])) {//something I care about was JUST pressed
-				//					isNewState = true;
-				//				}
 			}
 		}
 
-		inputProcessor.update();
+		inputProcessor.clear();
 	};
 
 	const setNewState = function(newState, action) {

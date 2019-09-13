@@ -41,7 +41,34 @@ function AIManager() {
 		}
 	};
 
+	this.coolDownForType = function(aiType) {
+		switch(aiType) {
+		case AITYPE.BasicWhite:
+			return COOLDOWN.White;
+		case AITYPE.BasicYellow:
+			return COOLDOWN.Yellow;
+		case AITYPE.BasicTan:
+			return COOLDOWN.Tan;
+		case AITYPE.BasicBrown:
+			return COOLDOWN.Brown;
+		case AITYPE.BasicRed:
+			return COOLDOWN.Red;
+		case AITYPE.BossYellow:
+			return (0.75 * COOLDOWN.Yellow);
+		case AITYPE.BossTan:
+			return (0.75 * COOLDOWN.Tan);
+		case AITYPE.BossBrown:
+			return (0.75 * COOLDOWN.Brown);
+		case AITYPE.BossRed:
+			return (0.75 * COOLDOWN.Red);
+		case AITYPE.BossBlack:
+			return (0.75 * COOLDOWN.Black);																														
+		}
+	};
+
 	this.actionForTypeTimeStateAndPos = function(type, timeSinceAction, currentState, distToPlayer) {
+		if(timeSinceAction < this.coolDownForType(type)) return currentState;
+		
 		if((distToPlayer > maxApproachDistanceForType(type)) || (distToPlayer < -maxApproachDistanceForType(type))) {
 			return ACTION.Release;
 		} else if(distToPlayer > maxStrikeDistanceForType(type)) {
