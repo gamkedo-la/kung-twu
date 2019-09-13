@@ -39,7 +39,7 @@ function HelpScene() {
 		draw(deltaTime, buttons, selectorPositionsIndex);
 	};
 
-	this.control = function(newKeyEvent, pressed, pressedKeys) {
+	this.control = function(newKeyEvent, pressed) {
 		if (pressed) {//only act on key released events => prevent multiple changes on single press
 			return false;
 		}

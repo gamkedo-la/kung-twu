@@ -398,7 +398,6 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 	let currentState = IDLE_STATE;
 	let isNewState = true;
 	let currentAnimation = theAnimations.idle;
-	let oldInput = heldButtons;
 	let belt = BELT.White;
 	let landed = false;
 	let isOnGround = true;
@@ -488,7 +487,7 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 		checkAutoStateChanges();
 
 		if(isPlayerManager) {
-			updateStateWithUserInput(heldButtons);
+			updateStateWithUserInput();
 		} else {
 			updateStateWithAI(deltaTime, distToPlayer);
 		}

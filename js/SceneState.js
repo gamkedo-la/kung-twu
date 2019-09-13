@@ -36,7 +36,7 @@ const SceneState = {
 			// gameFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Muted), {x:760, y: 10}, 14, textAlignment.Left);
 		}
 	},
-	control: function(newKeyEvent, pressed, pressedKeys) {
+	control: function(newKeyEvent, pressed) {
 		if((newKeyEvent === ALIAS.VOLUME_UP) && (!pressed)) {
 			turnVolumeUp();
 			return true;
@@ -54,6 +54,6 @@ const SceneState = {
 			this.setState(this.getPreviousState());
 		}
 
-		return this.scenes[this.currentScene].control(newKeyEvent, pressed, pressedKeys);
+		return this.scenes[this.currentScene].control(newKeyEvent, pressed);
 	}
 };

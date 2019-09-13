@@ -45,7 +45,7 @@ function GameScene() {
 		draw();
 	};
 
-	this.control = function(newKeyEvent, pressed, pressedKeys) {
+	this.control = function(newKeyEvent, pressed) {
 		if(!pressed) {
 			switch (newKeyEvent) {
 			case ALIAS.CHEATS:

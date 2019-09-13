@@ -65,22 +65,9 @@ const DPAD_RIGHT = "DPad-Right";
 const heldButtons = [];
 const ALIAS = {
 	UP:KEY_UP,
-	UP2:KEY_W,
 	DOWN:KEY_DOWN,
-	DOWN2:KEY_S,
 	LEFT:KEY_LEFT,
-	LEFT2:KEY_A,
 	RIGHT:KEY_RIGHT,
-	RIGHT2:KEY_D,
-	PUNCH:KEY_F,
-	PUNCH2:KEY_Z,
-	KICK:KEY_G,
-	KICK2:KEY_X,
-	JUMP:KEY_UP,
-	JUMP2:KEY_C,
-	CROUCH:KEY_DOWN,
-	DASH:KEY_SPACE,
-	BLOCK:KEY_B,
 	SELECT1:KEY_ENTER,
 	SELECT2:KEY_SPACE,
 	HELP:KEY_H,
@@ -234,7 +221,7 @@ function initializeInput() {
 }
 
 function notifyCurrentScene(newInput, pressed) {
-	if(!SceneState.control(newInput, pressed, heldButtons)) {
+	if(!SceneState.control(newInput, pressed)) {
 		//Do something if required because the scene didn't handle the input
 	}
 }
@@ -246,18 +233,6 @@ function keyPress(evt) {
 		inputProcessor.addActiveKey(evt.keyCode);
 	}
 
-	let isNewKey = true;
-	for(let i = 0; i < heldButtons.length; i++) {
-		if(heldButtons[i] === evt.keyCode) {
-			isNewKey = false;
-			break;
-		}
-	}
-
-	if(isNewKey) {
-		heldButtons.push(evt.keyCode);
-	}
-
 	notifyCurrentScene(evt.keyCode, true);
 }
 
@@ -267,41 +242,41 @@ function keyRelease(evt) {
 	if(inputProcessor != null) {
 		inputProcessor.releaseKey(evt.keyCode);
 	}
-	
-	const index = heldButtons.indexOf(evt.keyCode);
-	if(index >= 0) {
-		heldButtons.splice(index, 1);
-		notifyCurrentScene(evt.keyCode, false);
-	}
+
+	notifyCurrentScene(evt.keyCode, false);
 }
 
 function mouseButtonPressed(evt) {
 	evt.preventDefault();
 
+	let pressedButton;
 	if (evt.button === 0) {//left mouse button is button 0
-		heldButtons.push(LEFT_MOUSE_BUTTON);
-		notifyCurrentScene(LEFT_MOUSE_BUTTON, true);
+		pressedButton = LEFT_MOUSE_BUTTON;
+		notifyCurrentScene(pressedButton, true);
 	} else if(evt.button === 1) {//right mouse button is button 1
-		heldButtons.push(RIGHT_MOUSE_BUTTON);
-		notifyCurrentScene(RIGHT_MOUSE_BUTTON, true);
+		pressedButton = RIGHT_MOUSE_BUTTON;
+		notifyCurrentScene(pressedButton, true);
+	}
+
+	if(inputProcessor != null) {
+		inputProcessor.addActiveKey(pressedButton);
 	}
 }
 
 function mouseButtonReleased(evt) {
 	evt.preventDefault();
 
+	let releasedButton;
 	if (evt.button === 0) {//left mouse button is button 0
-		const index = heldButtons.indexOf(LEFT_MOUSE_BUTTON);
-		if(index >= 0) {
-			heldButtons.splice(index, 1);
-			notifyCurrentScene(LEFT_MOUSE_BUTTON, false);
-		}
+		releasedButton = LEFT_MOUSE_BUTTON;
+		notifyCurrentScene(releasedButton, false);
 	} else if(evt.button === 1) {//right mouse button is button 1
-		const index = heldButtons.indexOf(RIGHT_MOUSE_BUTTON);
-		if(index >= 0) {
-			heldButtons.splice(index, 1);
-			notifyCurrentScene(RIGHT_MOUSE_BUTTON, false);
-		}
+		releasedButton = RIGHT_MOUSE_BUTTON;
+		notifyCurrentScene(releasedButton, false);
+	}
+
+	if(inputProcessor != null) {
+		inputProcessor.releaseKey(evt.keyCode);
 	}
 }
 

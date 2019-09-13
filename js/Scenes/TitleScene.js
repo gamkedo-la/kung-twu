@@ -53,7 +53,7 @@ function TitleScene() {
 		draw(deltaTime, buttons, selectorPositionsIndex);
 	};
 
-	this.control = function(newKeyEvent, pressed, pressedKeys) {
+	this.control = function(newKeyEvent, pressed) {
 		if((!didInteract) && ((newKeyEvent == LEFT_MOUSE_BUTTON) || (newKeyEvent == RIGHT_MOUSE_BUTTON))) {
 			didInteract = true;
 			currentBackgroundMusic.loopSong(menuMusic);
