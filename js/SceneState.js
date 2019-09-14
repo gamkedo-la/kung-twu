@@ -10,6 +10,7 @@ const SceneState = {
 		[SCENE.CREDITS]: new CreditsScene(),
 		[SCENE.HELP]: new HelpScene(),
 		[SCENE.GAME]: new GameScene(),
+		[SCENE.PAUSE]: new PauseScene(),
 		//		[SCENE.GAMEOVER]: new GameOverScene(),
 		//		[SCENE.ENDING]: new EndgameScene()
 	},
@@ -24,13 +25,16 @@ const SceneState = {
 	getPreviousState: function() {
 		return this.log[this.log.length-1];
 	},
+	popState: function(properties) {
+		const previousState = this.getPreviousState();
+		this.scenes[this.currentScene].transitionOut();
+		this.currentScene = previousState;
+		this.scenes[this.currentScene].properties = properties;
+		this.scenes[this.currentScene].transitionIn();
+		return this;
+	},
 	run: function(deltaTime) {
-		if(!pauseManager.getIsPaused()) {
-			this.scenes[this.currentScene].run(deltaTime);
-		} else if(this.currentScene === SCENE.GAME) {
-			if (this.scenes[SCENE.GAME].runPausedOptions) // exists?
-				this.scenes[SCENE.GAME].runPausedOptions(deltaTime);
-		}
+		this.scenes[this.currentScene].run(deltaTime);
 
 		if (isMuted) {
 			// gameFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Muted), {x:760, y: 10}, 14, textAlignment.Left);
@@ -50,7 +54,10 @@ const SceneState = {
 		} else if((DEBUG) && (newKeyEvent === ALIAS.LEVEL_UP) && (!pressed)) {
 			currentLevel++;
 			if(currentLevel > 5) currentLevel = 1;
-		} else if((newKeyEvent === ALIAS.BACK) && (this.currentScene != SCENE.GAME) && (!pressed)) {
+		} else if((newKeyEvent === ALIAS.BACK) && 
+		(this.currentScene != SCENE.GAME) && 
+		(this.currentScene != SCENE.PAUSE) &&
+		(!pressed)) {
 			this.setState(this.getPreviousState());
 		}
 

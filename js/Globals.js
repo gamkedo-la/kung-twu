@@ -28,6 +28,7 @@ let keyMapper = null;
 let inputProcessor = null;
 
 //-------------Camera------------------//
+let camera = null;
 const deadZoneHalfWidth = 25;
 
 //---------------Persistence-----------//
@@ -63,6 +64,7 @@ const SCENE = {
 	CREDITS:"credits",
 	HELP:"help",
 	PAUSE:"pause",
+	CONTROLS:"controls",
 	GAME:"game",
 	ENDING:"ending"
 };

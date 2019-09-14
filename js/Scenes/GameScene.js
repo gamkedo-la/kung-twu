@@ -2,7 +2,7 @@
 function GameScene() {
 	const GRAVITY = 1500;
 	const enemies = [];
-	const camera = new Camera();
+	camera = new Camera();
 	const VERTICAL_OFFSET = 50;
 	const columnManager = new InfiniteColumn(VERTICAL_OFFSET);
 	let levelData;

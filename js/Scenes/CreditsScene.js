@@ -94,7 +94,7 @@ function CreditsScene() {
 
 	const buildBackButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			SceneState.setState(SCENE.TITLE);
+			SceneState.popState();
 		};
 
 		return new UIButton(STRINGS_KEY.Back, x, y, height, padding, thisClick, Color.Purple);

@@ -70,9 +70,7 @@ function update() {
 	}
 
 	SceneState.run(deltaTime);
-	if(!pauseManager.getIsPaused()) {
-		requestAnimationFrame(update);
-	}
+	requestAnimationFrame(update);
 }
 
 function startGame() {

@@ -223,7 +223,7 @@ function TitleScene() {
 		}
 
 		// render menu
-		printMenu(buttons, selectorPositionIndex); 		
+		printMenu(buttons, selectorPositionIndex);
 	};
 	
 	const drawBG = function() {

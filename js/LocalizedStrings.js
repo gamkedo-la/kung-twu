@@ -20,6 +20,8 @@ const STRINGS_KEY = {
 	SFXVolume:"SFX Volume",
 	Loading:"Loading",
 	Paused:"Paused",
+	Controls:"Controls",
+	Quit:"Quit",
 	Title:"Title",
 	Subtitle:"Subtitle",
 	English:"English",
@@ -31,6 +33,7 @@ const STRINGS_KEY = {
 	HowToPlay:"HowToPlay",
 	Muted:"Muted",
 	Back:"[ESC] Back",
+	Resume:"Resume",
 	HelpScreenTitle:"Help Title",
 	HelpScreenContents:"Help Screen Contents",
 	SettingsScreenTitle:"Settings Title",
@@ -60,6 +63,8 @@ const userStrings = {
 		[STRINGS_KEY.SFXVolume]:"SFX Volume",
 		[STRINGS_KEY.Loading]:"LOADING...",
 		[STRINGS_KEY.Paused]:"- P A U S E D -",
+		[STRINGS_KEY.Controls]:"[C] Controls",
+		[STRINGS_KEY.Quit]:"[Q] Quit",
 		[STRINGS_KEY.Title]:"Kung Twu",
 		[STRINGS_KEY.Subtitle]:"A Martial Arts Tale",
 		[STRINGS_KEY.English]:"English",
@@ -71,6 +76,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToPlay]:"How to Play",
 		[STRINGS_KEY.Muted]:"Muted",
 		[STRINGS_KEY.Back]:"[ESC] Back",
+		[STRINGS_KEY.Resume]:"[ESC] Resume",
 		[STRINGS_KEY.HelpScreenTitle]:"HELP",
 		[STRINGS_KEY.SettingsScreenTitle]:"SETTINGS",
 		[STRINGS_KEY.CreditsScreenTitle]:"CREDITS",
@@ -121,6 +127,9 @@ const userStrings = {
 		[STRINGS_KEY.Level4]:"Snake",
 		[STRINGS_KEY.Level5]:"Dragon",
 		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
+		[STRINGS_KEY.Resume]:"[ESC] Resume",
+		[STRINGS_KEY.Controls]:"[C] Controls",
+		[STRINGS_KEY.Quit]:"[Q] Quit"
 	},
 
 	Japanese: {
@@ -159,6 +168,9 @@ const userStrings = {
 		[STRINGS_KEY.Level4]:"Snake",
 		[STRINGS_KEY.Level5]:"Dragon",
 		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
+		[STRINGS_KEY.Resume]:"[ESC] Resume",
+		[STRINGS_KEY.Controls]:"[C] Controls",
+		[STRINGS_KEY.Quit]:"[Q] Quit"
 	},
 
 	French: {
@@ -196,6 +208,9 @@ const userStrings = {
 		[STRINGS_KEY.Level4]:"Snake",
 		[STRINGS_KEY.Level5]:"Dragon",
 		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
+		[STRINGS_KEY.Resume]:"[ESC] Resume",
+		[STRINGS_KEY.Controls]:"[C] Controls",
+		[STRINGS_KEY.Quit]:"[Q] Quit"
 	},
 
 	Russian: {
@@ -233,5 +248,8 @@ const userStrings = {
 		[STRINGS_KEY.Level4]:"Snake",
 		[STRINGS_KEY.Level5]:"Dragon",
 		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
+		[STRINGS_KEY.Resume]:"[ESC] Resume",
+		[STRINGS_KEY.Controls]:"[C] Controls",
+		[STRINGS_KEY.Quit]:"[Q] Quit"
 	}
 };

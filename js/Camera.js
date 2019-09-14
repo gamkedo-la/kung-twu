@@ -1,10 +1,13 @@
 function Camera() {
-	let position = {x:0, y:0};
+	let position = {x:null, y:0};
 	let parent = null;
-	let minPos = -1000;
-	let maxPos = 1000;
+	let minPos = -1000;//just some 
+	let maxPos = 1000; //defaults
 
 	this.getPosition = function () {
+		if(position.x === null) {
+			position.x = canvas.width/2;
+		}
 		return {x: position.x, y: position.y};
 	};
 
