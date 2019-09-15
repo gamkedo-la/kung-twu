@@ -33,7 +33,13 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 	};
 
 	const didHit = function(pointerX, pointerY) {
-		const transformedX = pointerX - canvasContext.getTransform().m41;
+		let transformedX = pointerX;
+		if(canvasContext.mozCurrentTransform != undefined) {
+			transformedX -= canvasContext.mozCurrentTransform[4];
+		} else {
+			transformedX -= canvasContext.getTransform().m41;
+		}
+//		const transformedX = pointerX - canvasContext.getTransform().m41;
 		if(pointInside(transformedX, pointerY, bounds.x, bounds.y, bounds.width, bounds.height)) {
 			return true;
 		} else {

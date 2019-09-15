@@ -14,7 +14,11 @@ function HelpScene() {
 
 	this.transitionIn = function() {
 		canvasPad = canvas.width / 40;
-		screenPos = -canvasContext.getTransform().m41;
+		if(canvasContext.mozCurrentTransform != undefined) {
+			screenPos = -canvasContext.mozCurrentTransform[4];
+		} else {
+			screenPos = -canvasContext.getTransform().m41;
+		}
 		const menuY = canvas.height - (9 * buttonHeight / 2);
         
 		if(buttons.length === 0) {

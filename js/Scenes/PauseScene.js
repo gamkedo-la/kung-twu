@@ -15,8 +15,11 @@ function PauseScene() {
 	let screenPos = 0;
 
 	this.transitionIn = function() {
-		console.log(`Pause is Transitioning In`);
-		screenPos = -canvasContext.getTransform().m41;
+		if(canvasContext.mozCurrentTransform != undefined) {
+			screenPos = -canvasContext.mozCurrentTransform[4];
+		} else {
+			screenPos = -canvasContext.getTransform().m41;
+		}
 		let mainMenuX = screenPos;
 		const BUTTON_PADDING = 0.9 * buttonHeight;
 		const mainMenuY = BUTTON_PADDING + (canvas.height / 2);
