@@ -158,19 +158,19 @@ const userStrings = {
 		[STRINGS_KEY.SettingsScreenTitle]:"せってい",
 		[STRINGS_KEY.CreditsScreenTitle]:"クレジット",
 
-		[STRINGS_KEY.Score]:"SCORE:",
-		[STRINGS_KEY.Health]:"HEALTH:",
-		[STRINGS_KEY.Time]:"TIME:",
-		[STRINGS_KEY.Level]:"LEVEL:",
-		[STRINGS_KEY.Level1]:"Tiger",
-		[STRINGS_KEY.Level2]:"Crane",
-		[STRINGS_KEY.Level3]:"Leopard",
-		[STRINGS_KEY.Level4]:"Snake",
-		[STRINGS_KEY.Level5]:"Dragon",
+		[STRINGS_KEY.Score]:"とくてん:",
+		[STRINGS_KEY.Health]:"けんこ:",
+		[STRINGS_KEY.Time]:"じかん:",
+		[STRINGS_KEY.Level]:"レーベル:",
+		[STRINGS_KEY.Level1]:"トラ",
+		[STRINGS_KEY.Level2]:"つる",
+		[STRINGS_KEY.Level3]:"ヒョウ",
+		[STRINGS_KEY.Level4]:"ヘビ",
+		[STRINGS_KEY.Level5]:"りゅう",
 		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
-		[STRINGS_KEY.Resume]:"[ESC] Resume",
-		[STRINGS_KEY.Controls]:"[C] Controls",
-		[STRINGS_KEY.Quit]:"[Q] Quit"
+		[STRINGS_KEY.Resume]:"[ESC] つづく",
+		[STRINGS_KEY.Controls]:"[C] コントロール",
+		[STRINGS_KEY.Quit]:"[Q] ゲームをやめる"
 	},
 
 	French: {
