@@ -127,7 +127,7 @@ function GameScene() {
 		const playerPos = player.getPosition();
 		spawnNewEnemies(newCameraX);
 		for(let i = 0; i < enemies.length; i++) {
-			enemies[i].update(deltaTime, GRAVITY, playerPos, floorMidHeight);
+			enemies[i].update(deltaTime, GRAVITY, playerPos, floorMidHeight, i===0);
 		}
 	};
 

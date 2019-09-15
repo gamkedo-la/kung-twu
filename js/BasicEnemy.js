@@ -104,9 +104,9 @@ function BasicEnemy(config) {
 		}
 	};
 
-	this.update = function(deltaTime, gravity, playerPos, floorHeight) {
+	this.update = function(deltaTime, gravity, playerPos, floorHeight, shouldAttack) {
 		const distToPlayer = playerPos.x - position.x;
-		stateManager.update(deltaTime, distToPlayer);
+		stateManager.update(deltaTime, distToPlayer, shouldAttack);
 		updateForState(stateManager.getCurrentState());
 
 		if(stateManager.getIsNewState()) {
@@ -171,6 +171,7 @@ function BasicEnemy(config) {
 
 	const updatePosition = function(deltaTime, gravity, floorHeight) {
 		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
+
 		position.x += velocity.x * timeStep;
 		fallDueToGravity(timeStep, gravity);
 

@@ -493,7 +493,7 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 		timeSinceAction = 0;
 	};
 
-	this.update = function(deltaTime, distToPlayer = 0) {
+	this.update = function(deltaTime, distToPlayer = 0, shouldAttack) {
 		currentAnimation.update(deltaTime);
 		isNewState = false;
 		let newState;
@@ -503,7 +503,7 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 		if(isPlayerManager) {
 			updateStateWithUserInput();
 		} else {
-			updateStateWithAI(deltaTime, distToPlayer);
+			updateStateWithAI(deltaTime, distToPlayer, shouldAttack);
 		}
 
 		if(didGetHit) {
@@ -534,8 +534,8 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 		}
 	};
 
-	const updateStateWithAI = function(deltaTime, distToPlayer) {
-		let action = aiManager.actionForTypeTimeStateAndPos(aiType, timeSinceAction, currentState, distToPlayer);
+	const updateStateWithAI = function(deltaTime, distToPlayer, shouldAttack) {
+		let action = aiManager.actionForTypeTimeStateAndPos(aiType, timeSinceAction, currentState, distToPlayer, shouldAttack);
 
 		newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, action));
 		if(newState != currentState) {
@@ -547,6 +547,12 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 				isFacingLeft = false;
 			} else if(action === ACTION.Jump) {
 				isOnGround = false;	
+			} else if(action === ACTION.Release) {
+				if(distToPlayer > 0) {
+					isFacingLeft = false;
+				} else {
+					isFacingLeft = true;
+				}
 			}
 
 		} else {

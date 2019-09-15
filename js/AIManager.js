@@ -13,15 +13,16 @@ const AITYPE = {
 };
 
 const COOLDOWN = {
-	White:900,
-	Yellow:850,
-	Tan:800,
-	Brown:750,
-	Red:650,
-	Black:550
+	White:800,
+	Yellow:750,
+	Tan:700,
+	Brown:650,
+	Red:550,
+	Black:450
 };
 
 const IDEAL_STRIKE_DIST = 60;
+const BUFFER_DIST = 140;
 
 function AIManager() {
 	this.coolDownForBelt = function(belt) {
@@ -66,60 +67,135 @@ function AIManager() {
 		}
 	};
 
-	this.actionForTypeTimeStateAndPos = function(type, timeSinceAction, currentState, distToPlayer) {
+	this.actionForTypeTimeStateAndPos = function(type, timeSinceAction, currentState, distToPlayer, shouldAttack) {
 		if(timeSinceAction < this.coolDownForType(type)) return currentState;
 		
-		if((distToPlayer > maxApproachDistanceForType(type)) || (distToPlayer < -maxApproachDistanceForType(type))) {
-			return ACTION.Release;
-		} else if(distToPlayer > maxStrikeDistanceForType(type)) {
-			return ACTION.Right;
-		} else if(distToPlayer < -maxStrikeDistanceForType(type)) {
-			return ACTION.Left;
+		const desiredDistance = desiredApproachDistance(type, shouldAttack);
+		if(shouldAttack) {
+			if(distToPlayer > maxStrikeDistanceForType(type)) {
+				return ACTION.Right;
+			} else if(distToPlayer < -maxStrikeDistanceForType(type)) {
+				return ACTION.Left;
+			} else {
+				return attackIfAppropriateFor(type, timeSinceAction, currentState, distToPlayer, shouldAttack);
+			}
 		} else {
-			return attackIfAppropriateFor(type, timeSinceAction, currentState, distToPlayer);
+			if(distToPlayer > 0) {
+				if(distToPlayer > desiredDistance + BUFFER_DIST) {
+					return ACTION.Right;
+				} else if(distToPlayer < desiredDistance - BUFFER_DIST) {
+					return ACTION.Left;
+				} else {
+					return ACTION.Release;
+				}
+			} else {
+				if(distToPlayer < -desiredDistance - BUFFER_DIST) {
+					return ACTION.Left;
+				} else if(distToPlayer > -desiredDistance + BUFFER_DIST) {
+					return ACTION.Right;
+				} else {
+					return ACTION.Release;
+				}
+			}
 		}
 	};
 
-	const maxApproachDistanceForType = function(type) {
+	const desiredApproachDistance = function(type, shouldAttack) {
+		let strikeDistance = maxStrikeDistanceForType(type);
 		switch(type) {
 		case AITYPE.BasicWhite:
+			if(shouldAttack) {
+				return strikeDistance;
+			} else {
+				return 5 * strikeDistance;
+			}
 		case AITYPE.BasicYellow:
+			if(shouldAttack) {
+				return strikeDistance;
+			} else {
+				return 4.5 * strikeDistance;
+			}
 		case AITYPE.BasicTan:
+			if(shouldAttack) {
+				return strikeDistance;
+			} else {
+				return 4 * strikeDistance;
+			}
 		case AITYPE.BasicBrown:
+			if(shouldAttack) {
+				return strikeDistance;
+			} else {
+				return 3.5 * strikeDistance;
+			}
 		case AITYPE.BasicRed:
-			return 10000;
+			if(shouldAttack) {
+				return strikeDistance;
+			} else {
+				return 2.5 * strikeDistance;
+			}
 		case AITYPE.BossYellow:
 		case AITYPE.BossTan:
 		case AITYPE.BossBrown:
 		case AITYPE.BossRed:
 		case AITYPE.BossBlack:
-			return 200;
-		}
+			return strikeDistance;
+		}	
 	};
 
 	const maxStrikeDistanceForType = function(type) {
+		let range = IDEAL_STRIKE_DIST;
 		switch(type) {
 		case AITYPE.BasicWhite:
-			return maxStrikeDistanceForWhiteBelt();
+			range = 40;
+			break;
 		case AITYPE.BasicYellow:
+			range = 34;
+			break;
 		case AITYPE.BasicTan:
+			range = 28;
+			break;
 		case AITYPE.BasicBrown:
+			range = 20;
+			break;
 		case AITYPE.BasicRed:
+			range = 10;
+			break;
 		case AITYPE.BossYellow:
+			range = 28;
+			break;
 		case AITYPE.BossTan:
+			range = 20;
+			break;
 		case AITYPE.BossBrown:
+			range = 10;
+			break;
 		case AITYPE.BossRed:
+			range = 6;
+			break;
 		case AITYPE.BossBlack:
-			return IDEAL_STRIKE_DIST;
+			range = 0;
+			break;
 		}
+
+		return maxStrikeDistance(range);
 	};
 
-	const maxStrikeDistanceForWhiteBelt = function() {
-		const rnd = Math.floor(40 * Math.random()) - 20;
+	const maxStrikeDistance = function(range) {
+		const rnd = Math.floor(range * Math.random() - range / 2);
 		return (IDEAL_STRIKE_DIST + rnd);
 	};
 
-	const attackIfAppropriateFor = function(type, timeSinceAction, currentState, distToPlayer) {
+	const attackIfAppropriateFor = function(type, timeSinceAction, currentState, distToPlayer, shouldAttack) {
+		if(shouldAttack != undefined) {
+			if(!shouldAttack) {
+				const approachModifier = 50 * Math.random();
+				if(distToPlayer < 200 + approachModifier) {
+					return ACTION.Release;
+				}
+			} 
+			
+		}
+
 		switch(type) {
 		case AITYPE.BasicWhite:
 			if(timeSinceAction > COOLDOWN.White) {
