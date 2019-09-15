@@ -1,46 +1,76 @@
 //Game Play scene
 function GameScene() {
 	const GRAVITY = 1500;
-	const enemies = [];
-	camera = new Camera();
 	const VERTICAL_OFFSET = 50;
-	const columnManager = new InfiniteColumn(VERTICAL_OFFSET);
-	let levelData;
-	let collisionManager;
-	let subfloor;
-	let floor;
-	let roof;
-	let wall;
+	
+	let camera = null;
+	let enemies = [];
+	let columnManager = null;
+	let levelData = null;
+	let collisionManager = null;
+	let subfloor = null;
+	let floor = null;
+	let roof = null;
+	let wall = null;
 	let floorMidHeight = 0;
 	let timeTilSpawn = 0;
 	let score = 0;
+	let didReset = true;
 
 	this.transitionIn = function() {
-		if(keyMapper === null) {
+		if(keyMapper === null) {//if keyMapper === null, we've never initialized a GameScene
 			keyMapper = new KeyMapper();
 			inputProcessor = new InputProcessor();
+			aiManager = new AIManager();
+			timer.registerEvent(EVENT.EnemySpawn);
+			initializePlayerIfReqd();
 		}
 
-		levelData = dataForCurrentLevel();
-		camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
-		initializeFloor(VERTICAL_OFFSET);
-		InitializeRoof();
-		InitializeBackWall();
-		initializeColumnPositions();
-		
-		aiManager = new AIManager();
-		timer.registerEvent(EVENT.EnemySpawn);
-		initializePlayerIfReqd();
-		
-		initializeCollisionManager(player);
-		
-		initializeLevel();
+		if(didReset) {
+			camera = new Camera();
+			initializeCollisionManager(player);
+			initializeLevel();
+
+			didReset = false;
+		}
+
+		//Don't reinitialize if we're just coming back from the pause screen
+		if((levelData === null) || (currentLevel != levelData.level)) {
+			levelData = dataForCurrentLevel();
+			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
+			initializeFloor(VERTICAL_OFFSET);
+			InitializeRoof();
+			InitializeBackWall();
+			initializeColumns();
+		}
 
 		currentBackgroundMusic.loopSong(gameMusic);
 	};
 
 	this.transitionOut = function() {
 
+	};
+
+	this.reset = function() {
+		didReset = true;
+
+		player.reset();
+		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
+		camera = new Camera();
+
+		enemies = [];
+		columnManager = null;
+		levelData = null;
+		collisionManager = null;
+		subfloor = null;
+		floor = null;
+		roof = null;
+		wall = null;
+		floorMidHeight = 0;
+		timeTilSpawn = 0;
+		score = 0;
+
+		timer.updateEvent(EVENT.EnemySpawn);
 	};
 
 	this.run = function(deltaTime) {
@@ -215,7 +245,8 @@ function GameScene() {
 		}
 	};
 
-	const initializeColumnPositions = function() {
+	const initializeColumns = function() {
+		columnManager = new InfiniteColumn(VERTICAL_OFFSET);
 		columnManager.positionFirstColumn(100 + camera.getPosition().x + 2 * canvas.width / 3);
 	};
 
@@ -271,6 +302,7 @@ function GameScene() {
 }
 
 const Level1Data = {
+	level:1,
 	maxEnemies: 4,
 	spawnRate:function() {
 		return (1250 + Math.ceil(1250 * Math.random()) + Math.ceil(1250 * Math.random()));
@@ -287,6 +319,7 @@ const Level1Data = {
 };
 
 const Level2Data = {
+	level:2,
 	maxEnemies: 4,
 	spawnRate:function() {
 		return (900 + Math.ceil(1225 * Math.random()) + Math.ceil(1225 * Math.random()));
@@ -303,6 +336,7 @@ const Level2Data = {
 };
 
 const Level3Data = {
+	level:3,
 	maxEnemies: 5,
 	spawnRate:function() {
 		return (600 + Math.ceil(1200 * Math.random()) + Math.ceil(1200 * Math.random()));
@@ -319,6 +353,7 @@ const Level3Data = {
 };
 
 const Level4Data = {
+	level:4,
 	maxEnemies: 5,
 	spawnRate:function() {
 		return (350 + Math.ceil(1175 * Math.random()) + Math.ceil(1175 * Math.random()));
@@ -335,6 +370,7 @@ const Level4Data = {
 };
 
 const Level5Data = {
+	level:5,
 	maxEnemies: 6,
 	spawnRate:function() {
 		return (150 + Math.ceil(1150 * Math.random()) + Math.ceil(1150 * Math.random()));

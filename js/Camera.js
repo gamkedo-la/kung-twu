@@ -62,6 +62,6 @@ function Camera() {
 	this.draw = function() {
 		canvasContext.resetTransform();
 		canvasContext.clearRect(0, 0, canvas.width, canvas.height);
-		canvasContext.translate(-position.x + (canvas.width / 2), 0);
+		canvasContext.translate(-(position.x - canvas.width / 2), 0);
 	};
 }

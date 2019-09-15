@@ -108,6 +108,21 @@ function Player(config) {
 		stateManager.incrementBelt();
 	};
 
+	this.reset = function() {
+		velocity = {x:0, y:0};
+	
+		this.health = 100;
+	
+		if(config != undefined) {
+			if(config.x != undefined) {position.x = config.x;}
+			if(config.y != undefined) {position.y = config.y;}
+		}
+
+		stateManager.reset();
+		this.collisionBody = hitBoxManager.bodyColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
+		this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
+	};
+
 	this.update = function(deltaTime, gravity, floorHeight, levelMin, levelMax) {
 		stateManager.update(deltaTime);
 		updateForState(stateManager.getCurrentState());

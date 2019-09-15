@@ -9,19 +9,23 @@ function HelpScene() {
 	const buttonHeight = 25;//TODO: Adjust this size based on custom font
 	const buttonTitlePadding = 2;
 	const buttons = [];
-
+	let canvasPad = 0;
+	let screenPos = 0;
 
 	this.transitionIn = function() {
-		let mainMenuX = 0;
-		const mainMenuY = canvas.height - (9 * buttonHeight / 2);
+		canvasPad = canvas.width / 40;
+		screenPos = -canvasContext.getTransform().m41;
+		const menuY = canvas.height - (9 * buttonHeight / 2);
         
 		if(buttons.length === 0) {
-			buttons.push(buildBackButton(canvas.width / 40, mainMenuY, buttonHeight, buttonTitlePadding));
-			buttons.push(buildPlayButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
+			
+			buttons.push(buildBackButton(screenPos + canvasPad, menuY, buttonHeight, buttonTitlePadding));
+			buttons.push(buildPlayButton(screenPos + canvas.width - canvasPad, menuY, buttonHeight, buttonTitlePadding));
 
-			mainMenuX = canvas.width - (buttons[1].getBounds().width + canvas.width / 40);
-			buttons[1].updateXPosition(mainMenuX);
+			const button1Bounds = buttons[1].getBounds();
+			buttons[1].updateXPosition(button1Bounds.x - button1Bounds.width);
 		} else {
+			updateButtonPositions();
 			updateButtonTitles();
 		}
 
@@ -86,6 +90,9 @@ function HelpScene() {
 
 	const buildPlayButton = function(x, y, height, padding) {
 		const thisClick = function() {
+			if(pauseManager.getIsPaused()) {
+				pauseManager.resumeGame(CAUSE.Keypress);
+			}
 			SceneState.setState(SCENE.GAME);
 		};
 
@@ -98,6 +105,11 @@ function HelpScene() {
 		};
 
 		return new UIButton(STRINGS_KEY.Back, x, y, height, padding, thisClick, Color.Purple);
+	};
+
+	const updateButtonPositions = function() {
+		buttons[0].updateXPosition(screenPos + canvasPad);
+		buttons[1].updateXPosition(screenPos + canvas.width - canvasPad - buttons[1].getBounds().width);
 	};
 
 	const updateButtonTitles = function() {
@@ -125,14 +137,14 @@ function HelpScene() {
 	};
 	
 	const drawBG = function() {
-		canvasContext.drawImage(titleScreenBG,0,0);
-		canvasContext.drawImage(titleScreenDecore,0,0);        
-		canvasContext.drawImage(titleBlock,canvas.width/2-titleBlock.width/2,canvas.height/2-38);        
+		canvasContext.drawImage(titleScreenBG, screenPos, 0);
+		canvasContext.drawImage(titleScreenDecore, screenPos, 0);        
+		canvasContext.drawImage(titleBlock, screenPos + canvas.width / 2 - titleBlock.width / 2, canvas.height / 2 - 38);        
 	};
     
 	const drawTitle = function() {
 		colorText(getLocalizedStringForKey(STRINGS_KEY.HelpScreenTitle), 
-			canvas.width / 2, TITLE_Y_POS, Color.White, Fonts.MainTitle, TextAlignment.Center, true);
+			screenPos + canvas.width / 2, TITLE_Y_POS, Color.White, Fonts.MainTitle, TextAlignment.Center, true);
 	};
 
 	const drawHelpScreenContents = function() {
@@ -140,8 +152,8 @@ function HelpScene() {
 		let lines = getLocalizedStringForKey(STRINGS_KEY.HelpScreenContents).split("\n");
 		for (let num=0; num<lines.length; num++) {
 			colorText(lines[num], 
-				canvas.width / 2, canvas.height / 2 + (num*LINE_HEIGHT), Color.White, 
-				Fonts.CreditsText,TextAlignment.Center,true);
+				screenPos + canvas.width / 2, canvas.height / 2 + (num*LINE_HEIGHT), Color.White, 
+				Fonts.CreditsText, TextAlignment.Center, true);
 		}
 	};
 }

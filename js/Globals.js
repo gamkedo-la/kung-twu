@@ -28,7 +28,6 @@ let keyMapper = null;
 let inputProcessor = null;
 
 //-------------Camera------------------//
-let camera = null;
 const deadZoneHalfWidth = 25;
 
 //---------------Persistence-----------//

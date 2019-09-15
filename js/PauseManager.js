@@ -23,8 +23,6 @@ function PauseManager() {
 		if((pauseCause === CAUSE.Keypress) || ((pauseCause === CAUSE.Focus) && (cause === CAUSE.Focus))) {
 			this.togglePause(null);
 		}
-
-		console.log(`Resuming, cause: ${cause}, PauseCause: ${pauseCause}`);
 	};
 
 	this.togglePause = function(pauseCause) {
@@ -35,7 +33,6 @@ function PauseManager() {
 		}
 
 		if(cause === null) {
-			console.log(`Resuming (in toggle), cause: ${cause}, PauseCause: ${pauseCause}`);
 			resumeSound.play();
 			currentBackgroundMusic.resumeSound();
 			SceneState.popState();

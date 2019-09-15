@@ -479,6 +479,20 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 		}
 	};
 
+	this.reset = function() {
+		currentState = IDLE_STATE;
+		isNewState = true;
+		currentAnimation = theAnimations.idle;
+		belt = BELT.White;
+	
+		landed = false;
+		isOnGround = true;
+		didGetHit = false;
+		isFacingLeft = true;
+		knockBackDidEnd = false;
+		timeSinceAction = 0;
+	};
+
 	this.update = function(deltaTime, distToPlayer = 0) {
 		currentAnimation.update(deltaTime);
 		isNewState = false;

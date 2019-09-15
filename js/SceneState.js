@@ -15,6 +15,11 @@ const SceneState = {
 		//		[SCENE.ENDING]: new EndgameScene()
 	},
 	setState: function(newScene, properties) {
+		if(properties != undefined) {
+			if(properties.didQuit) {
+				this.scenes[SCENE.GAME].reset();
+			}
+		}
 		this.scenes[this.currentScene].transitionOut();
 		this.log.push(this.currentScene);
 		this.currentScene = newScene;
@@ -26,7 +31,7 @@ const SceneState = {
 		return this.log[this.log.length-1];
 	},
 	popState: function(properties) {
-		const previousState = this.getPreviousState();
+		const previousState = this.log.pop();
 		this.scenes[this.currentScene].transitionOut();
 		this.currentScene = previousState;
 		this.scenes[this.currentScene].properties = properties;

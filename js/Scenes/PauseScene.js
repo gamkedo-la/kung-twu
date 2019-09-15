@@ -15,7 +15,8 @@ function PauseScene() {
 	let screenPos = 0;
 
 	this.transitionIn = function() {
-		screenPos = camera.getPosition().x - canvas.width / 2;
+		console.log(`Pause is Transitioning In`);
+		screenPos = -canvasContext.getTransform().m41;
 		let mainMenuX = screenPos;
 		const BUTTON_PADDING = 0.9 * buttonHeight;
 		const mainMenuY = BUTTON_PADDING + (canvas.height / 2);
@@ -107,8 +108,6 @@ function PauseScene() {
 
 	const buildResumeButton = function(x, y, height, padding) {
 		const thisClick = function() {
-//			SceneState.popState();
-			console.log(`Resuming in Resume Button`);
 			pauseManager.resumeGame(CAUSE.Keypress);
 		};
 
@@ -117,7 +116,11 @@ function PauseScene() {
 
 	const buildQuitButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			SceneState.setState(SCENE.TITLE);
+			if(pauseManager.getIsPaused()) {
+				pauseManager.resumeGame(CAUSE.Keypress);
+			}
+
+			SceneState.setState(SCENE.TITLE, {didQuit:true});
 		};
 
 		return new UIButton(STRINGS_KEY.Quit, x, y, height, padding, thisClick, Color.Orange);
