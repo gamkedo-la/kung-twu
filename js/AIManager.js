@@ -68,7 +68,8 @@ function AIManager() {
 	};
 
 	this.actionForTypeTimeStateAndPos = function(type, timeSinceAction, currentState, distToPlayer, shouldAttack) {
-		if(timeSinceAction < this.coolDownForType(type)) return currentState;
+		const thisCoolDown = this.coolDownForType(type);
+		if(timeSinceAction < thisCoolDown) return currentState;
 		
 		const desiredDistance = desiredApproachDistance(type, shouldAttack);
 		if(shouldAttack) {
@@ -77,7 +78,7 @@ function AIManager() {
 			} else if(distToPlayer < -maxStrikeDistanceForType(type)) {
 				return ACTION.Left;
 			} else {
-				return attackIfAppropriateFor(type, timeSinceAction, currentState, distToPlayer, shouldAttack);
+				return attackIfAppropriateFor(type, timeSinceAction, currentState, distToPlayer, shouldAttack, thisCoolDown);
 			}
 		} else {
 			if(distToPlayer > 0) {
@@ -185,7 +186,7 @@ function AIManager() {
 		return (IDEAL_STRIKE_DIST + rnd);
 	};
 
-	const attackIfAppropriateFor = function(type, timeSinceAction, currentState, distToPlayer, shouldAttack) {
+	const attackIfAppropriateFor = function(type, timeSinceAction, currentState, distToPlayer, shouldAttack, cooldown) {
 		if(shouldAttack != undefined) {
 			if(!shouldAttack) {
 				const approachModifier = 50 * Math.random();
@@ -198,23 +199,58 @@ function AIManager() {
 
 		switch(type) {
 		case AITYPE.BasicWhite:
-			if(timeSinceAction > COOLDOWN.White) {
+			if(timeSinceAction > cooldown) {
 				return attackActionForWhiteBelt();
-			} else {
-				return ACTION.Release;
-			}
+			} 
+			break;
 		case AITYPE.BasicYellow:
+			if(timeSinceAction > cooldown) {
+				return attackActionForYellowBelt();
+			}
+			break;
 		case AITYPE.BasicTan:
+			if(timeSinceAction > cooldown) {
+				return attackActionForTanBelt(currentState);
+			}
+			break;
 		case AITYPE.BasicBrown:
+			if(timeSinceAction > cooldown) {
+				return attackActionForBrownBelt(currentState);
+			}
+			break;
 		case AITYPE.BasicRed:
-			return ACTION.Kick;
+			if(timeSinceAction > cooldown) {
+				return attackActionForRedBelt(currentState);
+			}
+			break;
 		case AITYPE.BossYellow:
+			if(timeSinceAction > cooldown) {
+				return attackActionForYellowBossBelt();
+			}
+			break;
 		case AITYPE.BossTan:
+			if(timeSinceAction > cooldown) {
+				return attackActionForTanBossBelt(currentState);
+			}
+			break;
 		case AITYPE.BossBrown:
+			if(timeSinceAction > cooldown) {
+				return attackActionForBrownBossBelt(currentState);
+			}
+			break;
 		case AITYPE.BossRed:
+			if(timeSinceAction > cooldown) {
+				return attackActionForRedBossBelt(currentState);
+			}
+			break;
 		case AITYPE.BossBlack:
-			return ACTION.Release;
+			if(timeSinceAction > cooldown) {
+				return attackActionForBlackBossBelt(currentState);
+			}
+			break;
 		}
+
+		return ACTION.Release;
 	};
 
 	const attackActionForWhiteBelt = function() {
@@ -223,6 +259,269 @@ function AIManager() {
 			return ACTION.Punch;
 		} else {
 			return ACTION.Kick;
+		}
+	};
+
+	const attackActionForYellowBelt = function() {
+		const rnd = (Math.floor(100 * Math.random())) % 7;
+
+		if(rnd < 2) {
+			return ACTION.Punch;
+		} else if(rnd< 4) {
+			return ACTION.Kick;
+		} else if(rnd < 5) {
+			return ACTION.Block;
+		} else if(rnd < 6) {
+			return ACTION.Dash;
+		} else {
+			return ACTION.Jump;
+		}
+	};
+
+	const attackActionForTanBelt = function(currentState) {
+		const rnd = (Math.floor(100 * Math.random())) % 9;
+
+		if(currentState === CROUCH_STATE) {
+			if(rnd < 5) {
+				return ACTION.Kick;
+			} else if(rnd < 7) {
+				return ACTION.Crouch;
+			} else {
+				return ACTION.Release;
+			}
+		} else {
+			if(rnd < 2) {
+				return ACTION.Punch;
+			} else if(rnd< 4) {
+				return ACTION.Kick;
+			} else if(rnd < 5) {
+				return ACTION.Block;
+			} else if(rnd < 6) {
+				return ACTION.Dash;
+			} else if(rnd < 7) {
+				return ACTION.Jump;
+			} else {
+				return ACTION.Crouch;
+			}
+		}
+	};
+
+	const attackActionForBrownBelt = function(currentState) {
+		const rnd = (Math.floor(100 * Math.random())) % 9;
+
+		if(currentState === CROUCH_STATE) {
+			if(rnd < 5) {
+				return ACTION.Kick;
+			} else if(rnd < 7) {
+				return ACTION.Crouch;
+			} else {
+				return ACTION.Release;
+			}
+		} else if(currentState === JUMP_STATE) {
+			if(rnd < 7) {
+				return ACTION.Kick;
+			}
+		} else {
+			if(rnd < 2) {
+				return ACTION.Punch;
+			} else if(rnd< 4) {
+				return ACTION.Kick;
+			} else if(rnd < 5) {
+				return ACTION.Block;
+			} else if(rnd < 6) {
+				return ACTION.Dash;
+			} else if(rnd < 7) {
+				return ACTION.Crouch;
+			} else {
+				return ACTION.Jump;
+			}
+		}
+	};
+
+	const attackActionForRedBelt = function(currentState) {
+		const rnd = (Math.floor(100 * Math.random())) % 9;
+
+		if(currentState === CROUCH_STATE) {
+			if(rnd < 5) {
+				return ACTION.Kick;
+			} else if(rnd < 7) {
+				return ACTION.Crouch;
+			} else {
+				return ACTION.Release;
+			}
+		} else if(currentState === JUMP_STATE) {
+			if(rnd < 7) {
+				return ACTION.Kick;
+			}
+		} else if(currentState === DASH_STATE) {
+			if(rnd < 7) {
+				return ACTION.Kick;
+			}
+		} else {
+			if(rnd < 2) {
+				return ACTION.Punch;
+			} else if(rnd< 4) {
+				return ACTION.Kick;
+			} else if(rnd < 5) {
+				return ACTION.Block;
+			} else if(rnd < 6) {
+				return ACTION.Dash;
+			} else if(rnd < 7) {
+				return ACTION.Crouch;
+			} else {
+				return ACTION.Jump;
+			}
+		}
+	};
+
+	const attackActionForYellowBossBelt = function() {
+		const rnd = (Math.floor(100 * Math.random())) % 11;
+
+		if(rnd < 2) {
+			return ACTION.Punch;
+		} else if(rnd< 4) {
+			return ACTION.Kick;
+		} else if(rnd < 5) {
+			return ACTION.Block;
+		} else if(rnd < 6) {
+			return Action.Crouch;
+		} else if(rnd < 7) {
+			return ACTION.Jump;
+		} else {
+			return ACTION.Dash;
+		}	
+	};
+
+	const attackActionForTanBossBelt = function(currentState) {
+		const rnd = (Math.floor(100 * Math.random())) % 11;
+
+		if(currentState === CROUCH_STATE) {
+			if(rnd < 7) {
+				return ACTION.Kick;
+			} else if(rnd < 10) {
+				return ACTION.Crouch;
+			} else {
+				return ACTION.Release;
+			}
+		} else {
+			if(rnd < 2) {
+				return ACTION.Punch;
+			} else if(rnd< 4) {
+				return ACTION.Kick;
+			} else if(rnd < 5) {
+				return ACTION.Block;
+			} else if(rnd < 6) {
+				return ACTION.Dash;
+			} else if(rnd < 8) {
+				return ACTION.Jump;
+			} else {
+				return ACTION.Crouch;
+			}
+		}
+	};
+
+	const attackActionForBrownBossBelt = function(currentState) {
+		const rnd = (Math.floor(100 * Math.random())) % 11;
+
+		if(currentState === CROUCH_STATE) {
+			if(rnd < 6) {
+				return ACTION.Kick;
+			} else if(rnd < 8) {
+				return ACTION.Crouch;
+			} else {
+				return ACTION.Release;
+			}
+		} else if(currentState === JUMP_STATE) {
+			if(rnd < 9) {
+				return ACTION.Kick;
+			}
+		} else {
+			if(rnd < 2) {
+				return ACTION.Punch;
+			} else if(rnd< 4) {
+				return ACTION.Kick;
+			} else if(rnd < 5) {
+				return ACTION.Block;
+			} else if(rnd < 7) {
+				return ACTION.Dash;
+			} else if(rnd < 8) {
+				return ACTION.Crouch;
+			} else {
+				return ACTION.Jump;
+			}
+		}
+	};
+
+	const attackActionForRedBossBelt = function(currentState) {
+		const rnd = (Math.floor(100 * Math.random())) % 11;
+
+		if(currentState === CROUCH_STATE) {
+			if(rnd < 6) {
+				return ACTION.Kick;
+			} else if(rnd < 8) {
+				return ACTION.Crouch;
+			} else {
+				return ACTION.Release;
+			}
+		} else if(currentState === JUMP_STATE) {
+			if(rnd < 9) {
+				return ACTION.Kick;
+			}
+		} else if(currentState === DASH_STATE) {
+			if(rnd < 9) {
+				return ACTION.Kick;
+			}
+		} else {
+			if(rnd < 2) {
+				return ACTION.Punch;
+			} else if(rnd< 5) {
+				return ACTION.Kick;
+			} else if(rnd < 6) {
+				return ACTION.Block;
+			} else if(rnd < 7) {
+				return ACTION.Jump;
+			} else if(rnd < 8) {
+				return ACTION.Crouch;
+			} else {
+				return ACTION.Dash;
+			}
+		}
+	};
+
+	const attackActionForBlackBossBelt = function(currentState) {
+		//TODO: Does the final boss have a special skill nobody else does?
+		const rnd = (Math.floor(100 * Math.random())) % 11;
+
+		if(currentState === CROUCH_STATE) {
+			if(rnd < 6) {
+				return ACTION.Kick;
+			} else if(rnd < 8) {
+				return ACTION.Crouch;
+			} else {
+				return ACTION.Release;
+			}
+		} else if(currentState === JUMP_STATE) {
+			if(rnd < 9) {
+				return ACTION.Kick;
+			}
+		} else if(currentState === DASH_STATE) {
+			if(rnd < 9) {
+				return ACTION.Kick;
+			}
+		} else {
+			if(rnd < 2) {
+				return ACTION.Punch;
+			} else if(rnd< 5) {
+				return ACTION.Kick;
+			} else if(rnd < 6) {
+				return ACTION.Block;
+			} else if(rnd < 7) {
+				return ACTION.Jump;
+			} else if(rnd < 8) {
+				return ACTION.Crouch;
+			} else {
+				return ACTION.Dash;
+			}
 		}
 	};
 }
