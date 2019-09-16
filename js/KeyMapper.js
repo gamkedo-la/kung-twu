@@ -35,19 +35,25 @@ function KeyMapper() {
 	const setDefaultMapping = function() {
 		walkLeft.add(KEY_LEFT);
 		walkLeft.add(KEY_A);
+		walkLeft.add(LEFT_STICK_LEFT);
 		walkRight.add(KEY_RIGHT);
 		walkRight.add(KEY_D);
+		walkRight.add(LEFT_STICK_RIGHT);
 		jump.add(KEY_UP);
 		jump.add(KEY_W);
 		jump.add(KEY_C);
+		jump.add(LEFT_STICK_UP);
 		dash.add(KEY_SPACE);
 		block.add(KEY_B);
 		crouch.add(KEY_DOWN);
 		crouch.add(KEY_S);
+		crouch.add(LEFT_STICK_DOWN);
 		kick.add(KEY_G);
 		kick.add(KEY_X);
+		kick.add(CROSS_BUTTON);
 		punch.add(KEY_F);
 		punch.add(KEY_Z);
+		punch.add(SQUARE_BUTTON);
 	};
 
 	const getCurrentMapping = function() {

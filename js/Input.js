@@ -57,10 +57,22 @@ let mouseX = 0;
 const LEFT_MOUSE_BUTTON = "LeftMouseButton";
 const RIGHT_MOUSE_BUTTON = "RightMouseButton";
 
-const DPAD_UP = "DPad-Up";
-const DPAD_DOWN = "DPad-Down";
-const DPAD_LEFT = "DPad-Left";
-const DPAD_RIGHT = "DPad-Right";
+const CROSS_BUTTON = "cross";
+const CIRCLE_BUTTON = "circle";
+const SQUARE_BUTTON = "square";
+const TRIANGLE_BUTTON = "triangle";
+const LEFT_STICK_LEFT = "leftStickLeft";
+const LEFT_STICK_RIGHT = "leftStickRight";
+const LEFT_STICK_UP = "leftStickUp";
+const LEFT_STICK_DOWN = "leftStickDown";
+const RIGHT_STICK_LEFT = "rightStickLeft";
+const RIGHT_STICK_RIGHT = "rightStickRight";
+const RIGHT_STICK_UP = "rightStickUp";
+const RIGHT_STICK_DOWN = "rightStickDown";
+const DPAD_LEFT = "DPadLeft";
+const DPAD_RIGHT = "DPadRight";
+const DPAD_UP = "DPadUp";
+const DPAD_DOWN = "DPadDown";
 
 const heldButtons = [];
 const ALIAS = {
@@ -85,89 +97,197 @@ const ALIAS = {
 	LEVEL_UP:KEY_L //Debug mode input
 };
 
-const PAD_ALIAS = {
-	UP: DPAD_UP,
-	DOWN: DPAD_DOWN,
-	LEFT: DPAD_LEFT,
-	RIGHT: DPAD_RIGHT
-};
-const AXIS_PRECISION = 0.2;
+const AXIS_PRECISION = 0.52;
 const HORIZONTAL_AXIS = "horizontal";
 const VERTICAL_AXIS = "vertical";
-let gamepadAPI = {
+const gamepad = {
 	controllerIndex: undefined,
 	active: false,
 	connect: function (evt) {
-		gamepadAPI.controllerIndex = evt.gamepad.index;
-		gamepadAPI.active = true;
-		console.log("Gamepad connected.");
+		gamepad.controllerIndex = evt.gamepad.index;
+		gamepad.active = true;
+		console.log(`Gamepad connected.`);
 	},
 
-	disconnect: function () {
-		gamepadAPI.active = false;
-		delete gamepadAPI.controllerIndex;
+	disconnect: function() {
+		gamepad.active = false;
+		delete gamepad.controllerIndex;
 		console.log("Gamepad disconnected.");
 	},
 
-	update: function () {
-		gamepadAPI.buttons.cache = [];
-		for (let i = 0; i < gamepadAPI.buttons.status.length; i++) {
-			gamepadAPI.buttons.cache[i] = gamepadAPI.buttons.status[i];
+	update: function() {
+		let controller = navigator.getGamepads()[gamepad.controllerIndex];
+		if (controller) {
+			gamepad.buttons.update(controller.buttons);
+			gamepad.axes.update(controller.axes);
 		}
-		gamepadAPI.buttons.status = [];
-		let c = navigator.getGamepads()[gamepadAPI.controllerIndex] || {};
-		let pressed = [];
-		if (c.buttons) {
-			for (let i = 0, l = c.buttons.length; i < l; i++) {
-				if (c.buttons[i].pressed) {
-					pressed[i] = gamepadAPI.buttons.layout[i];
-				}
-			}
-		}
-		let axes = [];
-		if (c.axes) {
-			for (let i = 0, l = c.axes.length; i < l; i++) {
-				axes[i] = c.axes[i].toFixed(2);
-			}
-		}
-		gamepadAPI.axes.status = axes;
-		gamepadAPI.buttons.status = pressed;
-
-		return pressed;
 	},
+
+	clear: function() {
+		gamepad.buttons.clear();
+		gamepad.axes.clear();
+	},
+
 	buttons: {
-		layout: {
-			12: DPAD_UP,
-			13: DPAD_DOWN,
-			14: DPAD_LEFT,
-			15: DPAD_RIGHT
+		justPressed: [],
+		getJustPressed: function() {
+			return gamepad.buttons.justReleased;
 		},
-		cache: [],
-		status: [],
-		pressed: function (button, hold) {
-			let newPress = false;
-			for (let i = 0, l = gamepadAPI.buttons.status.length; i < l; i++) {
-				if (gamepadAPI.buttons.status[i] == button) {
-					newPress = true;
-					if (!hold) {
-						for (let j = 0, len=gamepadAPI.buttons.cache.length; j < len; j++) {
-							if (gamepadAPI.buttons.cache[j] == button) {
-								newPress = false;
-							}
-						}
+		held: [],
+		getHeld: function() {
+			return gamepad.buttons.held;
+		},
+		justReleased: [],
+		getJustReleased: function() {
+			return gamepad.buttons.justReleased;
+		},
+		update: function(controllerButtons) {
+			gamepad.buttons.justPressed = [];
+			gamepad.buttons.justReleased = [];
+
+			for(let i = 0; i < controllerButtons.length; i++) {
+				const thisButton = controllerButtons[i];
+				let thisButtonName = gamepadButtonNameForIndex(i);
+				let wasHeld = false;
+				let j = 0; 
+				for(;j < gamepad.buttons.held.length; j++) {
+					if(thisButtonName === gamepad.buttons.held[j]) {
+						wasHeld = true;
+						break;
 					}
 				}
-			}
-			return newPress;
-		},
-		held: function (button) {
-			return gamepadAPI.buttons.pressed(button, "hold");
+
+				if(thisButton.pressed) {
+					if(!wasHeld) {
+						gamepad.buttons.justPressed.push(thisButtonName);
+						gamepad.buttons.held.push(thisButtonName);
+					}
+				} else {
+					if(wasHeld) {
+						gamepad.buttons.held.splice(j, 1);
+						gamepad.buttons.justReleased.push(thisButtonName);
+					}
+				}//end if/else button was pressed
+			}//end loop through gamepad buttons
+		},//end buttons.update()
+
+		clear: function() {
+			gamepad.buttons.justPressed = [];
+			gamepad.buttons.justReleased = [];
+			gamepad.buttons.held = [];
 		}
-	},
+	},//end buttons object
+
 	axes: {
-		status: []
+		justPressed: [],
+		getJustPressed: function() {
+			return gamepad.axes.justReleased;
+		},
+		held: [],
+		getHeld: function() {
+			return gamepad.axes.held;
+		},
+		justReleased: [],
+		getJustReleased: function() {
+			return gamepad.axes.justReleased;
+		},
+		update: function(controllerAxes) {
+			gamepad.axes.justPressed = [];
+			gamepad.axes.justReleased = [];
+
+			let shouldRecheck = false;
+			for (let i = 0; i < controllerAxes.length; i++) {
+				const thisAxis = controllerAxes[i];
+				let thisAxisName = null;
+				let thisAxisPressed = false;
+				if((thisAxis > AXIS_PRECISION) ||
+				(thisAxis < -AXIS_PRECISION)) {
+					thisAxisName = gamepadAxisNameForIndexAndValue(i, controllerAxes[i]);
+					thisAxisPressed = true;
+					shouldRecheck = false;
+				} else {
+					if(shouldRecheck) {
+						shouldRecheck = false;
+						thisAxisName = gamepadAxisNameForIndexAndValue(i, controllerAxes[i] + 1);	
+					} else {
+						shouldRecheck = true;
+						thisAxisName = gamepadAxisNameForIndexAndValue(i, controllerAxes[i] - 1);
+						i -= 1;	
+					}
+				}
+
+				let wasHeld = false;
+				let j = 0; 
+				for(;j < gamepad.axes.held.length; j++) {
+					if(thisAxisName === gamepad.axes.held[j]) {
+						wasHeld = true;
+						break;
+					}
+				}
+
+				if(thisAxisPressed) {
+					if(!wasHeld) {
+						gamepad.axes.justPressed.push(thisAxisName);
+						gamepad.axes.held.push(thisAxisName);
+					}
+				} else {
+					if(wasHeld) {
+						gamepad.axes.held.splice(j, 1);
+						gamepad.axes.justReleased.push(thisAxisName);
+					}
+				}//end if/else button was pressed
+			}//end loop through gamepad buttons
+		},//end axes.update()
+
+		clear: function() {
+			gamepad.axes.justPressed = [];
+			gamepad.axes.justReleased = [];
+			gamepad.axes.held = [];
+		},
+	}//end axes object
+};//end gamepad object
+
+function gamepadButtonNameForIndex(index) {
+	switch(index) {
+	case 0:
+		return CROSS_BUTTON;
+	case 1:
+		return CIRCLE_BUTTON;
+	case 2:
+		return SQUARE_BUTTON;
+	case 3:
+		return TRIANGLE_BUTTON;												
 	}
-};
+}
+
+function gamepadAxisNameForIndexAndValue(index, value) {
+	switch(index) {
+	case 0:
+		if(value < 0) {
+			return LEFT_STICK_LEFT;
+		} else {
+			return LEFT_STICK_RIGHT;
+		}
+	case 1:
+		if(value < 0) {
+			return LEFT_STICK_UP;
+		} else {
+			return LEFT_STICK_DOWN;
+		}
+	case 2:
+		if(value < 0) {
+			return RIGHT_STICK_LEFT;
+		} else {
+			return RIGHT_STICK_RIGHT;
+		}
+	case 3:
+		if(value < 0) {
+			return RIGHT_STICK_UP;
+		} else {
+			return RIGHT_STICK_DOWN;
+		}
+	}
+}
 
 function getAxis(axis) {
 	if (HORIZONTAL_AXIS.localeCompare(axis, undefined, { sensitivity: "accent" }) == 0) {
@@ -178,13 +298,13 @@ function getAxis(axis) {
 				return 1.0;
 		}
 
-		if (gamepadAPI.active) {
-			if (gamepadAPI.buttons.held(PAD_ALIAS.LEFT))
+		if (gamepad.active) {
+			if (gamepad.buttons.held(PAD_ALIAS.LEFT))
 				return -1.0;
-			else if (gamepadAPI.buttons.held(PAD_ALIAS.RIGHT))
+			else if (gamepad.buttons.held(PAD_ALIAS.RIGHT))
 				return 1.0;
 
-			let axis = gamepadAPI.axes.status[0];
+			let axis = gamepad.axes.status[0];
 			return axis > -AXIS_PRECISION && axis < AXIS_PRECISION ? 0.0 : axis;
 		}
 	} else if (VERTICAL_AXIS.localeCompare(axis, undefined, { sensitivity: "accent" }) == 0) {
@@ -195,13 +315,13 @@ function getAxis(axis) {
 				return 1.0;
 		}
 
-		if (gamepadAPI.active) {
-			if (gamepadAPI.buttons.held(PAD_ALIAS.UP))
+		if (gamepad.active) {
+			if (gamepad.buttons.held(PAD_ALIAS.UP))
 				return -1.0;
-			else if (gamepadAPI.buttons.held(PAD_ALIAS.DOWN))
+			else if (gamepad.buttons.held(PAD_ALIAS.DOWN))
 				return 1.0;
 
-			let axis = gamepadAPI.axes.status[1];
+			let axis = gamepad.axes.status[1];
 			return axis > -AXIS_PRECISION && axis < AXIS_PRECISION ? 0.0 : axis;
 		}
 	}
@@ -215,9 +335,11 @@ function initializeInput() {
 	document.addEventListener("mousedown", mouseButtonPressed);
 	document.addEventListener("mouseup", mouseButtonReleased);
 	document.addEventListener("mousemove", calculateMousePos);
-	// The following events don't work on document it appears
-	window.addEventListener("gamepadconnected", gamepadAPI.connect);
-	window.addEventListener("gamepaddisconnected", gamepadAPI.disconnect);
+
+	//The following events are on the window as  
+	//they don't seem to work on the document
+	window.addEventListener("gamepadconnected", gamepad.connect);
+	window.addEventListener("gamepaddisconnected", gamepad.disconnect);
 }
 
 function notifyCurrentScene(newInput, pressed) {

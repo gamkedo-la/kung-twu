@@ -7,22 +7,25 @@ function InputProcessor() {
 	this.clear = function() {
 		newKeys.clear();
 		releasedKeys.clear();
+		gamepad.clear();
 	};
 
 	this.getNewlyActiveKeys = function() {
-		return Array.from(newKeys);
-	};
-
-	this.newlyActiveKeysHas = function(keyToLookFor) {
-		return newKeys.has(keyToLookFor);
+		let result = gamepad.buttons.getJustPressed();
+		result = result.concat(gamepad.axes.getJustPressed());
+		return result.concat(Array.from(newKeys));
 	};
 
 	this.getCurrentlyActiveKeys = function() {
-		return Array.from(currentKeys);
+		let result = gamepad.buttons.getHeld();
+		result = result.concat(gamepad.axes.getHeld());
+		return result.concat(Array.from(currentKeys));
 	};
 
 	this.getNewlyReleasedKeys = function() {
-		return Array.from(releasedKeys);
+		let result = gamepad.buttons.getJustReleased();
+		result = result.concat(gamepad.axes.getJustReleased());
+		return result.concat(Array.from(releasedKeys));
 	};
 
 	this.addActiveKey = function(newActiveKey) {

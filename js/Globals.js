@@ -31,7 +31,7 @@ let inputProcessor = null;
 const deadZoneHalfWidth = 25;
 
 //---------------Persistence-----------//
-const version = 0.1;
+const version = 0.25;
 let localStorageHelper;
 const localStorageKey = {
 	Version:"kungTwu-Version",

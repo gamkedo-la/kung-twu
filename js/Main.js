@@ -65,8 +65,8 @@ function updateButtonText() {
 function update() {
 	const deltaTime = timer.update();
 
-	if (gamepadAPI.active) {
-		gamepadAPI.update();
+	if (gamepad.active) {
+		gamepad.update();
 	}
 
 	SceneState.run(deltaTime);
