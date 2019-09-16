@@ -109,6 +109,19 @@ function gamepadButtonNameForIndex(index) {
 	case 1: return CIRCLE_BUTTON;
 	case 2: return SQUARE_BUTTON;
 	case 3: return TRIANGLE_BUTTON;												
+	case 4: return L1_BUTTON;
+	case 5: return R1_BUTTON;
+	case 6: return L2_BUTTON;
+	case 7: return R2_BUTTON;												
+	case 8: return PAD_SHARE;
+	case 9: return PAD_OPTIONS;
+	case 10: return SQUARE_BUTTON;
+	case 11: return TRIANGLE_BUTTON;												
+	case 12: return DPAD_UP;
+	case 13: return DPAD_DOWN;
+	case 14: return DPAD_LEFT;
+	case 15: return DPAD_RIGHT;	
+	case 16: return PAD_POWER;											
 	}
 }
 
