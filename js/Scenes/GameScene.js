@@ -181,8 +181,8 @@ function GameScene() {
 
 	const drawUI = function(cameraX) {//TODO: We need a way to find out how wide these strings will be, should be easy with a custom font
 		const screenLeft = cameraX - canvas.width / 2;
-		drawRect( screenLeft + 180, 60, 160,22, Color.Orange);
-		drawRect(38,67, Math.ceil(getLocalizedStringForKey(STRINGS_KEY.Health / getLocalizedStringForKey(STRINGS_KEY.maxHealth)* 160)),22, "#cd1616");
+		drawRect( screenLeft + 180, 60, player.health,22, Color.Orange);
+		// drawRect(38,67, Math.ceil(getLocalizedStringForKey(STRINGS_KEY.Health / getLocalizedStringForKey(STRINGS_KEY.maxHealth)* 160)),22, "#cd1616");
 		colorText(getLocalizedStringForKey(STRINGS_KEY.Score), screenLeft + 40, 40, Color.White, Fonts.Subtitle, TextAlignment.Left);
 		let stringScore = score.toString();
 		while(stringScore.length < 9) {
