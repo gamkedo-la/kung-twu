@@ -14,6 +14,11 @@ function TitleScene() {
 	const birds = [];
 
 	this.transitionIn = function() {
+		if(keyMapper === null) {//we've never initialied the input/key mapping objects
+			keyMapper = new KeyMapper();
+			inputProcessor = new InputProcessor();
+		}
+
 		let mainMenuX = 0;
 		const BUTTON_PADDING = 0.9 * buttonHeight;
 		const mainMenuY = BUTTON_PADDING + (canvas.height / 2);
@@ -61,28 +66,6 @@ function TitleScene() {
 		}
         
 		switch (newKeyEvent) {
-		case ALIAS.UP:
-		case ALIAS.LEFT:
-			selectorPositionsIndex--;
-			if (selectorPositionsIndex < 0) {
-				selectorPositionsIndex += selections.length;
-			}
-			selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
-			return true;
-		case ALIAS.DOWN:
-		case ALIAS.RIGHT:
-			selectorPositionsIndex++;
-			if (selectorPositionsIndex >= selections.length) {
-				selectorPositionsIndex = 0;
-			}
-			selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
-			return true;
-		case ALIAS.SELECT1:
-			SceneState.setState(selections[selectorPositionsIndex]);
-			return true;
-		case ALIAS.SELECT2:
-			SceneState.setState(SCENE.GAME);
-			return true;
 		case ALIAS.HELP:
 			SceneState.setState(SCENE.HELP);
 			return true;
@@ -199,9 +182,48 @@ function TitleScene() {
 	};
 	
 	const update = function(deltaTime) {
+		processUserInput();
+
 		for(let i = 0; i < birds.length; i++) {
 			birds[i].update(deltaTime);
 		}
+	};
+
+	const processUserInput = function() {
+		const navKeys = inputProcessor.getNewlyActiveKeys();
+//		console.log(`Nav Key Length: ${navKeys.length}`);
+		for(let i = 0; i < navKeys.length; i++) {
+			const newNavAction = keyMapper.getNavActionForKey(navKeys[i]);
+			if(newNavAction != null) {
+				switch(newNavAction) {
+				case NAV_ACTION.UP:
+				case NAV_ACTION.LEFT:
+					selectorPositionsIndex--;
+					if (selectorPositionsIndex < 0) {
+						selectorPositionsIndex += selections.length;
+					}
+					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
+					break;			
+				case NAV_ACTION.DOWN:
+				case NAV_ACTION.RIGHT:
+					selectorPositionsIndex++;
+					if (selectorPositionsIndex >= selections.length) {
+						selectorPositionsIndex = 0;
+					}
+					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
+					break;
+				case NAV_ACTION.SELECT:
+					SceneState.setState(selections[selectorPositionsIndex]);
+					break;
+				case NAV_ACTION.BACK:
+					break;//nowhere to go 'back' to
+				case NAV_ACTION.PAUSE:
+
+				}
+			}
+		}
+
+		inputProcessor.clear();
 	};
 	
 	const draw = function(deltaTime, buttons, selectorPositionIndex) {

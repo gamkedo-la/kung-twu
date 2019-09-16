@@ -115,8 +115,8 @@ function gamepadButtonNameForIndex(index) {
 	case 7: return R2_BUTTON;												
 	case 8: return PAD_SHARE;
 	case 9: return PAD_OPTIONS;
-	case 10: return SQUARE_BUTTON;
-	case 11: return TRIANGLE_BUTTON;												
+	case 10: return LEFT_STICK_BUTTON;
+	case 11: return RIGHT_STICK_BUTTON;												
 	case 12: return DPAD_UP;
 	case 13: return DPAD_DOWN;
 	case 14: return DPAD_LEFT;

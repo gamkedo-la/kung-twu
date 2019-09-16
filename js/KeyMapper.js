@@ -10,16 +10,25 @@ const ACTION_ALIAS = {
 	PUNCH:"punch"
 };
 
-/*switch() {
-	case ACTION_ALIAS.WALK_LEFT:
-	case ACTION_ALIAS.WALK_RIGHT:
-	case ACTION_ALIAS.JUMP:
-	case ACTION_ALIAS.DASH:
-	case ACTION_ALIAS.BLOCK:
-	case ACTION_ALIAS.CROUCH:
-	case ACTION_ALIAS.KICK:
-	case ACTION_ALIAS.PUNCH:
-}*/
+const NAVIGATION_ALIAS = {
+	UP:"navUp",
+	DOWN:"navDown",
+	LEFT:"navLeft",
+	RIGHT:"navRight",
+	SELECT:"navSelect",
+	BACK:"navBack",
+	PAUSE:"navPause"
+};
+
+const NAV_ACTION = {
+	UP:"navUp",
+	DOWN:"navDown",
+	LEFT:"navLeft",
+	RIGHT:"navRight",
+	SELECT:"navSelect",
+	BACK:"navBack",
+	PAUSE:"navPause"
+};
 
 //Key Mapper
 function KeyMapper() {
@@ -31,6 +40,14 @@ function KeyMapper() {
 	const crouch = new Set();
 	const kick = new Set();
 	const punch = new Set();
+
+	const navLeft = new Set([KEY_LEFT, KEY_A, LEFT_STICK_LEFT, RIGHT_STICK_LEFT, L1_BUTTON, L2_BUTTON, DPAD_LEFT]);
+	const navRight = new Set([KEY_RIGHT, KEY_D, LEFT_STICK_RIGHT, RIGHT_STICK_RIGHT, R1_BUTTON, R2_BUTTON, DPAD_RIGHT]);
+	const navUp = new Set([KEY_UP, KEY_W, LEFT_STICK_UP, RIGHT_STICK_UP, DPAD_UP]);
+	const navDown = new Set([KEY_DOWN, KEY_S, LEFT_STICK_DOWN, RIGHT_STICK_DOWN, DPAD_DOWN]);
+	const navSelect = new Set([KEY_SPACE, KEY_ENTER, CROSS_BUTTON]);
+	const navBack = new Set([KEY_ESCAPE, CIRCLE_BUTTON]);
+	const navPause = new Set([KEY_P, PAD_OPTIONS]);
 
 	const setDefaultMapping = function() {
 		walkLeft.add(KEY_LEFT);
@@ -116,6 +133,17 @@ function KeyMapper() {
 		punch:7
 	};
 
+	const NAVIGATION_SET = [navLeft, navRight, navUp, navDown, navSelect, navBack, navPause];
+	const NAVIGATION_INDEX = {
+		left:0,
+		right:1,
+		up:2,
+		down:3,
+		select:4,
+		back:5,
+		pause:6
+	};
+
 	this.getActionForKey = function(key) {
 		if(walkLeft.has(key)) return ACTION.Left;
 		if(walkRight.has(key)) return ACTION.Right;
@@ -126,6 +154,17 @@ function KeyMapper() {
 		if(kick.has(key)) return ACTION.Kick;
 		if(punch.has(key)) return ACTION.Punch;
 		return null;//if the key doesn't map to any actions
+	};
+
+	this.getNavActionForKey = function(key) {
+		if(navLeft.has(key)) return NAV_ACTION.LEFT;
+		if(navRight.has(key)) return NAV_ACTION.RIGHT;
+		if(navUp.has(key)) return NAV_ACTION.UP;
+		if(navDown.has(key)) return NAV_ACTION.DOWN;
+		if(navSelect.has(key)) return NAV_ACTION.SELECT;
+		if(navBack.has(key)) return NAV_ACTION.BACK;
+		if(navPause.has(key)) return NAV_ACTION.PAUSE;
+		return null;//if the key doesn't map to any navigation actions
 	};
 
 	this.getKeysForAlias = function(alias) {
