@@ -2,6 +2,7 @@
 function TitleScene() {
 	let selectorPositionsIndex = 0;
 	let selectorPosition = {x:0, y:0};
+	let titleBlockPosition = {x:0, y:0};
 	const selections = [
 		SCENE.GAME,
 		SCENE.HELP,
@@ -27,11 +28,15 @@ function TitleScene() {
 		if(buttons.length === 0) {
 			buttons.push(buildPlayButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
 
-			mainMenuX = (canvas.width / 2) - (buttons[0].getBounds().width / 2);
+			const button0Bounds = buttons[0].getBounds();
+			mainMenuX = (canvas.width / 2) - (button0Bounds.width / 2);
 			buttons[0].updateXPosition(mainMenuX);
 
 			selectorPosition.x = mainMenuX - selector.width - (BUTTON_PADDING / 2);
 			selectorPosition.y = mainMenuY + (buttonHeight / 2) - (selector.height / 2);
+
+			titleBlockPosition.x = selectorPosition.x - (titleBlock.width - (button0Bounds.width + (BUTTON_PADDING / 2) + selector.width)) / 2;
+			titleBlockPosition.y = canvas.height/2;
 
 			buttons.push(buildHelpButton(mainMenuX, mainMenuY + deltaY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildSettingsButton(mainMenuX, mainMenuY + 2 * deltaY, buttonHeight, buttonTitlePadding));
@@ -191,7 +196,6 @@ function TitleScene() {
 
 	const processUserInput = function() {
 		const navKeys = inputProcessor.getNewlyActiveKeys();
-//		console.log(`Nav Key Length: ${navKeys.length}`);
 		for(let i = 0; i < navKeys.length; i++) {
 			const newNavAction = keyMapper.getNavActionForKey(navKeys[i]);
 			if(newNavAction != null) {
@@ -251,7 +255,7 @@ function TitleScene() {
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG,0,0);
 		canvasContext.drawImage(titleScreenDecore,0,0);
-		canvasContext.drawImage(titleBlock,canvas.width/3,canvas.height/2);
+		canvasContext.drawImage(titleBlock, titleBlockPosition.x, titleBlockPosition.y);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 	};
     
