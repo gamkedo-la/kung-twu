@@ -131,7 +131,7 @@ const gamepad = {
 	buttons: {
 		justPressed: [],
 		getJustPressed: function() {
-			return gamepad.buttons.justReleased;
+			return gamepad.buttons.justPressed;
 		},
 		held: [],
 		getHeld: function() {
@@ -181,7 +181,7 @@ const gamepad = {
 	axes: {
 		justPressed: [],
 		getJustPressed: function() {
-			return gamepad.axes.justReleased;
+			return gamepad.axes.justPressed;
 		},
 		held: [],
 		getHeld: function() {
