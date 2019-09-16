@@ -25,7 +25,8 @@ function InputProcessor() {
 	this.getNewlyReleasedKeys = function() {
 		let result = gamepad.buttons.getJustReleased();
 		result = result.concat(gamepad.axes.getJustReleased());
-		return result.concat(Array.from(releasedKeys));
+		result = result.concat(Array.from(releasedKeys));
+		return result;
 	};
 
 	this.addActiveKey = function(newActiveKey) {

@@ -174,7 +174,6 @@ const gamepad = {
 		clear: function() {
 			gamepad.buttons.justPressed = [];
 			gamepad.buttons.justReleased = [];
-			gamepad.buttons.held = [];
 		}
 	},//end buttons object
 
@@ -189,99 +188,53 @@ const gamepad = {
 		},
 		justReleased: [],
 		getJustReleased: function() {
-			return gamepad.axes.justReleased;
+			let result = gamepad.axes.justReleased;
+			return result;
 		},
 		update: function(controllerAxes) {
-			gamepad.axes.justPressed = [];
-			gamepad.axes.justReleased = [];
-
-			let shouldRecheck = false;
-			for (let i = 0; i < controllerAxes.length; i++) {
-				const thisAxis = controllerAxes[i];
-				let thisAxisName = null;
-				let thisAxisPressed = false;
-				if((thisAxis > AXIS_PRECISION) ||
-				(thisAxis < -AXIS_PRECISION)) {
-					thisAxisName = gamepadAxisNameForIndexAndValue(i, controllerAxes[i]);
-					thisAxisPressed = true;
-					shouldRecheck = false;
-				} else {
-					if(shouldRecheck) {
-						shouldRecheck = false;
-						thisAxisName = gamepadAxisNameForIndexAndValue(i, controllerAxes[i] + 1);	
-					} else {
-						shouldRecheck = true;
-						thisAxisName = gamepadAxisNameForIndexAndValue(i, controllerAxes[i] - 1);
-						i -= 1;	
-					}
-				}
-
-				let wasHeld = false;
-				let j = 0; 
-				for(;j < gamepad.axes.held.length; j++) {
-					if(thisAxisName === gamepad.axes.held[j]) {
-						wasHeld = true;
-						break;
-					}
-				}
-
-				if(thisAxisPressed) {
-					if(!wasHeld) {
-						gamepad.axes.justPressed.push(thisAxisName);
-						gamepad.axes.held.push(thisAxisName);
-					}
-				} else {
-					if(wasHeld) {
-						gamepad.axes.held.splice(j, 1);
-						gamepad.axes.justReleased.push(thisAxisName);
-					}
-				}//end if/else button was pressed
-			}//end loop through gamepad buttons
-		},//end axes.update()
+			for(let i = 0; i < controllerAxes.length; i++) {
+				updateGamepadAxisStatus(i, controllerAxes[i]);
+			}
+		},
 
 		clear: function() {
 			gamepad.axes.justPressed = [];
 			gamepad.axes.justReleased = [];
-			gamepad.axes.held = [];
 		},
 	}//end axes object
 };//end gamepad object
 
 function gamepadButtonNameForIndex(index) {
 	switch(index) {
-	case 0:
-		return CROSS_BUTTON;
-	case 1:
-		return CIRCLE_BUTTON;
-	case 2:
-		return SQUARE_BUTTON;
-	case 3:
-		return TRIANGLE_BUTTON;												
+	case 0: return CROSS_BUTTON;
+	case 1: return CIRCLE_BUTTON;
+	case 2: return SQUARE_BUTTON;
+	case 3: return TRIANGLE_BUTTON;												
 	}
 }
 
 function gamepadAxisNameForIndexAndValue(index, value) {
 	switch(index) {
 	case 0:
-		if(value < 0) {
+		if(value <= 0) {
 			return LEFT_STICK_LEFT;
 		} else {
 			return LEFT_STICK_RIGHT;
 		}
 	case 1:
-		if(value < 0) {
+		if(value <= 0) {
 			return LEFT_STICK_UP;
 		} else {
 			return LEFT_STICK_DOWN;
 		}
 	case 2:
-		if(value < 0) {
+		if(value <= 0) {
 			return RIGHT_STICK_LEFT;
 		} else {
 			return RIGHT_STICK_RIGHT;
 		}
 	case 3:
-		if(value < 0) {
+		if(value <= 0) {
 			return RIGHT_STICK_UP;
 		} else {
 			return RIGHT_STICK_DOWN;
@@ -289,44 +242,41 @@ function gamepadAxisNameForIndexAndValue(index, value) {
 	}
 }
 
-function getAxis(axis) {
-	if (HORIZONTAL_AXIS.localeCompare(axis, undefined, { sensitivity: "accent" }) == 0) {
-		for (let i = 0; i < heldButtons.length; i++) {
-			if (heldButtons[i] === ALIAS.LEFT)
-				return -1.0;
-			else if (heldButtons[i] === ALIAS.RIGHT)
-				return 1.0;
-		}
-
-		if (gamepad.active) {
-			if (gamepad.buttons.held(PAD_ALIAS.LEFT))
-				return -1.0;
-			else if (gamepad.buttons.held(PAD_ALIAS.RIGHT))
-				return 1.0;
-
-			let axis = gamepad.axes.status[0];
-			return axis > -AXIS_PRECISION && axis < AXIS_PRECISION ? 0.0 : axis;
-		}
-	} else if (VERTICAL_AXIS.localeCompare(axis, undefined, { sensitivity: "accent" }) == 0) {
-		for (let i = 0; i < heldButtons.length; i++) {
-			if (heldButtons[i] === ALIAS.UP)
-				return -1.0;
-			else if (heldButtons[i] === ALIAS.DOWN)
-				return 1.0;
-		}
-
-		if (gamepad.active) {
-			if (gamepad.buttons.held(PAD_ALIAS.UP))
-				return -1.0;
-			else if (gamepad.buttons.held(PAD_ALIAS.DOWN))
-				return 1.0;
-
-			let axis = gamepad.axes.status[1];
-			return axis > -AXIS_PRECISION && axis < AXIS_PRECISION ? 0.0 : axis;
+function getWasAxisHeld(name) {
+	for(j = 0; j < gamepad.axes.held.length; j++) {
+		if(name === gamepad.axes.held[j]) {
+			return {wasHeld:true, index:j};
 		}
 	}
 
-	return 0.0;
+	return {wasHeld:false, index:null};
+}
+
+function updateGamepadAxisStatus(index, value) {
+	if(Math.abs(value) > AXIS_PRECISION) {
+		processPressedAxis(gamepadAxisNameForIndexAndValue(index, value));
+	} else if(Math.abs(value) > 0.1) {
+		processReleasedAxis(gamepadAxisNameForIndexAndValue(index, value));
+	} else {
+		processReleasedAxis(gamepadAxisNameForIndexAndValue(index, value + 1));
+		processReleasedAxis(gamepadAxisNameForIndexAndValue(index, value - 1));
+	}
+}
+
+function processPressedAxis(name) {
+	if(!getWasAxisHeld(name).wasHeld) {
+		gamepad.axes.justPressed.push(name);
+		gamepad.axes.held.push(name);
+	}
+}
+
+function processReleasedAxis(name) {
+	let heldData = getWasAxisHeld(name);
+
+	if(heldData.wasHeld) {
+		gamepad.axes.held.splice(heldData.index, 1);
+		gamepad.axes.justReleased.push(name);
+	}
 }
 
 function initializeInput() {
