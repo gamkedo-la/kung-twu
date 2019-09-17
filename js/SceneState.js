@@ -11,13 +11,13 @@ const SceneState = {
 		[SCENE.HELP]: new HelpScene(),
 		[SCENE.GAME]: new GameScene(),
 		[SCENE.PAUSE]: new PauseScene(),
-		//		[SCENE.GAMEOVER]: new GameOverScene(),
+		[SCENE.GAMEOVER]: new GameOverScene(),
 		//		[SCENE.ENDING]: new EndgameScene()
 	},
 	setState: function(newScene, properties) {
 		if(properties != undefined) {
 			if(properties.didQuit) {
-				this.scenes[SCENE.GAME].reset();
+				this.scenes[SCENE.GAME].quit();
 			}
 		}
 		this.scenes[this.currentScene].transitionOut();

@@ -13,8 +13,10 @@ let basicEnemyHitSound;
 const EFFECTS_BASE = 0.5;
 let menuMusic;
 let gameMusic;
+let gameOverMusic;
 const GAMEPLAY_BASE = 1.0;
 const DRAGON_BASE = 0.35;
+const WARRIOR_BASE = 0.35;
 let musicVolume;
 let effectsVolume;
 let currentBackgroundMusic;
@@ -47,6 +49,7 @@ function loadAudio() {
 	basicEnemyHitSound = new SoundOverlapsClass(assetPath.Audio + "BasicEnemyHit");
 	menuMusic = assetPath.Audio + "gameplayMusicV1";
 	gameMusic = assetPath.Audio + "DragonPulse";
+	gameOverMusic = assetPath.Audio + "AWarriorsResolution(loop)";
 
 	currentBackgroundMusic = new backgroundMusicClass();
 }
@@ -114,6 +117,8 @@ function backgroundMusicClass() {
 			return GAMEPLAY_BASE;
 		case gameMusic:
 			return DRAGON_BASE;
+		case gameOverMusic:
+			return WARRIOR_BASE;
 		}
 	};
 }

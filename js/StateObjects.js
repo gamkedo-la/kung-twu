@@ -479,11 +479,15 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 		}
 	};
 
+	this.quit = function() {
+		this.reset();
+		belt = BELT.White;
+	};
+
 	this.reset = function() {
 		currentState = IDLE_STATE;
 		isNewState = true;
 		currentAnimation = theAnimations.idle;
-		belt = BELT.White;
 	
 		landed = false;
 		isOnGround = true;

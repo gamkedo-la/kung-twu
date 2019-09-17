@@ -22,6 +22,8 @@ const STRINGS_KEY = {
 	Paused:"Paused",
 	Controls:"Controls",
 	Quit:"Quit",
+	Continue:"Continue",
+	End:"End",
 	Title:"Title",
 	Subtitle:"Subtitle",
 	English:"English",
@@ -38,6 +40,8 @@ const STRINGS_KEY = {
 	HelpScreenContents:"Help Screen Contents",
 	SettingsScreenTitle:"Settings Title",
 	CreditsScreenTitle:"Credits Title",
+	GameOverTitle:"GameOverTitle",
+	HighScore:"HighScore",
 	Score:"Score",
 	Health:"Health",
 	Time:"Time",
@@ -65,6 +69,8 @@ const userStrings = {
 		[STRINGS_KEY.Paused]:"- P A U S E D -",
 		[STRINGS_KEY.Controls]:"[C] Controls",
 		[STRINGS_KEY.Quit]:"[Q] Quit",
+		[STRINGS_KEY.Continue]:"[C] Continue",		
+		[STRINGS_KEY.End]:"[E] End",
 		[STRINGS_KEY.Title]:"Kung Twu",
 		[STRINGS_KEY.Subtitle]:"A Martial Arts Tale",
 		[STRINGS_KEY.English]:"English",
@@ -80,6 +86,8 @@ const userStrings = {
 		[STRINGS_KEY.HelpScreenTitle]:"HELP",
 		[STRINGS_KEY.SettingsScreenTitle]:"SETTINGS",
 		[STRINGS_KEY.CreditsScreenTitle]:"CREDITS",
+		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
+		[STRINGS_KEY.HighScore]:"HIGH SCORE:",
 		[STRINGS_KEY.Score]:"SCORE:",
 		[STRINGS_KEY.Health]:"HEALTH:",
 		[STRINGS_KEY.Time]:"TIME:",
@@ -129,7 +137,11 @@ const userStrings = {
 		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
 		[STRINGS_KEY.Resume]:"[ESC] Resume",
 		[STRINGS_KEY.Controls]:"[C] Controls",
-		[STRINGS_KEY.Quit]:"[Q] Quit"
+		[STRINGS_KEY.Quit]:"[Q] Quit",
+		[STRINGS_KEY.Continue]:"[C] Continue",		
+		[STRINGS_KEY.End]:"[E] End",
+		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
+		[STRINGS_KEY.HighScore]:"HIGH SCORE:"
 	},
 
 	Japanese: {
@@ -157,7 +169,6 @@ const userStrings = {
 		[STRINGS_KEY.HelpScreenContents]:"",
 		[STRINGS_KEY.SettingsScreenTitle]:"せってい",
 		[STRINGS_KEY.CreditsScreenTitle]:"クレジット",
-
 		[STRINGS_KEY.Score]:"とくてん:",
 		[STRINGS_KEY.Health]:"けんこ:",
 		[STRINGS_KEY.Time]:"じかん:",
@@ -170,7 +181,12 @@ const userStrings = {
 		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
 		[STRINGS_KEY.Resume]:"[ESC] つづく",
 		[STRINGS_KEY.Controls]:"[C] コントロール",
-		[STRINGS_KEY.Quit]:"[Q] ゲームをやめる"
+		[STRINGS_KEY.Quit]:"[Q] ゲームをやめる",
+
+		[STRINGS_KEY.Continue]:"[C] Continue",		
+		[STRINGS_KEY.End]:"[E] End",
+		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
+		[STRINGS_KEY.HighScore]:"HIGH SCORE:"
 	},
 
 	French: {
@@ -210,7 +226,11 @@ const userStrings = {
 		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
 		[STRINGS_KEY.Resume]:"[ESC] Resume",
 		[STRINGS_KEY.Controls]:"[C] Controls",
-		[STRINGS_KEY.Quit]:"[Q] Quit"
+		[STRINGS_KEY.Quit]:"[Q] Quit",
+		[STRINGS_KEY.Continue]:"[C] Continue",		
+		[STRINGS_KEY.End]:"[E] End",
+		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
+		[STRINGS_KEY.HighScore]:"HIGH SCORE:"
 	},
 
 	Russian: {
@@ -250,6 +270,10 @@ const userStrings = {
 		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
 		[STRINGS_KEY.Resume]:"[ESC] Resume",
 		[STRINGS_KEY.Controls]:"[C] Controls",
-		[STRINGS_KEY.Quit]:"[Q] Quit"
+		[STRINGS_KEY.Quit]:"[Q] Quit",
+		[STRINGS_KEY.Continue]:"[C] Continue",		
+		[STRINGS_KEY.End]:"[E] End",
+		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
+		[STRINGS_KEY.HighScore]:"HIGH SCORE:"
 	}
 };

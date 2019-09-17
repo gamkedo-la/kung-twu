@@ -18,6 +18,10 @@ function GameScene() {
 	let didReset = true;
 
 	this.transitionIn = function() {
+		if((this.properties != undefined) && (this.properties.restartLevel)) {
+			this.reset();
+		}
+
 		if (aiManager === null) {
 			//if aiManager === null, we've never initialized a GameScene
 			aiManager = new AIManager();
@@ -34,7 +38,7 @@ function GameScene() {
 		}
 
 		//Don't reinitialize if we're just coming back from the pause screen
-		if (levelData === null || currentLevel != levelData.level) {
+		if (floor === null || currentLevel != levelData.level) {
 			levelData = dataForCurrentLevel();
 			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
 			initializeFloor(VERTICAL_OFFSET);
@@ -48,16 +52,22 @@ function GameScene() {
 
 	this.transitionOut = function() {};
 
+	this.quit = function() {
+		currentLevel = 1;
+		this.reset();
+		player.quit();
+	};
+
 	this.reset = function() {
 		didReset = true;
 
-		player.reset();
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 		camera = new Camera();
 
 		enemies = [];
 		columnManager = null;
-		levelData = null;
+		levelData = dataForCurrentLevel();
+		player.reset(levelData.playerStart);
 		collisionManager = null;
 		subfloor = null;
 		floor = null;
@@ -105,8 +115,7 @@ function GameScene() {
 			GRAVITY,
 			floorMidHeight,
 			levelData.cameraMin - canvas.width / 2,
-			levelData.cameraMax + canvas.width / 2
-		);
+			levelData.cameraMax + canvas.width / 2);
 
 		updateEnemies(deltaTime, newCameraX);
 
@@ -149,6 +158,16 @@ function GameScene() {
 		for (let defeatedEntity of defeatedEntities) {
 			if (defeatedEntity === player) {
 				console.log("Game over man! Game Over!");
+				let highScore = parseInt(localStorageHelper.getObject(localStorageKey.HighScore));
+				if((isNaN(highScore)) || (highScore === null) || (highScore === undefined)) {highScore = -1;}
+				if(score > highScore) {
+					let scoreString = score.toString();
+					while(scoreString.length < 9) {
+						scoreString = "0" + scoreString;
+					}
+					localStorageHelper.setObject(localStorageKey.HighScore, scoreString);
+				}
+				SceneState.setState(SCENE.GAMEOVER, {score:score});
 			} else {
 				const enemyIndex = enemies.findIndex(function(element) {
 					return element === defeatedEntity;
@@ -186,52 +205,53 @@ function GameScene() {
 		//TODO: We need a way to find out how wide these strings will be, should be easy with a custom font
 		const screenLeft = cameraX - canvas.width / 2;
 		drawRect(screenLeft + 180, 60, player.health, 22, Color.Orange);
-		drawBorder(screenLeft + 180, 60, maxHealth, 22, Color.Orange);
-		// drawRect(38,67, Math.ceil(getLocalizedStringForKey(STRINGS_KEY.Health / getLocalizedStringForKey(STRINGS_KEY.maxHealth)* 160)),22, "#cd1616");
+		drawBorder(screenLeft + 180, 60, MAX_PLAYER_HEALTH, 22, Color.Orange);
+
 		colorText(
 			getLocalizedStringForKey(STRINGS_KEY.Score),
 			screenLeft + 40,
 			40,
 			Color.White,
 			Fonts.Subtitle,
-			TextAlignment.Left
-		);
+			TextAlignment.Left);
+
 		let stringScore = score.toString();
 		while (stringScore.length < 9) {
 			stringScore = "0" + stringScore;
 		}
+
 		colorText(
 			stringScore,
 			screenLeft + 180,
 			40,
 			Color.White,
 			Fonts.Subtitle,
-			TextAlignment.Left
-		);
+			TextAlignment.Left);
+
 		colorText(
 			getLocalizedStringForKey(STRINGS_KEY.Health),
 			screenLeft + 40,
 			80,
 			Color.White,
 			Fonts.Subtitle,
-			TextAlignment.Left
-		);
+			TextAlignment.Left);
+
 		colorText(
 			getLocalizedStringForKey(STRINGS_KEY.Time),
 			screenLeft + 40,
 			120,
 			Color.White,
 			Fonts.Subtitle,
-			TextAlignment.Left
-		);
+			TextAlignment.Left);
+
 		colorText(
 			getLocalizedStringForKey(STRINGS_KEY.Level),
 			screenLeft + 40,
 			160,
 			Color.White,
 			Fonts.Subtitle,
-			TextAlignment.Left
-		);
+			TextAlignment.Left);
+
 		const keyForThisLevelName = stringsKeyForLevel(currentLevel);
 		colorText(
 			getLocalizedStringForKey(keyForThisLevelName),
@@ -239,8 +259,7 @@ function GameScene() {
 			160,
 			Color.White,
 			Fonts.Subtitle,
-			TextAlignment.Left
-		);
+			TextAlignment.Left);
 	};
 
 	const stringsKeyForLevel = function(level) {
@@ -267,9 +286,8 @@ function GameScene() {
 	const initializeFloor = function(verticalOffset) {
 		subfloor = new InfiniteSubFloor();
 		subfloor.initializeForLevel(currentLevel);
-		subfloor.positionFirstColumn(
-			100 + camera.getPosition().x + (2 * canvas.width) / 3
-		);
+		const colPos = 100 + camera.getPosition().x + (2 * canvas.width) / 3;
+		subfloor.positionFirstColumn(colPos);
 
 		floor = new InfiniteSurface(FLOOR_CONFIG, verticalOffset);
 		floorMidHeight = floor.getMidHeight();
@@ -296,9 +314,8 @@ function GameScene() {
 
 	const initializeColumns = function() {
 		columnManager = new InfiniteColumn(VERTICAL_OFFSET);
-		columnManager.positionFirstColumn(
-			100 + camera.getPosition().x + (2 * canvas.width) / 3
-		);
+		const colPos = 100 + camera.getPosition().x + (2 * canvas.width) / 3;
+		columnManager.positionFirstColumn(colPos);
 	};
 
 	const initializeCollisionManager = function(player) {
@@ -310,22 +327,16 @@ function GameScene() {
 	};
 
 	const drawBackground = function(cameraX, roofTop) {
-		const vertAmtToClip = levelData.wallWindowHeight;
-		const startClippingY =
-			titleScreenBG.height - vertAmtToClip - levelData.backgroundClipLevel; //100 makes it look good
+		const vertClip = levelData.wallWindowHeight;
+		const startClipY = titleScreenBG.height - vertClip - levelData.bgClipLevel; //100 makes it look good
 		const startDrawingY = roofTop + levelData.wallWindowTop; //215 based on back wall image
 
 		canvasContext.drawImage(
 			titleScreenBG,
-			0,
-			startClippingY,
-			titleScreenBG.width,
-			vertAmtToClip,
-			cameraX - canvas.width / 2,
-			startDrawingY,
-			canvas.width,
-			vertAmtToClip
-		);
+			0, startClipY,
+			titleScreenBG.width, vertClip,
+			cameraX - canvas.width / 2, startDrawingY,
+			canvas.width, vertClip);
 	};
 
 	const dataForCurrentLevel = function() {
@@ -371,9 +382,9 @@ const Level1Data = {
 	level: 1,
 	maxEnemies: 4,
 	spawnRate: function() {
-		return (
-			1250 + Math.ceil(1250 * Math.random()) + Math.ceil(1250 * Math.random())
-		);
+		const rnd1 = Math.ceil(1250 * Math.random());
+		const rnd2 = Math.ceil(1250 * Math.random());
+		return (1250 + rnd1 + rnd2);
 	},
 	scrollsLeft: true,
 	allowedTime: 999,
@@ -381,18 +392,19 @@ const Level1Data = {
 	bossBelt: BELT.Yellow,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
-	backgroundClipLevel: 100,
+	bgClipLevel: 100,
 	cameraMin: -1000,
-	cameraMax: 350
+	cameraMax: 350,
+	playerStart:{x:this.cameraMax, y:500}
 };
 
 const Level2Data = {
 	level: 2,
 	maxEnemies: 4,
 	spawnRate: function() {
-		return (
-			900 + Math.ceil(1225 * Math.random()) + Math.ceil(1225 * Math.random())
-		);
+		const rnd1 = Math.ceil(1225 * Math.random());
+		const rnd2 = Math.ceil(1225 * Math.random());
+		return (900 + rnd1 + rnd2);
 	},
 	scrollsLeft: false,
 	allowedTime: 899,
@@ -400,18 +412,19 @@ const Level2Data = {
 	bossBelt: BELT.Tan,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
-	backgroundClipLevel: 200,
+	bgClipLevel: 200,
 	cameraMin: -100,
-	cameraMax: 2000
+	cameraMax: 2000,
+	playerStart:{x:this.cameraMin, y:500}
 };
 
 const Level3Data = {
 	level: 3,
 	maxEnemies: 5,
 	spawnRate: function() {
-		return (
-			600 + Math.ceil(1200 * Math.random()) + Math.ceil(1200 * Math.random())
-		);
+		const rnd1 = Math.ceil(1200 * Math.random());
+		const rnd2 = Math.ceil(1200 * Math.random());
+		return (600 + rnd1 + rnd2);
 	},
 	scrollsLeft: true,
 	allowedTime: 799,
@@ -419,18 +432,19 @@ const Level3Data = {
 	bossBelt: BELT.Brown,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
-	backgroundClipLevel: 300,
+	bgClipLevel: 300,
 	cameraMin: -1000,
-	cameraMax: 350
+	cameraMax: 350,
+	playerStart:{x:this.cameraMax, y:500}
 };
 
 const Level4Data = {
 	level: 4,
 	maxEnemies: 5,
 	spawnRate: function() {
-		return (
-			350 + Math.ceil(1175 * Math.random()) + Math.ceil(1175 * Math.random())
-		);
+		const rnd1 = Math.ceil(1175 * Math.random());
+		const rnd2 = Math.ceil(1175 * Math.random());
+		return (350 + rnd1 + rnd2);
 	},
 	scrollsLeft: false,
 	allowedTime: 699,
@@ -438,18 +452,19 @@ const Level4Data = {
 	bossBelt: BELT.Red,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
-	backgroundClipLevel: 400,
+	bgClipLevel: 400,
 	cameraMin: -100,
-	cameraMax: 2000
+	cameraMax: 2000,
+	playerStart:{x:this.cameraMin, y:500}
 };
 
 const Level5Data = {
 	level: 5,
 	maxEnemies: 6,
 	spawnRate: function() {
-		return (
-			150 + Math.ceil(1150 * Math.random()) + Math.ceil(1150 * Math.random())
-		);
+		const rnd1 = Math.ceil(1150 * Math.random());
+		const rnd2 = Math.ceil(1150 * Math.random());
+		return (150 + rnd1 + rnd2);
 	},
 	scrollsLeft: true,
 	allowedTime: 599,
@@ -457,7 +472,8 @@ const Level5Data = {
 	bossBelt: BELT.Black,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
-	backgroundClipLevel: 500,
+	bgClipLevel: 500,
 	cameraMin: -1000,
-	cameraMax: 350
+	cameraMax: 350,
+	playerStart:{x:this.cameraMax, y:500}
 };

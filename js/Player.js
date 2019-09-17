@@ -1,455 +1,455 @@
 //Player
 function Player(config) {
-  const SCALE = 2;
-  const SCREEN_MARGIN = 10;
-  const WALK_SPEED = 200;
-  const JUMP_SPEED = -600;
-  const KNOCK_BACK_SPEED = 800;
+	const SCALE = 2;
+	const SCREEN_MARGIN = 10;
+	const WALK_SPEED = 200;
+	const JUMP_SPEED = -600;
+	const KNOCK_BACK_SPEED = 800;
 
-  const BASE_DAMAGE = 10;
-  const DELTA_DAMAGE = 5;
+	const BASE_DAMAGE = 10;
+	const DELTA_DAMAGE = 5;
 
-  let stateManager;
-  let hitBoxManager = new HitBoxManager(
-    PlayerCollisionBodyData,
-    PlayerAttackBodyData
-  );
+	let stateManager;
+	let hitBoxManager = new HitBoxManager(
+		PlayerCollisionBodyData,
+		PlayerAttackBodyData);
 
-  let position = { x: 0, y: 0 };
-  let velocity = { x: 0, y: 0 };
+	let position = { x: 0, y: 0 };
+	let velocity = { x: 0, y: 0 };
 
-  this.type = ENTITY_TYPE.Player;
-  this.health = maxHealth;
+	this.type = ENTITY_TYPE.Player;
+	this.health = MAX_PLAYER_HEALTH;
 
-  if (config != undefined) {
-    if (config.x != undefined) {
-      position.x = config.x;
-    }
-    if (config.y != undefined) {
-      position.y = config.y;
-    }
-  }
+	if (config != undefined) {
+		if (config.x != undefined) {
+			position.x = config.x;
+		}
+		if (config.y != undefined) {
+			position.y = config.y;
+		}
+	}
 
-  const initializeAnimations = function() {
-    const anims = {};
+	const initializeAnimations = function() {
+		const anims = {};
 
-    anims.idle = new SpriteAnimation(
-      STATE.Idle,
-      playerIdle,
-      [0, 1],
-      playerIdle.width / 2,
-      playerIdle.height,
-      [200],
-      false,
-      true
-    );
-    anims.walk = new SpriteAnimation(
-      STATE.WalkRight,
-      playerWalkFwd,
-      [0, 1, 2],
-      playerWalkFwd.width / 3,
-      playerWalkFwd.height,
-      [200],
-      false,
-      true
-    );
-    anims.dash = new SpriteAnimation(
-      STATE.Dash,
-      playerWalkBack,
-      [0, 1, 2],
-      playerWalkBack.width / 3,
-      playerWalkBack.height,
-      [50],
-      false,
-      false
-    );
-    //anims.jump = ...
-    //anims.crouch = ...
-    anims.punch = new SpriteAnimation(
-      STATE.Punch,
-      playerPunch,
-      [0, 1, 2, 1],
-      playerPunch.width / 3,
-      playerPunch.height,
-      [50, 100, 125, 50],
-      false,
-      false
-    );
-    anims.kick = new SpriteAnimation(
-      STATE.Kick,
-      playerKick,
-      [0, 1, 2, 1],
-      playerKick.width / 3,
-      playerKick.height,
-      [50, 100, 125, 50],
-      false,
-      false
-    );
-    //anims.block = ...
-    //anims.sweep = ...
-    //anims.j-kick = ...
-    //anims.h-kick = ...
-    //anims.knockback = ...
+		anims.idle = new SpriteAnimation(
+			STATE.Idle,
+			playerIdle,
+			[0, 1],
+			playerIdle.width / 2,
+			playerIdle.height,
+			[200],
+			false,
+			true);
 
-    const animationKeys = Object.keys(anims);
-    for (let i = 0; i < animationKeys.length; i++) {
-      anims[animationKeys[i]].scale = SCALE;
-    }
+		anims.walk = new SpriteAnimation(
+			STATE.WalkRight,
+			playerWalkFwd,
+			[0, 1, 2],
+			playerWalkFwd.width / 3,
+			playerWalkFwd.height,
+			[200],
+			false,
+			true);
 
-    return anims;
-  };
+		anims.dash = new SpriteAnimation(
+			STATE.Dash,
+			playerWalkBack,
+			[0, 1, 2],
+			playerWalkBack.width / 3,
+			playerWalkBack.height,
+			[50],
+			false,
+			false);
 
-  stateManager = new StateManager(initializeAnimations(), true, null);
-  this.collisionBody = hitBoxManager.bodyColliderForState(
-    stateManager.getCurrentState(),
-    position,
-    SCALE,
-    stateManager.getIsFacingLeft()
-  );
-  this.attackBody = hitBoxManager.attackColliderForState(
-    stateManager.getCurrentState(),
-    position,
-    SCALE,
-    stateManager.getIsFacingLeft()
-  );
+		//anims.jump = ...
 
-  this.getPosition = function() {
-    return { x: position.x, y: position.y };
-  };
+		//anims.crouch = ...
 
-  this.getVelocity = function() {
-    return { x: velocity.x, y: velocity.y };
-  };
+		anims.punch = new SpriteAnimation(
+			STATE.Punch,
+			playerPunch,
+			[0, 1, 2, 1],
+			playerPunch.width / 3,
+			playerPunch.height,
+			[30, 80, 100, 30],
+			false,
+			false);
+		
+		anims.kick = new SpriteAnimation(
+			STATE.Kick,
+			playerKick,
+			[0, 1, 2, 1],
+			playerKick.width / 3,
+			playerKick.height,
+			[60, 120, 150, 60],
+			false,
+			false);
 
-  this.isMoving = function() {
-    return velocity.x != 0 || velocity.y != 0;
-  };
+		//anims.block = ...
+		
+		//anims.sweep = ...
+		
+		//anims.j-kick = ...
+		
+		//anims.h-kick = ...
+		
+		//anims.knockback = ...
 
-  this.getWidth = function() {
-    return stateManager.getCurrentAnimation().getWidth();
-  };
+		const animationKeys = Object.keys(anims);
+		for (let i = 0; i < animationKeys.length; i++) {
+			anims[animationKeys[i]].scale = SCALE;
+		}
 
-  this.getHeight = function() {
-    return stateManager.getCurrentAnimation().getHeight();
-  };
+		return anims;
+	};
 
-  this.getCurrentDamage = function() {
-    return damageForState() + stateManager.getCurrentBelt() * DELTA_DAMAGE;
-  };
+	stateManager = new StateManager(initializeAnimations(), true, null);
+	this.collisionBody = hitBoxManager.bodyColliderForState(
+		stateManager.getCurrentState(),
+		position,
+		SCALE,
+		stateManager.getIsFacingLeft());
 
-  const damageForState = function() {
-    const aState = stateManager.getCurrentState();
-    switch (aState) {
-      case STATE.WalkRight:
-      case STATE.WalkLeft:
-      case STATE.Jump:
-      case STATE.Crouch:
-      case STATE.Dash:
-      case STATE.Idle:
-      case STATE.Block:
-      case STATE.KnockBack:
-        return 0;
-      case STATE.Punch:
-        return 1 * BASE_DAMAGE;
-      case STATE.Kick:
-        return 1.25 * BASE_DAMAGE;
-      case STATE.J_Kick:
-        return 1.5 * BASE_DAMAGE;
-      case STATE.Sweep:
-        return 1.5 * BASE_DAMAGE;
-      case STATE.H_Kick:
-        return 2 * BASE_DAMAGE;
-    }
-  };
+	this.attackBody = hitBoxManager.attackColliderForState(
+		stateManager.getCurrentState(),
+		position,
+		SCALE,
+		stateManager.getIsFacingLeft());
 
-  this.setNewBelt = function(newBelt) {
-    stateManager.setNewBelt(newBelt);
-  };
+	this.getPosition = function() {
+		return { x: position.x, y: position.y };
+	};
 
-  this.incrementBelt = function() {
-    stateManager.incrementBelt();
-  };
+	this.getVelocity = function() {
+		return { x: velocity.x, y: velocity.y };
+	};
 
-  this.reset = function() {
-    velocity = { x: 0, y: 0 };
+	this.isMoving = function() {
+		return velocity.x != 0 || velocity.y != 0;
+	};
 
-    this.health = 100;
+	this.getWidth = function() {
+		return stateManager.getCurrentAnimation().getWidth();
+	};
 
-    if (config != undefined) {
-      if (config.x != undefined) {
-        position.x = config.x;
-      }
-      if (config.y != undefined) {
-        position.y = config.y;
-      }
-    }
+	this.getHeight = function() {
+		return stateManager.getCurrentAnimation().getHeight();
+	};
 
-    stateManager.reset();
-    this.collisionBody = hitBoxManager.bodyColliderForState(
-      stateManager.getCurrentState(),
-      position,
-      SCALE,
-      stateManager.getIsFacingLeft()
-    );
-    this.attackBody = hitBoxManager.attackColliderForState(
-      stateManager.getCurrentState(),
-      position,
-      SCALE,
-      stateManager.getIsFacingLeft()
-    );
-  };
+	this.getCurrentDamage = function() {
+		return damageForState() + stateManager.getCurrentBelt() * DELTA_DAMAGE;
+	};
 
-  this.update = function(deltaTime, gravity, floorHeight, levelMin, levelMax) {
-    stateManager.update(deltaTime);
-    updateForState(stateManager.getCurrentState());
+	const damageForState = function() {
+		const aState = stateManager.getCurrentState();
+		switch (aState) {
+		case STATE.WalkRight:
+		case STATE.WalkLeft:
+		case STATE.Jump:
+		case STATE.Crouch:
+		case STATE.Dash:
+		case STATE.Idle:
+		case STATE.Block:
+		case STATE.KnockBack:
+			return 0;
+		case STATE.Punch:
+			return 1 * BASE_DAMAGE;
+		case STATE.Kick:
+			return 1.25 * BASE_DAMAGE;
+		case STATE.J_Kick:
+			return 1.5 * BASE_DAMAGE;
+		case STATE.Sweep:
+			return 1.5 * BASE_DAMAGE;
+		case STATE.H_Kick:
+			return 2 * BASE_DAMAGE;
+		}
+	};
 
-    if (stateManager.getIsNewState()) {
-      this.collisionBody.points = hitBoxManager.bodyPointsForState(
-        stateManager.getCurrentState(),
-        position,
-        SCALE,
-        stateManager.getIsFacingLeft()
-      );
-      this.attackBody = hitBoxManager.attackColliderForState(
-        stateManager.getCurrentState(),
-        position,
-        SCALE,
-        stateManager.getIsFacingLeft()
-      );
-      if (this.attackBody != null) {
-        this.attackBody.isActive = true;
-      }
-    }
+	this.setNewBelt = function(newBelt) {
+		stateManager.setNewBelt(newBelt);
+	};
 
-    updatePosition(deltaTime, gravity, floorHeight, levelMin, levelMax);
+	this.incrementBelt = function() {
+		stateManager.incrementBelt();
+	};
 
-    this.collisionBody.setPosition(position); //keep collider in sync with sprite position
-    if (this.attackBody != null) {
-      this.attackBody.setPosition(position);
-    }
-  };
+	this.quit = function() {
+		stateManager.quit();
 
-  const updateForState = function(currentState) {
-    switch (currentState) {
-      case STATE.WalkRight:
-        walkRight();
-        break;
-      case STATE.WalkLeft:
-        walkLeft();
-        break;
-      case STATE.Jump:
-        jump();
-        break;
-      case STATE.Crouch:
-        crouch();
-        break;
-      case STATE.Dash:
-        dash();
-        break;
-      case STATE.Idle:
-        idle();
-        break;
-      case STATE.J_Kick:
-        j_Kick();
-        break;
-      case STATE.Sweep:
-        sweep();
-        break;
-      case STATE.H_Kick:
-        h_kick();
-        break;
-      case STATE.Punch:
-        punch();
-        break;
-      case STATE.Kick:
-        kick();
-        break;
-      case STATE.Block:
-        block();
-        break;
-      case STATE.KnockBack:
-        respondToKnockBack();
-        break;
-    }
-  };
+		if (config != undefined) {
+			if (config.x != undefined) {
+				position.x = config.x;
+			}
+			if (config.y != undefined) {
+				position.y = config.y;
+			}
+		}
 
-  const updatePosition = function(
-    deltaTime,
-    gravity,
-    floorHeight,
-    levelMin,
-    levelMax
-  ) {
-    const timeStep = deltaTime / 1000; //deltaTime is in milliseconds
-    position.x += velocity.x * timeStep;
+		this.reset(position);
+	};
 
-    if (position.x < levelMin + SCREEN_MARGIN) {
-      position.x = levelMin + SCREEN_MARGIN;
-    } else if (
-      position.x >
-      levelMax - SCREEN_MARGIN - stateManager.getCurrentAnimation().getWidth()
-    ) {
-      position.x =
-        levelMax -
-        SCREEN_MARGIN -
-        stateManager.getCurrentAnimation().getWidth();
-    }
+	this.reset = function(startPos) {
+		velocity = { x: 0, y: 0 };
 
-    fallDueToGravity(timeStep, gravity);
+		this.health = 100;
 
-    if (velocity.y > 0) {
-      if (
-        position.y >
-        floorHeight - stateManager.getCurrentAnimation().getHeight()
-      ) {
-        position.y =
-          floorHeight - stateManager.getCurrentAnimation().getHeight();
-        velocity.y = 0;
-        if (!stateManager.getIsOnGround()) {
-          stateManager.didLand();
-        }
-      }
-    }
-  };
+		position.x = startPos.x;
+		position.y = startPos.y;
 
-  const respondToKnockBack = function() {
-    if (stateManager.getIsFacingLeft()) {
-      velocity.x -= KNOCK_BACK_SPEED / 25;
-      if (velocity.x <= 0) {
-        velocity.x = 0;
-      }
-    } else {
-      velocity.x += KNOCK_BACK_SPEED / 25;
-      if (velocity.x >= 0) {
-        velocity.x = 0;
-      }
-    }
-  };
+		stateManager.reset();
+		this.collisionBody = hitBoxManager.bodyColliderForState(
+			stateManager.getCurrentState(),
+			position,
+			SCALE,
+			stateManager.getIsFacingLeft()
+		);
 
-  const fallDueToGravity = function(timeStep, gravity) {
-    velocity.y += gravity * timeStep;
-    position.y += velocity.y * timeStep;
-  };
+		this.attackBody = hitBoxManager.attackColliderForState(
+			stateManager.getCurrentState(),
+			position,
+			SCALE,
+			stateManager.getIsFacingLeft());
+	};
 
-  const walkRight = function() {
-    velocity.x = WALK_SPEED;
-  };
+	this.update = function(deltaTime, gravity, floorHeight, levelMin, levelMax) {
+		stateManager.update(deltaTime);
+		updateForState(stateManager.getCurrentState());
 
-  const walkLeft = function() {
-    velocity.x = -WALK_SPEED;
-  };
+		if (stateManager.getIsNewState()) {
+			this.collisionBody.points = hitBoxManager.bodyPointsForState(
+				stateManager.getCurrentState(),
+				position,
+				SCALE,
+				stateManager.getIsFacingLeft());
 
-  const jump = function() {
-    if (stateManager.getIsNewState()) {
-      velocity.y = JUMP_SPEED;
-      playerJumpSound.play();
-    }
-  };
+			this.attackBody = hitBoxManager.attackColliderForState(
+				stateManager.getCurrentState(),
+				position,
+				SCALE,
+				stateManager.getIsFacingLeft());
 
-  const crouch = function() {
-    console.log("I'm crouching now");
-    if (stateManager.getIsNewState()) {
-      //playerCrouchSound.play();
-    }
-  };
+			if (this.attackBody != null) {
+				this.attackBody.isActive = true;
+			}
+		}
 
-  const dash = function() {
-    if (stateManager.getIsNewState()) {
-      let speed = -4 * WALK_SPEED;
-      if (stateManager.getIsFacingLeft()) {
-        speed = 4 * WALK_SPEED;
-      }
+		updatePosition(deltaTime, gravity, floorHeight, levelMin, levelMax);
 
-      velocity.x = speed;
-      //playerDashSound.play();
-    }
-  };
+		this.collisionBody.setPosition(position); //keep collider in sync with sprite position
+		if (this.attackBody != null) {
+			this.attackBody.setPosition(position);
+		}
+	};
 
-  const idle = function() {
-    velocity.x = 0;
-  };
+	const updateForState = function(currentState) {
+		switch (currentState) {
+		case STATE.WalkRight:
+			walkRight();
+			break;
+		case STATE.WalkLeft:
+			walkLeft();
+			break;
+		case STATE.Jump:
+			jump();
+			break;
+		case STATE.Crouch:
+			crouch();
+			break;
+		case STATE.Dash:
+			dash();
+			break;
+		case STATE.Idle:
+			idle();
+			break;
+		case STATE.J_Kick:
+			j_Kick();
+			break;
+		case STATE.Sweep:
+			sweep();
+			break;
+		case STATE.H_Kick:
+			h_kick();
+			break;
+		case STATE.Punch:
+			punch();
+			break;
+		case STATE.Kick:
+			kick();
+			break;
+		case STATE.Block:
+			block();
+			break;
+		case STATE.KnockBack:
+			respondToKnockBack();
+			break;
+		}
+	};
 
-  const block = function() {
-    console.log("I'm blocking now");
-    if (stateManager.getIsNewState()) {
-      playerBlockSound.play();
-    }
-  };
+	const updatePosition = function(deltaTime, gravity, floorHeight, levelMin, levelMax) {
+		const timeStep = deltaTime / 1000; //deltaTime is in milliseconds
+		position.x += velocity.x * timeStep;
+		const animWidth = stateManager.getCurrentAnimation().getWidth();
+		const animHeight = stateManager.getCurrentAnimation().getHeight();
 
-  const punch = function() {
-    if (stateManager.getIsNewState()) {
-      velocity.x = 0;
-      playerPunchSound.play();
-    }
-  };
+		if (position.x < levelMin + SCREEN_MARGIN) {
+			position.x = levelMin + SCREEN_MARGIN;
+		} else if (position.x > levelMax - SCREEN_MARGIN - animWidth) {
+			position.x = levelMax - SCREEN_MARGIN - animWidth;
+		}
 
-  const kick = function() {
-    if (stateManager.getIsNewState()) {
-      velocity.x = 0;
-      playerKickSound.play();
-    }
-  };
+		fallDueToGravity(timeStep, gravity);
 
-  const j_Kick = function() {
-    console.log('Jump Kicking');
-    if (stateManager.getIsNewState()) {
-      playerKickSound.play();
-    }
-  };
+		if (velocity.y > 0) {
+			if (position.y > floorHeight - animHeight) {
+				position.y = floorHeight - animHeight;
+				velocity.y = 0;
+				if (!stateManager.getIsOnGround()) {
+					stateManager.didLand();
+				}
+			}
+		}
+	};
 
-  const h_kick = function() {
-    console.log('Helicopter Kicking');
-    if (stateManager.getIsNewState()) {
-      //playerHelicopterKickSound.play();
-    }
-  };
+	const respondToKnockBack = function() {
+		if (stateManager.getIsFacingLeft()) {
+			velocity.x -= KNOCK_BACK_SPEED / 25;
+			if (velocity.x <= 0) {
+				velocity.x = 0;
+			}
+		} else {
+			velocity.x += KNOCK_BACK_SPEED / 25;
+			if (velocity.x >= 0) {
+				velocity.x = 0;
+			}
+		}
+	};
 
-  const sweep = function() {
-    console.log('Sweeping !!!');
-    if (stateManager.getIsNewState()) {
-      //playerSweepSound.play();
-      velocity.x = 0;
-    }
-  };
+	const fallDueToGravity = function(timeStep, gravity) {
+		velocity.y += gravity * timeStep;
+		position.y += velocity.y * timeStep;
+	};
 
-  this.draw = function() {
-    stateManager.drawAt(position.x, position.y);
+	const walkRight = function() {
+		velocity.x = WALK_SPEED;
+	};
 
-    this.collisionBody.draw(); //colliders know to draw only when DRAW_COLLIDERS = true;
-    if (this.attackBody != null) {
-      this.attackBody.draw();
-    }
-  };
+	const walkLeft = function() {
+		velocity.x = -WALK_SPEED;
+	};
 
-  this.wasHitBy = function(otherEntity) {
-    if (stateManager.getCurrentState() === STATE.Block) {
-      this.health -= Math.ceil(otherEntity.getCurrentDamage() / 10);
-    } else if (stateManager.getCurrentState() === STATE.KnockBack) {
-      //do nothing for now
-    } else {
-      //just got hit
-      stateManager.wasHit();
+	const jump = function() {
+		if (stateManager.getIsNewState()) {
+			velocity.y = JUMP_SPEED;
+			playerJumpSound.play();
+		}
+	};
 
-      velocity.y = -KNOCK_BACK_SPEED / 2;
-      if (stateManager.getIsFacingLeft()) {
-        velocity.x += KNOCK_BACK_SPEED;
-      } else {
-        velocity.x -= KNOCK_BACK_SPEED;
-      }
+	const crouch = function() {
+		console.log("I'm crouching now");
+		if (stateManager.getIsNewState()) {
+			//playerCrouchSound.play();
+		}
+	};
 
-      this.health -= otherEntity.getCurrentDamage();
-    }
+	const dash = function() {
+		if (stateManager.getIsNewState()) {
+			let speed = -4 * WALK_SPEED;
+			if (stateManager.getIsFacingLeft()) {
+				speed = 4 * WALK_SPEED;
+			}
 
-    if (this.health <= 0) {
-      playerFailedSound.play();
-      console.log('Your attempt failed.  Try again.');
-      //TODO: Go to game over screen
-    } else {
-      playerHitSound.play();
-    }
-  };
+			velocity.x = speed;
+			//playerDashSound.play();
+		}
+	};
 
-  this.didHit = function() {
-    this.attackBody.isActive = false;
-  };
+	const idle = function() {
+		velocity.x = 0;
+	};
+
+	const block = function() {
+		console.log("I'm blocking now");
+		if (stateManager.getIsNewState()) {
+			playerBlockSound.play();
+		}
+	};
+
+	const punch = function() {
+		if (stateManager.getIsNewState()) {
+			velocity.x = 0;
+			playerPunchSound.play();
+		}
+	};
+
+	const kick = function() {
+		if (stateManager.getIsNewState()) {
+			velocity.x = 0;
+			playerKickSound.play();
+		}
+	};
+
+	const j_Kick = function() {
+		console.log("Jump Kicking");
+		if (stateManager.getIsNewState()) {
+			playerKickSound.play();
+		}
+	};
+
+	const h_kick = function() {
+		console.log("Helicopter Kicking");
+		if (stateManager.getIsNewState()) {
+			//playerHelicopterKickSound.play();
+		}
+	};
+
+	const sweep = function() {
+		console.log("Sweeping !!!");
+		if (stateManager.getIsNewState()) {
+			//playerSweepSound.play();
+			velocity.x = 0;
+		}
+	};
+
+	this.draw = function() {
+		stateManager.drawAt(position.x, position.y);
+
+		this.collisionBody.draw(); //colliders know to draw only when DRAW_COLLIDERS = true;
+		if (this.attackBody != null) {
+			this.attackBody.draw();
+		}
+	};
+
+	this.wasHitBy = function(otherEntity) {
+		if (stateManager.getCurrentState() === STATE.Block) {
+			this.health -= Math.ceil(otherEntity.getCurrentDamage() / 10);
+		} else if (stateManager.getCurrentState() === STATE.KnockBack) {
+			//do nothing for now
+		} else {
+			//just got hit
+			stateManager.wasHit();
+
+			velocity.y = -KNOCK_BACK_SPEED / 2;
+			if (stateManager.getIsFacingLeft()) {
+				velocity.x += KNOCK_BACK_SPEED;
+			} else {
+				velocity.x -= KNOCK_BACK_SPEED;
+			}
+
+			this.health -= otherEntity.getCurrentDamage();
+		}
+
+		if (this.health <= 90) {//TODO: Restore to 0
+			this.health = 0;
+			playerFailedSound.play();
+			console.log("Your attempt failed.  Try again.");
+			//TODO: Go to game over screen
+		} else {
+			playerHitSound.play();
+		}
+	};
+
+	this.didHit = function() {
+		this.attackBody.isActive = false;
+	};
 }
