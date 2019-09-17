@@ -15,6 +15,7 @@ function TitleScene() {
 	const birds = [];
 
 	this.transitionIn = function() {
+		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 		if(keyMapper === null) {//we've never initialied the input/key mapping objects
 			keyMapper = new KeyMapper();
 			inputProcessor = new InputProcessor();
@@ -47,6 +48,7 @@ function TitleScene() {
 			buildBirds();
 		} else {
 			updateButtonTitles();
+			currentBackgroundMusic.loopSong(menuMusic);
 		}
 	};
 

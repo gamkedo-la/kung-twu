@@ -8,10 +8,14 @@ function CreditsScene() {
 	];
 	const buttonHeight = 25;//TODO: Adjust this size based on custom font
 	const buttonTitlePadding = 2;
+	let buttonPadding;
 	const buttons = [];
 
-
 	this.transitionIn = function() {
+		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
+
+		buttonPadding = canvas.width / 40;
+
 		let mainMenuX = 0;
 		const mainMenuY = canvas.height - (9 * buttonHeight / 2);
         
@@ -19,23 +23,23 @@ function CreditsScene() {
 			buttons.push(buildBackButton(canvas.width / 40, mainMenuY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildPlayButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
 
-			mainMenuX = canvas.width - (buttons[1].getBounds().width + canvas.width / 40);
-			buttons[1].updateXPosition(mainMenuX);
+			updateButtonPositions();
 		} else {
 			updateButtonTitles();
+			updateButtonPositions();
 		}
 
 		selectorPositionsIndex = 0;
 	};
 
 	this.transitionOut = function() {
-
+		this.properties = null;
 	};
 
 	this.run = function(deltaTime) {
 		update(deltaTime);
 
-		draw(deltaTime, buttons, selectorPositionsIndex);
+		draw(buttons);
 	};
 
 	this.control = function(newKeyEvent, pressed) {
@@ -100,6 +104,12 @@ function CreditsScene() {
 		return new UIButton(STRINGS_KEY.Back, x, y, height, padding, thisClick, Color.Purple);
 	};
 
+	const updateButtonPositions = function() {
+		buttons[0].updateXPosition(buttonPadding);
+		const button1Width = buttons[1].getBounds().width;
+		buttons[1].updateXPosition(canvas.width - (button1Width + buttonPadding));
+	};
+
 	const updateButtonTitles = function() {
 		for(let i = 0; i < buttons.length; i++) {
 			buttons[i].updateTitle();
@@ -112,19 +122,19 @@ function CreditsScene() {
 		}
 	};
 
-	const draw = function(deltaTime, buttons, selectorPositionIndex) {
+	const draw = function(buttons) {
 		// render the menu background
 		drawBG();
         
 		drawTitle();
 
 		// render menu
-		printNavigation(buttons, selectorPositionIndex);        
+		printNavigation(buttons);        
 	};
 	
 	const drawBG = function() {
-		canvasContext.drawImage(titleScreenBG,0,0);
-		canvasContext.drawImage(titleScreenDecore,0,0);        
+		canvasContext.drawImage(titleScreenBG, 0, 0);
+		canvasContext.drawImage(titleScreenDecore, 0, 0);        
 	};
     
 	const drawTitle = function() {

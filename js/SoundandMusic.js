@@ -63,8 +63,10 @@ function setFormat() {
 	}
 }
 
-function backgroundMusicClass() {	
+function backgroundMusicClass() {
+	let currentFileName;
 	this.loopSong = function(filenameWithPath) {
+		currentFileName = filenameWithPath;
 		setFormat(); // calling this to ensure that audioFormat is set before needed
 
 		if (musicSound != null) {
@@ -109,6 +111,10 @@ function backgroundMusicClass() {
 		} else if (musicSound.paused) {
 			musicSound.play();
 		}
+	};
+
+	this.getCurrentTrack = function() {
+		return currentFileName;
 	};
 
 	const getBaseVolumeForTrack = function(newTrack) {

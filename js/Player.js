@@ -202,8 +202,7 @@ function Player(config) {
 			stateManager.getCurrentState(),
 			position,
 			SCALE,
-			stateManager.getIsFacingLeft()
-		);
+			stateManager.getIsFacingLeft());
 
 		this.attackBody = hitBoxManager.attackColliderForState(
 			stateManager.getCurrentState(),

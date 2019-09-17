@@ -13,18 +13,13 @@ function GameOverScene() {
 	const buttonTitlePadding = 2;
 	const buttons = [];
 	const birds = [];
-	let screenPos = 0;
 	let score = 0;
 
 	this.transitionIn = function() {
+		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
+
 		if(this.properties) {
 			score = this.properties.score;
-		}
-
-		if(canvasContext.mozCurrentTransform != undefined) {
-			screenPos = -canvasContext.mozCurrentTransform[4];
-		} else {
-			screenPos = -canvasContext.getTransform().m41;
 		}
 
 		let mainMenuX = 0;
@@ -36,7 +31,7 @@ function GameOverScene() {
 			buttons.push(buildContinueButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
 
 			const button0Bounds = buttons[0].getBounds();
-			mainMenuX = screenPos + (canvas.width / 2) - (button0Bounds.width / 2);
+			mainMenuX = (canvas.width / 2) - (button0Bounds.width / 2);
 			buttons[0].updateXPosition(mainMenuX);
 
 			selectorPosition.x = mainMenuX - selector.width - (BUTTON_PADDING / 2);
@@ -51,42 +46,27 @@ function GameOverScene() {
 
 			buildBirds();
 		}
-
-		currentBackgroundMusic.loopSong(gameOverMusic);
+		if(currentBackgroundMusic.getCurrentTrack() != gameOverMusic) {
+			currentBackgroundMusic.loopSong(gameOverMusic);
+		}
 	};
 
 	this.transitionOut = function() {
+		this.properties = null;
 	};
 
 	this.run = function(deltaTime) {
 		update(deltaTime);
 
-		draw(deltaTime, buttons, selectorPositionsIndex);
+		draw(buttons);
 	};
 
 	this.control = function(newKeyEvent, pressed) {
-		if((!didInteract) && ((newKeyEvent == LEFT_MOUSE_BUTTON) || (newKeyEvent == RIGHT_MOUSE_BUTTON))) {
-			didInteract = true;
-			currentBackgroundMusic.loopSong(menuMusic);
-		}
-
 		if (pressed) {//only act on key released events => prevent multiple changes on single press
 			return false;
 		}
 		
 		switch (newKeyEvent) {
-		case ALIAS.HELP:
-			SceneState.setState(SCENE.HELP);
-			return true;
-		case ALIAS.CREDITS:
-			SceneState.setState(SCENE.CREDITS);
-			return true;
-		case ALIAS.SETTINGS:
-			SceneState.setState(SCENE.SETTINGS);
-			return true;
-		case ALIAS.CHEATS:
-			CHEATS_ACTIVE = !CHEATS_ACTIVE;
-			return true;
 		case ALIAS.DEBUG:
 			DEBUG = !DEBUG;
 			return true;
@@ -144,7 +124,7 @@ function GameOverScene() {
 		}
 	};
 	
-	const printMenu = function(menuItems, selected) {
+	const printMenu = function(menuItems) {
 		for(let i = 0; i < menuItems.length; i++) {
 			menuItems[i].draw();
 		}
@@ -159,7 +139,8 @@ function GameOverScene() {
 	};
 
 	const processUserInput = function() {
-		const navKeys = inputProcessor.getNewlyActiveKeys();
+		const navKeys = inputProcessor.getNewlyReleasedKeys();
+		let properties = null;
 		for(let i = 0; i < navKeys.length; i++) {
 			const newNavAction = keyMapper.getNavActionForKey(navKeys[i]);
 			if(newNavAction != null) {
@@ -181,7 +162,13 @@ function GameOverScene() {
 					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
 					break;
 				case NAV_ACTION.SELECT:
-					SceneState.setState(selections[selectorPositionsIndex]);
+					if(selections[selectorPositionsIndex] === SCENE.GAME) {
+						properties = {restartLevel:true};
+					} else if(selections[selectorPositionsIndex] === SCENE.TITLE) {
+						properties = {didQuit:true};
+					} 
+
+					SceneState.setState(selections[selectorPositionsIndex], properties);
 					break;
 				case NAV_ACTION.BACK:
 					break;//nowhere to go 'back' to
@@ -194,7 +181,7 @@ function GameOverScene() {
 		inputProcessor.clear();
 	};
 	
-	const draw = function(deltaTime, buttons, selectorPositionIndex) {
+	const draw = function(buttons) {
 		// render the menu background
 		drawBG();
 		
@@ -213,11 +200,11 @@ function GameOverScene() {
 		}
 
 		// render menu
-		printMenu(buttons, selectorPositionIndex);
+		printMenu(buttons);
 	};
 	
 	const drawBG = function() {
-		canvasContext.drawImage(titleScreenBG, screenPos, 0);
+		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(titleBlock, titleBlockPosition.x, titleBlockPosition.y);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 	};
@@ -226,20 +213,20 @@ function GameOverScene() {
 		const scale = 2/3;
 		const drawY = 25;
 		const titleXPos = (canvas.width - (scale * titleImage.width)) / 2;
-		canvasContext.drawImage(titleImage, 0, 0, titleImage.width, titleImage.height, screenPos + titleXPos, drawY, scale * titleImage.width, scale * titleImage.height);
+		canvasContext.drawImage(titleImage, 0, 0, titleImage.width, titleImage.height, titleXPos, drawY, scale * titleImage.width, scale * titleImage.height);
 
-		colorText(getLocalizedStringForKey(STRINGS_KEY.GameOverTitle), screenPos + canvas.width / 2, canvas.height / 3 - 60, Color.White, Fonts.Subtitle, TextAlignment.Center);
+		colorText(getLocalizedStringForKey(STRINGS_KEY.GameOverTitle), canvas.width / 2, canvas.height / 3 - 60, Color.White, Fonts.Subtitle, TextAlignment.Center);
 		
-		colorText(getLocalizedStringForKey(STRINGS_KEY.HighScore), screenPos + 60, canvas.height / 3, Color.White, Fonts.Subtitle, TextAlignment.Left);
+		colorText(getLocalizedStringForKey(STRINGS_KEY.HighScore), 60, canvas.height / 3, Color.White, Fonts.Subtitle, TextAlignment.Left);
 		let highScore = localStorageHelper.getObject(localStorageKey.HighScore);
-		colorText(highScore, screenPos + 270, canvas.height / 3, Color.White, Fonts.Subtitle, TextAlignment.Left);
+		colorText(highScore, 270, canvas.height / 3, Color.White, Fonts.Subtitle, TextAlignment.Left);
 		
-		colorText(getLocalizedStringForKey(STRINGS_KEY.Score), screenPos + 60, canvas.height / 3 + 60, Color.White, Fonts.Subtitle, TextAlignment.Left);
+		colorText(getLocalizedStringForKey(STRINGS_KEY.Score), 60, canvas.height / 3 + 60, Color.White, Fonts.Subtitle, TextAlignment.Left);
 		let scoreString = score.toString();
 		while(scoreString.length < 9) {
 			scoreString = "0" + scoreString;
 		}
-		colorText(scoreString, screenPos + 270, canvas.height / 3 + 60, Color.White, Fonts.Subtitle, TextAlignment.Left);
+		colorText(scoreString, 270, canvas.height / 3 + 60, Color.White, Fonts.Subtitle, TextAlignment.Left);
 	};
 		
 	return this;

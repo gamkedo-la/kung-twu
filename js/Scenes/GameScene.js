@@ -16,11 +16,14 @@ function GameScene() {
 	let timeTilSpawn = 0;
 	let score = 0;
 	let didReset = true;
+	let didTransitionOut = false;
 
 	this.transitionIn = function() {
 		if((this.properties != undefined) && (this.properties.restartLevel)) {
 			this.reset();
 		}
+
+		didTransitionOut = false;
 
 		if (aiManager === null) {
 			//if aiManager === null, we've never initialized a GameScene
@@ -50,7 +53,10 @@ function GameScene() {
 		currentBackgroundMusic.loopSong(gameMusic);
 	};
 
-	this.transitionOut = function() {};
+	this.transitionOut = function() {
+		this.properties = null;
+		didTransitionOut = true;
+	};
 
 	this.quit = function() {
 		currentLevel = 1;
@@ -61,7 +67,6 @@ function GameScene() {
 	this.reset = function() {
 		didReset = true;
 
-		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 		camera = new Camera();
 
 		enemies = [];
@@ -82,6 +87,7 @@ function GameScene() {
 
 	this.run = function(deltaTime) {
 		update(deltaTime);
+		if(didTransitionOut) {return;}
 		draw();
 	};
 
@@ -395,7 +401,7 @@ const Level1Data = {
 	bgClipLevel: 100,
 	cameraMin: -1000,
 	cameraMax: 350,
-	playerStart:{x:this.cameraMax, y:500}
+	playerStart:{x:350, y:500} //x = cameraMax
 };
 
 const Level2Data = {
@@ -415,7 +421,7 @@ const Level2Data = {
 	bgClipLevel: 200,
 	cameraMin: -100,
 	cameraMax: 2000,
-	playerStart:{x:this.cameraMin, y:500}
+	playerStart:{x:-100, y:500} //x = cameraMin
 };
 
 const Level3Data = {
@@ -435,7 +441,7 @@ const Level3Data = {
 	bgClipLevel: 300,
 	cameraMin: -1000,
 	cameraMax: 350,
-	playerStart:{x:this.cameraMax, y:500}
+	playerStart:{x:350, y:500} //x = cameraMax
 };
 
 const Level4Data = {
@@ -455,7 +461,7 @@ const Level4Data = {
 	bgClipLevel: 400,
 	cameraMin: -100,
 	cameraMax: 2000,
-	playerStart:{x:this.cameraMin, y:500}
+	playerStart:{x:-100, y:500} //x = cameraMin
 };
 
 const Level5Data = {
@@ -475,5 +481,5 @@ const Level5Data = {
 	bgClipLevel: 500,
 	cameraMin: -1000,
 	cameraMax: 350,
-	playerStart:{x:this.cameraMax, y:500}
+	playerStart:{x:350, y:500} //x = cameraMax
 };

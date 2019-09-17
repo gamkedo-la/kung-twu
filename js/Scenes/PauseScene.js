@@ -12,15 +12,11 @@ function PauseScene() {
 	const buttonTitlePadding = 2;
 	const buttons = [];
 	const birds = [];
-	let screenPos = 0;
 
 	this.transitionIn = function() {
-		if(canvasContext.mozCurrentTransform != undefined) {
-			screenPos = -canvasContext.mozCurrentTransform[4];
-		} else {
-			screenPos = -canvasContext.getTransform().m41;
-		}
-		let mainMenuX = screenPos;
+		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
+
+		let mainMenuX = 0;
 		const BUTTON_PADDING = 0.9 * buttonHeight;
 		const mainMenuY = BUTTON_PADDING + (canvas.height / 2);
 		const deltaY = 2 * BUTTON_PADDING;
@@ -28,7 +24,7 @@ function PauseScene() {
 		if(buttons.length === 0) {
 			buttons.push(buildResumeButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
 
-			mainMenuX = screenPos + (canvas.width / 2) - (buttons[0].getBounds().width / 2);
+			mainMenuX = (canvas.width / 2) - (buttons[0].getBounds().width / 2);
 			buttons[0].updateXPosition(mainMenuX);
 
 //			selectorPosition.x = mainMenuX - selector.width - (BUTTON_PADDING / 2);
@@ -38,24 +34,21 @@ function PauseScene() {
 			buttons.push(buildControlsButton(mainMenuX, mainMenuY + 2 * deltaY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildHelpButton(mainMenuX, mainMenuY + 3 * deltaY, buttonHeight, buttonTitlePadding));
 
-//			buildLanguageButtons();
-
 			buildBirds();
 		} else {
-			updateButtonPositions(screenPos + (canvas.width / 2) - (buttons[0].getBounds().width / 2));
 			updateButtonTitles();
+			updateButtonPositions((canvas.width / 2) - (buttons[0].getBounds().width / 2));
 		}
 	};
 
 	this.transitionOut = function() {
-
+		this.properties = null;
 	};
 
 	this.run = function(deltaTime) {
 		update(deltaTime);
 
-//		draw(deltaTime, buttons, selectorPositionsIndex);
-		draw(deltaTime, buttons);
+		draw(buttons);
 	};
 
 	this.control = function(newKeyEvent, pressed) {
@@ -164,13 +157,13 @@ function PauseScene() {
 		birds.push(new Bird({x:100, y: 100}, {x:7, y:7}, 0.75));
 	};
 
-	const printMenu = function(menuItems, selected) {
+	const printMenu = function(menuItems) {
 		for(let i = 0; i < menuItems.length; i++) {
 			menuItems[i].draw();
 		}
 	};
 
-	const draw = function(deltaTime, buttons, selectorPositionIndex) {
+	const draw = function(buttons) {
 		// render the menu background
 		drawBG();
 		
@@ -189,15 +182,15 @@ function PauseScene() {
 		}
 
 		// render menu
-		printMenu(buttons, selectorPositionIndex);	
+		printMenu(buttons);	
 	};
 	
 	const drawBG = function() {
-		canvasContext.drawImage(titleScreenBG, screenPos, 0);
-		canvasContext.drawImage(titleScreenDecore, screenPos, 0);        
+		canvasContext.drawImage(titleScreenBG, 0, 0);
+		canvasContext.drawImage(titleScreenDecore, 0, 0);        
 	};
 	
 	const drawTitle = function() {
-		colorText(getLocalizedStringForKey(STRINGS_KEY.Paused), screenPos + canvas.width / 2, TITLE_Y_POS, Color.White, Fonts.MainTitle, TextAlignment.Center);
+		colorText(getLocalizedStringForKey(STRINGS_KEY.Paused), canvas.width / 2, TITLE_Y_POS, Color.White, Fonts.MainTitle, TextAlignment.Center);
 	};
 }
