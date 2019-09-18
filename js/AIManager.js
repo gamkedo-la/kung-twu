@@ -16,9 +16,9 @@ const COOLDOWN = {
 	White:800,
 	Yellow:750,
 	Tan:700,
-	Brown:650,
-	Red:550,
-	Black:450
+	Brown:600,
+	Red:500,
+	Black:400
 };
 
 const IDEAL_STRIKE_DIST = 60;
@@ -69,14 +69,17 @@ function AIManager() {
 
 	this.actionForTypeTimeStateAndPos = function(type, timeSinceAction, currentState, distToPlayer, shouldAttack) {
 		const thisCoolDown = this.coolDownForType(type);
-
-		if((distToPlayer >= 0) && (currentState === WALK_LEFT_STATE)) {//walking away from player
-			return attackIfAppropriateFor(type, 2 * timeSinceAction, currentState, distToPlayer, shouldAttack, thisCoolDown);
-		} else if((distToPlayer <= 0) && (currentState === WALK_RIGHT_STATE)) {
-			return attackIfAppropriateFor(type, 2 * timeSinceAction, currentState, distToPlayer, shouldAttack, thisCoolDown);
+		if(timeSinceAction < 2 * thisCoolDown / 3) {
+			return null;
+		} else if(timeSinceAction < thisCoolDown) {
+			if((distToPlayer > IDEAL_STRIKE_DIST) && (currentState === WALK_LEFT_STATE)) {
+				return attackIfAppropriateFor(type, 2 * timeSinceAction, currentState, distToPlayer, shouldAttack, thisCoolDown);
+			} else if((distToPlayer < -IDEAL_STRIKE_DIST) && (currentState === WALK_RIGHT_STATE)) {
+				return attackIfAppropriateFor(type, 2 * timeSinceAction, currentState, distToPlayer, shouldAttack, thisCoolDown);
+			} else {
+				return null;
+			}
 		}
-		
-		if(timeSinceAction < thisCoolDown) return currentState;
 		
 		const desiredDistance = desiredApproachDistance(type, shouldAttack);
 		if(shouldAttack) {
@@ -115,31 +118,31 @@ function AIManager() {
 			if(shouldAttack) {
 				return strikeDistance;
 			} else {
-				return 5 * strikeDistance;
+				return 6 * strikeDistance;
 			}
 		case AITYPE.BasicYellow:
 			if(shouldAttack) {
 				return strikeDistance;
 			} else {
-				return 4.5 * strikeDistance;
+				return 5.5 * strikeDistance;
 			}
 		case AITYPE.BasicTan:
 			if(shouldAttack) {
 				return strikeDistance;
 			} else {
-				return 4 * strikeDistance;
+				return 5 * strikeDistance;
 			}
 		case AITYPE.BasicBrown:
 			if(shouldAttack) {
 				return strikeDistance;
 			} else {
-				return 3.5 * strikeDistance;
+				return 4.5 * strikeDistance;
 			}
 		case AITYPE.BasicRed:
 			if(shouldAttack) {
 				return strikeDistance;
 			} else {
-				return 2.5 * strikeDistance;
+				return 3.5 * strikeDistance;
 			}
 		case AITYPE.BossYellow:
 		case AITYPE.BossTan:
@@ -154,31 +157,31 @@ function AIManager() {
 		let range = IDEAL_STRIKE_DIST;
 		switch(type) {
 		case AITYPE.BasicWhite:
-			range = 40;
+			range = 30;
 			break;
 		case AITYPE.BasicYellow:
-			range = 34;
+			range = 24;
 			break;
 		case AITYPE.BasicTan:
-			range = 28;
+			range = 18;
 			break;
 		case AITYPE.BasicBrown:
-			range = 20;
+			range = 10;
 			break;
 		case AITYPE.BasicRed:
-			range = 10;
+			range = 4;
 			break;
 		case AITYPE.BossYellow:
-			range = 28;
+			range = 18;
 			break;
 		case AITYPE.BossTan:
-			range = 20;
-			break;
-		case AITYPE.BossBrown:
 			range = 10;
 			break;
+		case AITYPE.BossBrown:
+			range = 8;
+			break;
 		case AITYPE.BossRed:
-			range = 6;
+			range = 4;
 			break;
 		case AITYPE.BossBlack:
 			range = 0;

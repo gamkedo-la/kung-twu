@@ -541,7 +541,12 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 	const updateStateWithAI = function(deltaTime, distToPlayer, shouldAttack) {
 		let action = aiManager.actionForTypeTimeStateAndPos(aiType, timeSinceAction, currentState, distToPlayer, shouldAttack);
 
-		newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, action));
+		if(action === null) {
+			newState = currentState;
+		} else {
+			newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, action));
+		}
+
 		if(newState != currentState) {
 			timeSinceAction = 0;
 
@@ -551,18 +556,18 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 				isFacingLeft = false;
 			} else if(action === ACTION.Jump) {
 				isOnGround = false;	
-			} else if(action === ACTION.Release) {
-				if(distToPlayer > 0) {
-					isFacingLeft = false;
-				} else {
-					isFacingLeft = true;
-				}
-			}
-
+			} 
 		} else {
 			timeSinceAction += deltaTime;
 		}
+
 		setNewState(newState);
+
+		if(distToPlayer > 0) {
+			isFacingLeft = false;
+		} else {
+			isFacingLeft = true;
+		}
 	};
 
 	this.drawAt = function(x = 0, y = 0) {
