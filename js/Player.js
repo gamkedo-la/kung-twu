@@ -441,8 +441,6 @@ function Player(config) {
 		if (this.health <= 0) {
 			this.health = 0;
 			playerFailedSound.play();
-			console.log("Your attempt failed.  Try again.");
-			//TODO: Go to game over screen
 		} else {
 			playerHitSound.play();
 		}

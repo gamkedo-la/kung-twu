@@ -16,6 +16,7 @@ function GameOverScene() {
 	let score = 0;
 
 	this.transitionIn = function() {
+		console.log(`Transinging back to game over`);
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 
 		if(this.properties) {

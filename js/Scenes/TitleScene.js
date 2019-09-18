@@ -11,7 +11,9 @@ function TitleScene() {
 	];
 	const buttonHeight = 25;//TODO: Adjust this size based on custom font
 	const buttonTitlePadding = 2;
+	const BUTTON_PADDING = 0.9 * buttonHeight;
 	const buttons = [];
+	const languageButtons = [];
 	const birds = [];
 
 	this.transitionIn = function() {
@@ -22,7 +24,7 @@ function TitleScene() {
 		}
 
 		let mainMenuX = 0;
-		const BUTTON_PADDING = 0.9 * buttonHeight;
+		
 		const mainMenuY = BUTTON_PADDING + (canvas.height / 2);
 		const deltaY = 2 * BUTTON_PADDING;
         
@@ -45,9 +47,12 @@ function TitleScene() {
 
 			buildLanguageButtons();
 
+			updateButtonPositions();
+
 			buildBirds();
 		} else {
 			updateButtonTitles();
+			updateButtonPositions();
 			currentBackgroundMusic.loopSong(menuMusic);
 		}
 	};
@@ -59,7 +64,7 @@ function TitleScene() {
 	this.run = function(deltaTime) {
 		update(deltaTime);
 
-		draw(deltaTime, buttons, selectorPositionsIndex);
+		draw();
 	};
 
 	this.control = function(newKeyEvent, pressed) {
@@ -130,9 +135,24 @@ function TitleScene() {
 	};
 
 	const updateButtonTitles = function() {
-		for(let i = 0; i < buttons.length; i++) {
-			buttons[i].updateTitle();
+		for(let button of buttons) {
+			button.updateTitle();
 		}
+	};
+
+	const updateButtonPositions = function() {
+		let maxWidth = 0;
+		for(let button of buttons) {
+			const thisWidth = button.getBounds().width;
+			if(thisWidth > maxWidth) {maxWidth = thisWidth;}
+		}
+
+		const menuPos = (canvas.width / 2) - (maxWidth / 2);
+		for(button of buttons) {
+			button.updateXPosition(menuPos);
+		}
+
+		selectorPosition.x = menuPos - selector.width - (BUTTON_PADDING / 2);
 	};
 
 	const buildLanguageButtons = function() {
@@ -141,30 +161,29 @@ function TitleScene() {
 		const interButtonPadding = 3 * buttonHeight / 2;
 		let xPos = 0;//interButtonPadding;
 		let totalButtonWidth = 0;
-		const languageButtons = [];
-		for(let i = 0; i < languages.length; i++) {
+		const langButtons = [];
+		for(let language of languages) {
 			const thisClick = function() {
-				currentLanguage = STRINGS_KEY[languages[i]];
+				currentLanguage = STRINGS_KEY[language];
 				localStorageHelper.setItem(localStorageKey.Language, currentLanguage);
 				updateButtonTitles();
 			};
 
-			languageButtons.push(new UIButton(STRINGS_KEY[languages[i]], 
+			langButtons.push(new UIButton(STRINGS_KEY[language], 
 				xPos, canvas.height - (9 * buttonHeight / 2), 
 				buttonHeight, buttonTitlePadding, thisClick, Color.Red));
 
-			totalButtonWidth += (languageButtons[languageButtons.length - 1].getBounds().width);
+			totalButtonWidth += (langButtons[langButtons.length - 1].getBounds().width);
 		}
 
 		totalButtonWidth += ((languages.length - 1) * interButtonPadding);
 
 		let currentX = ((canvas.width - totalButtonWidth) / 2);
 
-		for(let i = 0; i < languageButtons.length; i++) {
-			const thisButton = languageButtons[i];
-			thisButton.updateXPosition(currentX);
-			currentX += (thisButton.getBounds().width + interButtonPadding);
-			buttons.push(thisButton);
+		for(let button of langButtons) {
+			button.updateXPosition(currentX);
+			currentX += (button.getBounds().width + interButtonPadding);
+			languageButtons.push(button);
 		}
 	};
 
@@ -176,30 +195,39 @@ function TitleScene() {
 
 	const checkButtons = function() {
 		let wasClicked = false;
-		for(let i = 0; i < buttons.length; i++) {
-			wasClicked = buttons[i].respondIfClicked(mouseX, mouseY);
+		for(let button of buttons) {
+			wasClicked = button.respondIfClicked(mouseX, mouseY);
+			if(wasClicked) {break;}
+		}
+
+		for(let button of languageButtons) {
+			wasClicked = button.respondIfClicked(mouseX, mouseY);
 			if(wasClicked) {break;}
 		}
 	};
     
-	const printMenu = function(menuItems, selected) {
-		for(let i = 0; i < menuItems.length; i++) {
-			menuItems[i].draw();
+	const printMenu = function() {
+		for(let button of buttons) {
+			button.draw();
+		}
+
+		for(let button of languageButtons) {
+			button.draw();
 		}
 	};
 	
 	const update = function(deltaTime) {
 		processUserInput();
 
-		for(let i = 0; i < birds.length; i++) {
-			birds[i].update(deltaTime);
+		for(let bird of birds) {
+			bird.update(deltaTime);
 		}
 	};
 
 	const processUserInput = function() {
-		const navKeys = inputProcessor.getNewlyActiveKeys();
-		for(let i = 0; i < navKeys.length; i++) {
-			const newNavAction = keyMapper.getNavActionForKey(navKeys[i]);
+		const navKeys = inputProcessor.getNewlyReleasedKeys();
+		for(let key of navKeys) {
+			const newNavAction = keyMapper.getNavActionForKey(key);
 			if(newNavAction != null) {
 				switch(newNavAction) {
 				case NAV_ACTION.UP:
@@ -232,26 +260,26 @@ function TitleScene() {
 		inputProcessor.clear();
 	};
 	
-	const draw = function(deltaTime, buttons, selectorPositionIndex) {
+	const draw = function() {
 		// render the menu background
 		drawBG();
 		
-		for(let i = 0; i < birds.length; i++) {
-			if(birds[i].scale < 1.0) {
-				birds[i].draw();
+		for(let bird of birds) {
+			if(bird.scale < 1.0) {
+				bird.draw();
 			}
 		}
 
 		drawTitle();
 
-		for(let i = 0; i < birds.length; i++) {
-			if(birds[i].scale >= 1.0) {
-				birds[i].draw();
+		for(let bird of birds) {
+			if(bird.scale < 1.0) {
+				bird.draw();
 			}
 		}
 
 		// render menu
-		printMenu(buttons, selectorPositionIndex);
+		printMenu();
 	};
 	
 	const drawBG = function() {

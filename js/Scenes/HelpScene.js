@@ -2,29 +2,28 @@
 function HelpScene() {
 	const TITLE_Y_POS = 100;
 	let selectorPositionsIndex = 0;
+	const selectorPosition = {x:0, y:0};
 	const selections = [
 		SCENE.TITLE,
 		SCENE.GAME
 	];
 	const buttonHeight = 25;//TODO: Adjust this size based on custom font
 	const buttonTitlePadding = 2;
+	let buttonPadding;
 	const buttons = [];
-	let canvasPad = 0;
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 
-		canvasPad = canvas.width / 40;
+		buttonPadding = canvas.width / 40;
 		
 		const menuY = canvas.height - (9 * buttonHeight / 2);
         
 		if(buttons.length === 0) {
-			
-			buttons.push(buildBackButton(canvasPad, menuY, buttonHeight, buttonTitlePadding));
-			buttons.push(buildPlayButton(canvas.width - canvasPad, menuY, buttonHeight, buttonTitlePadding));
+			buttons.push(buildBackButton(buttonPadding, menuY, buttonHeight, buttonTitlePadding));
+			buttons.push(buildPlayButton(canvas.width - buttonPadding, menuY, buttonHeight, buttonTitlePadding));
 
-			const button1Bounds = buttons[1].getBounds();
-			buttons[1].updateXPosition(button1Bounds.x - button1Bounds.width);
+			updateButtonPositions();
 		} else {
 			updateButtonPositions();
 			updateButtonTitles();
@@ -40,7 +39,7 @@ function HelpScene() {
 	this.run = function(deltaTime) {
 		update(deltaTime);
 
-		draw(deltaTime, buttons, selectorPositionsIndex);
+		draw();
 	};
 
 	this.control = function(newKeyEvent, pressed) {
@@ -49,26 +48,6 @@ function HelpScene() {
 		}
         
 		switch (newKeyEvent) {
-		case ALIAS.UP:
-		case ALIAS.LEFT:
-			selectorPositionsIndex--;
-			if (selectorPositionsIndex < 0) {
-				selectorPositionsIndex += selections.length;
-			}
-			return true;
-		case ALIAS.DOWN:
-		case ALIAS.RIGHT:
-			selectorPositionsIndex++;
-			if (selectorPositionsIndex >= selections.length) {
-				selectorPositionsIndex = 0;
-			}
-			return true;
-		case ALIAS.SELECT1:
-			SceneState.setState(selections[selectorPositionsIndex]);
-			return true;
-		case ALIAS.SELECT2:
-			SceneState.setState(SCENE.GAME);
-			return true;
 		case ALIAS.POINTER:
 			checkButtons();
 			return true;
@@ -77,14 +56,65 @@ function HelpScene() {
 		return false;
 	};
 
-	const update = function(deltaTime) {
+	const update = function() {
+		processUserInput();
+	};
 
+	const processUserInput = function() {
+		const navKeys = inputProcessor.getNewlyReleasedKeys();
+		for(let key of navKeys) {
+			const newNavAction = keyMapper.getNavActionForKey(key);
+			if(newNavAction != null) {
+				switch(newNavAction) {
+				case NAV_ACTION.UP:
+				case NAV_ACTION.LEFT:
+					selectorPositionsIndex--;
+					if (selectorPositionsIndex < 0) {
+						selectorPositionsIndex += selections.length;
+					}
+					updateSelectorPosition();
+					break;			
+				case NAV_ACTION.DOWN:
+				case NAV_ACTION.RIGHT:
+					selectorPositionsIndex++;
+					if (selectorPositionsIndex >= selections.length) {
+						selectorPositionsIndex = 0;
+					}
+					updateSelectorPosition();
+					break;
+				case NAV_ACTION.SELECT:
+					if(selectorPositionsIndex === 0) {
+						SceneState.popState();
+					} else {
+						SceneState.setState(selections[selectorPositionsIndex]);
+					}
+					break;
+				case NAV_ACTION.BACK:
+					break;//nowhere to go 'back' to
+				case NAV_ACTION.PAUSE:
+
+				}
+			}
+		}
+
+		inputProcessor.clear();
+	};
+
+	const updateSelectorPosition = function() {
+		const theseBounds = buttons[selectorPositionsIndex].getBounds();
+		let widthToUse = theseBounds.width + (buttonHeight / 2);
+		if(selectorPositionsIndex === 1) {
+			widthToUse = -(selector.width + (buttonHeight / 2));
+		}
+
+		selectorPosition.x = theseBounds.x + widthToUse;
+		selectorPosition.y = theseBounds.y + (buttonHeight / 2) - (selector.height / 2);
 	};
 
 	const checkButtons = function() {
 		let wasClicked = false;
-		for(let i = 0; i < buttons.length; i++) {
-			wasClicked = buttons[i].respondIfClicked(mouseX, mouseY);
+		for(let button of buttons) {
+			wasClicked = button.respondIfClicked(mouseX, mouseY);
 			if(wasClicked) {break;}
 		}
 	};
@@ -109,23 +139,26 @@ function HelpScene() {
 	};
 
 	const updateButtonPositions = function() {
-		buttons[0].updateXPosition(canvasPad);
-		buttons[1].updateXPosition(canvas.width - canvasPad - buttons[1].getBounds().width);
+		buttons[0].updateXPosition(buttonPadding);
+		const button1Width = buttons[1].getBounds().width;
+		buttons[1].updateXPosition(canvas.width - (button1Width + buttonPadding));
+
+		updateSelectorPosition();
 	};
 
 	const updateButtonTitles = function() {
-		for(let i = 0; i < buttons.length; i++) {
-			buttons[i].updateTitle();
+		for(let button of buttons) {
+			button.updateTitle();
 		}
 	};
 
-	const printNavigation = function(navItems) {
-		for(let i = 0; i < navItems.length; i++) {
-			navItems[i].draw();
+	const printButtons = function() {
+		for(let button of buttons) {
+			button.draw();
 		}
 	};
 
-	const draw = function(deltaTime, buttons, selectorPositionIndex) {
+	const draw = function() {
 		// render the menu background
 		drawBG();
         
@@ -134,13 +167,14 @@ function HelpScene() {
 		drawHelpScreenContents();
 
 		// render menu
-		printNavigation(buttons, selectorPositionIndex);        
+		printButtons();        
 	};
 	
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
-		canvasContext.drawImage(titleScreenDecore, 0, 0);        
+		canvasContext.drawImage(titleScreenDecore, 0, 0);
 		canvasContext.drawImage(titleBlock, canvas.width / 2 - titleBlock.width / 2, canvas.height / 2 - 38);        
+		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);     
 	};
     
 	const drawTitle = function() {
