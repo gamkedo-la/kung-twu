@@ -110,8 +110,8 @@ function InfiniteSubFloor() {
 	};
 
 	const drawBricks = function() {
-		for(let i = 0; i < BRICKS.length; i++) {
-			BRICKS[i].draw();
+		for(let brick of BRICKS) {
+			brick.draw();
 		}
 	};
 

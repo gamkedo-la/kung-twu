@@ -16,7 +16,6 @@ function GameOverScene() {
 	let score = 0;
 
 	this.transitionIn = function() {
-		console.log(`Transinging back to game over`);
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 
 		if(this.properties) {
@@ -119,31 +118,31 @@ function GameOverScene() {
 
 	const checkButtons = function() {
 		let wasClicked = false;
-		for(let i = 0; i < buttons.length; i++) {
-			wasClicked = buttons[i].respondIfClicked(mouseX, mouseY);
+		for(let button of buttons) {
+			wasClicked = button.respondIfClicked(mouseX, mouseY);
 			if(wasClicked) {break;}
 		}
 	};
 	
-	const printMenu = function(menuItems) {
-		for(let i = 0; i < menuItems.length; i++) {
-			menuItems[i].draw();
+	const printButtons = function() {
+		for(let button of buttons) {
+			button.draw();
 		}
 	};
 	
 	const update = function(deltaTime) {
 		processUserInput();
 
-		for(let i = 0; i < birds.length; i++) {
-			birds[i].update(deltaTime);
+		for(let bird of birds) {
+			bird.update(deltaTime);
 		}
 	};
 
 	const processUserInput = function() {
 		const navKeys = inputProcessor.getNewlyReleasedKeys();
 		let properties = null;
-		for(let i = 0; i < navKeys.length; i++) {
-			const newNavAction = keyMapper.getNavActionForKey(navKeys[i]);
+		for(let key of navKeys) {
+			const newNavAction = keyMapper.getNavActionForKey(key);
 			if(newNavAction != null) {
 				switch(newNavAction) {
 				case NAV_ACTION.UP:
@@ -182,26 +181,26 @@ function GameOverScene() {
 		inputProcessor.clear();
 	};
 	
-	const draw = function(buttons) {
+	const draw = function() {
 		// render the menu background
 		drawBG();
 		
-		for(let i = 0; i < birds.length; i++) {
-			if(birds[i].scale < 1.0) {
-				birds[i].draw();
+		for(let bird of birds) {
+			if(bird.scale < 1.0) {
+				bird.draw();
 			}
 		}
 
 		drawTitle();
 
-		for(let i = 0; i < birds.length; i++) {
-			if(birds[i].scale >= 1.0) {
-				birds[i].draw();
+		for(let bird of birds) {
+			if(bird.scale >= 1.0) {
+				bird.draw();
 			}
 		}
 
 		// render menu
-		printMenu(buttons);
+		printButtons();
 	};
 	
 	const drawBG = function() {

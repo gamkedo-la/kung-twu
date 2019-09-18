@@ -25,14 +25,14 @@ function BackgroundManager() {
 	};
 
 	this.update = function(shifts) {
-		for(let i = 0; i < images.length; i++) {
-			images[i].update(shifts);
+		for(let image of images) {
+			image.update(shifts);
 		}
 	};
 
 	this.draw = function() {
-		for(let i = 0; i < images.length; i++) {
-			images[i].draw();
+		for(let image of images) {
+			image.draw();
 		}
 	};
 }

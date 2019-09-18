@@ -11,8 +11,8 @@ function InfiniteWall(posY) {
 			initializeTiles();
 		}
 
-		for(let i = 0; i < TILES.length; i++) {
-			TILES[i].update(DELTA_PER_SHIFT * shifts);
+		for(let tile of TILES) {
+			tile.update(DELTA_PER_SHIFT * shifts);
 		}
 
 		let didShiftLeft = false;
@@ -51,12 +51,12 @@ function InfiniteWall(posY) {
 	};
 
 	this.draw = function() {
-		for(let i = 0; i < TILES.length; i++) {
-			TILES[i].draw();
+		for(let tile of TILES) {
+			tile.draw();
 		}
 
-		for(let i = 0; i < SHADOWS.length; i++) {
-			SHADOWS[i].draw();
+		for(let shadow of SHADOWS) {
+			shadow.draw();
 		}
 	};
 

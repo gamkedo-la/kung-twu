@@ -58,14 +58,14 @@ function InfiniteRoof(posY) {
 	};
 
 	this.draw = function() {
-		for(let i = 0; i < TILE_TOPS.length; i++) {
-			TILE_TOPS[i].draw();
+		for(let top of TILE_TOPS) {
+			top.draw();
 		}
 
 		boards.draw();
 
-		for(let i = 0; i < TILE_BOTS.length; i++) {
-			TILE_BOTS[i].draw();
+		for(let bot of TILE_BOTS) {
+			bot.draw();
 		}
 	};
 

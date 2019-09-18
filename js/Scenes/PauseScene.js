@@ -89,15 +89,15 @@ function PauseScene() {
 	};
 
 	const update = function(deltaTime) {
-		for(let i = 0; i < birds.length; i++) {
-			birds[i].update(deltaTime);
+		for(let bird of birds) {
+			bird.update(deltaTime);
 		}
 	};
 
 	const checkButtons = function() {
 		let wasClicked = false;
-		for(let i = 0; i < buttons.length; i++) {
-			wasClicked = buttons[i].respondIfClicked(mouseX, mouseY);
+		for(let button of buttons) {
+			wasClicked = button.respondIfClicked(mouseX, mouseY);
 			if(wasClicked) {break;}
 		}
 	};
@@ -140,14 +140,14 @@ function PauseScene() {
 	};
 
 	const updateButtonPositions = function(newPosition) {
-		for(let i = 0; i < buttons.length; i++) {
-			buttons[i].updateXPosition(newPosition);
+		for(let button of buttons) {
+			button.updateXPosition(newPosition);
 		}
 	};
 
 	const updateButtonTitles = function() {
-		for(let i = 0; i < buttons.length; i++) {
-			buttons[i].updateTitle();
+		for(let button of buttons) {
+			button.updateTitle();
 		}
 	};
 
@@ -157,32 +157,32 @@ function PauseScene() {
 		birds.push(new Bird({x:100, y: 100}, {x:7, y:7}, 0.75));
 	};
 
-	const printMenu = function(menuItems) {
-		for(let i = 0; i < menuItems.length; i++) {
-			menuItems[i].draw();
+	const printButtons = function() {
+		for(let button of buttons) {
+			button.draw();
 		}
 	};
 
-	const draw = function(buttons) {
+	const draw = function() {
 		// render the menu background
 		drawBG();
 		
-		for(let i = 0; i < birds.length; i++) {
-			if(birds[i].scale < 1.0) {
-				birds[i].draw();
+		for(let bird of birds) {
+			if(bird.scale < 1.0) {
+				bird.draw();
 			}
 		}
 
 		drawTitle();
 
-		for(let i = 0; i < birds.length; i++) {
-			if(birds[i].scale >= 1.0) {
-				birds[i].draw();
+		for(let bird of birds) {
+			if(bird.scale < 1.0) {
+				bird.draw();
 			}
 		}
 
 		// render menu
-		printMenu(buttons);	
+		printButtons();	
 	};
 	
 	const drawBG = function() {

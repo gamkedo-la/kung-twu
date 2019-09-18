@@ -77,8 +77,8 @@ function startGame() {
 	const lastVersion = localStorageHelper.getFloat(localStorageKey.Version);
 	if((lastVersion == undefined) || (lastVersion == null) || (lastVersion < version)) {
 		const storageKeys = Object.keys(localStorageKey);
-		for(let i = 0; i < storageKeys.length; i++) {
-			localStorageHelper.removeItem(storageKeys[i]);
+		for(let storageKey of storageKeys) {
+			localStorageHelper.removeItem(storageKey);
 		}
 
 		localStorageHelper.setItem(localStorageKey.Version, version.toString());

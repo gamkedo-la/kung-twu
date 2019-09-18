@@ -23,11 +23,11 @@ function Collider(type, data) {
 		let minY = points[0].y; 
 		let maxY = points[0].y;
 		
-		for(let i = 1; i < points.length; i++) {
-			minX = Math.min(minX, points[i].x);
-			maxX = Math.max(maxX, points[i].x);
-			minY = Math.min(minY, points[i].y);
-			maxY = Math.max(maxY, points[i].y);
+		for(let point of points) {
+			minX = Math.min(minX, point.x);
+			maxX = Math.max(maxX, point.x);
+			minY = Math.min(minY, point.y);
+			maxY = Math.max(maxY, point.y);
 		}
 		
 		const halfDeltaX = (maxX - minX) / 2;
@@ -216,8 +216,8 @@ function CollisionManager(player) {
 
 	const polygonVPolygon = function(body1, body2) {
 		const body2Points = body2.points;
-		for(let i = 0; i < body2Points.length; i++) {
-			if(pointInPolygon(body2Points[i], body1.points)) {
+		for(let body2Point of body2Points) {
+			if(pointInPolygon(body2Point, body1.points)) {
 				//at least 1 point of polygon2 is inside polygon1 => collision occurred
 
 				return true;
@@ -225,8 +225,8 @@ function CollisionManager(player) {
 		}
 
 		const body1Points = body1.points;
-		for(let i = 0; i < body1Points.length; i++) {
-			if(pointInPolygon(body1Points[i], body2.points)) {
+		for(body1Point of body1Points) {
+			if(pointInPolygon(body1Point, body2.points)) {
 				//at least 1 point of polygon2 is inside polygon1 => collision occurred
 
 				return true;

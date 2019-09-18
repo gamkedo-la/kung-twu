@@ -220,8 +220,8 @@ function KeyMapper() {
 	const addWalkLeftKey = function(keyToAdd) {
 		walkLeft.add(keyToAdd);
 
-		for(let i = 0; i < ACTION_SET.length; i++) {
-			if(ACTION_SET[i] === walkLeft) continue;
+		for(let anAction of ACTION_SET) {
+			if(anAction === walkLeft) continue;
 
 			removeWalkLeftKey(keyToAdd);
 		}
@@ -232,8 +232,8 @@ function KeyMapper() {
 	const addWalkRightKey = function(keyToAdd) {
 		walkRight.add(keyToAdd);
 
-		for(let i = 0; i < ACTION_SET.length; i++) {
-			if(ACTION_SET[i] === walkRight) continue;
+		for(let anAction of ACTION_SET) {
+			if(anAction === walkRight) continue;
 
 			removeWalkRightKey(keyToAdd);
 		}
@@ -244,8 +244,8 @@ function KeyMapper() {
 	const addJumpKey = function(keyToAdd) {
 		jump.add(keyToAdd);
 
-		for(let i = 0; i < ACTION_SET.length; i++) {
-			if(ACTION_SET[i] === jump) continue;
+		for(let anAction of ACTION_SET) {
+			if(anAction === jump) continue;
 
 			removeJumpKey(keyToAdd);
 		}
@@ -256,8 +256,8 @@ function KeyMapper() {
 	const addDashKey = function(keyToAdd) {
 		dash.add(keyToAdd);
 
-		for(let i = 0; i < ACTION_SET.length; i++) {
-			if(ACTION_SET[i] === dash) continue;
+		for(let anAction of ACTION_SET) {
+			if(anAction === dash) continue;
 
 			removeDashKey(keyToAdd);
 		}
@@ -268,8 +268,8 @@ function KeyMapper() {
 	const addBlockKey = function(keyToAdd) {
 		block.add(keyToAdd);
 
-		for(let i = 0; i < ACTION_SET.length; i++) {
-			if(ACTION_SET[i] === block) continue;
+		for(let anAction of ACTION_SET) {
+			if(anAction === block) continue;
 
 			removeBlockKey(keyToAdd);
 		}
@@ -280,8 +280,8 @@ function KeyMapper() {
 	const addCrouchKey = function(keyToAdd) {
 		crouch.add(keyToAdd);
 
-		for(let i = 0; i < ACTION_SET.length; i++) {
-			if(ACTION_SET[i] === crouch) continue;
+		for(let anAction of ACTION_SET) {
+			if(anAction === crouch) continue;
 
 			removeCrouchKey(keyToAdd);
 		}
@@ -292,8 +292,8 @@ function KeyMapper() {
 	const addKickKey = function(keyToAdd) {
 		kick.add(keyToAdd);
 
-		for(let i = 0; i < ACTION_SET.length; i++) {
-			if(ACTION_SET[i] === kick) continue;
+		for(let anAction of ACTION_SET) {
+			if(anAction === kick) continue;
 
 			removeKickKey(keyToAdd);
 		}
@@ -304,8 +304,8 @@ function KeyMapper() {
 	const addPunchKey = function(keyToAdd) {
 		punch.add(keyToAdd);
 
-		for(let i = 0; i < ACTION_SET.length; i++) {
-			if(ACTION_SET[i] === punch) continue;
+		for(let anAction of ACTION_SET) {
+			if(anAction === punch) continue;
 
 			removePunchKey(keyToAdd);
 		}

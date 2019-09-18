@@ -576,16 +576,16 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 
 	const updateStateWithUserInput = function() {
 		const releasedKeys = inputProcessor.getNewlyReleasedKeys();
-		for(let i = 0; i < releasedKeys.length; i++) {
-			const releasedAction = keyMapper.getActionForKey(releasedKeys[i]);
+		for(let releasedKey of releasedKeys) {
+			const releasedAction = keyMapper.getActionForKey(releasedKey);
 			if(releasedAction != null) {//released something I care about
 				setNewState(stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Release)));
 			}
 		}
 
 		const activeKeys = inputProcessor.getCurrentlyActiveKeys();
-		for(let i = 0; i < activeKeys.length; i++) {
-			const activeAction = keyMapper.getActionForKey(activeKeys[i]);
+		for(let activeKey of activeKeys) {
+			const activeAction = keyMapper.getActionForKey(activeKey);
 			if(activeAction != null) {//something I care about is pressed
 				const thisState = stateTranslator(currentState.nextStateForActionWithBelt(belt, activeAction));
 				setNewState(thisState, activeAction);

@@ -42,8 +42,8 @@ function BasicEnemy(config) {
 		//anims.knockback = ...
 
 		const animationKeys = Object.keys(anims);
-		for(let i = 0; i < animationKeys.length; i++) {
-			anims[animationKeys[i]].scale = SCALE;
+		for(let key of animationKeys) {
+			anims[key].scale = SCALE;
 		}
 
 		return anims;

@@ -67,8 +67,8 @@ function InfiniteSurface(config, verticalOffset) {
 	};
 
 	this.draw = function() {
-		for(let i = 0; i < tiles.length; i++) {
-			tiles[i].draw();
+		for(let tile of tiles) {
+			tile.draw();
 		}
 	};
 
