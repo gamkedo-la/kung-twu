@@ -11,6 +11,7 @@ function GameOverScene() {
 	];
 	const buttonHeight = 25;//TODO: Adjust this size based on custom font
 	const buttonTitlePadding = 2;
+	const BUTTON_PADDING = 0.9 * buttonHeight;
 	const buttons = [];
 	const birds = [];
 	let score = 0;
@@ -45,7 +46,11 @@ function GameOverScene() {
 			buttons.push(buildCreditsButton(mainMenuX, mainMenuY + 3 * deltaY, buttonHeight, buttonTitlePadding));
 
 			buildBirds();
+		} else {
+			updateButtonPositions();
+			updateButtonTitles();
 		}
+
 		if(currentBackgroundMusic.getCurrentTrack() != gameOverMusic) {
 			currentBackgroundMusic.loopSong(gameOverMusic);
 		}
@@ -108,6 +113,27 @@ function GameOverScene() {
 		};
 
 		return new UIButton(STRINGS_KEY.Credits, x, y, height, padding, thisClick, Color.Purple);
+	};
+
+	const updateButtonPositions = function() {
+		let maxWidth = 0;
+		for(let button of buttons) {
+			const thisWidth = button.getBounds().width;
+			if(thisWidth > maxWidth) {maxWidth = thisWidth;}
+		}
+
+		const menuPos = (canvas.width / 2) - (maxWidth / 2);
+		for(button of buttons) {
+			button.updateXPosition(menuPos);
+		}
+
+		selectorPosition.x = menuPos - selector.width - (BUTTON_PADDING / 2);
+	};
+
+	const updateButtonTitles = function() {
+		for(let button of buttons) {
+			button.updateTitle();
+		}
 	};
 
 	const buildBirds = function() {
