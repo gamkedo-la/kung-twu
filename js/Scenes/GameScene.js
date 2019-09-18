@@ -16,7 +16,7 @@ function GameScene() {
 	let timeTilSpawn = 0;
 	let score = 0;
 	let didReset = true;
-	let didTransitionOut = false;
+    let didTransitionOut = false;
 
 	this.transitionIn = function() {
 		if((this.properties != undefined) && (this.properties.restartLevel)) {
@@ -199,7 +199,8 @@ function GameScene() {
 			enemies[i].draw();
 		}
 
-		player.draw();
+        player.draw();
+        wooshFX.draw();
 
 		columnManager.draw(cameraX);
 		roof.draw();

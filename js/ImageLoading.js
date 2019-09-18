@@ -87,6 +87,7 @@ const playerWalkFwd = document.createElement("img");
 const playerWalkBack = document.createElement("img");
 const playerPunch = document.createElement("img");
 const playerKick = document.createElement("img");
+const wooshPic = document.createElement("img");
 
 let picsToLoad = 0;
 
@@ -129,6 +130,7 @@ function loadImages() {
 		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
 		{ imgName: playerPunch, theFile: "Player_Punch_Condensed.png"},
 		{ imgName: playerKick, theFile: "Player_Kick_Condensed.png"},
+		{ imgName: wooshPic, theFile: "woosh.png"},
 
 		// UI
 		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},

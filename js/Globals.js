@@ -53,6 +53,8 @@ const localStorageKey = {
 
 //----------State Management----------//
 let pauseManager;
+let wooshFX;
+
 const CAUSE = {
 	Keypress: "keypress",
 	Focus: "focus"
