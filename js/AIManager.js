@@ -69,6 +69,13 @@ function AIManager() {
 
 	this.actionForTypeTimeStateAndPos = function(type, timeSinceAction, currentState, distToPlayer, shouldAttack) {
 		const thisCoolDown = this.coolDownForType(type);
+
+		if((distToPlayer >= 0) && (currentState === WALK_LEFT_STATE)) {//walking away from player
+			return attackIfAppropriateFor(type, 2 * timeSinceAction, currentState, distToPlayer, shouldAttack, thisCoolDown);
+		} else if((distToPlayer <= 0) && (currentState === WALK_RIGHT_STATE)) {
+			return attackIfAppropriateFor(type, 2 * timeSinceAction, currentState, distToPlayer, shouldAttack, thisCoolDown);
+		}
+		
 		if(timeSinceAction < thisCoolDown) return currentState;
 		
 		const desiredDistance = desiredApproachDistance(type, shouldAttack);
