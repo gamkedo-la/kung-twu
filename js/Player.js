@@ -438,7 +438,7 @@ function Player(config) {
 			this.health -= otherEntity.getCurrentDamage();
 		}
 
-		if (this.health <= 90) {//TODO: Restore to 0
+		if (this.health <= 0) {
 			this.health = 0;
 			playerFailedSound.play();
 			console.log("Your attempt failed.  Try again.");
