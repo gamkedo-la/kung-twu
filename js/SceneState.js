@@ -4,7 +4,6 @@ const SceneState = {
 	currentScene: SCENE.TITLE,
 	pauseCause:null,
 	scenes: {
-		//		[SCENE.LOADING]: new LoadingScreen(),
 		[SCENE.TITLE]: new TitleScene(),
 		[SCENE.SETTINGS]: new SettingsScene(),
 		[SCENE.CREDITS]: new CreditsScene(),

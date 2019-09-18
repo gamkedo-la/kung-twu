@@ -72,7 +72,7 @@ const SCENE = {
 	ENDING: "ending"
 };
 
-let didInteract = false;
+let didInteract = true;
 let firstLoad;
 let timer;
 const TOTAL_LEVELS = 5;
