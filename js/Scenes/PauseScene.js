@@ -2,14 +2,18 @@
 //Settings Scene
 function PauseScene() {
 	const TITLE_Y_POS = 100;
-//	let selectorPositionsIndex = 0;
+	let selectorPositionsIndex = 0;
+	let selectorPosition = {x:0, y:0};
+	let titleBlockPosition = {x:0, y:0};
 	const selections = [
-		SCENE.TITLE,
 		SCENE.GAME,
-		SCENE.CONTROLS
+		SCENE.TITLE,
+		SCENE.CONTROLS,
+		SCENE.HELP
 	];
 	const buttonHeight = 25;//TODO: Adjust this size based on custom font
 	const buttonTitlePadding = 2;
+	const BUTTON_PADDING = 0.9 * buttonHeight;
 	const buttons = [];
 	const birds = [];
 
@@ -17,7 +21,6 @@ function PauseScene() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 
 		let mainMenuX = 0;
-		const BUTTON_PADDING = 0.9 * buttonHeight;
 		const mainMenuY = BUTTON_PADDING + (canvas.height / 2);
 		const deltaY = 2 * BUTTON_PADDING;
         
@@ -27,17 +30,22 @@ function PauseScene() {
 			mainMenuX = (canvas.width / 2) - (buttons[0].getBounds().width / 2);
 			buttons[0].updateXPosition(mainMenuX);
 
-//			selectorPosition.x = mainMenuX - selector.width - (BUTTON_PADDING / 2);
-//			selectorPosition.y = mainMenuY + (buttonHeight / 2) - (selector.height / 2);
+			selectorPosition.x = mainMenuX - selector.width - (BUTTON_PADDING / 2);
+			selectorPosition.y = mainMenuY + (buttonHeight / 2) - (selector.height / 2);
+
+			titleBlockPosition.x = selectorPosition.x - (titleBlock.width - (buttons[0].getBounds().width + (BUTTON_PADDING / 2) + selector.width)) / 2;
+			titleBlockPosition.y = canvas.height/2;
 
 			buttons.push(buildQuitButton(mainMenuX, mainMenuY + deltaY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildControlsButton(mainMenuX, mainMenuY + 2 * deltaY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildHelpButton(mainMenuX, mainMenuY + 3 * deltaY, buttonHeight, buttonTitlePadding));
 
+			updateButtonPositions();
+
 			buildBirds();
 		} else {
 			updateButtonTitles();
-			updateButtonPositions((canvas.width / 2) - (buttons[0].getBounds().width / 2));
+			updateButtonPositions();
 		}
 	};
 
@@ -57,29 +65,6 @@ function PauseScene() {
 		}
 		
 		switch (newKeyEvent) {
-		case ALIAS.UP:
-		case ALIAS.LEFT:
-//			selectorPositionsIndex--;
-//			if (selectorPositionsIndex < 0) {
-//				selectorPositionsIndex += selections.length;
-//			}
-			return true;
-		case ALIAS.DOWN:
-		case ALIAS.RIGHT:
-//			selectorPositionsIndex++;
-//			if (selectorPositionsIndex >= selections.length) {
-//				selectorPositionsIndex = 0;
-//			}
-			return true;
-		case ALIAS.BACK:
-			pauseManager.resumeGame(CAUSE.Keypress);
-			return true;
-		case ALIAS.SELECT1:
-//			SceneState.setState(selections[selectorPositionsIndex]);
-			return true;
-		case ALIAS.SELECT2:
-//			SceneState.setState(SCENE.GAME);
-			return true;
 		case ALIAS.POINTER:
 			checkButtons();
 			return true;
@@ -89,8 +74,44 @@ function PauseScene() {
 	};
 
 	const update = function(deltaTime) {
+		processUserInput();
+
 		for(let bird of birds) {
 			bird.update(deltaTime);
+		}
+	};
+
+	const processUserInput = function() {
+		const navKeys = inputProcessor.getNewlyReleasedKeys();
+		for(let key of navKeys) {
+			const newNavAction = keyMapper.getNavActionForKey(key);
+			if(newNavAction != null) {
+				switch(newNavAction) {
+				case NAV_ACTION.UP:
+				case NAV_ACTION.LEFT:
+					selectorPositionsIndex--;
+					if (selectorPositionsIndex < 0) {
+						selectorPositionsIndex += selections.length;
+					}
+					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
+					break;			
+				case NAV_ACTION.DOWN:
+				case NAV_ACTION.RIGHT:
+					selectorPositionsIndex++;
+					if (selectorPositionsIndex >= selections.length) {
+						selectorPositionsIndex = 0;
+					}
+					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
+					break;
+				case NAV_ACTION.SELECT:
+					SceneState.setState(selections[selectorPositionsIndex]);
+					break;
+				case NAV_ACTION.BACK:
+					break;//nowhere to go 'back' to
+				case NAV_ACTION.PAUSE:
+					break;
+				}
+			}
 		}
 	};
 
@@ -139,10 +160,19 @@ function PauseScene() {
 		return new UIButton(STRINGS_KEY.Help, x, y, height, padding, thisClick, Color.Green);
 	};
 
-	const updateButtonPositions = function(newPosition) {
+	const updateButtonPositions = function() {
+		let maxWidth = 0;
 		for(let button of buttons) {
-			button.updateXPosition(newPosition);
+			const thisWidth = button.getBounds().width;
+			if(thisWidth > maxWidth) {maxWidth = thisWidth;}
 		}
+
+		const menuPos = (canvas.width / 2) - (maxWidth / 2);
+		for(button of buttons) {
+			button.updateXPosition(menuPos);
+		}
+
+		selectorPosition.x = menuPos - selector.width - (BUTTON_PADDING / 2);
 	};
 
 	const updateButtonTitles = function() {
@@ -187,7 +217,9 @@ function PauseScene() {
 	
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
-		canvasContext.drawImage(titleScreenDecore, 0, 0);        
+		canvasContext.drawImage(titleScreenDecore, 0, 0);
+		canvasContext.drawImage(titleBlock, titleBlockPosition.x, titleBlockPosition.y);
+		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 	};
 	
 	const drawTitle = function() {

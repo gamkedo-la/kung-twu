@@ -133,6 +133,8 @@ function GameScene() {
 		collisionManager.doCollisionChecks();
 
 		processDefeatedEntities(collisionManager.defeatedEntities);
+
+		processUserInput();
 	};
 
 	const updateEnvironment = function(newCameraX) {
@@ -185,6 +187,20 @@ function GameScene() {
 				const anEnemy = enemies.splice(enemyIndex, 1)[0]; //returns an array, we only want the first element
 				score += anEnemy.score;
 				collisionManager.removeEntity(defeatedEntity);
+			}
+		}
+	};
+
+	const processUserInput = function() {
+		const navKeys = inputProcessor.getNewlyReleasedKeys();
+		for(let key of navKeys) {
+			const newNavAction = keyMapper.getNavActionForKey(key);
+			if(newNavAction != null) {
+				switch(newNavAction) {
+				case NAV_ACTION.PAUSE:
+					pauseManager.pauseGame(CAUSE.Keypress);
+					break;
+				}
 			}
 		}
 	};

@@ -203,8 +203,6 @@ function GameOverScene() {
 				}
 			}
 		}
-
-		inputProcessor.clear();
 	};
 	
 	const draw = function() {

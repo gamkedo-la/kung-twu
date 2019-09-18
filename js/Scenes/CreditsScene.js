@@ -97,8 +97,6 @@ function CreditsScene() {
 				}
 			}
 		}
-
-		inputProcessor.clear();
 	};
 
 	const updateSelectorPosition = function() {

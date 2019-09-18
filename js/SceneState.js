@@ -44,6 +44,8 @@ const SceneState = {
 		if (isMuted) {
 			// gameFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Muted), {x:760, y: 10}, 14, textAlignment.Left);
 		}
+
+		inputProcessor.clear();
 	},
 	control: function(newKeyEvent, pressed) {
 		if((newKeyEvent === ALIAS.VOLUME_UP) && (!pressed)) {

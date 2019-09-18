@@ -596,8 +596,6 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 				setNewState(thisState, activeAction);
 			}
 		}
-
-		inputProcessor.clear();
 	};
 
 	const setNewState = function(newState, action) {

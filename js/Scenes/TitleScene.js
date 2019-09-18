@@ -252,12 +252,10 @@ function TitleScene() {
 				case NAV_ACTION.BACK:
 					break;//nowhere to go 'back' to
 				case NAV_ACTION.PAUSE:
-
+					break;
 				}
 			}
 		}
-
-		inputProcessor.clear();
 	};
 	
 	const draw = function() {
@@ -283,8 +281,8 @@ function TitleScene() {
 	};
 	
 	const drawBG = function() {
-		canvasContext.drawImage(titleScreenBG,0,0);
-		canvasContext.drawImage(titleScreenDecore,0,0);
+		canvasContext.drawImage(titleScreenBG, 0, 0);
+		canvasContext.drawImage(titleScreenDecore, 0, 0);
 		canvasContext.drawImage(titleBlock, titleBlockPosition.x, titleBlockPosition.y);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 	};

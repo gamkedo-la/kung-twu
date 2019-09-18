@@ -97,8 +97,6 @@ function SettingsScene() {
 				}
 			}
 		}
-
-		inputProcessor.clear();
 	};
 
 	const updateSelectorPosition = function() {

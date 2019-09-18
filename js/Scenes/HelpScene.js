@@ -96,8 +96,6 @@ function HelpScene() {
 				}
 			}
 		}
-
-		inputProcessor.clear();
 	};
 
 	const updateSelectorPosition = function() {
