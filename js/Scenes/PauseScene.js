@@ -176,7 +176,7 @@ function PauseScene() {
 		drawTitle();
 
 		for(let bird of birds) {
-			if(bird.scale < 1.0) {
+			if(bird.scale >= 1.0) {
 				bird.draw();
 			}
 		}
