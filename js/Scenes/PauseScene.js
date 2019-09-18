@@ -104,7 +104,15 @@ function PauseScene() {
 					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
 					break;
 				case NAV_ACTION.SELECT:
-					SceneState.setState(selections[selectorPositionsIndex]);
+					if(selections[selectorPositionsIndex] === SCENE.GAME) {
+						pauseManager.resumeGame(CAUSE.Keypress);
+						SceneState.popState();
+					} else if(selections[selectorPositionsIndex] === SCENE.TITLE) {
+						pauseManager.resumeGame(CAUSE.Keypress);
+						SceneState.setState(SCENE.TITLE, {didQuit:true});
+					} else {
+						SceneState.setState(selections[selectorPositionsIndex]);
+					}
 					break;
 				case NAV_ACTION.BACK:
 					break;//nowhere to go 'back' to
@@ -126,6 +134,7 @@ function PauseScene() {
 	const buildResumeButton = function(x, y, height, padding) {
 		const thisClick = function() {
 			pauseManager.resumeGame(CAUSE.Keypress);
+			SceneState.popState();
 		};
 
 		return new UIButton(STRINGS_KEY.Resume, x, y, height, padding, thisClick, Color.Purple);
@@ -133,10 +142,7 @@ function PauseScene() {
 
 	const buildQuitButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			if(pauseManager.getIsPaused()) {
-				pauseManager.resumeGame(CAUSE.Keypress);
-			}
-
+			pauseManager.resumeGame(CAUSE.Keypress);
 			SceneState.setState(SCENE.TITLE, {didQuit:true});
 		};
 

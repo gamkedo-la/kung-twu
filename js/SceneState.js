@@ -54,8 +54,6 @@ const SceneState = {
 		} else if((newKeyEvent === ALIAS.VOLUME_DOWN) && (!pressed)) {
 			turnVolumeDown();
 			return true;
-		} else if((newKeyEvent === ALIAS.PAUSE) && (!pressed)) {
-			pauseManager.togglePause(CAUSE.Keypress);
 		} else if((newKeyEvent === ALIAS.MUTE) && (!pressed)) {
 			toggleMute();
 		} else if((DEBUG) && (newKeyEvent === ALIAS.LEVEL_UP) && (!pressed)) {

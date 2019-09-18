@@ -193,7 +193,7 @@ function GameOverScene() {
 					} else if(selections[selectorPositionsIndex] === SCENE.TITLE) {
 						properties = {didQuit:true};
 					} 
-
+					
 					SceneState.setState(selections[selectorPositionsIndex], properties);
 					break;
 				case NAV_ACTION.BACK:

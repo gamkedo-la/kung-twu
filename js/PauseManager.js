@@ -35,11 +35,9 @@ function PauseManager() {
 		if(cause === null) {
 			resumeSound.play();
 			currentBackgroundMusic.resumeSound();
-			SceneState.popState();
 		} else {
 			pauseSound.play();
 			currentBackgroundMusic.pauseSound();
-			SceneState.setState(SCENE.PAUSE);
 		}
 	};
 }

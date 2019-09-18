@@ -96,6 +96,7 @@ function GameScene() {
 			switch (newKeyEvent) {
 			case ALIAS.BACK:
 				pauseManager.pauseGame(CAUSE.Keypress);
+				SceneState.setState(SCENE.PAUSE);
 				return true;
 			case ALIAS.CHEATS:
 				CHEATS_ACTIVE = !CHEATS_ACTIVE;
@@ -198,6 +199,7 @@ function GameScene() {
 			if(newNavAction != null) {
 				switch(newNavAction) {
 				case NAV_ACTION.PAUSE:
+					SceneState.setState(SCENE.PAUSE);
 					pauseManager.pauseGame(CAUSE.Keypress);
 					break;
 				}

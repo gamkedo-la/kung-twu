@@ -99,8 +99,10 @@ function startGame() {
 
 function windowOnFocus() {
 	pauseManager.resumeGame(CAUSE.Focus);
+	SceneState.popState();
 }
 
 function windowOnBlur() {
 	pauseManager.pauseGame(CAUSE.Focus);
+	SceneState.setState(SCENE.PAUSE);
 }
