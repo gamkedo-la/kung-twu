@@ -16,7 +16,7 @@ function GameScene() {
 	let timeTilSpawn = 0;
 	let score = 0;
 	let didReset = true;
-    let didTransitionOut = false;
+	let didTransitionOut = false;
 
 	this.transitionIn = function() {
 		if((this.properties != undefined) && (this.properties.restartLevel)) {
@@ -94,6 +94,9 @@ function GameScene() {
 	this.control = function(newKeyEvent, pressed) {
 		if (!pressed) {
 			switch (newKeyEvent) {
+			case ALIAS.BACK:
+				pauseManager.pauseGame(CAUSE.Keypress);
+				return true;
 			case ALIAS.CHEATS:
 				CHEATS_ACTIVE = !CHEATS_ACTIVE;
 				return true;
@@ -199,8 +202,8 @@ function GameScene() {
 			enemies[i].draw();
 		}
 
-        player.draw();
-        wooshFX.draw();
+		player.draw();
+		wooshFX.draw();
 
 		columnManager.draw(cameraX);
 		roof.draw();
