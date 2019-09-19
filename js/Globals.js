@@ -61,7 +61,6 @@ const CAUSE = {
 };
 
 const SCENE = {
-	LOADING: "loading",
 	TITLE: "title",
 	SETTINGS: "settings",
 	CREDITS: "credits",

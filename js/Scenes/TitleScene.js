@@ -53,6 +53,9 @@ function TitleScene() {
 		} else {
 			updateButtonTitles();
 			updateButtonPositions();
+		}
+
+		if(currentBackgroundMusic.getCurrentTrack() != menuMusic) {
 			currentBackgroundMusic.loopSong(menuMusic);
 		}
 	};

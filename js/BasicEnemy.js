@@ -309,7 +309,7 @@ function BasicEnemy(config) {
 		}
 
 		if(this.health <= 0) {
-			//enemyDefeatedSound.play();//TODO: get one of these
+			basicEnemyDefeated.play();
 		} else {
 			basicEnemyHitSound.play();
 		}

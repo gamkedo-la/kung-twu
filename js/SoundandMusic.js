@@ -10,14 +10,15 @@ let playerBlockSound;
 let playerHitSound;
 let playerFailedSound;
 let basicEnemyHitSound;
-const EFFECTS_BASE = 0.5;
+let basicEnemyDefeated;
+const EFFECTS_BASE = 0.75;
 let menuMusic;
 let gameMusic;
 let bossMusic1;
 let bossMusic2;
 let gameOverMusic;
 const GAMEPLAY_BASE = 1.0;
-const GAMEPLAY2_BASE = 1.0;
+const GAMEPLAY2_BASE = 0.75;
 const DRAGON_BASE = 0.35;
 const DRAGON2_BASE = 0.35;
 const WARRIOR_BASE = 0.35;
@@ -27,8 +28,6 @@ let currentBackgroundMusic;
 const VOLUME_INCREMENT = 0.05;
 
 function configureGameAudio() {
-//	currentBackgroundMusic = new backgroundMusicClass();//TODO: Restore once there is background music
-	
 	musicVolume = parseFloat(localStorageHelper.getItem(localStorageKey.MusicVolume));
 	effectsVolume = parseFloat(localStorageHelper.getItem(localStorageKey.SFXVolume));
 	
@@ -50,7 +49,8 @@ function loadAudio() {
 	playerBlockSound = new SoundOverlapsClass(assetPath.Audio + "PlayerBlocking");
 	playerHitSound = new SoundOverlapsClass(assetPath.Audio + "PlayerHit");
 	playerFailedSound = new SoundOverlapsClass(assetPath.Audio + "PlayerFailed");
-	basicEnemyHitSound = new SoundOverlapsClass(assetPath.Audio + "BasicEnemyHit");
+	basicEnemyHitSound = new SoundOverlapsClass(assetPath.Audio + "lowPain");
+	basicEnemyDefeated = new SoundOverlapsClass(assetPath.Audio + "BasicEnemyHit");
 	menuMusic = assetPath.Audio + "gameplayMusicV1";
 	gameMusic = assetPath.Audio + "gameplayMusicV2";
 	bossMusic1 = assetPath.Audio + "DragonPulse";
