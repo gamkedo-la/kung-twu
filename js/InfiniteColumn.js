@@ -1,5 +1,5 @@
 //Infinite Columns
-function InfiniteColumn(verticalOffset) {
+function InfiniteColumn(image, verticalOffset) {
 	const COLUMN_WIDTH = 53;
 	const COLUMN_HEIGHT = 473;
 	const COLUMN_SPACING = 600;
@@ -67,13 +67,13 @@ function InfiniteColumn(verticalOffset) {
 			if(isInDeadZone(cameraXPos)) {
 				canvasContext.globalAlpha = 0.7;
 			}
-			canvasContext.drawImage(column, xPos, yPos);
+			canvasContext.drawImage(image, xPos, yPos);
 
 			canvasContext.restore();
 		};
 
 		this.isOnScreen = function(cameraXPos) {
-			if( (xPos + column.width > cameraXPos - (canvas.width / 2)) &&
+			if( (xPos + image.width > cameraXPos - (canvas.width / 2)) &&
 				(xPos < cameraXPos + canvas.width / 2)) {
 				return true;
 			}

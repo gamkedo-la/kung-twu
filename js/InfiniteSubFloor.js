@@ -1,12 +1,12 @@
 //Inifinite SubFloor
-function InfiniteSubFloor() {
+function InfiniteSubFloor(columnImage) {
 	const UNDERGRD_CLIP = {x:0, y:titleScreenBG.height - 100, width:canvas.width, height: 60};
 	let undergroundXPos = 0;
 	const UNDRGRD_Y_POS = canvas.height - UNDERGRD_CLIP.height;
 	const COLUMN_SPACING = 600;
 	const COLUMN_CLIP = {x:0, y:415, width:53, height:58};
-	const column1 = new Column();
-	const column2 = new Column();
+	const column1 = new Column(columnImage);
+	const column2 = new Column(columnImage);
 	let isColumn = true;
 	let yPos;
 
@@ -124,7 +124,7 @@ function InfiniteSubFloor() {
 		}
 	};
 
-	function Column() {
+	function Column(image) {
 		let xPos = 0;
 		let yPos = 0;
 
@@ -138,11 +138,11 @@ function InfiniteSubFloor() {
 		};
 
 		this.draw = function() {
-			canvasContext.drawImage(column, COLUMN_CLIP.x, COLUMN_CLIP.y, COLUMN_CLIP.width, COLUMN_CLIP.height, xPos, yPos, COLUMN_CLIP.width, COLUMN_CLIP.height);
+			canvasContext.drawImage(image, COLUMN_CLIP.x, COLUMN_CLIP.y, COLUMN_CLIP.width, COLUMN_CLIP.height, xPos, yPos, COLUMN_CLIP.width, COLUMN_CLIP.height);
 		};
 
 		this.isOnScreen = function(cameraXPos) {
-			if( (xPos + column.width > cameraXPos - (canvas.width / 2)) &&
+			if( (xPos + image.width > cameraXPos - (canvas.width / 2)) &&
 				(xPos < cameraXPos + canvas.width / 2)) {
 				return true;
 			}

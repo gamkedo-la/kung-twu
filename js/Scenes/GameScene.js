@@ -44,10 +44,10 @@ function GameScene() {
 		if (floor === null || currentLevel != levelData.level) {
 			levelData = dataForCurrentLevel();
 			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
-			initializeFloor(VERTICAL_OFFSET);
+			initializeFloor(levelData.columnImage, VERTICAL_OFFSET);
 			InitializeRoof();
 			InitializeBackWall();
-			initializeColumns();
+			initializeColumns(levelData.columnImage, VERTICAL_OFFSET);
 		}
 
 		currentBackgroundMusic.loopSong(gameMusic);
@@ -311,8 +311,8 @@ function GameScene() {
 		GAME_FIELD.midX = newCameraX;
 	};
 
-	const initializeFloor = function(verticalOffset) {
-		subfloor = new InfiniteSubFloor();
+	const initializeFloor = function(subfloorColumnImage, verticalOffset) {
+		subfloor = new InfiniteSubFloor(subfloorColumnImage);
 		subfloor.initializeForLevel(currentLevel);
 		const colPos = 100 + camera.getPosition().x + (2 * canvas.width) / 3;
 		subfloor.positionFirstColumn(colPos);
@@ -340,8 +340,8 @@ function GameScene() {
 		}
 	};
 
-	const initializeColumns = function() {
-		columnManager = new InfiniteColumn(VERTICAL_OFFSET);
+	const initializeColumns = function(image, offset) {
+		columnManager = new InfiniteColumn(image, offset);
 		const colPos = 100 + camera.getPosition().x + (2 * canvas.width) / 3;
 		columnManager.positionFirstColumn(colPos);
 	};
@@ -421,6 +421,7 @@ const Level1Data = {
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 100,
+	columnImage:lvl1Column,
 	cameraMin: -1000,
 	cameraMax: 350,
 	playerStart:{x:350, y:500} //x = cameraMax
@@ -441,6 +442,7 @@ const Level2Data = {
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 200,
+	columnImage:lvl2Column,
 	cameraMin: -100,
 	cameraMax: 2000,
 	playerStart:{x:-100, y:500} //x = cameraMin
@@ -461,6 +463,7 @@ const Level3Data = {
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 300,
+	columnImage:lvl1Column,
 	cameraMin: -1000,
 	cameraMax: 350,
 	playerStart:{x:350, y:500} //x = cameraMax
@@ -481,6 +484,7 @@ const Level4Data = {
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 400,
+	columnImage:lvl2Column,
 	cameraMin: -100,
 	cameraMax: 2000,
 	playerStart:{x:-100, y:500} //x = cameraMin
@@ -501,6 +505,7 @@ const Level5Data = {
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 500,
+	columnImage:lvl1Column,
 	cameraMin: -1000,
 	cameraMax: 350,
 	playerStart:{x:350, y:500} //x = cameraMax
