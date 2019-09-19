@@ -127,9 +127,28 @@ function GameScene() {
 			levelData.cameraMin - canvas.width / 2,
 			levelData.cameraMax + canvas.width / 2);
 
-		updateEnemies(deltaTime, newCameraX);
+		if(levelData.didReachBoss(newCameraX)) {
+			//TODO: Need some logic here for spawning the boss
+			//and to check if the boss is defeated
+//			if(enemies.length === 0) {//this is an ok temp way to control transitions
+				if(currentLevel === TOTAL_LEVELS) {
+					SceneState.setState(SCENE.ENDING);
+				} else {
+					currentLevel++;//Not sure if this is the right way to do this
+					SceneState.setState(SCENE.POWERUP);
+				}
+
+				return;//don't continue processing this frame		
+//			}
+		} else {
+			//Didn't get to the boss yet, keep spawning new enemies
+			spawnNewEnemies(newCameraX);
+		}
+	
+		updateEnemies(deltaTime);
 
 		camera.update(deltaTime);
+
 
 		collisionManager.doCollisionChecks();
 
@@ -147,9 +166,8 @@ function GameScene() {
 		wall.update(newCameraX, floorImageShifts);
 	};
 
-	const updateEnemies = function(deltaTime, newCameraX) {
+	const updateEnemies = function(deltaTime) {
 		const playerPos = player.getPosition();
-		spawnNewEnemies(newCameraX);
 		for (let i = 0; i < enemies.length; i++) {
 			enemies[i].update(deltaTime, GRAVITY, playerPos, floorMidHeight, i === 0);
 		}
@@ -424,6 +442,10 @@ const Level1Data = {
 	columnImage:lvl1Column,
 	cameraMin: -1000,
 	cameraMax: 350,
+	didReachBoss: function(cameraPos) {
+		if(cameraPos <= Level1Data.cameraMin) return true;
+		return false;
+	},
 	playerStart:{x:350, y:500} //x = cameraMax
 };
 
@@ -445,6 +467,10 @@ const Level2Data = {
 	columnImage:lvl2Column,
 	cameraMin: -100,
 	cameraMax: 2000,
+	didReachBoss: function(cameraPos) {
+		if(cameraPos >= Level2Data.cameraMax) return true;
+		return false;
+	},
 	playerStart:{x:-100, y:500} //x = cameraMin
 };
 
@@ -466,6 +492,10 @@ const Level3Data = {
 	columnImage:lvl3Column,
 	cameraMin: -1000,
 	cameraMax: 350,
+	didReachBoss: function(cameraPos) {
+		if(cameraPos <= Level3Data.cameraMin) return true;
+		return false;
+	},
 	playerStart:{x:350, y:500} //x = cameraMax
 };
 
@@ -487,6 +517,10 @@ const Level4Data = {
 	columnImage:lvl2Column,
 	cameraMin: -100,
 	cameraMax: 2000,
+	didReachBoss: function(cameraPos) {
+		if(cameraPos >= Level4Data.cameraMax) return true;
+		return false;
+	},
 	playerStart:{x:-100, y:500} //x = cameraMin
 };
 
@@ -508,5 +542,9 @@ const Level5Data = {
 	columnImage:lvl1Column,
 	cameraMin: -1000,
 	cameraMax: 350,
+	didReachBoss: function(cameraPos) {
+		if(cameraPos <= Level5Data.cameraMin) return true;
+		return false;
+	},
 	playerStart:{x:350, y:500} //x = cameraMax
 };

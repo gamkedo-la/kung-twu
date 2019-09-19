@@ -68,6 +68,7 @@ const SCENE = {
 	PAUSE: "pause",
 	CONTROLS: "controls",
 	GAME: "game",
+	POWERUP:"powerUp",
 	ENDING: "ending"
 };
 

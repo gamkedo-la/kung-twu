@@ -1,6 +1,7 @@
 //Help Scene
 function HelpScene() {
 	const TITLE_Y_POS = 100;
+	const LINE_HEIGHT = 24;
 	let selectorPositionsIndex = 0;
 	const selectorPosition = {x:0, y:0};
 	const selections = [
@@ -181,7 +182,6 @@ function HelpScene() {
 	};
 
 	const drawHelpScreenContents = function() {
-		const LINE_HEIGHT = 24;
 		let lines = getLocalizedStringForKey(STRINGS_KEY.HelpScreenContents).split("\n");
 		for (let num=0; num<lines.length; num++) {
 			colorText(lines[num], 

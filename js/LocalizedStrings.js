@@ -25,6 +25,7 @@ const STRINGS_KEY = {
 	Quit:"Quit",
 	Continue:"Continue",
 	End:"End",
+	Done:"Done",
 	Title:"Title",
 	Subtitle:"Subtitle",
 	English:"English",
@@ -53,6 +54,11 @@ const STRINGS_KEY = {
 	Level3:"Level3",
 	Level4:"Level4",
 	Level5:"Level5",
+	HowToDash:"HowToDash",
+	HowToSweep:"HowToSweep",
+	HowToJ_Kick:"HowToJ_Kick",
+	HowToH_Kick:"HowToH_Kick",
+	EndGameMessage:"EndGameMessage"
 };
 
 function getLocalizedStringForKey(key) {
@@ -74,6 +80,7 @@ const userStrings = {
 		[STRINGS_KEY.Quit]:"[Q] Quit",
 		[STRINGS_KEY.Continue]:"[C] Continue",		
 		[STRINGS_KEY.End]:"[E] End",
+		[STRINGS_KEY.Done]:"Done",
 		[STRINGS_KEY.Title]:"Kung Twu",
 		[STRINGS_KEY.Subtitle]:"A Martial Arts Tale",
 		[STRINGS_KEY.English]:"English",
@@ -102,6 +109,11 @@ const userStrings = {
 		[STRINGS_KEY.Level4]:"Snake",
 		[STRINGS_KEY.Level5]:"Dragon",
 		[STRINGS_KEY.HelpScreenContents]:"[ARROWS or WASD] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
+		[STRINGS_KEY.HowToDash]:"[SPACE] to Dash back from rivals",
+		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
+		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
+		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
+		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned."
 	},
     
 	Spanish: {
@@ -147,7 +159,13 @@ const userStrings = {
 		[STRINGS_KEY.Continue]:"[C] Continue",		
 		[STRINGS_KEY.End]:"[E] End",
 		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
-		[STRINGS_KEY.HighScore]:"HIGH SCORE:"
+		[STRINGS_KEY.HighScore]:"HIGH SCORE:",
+		[STRINGS_KEY.Done]:"Done",
+		[STRINGS_KEY.HowToDash]:"[SPACE] to Dash back from rivals",
+		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
+		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
+		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
+		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned."
 	},
 
 	Japanese: {
@@ -194,7 +212,13 @@ const userStrings = {
 		[STRINGS_KEY.Continue]:"[C] Continue",		
 		[STRINGS_KEY.End]:"[E] End",
 		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
-		[STRINGS_KEY.HighScore]:"HIGH SCORE:"
+		[STRINGS_KEY.HighScore]:"HIGH SCORE:",
+		[STRINGS_KEY.Done]:"Done",
+		[STRINGS_KEY.HowToDash]:"[SPACE] to Dash back from rivals",
+		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
+		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
+		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
+		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned."
 	},
 
 	French: {
@@ -240,7 +264,13 @@ const userStrings = {
 		[STRINGS_KEY.Continue]:"[C] Continue",		
 		[STRINGS_KEY.End]:"[E] End",
 		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
-		[STRINGS_KEY.HighScore]:"HIGH SCORE:"
+		[STRINGS_KEY.HighScore]:"HIGH SCORE:",
+		[STRINGS_KEY.Done]:"Done",
+		[STRINGS_KEY.HowToDash]:"[SPACE] to Dash back from rivals",
+		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
+		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
+		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
+		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned."
 	},
 
 	Russian: {
@@ -286,7 +316,13 @@ const userStrings = {
 		[STRINGS_KEY.Continue]:"[C] Continue",		
 		[STRINGS_KEY.End]:"[E] End",
 		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
-		[STRINGS_KEY.HighScore]:"HIGH SCORE:"
+		[STRINGS_KEY.HighScore]:"HIGH SCORE:",
+		[STRINGS_KEY.Done]:"Done",
+		[STRINGS_KEY.HowToDash]:"[SPACE] to Dash back from rivals",
+		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
+		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
+		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
+		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned."
 	},
 	
 	Polish: {
@@ -331,5 +367,12 @@ const userStrings = {
 		[STRINGS_KEY.Level4]:"Wąż",
 		[STRINGS_KEY.Level5]:"Smok",
 		[STRINGS_KEY.HelpScreenContents]:"[STRZAŁKI lub WASD] Poruszanie\n[DO GÓRY lub C] Skok\n[G lub X] Cios\n[H lub X] Kopnięcie\n[V] Blok\n[P] Pauza\n[Esc] Menu",
+
+		[STRINGS_KEY.Done]:"Done",
+		[STRINGS_KEY.HowToDash]:"[SPACE] to Dash back from rivals",
+		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
+		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
+		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
+		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned."
 	}
 };
