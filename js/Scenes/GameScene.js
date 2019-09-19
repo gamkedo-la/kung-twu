@@ -463,7 +463,7 @@ const Level3Data = {
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 300,
-	columnImage:lvl1Column,
+	columnImage:lvl3Column,
 	cameraMin: -1000,
 	cameraMax: 350,
 	playerStart:{x:350, y:500} //x = cameraMax

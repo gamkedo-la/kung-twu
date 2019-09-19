@@ -79,6 +79,7 @@ const roofTileBottom = document.createElement("img");
 const floorboardSheet = document.createElement("img");
 const lvl1Column = document.createElement("img");
 const lvl2Column = document.createElement("img");
+const lvl3Column = document.createElement("img");
 const basicEnemyIdle = document.createElement("img");
 const basicEnemyWalk = document.createElement("img");
 const basicEnemyKick = document.createElement("img");
@@ -121,6 +122,7 @@ function loadImages() {
 		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },
 		{ imgName: lvl1Column, theFile: "column_01.png" },
 		{ imgName: lvl2Column, theFile: "column_02.png" },
+		{ imgName: lvl3Column, theFile: "column_03.png" },
 		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
 		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
