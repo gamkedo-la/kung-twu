@@ -304,14 +304,16 @@ function Player(config) {
 	const punch = function() {
 		if (stateManager.getIsNewState()) {
 			velocity.x = 0;
-			playerPunchSound.play();
+            playerPunchSound.play();
+            if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 		}
 	};
 
 	const kick = function() {
 		if (stateManager.getIsNewState()) {
 			velocity.x = 0;
-			playerKickSound.play();
+            playerKickSound.play();
+            if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 		}
 	};
 
