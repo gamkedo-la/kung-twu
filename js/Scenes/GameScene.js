@@ -428,7 +428,25 @@ function GameScene() {
 			xPos = cameraXPos - (1.5 * canvas.width) / 2;
 		}
 
-		const belt = enemies.length;//TODO: remove this hack after testing
+		let belt = levelData.enemyBelt;
+		if(belt > BELT.White) {
+			const rnd = Math.random();
+			if(rnd < 0.5) {
+				if(rnd * currentLevel <= 0.5) {
+					belt = levelData.enemyBelt;
+				} else if(rnd * currentLevel <= 1.0) {
+					belt = BELT.White;
+				} else if(rnd * currentLevel <= 1.5) {
+					belt = BELT.Yellow;
+				} else if(rnd * currentLevel <= 2.0) {
+					belt = BELT.Tan;
+				} else if(rnd * currentLevel <= 2.5) {
+					belt = BELT.Brown;
+				} else {
+					belt = BELT.Red;
+				}
+			}
+		}
 
 		const config = {
 			x: xPos,
