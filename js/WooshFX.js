@@ -2,7 +2,8 @@
 // made for Kung Twu by McF
 // pools vars for "no gc" performance
 
-const DEBUG_WOOSHES = true;
+const DEBUG_WOOSHES = false;
+const DEG_TO_RAD = Math.PI/180;
 
 function WooshFXManager(wooshImage) {
 	var wooshPool = [];
@@ -12,16 +13,16 @@ function WooshFXManager(wooshImage) {
 
     this.triggerPunch = function (pos,left) {
         if (left)
-            this.trigger(pos.x-20,pos.y+52,0);
+            this.trigger(pos.x-20,pos.y+45,0);
         else // right
-            this.trigger(pos.x+120,pos.y+52,Math.PI);
+            this.trigger(pos.x+110,pos.y+45,180*DEG_TO_RAD);
     }
 
     this.triggerKick = function (pos,left) {
         if (left)
-            this.trigger(pos.x-20,pos.y+32,0);
+            this.trigger(pos.x-20,pos.y+20,0);
         else // right
-            this.trigger(pos.x+120,pos.y+32,Math.PI);
+            this.trigger(pos.x+110,pos.y+20,180*DEG_TO_RAD);
     }
 
     this.trigger = function (x, y, r) {
@@ -83,13 +84,26 @@ function Woosh(wooshImage) {
 			//}
 			var offset = currentSize / 2;
 
+            canvasContext.save(); //	allows	us	to	undo	translate	movement	and	rotate	spin
             canvasContext.globalAlpha = 1 - (this.frame / this.frameCount);
+            
+            canvasContext.translate(this.x, this.y);
+            canvasContext.rotate(this.r);
+            canvasContext.scale(currentSize/this.w,currentSize/this.h); 
+            canvasContext.drawImage(this.img, -offset,-offset); //	center,	draw
+        
+            
+            // unrotated, works great
+            /*
             canvasContext.drawImage(
 				this.img, 0, 0,
 				this.w, this.h,
 				this.x - offset, this.y - offset,
 				currentSize, currentSize);
+            */
+
             canvasContext.globalAlpha = 1;
+            canvasContext.restore(); //	undo	the	translation	movement	and	rotation	since	save()
 
 			this.frame++;
 			this.active = this.frame < this.frameCount;
