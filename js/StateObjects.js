@@ -439,6 +439,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 	this.getCurrentAnimation = function() {
 		if((currentAnimation === null) || (currentAnimation === undefined)) {
 			console.log(`Current Animation: ${currentAnimation}`);
+			currentAnimation = theAnimations.idle;//TODO: remove this hack once all the animations exist
 			return theAnimations.idle;
 		}
 		return currentAnimation;

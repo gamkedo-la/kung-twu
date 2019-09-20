@@ -131,7 +131,7 @@ function GameScene() {
 		if(levelData.didReachBoss(newCameraX)) {
 			//TODO: Need some logic here for spawning the boss
 			//and to check if the boss is defeated
-//			if(enemies.length === 0) {//this is an ok temp way to control transitions
+			if(enemies.length === 0) {//this is an ok temp way to control transitions
 				if(currentLevel === TOTAL_LEVELS) {
 					SceneState.setState(SCENE.ENDING);
 				} else {
@@ -140,7 +140,7 @@ function GameScene() {
 				}
 
 				return;//don't continue processing this frame		
-//			}
+			}
 		} else {
 			//Didn't get to the boss yet, keep spawning new enemies
 			spawnNewEnemies(newCameraX);
@@ -181,7 +181,7 @@ function GameScene() {
 		if (timeSince > timeTilSpawn) {
 			timer.updateEvent(EVENT.EnemySpawn);
 			timeTilSpawn = levelData.spawnRate();
-			spawnEnemy(cameraXPos, timeTilSpawn);
+			spawnEnemy(cameraXPos);
 		}
 	};
 
@@ -401,12 +401,26 @@ function GameScene() {
 		}
 	};
 
-	const spawnEnemy = function(cameraXPos, timeTilSpawn) {
-		let atLeft = timeTilSpawn % 3 < 2; //prefers spawning at left 2:1
+	const spawnEnemy = function(cameraXPos) {
+		const playerPos = player.getPosition();
+		let atLeft = levelData.scrollsLeft;
+		let leftCount = 0;
+		let rightCount = 0;
 
-		if (!levelData.scrollsLeft) {
-			//prefer not at left if level doesn't scroll left
-			atLeft = !atLeft;
+		for(let enemy of enemies) {
+			if(enemy.getPosition().x < playerPos.x) {
+				leftCount++;
+			} else {
+				rightCount++;
+			}
+		}
+
+		if(enemies.length > 0) {
+			if((levelData.scrollsLeft) && (rightCount === 0)) {
+				atLeft = false;
+			} else if((!levelData.scrollsLeft) && (leftCount === 0)) {
+				atLeft = true;
+			}	
 		}
 
 		let xPos = cameraXPos + (1.5 * canvas.width) / 2;
@@ -414,9 +428,12 @@ function GameScene() {
 			xPos = cameraXPos - (1.5 * canvas.width) / 2;
 		}
 
+		const belt = enemies.length;//TODO: remove this hack after testing
+
 		const config = {
 			x: xPos,
-			y: (3 * canvas.height) / 5
+			y: (3 * canvas.height) / 5,
+			belt:belt
 		};
 
 		const anEnemy = new BasicEnemy(config);
