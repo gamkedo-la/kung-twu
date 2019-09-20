@@ -1,6 +1,5 @@
 //Basic Enemy
 function BasicEnemy(config) {
-	const SCALE = 2;
 	const WALK_SPEED = 250;
 	const JUMP_SPEED = -300;
 	const KNOCK_BACK_SPEED = 800;
@@ -8,6 +7,7 @@ function BasicEnemy(config) {
 	const BASE_DAMAGE = 5;
 	const DELTA_DAMAGE = 5;
 
+	let scale = 2;
 	let stateManager;
 	let hitBoxManager = new HitBoxManager(PlayerCollisionBodyData, PlayerAttackBodyData);
 
@@ -16,52 +16,36 @@ function BasicEnemy(config) {
 	this.health = 15;
 	this.score = 100;
 	
-	this.type = ENTITY_TYPE.BasicEnemy;
+	this.type = ENTITY_TYPE.Enemy;
 	this.collisionBody;//initialized down below definition of buildBodyCollider() function
 
 	if(config != undefined) {
 		if(config.x != undefined) {position.x = config.x;}
 		if(config.y != undefined) {position.y = config.y;}
 		if(config.health != undefined) {this.health = config.health;}
-	}
+		if(config.scale != undefined) {scale = config.scale;}
 
-	const initializeAnimations = function() {
-		const anims = {};
+		let belt = BELT.White;
+		if(config.belt != undefined) {belt = config.belt;}
+		let rivalType = RIVAL_TYPE.basic;
+		if(config.rivalType != undefined) {rivalType = config.rivalType;}
+		let aiType = AITYPE.Standard;
+		if(config.aiType != undefined) {aiType = config.aiType;}
 
-		anims.idle = new SpriteAnimation(STATE.Idle, basicEnemyIdle, [0, 1], basicEnemyIdle.width / 2, basicEnemyIdle.height, [200], false, true);
-		anims.walk = new SpriteAnimation(STATE.WalkRight, basicEnemyWalk, [0, 1, 2], basicEnemyWalk.width / 3, basicEnemyWalk.height, [200], false, true);
-		anims.dash = new SpriteAnimation(STATE.Dash, playerWalkBack, [0, 1, 2], playerWalkBack.width / 3, playerIdle.height, [200], false, true);
-		//anims.jump = ...
-		//anims.crouch = ...
-		anims.punch = new SpriteAnimation(STATE.Punch, basicEnemyPunch, [0, 1, 2, 1], basicEnemyPunch.width / 3, basicEnemyPunch.height, [50, 150, 225, 50], false, false);
-		anims.kick = new SpriteAnimation(STATE.Kick, basicEnemyKick, [0, 1, 2, 1], basicEnemyKick.width  / 3, basicEnemyKick.height, [50, 150, 225, 50], false, false);
-		//anims.block = ...
-		//anims.sweep = ...
-		//anims.j-kick = ...
-		//anims.h-kick = ...
-		//anims.knockback = ...
-
-		const animationKeys = Object.keys(anims);
-		for(let key of animationKeys) {
-			anims[key].scale = SCALE;
-		}
-
-		return anims;
-	};
-	stateManager = new StateManager(initializeAnimations(), false, AITYPE.BasicWhite);
-	if(config.belt == undefined) {
-		stateManager.setNewBelt(BELT.White);
+		const animations = animationManager.getAnimationsFor(rivalType, belt, scale);
+		stateManager = new StateManager(animations, belt, aiType);
 	} else {
-		stateManager.setNewBelt(config.belt);
-	}
+		const animations = animationManager.getAnimationsFor(RIVAL_TYPE.basic, BELT.White, scale);
+		stateManager = new StateManager(animations, BELT.White, AITYPE.Standard);
+	}	
 	
 	const scoreForBelt = function(belt) {
 		return (100 + belt * 50);
 	};
 
 	this.score = scoreForBelt(stateManager.getCurrentBelt());
-	this.collisionBody = hitBoxManager.bodyColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
-	this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
+	this.collisionBody = hitBoxManager.bodyColliderForState(stateManager.getCurrentState(), position, scale, stateManager.getIsFacingLeft());
+	this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, scale, stateManager.getIsFacingLeft());
 
 	this.getPosition = function() {
 		return {x:position.x, y:position.y};
@@ -110,8 +94,8 @@ function BasicEnemy(config) {
 		updateForState(stateManager.getCurrentState());
 
 		if(stateManager.getIsNewState()) {
-			this.collisionBody.points = hitBoxManager.bodyPointsForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
-			this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, SCALE, stateManager.getIsFacingLeft());
+			this.collisionBody.points = hitBoxManager.bodyPointsForState(stateManager.getCurrentState(), position, scale, stateManager.getIsFacingLeft());
+			this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, scale, stateManager.getIsFacingLeft());
 			if(this.attackBody != null) {
 				this.attackBody.isActive = true;
 			}

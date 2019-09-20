@@ -28,6 +28,7 @@ function GameScene() {
 		if (aiManager === null) {
 			//if aiManager === null, we've never initialized a GameScene
 			aiManager = new AIManager();
+			animationManager = new AnimationBuilder();
 			timer.registerEvent(EVENT.EnemySpawn);
 			initializePlayerIfReqd();
 		}

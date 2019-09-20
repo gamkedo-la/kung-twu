@@ -26,6 +26,7 @@ let player = null;
 let aiManager = null;
 let keyMapper = null;
 let inputProcessor = null;
+let animationManager = null;
 const MAX_PLAYER_HEALTH = 100;
 
 //-------------Camera------------------//
@@ -102,7 +103,7 @@ const COLLIDER_COLOR = "yellow";
 
 const ENTITY_TYPE = {
 	Player: "player",
-	BasicEnemy: "basicEnemy",
+	Enemy: "enemy",
 	Floor: "floor"
 };
 

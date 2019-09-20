@@ -29,82 +29,9 @@ function Player(config) {
 		}
 	}
 
-	const initializeAnimations = function() {
-		const anims = {};
+	const animations = animationManager.getAnimationsFor(RIVAL_TYPE.player, BELT.White, SCALE);
+	stateManager = new StateManager(animations, BELT.White, AITYPE.Player);
 
-		anims.idle = new SpriteAnimation(
-			STATE.Idle,
-			playerIdle,
-			[0, 1],
-			playerIdle.width / 2,
-			playerIdle.height,
-			[200],
-			false,
-			true);
-
-		anims.walk = new SpriteAnimation(
-			STATE.WalkRight,
-			playerWalkFwd,
-			[0, 1, 2],
-			playerWalkFwd.width / 3,
-			playerWalkFwd.height,
-			[200],
-			false,
-			true);
-
-		anims.dash = new SpriteAnimation(
-			STATE.Dash,
-			playerWalkBack,
-			[0, 1, 2],
-			playerWalkBack.width / 3,
-			playerWalkBack.height,
-			[50],
-			false,
-			false);
-
-		//anims.jump = ...
-
-		//anims.crouch = ...
-
-		anims.punch = new SpriteAnimation(
-			STATE.Punch,
-			playerPunch,
-			[0, 1, 2, 1],
-			playerPunch.width / 3,
-			playerPunch.height,
-			[30, 80, 100, 30],
-			false,
-			false);
-		
-		anims.kick = new SpriteAnimation(
-			STATE.Kick,
-			playerKick,
-			[0, 1, 2, 1],
-			playerKick.width / 3,
-			playerKick.height,
-			[60, 120, 150, 60],
-			false,
-			false);
-
-		//anims.block = ...
-		
-		//anims.sweep = ...
-		
-		//anims.j-kick = ...
-		
-		//anims.h-kick = ...
-		
-		//anims.knockback = ...
-
-		const animationKeys = Object.keys(anims);
-		for (let i = 0; i < animationKeys.length; i++) {
-			anims[animationKeys[i]].scale = SCALE;
-		}
-
-		return anims;
-	};
-
-	stateManager = new StateManager(initializeAnimations(), true, null);
 	this.collisionBody = hitBoxManager.bodyColliderForState(
 		stateManager.getCurrentState(),
 		position,

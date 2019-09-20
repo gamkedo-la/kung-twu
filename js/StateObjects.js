@@ -394,11 +394,11 @@ const KNOCK_BACK_STATE = {
 };
 
 //Character State
-function StateManager(theAnimations, isPlayerManager, aiType) {
+function StateManager(theAnimations, beltColor, rivalType) {
 	let currentState = IDLE_STATE;
 	let isNewState = true;
 	let currentAnimation = theAnimations.idle;
-	let belt = BELT.White;
+	let belt = beltColor;
 
 	let landed = false;
 	let isOnGround = true;
@@ -437,6 +437,10 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 	};
 
 	this.getCurrentAnimation = function() {
+		if((currentAnimation === null) || (currentAnimation === undefined)) {
+			console.log(`Current Animation: ${currentAnimation}`);
+			return theAnimations.idle;
+		}
 		return currentAnimation;
 	};
 
@@ -504,7 +508,7 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 
 		checkAutoStateChanges();
 
-		if(isPlayerManager) {
+		if(rivalType === AITYPE.Player) {
 			updateStateWithUserInput();
 		} else {
 			updateStateWithAI(deltaTime, distToPlayer, shouldAttack);
@@ -539,7 +543,7 @@ function StateManager(theAnimations, isPlayerManager, aiType) {
 	};
 
 	const updateStateWithAI = function(deltaTime, distToPlayer, shouldAttack) {
-		let action = aiManager.actionForTypeTimeStateAndPos(aiType, timeSinceAction, currentState, distToPlayer, shouldAttack);
+		let action = aiManager.actionForTypeTimeStateAndPos(belt, rivalType, timeSinceAction, currentState, distToPlayer, shouldAttack);
 
 		if(action === null) {
 			newState = currentState;
