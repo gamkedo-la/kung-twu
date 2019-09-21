@@ -551,7 +551,7 @@ const Level4Data = {
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 400,
-	columnImage:lvl2Column,
+	columnImage:lvl4Column,
 	cameraMin: -100,
 	cameraMax: 2000,
 	didReachBoss: function(cameraPos) {
@@ -576,7 +576,7 @@ const Level5Data = {
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 500,
-	columnImage:lvl1Column,
+	columnImage:lvl4Column,
 	cameraMin: -1000,
 	cameraMax: 350,
 	didReachBoss: function(cameraPos) {
