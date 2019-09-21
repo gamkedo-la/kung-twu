@@ -1,5 +1,5 @@
 function japaneseFont(jpFont, charSize, context) {
-	let letters [];
+	let letters = [];
 	let lettersStartPos = [];
 
 
