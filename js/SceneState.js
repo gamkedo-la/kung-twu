@@ -3,6 +3,9 @@ const SceneState = {
 	log : [],
 	currentScene: SCENE.TITLE,
 	pauseCause:null,
+	didStartTransition:false,
+	transitionDuration:1000,
+	transitionTime:0,
 	scenes: {
 		[SCENE.TITLE]: new TitleScene(),
 		[SCENE.SETTINGS]: new SettingsScene(),
@@ -25,6 +28,7 @@ const SceneState = {
 		this.currentScene = newScene;
 		this.scenes[this.currentScene].properties = properties;
 		this.scenes[this.currentScene].transitionIn();
+		this.didStartTransition = true;
 		return this;
 	},
 	getPreviousState: function() {
@@ -36,16 +40,42 @@ const SceneState = {
 		this.currentScene = previousState;
 		this.scenes[this.currentScene].properties = properties;
 		this.scenes[this.currentScene].transitionIn();
+		this.didStartTransition = true;
 		return this;
 	},
 	run: function(deltaTime) {
-		this.scenes[this.currentScene].run(deltaTime);
+		const currentlyInGame = (this.scenes[this.currentScene] === this.scenes[SCENE.GAME]);
+		const wasInGame = (this.scenes[this.getPreviousState()] === this.scenes[SCENE.GAME]);
+		if(((currentlyInGame) || (wasInGame)) && (this.didStartTransition)) {
+			this.runSegue(deltaTime);
+		} else {
+			this.scenes[this.currentScene].run(deltaTime);
+		}
 
 		if (isMuted) {
 			// gameFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Muted), {x:760, y: 10}, 14, textAlignment.Left);
 		}
 
 		inputProcessor.clear();
+	},
+	runSegue: function(deltaTime) {
+		this.transitionTime += deltaTime;
+		if(this.transitionTime < this.transitionDuration) {
+			const currentAlpha = Math.cos(Math.PI * this.transitionTime / this.transitionDuration);//"rgba(255, 165, 0, 1)";
+			if(currentAlpha > 0) {
+				this.scenes[this.getPreviousState()].run(0);
+				canvasContext.setTransform(1, 0, 0, 1, 0, 0);
+				drawRect(0, 0, canvas.width, canvas.height, `rgba(0, 0, 0, ${1 - currentAlpha}`);
+			} else {
+				this.scenes[this.currentScene].run(0);
+				canvasContext.setTransform(1, 0, 0, 1, 0, 0);
+				drawRect(0, 0, canvas.width, canvas.height, `rgba(0, 0, 0, ${1 + currentAlpha}`);
+			}	
+		} else {
+			this.didStartTransition = false;
+			this.transitionTime = 0;
+			this.scenes[this.currentScene].run(deltaTime);
+		}
 	},
 	control: function(newKeyEvent, pressed) {
 		if((newKeyEvent === ALIAS.VOLUME_UP) && (!pressed)) {

@@ -1,5 +1,6 @@
 //Settings Scene
 function SettingsScene() {
+	this.name = "Settings";
 	const TITLE_Y_POS = 100;
 	let selectorPositionsIndex = 0;
 	const selectorPosition = {x:0, y:0};

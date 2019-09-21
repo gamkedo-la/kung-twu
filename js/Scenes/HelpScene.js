@@ -1,5 +1,6 @@
 //Help Scene
 function HelpScene() {
+	this.name = "Help";
 	const TITLE_Y_POS = 100;
 	const LINE_HEIGHT = 24;
 	let selectorPositionsIndex = 0;

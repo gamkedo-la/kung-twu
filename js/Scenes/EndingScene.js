@@ -1,5 +1,6 @@
 //Beat the game Scene
 function EndingScene() {
+	this.name = "End Scene";
 	let selectorPositionsIndex = 0;
 	const selectorPosition = {x:0, y:0};
 	const buttonHeight = 25;//TODO: Adjust this size based on custom font

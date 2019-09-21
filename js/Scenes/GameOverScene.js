@@ -1,5 +1,6 @@
 //Game Over Scene
 function GameOverScene() {
+	this.name = "Game Over";
 	let selectorPositionsIndex = 0;
 	let selectorPosition = {x:0, y:0};
 	let titleBlockPosition = {x:0, y:0};

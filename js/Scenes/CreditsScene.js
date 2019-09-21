@@ -1,5 +1,6 @@
 //Credits Scene
 function CreditsScene() {
+	this.name = "Credits";
 	let selectorPositionsIndex = 0;
 	const selectorPosition = {x:0, y:0};
 	const TITLE_Y_POS = 100;

@@ -1,5 +1,6 @@
 //Game Play scene
 function GameScene() {
+	this.name = "Game Play";
 	const GRAVITY = 1500;
 	const VERTICAL_OFFSET = 50;
 
@@ -87,7 +88,10 @@ function GameScene() {
 	};
 
 	this.run = function(deltaTime) {
+		//Don't update after transitioning out on previous frame
+		if(didTransitionOut) {return;}
 		update(deltaTime);
+		//Don't draw after transitioning out during update
 		if(didTransitionOut) {return;}
 		draw();
 	};
