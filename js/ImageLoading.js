@@ -69,6 +69,7 @@ const titleScreenDecore = document.createElement("img");
 const titleBlock = document.createElement("img");
 const titleScreenBird = document.createElement("img");
 const selector = document.createElement("img");
+const uiScreenBg = document.createElement("img");
 const windowedWall = document.createElement("img");
 const tiledWall = document.createElement("img");
 const wallGradient = document.createElement("img");
@@ -146,6 +147,7 @@ function loadImages() {
 		{ imgName: redEnemyPunch, theFile: "EnemyPunching_Red.png" },
 
 		// backgrounds
+		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
 		{ imgName: windowedWall, theFile: "TempTiledBackground.png" },
 		{ imgName: tiledWall, theFile: "TempTiledBackgroundWall.png" },
 		{ imgName: roofTileTop, theFile: "RoofBricks.png" },

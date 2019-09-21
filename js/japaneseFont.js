@@ -10,7 +10,7 @@ function japaneseFont(jpFont, charSize, context) {
 		}
 	};
 
-
+	console.log("Japan is running");
 	this.findLetterCorner = function(character) {
 		switch(character) {
 		case "あ": 

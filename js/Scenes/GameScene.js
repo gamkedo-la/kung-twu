@@ -251,6 +251,7 @@ function GameScene() {
 	const drawUI = function(cameraX) {
 		//TODO: We need a way to find out how wide these strings will be, should be easy with a custom font
 		const screenLeft = cameraX - canvas.width / 2;
+		canvasContext.drawImage(uiScreenBg, screenLeft, 0);
 		drawRect(screenLeft + 180, 60, player.health, 22, Color.Orange);
 		drawBorder(screenLeft + 180, 60, MAX_PLAYER_HEALTH, 22, Color.Orange);
 
