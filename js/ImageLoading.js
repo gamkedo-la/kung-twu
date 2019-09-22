@@ -149,8 +149,8 @@ function loadImages() {
 
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
-		{ imgName: windowedWall, theFile: "TempTiledBackground.png" },
-		{ imgName: tiledWall, theFile: "TempTiledBackgroundWall.png" },
+		{ imgName: windowedWall, theFile: "TiledBackgroundWindow.png" },
+		{ imgName: tiledWall, theFile: "TiledBackgroundWall.png" },
 		{ imgName: roofTileTop, theFile: "RoofBricks.png" },
 		{ imgName: roofTileBottom, theFile: "roof-tile-bottom.png" },
 		{ imgName: roofboardSheet, theFile: "Roof-Frames.png" },
