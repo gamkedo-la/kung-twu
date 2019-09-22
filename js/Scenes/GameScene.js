@@ -18,6 +18,7 @@ function GameScene() {
 	let score = 0;
 	let didReset = true;
 	let didTransitionOut = false;
+	let defeatedEnemyCount = 0;
 
 	this.transitionIn = function() {
 		if((this.properties != undefined) && (this.properties.restartLevel)) {
@@ -72,6 +73,7 @@ function GameScene() {
 		camera = new Camera();
 
 		enemies = [];
+		defeatedEnemyCount = 0;
 		columnManager = null;
 		levelData = dataForCurrentLevel();
 		player.reset(levelData.playerStart);
@@ -132,19 +134,16 @@ function GameScene() {
 			levelData.cameraMin - canvas.width / 2,
 			levelData.cameraMax + canvas.width / 2);
 
-		if(levelData.didReachBoss(newCameraX)) {
-			//TODO: Need some logic here for spawning the boss
-			//and to check if the boss is defeated
-			if(enemies.length === 0) {//this is an ok temp way to control transitions
-				if(currentLevel === TOTAL_LEVELS) {
-					SceneState.setState(SCENE.ENDING);
-				} else {
-					currentLevel++;//Not sure if this is the right way to do this
-					SceneState.setState(SCENE.POWERUP);
-				}
 
-				return;//don't continue processing this frame		
+		if(defeatedEnemyCount >= levelData.totalEnemies) {
+			if(currentLevel === TOTAL_LEVELS) {
+				SceneState.setState(SCENE.ENDING);
+			} else {
+				currentLevel++;//Not sure if this is the right way to do this
+				SceneState.setState(SCENE.POWERUP);
 			}
+
+			return;//don't continue processing this frame
 		} else {
 			//Didn't get to the boss yet, keep spawning new enemies
 			spawnNewEnemies(newCameraX);
@@ -211,6 +210,7 @@ function GameScene() {
 				const anEnemy = enemies.splice(enemyIndex, 1)[0]; //returns an array, we only want the first element
 				score += anEnemy.score;
 				collisionManager.removeEntity(defeatedEntity);
+				defeatedEnemyCount++;
 			}
 		}
 	};
@@ -468,6 +468,7 @@ function GameScene() {
 const Level1Data = {
 	level: 1,
 	maxEnemies: 4,
+	totalEnemies:4,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1250 * Math.random());
 		const rnd2 = Math.ceil(1250 * Math.random());
@@ -493,6 +494,7 @@ const Level1Data = {
 const Level2Data = {
 	level: 2,
 	maxEnemies: 4,
+	totalEnemies:4,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1225 * Math.random());
 		const rnd2 = Math.ceil(1225 * Math.random());
@@ -518,6 +520,7 @@ const Level2Data = {
 const Level3Data = {
 	level: 3,
 	maxEnemies: 5,
+	totalEnemies:5,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1200 * Math.random());
 		const rnd2 = Math.ceil(1200 * Math.random());
@@ -568,6 +571,7 @@ const Level4Data = {
 const Level5Data = {
 	level: 5,
 	maxEnemies: 6,
+	totalEnemies:6,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1150 * Math.random());
 		const rnd2 = Math.ceil(1150 * Math.random());
