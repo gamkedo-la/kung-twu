@@ -19,6 +19,7 @@ function GameScene() {
 	let didReset = true;
 	let didTransitionOut = false;
 	let defeatedEnemyCount = 0;
+	let bossHasBeenSpawned = false;
 
 	this.transitionIn = function() {
 		if((this.properties != undefined) && (this.properties.restartLevel)) {
@@ -74,6 +75,7 @@ function GameScene() {
 
 		enemies = [];
 		defeatedEnemyCount = 0;
+		bossHasBeenSpawned = false;
 		columnManager = null;
 		levelData = dataForCurrentLevel();
 		player.reset(levelData.playerStart);
@@ -136,14 +138,21 @@ function GameScene() {
 
 
 		if(defeatedEnemyCount >= levelData.totalEnemies) {
-			if(currentLevel === TOTAL_LEVELS) {
-				SceneState.setState(SCENE.ENDING);
-			} else {
-				currentLevel++;//Not sure if this is the right way to do this
-				SceneState.setState(SCENE.POWERUP);
-			}
+			if(enemies[0].getAIType() != AITYPE.Boss) {
+				if(bossHasBeenSpawned) {
+					if(currentLevel === TOTAL_LEVELS) {
+						SceneState.setState(SCENE.ENDING);
+					} else {
+						currentLevel++;//Not sure if this is the right way to do this
+						SceneState.setState(SCENE.POWERUP);
+					}
 
-			return;//don't continue processing this frame
+					return;//don't continue processing this frame
+				} else {
+					spawnBoss(newCameraX);
+					bossHasBeenSpawned = true;
+				}
+			}
 		} else {
 			//Didn't get to the boss yet, keep spawning new enemies
 			spawnNewEnemies(newCameraX);
@@ -464,6 +473,32 @@ function GameScene() {
 		const anEnemy = new BasicEnemy(config);
 		collisionManager.addEntity(anEnemy);
 		enemies.push(anEnemy);
+	};
+
+	const spawnBoss = function(cameraXPos) {
+		let atLeft = levelData.scrollsLeft;
+		if(levelData.scrollsLeft) {
+			atLeft = false;
+		} else if(!levelData.scrollsLeft) {
+			atLeft = true;
+		}
+
+		let xPos = cameraXPos + (1.5 * canvas.width) / 2;
+		if (atLeft) {
+			xPos = cameraXPos - (1.5 * canvas.width) / 2;
+		}
+
+		const config = {
+			x: xPos,
+			y: (3 * canvas.height) / 5,
+			belt:levelData.bossBelt,
+			aiType: AITYPE.Boss
+		};
+
+		const aBoss = new BasicEnemy(config);
+		collisionManager.addEntity(aBoss);
+
+		enemies.unshift(aBoss);
 	};
 }
 

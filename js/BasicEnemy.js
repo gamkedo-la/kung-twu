@@ -67,6 +67,10 @@ function BasicEnemy(config) {
 		return stateManager.getCurrentBelt();
 	};
 
+	this.getAIType = function() {
+		return stateManager.getAIType();
+	};
+
 	const damageForState = function() {
 		const aState = stateManager.getCurrentState();
 		switch(aState) {
