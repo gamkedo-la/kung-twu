@@ -20,6 +20,7 @@ function GameScene() {
 	let didTransitionOut = false;
 	let defeatedEnemyCount = 0;
 	let bossHasBeenSpawned = false;
+	let bossHealth = MAX_PLAYER_HEALTH;
 
 	this.transitionIn = function() {
 		if((this.properties != undefined) && (this.properties.restartLevel)) {
@@ -78,6 +79,7 @@ function GameScene() {
 		bossHasBeenSpawned = false;
 		columnManager = null;
 		levelData = dataForCurrentLevel();
+		bossHealth = levelData.bossHealth;
 		player.reset(levelData.playerStart);
 		collisionManager = null;
 		subfloor = null;
@@ -184,6 +186,10 @@ function GameScene() {
 		for (let i = 0; i < enemies.length; i++) {
 			enemies[i].update(deltaTime, GRAVITY, playerPos, floorMidHeight, i === 0);
 		}
+
+		if(bossHasBeenSpawned) {
+			bossHealth = enemies[0].health;
+		}
 	};
 
 	const spawnNewEnemies = function(cameraXPos) {
@@ -266,9 +272,8 @@ function GameScene() {
 	const drawUI = function(cameraX) {
 		//TODO: We need a way to find out how wide these strings will be, should be easy with a custom font
 		const screenLeft = cameraX - canvas.width / 2;
+		const screenRight = cameraX + canvas.width / 2;
 		canvasContext.drawImage(uiScreenBg, screenLeft, 0);
-		drawRect(screenLeft + 180, 60, player.health, 22, Color.Orange);
-		drawBorder(screenLeft + 180, 60, MAX_PLAYER_HEALTH, 22, Color.Orange);
 
 		colorText(
 			getLocalizedStringForKey(STRINGS_KEY.Score),
@@ -299,6 +304,9 @@ function GameScene() {
 			Fonts.Subtitle,
 			TextAlignment.Left);
 
+		drawRect(screenLeft + 180, 60, player.health, 22, Color.Orange);
+		drawBorder(screenLeft + 180, 60, MAX_PLAYER_HEALTH, 22, Color.Orange);
+
 		colorText(
 			getLocalizedStringForKey(STRINGS_KEY.Time),
 			screenLeft + 40,
@@ -323,6 +331,17 @@ function GameScene() {
 			Color.White,
 			Fonts.Subtitle,
 			TextAlignment.Left);
+
+		colorText(
+			getLocalizedStringForKey(STRINGS_KEY.Boss),
+			screenRight - 380,
+			80,
+			Color.White,
+			Fonts.Subtitle,
+			TextAlignment.Right);
+	
+		drawRect(screenRight - 340, 60, bossHealth * (MAX_PLAYER_HEALTH / levelData.bossHealth), 22, Color.Red);
+		drawBorder(screenRight  - 340, 60, MAX_PLAYER_HEALTH, 22, Color.Red);
 	};
 
 	const stringsKeyForLevel = function(level) {
@@ -492,7 +511,8 @@ function GameScene() {
 			x: xPos,
 			y: (3 * canvas.height) / 5,
 			belt:levelData.bossBelt,
-			aiType: AITYPE.Boss
+			aiType: AITYPE.Boss,
+			health:levelData.bossHealth
 		};
 
 		const aBoss = new BasicEnemy(config);
@@ -515,6 +535,7 @@ const Level1Data = {
 	allowedTime: 999,
 	enemyBelt: BELT.White,
 	bossBelt: BELT.Yellow,
+	bossHealth:100,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 100,
@@ -541,6 +562,7 @@ const Level2Data = {
 	allowedTime: 899,
 	enemyBelt: BELT.Yellow,
 	bossBelt: BELT.Tan,
+	bossHealth:120,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 200,
@@ -567,6 +589,7 @@ const Level3Data = {
 	allowedTime: 799,
 	enemyBelt: BELT.Tan,
 	bossBelt: BELT.Brown,
+	bossHealth:140,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 300,
@@ -592,6 +615,7 @@ const Level4Data = {
 	allowedTime: 699,
 	enemyBelt: BELT.Brown,
 	bossBelt: BELT.Red,
+	bossHealth:160,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 400,
@@ -618,6 +642,7 @@ const Level5Data = {
 	allowedTime: 599,
 	enemyBelt: BELT.Red,
 	bossBelt: BELT.Black,
+	bossHealth:400,//this is the final boss, so BUFF!!
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 500,

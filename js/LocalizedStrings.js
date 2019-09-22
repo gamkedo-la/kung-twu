@@ -58,7 +58,8 @@ const STRINGS_KEY = {
 	HowToSweep:"HowToSweep",
 	HowToJ_Kick:"HowToJ_Kick",
 	HowToH_Kick:"HowToH_Kick",
-	EndGameMessage:"EndGameMessage"
+	EndGameMessage:"EndGameMessage",
+	Boss:"Boss"
 };
 
 function getLocalizedStringForKey(key) {
@@ -113,7 +114,8 @@ const userStrings = {
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
-		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned."
+		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
+		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
 	},
     
 	Spanish: {
@@ -165,7 +167,8 @@ const userStrings = {
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
-		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned."
+		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
+		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
 	},
 
 	Japanese: {
@@ -218,7 +221,8 @@ const userStrings = {
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
-		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned."
+		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
+		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
 	},
 
 	French: {
@@ -270,7 +274,8 @@ const userStrings = {
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
-		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned."
+		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
+		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
 	},
 
 	Russian: {
@@ -322,7 +327,8 @@ const userStrings = {
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
-		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned."
+		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
+		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
 	},
 	
 	Polish: {
@@ -373,6 +379,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
-		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned."
+		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
+		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
 	}
 };

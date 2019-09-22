@@ -286,7 +286,7 @@ function BasicEnemy(config) {
 
 	this.wasHitBy = function(otherEntity) {
 		if(this.health === null) {
-			this.health = healthForBeltAndType(stateManager.getCurrentBelt(), stateManager.getAIType());
+			this.health = healthForBelt(stateManager.getCurrentBelt());
 		}
 		
 		if(stateManager.getCurrentState() === STATE.Block) {
@@ -317,48 +317,14 @@ function BasicEnemy(config) {
 		this.attackBody.isActive = false;
 	};
 
-	const healthForBeltAndType = function(belt, aiType) {
+	const healthForBelt = function(belt) {
 		switch(belt) {
-		case BELT.White:
-			if(aiType === AITYPE.Standard) {
-				return 20;//This is 1+ White belt kick from player
-			} else if(aiType === AITYPE.Boss) {
-				return 80;
-			}
-			break;
-		case BELT.Yellow:
-			if(aiType === AITYPE.Standard) {
-				return 25;//this is 1+ Yellow belt kick from player
-			} else if(aiType === AITYPE.Boss) {
-				return 100;
-			}
-			break;
-		case BELT.Tan:
-			if(aiType === AITYPE.Standard) {
-				return 30;//this is 1+ ten belt kick from player
-			} else if(aiType === AITYPE.Boss) {
-				return 120;
-			}
-			break;
-		case BELT.Brown:
-			if(aiType === AITYPE.Standard) {
-				return 35;//this is 1+ Brown belt kick from player
-			} else if(aiType === AITYPE.Boss) {
-				return 140;
-			}
-			break;
-		case BELT.Red:
-			if(aiType === AITYPE.Standard) {
-				return 40;//this is 1+ Red belt kick from player
-			} else if(aiType === AITYPE.Boss) {
-				return 160;
-			}
-			break;
-		case BELT.Black:
-			if(aiType === AITYPE.Standard) {
-				return 45;//this is 1+ Black belt kick from player
-			} else if(aiType === AITYPE.Boss) {
-				return 400;//this is the final boss, so BUFF!!
-			}																																}
+		case BELT.White: return 20;//This is 1+ White belt kick from player
+		case BELT.Yellow: return 25;//this is 1+ Yellow belt kick from player
+		case BELT.Tan: return 30;//this is 1+ ten belt kick from player
+		case BELT.Brown: return 35;//this is 1+ Brown belt kick from player
+		case BELT.Red: return 40;//this is 1+ Red belt kick from player
+		case BELT.Black: return 45;//this is 1+ Black belt kick from player
+		}
 	};
 }
