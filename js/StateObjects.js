@@ -613,7 +613,10 @@ function StateManager(theAnimations, beltColor, rivalType) {
 				updateLocalStateWithAction(action);
 			}
 			
-            if (currentAnimation) currentAnimation.reset(); // can be undefined here (rarely)
+			if (currentAnimation) {
+				//Should always be defined now, but just in case
+				currentAnimation.reset(); 
+			}
 
 			currentState = newState;
 			currentAnimation = animationForState(currentState);

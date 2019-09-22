@@ -86,7 +86,7 @@ function AIManager() {
 			if(currentState === BLOCK_STATE) {
 				return ACTION.Release;
 			}
-			
+
 			if(distToPlayer > maxStrikeDistanceForBeltAndType(belt, type)) {
 				return ACTION.Right;
 			} else if(distToPlayer < -maxStrikeDistanceForBeltAndType(belt, type)) {

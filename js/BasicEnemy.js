@@ -63,6 +63,10 @@ function BasicEnemy(config) {
 		return (damageForState() + stateManager.getCurrentBelt() * DELTA_DAMAGE);
 	};
 
+	this.getBelt = function() {
+		return stateManager.getCurrentBelt();
+	};
+
 	const damageForState = function() {
 		const aState = stateManager.getCurrentState();
 		switch(aState) {

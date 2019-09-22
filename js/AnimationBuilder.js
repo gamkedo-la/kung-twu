@@ -52,23 +52,66 @@ function AnimationBuilder() {
 	const getAnimationsWithData = function(data, scale) {
 		const result = {};
 		result.idle = getAnimationWithData(data.idle);
+		if(result.idle === null) {
+			console.error("Idle animations are required for all characters");
+		}
+
 		result.walk = getAnimationWithData(data.walk);
+		if(result.walk === null) {
+			result.walk = getAnimationWithData(data.idle);
+		}
+
 		result.dash = getAnimationWithData(data.dash);
+		if(result.dash === null) {
+			result.dash = getAnimationWithData(data.idle);
+		}
+
 		result.jump = getAnimationWithData(data.jump);
-		result.crouch = getAnimationWithData(data.idle);//TODO: Need this spritesheet
-		//result.crouch = getAnimationWithData(data.crouch);
+		if(result.jump === null) {
+			result.jump = getAnimationWithData(data.idle);
+		}
+
+		result.crouch = getAnimationWithData(data.crouch);
+		if(result.crouch === null) {
+			result.crouch = getAnimationWithData(data.idle);
+		}		
+		
 		result.punch = getAnimationWithData(data.punch);
+		if(result.punch === null) {
+			result.punch = getAnimationWithData(data.idle);
+		}
+
 		result.kick = getAnimationWithData(data.kick);
-		result.block = getAnimationWithData(data.idle);//TODO: Need this spritesheet
-		//result.block = getAnimationWithData(data.block);
-		result.sweep = getAnimationWithData(data.idle);//TODO:Need this spritesheet
-		//result.sweep = getAnimationWithData(data.sweep);
-		result.j_kick = getAnimationWithData(data.idle);//TODO:Need this spritesheet
-		//result.j_kick = getAnimationWithData(data.j_kick);
-		result.h_kick = getAnimationWithData(data.idle);//TODO:Need this spritesheet
-		//result.h_kick = getAnimationWithData(data.h_kick);
-		result.knockback = getAnimationWithData(data.idle);//TODO:Need this spritesheet
-		//result.knockback = getAnimationWithData(data.knockback);
+		if(result.kick === null) {
+			result.kick = getAnimationWithData(data.idle);
+		}		
+
+		result.block = getAnimationWithData(data.block);
+		if(result.block === null) {
+			result.block = getAnimationWithData(data.idle);
+		}
+
+
+		result.sweep = getAnimationWithData(data.sweep);
+		if(result.sweep === null) {
+			result.sweep = getAnimationWithData(data.idle);
+		}
+
+
+		result.j_kick = getAnimationWithData(data.j_kick);
+		if(result.j_kick === null) {
+			result.j_kick = getAnimationWithData(data.idle);
+		}
+
+		result.h_kick = getAnimationWithData(data.h_kick);
+		if(result.h_kick === null) {
+			result.h_kick = getAnimationWithData(data.idle);
+		}
+
+		result.knockback = getAnimationWithData(data.knockback);
+		if(result.knockback === null) {
+			result.knockback = getAnimationWithData(data.idle);
+		}
 
 		const animationKeys = Object.keys(result);
 		for(let key of animationKeys) {

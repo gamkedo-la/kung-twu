@@ -210,7 +210,9 @@ function GameScene() {
 				const anEnemy = enemies.splice(enemyIndex, 1)[0]; //returns an array, we only want the first element
 				score += anEnemy.score;
 				collisionManager.removeEntity(defeatedEntity);
-				defeatedEnemyCount++;
+				if(defeatedEntity.getBelt() === levelData.enemyBelt) {
+					defeatedEnemyCount++;
+				}
 			}
 		}
 	};
