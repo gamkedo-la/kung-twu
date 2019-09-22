@@ -238,14 +238,14 @@ function Player(config) {
 	};
 
 	const respondToKnockBack = function() {
-		if (stateManager.getIsFacingLeft()) {
-			velocity.x -= KNOCK_BACK_SPEED / 25;
-			if (velocity.x <= 0) {
-				velocity.x = 0;
-			}
-		} else {
+		if(velocity.x < 0) {
 			velocity.x += KNOCK_BACK_SPEED / 25;
 			if (velocity.x >= 0) {
+				velocity.x = 0;
+			}
+		} else if(velocity.x > 0) {
+			velocity.x -= KNOCK_BACK_SPEED / 25;
+			if (velocity.x <= 0) {
 				velocity.x = 0;
 			}
 		}
@@ -304,16 +304,16 @@ function Player(config) {
 	const punch = function() {
 		if (stateManager.getIsNewState()) {
 			velocity.x = 0;
-            playerPunchSound.play();
-            if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
+			playerPunchSound.play();
+			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 		}
 	};
 
 	const kick = function() {
 		if (stateManager.getIsNewState()) {
 			velocity.x = 0;
-            playerKickSound.play();
-            if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
+			playerKickSound.play();
+			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 		}
 	};
 
@@ -358,10 +358,14 @@ function Player(config) {
 			stateManager.wasHit();
 
 			velocity.y = -KNOCK_BACK_SPEED / 2;
-			if (stateManager.getIsFacingLeft()) {
-				velocity.x += KNOCK_BACK_SPEED;
+			if(otherEntity.getPosition().x < position.x) {
+				velocity.x = KNOCK_BACK_SPEED;
+			} else if(otherEntity.getPosition().x > position.x){
+				velocity.x = -KNOCK_BACK_SPEED;
+			} else if(stateManager.getIsFacingLeft()) {
+				velocity.x = KNOCK_BACK_SPEED;
 			} else {
-				velocity.x -= KNOCK_BACK_SPEED;
+				velocity.x = -KNOCK_BACK_SPEED;
 			}
 
 			this.health -= otherEntity.getCurrentDamage();
