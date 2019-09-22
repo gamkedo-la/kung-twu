@@ -598,12 +598,23 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		}
 
 		const activeKeys = inputProcessor.getCurrentlyActiveKeys();
+		let shouldReverse = false;
 		for(let activeKey of activeKeys) {
 			const activeAction = keyMapper.getActionForKey(activeKey);
 			if(activeAction != null) {//something I care about is pressed
 				const thisState = stateTranslator(currentState.nextStateForActionWithBelt(belt, activeAction));
 				setNewState(thisState, activeAction);
 			}
+
+			if((activeAction === ACTION.Left) && (!isFacingLeft)) {
+				shouldReverse = true;
+			} else if((activeAction === ACTION.Right) && (isFacingLeft)) {
+				shouldReverse = true;
+			}
+		}
+
+		if(shouldReverse) {
+			isFacingLeft = !isFacingLeft;
 		}
 	};
 

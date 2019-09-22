@@ -214,6 +214,13 @@ function Player(config) {
 
 	const updatePosition = function(deltaTime, gravity, floorHeight, levelMin, levelMax) {
 		const timeStep = deltaTime / 1000; //deltaTime is in milliseconds
+
+		if((velocity.x > 0) && (stateManager.getIsFacingLeft())) {
+			velocity.x = -velocity.x;
+		} else if((velocity.x < 0) && (!stateManager.getIsFacingLeft())) {
+			velocity.x = -velocity.x;
+		}
+
 		position.x += velocity.x * timeStep;
 		const animWidth = stateManager.getCurrentAnimation().getWidth();
 		const animHeight = stateManager.getCurrentAnimation().getHeight();
