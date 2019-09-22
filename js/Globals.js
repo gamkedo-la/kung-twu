@@ -18,7 +18,10 @@ const Color = {
 	Yellow: "yellow",
 	Purple: "purple",
 	Aqua: "aqua",
-	Orange: "orange"
+	Orange: "orange",
+	Tan:"tan",
+	Brown:"brown",
+	SaddleBrown:"SaddleBrown"
 };
 
 //--------------Player-----------------//

@@ -340,8 +340,8 @@ function GameScene() {
 			Fonts.Subtitle,
 			TextAlignment.Right);
 	
-		drawRect(screenRight - 340, 60, bossHealth * (MAX_PLAYER_HEALTH / levelData.bossHealth), 22, Color.Red);
-		drawBorder(screenRight  - 340, 60, MAX_PLAYER_HEALTH, 22, Color.Red);
+		drawRect(screenRight - 340, 60, bossHealth * (MAX_PLAYER_HEALTH / levelData.bossHealth), 22, levelData.bossMeterColor);
+		drawBorder(screenRight  - 340, 60, MAX_PLAYER_HEALTH, 22, levelData.bossMeterColor);
 	};
 
 	const stringsKeyForLevel = function(level) {
@@ -536,6 +536,7 @@ const Level1Data = {
 	enemyBelt: BELT.White,
 	bossBelt: BELT.Yellow,
 	bossHealth:100,
+	bossMeterColor:Color.Yellow,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 100,
@@ -563,6 +564,7 @@ const Level2Data = {
 	enemyBelt: BELT.Yellow,
 	bossBelt: BELT.Tan,
 	bossHealth:120,
+	bossMeterColor:Color.Tan,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 200,
@@ -590,6 +592,7 @@ const Level3Data = {
 	enemyBelt: BELT.Tan,
 	bossBelt: BELT.Brown,
 	bossHealth:140,
+	bossMeterColor:Color.SaddleBrown,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 300,
@@ -616,6 +619,7 @@ const Level4Data = {
 	enemyBelt: BELT.Brown,
 	bossBelt: BELT.Red,
 	bossHealth:160,
+	bossMeterColor:Color.Red,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 400,
@@ -643,6 +647,7 @@ const Level5Data = {
 	enemyBelt: BELT.Red,
 	bossBelt: BELT.Black,
 	bossHealth:400,//this is the final boss, so BUFF!!
+	bossMeterColor:Color.White,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 500,
