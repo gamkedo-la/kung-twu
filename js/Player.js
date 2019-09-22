@@ -83,13 +83,13 @@ function Player(config) {
 		case STATE.Punch:
 			return 1 * BASE_DAMAGE;
 		case STATE.Kick:
-			return 1.25 * BASE_DAMAGE;
+			return 1.5 * BASE_DAMAGE;
 		case STATE.J_Kick:
-			return 1.5 * BASE_DAMAGE;
+			return 2.0 * BASE_DAMAGE;
 		case STATE.Sweep:
-			return 1.5 * BASE_DAMAGE;
+			return 2.0 * BASE_DAMAGE;
 		case STATE.H_Kick:
-			return 2 * BASE_DAMAGE;
+			return 2.5 * BASE_DAMAGE;
 		}
 	};
 

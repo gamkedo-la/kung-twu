@@ -484,6 +484,10 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		}
 	};
 
+	this.getAIType = function() {
+		return rivalType;
+	};
+
 	this.quit = function() {
 		this.reset();
 		belt = BELT.White;
