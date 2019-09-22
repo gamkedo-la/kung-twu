@@ -83,6 +83,10 @@ function AIManager() {
 		
 		const desiredDistance = desiredApproachDistance(belt, type, shouldAttack);
 		if(shouldAttack) {
+			if(currentState === BLOCK_STATE) {
+				return ACTION.Release;
+			}
+			
 			if(distToPlayer > maxStrikeDistanceForBeltAndType(belt, type)) {
 				return ACTION.Right;
 			} else if(distToPlayer < -maxStrikeDistanceForBeltAndType(belt, type)) {
@@ -220,6 +224,8 @@ function AIManager() {
 			if(!shouldAttack) {
 				const approachModifier = 50 * Math.random();
 				if(distToPlayer < 200 + approachModifier) {
+					return ACTION.Release;
+				} else if(currentState === BLOCK_STATE) {
 					return ACTION.Release;
 				}
 			} 
