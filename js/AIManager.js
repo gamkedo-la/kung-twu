@@ -83,7 +83,8 @@ function AIManager() {
 		
 		const desiredDistance = desiredApproachDistance(belt, type, shouldAttack);
 		if(shouldAttack) {
-			if(currentState === BLOCK_STATE) {
+			if((currentState === BLOCK_STATE) || 
+			(currentState === CROUCH_STATE)) {
 				return ACTION.Release;
 			}
 
