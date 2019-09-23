@@ -9,7 +9,7 @@ function BasicEnemy(config) {
 
 	let scale = 2;
 	let stateManager;
-	let hitBoxManager = new HitBoxManager(PlayerCollisionBodyData, PlayerAttackBodyData);
+	let hitBoxManager = new HitBoxManager(BasicEnemyCollisionBodyData, PlayerAttackBodyData);
 
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
