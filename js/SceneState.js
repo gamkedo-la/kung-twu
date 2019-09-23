@@ -34,20 +34,11 @@ const SceneState = {
 	getPreviousState: function() {
 		return this.log[this.log.length-1];
 	},
-	popState: function(properties) {
-		const previousState = this.log.pop();
-		this.scenes[this.currentScene].transitionOut();
-		this.currentScene = previousState;
-		this.scenes[this.currentScene].properties = properties;
-		this.scenes[this.currentScene].transitionIn();
-		this.didStartTransition = true;
-		return this;
-	},
-	run: function(deltaTime) {
+	run: function(deltaTime, previousState) {
 		const currentlyInGame = (this.scenes[this.currentScene] === this.scenes[SCENE.GAME]);
 		const wasInGame = (this.scenes[this.getPreviousState()] === this.scenes[SCENE.GAME]);
 		if(((currentlyInGame) || (wasInGame)) && (this.didStartTransition)) {
-			this.runSegue(deltaTime);
+			this.runSegue(deltaTime, previousState);
 		} else {
 			this.scenes[this.currentScene].run(deltaTime);
 		}
@@ -58,12 +49,16 @@ const SceneState = {
 
 		inputProcessor.clear();
 	},
-	runSegue: function(deltaTime) {
+	runSegue: function(deltaTime, previousState) {
 		this.transitionTime += deltaTime;
 		if(this.transitionTime < this.transitionDuration) {
 			const currentAlpha = Math.cos(Math.PI * this.transitionTime / this.transitionDuration);//"rgba(255, 165, 0, 1)";
 			if(currentAlpha > 0) {
-				this.scenes[this.getPreviousState()].run(0);
+				if(previousState) {
+					this.scenes[previousState].run(0);
+				} else {
+					this.scenes[this.getPreviousState()].run(0);
+				}
 				canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 				drawRect(0, 0, canvas.width, canvas.height, `rgba(0, 0, 0, ${1 - currentAlpha}`);
 			} else {
@@ -94,6 +89,7 @@ const SceneState = {
 		(this.currentScene != SCENE.PAUSE) &&
 		(!pressed)) {
 			this.setState(this.getPreviousState());
+			return true;
 		}
 
 		return this.scenes[this.currentScene].control(newKeyEvent, pressed);

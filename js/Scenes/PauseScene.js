@@ -66,6 +66,26 @@ function PauseScene() {
 		}
 		
 		switch (newKeyEvent) {
+		case ALIAS.PAUSE:
+			pauseManager.resumeGame(CAUSE.Keypress);
+			SceneState.setState(SceneState.getPreviousState());
+			return true;
+		case ALIAS.BACK:
+			pauseManager.resumeGame(CAUSE.Keypress);
+			SceneState.setState(SCENE.GAME);
+			return true;
+		case ALIAS.QUIT:
+			pauseManager.resumeGame(CAUSE.Keypress);
+			SceneState.setState(SCENE.TITLE, {didQuit:true});
+			return true;
+		case ALIAS.CONTROLS:
+			console.log("Controls Scene doesn't exist yet");
+			//pauseManager.resumeGame(CAUSE.Keypress);
+			//SceneState.setState(SCENE.CONTROLS);
+			return true;
+		case ALIAS.HELP:
+			SceneState.setState(SCENE.HELP);
+			return true;
 		case ALIAS.POINTER:
 			checkButtons();
 			return true;
@@ -107,7 +127,7 @@ function PauseScene() {
 				case NAV_ACTION.SELECT:
 					if(selections[selectorPositionsIndex] === SCENE.GAME) {
 						pauseManager.resumeGame(CAUSE.Keypress);
-						SceneState.popState();
+						SceneState.setState(SCENE.GAME);
 					} else if(selections[selectorPositionsIndex] === SCENE.TITLE) {
 						pauseManager.resumeGame(CAUSE.Keypress);
 						SceneState.setState(SCENE.TITLE, {didQuit:true});
@@ -135,7 +155,7 @@ function PauseScene() {
 	const buildResumeButton = function(x, y, height, padding) {
 		const thisClick = function() {
 			pauseManager.resumeGame(CAUSE.Keypress);
-			SceneState.popState();
+			SceneState.setState(SceneState.getPreviousState());
 		};
 
 		return new UIButton(STRINGS_KEY.Resume, x, y, height, padding, thisClick, Color.Purple);
@@ -152,7 +172,7 @@ function PauseScene() {
 
 	const buildControlsButton = function(x, y, height, padding) {
 		const thisClick = function() {
-//			SceneState.setState(SCENE.CONTROLS);
+			//			SceneState.setState(SCENE.CONTROLS);
 			console.log("Going to the Controls Screen now...");
 		};
 

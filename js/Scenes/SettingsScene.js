@@ -86,8 +86,9 @@ function SettingsScene() {
 					break;
 				case NAV_ACTION.SELECT:
 					if(selectorPositionsIndex === 0) {
-						SceneState.popState();
+						SceneState.setState(SceneState.getPreviousState());
 					} else {
+						pauseManager.resumeGame(CAUSE.Keypress);
 						SceneState.setState(selections[selectorPositionsIndex]);
 					}
 					break;
@@ -125,7 +126,7 @@ function SettingsScene() {
 
 	const buildBackButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			SceneState.popState();
+			SceneState.setState(SceneState.getPreviousState());
 		};
 
 		return new UIButton(STRINGS_KEY.Back, x, y, height, padding, thisClick, Color.Purple);
