@@ -62,8 +62,8 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 		const posY = bounds.y + padding + fontOverhangAdjustment;
         
 		colorText(this.title, posX, posY, color, Fonts.ButtonTitle, TextAlignment.Left);
-        
-		if(DEBUG) { // draw bounds for buttons in semi-transparent colors
+
+		if((DEBUG) || (didHit(mouseX, mouseY))) { // draw bounds for buttons in semi-transparent colors
 			const BGColor = Color.Aqua;
             
 			const tempAlpha = canvasContext.globalAlpha;
