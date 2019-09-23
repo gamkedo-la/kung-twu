@@ -98,11 +98,11 @@ function startGame() {
 }
 
 function windowOnFocus() {
-	pauseManager.resumeGame(CAUSE.Focus);
-	SceneState.setState(SceneState.getPreviousState());
 }
 
 function windowOnBlur() {
-	pauseManager.pauseGame(CAUSE.Focus);
-	SceneState.setState(SCENE.PAUSE);
+	if(!pauseManager.getIsPaused()) {
+		pauseManager.pauseGame(CAUSE.Focus);
+		SceneState.setState(SCENE.PAUSE);	
+	}
 }

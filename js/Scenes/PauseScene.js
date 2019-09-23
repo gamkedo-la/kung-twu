@@ -72,7 +72,8 @@ function PauseScene() {
 			return true;
 		case ALIAS.BACK:
 			pauseManager.resumeGame(CAUSE.Keypress);
-			SceneState.setState(SCENE.GAME);
+			SceneState.setState(SceneState.getPreviousState());
+//			SceneState.setState(SCENE.GAME);
 			return true;
 		case ALIAS.QUIT:
 			pauseManager.resumeGame(CAUSE.Keypress);

@@ -1,43 +1,29 @@
 //Pause Manager
 function PauseManager() {
+	let gameIsPaused = false;
 	let cause = null;
 	this.getIsPaused = function() {
-		if(cause === null) {
-			return false;
-		} else {
-			return true;
-		}
+		return (gameIsPaused === true);
 	};
 
 	this.pauseGame = function(pauseCause) {
-		if(cause === null) {
-			this.togglePause(pauseCause);
-		} else if(pauseCause === CAUSE.Keypress) {
-			cause = CAUSE.Keypress;
-		}
-	};
-
-	this.resumeGame = function(pauseCause) {
-		if(cause === null) {return;}
-
-		if((pauseCause === CAUSE.Keypress) || ((pauseCause === CAUSE.Focus) && (cause === CAUSE.Focus))) {
-			this.togglePause(null);
-		}
-	};
-
-	this.togglePause = function(pauseCause) {
-		if((cause === CAUSE.Keypress) && (pauseCause === CAUSE.Keypress)) {
-			cause = null;
-		} else {
+		if(cause != CAUSE.Keypress) {
 			cause = pauseCause;
 		}
 
-		if(cause === null) {
-			resumeSound.play();
-			currentBackgroundMusic.resumeSound();
-		} else {
+		if(!gameIsPaused) {
+			gameIsPaused = true;
 			pauseSound.play();
 			currentBackgroundMusic.pauseSound();
+		}
+	};
+
+	this.resumeGame = function(resumeCause) {
+		if(resumeCause === CAUSE.Keypress) {
+			gameIsPaused = false;
+			cause = null;
+			resumeSound.play();
+			currentBackgroundMusic.resumeSound();
 		}
 	};
 }
