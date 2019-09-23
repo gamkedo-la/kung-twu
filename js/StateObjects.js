@@ -445,6 +445,10 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		return currentAnimation;
 	};
 
+	this.getCurrentAnimationFrame = function() {
+		return currentAnimation.getCurrentFrame();
+	};
+
 	this.getIsFacingLeft = function() {
 		return (isFacingLeft == true);
 	};

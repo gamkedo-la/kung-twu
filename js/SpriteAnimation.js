@@ -22,6 +22,10 @@ function SpriteAnimation(name, //string identifier for this animation
     
 	let remainderTime = 0;
 
+	this.getCurrentFrame = function() {
+		return currentFrameIndex;//TODO: this may be too simplistic
+	};
+
 	this.reset = function() {
 		remainderTime = 0;
 		isInReverse = false;

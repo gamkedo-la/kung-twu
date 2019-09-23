@@ -104,9 +104,12 @@ function BasicEnemy(config) {
 		if(stateManager.getIsNewState()) {
 			this.collisionBody.points = hitBoxManager.bodyPointsForState(stateManager.getCurrentState(), position, scale, stateManager.getIsFacingLeft());
 			this.attackBody = hitBoxManager.attackColliderForState(stateManager.getCurrentState(), position, scale, stateManager.getIsFacingLeft());
-			if(this.attackBody != null) {
-				this.attackBody.isActive = true;
-			}
+		}
+
+		if(this.attackBody != null) {
+			const thisState = stateManager.getCurrentState();
+			const currentFrame = stateManager.getCurrentAnimationFrame();
+			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame);
 		}
 
 		updatePosition(deltaTime, gravity, floorHeight);
@@ -314,7 +317,7 @@ function BasicEnemy(config) {
 	};
 
 	this.didHit = function() {
-		this.attackBody.isActive = false;
+		this.attackBody = null;
 	};
 
 	const healthForBelt = function(belt) {

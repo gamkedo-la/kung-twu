@@ -165,10 +165,12 @@ function Player(config) {
 				position,
 				SCALE,
 				stateManager.getIsFacingLeft());
+		}
 
-			if (this.attackBody != null) {
-				this.attackBody.isActive = true;
-			}
+		if(this.attackBody != null) {
+			const thisState = stateManager.getCurrentState();
+			const currentFrame = stateManager.getCurrentAnimationFrame();
+			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame);
 		}
 
 		updatePosition(deltaTime, gravity, floorHeight, levelMin, levelMax);
@@ -405,6 +407,6 @@ function Player(config) {
 	};
 
 	this.didHit = function() {
-		this.attackBody.isActive = false;
+		this.attackBody = null;
 	};
 }

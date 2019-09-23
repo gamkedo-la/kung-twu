@@ -131,6 +131,29 @@ function HitBoxManager(bodyData, attackData) {
 		}
 	};
 
+	this.attackColliderIsActiveFor = function(state, frame) {
+		switch(state) {
+		case STATE.Idle:
+		case STATE.WalkRight:
+		case STATE.WalkLeft:
+		case STATE.Jump:
+		case STATE.Crouch:
+		case STATE.Dash:
+		case STATE.Block:
+		case STATE.KnockBack:
+			return false;
+		case STATE.Sweep:
+		case STATE.J_Kick:
+		case STATE.H_Kick:
+			//These animations don't exist yet, so returning false for now
+			return false;//TODO: change to true based on correct frame once animation exist
+		case STATE.Punch: if(frame === 2) return true;
+			return false;
+		case STATE.Kick: if(frame === 2) return true;
+			return false;
+		}
+	};
+
 	const isAttackingState = function(state) {
 		switch(state) {
 		case STATE.Idle:
