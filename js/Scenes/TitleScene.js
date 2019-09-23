@@ -82,6 +82,9 @@ function TitleScene() {
 		}
         
 		switch (newKeyEvent) {
+		case ALIAS.SELECT2:
+			SceneState.setState(SCENE.GAME);
+			return true;
 		case ALIAS.HELP:
 			SceneState.setState(SCENE.HELP);
 			return true;

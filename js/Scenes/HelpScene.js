@@ -50,6 +50,12 @@ function HelpScene() {
 		}
         
 		switch (newKeyEvent) {
+		case ALIAS.SELECT2:
+			if(pauseManager.getIsPaused()) {
+				pauseManager.resumeGame(CAUSE.Keypress);
+			}
+			SceneState.setState(SCENE.GAME);
+			return true;
 		case ALIAS.POINTER:
 			checkButtons();
 			return true;

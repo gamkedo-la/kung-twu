@@ -45,7 +45,7 @@ function KeyMapper() {
 	const navRight = new Set([KEY_RIGHT, KEY_D, LEFT_STICK_RIGHT, RIGHT_STICK_RIGHT, R1_BUTTON, R2_BUTTON, DPAD_RIGHT]);
 	const navUp = new Set([KEY_UP, KEY_W, LEFT_STICK_UP, RIGHT_STICK_UP, DPAD_UP]);
 	const navDown = new Set([KEY_DOWN, KEY_S, LEFT_STICK_DOWN, RIGHT_STICK_DOWN, DPAD_DOWN]);
-	const navSelect = new Set([KEY_SPACE, KEY_ENTER, CROSS_BUTTON]);
+	const navSelect = new Set([/*KEY_SPACE, */KEY_ENTER, CROSS_BUTTON]);
 	const navBack = new Set([KEY_ESCAPE, CIRCLE_BUTTON]);
 	const navPause = new Set([KEY_P, PAD_OPTIONS]);
 
