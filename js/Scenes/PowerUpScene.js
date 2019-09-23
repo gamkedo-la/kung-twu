@@ -143,6 +143,12 @@ function PowerUpScene() {
 	
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
+		canvasContext.drawImage(yellowPresentation, 0, 0, 
+			yellowPresentation.width, yellowPresentation.height,
+			(canvas.width - yellowPresentation.width) / 2,
+			(canvas.height - yellowPresentation.height) / 5,
+			yellowPresentation.width,
+			yellowPresentation.height);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);     
 	};
 

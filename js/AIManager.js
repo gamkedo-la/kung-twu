@@ -433,7 +433,7 @@ function AIManager() {
 		} else if(rnd < 5) {
 			return ACTION.Block;
 		} else if(rnd < 6) {
-			return Action.Crouch;
+			return ACTION.Crouch;
 		} else if(rnd < 7) {
 			return ACTION.Jump;
 		} else {
