@@ -601,19 +601,28 @@ function StateManager(theAnimations, beltColor, rivalType) {
 			}
 		}
 
-		const activeKeys = inputProcessor.getCurrentlyActiveKeys();
+		const newKeys = inputProcessor.getNewlyActiveKeys();
 		let shouldReverse = false;
-		for(let activeKey of activeKeys) {
-			const activeAction = keyMapper.getActionForKey(activeKey);
-			if(activeAction != null) {//something I care about is pressed
-				const thisState = stateTranslator(currentState.nextStateForActionWithBelt(belt, activeAction));
-				setNewState(thisState, activeAction);
+		for(let newKey of newKeys) {
+			const newAction = keyMapper.getActionForKey(newKey);
+			if(newAction != null) {//something I care about is pressed
+				const thisState = stateTranslator(currentState.nextStateForActionWithBelt(belt, newAction));
+				setNewState(thisState, newAction);
 			}
 
-			if((activeAction === ACTION.Left) && (!isFacingLeft)) {
+			if((newAction === ACTION.Left) && (!isFacingLeft)) {
 				shouldReverse = true;
-			} else if((activeAction === ACTION.Right) && (isFacingLeft)) {
+			} else if((newAction === ACTION.Right) && (isFacingLeft)) {
 				shouldReverse = true;
+			}
+		}
+
+		const activeKeys = inputProcessor.getCurrentlyActiveKeys();
+		for(let activeKey of activeKeys) {
+			const activeAction = keyMapper.getActionForKey(activeKey);
+			if((activeAction === ACTION.Left) || (activeAction === ACTION.Right)) {//something I care about is pressed
+				const thisState = stateTranslator(currentState.nextStateForActionWithBelt(belt, activeAction));
+				setNewState(thisState, activeAction);
 			}
 		}
 

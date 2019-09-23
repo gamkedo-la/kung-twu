@@ -30,8 +30,10 @@ function InputProcessor() {
 	};
 
 	this.addActiveKey = function(newActiveKey) {
-		newKeys.add(newActiveKey);
-		currentKeys.add(newActiveKey);
+		if(!currentKeys.has(newActiveKey)) {
+			newKeys.add(newActiveKey);
+			currentKeys.add(newActiveKey);	
+		}
 	};
 
 	this.releaseKey = function(keyReleased) {
