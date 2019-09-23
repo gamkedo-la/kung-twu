@@ -5,6 +5,9 @@ function Player(config) {
 	const WALK_SPEED = 200;
 	const JUMP_SPEED = -600;
 	const KNOCK_BACK_SPEED = 800;
+	const INVINCIBLE_DURATION = 1000;
+	let invincibleTime = 0;
+	let isInvincible = false;
 
 	const BASE_DAMAGE = 10;
 	const DELTA_DAMAGE = 5;
@@ -139,6 +142,14 @@ function Player(config) {
 	};
 
 	this.update = function(deltaTime, gravity, floorHeight, levelMin, levelMax) {
+		if(isInvincible) {
+			invincibleTime += deltaTime;
+			if(invincibleTime >= INVINCIBLE_DURATION) {
+				isInvincible = false;
+				invincibleTime = 0;
+			}
+		}
+
 		stateManager.update(deltaTime);
 		updateForState(stateManager.getCurrentState());
 
@@ -347,7 +358,11 @@ function Player(config) {
 	};
 
 	this.draw = function() {
-		stateManager.drawAt(position.x, position.y);
+		if((isInvincible) && (invincibleTime % 200 < 50)) {
+			//do nothing for now
+		} else{
+			stateManager.drawAt(position.x, position.y);
+		}
 
 		this.collisionBody.draw(); //colliders know to draw only when DRAW_COLLIDERS = true;
 		if (this.attackBody != null) {
@@ -356,6 +371,8 @@ function Player(config) {
 	};
 
 	this.wasHitBy = function(otherEntity) {
+		if(isInvincible) {return;}
+
 		if (stateManager.getCurrentState() === STATE.Block) {
 			this.health -= Math.ceil(otherEntity.getCurrentDamage() / 10);
 		} else if (stateManager.getCurrentState() === STATE.KnockBack) {
@@ -363,6 +380,7 @@ function Player(config) {
 		} else {
 			//just got hit
 			stateManager.wasHit();
+			isInvincible = true;
 
 			velocity.y = -KNOCK_BACK_SPEED / 2;
 			if(otherEntity.getPosition().x < position.x) {
