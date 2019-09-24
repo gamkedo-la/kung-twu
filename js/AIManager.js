@@ -6,15 +6,15 @@ const AITYPE = {
 };
 
 const COOLDOWN = {
-	White:800,
-	Yellow:750,
-	Tan:700,
-	Brown:600,
-	Red:500,
-	Black:400
+	White:700,
+	Yellow:650,
+	Tan:600,
+	Brown:500,
+	Red:400,
+	Black:350
 };
 
-const IDEAL_STRIKE_DIST = 60;
+const IDEAL_STRIKE_DIST = 100;//60;
 const BUFFER_DIST = 140;
 
 function AIManager() {
@@ -54,15 +54,15 @@ function AIManager() {
 		} else if(type === AITYPE.Boss) {
 			switch(belt) {
 			case BELT.Yellow:
-				return 0.75 * COOLDOWN.Yellow;
+				return 0.5 * COOLDOWN.Yellow;
 			case BELT.Tan:
-				return 0.75 * COOLDOWN.Tan;
+				return 0.5 * COOLDOWN.Tan;
 			case BELT.Brown:
-				return 0.75 * COOLDOWN.Brown;
+				return 0.5 * COOLDOWN.Brown;
 			case BELT.Red:
-				return 0.75 * COOLDOWN.Red;
+				return 0.5 * COOLDOWN.Red;
 			case BELT.Black:
-				return 0.75 * COOLDOWN.Black;
+				return 0.5 * COOLDOWN.Black;
 			}
 		} 
 	};
@@ -269,7 +269,7 @@ function AIManager() {
 			switch(belt) {
 			case BELT.Yellow:
 				if(timeSinceAction > cooldown) {
-					return attackActionForYellowBossBelt();
+					return attackActionForYellowBossBelt(currentState);
 				}
 				break;
 			case BELT.Tan:
@@ -424,17 +424,17 @@ function AIManager() {
 	};
 
 	const attackActionForYellowBossBelt = function() {
-		const rnd = (Math.floor(100 * Math.random())) % 11;
+		const rnd = (Math.floor(100 * Math.random())) % 14;
 
-		if(rnd < 2) {
+		if(rnd < 4) {
 			return ACTION.Punch;
-		} else if(rnd< 4) {
+		} else if(rnd< 8) {
 			return ACTION.Kick;
-		} else if(rnd < 5) {
+		} else if(rnd < 9) {
 			return ACTION.Block;
-		} else if(rnd < 6) {
+		} else if(rnd < 10) {
 			return ACTION.Crouch;
-		} else if(rnd < 7) {
+		} else if(rnd < 11) {
 			return ACTION.Jump;
 		} else {
 			return ACTION.Dash;
