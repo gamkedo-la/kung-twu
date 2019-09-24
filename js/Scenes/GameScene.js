@@ -261,7 +261,7 @@ function GameScene() {
 		}
 
 		player.draw();
-		wooshFX.draw();
+		if (wooshFX) wooshFX.draw();
 
 		columnManager.draw(cameraX);
 		roof.draw();
