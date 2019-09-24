@@ -28,7 +28,7 @@ window.onload = function() {
 	opacity = 0;
 
 	pauseManager = new PauseManager();
-    wooshFX = new WooshFXManager(wooshPic);
+    wooshFX = new WooshFXManager(wooshPunchPic);
 
 	initializeInput();
 	configureGameAudio();

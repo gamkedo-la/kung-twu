@@ -325,7 +325,7 @@ function Player(config) {
 		if (stateManager.getIsNewState()) {
 			velocity.x = 0;
 			playerPunchSound.play();
-			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
+			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft(),wooshPunchPic);
 		}
 	};
 
@@ -333,7 +333,7 @@ function Player(config) {
 		if (stateManager.getIsNewState()) {
 			velocity.x = 0;
 			playerKickSound.play();
-			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
+			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
 	};
 
@@ -341,6 +341,7 @@ function Player(config) {
 		console.log("Jump Kicking");
 		if (stateManager.getIsNewState()) {
 			playerKickSound.play();
+			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
 	};
 
@@ -348,6 +349,7 @@ function Player(config) {
 		console.log("Helicopter Kicking");
 		if (stateManager.getIsNewState()) {
 			//playerHelicopterKickSound.play();
+			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
 	};
 
@@ -356,6 +358,7 @@ function Player(config) {
 		if (stateManager.getIsNewState()) {
 			//playerSweepSound.play();
 			velocity.x = 0;
+			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
 	};
 

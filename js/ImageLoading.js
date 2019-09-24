@@ -108,7 +108,10 @@ const playerWalkFwd = document.createElement("img");
 const playerWalkBack = document.createElement("img");
 const playerPunch = document.createElement("img");
 const playerKick = document.createElement("img");
-const wooshPic = document.createElement("img");
+const wooshPunchPic = document.createElement("img");
+const wooshKickPic = document.createElement("img");
+const wooshHurtPic = document.createElement("img");
+const wooshKnockoutPic = document.createElement("img");
 
 let picsToLoad = 0;
 
@@ -172,7 +175,10 @@ function loadImages() {
 		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
 		{ imgName: playerPunch, theFile: "Player_Punch_Condensed.png"},
 		{ imgName: playerKick, theFile: "Player_Kick_Condensed.png"},
-		{ imgName: wooshPic, theFile: "woosh.png"},
+		{ imgName: wooshPunchPic, theFile: "wooshPunch.png"},
+		{ imgName: wooshKickPic, theFile: "wooshKick.png"},
+		{ imgName: wooshHurtPic, theFile: "wooshHurt.png"},
+		{ imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
 
 		// UI
 		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
