@@ -26,9 +26,8 @@
  */
 function EventHandle() {
   /**
-   * The handle that holds all of the callbacks.
-   * It is an array of tuples with the pattern: [callback, context]
-   * @type {[Function, any][]}
+   * The handle that holds all of the callback data
+   * @type {{callback: Function, context: any, isOnce: boolean}[]}
    */
   const _handle = [];
 
@@ -40,7 +39,7 @@ function EventHandle() {
 
   /**
    * A list of handles to be added if the EventHandle is currently busy sending
-   * @type {[Function, any][]}
+   * @type {{callback: Function, context: any, isOnce: boolean}[]}
    */
   const _addQueue = [];
 
@@ -52,33 +51,56 @@ function EventHandle() {
   /**
    * Adds a callback to the event handle.
    * 'Subscribes' to the event to fire the callback function when it happens.
-   * Throws an error if callback already exists on the EventHandle.
+   * Will modify callback data if it already exists in case user wants to change 'isOnce' or 'context'
    * @param {Function} callback The callback function to fire when the event happens
+   * @param {boolean} isOnce (default: false) Will set callback to auto-unsubscribe itself 
    * @param {any} context (optional) an explicit 'this' binding to call the event by
+   * after event is called one time.
    * @returns void
    */
-  this.subscribe = function(callback, context) {
-    // set context to 'null' if none specified
-    const callbackToAdd = context ? [callback, context] : [callback, null];
+  this.subscribe = function(callback, isOnce = false, context = null) {
+    const callbackToAdd = {
+      callback: callback,
+      context: context,
+      isOnce: isOnce
+    };
 
-    if (_isSending) { // If EventHandle is busy sending
-      _addQueue.push(callbackToAdd); // queue to add after finished
+    if (_isSending) { 
+    // If EventHandle is busy sending
+      // queue to add subscription after it's finished sending
+      _addQueue.push(callbackToAdd); 
     } else {
-      const index = _handle.indexOf(callback);
-      if (index === -1) { // If callback is not on this handle
-        _handle.push(callbackToAdd); // push directly to handle
+    // EventHandle is free to receive subscriptions
+      const index = _handle.map(h => h.callback).indexOf(callback);
+      if (index === -1) { 
+      // If callback is NOT on this handle
+        // add it to the handle
+        _handle.push(callbackToAdd);
       } else {
-        throw new Error('Callback already exists on this EventHandle, cancelling subscribe!');
+      // If callback IS on this handle
+        // modify callback data in case user wants to change 'isOnce' or 'context'
+        const existing = _handle[index]; 
+        existing.context = callbackToAdd.context;
+        existing.isOnce = callbackToAdd.isOnce;
       }
     }
   };
+
+  /**
+   * Helper to subscribe callback to the handle to receive a callback once and be automatically unsubscribed thereafter.
+   * @param {Function} callback The callback function to fire when the event happens
+   * @param {any} context (optional) an explicit 'this' binding to call the event by
+   */
+  this.once = function(callback, context) {
+    this.subscribe(callback, true, context);
+  }
   
   /**
    * Removes a callback from the EventHandle.
    * @param {Function} callback The callback function to unsubscribe. Must be the same reference.
    */
   this.unsubscribe = function(callback) {
-    const index = _handle.map(h => h[0]).indexOf(callback);
+    const index = _handle.map(h => h.callback).indexOf(callback);
     if (_isSending) {
       _removeQueue.push(callback)
     } else {
@@ -95,7 +117,7 @@ function EventHandle() {
    */
   this.unsubscribeAll = function() {
     if (_isSending) {
-      _handle.map(h => h[0]).forEach((callback) => {
+      _handle.map(h => h.callback).forEach((callback) => {
         _removeQueue.push(callback);
       });
     } else {
@@ -111,7 +133,7 @@ function EventHandle() {
   this.send = function(...params) {
     // Send all callbacks
     _isSending = true;
-    _sendCallbacks(_handle, ...params);
+    _sendCallbacks(this, _handle, ...params);
     _isSending = false;
 
     // Remove all callbacks queued to be removed during send
@@ -138,20 +160,29 @@ function EventHandle() {
   };
   /**
    * Gets the inner handle of the EventHandle for own use.
-   * It is an array of tuples: [callbackFn, context][]
    */
   this._getHandle = function() {
     return _handle;
   };
 
-  function _sendCallbacks(handleArray, ...params) {
-    handleArray.forEach((tuple) => {
-      const callback = tuple[0];
-      const context = tuple[1];
+  /**
+   * 
+   * @param _this The 'this' context
+   * @param {{callback: Function, context: any, isOnce: boolean}[]} handleArray 
+   * @param  {...any} params 
+   */
+  function _sendCallbacks(_this, handleArray, ...params) {
+    handleArray.forEach((callbackData) => {
+      const callback = callbackData.callback;
+      const context = callbackData.context;
+      const isOnce = callbackData.isOnce;
       if (context) { // if there is a callack context, call with that context
         callback.call(context, ...params);
       } else {
         callback(...params);
+      }
+      if (isOnce) {
+        _this.unsubscribe(callback);
       }
     });
   }
