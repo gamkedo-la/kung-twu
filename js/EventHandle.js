@@ -1,14 +1,14 @@
 /**
  * A container of callbacks that can be fired when an event has occured.
  * Subscribe anything that wants to listen to it.
- * When instantiating, please mark the signature of the intended EventHandle in comments.
+ * When instantiating, please mark the intended signature of the EventHandle in comments.
  * ```javascript
  * // signature: (damageDealt: number) => void
  * onPlayerHurt = new EventHandle();
  * ```
  * Some other object subscribes to it:
  * ```javascript
- * onPlayerHurt.subscribe(myCallback, this);
+ * onPlayerHurt.subscribe(myCallback, false, this);
  *
  * function myCallback(damage) {
  *  console.log('Player lost ' + damage + ' health!');
@@ -174,7 +174,7 @@ function EventHandle() {
   };
 
   /**
-   * 
+   * Sends an array of callbacks
    * @param _this The 'this' context
    * @param {{callback: Function, context: any, isOnce: boolean}[]} handleArray 
    * @param  {...any} params 
