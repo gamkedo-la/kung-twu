@@ -149,7 +149,7 @@ const onMouseButtonPressed = new EventHandle();
  */
 const onMouseButtonReleased = new EventHandle();
 /**
- * Subscribe to this handle to receive callbacks on mouse button releases.
+ * Subscribe to this handle to receive callbacks on mouse move.
  * Callback Signature: (evt: MouseEvent, mouseX, mouseY) => void
  * mouseX and mouseY are the calculated positions in the game frame.
  */
