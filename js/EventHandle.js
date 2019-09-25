@@ -44,23 +44,31 @@ function EventHandle() {
   const _addQueue = [];
 
   /**
-   * Status of whether or not EventHandle is being sent via send
+   * Status of whether or not EventHandle is busy sending
    */
   let _isSending = false;
 
   /**
-   * Adds a callback to the event handle.
-   * 'Subscribes' to the event to fire the callback function when it happens.
+   * Checks if the EventHandle contains the callback
+   * @param callbackFn The callback function to check
+   */
+  this.has = function(callbackFn) {
+    const index = _handle.map(h => h.callback).indexOf(callbackFn);
+    return index >= 0;
+  }
+
+  /**
+   * Subscribes a callback to the event to fire it when it occurs.
+   * It is best to pass a function reference instead of an anonymous one to keep track of it.
    * Will modify callback data if it already exists in case user wants to change 'isOnce' or 'context'
    * @param {Function} callback The callback function to fire when the event happens
    * @param {boolean} isOnce (default: false) Will set callback to auto-unsubscribe itself 
    * @param {any} context (optional) an explicit 'this' binding to call the event by
    * after event is called one time.
-   * @returns void
    */
-  this.subscribe = function(callback, isOnce = false, context = null) {
+  this.subscribe = function(callbackFn, isOnce = false, context = null) {
     const callbackToAdd = {
-      callback: callback,
+      callback: callbackFn,
       context: context,
       isOnce: isOnce
     };
@@ -71,7 +79,7 @@ function EventHandle() {
       _addQueue.push(callbackToAdd); 
     } else {
     // EventHandle is free to receive subscriptions
-      const index = _handle.map(h => h.callback).indexOf(callback);
+      const index = _handle.map(h => h.callback).indexOf(callbackFn);
       if (index === -1) { 
       // If callback is NOT on this handle
         // add it to the handle
