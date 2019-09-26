@@ -72,7 +72,7 @@ function TitleScene() {
 	};
 
 	this.control = function(newKeyEvent, pressed) {
-		if((!didInteract) && ((newKeyEvent == LEFT_MOUSE_BUTTON) || (newKeyEvent == RIGHT_MOUSE_BUTTON))) {
+		if((!didInteract) && ((newKeyEvent == MouseButton.LEFT) || (newKeyEvent == MouseButton.RIGHT))) {
 			didInteract = true;
 			currentBackgroundMusic.loopSong(menuMusic);
 		}
