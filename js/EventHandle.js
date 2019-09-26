@@ -38,7 +38,7 @@ function EventHandle() {
   const _removeQueue = [];
 
   /**
-   * A list of handles to be added if the EventHandle is currently busy sending
+   * A list of callbacks to be added if the EventHandle is currently busy sending
    * @type {{callback: Function, context: any, isOnce: boolean}[]}
    */
   const _addQueue = [];

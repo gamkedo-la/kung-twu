@@ -28,19 +28,28 @@ const gamepad = {
 	},
 
 	buttons: {
+		/** @type string[] */
 		justPressed: [],
 		getJustPressed: function() {
 			return gamepad.buttons.justPressed;
 		},
+		/** @type string[] */
 		held: [],
 		getHeld: function() {
 			return gamepad.buttons.held;
 		},
+		/** @type string[] */
 		justReleased: [],
 		getJustReleased: function() {
 			return gamepad.buttons.justReleased;
 		},
+		
+		/**
+		 * 
+		 * @param {string[]} controllerButtons 
+		 */
 		update: function(controllerButtons) {
+			
 			gamepad.buttons.justPressed = [];
 			gamepad.buttons.justReleased = [];
 

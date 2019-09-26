@@ -27,7 +27,9 @@ const Color = {
 //--------------Player-----------------//
 let player = null;
 let aiManager = null;
+/** @type KeyMapper */
 let keyMapper = null;
+/** @type InputProcessor */
 let inputProcessor = null;
 let animationManager = null;
 const MAX_PLAYER_HEALTH = 100;
@@ -37,7 +39,9 @@ const deadZoneHalfWidth = 25;
 
 //---------------Persistence-----------//
 const version = 0.25;
+/** @type LocalStorageHelper */
 let localStorageHelper;
+/** Contains keys of data to store in the browser's local storage */
 const localStorageKey = {
 	Version: "kungTwu-Version",
 	MusicVolume: "kungTwu-MusicVolume",
