@@ -254,6 +254,11 @@ function KeyMapper() {
 	const keySets = new KeySetManager();
 
 	// ====== Add ACTION KeySets to the KeySetManager ======
+	// The parameters for add:
+	// add( refKey, ACTION_TYPE, ACTIONorNAV_ACTION, [inputCodes]);
+	// In the previous code, only NAV_KEYs were initialized here.
+	// The ACTION_KEYs were initialized in the function setDefaultMapping
+	// I'm thinking this function can be factored into a function initKeySets
 	keySets
 		.add(ACTION_KEYS.WALK_LEFT, ACTION_TYPE.ACTION, ACTION.Left)
 		.add(ACTION_KEYS.WALK_RIGHT, ACTION_TYPE.ACTION, ACTION.Right)
@@ -444,7 +449,7 @@ function KeyMapper() {
 				'is not a valid instance of KeySetManager!');
 		}
 		keySetManager.forEach((keySet) => {
-			if (keySet.type !== ACTION_TYPE.ACTION) return;
+			if (keySet.type !== ACTION_TYPE.ACTION) return; // filter out ACTION_TYPE.NAV
 
 			const key = getLocalStorageKeyFromActionKey(keySet.key);
 			const arr = localStorageHelper.getObject(key);
