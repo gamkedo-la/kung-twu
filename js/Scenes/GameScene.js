@@ -235,7 +235,7 @@ function GameScene() {
 	const processUserInput = function() {
 		const navKeys = inputProcessor.getNewlyReleasedKeys();
 		for(let key of navKeys) {
-			const newNavAction = keyMapper.getNavActionForKey(key);
+			const newNavAction = keyMapper.getNavAction(key);
 			if(newNavAction != null) {
 				switch(newNavAction) {
 				case NAV_ACTION.PAUSE:

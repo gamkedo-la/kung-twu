@@ -595,7 +595,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 	const updateStateWithUserInput = function() {
 		const releasedKeys = inputProcessor.getNewlyReleasedKeys();
 		for(let releasedKey of releasedKeys) {
-			const releasedAction = keyMapper.getActionForKey(releasedKey);
+			const releasedAction = keyMapper.getAction(releasedKey);
 			if(releasedAction != null) {//released something I care about
 				setNewState(stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.Release)));
 			}
@@ -604,7 +604,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		const newKeys = inputProcessor.getNewlyActiveKeys();
 		let shouldReverse = false;
 		for(let newKey of newKeys) {
-			const newAction = keyMapper.getActionForKey(newKey);
+			const newAction = keyMapper.getAction(newKey);
 			if(newAction != null) {//something I care about is pressed
 				const thisState = stateTranslator(currentState.nextStateForActionWithBelt(belt, newAction));
 				setNewState(thisState, newAction);
@@ -619,7 +619,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 
 		const activeKeys = inputProcessor.getCurrentlyActiveKeys();
 		for(let activeKey of activeKeys) {
-			const activeAction = keyMapper.getActionForKey(activeKey);
+			const activeAction = keyMapper.getAction(activeKey);
 			if((activeAction === ACTION.Left) || (activeAction === ACTION.Right)) {//something I care about is pressed
 				const thisState = stateTranslator(currentState.nextStateForActionWithBelt(belt, activeAction));
 				setNewState(thisState, activeAction);

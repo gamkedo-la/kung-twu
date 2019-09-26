@@ -169,7 +169,7 @@ function GameOverScene() {
 		const navKeys = inputProcessor.getNewlyReleasedKeys();
 		let properties = null;
 		for(let key of navKeys) {
-			const newNavAction = keyMapper.getNavActionForKey(key);
+			const newNavAction = keyMapper.getNavAction(key);
 			if(newNavAction != null) {
 				switch(newNavAction) {
 				case NAV_ACTION.UP:
