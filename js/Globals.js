@@ -137,6 +137,8 @@ const fontOverhangRatio = 4 / 5; // Currently 4/5 is correct for "Tahoma" font. 
 //////////////////////////////////////
 //------------- Input --------------//
 //////////////////////////////////////
+/** @type InputManager */
+let input;
 /**
  * Keys to reference Action KeySets stored in the KeyMapper
  */

@@ -29,8 +29,8 @@ window.onload = function() {
 
 	pauseManager = new PauseManager();
     //wooshFX = new WooshFXManager(wooshPunchPic);
-
-	initializeInput();
+	input = new InputManager();
+	input.initialize();
 	configureGameAudio();
 	loadAudio();
     loadGamkedoLogo();
