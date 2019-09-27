@@ -49,6 +49,8 @@ function configureGameField() {
 
 function loadingDoneSoStartGame() {
 	if(finishedLoading) {
+		let jpCharSize = {width: 10 , height: 20};
+		JPFont = new JapaneseFont(jpFontImg, jpCharSize, canvasContext);
 		timer = new Chronogram();
 		SceneState.setState(SCENE.TITLE);
 		requestAnimationFrame(update);

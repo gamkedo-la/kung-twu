@@ -1,8 +1,12 @@
-function japaneseFont(jpFont, charSize, context) {
+function JapaneseFont(jpFont, charSize, context) {
 	let letters = [];
 	let lettersStartPos = [];
 
-
+	this.testDraw = function(){
+		drawRect(50, 150, 200, 200, 'red' );
+		this.printTextAt("てA5", {x:100, y:200});
+		//context.drawImage(jpFont, 100, 200);
+	}
 	this.getString = function(text,position, alignment, drawSize){
 		for(let i = 0; i < text.length; i++) {
 			let letter = text.charAt(i);
@@ -13,28 +17,10 @@ function japaneseFont(jpFont, charSize, context) {
 	}
 
 	const getLetterPos = function(index, stringPos, alignment, charCount, drawSize) {
-		if(alignment === textAlignment.Left) {
-			return leftAligned(index, stringPos, drawSize);
-		} else if(alignment === textAlignment.Center) {
-			return centerAligned(index, stringPos, charCount, drawSize);
-		} else if(alignment === textAlignment.Right) {
-			return rightAligned(index, stringPos, drawSize);
-		}
+	console.log("function not defined");
 	};
 
 	this.printTextAt = function(text, position) {
-		let yPosScrollOffset = 0;
-		let actualXPos = position.x;
-		let actualYPos = yPos - yPosScrollOffset;
-
-		const drawWidth = (height / charSize.height) * charSize.width;
-		
-		if(alignment === textAlignment.Center) {
-			actualXPos -= (Math.floor(drawWidth * text.length / 2));
-		} else if(alignment === textAlignment.Right) {
-			actualXPos -= (drawWidth * text.length);
-		}
-
 
 		for(let i = 0; i < text.length; i++) {
 			const thisFrame = this.findLetterCorner(text.charAt(i));
@@ -42,7 +28,7 @@ function japaneseFont(jpFont, charSize, context) {
 		}
 	};
 
-	console.log("Japan is running");
+
 	this.findLetterCorner = function(character) {
 		switch(character) {
 			case "0":
