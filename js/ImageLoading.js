@@ -73,7 +73,7 @@ const uiScreenBg = document.createElement("img");
 const windowedWall = document.createElement("img");
 const tiledWall = document.createElement("img");
 const wallGradient = document.createElement("img");
-const jpFont = document.createElement("img");
+const jpFontImg = document.createElement("img");
 const roofTileTop = document.createElement("img");
 const roofboardSheet = document.createElement("img");
 const roofTileBottom = document.createElement("img");
@@ -184,7 +184,7 @@ function loadImages() {
 		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
 		{ imgName: titleScreenBird, theFile: "bird_sprite-flap-sheet.png"},
 		{ imgName: selector, theFile: "title_screen_yinyang_selector.png"},
-		{ imgName: jpFont, theFile: "JPFont.png"},
+		{ imgName: jpFontImg, theFile: "JPFont.png"},
 	];
 
 	picsToLoad = imageList.length;
