@@ -18,33 +18,6 @@ function notifyCurrentScene(newInput, pressed) {
 	}
 }
 
-/**
- * Subscribe to this handle to receive callbacks on key presses.
- * Callback Signature: (evt: KeyboardEvent) => void
- */
-const onKeyPress = new EventHandle();
-/**
- * Subscribe to this handle to receive callbacks on key releases.
- * Callback Signature: (evt: KeyboardEvent) => void
- */
-const onKeyRelease = new EventHandle();
-/**
- * Subscribe to this handle to receive callbacks on mouse buttons presses.
- * Callback Signature: (evt: KeyboardEvent) => void
- */
-const onMouseButtonPressed = new EventHandle();
-/**
- * Subscribe to this handle to receive callbacks on mouse button releases.
- * Callback Signature: (evt: MouseEvent) => void
- */
-const onMouseButtonReleased = new EventHandle();
-/**
- * Subscribe to this handle to receive callbacks on mouse move.
- * Callback Signature: (evt: MouseEvent, mouseX, mouseY) => void
- * mouseX and mouseY are the calculated positions in the game frame.
- */
-const onMouseMove = new EventHandle();
-
 function keyPress(evt) {
 	evt.preventDefault();
 
@@ -53,7 +26,6 @@ function keyPress(evt) {
 	}
 
 	notifyCurrentScene(evt.keyCode, true);
-	onKeyPress.send(evt);
 }
 
 
@@ -66,7 +38,6 @@ function keyRelease(evt) {
 	}
 
 	notifyCurrentScene(evt.keyCode, false);
-	onKeyRelease.send(evt);
 }
 
 function mouseButtonPressed(evt) {
@@ -84,7 +55,6 @@ function mouseButtonPressed(evt) {
 	if(inputProcessor != null) {
 		inputProcessor.addActiveKey(pressedButton);
 	}
-	onMouseButtonPressed.send(evt);
 }
 
 function mouseButtonReleased(evt) {
@@ -102,14 +72,12 @@ function mouseButtonReleased(evt) {
 	if(inputProcessor != null) {
 		inputProcessor.releaseKey(evt.keyCode);
 	}
-	onMouseButtonReleased.send(evt);
 }
 
 function calculateMousePos(evt) {
 	const rect = canvas.getBoundingClientRect();
 	mouseX = evt.clientX - rect.left;
 	mouseY = evt.clientY - rect.top;
-	onMouseMove.send(evt, mouseX, mouseY);
 }
 
 function mouseInside(x, y, width, height) {
