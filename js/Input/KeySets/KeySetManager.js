@@ -20,7 +20,7 @@ function KeySetManager() {
    * @param { number | string | (number | string)[]} inputCodes A single value or array containing values from either KeyCode, MouseButton, or game pad-related constants
 	 * @returns {KeySetManager}
 	 */
-	this.add = function(key, actionType, action, inputCodes) {
+	this.create = function(key, actionType, action, inputCodes) {
 		if (_keySets.has(key)) {
 			if (_DEBUG) console.trace('Warning! Duplicate reference keys! KeySetManager already contains the reference key: ' + key + '.');
 		}

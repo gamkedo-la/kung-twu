@@ -7,27 +7,29 @@
  * Dependencies: KeySet, KeySetManager, ACTION_KEYS, ACTION_TYPE, ACTION, NAV_KEYS, NAV_ACTION
  */
 function KeyMapper() {
+	// Create the KeySetManager, which we will add KeySets of keyboard/mouse/gamepad controls to
 	const keySets = new KeySetManager();
 
-	// ====== Add ACTION KeySets to the KeySetManager ======
-	// The parameters for add:
-	// add( refKey, ACTION_TYPE, ACTIONorNAV_ACTION, [inputCodes]);
-	// In the previous code, only NAV_KEYs were initialized here.
-	// The ACTION_KEYs were initialized in the function setDefaultMapping
-	// I'm thinking this function can be factored into a function initKeySets
+	// ====== Create ACTION KeySets which are added to the KeySetManager ======
+	// The parameters for create:
+	// create( refKey, ACTION_TYPE, ACTIONorNAV_ACTION, [inputCodes]);
+
+	// Notes: In the previous code, only NAV_KEYs were initialized here.
+	// The ACTION_KEYs are initialized here, but keys are added in the function 'setDefaultMapping' below.
+
 	keySets
-		.add(ACTION_KEYS.WALK_LEFT, ACTION_TYPE.ACTION, ACTION.Left)
-		.add(ACTION_KEYS.WALK_RIGHT, ACTION_TYPE.ACTION, ACTION.Right)
-		.add(ACTION_KEYS.JUMP, ACTION_TYPE.ACTION, ACTION.Jump)
-		.add(ACTION_KEYS.DASH, ACTION_TYPE.ACTION, ACTION.Dash)
-		.add(ACTION_KEYS.BLOCK, ACTION_TYPE.ACTION, ACTION.Block)
-		.add(ACTION_KEYS.CROUCH, ACTION_TYPE.ACTION, ACTION.Crouch)
-		.add(ACTION_KEYS.KICK, ACTION_TYPE.ACTION, ACTION.Kick)
-		.add(ACTION_KEYS.PUNCH, ACTION_TYPE.ACTION, ACTION.Punch);
+		.create(ACTION_KEYS.WALK_LEFT, ACTION_TYPE.ACTION, ACTION.Left)
+		.create(ACTION_KEYS.WALK_RIGHT, ACTION_TYPE.ACTION, ACTION.Right)
+		.create(ACTION_KEYS.JUMP, ACTION_TYPE.ACTION, ACTION.Jump)
+		.create(ACTION_KEYS.DASH, ACTION_TYPE.ACTION, ACTION.Dash)
+		.create(ACTION_KEYS.BLOCK, ACTION_TYPE.ACTION, ACTION.Block)
+		.create(ACTION_KEYS.CROUCH, ACTION_TYPE.ACTION, ACTION.Crouch)
+		.create(ACTION_KEYS.KICK, ACTION_TYPE.ACTION, ACTION.Kick)
+		.create(ACTION_KEYS.PUNCH, ACTION_TYPE.ACTION, ACTION.Punch);
 
 	// ====== Add NAV KeySets to the KeySetManager ======
 	keySets
-		.add(NAV_KEYS.LEFT, ACTION_TYPE.NAV, NAV_ACTION.LEFT,
+		.create(NAV_KEYS.LEFT, ACTION_TYPE.NAV, NAV_ACTION.LEFT,
 			[
 				KeyCode.LEFT, 
 				KeyCode.A, 
@@ -38,7 +40,7 @@ function KeyMapper() {
 				DPAD_LEFT
 			]
 		)
-		.add(NAV_KEYS.RIGHT, ACTION_TYPE.NAV, NAV_ACTION.RIGHT,
+		.create(NAV_KEYS.RIGHT, ACTION_TYPE.NAV, NAV_ACTION.RIGHT,
 			[
 				KeyCode.RIGHT, 
 				KeyCode.D, 
@@ -49,7 +51,7 @@ function KeyMapper() {
 				DPAD_RIGHT
 			]
 		)
-		.add(NAV_KEYS.UP, ACTION_TYPE.NAV, NAV_ACTION.UP,
+		.create(NAV_KEYS.UP, ACTION_TYPE.NAV, NAV_ACTION.UP,
 			[
 				KeyCode.UP, 
 				KeyCode.W, 
@@ -58,7 +60,7 @@ function KeyMapper() {
 				DPAD_UP
 			]
 		)
-		.add(NAV_KEYS.DOWN, ACTION_TYPE.NAV, NAV_ACTION.DOWN,
+		.create(NAV_KEYS.DOWN, ACTION_TYPE.NAV, NAV_ACTION.DOWN,
 			[
 				KeyCode.DOWN, 
 				KeyCode.S, 
@@ -67,20 +69,20 @@ function KeyMapper() {
 				DPAD_DOWN
 			]
 		)
-		.add(NAV_KEYS.SELECT, ACTION_TYPE.NAV, NAV_ACTION.SELECT,
+		.create(NAV_KEYS.SELECT, ACTION_TYPE.NAV, NAV_ACTION.SELECT,
 			[
 				/* KeyCode.SPACE, */
 				KeyCode.ENTER, 
 				CROSS_BUTTON
 			]
 		)
-		.add(NAV_KEYS.BACK, ACTION_TYPE.NAV, NAV_ACTION.BACK,
+		.create(NAV_KEYS.BACK, ACTION_TYPE.NAV, NAV_ACTION.BACK,
 			[
 				KeyCode.ESCAPE, 
 				CIRCLE_BUTTON
 			]
 		)
-		.add(NAV_KEYS.PAUSE, ACTION_TYPE.NAV, NAV_ACTION.PAUSE,
+		.create(NAV_KEYS.PAUSE, ACTION_TYPE.NAV, NAV_ACTION.PAUSE,
 			[
 				KeyCode.P, 
 				PAD_OPTIONS
@@ -105,12 +107,14 @@ function KeyMapper() {
 	// const navPause = new Set([KeyCode.P, PAD_OPTIONS]);
 	
 	/**
-	 * 
+	 * Sets default mapping. Assumes that the KeySetManager has already initialized KeySets for all ACTION_KEYS.
 	 * @param {KeySetManager} keySetManager 
 	 */
 	const setDefaultMapping = function(keySetManager) {
+		_isKeySetManagerValid(keySetManager);
 
-		keySetManager.get(ACTION_KEYS.WALK_LEFT).addMultiple (
+		// Gets the KeySet and adds keys/buttons/gamepad controls to it
+		keySetManager.get(ACTION_KEYS.WALK_LEFT).add (
 			[
 				KeyCode.LEFT,
 				KeyCode.A,
@@ -118,7 +122,7 @@ function KeyMapper() {
 			]
 		);
 
-		keySetManager.get(ACTION_KEYS.WALK_RIGHT).addMultiple (
+		keySetManager.get(ACTION_KEYS.WALK_RIGHT).add (
 			[
 				KeyCode.RIGHT,
 				KeyCode.D,
@@ -126,7 +130,7 @@ function KeyMapper() {
 			]
 		);
 
-		keySetManager.get(ACTION_KEYS.JUMP).addMultiple (
+		keySetManager.get(ACTION_KEYS.JUMP).add (
 			[
 				KeyCode.UP,
 				KeyCode.W,
@@ -135,19 +139,19 @@ function KeyMapper() {
 			]
 		);
 
-		keySetManager.get(ACTION_KEYS.DASH).addMultiple (
+		keySetManager.get(ACTION_KEYS.DASH).add (
 			[
 				KeyCode.SPACE,
 			]
 		);
 
-		keySetManager.get(ACTION_KEYS.BLOCK).addMultiple (
+		keySetManager.get(ACTION_KEYS.BLOCK).add (
 			[
 				KeyCode.B,
 			]
 		);
 
-		keySetManager.get(ACTION_KEYS.CROUCH).addMultiple (
+		keySetManager.get(ACTION_KEYS.CROUCH).add (
 			[
 				KeyCode.DOWN,
 				KeyCode.S,
@@ -155,7 +159,7 @@ function KeyMapper() {
 			]
 		);
 
-		keySetManager.get(ACTION_KEYS.KICK).addMultiple (
+		keySetManager.get(ACTION_KEYS.KICK).add (
 			[
 				KeyCode.G,
 				KeyCode.X,
@@ -163,7 +167,7 @@ function KeyMapper() {
 			]
 		);
 
-		keySetManager.get(ACTION_KEYS.PUNCH).addMultiple (
+		keySetManager.get(ACTION_KEYS.PUNCH).add (
 			[
 				KeyCode.F,
 				KeyCode.Z,
@@ -194,16 +198,24 @@ function KeyMapper() {
 	};
 
 	/**
-	 * Gets and loads  the current input mapping from local storage. 
-	 * Only ACTION_TYPE.ACTION KeySets implemented in localStorageKeys.
+	 * Checks if a KeySetManager is really a KeySetManager, and will throw an Error if not.
 	 * @param {KeySetManager} keySetManager 
 	 */
-	const getCurrentMapping = function(keySetManager) {
+	const _isKeySetManagerValid = function(keySetManager) {
 		if (!(keySetManager instanceof KeySetManager)) {
 			console.log('Invalid parameter:', keySetManager);
 			throw new Error('The KeySetManager passed into getCurrentMapping ' +
 				'is not a valid instance of KeySetManager!');
 		}
+	}
+	/**
+	 * Gets and loads  the current input mapping from local storage. 
+	 * Only ACTION_TYPE.ACTION KeySets implemented in localStorageKeys.
+	 * @param {KeySetManager} keySetManager 
+	 */
+	const getCurrentMapping = function(keySetManager) {
+		_isKeySetManagerValid(keySetManager);
+
 		keySetManager.forEach((keySet) => {
 			if (keySet.type !== ACTION_TYPE.ACTION) return; // filter out ACTION_TYPE.NAV
 
@@ -225,30 +237,7 @@ function KeyMapper() {
 				}	
 			}
 		});
-		
-		// const walkLeftArray = localStorageHelper.getObject(localStorageKey.WalkLeftKeys);
-		// walkLeftArray.forEach(item => walkLeft.add(item));
-		
-		// const walkRightArray = localStorageHelper.getObject(localStorageKey.WalkRightKeys);
-		// walkRightArray.forEach(item => walkRight.add(item));
-		
-		// const jumpArray = localStorageHelper.getObject(localStorageKey.JumpKeys);
-		// jumpArray.forEach(item => jump.add(item));
-		
-		// const dashArray = localStorageHelper.getObject(localStorageKey.DashKeys);
-		// dashArray.forEach(item => dash.add(item));
-		
-		// const blockArray = localStorageHelper.getObject(localStorageKey.BlockKeys);
-		// blockArray.forEach(item => block.add(item));
-		
-		// const crouchArray = localStorageHelper.getObject(localStorageKey.CrouchKeys);
-		// crouchArray.forEach(item => crouch.add(item));
-		
-		// const kickArray = localStorageHelper.getObject(localStorageKey.KickKeys);
-		// kickArray.forEach(item => kick.add(item));
-		
-		// const punchArray = localStorageHelper.getObject(localStorageKey.PunchKeys);
-		// punchArray.forEach(item => punch.add(item));
+
 	};
 
 	/**
@@ -281,17 +270,12 @@ function KeyMapper() {
 		}
 	}
 
-	
 	/**
 	 * Writes key mapping data currently stored in local storage to the key sets.
 	 * @param {KeySetManager} keySetManager 
 	 */
 	const writeCurrentMappingToStorage = function(keySetManager) {
-		if (!(keySetManager instanceof KeySetManager)) {
-			console.log('Invalid parameter:', keySetManager);
-			throw new Error('The KeySetManager passed into writeCurrentMappingToStorage ' +
-				'is not a valid instance of KeySetManager!');
-		}
+		_isKeySetManagerValid(keySetManager);
 
 		// Check that data is valid first. Program should stop execution on 
 		// Error before writing invalid data.
@@ -318,15 +302,6 @@ function KeyMapper() {
 					localStorageHelper.setObject(key, arr);
 			}
 		});
-
-		// localStorageHelper.setObject(localStorageKey.WalkLeftKeys, Array.from(walkLeft));
-		// localStorageHelper.setObject(localStorageKey.WalkRightKeys, Array.from(walkRight));
-		// localStorageHelper.setObject(localStorageKey.JumpKeys, Array.from(jump));
-		// localStorageHelper.setObject(localStorageKey.DashKeys, Array.from(dash));
-		// localStorageHelper.setObject(localStorageKey.BlockKeys, Array.from(block));
-		// localStorageHelper.setObject(localStorageKey.CrouchKeys, Array.from(crouch));
-		// localStorageHelper.setObject(localStorageKey.KickKeys, Array.from(kick));
-		// localStorageHelper.setObject(localStorageKey.PunchKeys, Array.from(punch));
 	};
 
 	/**
@@ -346,36 +321,14 @@ function KeyMapper() {
 			writeCurrentMappingToStorage(keySetManager);
 		}
 	};
+	// Call script on instantiation of KeyMapper
 	setInitialMapping(keySets);
-
-	// const ACTION_SET = [walkLeft, walkRight, jump, dash, block, crouch, kick, punch];
-	// const ACTION_INDEX = {
-	// 	walkLeft:0,
-	// 	walkRight:1,
-	// 	jump:2,
-	// 	dash:3,
-	// 	block:4,
-	// 	crouch:5,
-	// 	kick:6,
-	// 	punch:7
-	// };
-
-	// const NAVIGATION_SET = [navLeft, navRight, navUp, navDown, navSelect, navBack, navPause];
-	// const NAVIGATION_INDEX = {
-	// 	left:0,
-	// 	right:1,
-	// 	up:2,
-	// 	down:3,
-	// 	select:4,
-	// 	back:5,
-	// 	pause:6
-	// };
 
 	/**
 	 * Private function to get either NAV_ACTION or ACTION for a passed inputCode
 	 * @param {KeySetManager} keySetManager The KeySetManager to get action from
 	 * @param {string | number} inputCode Input code. Either a value in KeyCode, MouseButton, or a GamePad-related constant.
-	 * @param {*} type The type. A value in ACTION_TYPE. Either ACTION_TYPE.ACTION or ACTION_TYPE.NAV
+	 * @param {string} type The type. A value in ACTION_TYPE. Either ACTION_TYPE.ACTION or ACTION_TYPE.NAV
 	 */
 	function _getActionForInputCode(keySetManager, inputCode, type) {
 		let action = null;

@@ -34,27 +34,30 @@ function KeySet(key, actionType, action, inputCodes) {
 	this.action = action;
 
 	/**
-	 * Add a KeyCode, MouseButton, or constant pertaining to GamePad buttons to the KeySet
+	 * Add one or multiple KeyCodes, MouseButtons, or constants pertaining to GamePad buttons to the inner set.
+	 * @param {string | number | (string|number)[]} inputCode Either a single value or an array of input codes to add. 
 	 */
-	this.add = function(inputCode) {
-		if (_set.has(inputCode)) {
-			if (_DEBUG) console.trace('Warning! This KeySet already contains the key: ' + inputCode + '.');
+	this.add = (inputCodes) => {
+		if (Array.isArray(inputCodes)) {
+			inputCodes.forEach((code) => {
+				_add(code);
+			});
 		} else {
-			_set.add(inputCode);
+			_add(inputCodes);
 		}
 		return this;
 	}
 
 	/**
-	 * Add multiple KeyCodes, MouseButtons, or constants pertaining to GamePad buttons to the inner set.
-	 * @param {(string|number)[]} inputCodes The array of input codes to add. 
-	 * @returns {KeySet}
+	 * Add a KeyCode, MouseButton, or constant pertaining to GamePad buttons to the KeySet
+	 * @param {string | number} inputCode 
 	 */
-	this.addMultiple = (inputCodes) => {
-		inputCodes.forEach((code) => {
-			this.add(code);
-		});
-		return this;
+	function _add(inputCode) {
+		if (_set.has(inputCode)) {
+			if (_DEBUG) console.trace('Warning! This KeySet already contains the key: ' + inputCode + '.');
+		} else {
+			_set.add(inputCode);
+		}
 	}
 
 	/**
