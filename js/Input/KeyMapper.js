@@ -88,23 +88,6 @@ function KeyMapper() {
 				PAD_OPTIONS
 			]
 		);
-
-	// const walkLeft = new Set();
-	// const walkRight = new Set();
-	// const jump = new Set();
-	// const dash = new Set();
-	// const block = new Set();
-	// const crouch = new Set();
-	// const kick = new Set();
-	// const punch = new Set();
-
-	// const navLeft = new Set([KeyCode.LEFT, KeyCode.A, LEFT_STICK_LEFT, RIGHT_STICK_LEFT, L1_BUTTON, L2_BUTTON, DPAD_LEFT]);
-	// const navRight = new Set([KeyCode.RIGHT, KeyCode.D, LEFT_STICK_RIGHT, RIGHT_STICK_RIGHT, R1_BUTTON, R2_BUTTON, DPAD_RIGHT]);
-	// const navUp = new Set([KeyCode.UP, KeyCode.W, LEFT_STICK_UP, RIGHT_STICK_UP, DPAD_UP]);
-	// const navDown = new Set([KeyCode.DOWN, KeyCode.S, LEFT_STICK_DOWN, RIGHT_STICK_DOWN, DPAD_DOWN]);
-	// const navSelect = new Set([/*KeyCode.SPACE, */KeyCode.ENTER, CROSS_BUTTON]);
-	// const navBack = new Set([KeyCode.ESCAPE, CIRCLE_BUTTON]);
-	// const navPause = new Set([KeyCode.P, PAD_OPTIONS]);
 	
 	/**
 	 * Sets default mapping. Assumes that the KeySetManager has already initialized KeySets for all ACTION_KEYS.
@@ -174,27 +157,6 @@ function KeyMapper() {
 				SQUARE_BUTTON,
 			]
 		);
-		// walkLeft.add(KeyCode.LEFT);
-		// walkLeft.add(KeyCode.A);
-		// walkLeft.add(LEFT_STICK_LEFT);
-		// walkRight.add(KeyCode.RIGHT);
-		// walkRight.add(KeyCode.D);
-		// walkRight.add(LEFT_STICK_RIGHT);
-		// jump.add(KeyCode.UP);
-		// jump.add(KeyCode.W);
-		// jump.add(KeyCode.C);
-		// jump.add(LEFT_STICK_UP);
-		// dash.add(KeyCode.SPACE);
-		// block.add(KeyCode.B);
-		// crouch.add(KeyCode.DOWN);
-		// crouch.add(KeyCode.S);
-		// crouch.add(LEFT_STICK_DOWN);
-		// kick.add(KeyCode.G);
-		// kick.add(KeyCode.X);
-		// kick.add(CROSS_BUTTON);
-		// punch.add(KeyCode.F);
-		// punch.add(KeyCode.Z);
-		// punch.add(SQUARE_BUTTON);
 	};
 
 
@@ -346,16 +308,6 @@ function KeyMapper() {
 	 */
 	this.getAction = function(code) {
 		return _getActionForInputCode(keySets, code, ACTION_TYPE.ACTION);
-
-		// if(walkLeft.has(key)) return ACTION.Left;
-		// if(walkRight.has(key)) return ACTION.Right;
-		// if(jump.has(key)) return ACTION.Jump;
-		// if(dash.has(key)) return ACTION.Dash;
-		// if(block.has(key)) return ACTION.Block;
-		// if(crouch.has(key)) return ACTION.Crouch;
-		// if(kick.has(key)) return ACTION.Kick;
-		// if(punch.has(key)) return ACTION.Punch;
-		// return null;//if the key doesn't map to any actions
 	};
 
 	/**
@@ -364,15 +316,6 @@ function KeyMapper() {
 	 */
 	this.getNavAction = function(code) {
 		return _getActionForInputCode(keySets, code, ACTION_TYPE.NAV);
-
-		// if(navLeft.has(key)) return NAV_ACTION.LEFT;
-		// if(navRight.has(key)) return NAV_ACTION.RIGHT;
-		// if(navUp.has(key)) return NAV_ACTION.UP;
-		// if(navDown.has(key)) return NAV_ACTION.DOWN;
-		// if(navSelect.has(key)) return NAV_ACTION.SELECT;
-		// if(navBack.has(key)) return NAV_ACTION.BACK;
-		// if(navPause.has(key)) return NAV_ACTION.PAUSE;
-		// return null;//if the key doesn't map to any navigation actions
 	};
 
 	/**
@@ -387,25 +330,6 @@ function KeyMapper() {
 		console.trace("Warning! There is no KeySet with the ACTION_KEYS or NAV_KEYS value: " + 
 			actionKey + " stored on the KeySetManager! Returning an emtpy array");
 		return [];
-
-		// switch(alias) {
-		// case ACTION_KEYS.WALK_LEFT:
-		// 	return Array.from(walkLeft);
-		// case ACTION_KEYS.WALK_RIGHT:
-		// 	return Array.from(walkRight);
-		// case ACTION_KEYS.JUMP:
-		// 	return Array.from(jump);
-		// case ACTION_KEYS.DASH:
-		// 	return Array.from(dash);
-		// case ACTION_KEYS.BLOCK:
-		// 	return Array.from(block);
-		// case ACTION_KEYS.CROUCH:
-		// 	return Array.from(crouch);
-		// case ACTION_KEYS.KICK:
-		// 	return Array.from(kick);
-		// case ACTION_KEYS.PUNCH:
-		// 	return Array.from(punch);
-		// }
 	};
 
 	/**
@@ -423,140 +347,7 @@ function KeyMapper() {
 			console.trace("Warning! Tried to add key to a key set, but there is " +
 				"no KeySet with the key:", actionToAddItTo + ", stored in this manager.");
 		}
-		
-		// switch(actionToAddItTo) {
-		// case ACTION_KEYS.WALK_LEFT:
-		// 	addWalkLeftKey(keyToAdd);
-		// 	break;
-		// case ACTION_KEYS.WALK_RIGHT:
-		// 	addWalkRightKey(keyToAdd);
-		// 	break;
-		// case ACTION_KEYS.JUMP:
-		// 	addJumpKey(keyToAdd);
-		// 	break;
-		// case ACTION_KEYS.DASH:
-		// 	addDashKey(keyToAdd);
-		// 	break;
-		// case ACTION_KEYS.BLOCK:
-		// 	addBlockKey(keyToAdd);
-		// 	break;
-		// case ACTION_KEYS.CROUCH:
-		// 	addCrouchKey(keyToAdd);
-		// 	break;
-		// case ACTION_KEYS.KICK:
-		// 	addKickKey(keyToAdd);
-		// 	break;
-		// case ACTION_KEYS.PUNCH:
-		// 	addPunchKey(keyToAdd);
-		// 	break;
-		// }
 	};
-
-	// const addWalkLeftKey = function(keySet, key) {
-	// 	keySet.add(key);
-	// 	for(let action of ACTION_SET) {
-	// 		if(action === keySet) continue;
-
-	// 		removeKey(key);
-	// 	}
-
-	// 	writeCurrentMappingToStorage();
-	// }
-	// const addWalkLeftKey = function(keyToAdd) {
-	// 	walkLeft.add(keyToAdd);
-
-	// 	for(let anAction of ACTION_SET) {
-	// 		if(anAction === walkLeft) continue;
-
-	// 		removeWalkLeftKey(keyToAdd);
-	// 	}
-
-	// 	writeCurrentMappingToStorage();
-	// };
-
-	// const addWalkRightKey = function(keyToAdd) {
-	// 	walkRight.add(keyToAdd);
-
-	// 	for(let anAction of ACTION_SET) {
-	// 		if(anAction === walkRight) continue;
-
-	// 		removeWalkRightKey(keyToAdd);
-	// 	}
-
-	// 	writeCurrentMappingToStorage();
-	// };
-
-	// const addJumpKey = function(keyToAdd) {
-	// 	jump.add(keyToAdd);
-
-	// 	for(let anAction of ACTION_SET) {
-	// 		if(anAction === jump) continue;
-
-	// 		removeJumpKey(keyToAdd);
-	// 	}
-
-	// 	writeCurrentMappingToStorage();
-	// };
-
-	// const addDashKey = function(keyToAdd) {
-	// 	dash.add(keyToAdd);
-
-	// 	for(let anAction of ACTION_SET) {
-	// 		if(anAction === dash) continue;
-
-	// 		removeDashKey(keyToAdd);
-	// 	}
-
-	// 	writeCurrentMappingToStorage();
-	// };
-
-	// const addBlockKey = function(keyToAdd) {
-	// 	block.add(keyToAdd);
-
-	// 	for(let anAction of ACTION_SET) {
-	// 		if(anAction === block) continue;
-
-	// 		removeBlockKey(keyToAdd);
-	// 	}
-
-	// 	writeCurrentMappingToStorage();
-	// };
-
-	// const addCrouchKey = function(keyToAdd) {
-	// 	crouch.add(keyToAdd);
-
-	// 	for(let anAction of ACTION_SET) {
-	// 		if(anAction === crouch) continue;
-
-	// 		removeCrouchKey(keyToAdd);
-	// 	}
-
-	// 	writeCurrentMappingToStorage();
-	// };
-
-	// const addKickKey = function(keyToAdd) {
-	// 	kick.add(keyToAdd);
-
-	// 	for(let anAction of ACTION_SET) {
-	// 		if(anAction === kick) continue;
-
-	// 		removeKickKey(keyToAdd);
-	// 	}
-
-	// 	writeCurrentMappingToStorage();
-	// };
-
-	// const addPunchKey = function(keyToAdd) {
-	// 	punch.add(keyToAdd);
-
-	// 	for(let anAction of ACTION_SET) {
-	// 		if(anAction === punch) continue;
-
-	// 		removePunchKey(keyToAdd);
-	// 	}
-
-	// writeCurrentMappingToStorage();
-	// };
 
 	/**
 	 * Removes an input code to a KeySet in the KeySetManager
@@ -573,63 +364,5 @@ function KeyMapper() {
 			console.trace("Warning! Tried to add key to a key set, but there is " +
 				"no KeySet with the key:", actionToAddItTo + ", stored in this manager.");
 		}
-		// switch(actionToRemoveFrom) {
-		// case KEYSET_ALIAS.WALK_LEFT:
-		// 	removeWalkLeftKey(keyToRemove);
-		// 	break;
-		// case KEYSET_ALIAS.WALK_RIGHT:
-		// 	removeWalkRightKey(keyToRemove);
-		// 	break;
-		// case KEYSET_ALIAS.JUMP:
-		// 	removeJumpKey(keyToRemove);
-		// 	break;
-		// case KEYSET_ALIAS.DASH:
-		// 	removeDashKey(keyToRemove);
-		// 	break;
-		// case KEYSET_ALIAS.BLOCK:
-		// 	removeBlockKey(keyToRemove);
-		// 	break;
-		// case KEYSET_ALIAS.CROUCH:
-		// 	removeCrouchKey(keyToRemove);
-		// 	break;
-		// case KEYSET_ALIAS.KICK:
-		// 	removeKickKey(keyToRemove);
-		// 	break;
-		// case KEYSET_ALIAS.PUNCH:
-		// 	removePunchKey(keyToRemove);
-		// 	break;
-		// }
 	};
-
-	// const removeWalkLeftKey = function(keyToRemove) {
-	// 	ACTION_SET[ACTION_INDEX.walkLeft].delete(keyToRemove);
-	// };
-
-	// const removeWalkRightKey = function(keyToRemove) {
-	// 	ACTION_SET[ACTION_INDEX.walkRight].delete(keyToRemove);
-	// };
-	
-	// const removeJumpKey = function(keyToRemove) {
-	// 	ACTION_SET[ACTION_INDEX.jump].delete(keyToRemove);
-	// };
-	
-	// const removeDashKey = function(keyToRemove) {
-	// 	ACTION_SET[ACTION_INDEX.dash].delete(keyToRemove);
-	// };
-	
-	// const removeBlockKey = function(keyToRemove) {
-	// 	ACTION_SET[ACTION_INDEX.block].delete(keyToRemove);
-	// };
-	
-	// const removeCrouchKey = function(keyToRemove) {
-	// 	ACTION_SET[ACTION_INDEX.crouch].delete(keyToRemove);
-	// };
-	
-	// const removeKickKey = function(keyToRemove) {
-	// 	ACTION_SET[ACTION_INDEX.kick].delete(keyToRemove);
-	// };
-	
-	// const removePunchKey = function(keyToRemove) {
-	// 	ACTION_SET[ACTION_INDEX.punch].delete(keyToRemove);
-	// };
 }
