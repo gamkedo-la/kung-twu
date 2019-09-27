@@ -122,7 +122,7 @@ const TextAlignment = {
 	Left: "left",
 	Right: "right",
 	Center: "center"
-};
+}; Object.freeze(TextAlignment);
 
 const Fonts = {
 	MainTitle: "40px Tahoma",
@@ -132,3 +132,133 @@ const Fonts = {
 };
 
 const fontOverhangRatio = 4 / 5; // Currently 4/5 is correct for "Tahoma" font. Change if font changes
+
+//////////////////////////////////////
+//------------- Input --------------//
+//////////////////////////////////////
+/**
+ * Keys to reference Action KeySets stored in the KeyMapper
+ */
+const ACTION_KEYS = {
+	WALK_LEFT:"walkLeft",
+	WALK_RIGHT:"walkRight",
+	JUMP:"jump",
+	DASH:"dash",
+	BLOCK:"block",
+	CROUCH:"crouch",
+	KICK:"kick",
+	PUNCH:"punch",
+}; Object.freeze(ACTION_KEYS);
+
+/**
+ * Keys to reference Nav KeySets stored in the KeyMapper
+ */
+const NAV_KEYS = {
+	UP:"navUp",
+	DOWN:"navDown",
+	LEFT:"navLeft",
+	RIGHT:"navRight",
+	SELECT:"navSelect",
+	BACK:"navBack",
+	PAUSE:"navPause"
+}; Object.freeze(NAV_KEYS);
+
+/**
+ * A list of Navigation Actions
+ */
+const NAV_ACTION = {
+	UP:"navUp",
+	DOWN:"navDown",
+	LEFT:"navLeft",
+	RIGHT:"navRight",
+	SELECT:"navSelect",
+	BACK:"navBack",
+	PAUSE:"navPause"
+}; Object.freeze(NAV_ACTION);
+
+/**
+ * Represents the type of action of a KeySet
+ */
+const ACTION_TYPE = {
+	ACTION: 'ACTION',
+	NAV: 'NAV'
+}; Object.freeze(ACTION_TYPE);
+
+/**
+ * Input Codes representing Keyboard keys. Used when querying input
+ */
+const KeyCode = {
+	BACKSPACE: 8, TAB: 9, ENTER: 1, ESCAPE: 2, SPACE: 3, LEFT: 3, UP: 3, RIGHT: 3, DOWN: 4,
+	DIGIT_0: 4, DIGIT_1: 4, DIGIT_2: 5, DIGIT_3: 51, DIGIT_4: 52, DIGIT_5: 53, DIGIT_6: 54, DIGIT_7: 55, DIGIT_8: 56, DIGIT_9: 57,
+	A: 65, B: 66, C: 67, D: 68, E: 69, F: 70, G: 71, H: 72, I: 73, J: 74, K: 75, L: 76, M: 77, N: 78, O: 79, P: 80, Q: 81,   R: 82, S: 83, T: 84, U: 85, V: 86, W: 87, X: 88, Y: 89, Z: 90,
+	PLUS: 187, MINUS: 189, TILDE: 192
+}; Object.freeze(KeyCode);
+
+/**
+ * Input Codes representing Mouse buttons. Used when querying input
+ */
+const MouseButton = {
+	LEFT: "LeftMouseButton",
+	RIGHT: "RightMouseButton"
+}; Object.freeze(MouseButton);
+
+/**
+ * Globally accessible mouse positions that are automatically updated
+ * for anyone to read.
+ */
+let mouseY = 0;
+let mouseX = 0;
+
+// Gamepad Buttons 
+const CROSS_BUTTON = "cross";
+const CIRCLE_BUTTON = "circle";
+const SQUARE_BUTTON = "square";
+const TRIANGLE_BUTTON = "triangle";
+const LEFT_STICK_BUTTON = "leftStickButton";
+const RIGHT_STICK_BUTTON = "rightStickButton";
+const LEFT_STICK_LEFT = "leftStickLeft";
+const LEFT_STICK_RIGHT = "leftStickRight";
+const LEFT_STICK_UP = "leftStickUp";
+const LEFT_STICK_DOWN = "leftStickDown";
+const RIGHT_STICK_LEFT = "rightStickLeft";
+const RIGHT_STICK_RIGHT = "rightStickRight";
+const RIGHT_STICK_UP = "rightStickUp";
+const RIGHT_STICK_DOWN = "rightStickDown";
+const L1_BUTTON = "l1";
+const L2_BUTTON = "l2";
+const R1_BUTTON = "r1";
+const R2_BUTTON = "r2";
+const PAD_SHARE = "padShare";
+const PAD_OPTIONS = "padOptions";
+const PAD_POWER = "padPower";
+const DPAD_LEFT = "DPadLeft";
+const DPAD_RIGHT = "DPadRight";
+const DPAD_UP = "DPadUp";
+const DPAD_DOWN = "DPadDown";
+
+const heldButtons = [];
+
+const ALIAS = {
+	UP:						KeyCode.UP,
+	DOWN:					KeyCode.DOWN,
+	LEFT:					KeyCode.LEFT,
+	RIGHT:				KeyCode.RIGHT,
+	SELECT1:			KeyCode.ENTER,
+	SELECT2:			KeyCode.SPACE,
+	HELP:					KeyCode.H,
+	SETTINGS:			KeyCode.S,
+	CREDITS:			KeyCode.C,
+	BACK:					KeyCode.ESCAPE,
+	CHEATS:				KeyCode.O,
+	DEBUG:				KeyCode.TILDE,
+	POINTER:			MouseButton.LEFT,
+	CONTEXT:			MouseButton.RIGHT,
+	PAUSE:				KeyCode.P,
+	QUIT:					KeyCode.Q,
+	VOLUME_UP:		KeyCode.PLUS,
+	VOLUME_DOWN:	KeyCode.MINUS,
+	MUTE:					KeyCode.M,
+	LEVEL_UP:			KeyCode.L //Debug mode input
+}; Object.freeze(ALIAS);
+
+const AXIS_PRECISION = 0.50;
