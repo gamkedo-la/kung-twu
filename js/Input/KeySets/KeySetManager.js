@@ -66,7 +66,13 @@ function KeySetManager() {
 	 * @param {(keySet: KeySet, key: string) => void} callbackFn key is either an ACTION_KEYS or NAV_KEYS.
 	 * @param {any} thisArg Explicit 'this' binding to callback
 	 */
-	this.forEach = function _forEach(callbackFn, thisArg) {
+	this.forEach = _forEach;
+		/**
+	 * Iterates a callback over each KeySet
+	 * @param {(keySet: KeySet, key: string) => void} callbackFn key is either an ACTION_KEYS or NAV_KEYS.
+	 * @param {any} thisArg Explicit 'this' binding to callback
+	 */
+	function _forEach(callbackFn, thisArg) {
 		if (thisArg) {
 			_keySets.forEach((keySet, key, map) => { 
 				callbackFn.call(thisArg, keySet, key); // hide map
@@ -76,5 +82,13 @@ function KeySetManager() {
 				callbackFn(keySet, key);	// hide map
 			});
 		}
+	}
+
+	/** Logs each KeySet stored in this manager's Sets */
+	this.log = function() {
+			_forEach((keyset) => {
+				console.log(keyset);
+				keyset.log();
+			});
 	};
 };

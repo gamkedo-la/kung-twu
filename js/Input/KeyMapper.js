@@ -197,11 +197,12 @@ function KeyMapper() {
 		// punch.add(SQUARE_BUTTON);
 	};
 
+
 	/**
 	 * Checks if a KeySetManager is really a KeySetManager, and will throw an Error if not.
 	 * @param {KeySetManager} keySetManager 
 	 */
-	const _isKeySetManagerValid = function(keySetManager) {
+	function _isKeySetManagerValid(keySetManager) {
 		if (!(keySetManager instanceof KeySetManager)) {
 			console.log("Invalid parameter:", keySetManager);
 			throw new Error("The KeySetManager passed into getCurrentMapping " +
@@ -309,10 +310,7 @@ function KeyMapper() {
 	 * @param {KeySetManager} keySetManager 
 	 */
 	const setInitialMapping = function(keySetManager) {
-		if (!(keySetManager instanceof KeySetManager)) {
-			console.log("Invalid parameter:", keySetManager);
-			throw new Error("The KeySetManager passed into writeCurrentMappingToStorage is not a valid instance of KeySetManager!");
-		}
+		_isKeySetManagerValid(keySetManager);
 		const mappingHasBeenStored = (localStorageHelper.getObject(localStorageKey.WalkLeftKeys) != undefined);
 		if(mappingHasBeenStored) {
 			getCurrentMapping(keySetManager);
