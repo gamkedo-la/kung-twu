@@ -38,7 +38,7 @@ const MAX_PLAYER_HEALTH = 100;
 const deadZoneHalfWidth = 25;
 
 //---------------Persistence-----------//
-const version = 0.25;
+const version = 0.26;
 /** @type LocalStorageHelper */
 let localStorageHelper;
 /** Contains keys of data to store in the browser's local storage */
@@ -188,7 +188,7 @@ const ACTION_TYPE = {
 }; Object.freeze(ACTION_TYPE);
 
 /**
- * Input Codes representing Keyboard keys. Used when querying input
+ * Input Codes matching with KeyboardEvent keyCode's. Used when querying input
  */
 const KeyCode = {
 	BACKSPACE: 8, TAB: 9, ENTER: 13, ESCAPE: 27, SPACE: 32, LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40,
