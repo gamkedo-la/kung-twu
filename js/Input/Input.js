@@ -2,9 +2,6 @@
  * 
  */
 function InputManager() {
-	const _inputProcessor = inputProcessor;
-	const _gamepad = gamepad;
-
 	/** Fires when a Gamepad has connected to the window */
 	this.onGamePadConnected = new EventHandle();
 	this.onGamePadDisconnected = new EventHandle();
@@ -19,8 +16,8 @@ function InputManager() {
 	
 		//The following events are on the window as  
 		//they don't seem to work on the document
-		window.addEventListener("gamepadconnected", _gamepad.connect);
-		window.addEventListener("gamepaddisconnected", _gamepad.disconnect);
+		window.addEventListener("gamepadconnected", gamepad.connect);
+		window.addEventListener("gamepaddisconnected", gamepad.disconnect);
 	}
 
 	/** Releases input listeners from the window and document */
@@ -33,16 +30,21 @@ function InputManager() {
 	
 		//The following events are on the window as  
 		//they don't seem to work on the document
-		window.removeEventListener("gamepadconnected", _gamepad.connect);
-		window.removeEventListener("gamepaddisconnected", _gamepad.disconnect);
+		window.removeEventListener("gamepadconnected", gamepad.connect);
+		window.removeEventListener("gamepaddisconnected", gamepad.disconnect);
 	}
 
 	// ============== EVENT HANDLERS ==================== //
+	function notifyCurrentScene(newInput, pressed) {
+		if(!SceneState.control(newInput, pressed)) {
+			//Do something if required because the scene didn't handle the input
+		}
+	}
 	function keyPress(evt) {
 		evt.preventDefault();
 	
-		if(_inputProcessor != null) {
-			_inputProcessor.addActiveKey(evt.keyCode);
+		if(inputProcessor != null) {
+			inputProcessor.addActiveKey(evt.keyCode);
 		}
 	
 		notifyCurrentScene(evt.keyCode, true);
@@ -51,8 +53,8 @@ function InputManager() {
 	function keyRelease(evt) {
 		evt.preventDefault();
 	
-		if(_inputProcessor != null) {
-			_inputProcessor.releaseKey(evt.keyCode);
+		if(inputProcessor != null) {
+			inputProcessor.releaseKey(evt.keyCode);
 		}
 		notifyCurrentScene(evt.keyCode, false);
 	}
@@ -69,8 +71,8 @@ function InputManager() {
 			notifyCurrentScene(pressedButton, true);
 		}
 	
-		if(_inputProcessor != null) {
-			_inputProcessor.addActiveKey(pressedButton);
+		if(inputProcessor != null) {
+			inputProcessor.addActiveKey(pressedButton);
 		}
 	}
 	
@@ -86,8 +88,8 @@ function InputManager() {
 			notifyCurrentScene(releasedButton, false);
 		}
 	
-		if(_inputProcessor != null) {
-			_inputProcessor.releaseKey(evt.keyCode);
+		if(inputProcessor != null) {
+			inputProcessor.releaseKey(evt.keyCode);
 		}
 	}
 	
