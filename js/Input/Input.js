@@ -100,12 +100,6 @@ function InputManager() {
 		mouseX = evt.clientX - rect.left;
 		mouseY = evt.clientY - rect.top;
 	}
-
-	function notifyCurrentScene(newInput, pressed) {
-		if(!SceneState.control(newInput, pressed)) {
-			//Do something if required because the scene didn't handle the input
-		}
-	}
 }
 
 
