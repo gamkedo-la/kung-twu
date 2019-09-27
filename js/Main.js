@@ -33,7 +33,7 @@ window.onload = function() {
 	/** Instantiate input-related objects */
 	keyMapper = new KeyMapper();
 	inputProcessor = new InputProcessor();
-	input = new InputManager();
+	input = new InputManager(inputProcessor, gamepad);
 	input.initialize();
 	
 	configureGameAudio();

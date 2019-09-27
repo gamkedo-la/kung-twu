@@ -1,7 +1,18 @@
 /**
- * 
+ * Initializes and finalizes connection to the window/document
+ * Plan to become the center for input querying and management.
+ * @param {InputProcessor} inputProcessor
+ * @param {gamepad} gamepad 
  */
-function InputManager() {
+function InputManager(inputProcessor, gamepad) {
+	if (!(inputProcessor instanceof InputProcessor)) {
+		throw new Error('inputProcessor param passed into InputManager is not a valid instanceof InputProcessor!');
+	}
+	if (!gamepad) {
+		throw new Error('Please pass valid gamepad into InputManager. It is either null or undefined!');
+	}
+	const _gamepad = gamepad;
+	const _inputProcessor = inputProcessor;
 
 	/** Fires when a Gamepad has connected to the window */
 	this.onGamePadConnected = new EventHandle();
@@ -17,8 +28,8 @@ function InputManager() {
 	
 		//The following events are on the window as  
 		//they don't seem to work on the document
-		window.addEventListener("gamepadconnected", gamepad.connect);
-		window.addEventListener("gamepaddisconnected", gamepad.disconnect);
+		window.addEventListener("gamepadconnected", _gamepad.connect);
+		window.addEventListener("gamepaddisconnected", _gamepad.disconnect);
 	};
 
 	/** Releases input listeners from the window and document */
@@ -31,8 +42,8 @@ function InputManager() {
 	
 		//The following events are on the window as  
 		//they don't seem to work on the document
-		window.removeEventListener("gamepadconnected", gamepad.connect);
-		window.removeEventListener("gamepaddisconnected", gamepad.disconnect);
+		window.removeEventListener("gamepadconnected", _gamepad.connect);
+		window.removeEventListener("gamepaddisconnected", _gamepad.disconnect);
 	};
 
 	// ============== EVENT HANDLERS ==================== //
@@ -44,8 +55,8 @@ function InputManager() {
 	function keyPress(evt) {
 		evt.preventDefault();
 	
-		if(inputProcessor != null) {
-			inputProcessor.addActiveKey(evt.keyCode);
+		if(_inputProcessor != null) {
+			_inputProcessor.addActiveKey(evt.keyCode);
 		}
 	
 		notifyCurrentScene(evt.keyCode, true);
@@ -54,8 +65,8 @@ function InputManager() {
 	function keyRelease(evt) {
 		evt.preventDefault();
 	
-		if(inputProcessor != null) {
-			inputProcessor.releaseKey(evt.keyCode);
+		if(_inputProcessor != null) {
+			_inputProcessor.releaseKey(evt.keyCode);
 		}
 		
 		notifyCurrentScene(evt.keyCode, false);
@@ -73,8 +84,8 @@ function InputManager() {
 			notifyCurrentScene(pressedButton, true);
 		}
 	
-		if(inputProcessor != null) {
-			inputProcessor.addActiveKey(pressedButton);
+		if(_inputProcessor != null) {
+			_inputProcessor.addActiveKey(pressedButton);
 		}
 	}
 	
@@ -90,8 +101,8 @@ function InputManager() {
 			notifyCurrentScene(releasedButton, false);
 		}
 	
-		if(inputProcessor != null) {
-			inputProcessor.releaseKey(evt.keyCode);
+		if(_inputProcessor != null) {
+			_inputProcessor.releaseKey(evt.keyCode);
 		}
 	}
 	
