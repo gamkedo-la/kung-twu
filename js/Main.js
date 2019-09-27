@@ -29,8 +29,13 @@ window.onload = function() {
 
 	pauseManager = new PauseManager();
 	//wooshFX = new WooshFXManager(wooshPunchPic);
+
+	/** Instantiate input-related objects */
+	keyMapper = new KeyMapper();
+	inputProcessor = new InputProcessor();
 	input = new InputManager();
 	input.initialize();
+	
 	configureGameAudio();
 	loadAudio();
 	loadGamkedoLogo();
