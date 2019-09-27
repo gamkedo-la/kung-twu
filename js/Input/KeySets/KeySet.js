@@ -66,12 +66,14 @@ function KeySet(key, actionType, action, inputCodes) {
 	 */
 	const _set = new Set();
 	// Initialize set. Comes after this.add so it can reference it directly
-	if (inputCodes && Array.isArray(inputCodes)) {
-		inputCodes.forEach((code) => {
-			this.add(code);
-		});
-	} else {
-		this.add(inputCodes);
+	if (inputCodes) {
+		if (Array.isArray(inputCodes)) {
+			inputCodes.forEach((code) => {
+				this.add(code);
+			});
+		} else {
+			this.add(inputCodes);
+		}
 	}
 
 	/**
@@ -111,6 +113,9 @@ function KeySet(key, actionType, action, inputCodes) {
 		_set.clear();
 	};
 
+	this.log = function() {
+		console.log(_set);
+	}
 	/**
 	 * Returns the inner input codes of the set as an array
 	 */
