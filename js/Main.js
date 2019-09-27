@@ -28,12 +28,12 @@ window.onload = function() {
 	opacity = 0;
 
 	pauseManager = new PauseManager();
-    //wooshFX = new WooshFXManager(wooshPunchPic);
+	//wooshFX = new WooshFXManager(wooshPunchPic);
 	input = new InputManager();
 	input.initialize();
 	configureGameAudio();
 	loadAudio();
-    loadGamkedoLogo();
+	loadGamkedoLogo();
 };
 
 function configureGameField() {

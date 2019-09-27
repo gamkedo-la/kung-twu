@@ -183,8 +183,8 @@ const NAV_ACTION = {
  * Represents the type of action of a KeySet
  */
 const ACTION_TYPE = {
-	ACTION: 'ACTION',
-	NAV: 'NAV'
+	ACTION: "ACTION",
+	NAV: "NAV"
 }; Object.freeze(ACTION_TYPE);
 
 /**
@@ -242,26 +242,26 @@ const DPAD_DOWN = "DPadDown";
 const heldButtons = [];
 
 const ALIAS = {
-	UP:						KeyCode.UP,
-	DOWN:					KeyCode.DOWN,
-	LEFT:					KeyCode.LEFT,
-	RIGHT:				KeyCode.RIGHT,
-	SELECT1:			KeyCode.ENTER,
-	SELECT2:			KeyCode.SPACE,
-	HELP:					KeyCode.H,
-	SETTINGS:			KeyCode.S,
-	CREDITS:			KeyCode.C,
-	BACK:					KeyCode.ESCAPE,
-	CHEATS:				KeyCode.O,
-	DEBUG:				KeyCode.TILDE,
-	POINTER:			MouseButton.LEFT,
-	CONTEXT:			MouseButton.RIGHT,
-	PAUSE:				KeyCode.P,
-	QUIT:					KeyCode.Q,
-	VOLUME_UP:		KeyCode.PLUS,
-	VOLUME_DOWN:	KeyCode.MINUS,
-	MUTE:					KeyCode.M,
-	LEVEL_UP:			KeyCode.L //Debug mode input
+	UP:KeyCode.UP,
+	DOWN:KeyCode.DOWN,
+	LEFT:KeyCode.LEFT,
+	RIGHT:KeyCode.RIGHT,
+	SELECT1:KeyCode.ENTER,
+	SELECT2:KeyCode.SPACE,
+	HELP:KeyCode.H,
+	SETTINGS:KeyCode.S,
+	CREDITS:KeyCode.C,
+	BACK:KeyCode.ESCAPE,
+	CHEATS:KeyCode.O,
+	DEBUG:KeyCode.TILDE,
+	POINTER:MouseButton.LEFT,
+	CONTEXT:MouseButton.RIGHT,
+	PAUSE:KeyCode.P,
+	QUIT:KeyCode.Q,
+	VOLUME_UP:KeyCode.PLUS,
+	VOLUME_DOWN:KeyCode.MINUS,
+	MUTE:KeyCode.M,
+	LEVEL_UP:KeyCode.L //Debug mode input
 }; Object.freeze(ALIAS);
 
 const AXIS_PRECISION = 0.50;

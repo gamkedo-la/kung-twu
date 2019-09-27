@@ -19,7 +19,7 @@ function InputManager() {
 		//they don't seem to work on the document
 		window.addEventListener("gamepadconnected", gamepad.connect);
 		window.addEventListener("gamepaddisconnected", gamepad.disconnect);
-	}
+	};
 
 	/** Releases input listeners from the window and document */
 	this.finalize = function finalize() {
@@ -33,7 +33,7 @@ function InputManager() {
 		//they don't seem to work on the document
 		window.removeEventListener("gamepadconnected", gamepad.connect);
 		window.removeEventListener("gamepaddisconnected", gamepad.disconnect);
-	}
+	};
 
 	// ============== EVENT HANDLERS ==================== //
 	function keyPress(evt) {
@@ -52,6 +52,7 @@ function InputManager() {
 		if(inputProcessor != null) {
 			inputProcessor.releaseKey(evt.keyCode);
 		}
+		
 		notifyCurrentScene(evt.keyCode, false);
 	}
 	
