@@ -46,7 +46,7 @@ function KeySet(key, actionType, action, inputCodes) {
 			_add(inputCodes);
 		}
 		return this;
-	}
+	};
 
 	/**
 	 * Add a KeyCode, MouseButton, or constant pertaining to GamePad buttons to the KeySet
@@ -54,7 +54,7 @@ function KeySet(key, actionType, action, inputCodes) {
 	 */
 	function _add(inputCode) {
 		if (_set.has(inputCode)) {
-			if (_DEBUG) console.trace('Warning! This KeySet already contains the key: ' + inputCode + '.');
+			if (_DEBUG) console.trace("Warning! This KeySet already contains the key: " + inputCode + ".");
 		} else {
 			_set.add(inputCode);
 		}
@@ -94,29 +94,29 @@ function KeySet(key, actionType, action, inputCodes) {
 				callbackfn(val, i, _arr);
 			}
 		}
-	}
+	};
 
 	/**
 	 * Checks if this KeySet contains an input code, which can be a value of KeyCode, MouseButton, or constant pertaining to GamePad buttons.
 	 */
 	this.has = function (inputCode) {
 		return _set.has(inputCode);
-	}
+	};
 
 	this.delete = function(inputCode) {
 		_set.delete(inputCode);
-	}
+	};
 
 	this.deleteAll = function() {
 		_set.clear();
-	}
+	};
 
 	/**
 	 * Returns the inner input codes of the set as an array
 	 */
 	this.getAsArray = function() {
 		return Array.from(_set);
-	}
+	};
 
 	// We don't want the properties to be altered, although
 	// the set can still be altered through its own functions.

@@ -5,7 +5,7 @@ const gamepad = {
 	connect: function (evt) {
 		gamepad.controllerIndex = evt.gamepad.index;
 		gamepad.active = true;
-		console.log(`Gamepad connected.`);
+		console.log("Gamepad connected.");
 	},
 
 	disconnect: function() {

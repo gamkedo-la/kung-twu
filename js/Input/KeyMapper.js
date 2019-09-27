@@ -203,11 +203,11 @@ function KeyMapper() {
 	 */
 	const _isKeySetManagerValid = function(keySetManager) {
 		if (!(keySetManager instanceof KeySetManager)) {
-			console.log('Invalid parameter:', keySetManager);
-			throw new Error('The KeySetManager passed into getCurrentMapping ' +
-				'is not a valid instance of KeySetManager!');
+			console.log("Invalid parameter:", keySetManager);
+			throw new Error("The KeySetManager passed into getCurrentMapping " +
+				"is not a valid instance of KeySetManager!");
 		}
-	}
+	};
 	/**
 	 * Gets and loads  the current input mapping from local storage. 
 	 * Only ACTION_TYPE.ACTION KeySets implemented in localStorageKeys.
@@ -225,15 +225,15 @@ function KeyMapper() {
 				keySet.deleteAll();
 				keySet.add(arr);
 			} else {
-				console.log('Error during getCurrentMapping! Could not set the keySet: "' + keySet.key + '" for the following reasons...');
+				console.log("Error during getCurrentMapping! Could not set the keySet: \"" + keySet.key + "\" for the following reasons...");
 				if (!key) {
-					console.log('- Local storage key could not be retrieved.');
+					console.log("- Local storage key could not be retrieved.");
 				}
 				if (!arr) {
-					console.log('- LocalStorageHelper could not find a value with key "' + key + '"');
+					console.log("- LocalStorageHelper could not find a value with key \"" + key + "\"");
 				}
 				if (!Array.isArray(arr)) {
-					console.log('- Value stored in LocalStorageHelper at the key "' + key + '" was unexpectedly not the correct type: "array", rather it was "' + typeof arr + '"');
+					console.log("- Value stored in LocalStorageHelper at the key \"" + key + "\" was unexpectedly not the correct type: \"array\", rather it was \"" + typeof arr + "\"");
 				}	
 			}
 		});
@@ -247,28 +247,28 @@ function KeyMapper() {
 	const getLocalStorageKeyFromActionKey = function(actionKey) {
 		const keys = localStorageKey;
 		switch(actionKey) {
-			case ACTION_KEYS.WALK_LEFT:
-				return keys.WalkLeftKeys;
-			case ACTION_KEYS.WALK_RIGHT:
-				return keys.WalkRightKeys;
-			case ACTION_KEYS.JUMP:
-				return keys.JumpKeys;
-			case ACTION_KEYS.DASH:
-				return keys.DashKeys;
-			case ACTION_KEYS.BLOCK:
-				return keys.BlockKeys;
-			case ACTION_KEYS.CROUCH:
-				return keys.CrouchKeys;
-			case ACTION_KEYS.KICK:
-				return keys.KickKeys;
-			case ACTION_KEYS.PUNCH:
-				return keys.PunchKeys;
-			default:
-				console.trace('Warning! localStorageKey <- ACTION_KEY conversion ' + 
-					'not available for: ' + actionKey + '! Returning empty string.');
-				return '';
+		case ACTION_KEYS.WALK_LEFT:
+			return keys.WalkLeftKeys;
+		case ACTION_KEYS.WALK_RIGHT:
+			return keys.WalkRightKeys;
+		case ACTION_KEYS.JUMP:
+			return keys.JumpKeys;
+		case ACTION_KEYS.DASH:
+			return keys.DashKeys;
+		case ACTION_KEYS.BLOCK:
+			return keys.BlockKeys;
+		case ACTION_KEYS.CROUCH:
+			return keys.CrouchKeys;
+		case ACTION_KEYS.KICK:
+			return keys.KickKeys;
+		case ACTION_KEYS.PUNCH:
+			return keys.PunchKeys;
+		default:
+			console.trace("Warning! localStorageKey <- ACTION_KEY conversion " + 
+					"not available for: " + actionKey + "! Returning empty string.");
+			return "";
 		}
-	}
+	};
 
 	/**
 	 * Writes key mapping data currently stored in local storage to the key sets.
@@ -284,12 +284,12 @@ function KeyMapper() {
 				const key = getLocalStorageKeyFromActionKey(keySet.key);
 				const arr = keySet.getAsArray();
 				if (!key) {
-					throw new Error('Problem during writeCurrentMappingToStorage! ' +
-						'Problem fetching localStorageKey. Conversion from ACTION_KEY to ' +
-						'localStorageKey most likely unavailable.');
+					throw new Error("Problem during writeCurrentMappingToStorage! " +
+						"Problem fetching localStorageKey. Conversion from ACTION_KEY to " +
+						"localStorageKey most likely unavailable.");
 				}
 				if (!arr) {
-					throw new Error('Problem during writeCurrentMappingToStorage! The KeySet array was either null or undefined!')
+					throw new Error("Problem during writeCurrentMappingToStorage! The KeySet array was either null or undefined!")
 				}
 			}		
 		});
@@ -299,7 +299,7 @@ function KeyMapper() {
 			if (keySet.type === ACTION_TYPE.ACTION) {
 				const key = getLocalStorageKeyFromActionKey(keySet.key);
 				const arr = keySet.getAsArray();
-					localStorageHelper.setObject(key, arr);
+				localStorageHelper.setObject(key, arr);
 			}
 		});
 	};
@@ -310,8 +310,8 @@ function KeyMapper() {
 	 */
 	const setInitialMapping = function(keySetManager) {
 		if (!(keySetManager instanceof KeySetManager)) {
-			console.log('Invalid parameter:', keySetManager);
-			throw new Error('The KeySetManager passed into writeCurrentMappingToStorage is not a valid instance of KeySetManager!');
+			console.log("Invalid parameter:", keySetManager);
+			throw new Error("The KeySetManager passed into writeCurrentMappingToStorage is not a valid instance of KeySetManager!");
 		}
 		const mappingHasBeenStored = (localStorageHelper.getObject(localStorageKey.WalkLeftKeys) != undefined);
 		if(mappingHasBeenStored) {
@@ -360,7 +360,7 @@ function KeyMapper() {
 		// return null;//if the key doesn't map to any actions
 	};
 
-		/**
+	/**
 	 * Gets the corresponding NAV_ACTION by passing an input code 
 	 * @param key Input code, which is either a value in KeyCode, MouseButton or a GamePad-related constant.
 	 */
@@ -386,8 +386,8 @@ function KeyMapper() {
 		if (keySet) {
 			return keySet.getAsArray();
 		}
-		console.trace('Warning! There is no KeySet with the ACTION_KEYS or NAV_KEYS value: ' + 
-			actionKey + ' stored on the KeySetManager! Returning an emtpy array');
+		console.trace("Warning! There is no KeySet with the ACTION_KEYS or NAV_KEYS value: " + 
+			actionKey + " stored on the KeySetManager! Returning an emtpy array");
 		return [];
 
 		// switch(alias) {
@@ -422,8 +422,8 @@ function KeyMapper() {
 			keySet.add(inputCodeToAdd);
 			writeCurrentMappingToStorage(keySetManager);
 		} else {
-			console.trace('Warning! Tried to add key to a key set, but there is ' +
-				'no KeySet with the key:', actionToAddItTo + ', stored in this manager.');
+			console.trace("Warning! Tried to add key to a key set, but there is " +
+				"no KeySet with the key:", actionToAddItTo + ", stored in this manager.");
 		}
 		
 		// switch(actionToAddItTo) {
@@ -572,8 +572,8 @@ function KeyMapper() {
 			keySet.delete(inputCodeToRemove);
 			writeCurrentMappingToStorage(keySetManager);
 		} else {
-			console.trace('Warning! Tried to add key to a key set, but there is ' +
-				'no KeySet with the key:', actionToAddItTo + ', stored in this manager.');
+			console.trace("Warning! Tried to add key to a key set, but there is " +
+				"no KeySet with the key:", actionToAddItTo + ", stored in this manager.");
 		}
 		// switch(actionToRemoveFrom) {
 		// case KEYSET_ALIAS.WALK_LEFT:

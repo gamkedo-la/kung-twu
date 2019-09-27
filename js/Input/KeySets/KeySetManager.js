@@ -22,7 +22,7 @@ function KeySetManager() {
 	 */
 	this.create = function(key, actionType, action, inputCodes) {
 		if (_keySets.has(key)) {
-			if (_DEBUG) console.trace('Warning! Duplicate reference keys! KeySetManager already contains the reference key: ' + key + '.');
+			if (_DEBUG) console.trace("Warning! Duplicate reference keys! KeySetManager already contains the reference key: " + key + ".");
 		}
 		_keySets.set(key, new KeySet(key, actionType, action, inputCodes));
 		return this;
@@ -37,7 +37,7 @@ function KeySetManager() {
 		if (keySet) {
 			return keySet;
 		} else {
-			if (_DEBUG) throw new Error('KeySet with key:' + key + ', does not exist in the KeySetManager!')
+			if (_DEBUG) throw new Error("KeySet with key:" + key + ", does not exist in the KeySetManager!")
 		}
 	};
 
@@ -49,7 +49,7 @@ function KeySetManager() {
 		if (_keySets.has(key)) {
 			_keySets.delete(key);
 		} else {
-			if (_DEBUG) console.trace('Warning! Tried to delete key: ' + key + ', of a KeySet that does not exist on this KeySetManager!');
+			if (_DEBUG) console.trace("Warning! Tried to delete key: " + key + ", of a KeySet that does not exist on this KeySetManager!");
 		}
 	};
 
