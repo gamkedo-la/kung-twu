@@ -49,8 +49,8 @@ function loadAudio() {
 	playerBlockSound = new SoundOverlapsClass(assetPath.Audio + "PlayerBlocking");
 	playerHitSound = new SoundOverlapsClass(assetPath.Audio + "PlayerHit");
 	playerFailedSound = new SoundOverlapsClass(assetPath.Audio + "PlayerFailed");
-	basicEnemyHitSound = new SoundOverlapsClass(assetPath.Audio + "lowPain");
-	basicEnemyDefeated = new SoundOverlapsClass(assetPath.Audio + "BasicEnemyHit");
+	basicEnemyHitSound = new SoundOverlapsClass(assetPath.Audio + "BasicEnemyHit");
+	basicEnemyDefeated = new SoundOverlapsClass(assetPath.Audio + "lowPain");
 	menuMusic = assetPath.Audio + "gameplayMusicV1";
 	gameMusic = assetPath.Audio + "gameplayMusicV2";
 	bossMusic1 = assetPath.Audio + "DragonPulse";
