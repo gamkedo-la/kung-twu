@@ -223,7 +223,7 @@ function KeyMapper() {
 			const arr = localStorageHelper.getObject(key);
 			if (key && arr && Array.isArray(arr)) {
 				keySet.deleteAll();
-				keySet.addMultiple(arr);
+				keySet.add(arr);
 			} else {
 				console.log('Error during getCurrentMapping! Could not set the keySet: "' + keySet.key + '" for the following reasons...');
 				if (!key) {
