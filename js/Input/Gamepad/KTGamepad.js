@@ -1,4 +1,5 @@
 function KTGamePad(inputManager) {
+	Debug.isValid(inputManager, InputManager);
 	// ========= Private Variables ===========
 	/**
 	 * Private reference to the game's InputManager

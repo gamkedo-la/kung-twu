@@ -94,7 +94,7 @@ function KeyMapper() {
 	 * @param {KeySetManager} keySetManager 
 	 */
 	const setDefaultMapping = function(keySetManager) {
-		_isKeySetManagerValid(keySetManager);
+		Debug.isValid(keySetManager, KeySetManager);
 
 		// Gets the KeySet and adds keys/buttons/gamepad controls to it
 		keySetManager.get(ACTION_KEYS.WALK_LEFT).add (
@@ -158,26 +158,15 @@ function KeyMapper() {
 			]
 		);
 	};
+	setDefaultMapping(keySets);
 
-
-	/**
-	 * Checks if a KeySetManager is really a KeySetManager, and will throw an Error if not.
-	 * @param {KeySetManager} keySetManager 
-	 */
-	function _isKeySetManagerValid(keySetManager) {
-		if (!(keySetManager instanceof KeySetManager)) {
-			console.log("Invalid parameter:", keySetManager);
-			throw new Error("The KeySetManager passed into getCurrentMapping " +
-				"is not a valid instance of KeySetManager!");
-		}
-	};
 	/**
 	 * Gets and loads  the current input mapping from local storage. 
 	 * Only ACTION_TYPE.ACTION KeySets implemented in localStorageKeys.
 	 * @param {KeySetManager} keySetManager 
 	 */
 	const getCurrentMapping = function(keySetManager) {
-		_isKeySetManagerValid(keySetManager);
+		Debug.isValid(keySetManager, KeySetManager);
 
 		keySetManager.forEach((keySet) => {
 			if (keySet.type !== ACTION_TYPE.ACTION) return; // filter out ACTION_TYPE.NAV
@@ -238,7 +227,7 @@ function KeyMapper() {
 	 * @param {KeySetManager} keySetManager 
 	 */
 	const writeCurrentMappingToStorage = function(keySetManager) {
-		_isKeySetManagerValid(keySetManager);
+		Debug.isValid(keySetManager, KeySetManager);
 
 		// Check that data is valid first. Program should stop execution on 
 		// Error before writing invalid data.
@@ -272,7 +261,8 @@ function KeyMapper() {
 	 * @param {KeySetManager} keySetManager 
 	 */
 	const setInitialMapping = function(keySetManager) {
-		_isKeySetManagerValid(keySetManager);
+		Debug.isValid(keySetManager, KeySetManager);
+
 		const mappingHasBeenStored = (localStorageHelper.getObject(localStorageKey.WalkLeftKeys) != undefined);
 		if(mappingHasBeenStored) {
 			getCurrentMapping(keySetManager);
