@@ -21,6 +21,7 @@ function GameScene() {
 	let defeatedEnemyCount = 0;
 	let bossHasBeenSpawned = false;
 	let bossHealth = MAX_PLAYER_HEALTH;
+	const displayPoints = [];
 
 	this.transitionIn = function() {
 		if((this.properties != undefined) && (this.properties.restartLevel)) {
@@ -169,6 +170,8 @@ function GameScene() {
 
 		processDefeatedEntities(collisionManager.defeatedEntities);
 
+		processAndUpdatePointsToDisplay(deltaTime);
+
 		processUserInput();
 	};
 
@@ -232,6 +235,26 @@ function GameScene() {
 		}
 	};
 
+	const processAndUpdatePointsToDisplay = function(deltaTime) {
+		if(player.pointsToShow.points != null) {
+			const thisDisplayPoint = new DisplayPoints(player.pointsToShow.points,
+				{x:player.pointsToShow.position.x, 
+					y:player.pointsToShow.position.y - 30});
+
+			displayPoints.push(thisDisplayPoint);
+			score += player.pointsToShow.points;
+			player.pointsToShow.points = null;
+		}
+
+		for(let i = displayPoints.length - 1; i >= 0; i--) {
+			const aDisplayPoint = displayPoints[i];
+			aDisplayPoint.update(deltaTime);
+			if(aDisplayPoint.isComplete) {
+				displayPoints.splice(i, 1);
+			}
+		}
+	};
+
 	const processUserInput = function() {
 		const navKeys = inputProcessor.getNewlyReleasedKeys();
 		for(let key of navKeys) {
@@ -261,10 +284,17 @@ function GameScene() {
 		}
 
 		player.draw();
+
+		if (decorations) decorations.draw();
+
 		if (wooshFX) wooshFX.draw();
 
 		columnManager.draw(cameraX);
 		roof.draw();
+
+		for(let aDisplayPoint of displayPoints) {
+			aDisplayPoint.draw();
+		}
 
 		drawUI(cameraX);
 	};
