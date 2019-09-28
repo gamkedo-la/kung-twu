@@ -3,17 +3,27 @@
 const Debug = {
   /**
    * Assert if something is equal as expected or not and receive that result in the console
+   * ```javascript
+   * let calories = "hamburger".length;
+   * Debug.assertEqual(calories, 900, "Hamburger Calories");
+   * // will log: [Hamburger Calories] FAILED! Expected 900, but got 9
+   * 
+   * let kungTwuAwesomeness = 9001;
+   * Debug.assertEqual(kungTwuAwesomeness, 9001, "Kung Twu Awesome level");
+   * // will log: [Kung Twu Awesome level] PASSED with expected 9001
+   * ```
    * @param actual The actual value or reference
    * @param expected The expected value or reference
    * @param {string} testName The name of the test to log to the console
    */
-  assertEqual: (actual, expected, testName = 'Debug Test') => {
+  assertEqual (actual, expected, testName = 'Debug Test') {
     if (actual === expected) {
-      console.trace('[' + testName + '] PASSED with expected:', expected);
+      console.log('[' + testName + '] PASSED with expected:', expected);
     } else {
-      console.trace('[' + testName + '] FAILED! Expected', expected, 'but got', actual);
+      console.log('[' + testName + '] FAILED! Expected', expected, 'but got', actual);
     }
-  }
+  },
+
   /**
 	 * Type-checks a value to ensure it is a particular instanceof or typeof something. "null" is included.
 	 * Throws an error if test fails, but this can be reduced to a console log in param throwError.
