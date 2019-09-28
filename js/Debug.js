@@ -27,7 +27,7 @@ const Debug = {
   /**
 	 * Type-checks a value to ensure it is a particular instanceof or typeof something. "null" is included.
 	 * Throws an error if test fails, but this can be reduced to a console log in param throwError.
-	 * Useful for checking parameters passed into a function, or any value at runtime during development. May be turned off by hard-coding value _DEBUG to false in class below.
+	 * Useful for checking parameters passed into a function, or any value at runtime during development. May be turned off by hard-coding value _DEBUG to false in function below.
 	 * Note: Usually JavaScript evaluates typeof null to "object", but here we have added the ability to check "null".
 	 * @param {any} checkValue The value/instance to check
 	 * @param {Function | string} expectedType The class constructor function name or string typeof to check. e.g. KeySet, InputManager, "string", "object"
