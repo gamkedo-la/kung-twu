@@ -22,6 +22,7 @@ function Player(config) {
 
 	this.type = ENTITY_TYPE.Player;
 	this.health = MAX_PLAYER_HEALTH;
+	this.pointsToShow = {points:null, position:{x:0, y:0}};
 
 	if (config != undefined) {
 		if (config.x != undefined) {
@@ -409,7 +410,20 @@ function Player(config) {
 		}
 	};
 
-	this.didHit = function() {
+	this.didHit = function(otherEntity) {
+
 		this.attackBody = null;
+		this.pointsToShow.points = pointsToShowForState(stateManager.getCurrentState());
+		this.pointsToShow.position = otherEntity.getPosition();
+	};
+
+	const pointsToShowForState = function(state) {
+		switch(state) {
+		case STATE.Kick: return 50;
+		case STATE.Punch: return 100;
+		case STATE.Sweep: return 100;
+		case STATE.J_Kick: return 150;
+		case STATE.H_Kick: return 150;
+		}
 	};
 }
