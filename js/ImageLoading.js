@@ -112,6 +112,7 @@ const wooshPunchPic = document.createElement("img");
 const wooshKickPic = document.createElement("img");
 const wooshHurtPic = document.createElement("img");
 const wooshKnockoutPic = document.createElement("img");
+const decorationSpritesheet = document.createElement("img");
 
 let picsToLoad = 0;
 
@@ -167,7 +168,8 @@ function loadImages() {
 		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
 		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
-		{ imgName: wallGradient, theFile: "wall-gradient.png"},
+        { imgName: wallGradient, theFile: "wall-gradient.png"},
+        { imgName: decorationSpritesheet, theFile: "decorations.png"},
 
 		// player related
 		{ imgName: playerIdle, theFile: "Player_Idle_Condensed.png"},

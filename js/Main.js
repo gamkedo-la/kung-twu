@@ -28,7 +28,8 @@ window.onload = function() {
 	opacity = 0;
 
 	pauseManager = new PauseManager();
-	//wooshFX = new WooshFXManager(wooshPunchPic);
+    //wooshFX = new WooshFXManager(wooshPunchPic);
+    decorations = new DecorationManager(decorationSpritesheet)
 
 	/** Instantiate input-related objects */
 	keyMapper = new KeyMapper();
