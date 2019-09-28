@@ -29,6 +29,9 @@ function InputProcessor() {
 		return result;
 	};
 
+	/**
+	 * Event handler which receives Keyboard KeyCode's and MouseButton's when down
+	 */
 	this.addActiveKey = function(newActiveKey) {
 		if(!currentKeys.has(newActiveKey)) {
 			newKeys.add(newActiveKey);
@@ -36,6 +39,9 @@ function InputProcessor() {
 		}
 	};
 
+	/**
+	 * Event handler which recieves Keyboard KeyCode's and MouseButton's when released
+	 */
 	this.releaseKey = function(keyReleased) {
 		let removedKey = false;
 		if(currentKeys.has(keyReleased)) {

@@ -7,10 +7,26 @@ function Rectangle(x, y, width, height) {
     x: anchorX,
     y: anchorY
   }
+  /**
+   * Gets the left-most x position of the Rectangle
+   */
   this.left = () => this.x - this.anchor.x;
+  /**
+   * Gets the right-most x position of the Rectangle
+   */
   this.right = () => this.x - this.anchor.x + this.width;
+  /**
+   * Gets the top-most y position of the Rectangle
+   */
   this.top = () => this.y - this.anchor.y;
+  /**
+   * Gets the bottom-most y position of the Rectangle
+   */
   this.bottom = () => this.y - this.anchor.y + this.height;
+  /**
+   * Gets the center position of the Rectangle as an object:
+   * {x: centerXPos, y: centerYPos }
+   */
   this.center = () => { 
     return {x: this.left + this.width/2, y: this.top + this.width/2}
   }
@@ -27,10 +43,12 @@ function Rectangle(x, y, width, height) {
  * 
  */
 function UITextureButton(image, x, y,) {
+  const _DEBUG = true;
+  
   this.image = image;
   this.state = State.NONE;
   this.rectangle = new Rectangle(x, y, image.width, image.height);
-  const isDebug = true;
+  
   /** The active state of the button */
   const State = {
     NONE: "NONE",

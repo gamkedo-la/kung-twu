@@ -74,7 +74,7 @@ function InputManager(inputProcessor, gamepad) {
 	
 	function mouseButtonPressed(evt) {
 		evt.preventDefault();
-	
+		
 		let pressedButton;
 		if (evt.button === 0) {//left mouse button is button 0
 			pressedButton = MouseButton.LEFT;
@@ -114,7 +114,7 @@ function InputManager(inputProcessor, gamepad) {
 }
 
 
-// ============ HELPER FUNCTIONS ============= //
+// ============ HELPER FUNCTIONS Globally available ============= //
 function mouseInside(x, y, width, height) {
 	return mouseX > x && mouseX < x + width && mouseY > y	&& mouseY < y + height;
 }
