@@ -45,6 +45,7 @@ function TitleScene() {
 			buttons.push(buildHelpButton(mainMenuX, mainMenuY + deltaY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildSettingsButton(mainMenuX, mainMenuY + 2 * deltaY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildCreditsButton(mainMenuX, mainMenuY + 3 * deltaY, buttonHeight, buttonTitlePadding));
+			buttons.push(buildAssistButton(mainMenuX, mainMenuY + 4 * deltaY, buttonHeight, buttonTitlePadding));
 
 			buildLanguageButtons();
 
@@ -142,6 +143,14 @@ function TitleScene() {
 		};
 
 		return new UIButton(STRINGS_KEY.Credits, x, y, height, padding, thisClick, Color.Purple);
+	};
+
+	const buildAssistButton = function(x, y, height, padding) {
+		const thisClick = function() {
+			SceneState.setState(SCENE.ASSIST);
+		};
+
+		return new UIButton(STRINGS_KEY.Assist, x, y, height, padding, thisClick, Color.Orange);
 	};
 
 	const updateButtonTitles = function() {

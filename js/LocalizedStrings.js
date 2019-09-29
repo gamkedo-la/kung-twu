@@ -17,6 +17,7 @@ const STRINGS_KEY = {
 	Credits:"[C] for Credits",
 	Settings:"[S] for Settings",
 	Play:"[Enter] to Play",
+	Assist:"[Z] for Assist Mode",
 	MusicVolume:"Music Volume",
 	SFXVolume:"SFX Volume",
 	Loading:"Loading",
@@ -73,6 +74,7 @@ const userStrings = {
 		[STRINGS_KEY.Credits]:"[C] for Credits",
 		[STRINGS_KEY.Settings]:"[S] for Settings",
 		[STRINGS_KEY.Play]:"[SPACE] to Play",
+		[STRINGS_KEY.Assist]:"[Z] for Assist Mode",
 		[STRINGS_KEY.MusicVolume]:"Music Volume",
 		[STRINGS_KEY.SFXVolume]:"SFX Volume",
 		[STRINGS_KEY.Loading]:"LOADING...",
@@ -169,7 +171,8 @@ const userStrings = {
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
-		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE"
+		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
+		[STRINGS_KEY.Assist]:"[Z] for Assist Mode"
 	},
 
 	Japanese: {
@@ -177,7 +180,6 @@ const userStrings = {
 		[STRINGS_KEY.Credits]:"[C] クレジット",
 		[STRINGS_KEY.Settings]:"[S] せってい",
 		[STRINGS_KEY.Play]:"[SPACE] あそび",
-//		[STRINGS_KEY.Play]:"あそび",
 		[STRINGS_KEY.MusicVolume]:"BGMのおんりょう",
 		[STRINGS_KEY.SFXVolume]:"こうかおんのおんりょう",
 		[STRINGS_KEY.Loading]:"LOADING...",
@@ -224,7 +226,8 @@ const userStrings = {
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
-		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE"
+		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
+		[STRINGS_KEY.Assist]:"[Z] for Assist Mode"
 	},
 
 	French: {
@@ -232,7 +235,6 @@ const userStrings = {
 		[STRINGS_KEY.Credits]:"[C] Crédits",
 		[STRINGS_KEY.Settings]:"[S] Options",
 		[STRINGS_KEY.Play]:"[SPACE] Jouer",
-//		[STRINGS_KEY.Play]:"Jouer",
 		[STRINGS_KEY.MusicVolume]:"Volume de la musique",
 		[STRINGS_KEY.SFXVolume]:"Volume des effets sonores",
 		[STRINGS_KEY.Loading]:"CHARGEMENT...",
@@ -278,7 +280,8 @@ const userStrings = {
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
-		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE"
+		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
+		[STRINGS_KEY.Assist]:"[Z] for Assist Mode"
 	},
 
 	Russian: {
@@ -286,7 +289,6 @@ const userStrings = {
 		[STRINGS_KEY.Credits]:"[C] Титры",
 		[STRINGS_KEY.Settings]:"[S] Опции",
 		[STRINGS_KEY.Play]:"[ПРОБЕЛ] Играть",
-//		[STRINGS_KEY.Play]:"Играть",
 		[STRINGS_KEY.MusicVolume]:"Громкость музыки",
 		[STRINGS_KEY.SFXVolume]:"Громкость эффектов",
 		[STRINGS_KEY.Loading]:"ЗАГРУЖАЕТСЯ...",
@@ -332,7 +334,8 @@ const userStrings = {
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
-		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE"
+		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
+		[STRINGS_KEY.Assist]:"[Z] for Assist Mode"
 	},
 	
 	Polish: {
@@ -340,7 +343,6 @@ const userStrings = {
 		[STRINGS_KEY.Credits]:"[C] O autorach",
 		[STRINGS_KEY.Settings]:"[S] Ustawienia",
 		[STRINGS_KEY.Play]:"[SPACE] Start",
-//		[STRINGS_KEY.Play]:"Start",
 		[STRINGS_KEY.MusicVolume]:"Głośność muzyki",
 		[STRINGS_KEY.SFXVolume]:"Głośność dźwięków",
 		[STRINGS_KEY.Loading]:"ŁADOWANIE...",
@@ -385,6 +387,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
-		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE"
+		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
+		[STRINGS_KEY.Assist]:"[Z] for Assist Mode"
 	}
 };
