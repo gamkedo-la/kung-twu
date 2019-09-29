@@ -8,11 +8,12 @@ function TitleScene() {
 		SCENE.GAME,
 		SCENE.HELP,
 		SCENE.SETTINGS,
-		SCENE.CREDITS
+		SCENE.CREDITS,
+		SCENE.ASSIST
 	];
 	const buttonHeight = 25;//TODO: Adjust this size based on custom font
 	const buttonTitlePadding = 2;
-	const BUTTON_PADDING = 0.9 * buttonHeight;
+	const BUTTON_PADDING = 0.75 * buttonHeight;
 	const buttons = [];
 	const languageButtons = [];
 	const birds = [];
