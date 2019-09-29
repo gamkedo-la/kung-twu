@@ -285,7 +285,7 @@ function GameScene() {
 
 		player.draw();
 
-		if (decorations) decorations.draw();
+		if (decorations) decorations.draw(cameraX/800);
 
 		if (wooshFX) wooshFX.draw();
 

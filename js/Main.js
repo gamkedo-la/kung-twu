@@ -29,7 +29,8 @@ window.onload = function() {
 
 	pauseManager = new PauseManager();
     //wooshFX = new WooshFXManager(wooshPunchPic);
-    decorations = new DecorationManager(decorationSpritesheet)
+    decorations = new DecorationManager(decorationSpritesheet);
+    decorations.parseTiledData(); // FIXME - parse tiled level data later on
 
 	/** Instantiate input-related objects */
 	keyMapper = new KeyMapper();
