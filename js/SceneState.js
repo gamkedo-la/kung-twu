@@ -11,6 +11,7 @@ const SceneState = {
 		[SCENE.SETTINGS]: new SettingsScene(),
 		[SCENE.CREDITS]: new CreditsScene(),
 		[SCENE.HELP]: new HelpScene(),
+		[SCENE.ASSIST]: new AssistScene(),
 		[SCENE.GAME]: new GameScene(),
 		[SCENE.PAUSE]: new PauseScene(),
 		[SCENE.GAMEOVER]: new GameOverScene(),

@@ -41,6 +41,7 @@ const STRINGS_KEY = {
 	Resume:"Resume",
 	HelpScreenTitle:"Help Title",
 	HelpScreenContents:"Help Screen Contents",
+	AssistSceneTitle: "Assist Title",
 	SettingsScreenTitle:"Settings Title",
 	CreditsScreenTitle:"Credits Title",
 	GameOverTitle:"GameOverTitle",
@@ -72,7 +73,6 @@ const userStrings = {
 		[STRINGS_KEY.Credits]:"[C] for Credits",
 		[STRINGS_KEY.Settings]:"[S] for Settings",
 		[STRINGS_KEY.Play]:"[SPACE] to Play",
-//		[STRINGS_KEY.Play]:"Play",
 		[STRINGS_KEY.MusicVolume]:"Music Volume",
 		[STRINGS_KEY.SFXVolume]:"SFX Volume",
 		[STRINGS_KEY.Loading]:"LOADING...",
@@ -96,6 +96,7 @@ const userStrings = {
 		[STRINGS_KEY.Back]:"[ESC] Back",
 		[STRINGS_KEY.Resume]:"[ESC] Resume",
 		[STRINGS_KEY.HelpScreenTitle]:"HELP",
+		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
 		[STRINGS_KEY.SettingsScreenTitle]:"SETTINGS",
 		[STRINGS_KEY.CreditsScreenTitle]:"CREDITS",
 		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
@@ -123,7 +124,6 @@ const userStrings = {
 		[STRINGS_KEY.Credits]:"[C] Créditos",
 		[STRINGS_KEY.Settings]:"[S] Configuraciones",
 		[STRINGS_KEY.Play]:"[SPACE] Jugar",
-//		[STRINGS_KEY.Play]:"Jugar",
 		[STRINGS_KEY.MusicVolume]:"Volumen de la Música",
 		[STRINGS_KEY.SFXVolume]:"Volumen de SFX",
 		[STRINGS_KEY.Loading]:"CARGANDO...",
@@ -169,6 +169,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE"
 	},
 
 	Japanese: {
@@ -223,6 +224,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE"
 	},
 
 	French: {
@@ -276,6 +278,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE"
 	},
 
 	Russian: {
@@ -329,6 +332,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE"
 	},
 	
 	Polish: {
@@ -381,5 +385,6 @@ const userStrings = {
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE"
 	}
 };

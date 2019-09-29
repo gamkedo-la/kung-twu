@@ -88,6 +88,9 @@ function TitleScene() {
 		case ALIAS.HELP:
 			SceneState.setState(SCENE.HELP);
 			return true;
+		case ALIAS.ASSIST:
+			SceneState.setState(SCENE.ASSIST);
+			return true;
 		case ALIAS.CREDITS:
 			SceneState.setState(SCENE.CREDITS);
 			return true;
