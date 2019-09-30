@@ -66,8 +66,10 @@ function InfiniteWall(posY) {
 		let currentXPos = -TILE_WIDTH / 2;
 		for(let i = 0; i < tileCount; i++) {
 			let imageToUse = windowedWall;
-			if(i % 2 === 0) {
+			if(i % 3 === 0) {
 				imageToUse = tiledWall;
+			} else if(i % 3 === 1) {
+				imageToUse = tiledWallScroll;
 			}
 			TILES.push(new WallTile(imageToUse, currentXPos + (i * TILE_WIDTH), posY));
 		}

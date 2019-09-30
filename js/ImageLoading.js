@@ -71,6 +71,7 @@ const titleScreenBird = document.createElement("img");
 const selector = document.createElement("img");
 const uiScreenBg = document.createElement("img");
 const windowedWall = document.createElement("img");
+const tiledWallScroll = document.createElement("img");
 const tiledWall = document.createElement("img");
 const wallGradient = document.createElement("img");
 const jpFontImg = document.createElement("img");
@@ -155,6 +156,7 @@ function loadImages() {
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
 		{ imgName: windowedWall, theFile: "TiledBackgroundWindow.png" },
+		{ imgName: tiledWallScroll, theFile: "TiledBackgroundScroll.png" },
 		{ imgName: tiledWall, theFile: "TiledBackgroundWall.png" },
 		{ imgName: roofTileTop, theFile: "RoofBricks.png" },
 		{ imgName: roofTileBottom, theFile: "roof-tile-bottom.png" },
@@ -168,8 +170,8 @@ function loadImages() {
 		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
 		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
-        { imgName: wallGradient, theFile: "wall-gradient.png"},
-        { imgName: decorationSpritesheet, theFile: "decorations.png"},
+		{ imgName: wallGradient, theFile: "wall-gradient.png"},
+		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 
 		// player related
 		{ imgName: playerIdle, theFile: "Player_Idle_Condensed.png"},
