@@ -1,5 +1,15 @@
 //SoundandMusic
+/** 
+ * The audio format of the game, automatically set through the function setFormat.
+ * Can either be ".mp3" or ".ogg"
+ * @type string 
+ */
 let audioFormat;
+
+/**
+ * Global current music HTMLAudioElement <audio>
+ * @type HTMLAudioElement
+ */
 let musicSound = null;
 let pauseSound;
 let resumeSound;
@@ -24,6 +34,7 @@ const DRAGON2_BASE = 0.35;
 const WARRIOR_BASE = 0.35;
 let musicVolume;
 let effectsVolume;
+/** @type backgroundMusicClass */
 let currentBackgroundMusic;
 const VOLUME_INCREMENT = 0.05;
 
@@ -41,6 +52,7 @@ function configureGameAudio() {
 }
 
 function loadAudio() {
+	// Load global vars with SoundOverlapsClass objects
 	pauseSound = new SoundOverlapsClass(assetPath.Audio + "PauseSoundLow");
 	resumeSound = new SoundOverlapsClass(assetPath.Audio + "ResumeSoundLow");
 	playerJumpSound = new SoundOverlapsClass(assetPath.Audio + "PlayerJump");
@@ -60,8 +72,13 @@ function loadAudio() {
 	currentBackgroundMusic = new backgroundMusicClass();
 }
 
+/**
+ * Sets the audio format that will be used by the entire game
+ */
 function setFormat() {
-	const audio = new Audio();
+	// Create dummy HTMLAudioElement to test compatibility
+	const audio = new Audio(); 
+	// Set audio type depending on compatibility
 	if (audio.canPlayType("audio/mp3")) {
 		audioFormat = ".mp3";
 	} else {
@@ -81,7 +98,10 @@ function backgroundMusicClass() {
 		}
 		musicSound = new Audio(filenameWithPath + audioFormat);
 		musicSound.loop = true;
+		// Injects and sets a new variable baseVolume into the HTMLSoundElement (value between 0-1) 
+		// It is multiplied by global musicVolume var in this.setVolume to set the HTMLAudioElement volume value
 		musicSound.baseVolume = getBaseVolumeForTrack(filenameWithPath);
+		musicSound.play();
 		this.setVolume(musicVolume);
 	};
 
@@ -111,13 +131,83 @@ function backgroundMusicClass() {
 		} else {
 			musicSound.volume = Math.pow(musicSound.baseVolume * volume, 2);
 		}
-		
-		if(musicSound.volume === 0) {
-			musicSound.pause();
-		} else if (musicSound.paused) {
-			musicSound.play();
-		}
 	};
+
+	/**
+	 * Fades the track to 0 volume from track's current volume over a set period of time
+	 * Please read the fadeto function backgroundMusicClass for more details
+	 * @param {number} seconds Seconds it takes to fade out
+	 * @param {() => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
+	 */
+	this.fadeOut = function(seconds, onTargetReached) {
+		_fadeTo(0, seconds, onTargetReached);
+	};
+
+	/**
+	 * Fades the track's volume level from 0 to track's baseVolume (custom injected variable) over a set period of time
+	 * Please read the local fadeto function in backgroundMusicClass for more details
+	 * @param {number} seconds Seconds it takes to fade in
+	 * @param {() => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
+	 */
+	this.fadeIn = function(seconds, onTargetReached) {
+		musicSound.volume = 0;
+		_fadeTo(musicSound.baseVolume, seconds, onTargetReached);
+	};
+
+	/**
+	 * Simple fade to a target volume in a set amount of seconds. If you need to set a starting value, please do that before calling.
+	 * Returns the NodeJS.Timeout so you can stop it on your own with clearInterval if needed before it reaches its target.
+	 * Returns null if volume is already at the passed targetVol or no track could be found in the musicSound global var
+	 * @param {number} targetVol
+	 * @param {number} seconds 
+	 * @param {() => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
+	 * @returns NodeJS.Timeout | null
+	 */
+	this.fadeTo = _fadeTo;
+
+	/**
+	 * Simple fade to a target volume in a set amount of seconds. If you need to set a starting value, please do that before calling.
+	 * Returns the NodeJS.Timeout so you can stop it on your own with clearInterval if needed before it reaches its target.
+	 * Returns null if volume is already at the passed targetVol or no track could be found in the musicSound global var
+	 * @param {number} targetVol
+	 * @param {number} seconds 
+	 * @param {() => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
+	 * @returns NodeJS.Timeout | null
+	 */
+	function _fadeTo(targetVol, seconds, onTargetReached) {
+		/** @type HTMLAudioElement */
+		const track = musicSound;
+		if (!track) {
+			console.log("Warning! Tried to fade track, but track in musicSound global variable was " + (typeof musicSound === "object") ? "null" : "undefined" + "!")
+			return null;
+		}
+		/** @type number */
+		const startingVol = track.volume;
+
+		if (startingVol == targetVol) return null;
+		const diff = targetVol - startingVol;
+		const grain = 60; // in fps
+		const fadePerFrame = diff / grain / seconds;
+
+		// Set up a new interval that will fade the track
+		const fadeInterval = setInterval(() => {
+			const currentVol = track.volume;
+			// Check if we have arrived
+			if (currentVol > targetVol - Math.abs(fadePerFrame) && 
+			currentVol < targetVol + Math.abs(fadePerFrame) || currentVol == targetVol) 
+			{
+				track.volume = targetVol; // make sure volume is at target
+				clearInterval(fadeInterval); // clear this interval so it is no longer called
+				if (onTargetReached) {
+					onTargetReached();
+				}
+			} else {
+				// Increment/decrement volume at the fadePerFrame value
+				track.volume = track.volume + fadePerFrame;
+			}
+		}, 1000/grain);
+		return fadeInterval;
+	}
 
 	this.getCurrentTrack = function() {
 		return currentFileName;
@@ -159,11 +249,20 @@ function SoundOverlapsClass(filenameWithPath) {
 	};
 }
 
+/**
+ * Sets global audio muting
+ */
 function toggleMute() {
 	isMuted = !isMuted;
 	currentBackgroundMusic.setVolume(musicVolume);
 }
 
+/**
+ * Sets the global SFX volume level
+ * @param {number} amount The volume level to set where 0 is inaudible and 1 is full volume.
+ * The function clamps the value between 0 and 1 should it exceed these boundaries
+ * @returns void
+ */
 function setEffectsVolume(amount) {
 	effectsVolume = amount;
 	if(effectsVolume > 1.0) {
@@ -175,6 +274,12 @@ function setEffectsVolume(amount) {
 	localStorageHelper.setItem(localStorageKey.SFXVolume, effectsVolume);
 }
 
+/**
+ * Sets the global SFX volume level
+ * @param {number} amount The volume level to set where 0 is inaudible and 1 is full volume.
+ * The function clamps the value between 0 and 1 should it exceed these boundaries
+ * @returns void
+ */
 function setMusicVolume(amount){
 	musicVolume = amount;
 	if(musicVolume > 1.0) {
@@ -186,11 +291,17 @@ function setMusicVolume(amount){
 	localStorageHelper.setItem(localStorageKey.MusicVolume, musicVolume);
 }
 
+/**
+ * Relatively increases the level of both SFX and Music global volume levels by the VOLUME_INCREMENT constant
+ */
 function turnVolumeUp() {
 	setMusicVolume(musicVolume + VOLUME_INCREMENT);
 	setEffectsVolume(effectsVolume + VOLUME_INCREMENT);
 }
 
+/**
+ * Relatively decreases the level of both SFX and Music global volume levels by the VOLUME_INCREMENT constant
+ */
 function turnVolumeDown() {
 	setMusicVolume(musicVolume - VOLUME_INCREMENT);
 	setEffectsVolume(effectsVolume - VOLUME_INCREMENT);
