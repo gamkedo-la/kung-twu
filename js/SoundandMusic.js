@@ -134,6 +134,38 @@ function backgroundMusicClass() {
 	};
 
 	/**
+	 * Fades out current music track and starts a new one at indicated times.
+	 * Returns a NodeJS.Timeout of the new track starting for own handling if needed.
+	 * @param {string} newTrackFilePath Filepath + name of the new track to start
+	 * @param {number} fadeOutTime The time (in seconds) to fade the currently playing track
+	 * @param {number} startingTime The delay (in seconds) before the next track begins (lets current track fade a bit before starting new one)
+	 */
+	this.transitionTo = function(newTrackFilePath, fadeOutTime, startingTime) {
+		const grain = 1000/60; // ms
+		let timeCounter = 0; // tracks the time before starting new track
+		const startingTimeInMs = startingTime * 1000; // converts ahead of time so it doesn't need to every frame
+
+		this.fadeOut(fadeOutTime);
+		// The interval to check how much time has passed before starting new track loop
+		const interval = setInterval(() => {
+			timeCounter += grain;
+			if (timeCounter >= startingTimeInMs) {
+				clearInterval(interval);
+				this.loopSong(newTrackFilePath);
+			}
+		}, grain);
+		return interval;
+	}
+
+	/**
+	 * Helper to cancel a fade or transition before it finishes
+	 * @param {NodeJS.Timeout} intervalID The handle that came out of a fade or transition event in this class
+	 */
+	this.cancelFadeEvent = function(intervalID) {
+		clearInterval(intervalID);
+	}
+
+	/**
 	 * Fades the track to 0 volume from track's current volume over a set period of time
 	 * Please read the fadeto function backgroundMusicClass for more details
 	 * @param {number} seconds Seconds it takes to fade out
