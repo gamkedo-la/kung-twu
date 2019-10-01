@@ -13,6 +13,9 @@ function AssistScene() {
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
+	const sliders = [];
+
+	let sampleSlider = null;
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -26,6 +29,8 @@ function AssistScene() {
 			buttons.push(buildPlayButton(canvas.width - buttonPadding, menuY, buttonHeight, buttonTitlePadding));
 
 			updateButtonPositions();
+
+			sliders.push(new UISlider(100, 100));//, 10, 200, 0, 100, 50, 10, false, Color.Orange));
 		} else {
 			updateButtonPositions();
 			updateButtonTitles();
@@ -124,6 +129,13 @@ function AssistScene() {
 			wasClicked = button.respondIfClicked(mouseX, mouseY);
 			if(wasClicked) {break;}
 		}
+
+		for(let slider of sliders) {
+			if(slider.wasClicked(mouseX, mouseY)) {
+				slider.setValueForClick(mouseX, mouseY);
+				break;
+			}
+		}
 	};
 
 	const buildPlayButton = function(x, y, height, padding) {
@@ -172,6 +184,9 @@ function AssistScene() {
 		drawTitle();
         
 //		drawHelpScreenContents();
+		for(slider of sliders) {
+			slider.draw();
+		}
 
 		// render menu
 		printButtons();        
@@ -180,7 +195,7 @@ function AssistScene() {
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(titleScreenDecore, 0, 0);
-		canvasContext.drawImage(titleBlock, canvas.width / 2 - titleBlock.width / 2, canvas.height / 2 - 38);        
+//		canvasContext.drawImage(titleBlock, canvas.width / 2 - titleBlock.width / 2, canvas.height / 2 - 38);        
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);     
 	};
     
