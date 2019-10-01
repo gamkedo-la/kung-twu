@@ -29,7 +29,7 @@ let bossMusic2;
 let gameOverMusic;
 const GAMEPLAY_BASE = 1.0;
 const GAMEPLAY2_BASE = 0.75;
-const DRAGON_BASE = 0.35;
+const DRAGON_BASE = 1.25;
 const DRAGON2_BASE = 0.35;
 const WARRIOR_BASE = 0.35;
 let musicVolume;
@@ -48,7 +48,7 @@ function configureGameAudio() {
 	
 	if(isNaN(effectsVolume)) {
 		effectsVolume = 1;
-	}	
+	}
 }
 
 function loadAudio() {
@@ -91,13 +91,16 @@ function backgroundMusicClass() {
 	this.loopSong = function(filenameWithPath) {
 		currentFileName = filenameWithPath;
 		setFormat(); // calling this to ensure that audioFormat is set before needed
-
-		if (musicSound != null) {
-			musicSound.pause();
-			musicSound = null;
+		
+		// Fades out currently playing song in one second
+		if (musicSound) {
+			_fadeTo(0, 1, () => console.log("faded out song from loopstarting a new one"))
 		}
+		
+
 		musicSound = new Audio(filenameWithPath + audioFormat);
 		musicSound.loop = true;
+
 		// Injects and sets a new variable baseVolume into the HTMLSoundElement (value between 0-1) 
 		// It is multiplied by global musicVolume var in this.setVolume to set the HTMLAudioElement volume value
 		musicSound.baseVolume = getBaseVolumeForTrack(filenameWithPath);
@@ -105,12 +108,16 @@ function backgroundMusicClass() {
 		this.setVolume(musicVolume);
 	};
 
+	/**
+	 * Pauses the currently playing music
+	 */
 	this.pauseSound = function() {
 		if(musicSound != null) {
 			musicSound.pause();
 		}
 	};
 
+	
 	this.resumeSound = function() {
 		if(musicSound != null) {
 			musicSound.play();
@@ -144,8 +151,11 @@ function backgroundMusicClass() {
 		const grain = 1000/60; // ms
 		let timeCounter = 0; // tracks the time before starting new track
 		const startingTimeInMs = startingTime * 1000; // converts ahead of time so it doesn't need to every frame
-
-		this.fadeOut(fadeOutTime);
+		const currentTrack = musicSound; // get global current music track
+		if (currentTrack) {
+			this.fadeOut(fadeOutTime);
+		}
+		
 		// The interval to check how much time has passed before starting new track loop
 		const interval = setInterval(() => {
 			timeCounter += grain;
@@ -155,7 +165,7 @@ function backgroundMusicClass() {
 			}
 		}, grain);
 		return interval;
-	}
+	};
 
 	/**
 	 * Helper to cancel a fade or transition before it finishes
@@ -163,27 +173,33 @@ function backgroundMusicClass() {
 	 */
 	this.cancelFadeEvent = function(intervalID) {
 		clearInterval(intervalID);
-	}
+	};
 
 	/**
 	 * Fades the track to 0 volume from track's current volume over a set period of time
 	 * Please read the fadeto function backgroundMusicClass for more details
 	 * @param {number} seconds Seconds it takes to fade out
-	 * @param {() => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
+	 * @param {(track: HTMLAudioElement) => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
 	 */
 	this.fadeOut = function(seconds, onTargetReached) {
-		_fadeTo(0, seconds, onTargetReached);
+		return _fadeTo(0, seconds, (track) => {
+			track.pause();
+			if (onTargetReached) {
+				onTargetReached(track);
+			}
+		});
 	};
 
 	/**
-	 * Fades the track's volume level from 0 to track's baseVolume (custom injected variable) over a set period of time
+	 * Fades the track's volume level from where its at to track's baseVolume (custom injected variable) over a set period of time
 	 * Please read the local fadeto function in backgroundMusicClass for more details
 	 * @param {number} seconds Seconds it takes to fade in
-	 * @param {() => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
+	 * @param {(track: HTMLAudioElement) => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
 	 */
 	this.fadeIn = function(seconds, onTargetReached) {
-		musicSound.volume = 0;
-		_fadeTo(musicSound.baseVolume, seconds, onTargetReached);
+		// Following the forumula set in setVolume in this class. 
+		// Not sure why we're taking volume level to power of 2.
+		return _fadeTo(Math.pow(musicSound.baseVolume * musicVolume, 2), seconds, onTargetReached);
 	};
 
 	/**
@@ -192,7 +208,7 @@ function backgroundMusicClass() {
 	 * Returns null if volume is already at the passed targetVol or no track could be found in the musicSound global var
 	 * @param {number} targetVol
 	 * @param {number} seconds 
-	 * @param {() => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
+	 * @param {(track: HTMLAudioElement) => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
 	 * @returns NodeJS.Timeout | null
 	 */
 	this.fadeTo = _fadeTo;
@@ -203,7 +219,8 @@ function backgroundMusicClass() {
 	 * Returns null if volume is already at the passed targetVol or no track could be found in the musicSound global var
 	 * @param {number} targetVol
 	 * @param {number} seconds 
-	 * @param {() => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
+	 * @param {(track: HTMLAudioElement) => void} onTargetReached Optional callback to send when the fade has reached its target. Receives the HTMLAudioElement. 
+	 * Please make sure to bind 'this' ahead of time if necessary.
 	 * @returns NodeJS.Timeout | null
 	 */
 	function _fadeTo(targetVol, seconds, onTargetReached) {
@@ -231,7 +248,7 @@ function backgroundMusicClass() {
 				track.volume = targetVol; // make sure volume is at target
 				clearInterval(fadeInterval); // clear this interval so it is no longer called
 				if (onTargetReached) {
-					onTargetReached();
+					onTargetReached(track);
 				}
 			} else {
 				// Increment/decrement volume at the fadePerFrame value

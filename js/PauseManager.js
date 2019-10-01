@@ -11,19 +11,19 @@ function PauseManager() {
 			cause = pauseCause;
 		}
 
-		if(!gameIsPaused) {
+		if (!gameIsPaused) {
 			gameIsPaused = true;
 			pauseSound.play();
-			currentBackgroundMusic.pauseSound();
+			currentBackgroundMusic.fadeTo(.06, 1);
 		}
 	};
 
 	this.resumeGame = function(resumeCause) {
-		if(resumeCause === CAUSE.Keypress) {
+		if (resumeCause === CAUSE.Keypress) {
 			gameIsPaused = false;
 			cause = null;
 			resumeSound.play();
-			currentBackgroundMusic.resumeSound();
+			currentBackgroundMusic.fadeIn(1);
 		}
 	};
 }

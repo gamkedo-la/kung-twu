@@ -55,8 +55,10 @@ function GameScene() {
 			InitializeBackWall();
 			initializeColumns(levelData.columnImage, VERTICAL_OFFSET);
 		}
-
-		currentBackgroundMusic.loopSong(gameMusic);
+		if (currentBackgroundMusic.getCurrentTrack() !== gameMusic) {
+			currentBackgroundMusic.loopSong(gameMusic);
+		}
+		
 	};
 
 	this.transitionOut = function() {

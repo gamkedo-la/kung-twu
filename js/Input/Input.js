@@ -54,7 +54,11 @@ function InputManager(inputProcessor, gamepad) {
 	}
 	function keyPress(evt) {
 		evt.preventDefault();
-	
+		// Testing Music Transition, will delete soon!
+		if (evt.keyCode == KeyCode.O) {
+			currentBackgroundMusic.transitionTo(bossMusic1, 3, 1);
+		}
+			
 		if(_inputProcessor != null) {
 			_inputProcessor.addActiveKey(evt.keyCode);
 		}
@@ -74,7 +78,7 @@ function InputManager(inputProcessor, gamepad) {
 	
 	function mouseButtonPressed(evt) {
 		evt.preventDefault();
-		
+
 		let pressedButton;
 		if (evt.button === 0) {//left mouse button is button 0
 			pressedButton = MouseButton.LEFT;
@@ -91,7 +95,7 @@ function InputManager(inputProcessor, gamepad) {
 	
 	function mouseButtonReleased(evt) {
 		evt.preventDefault();
-	
+
 		let releasedButton;
 		if (evt.button === 0) {//left mouse button is button 0
 			releasedButton = MouseButton.LEFT;
