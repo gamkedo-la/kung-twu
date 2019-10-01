@@ -60,15 +60,18 @@ function UIProgressBar() {
 /**
  * Creates a horizontal slider, useful for menu UI
  */
-function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, intialValue = 50, steps = 10, isHorizontal = true, color = Color.Aqua) {
+function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, intialValue = 50, steps = 4, isHorizontal = true, color = Color.Aqua) {
 	const RADIUS = (isHorizontal? height : width);
 	const SPAN = highVal - lowVal;
 	const INCREMENT = SPAN / steps;
 
 	let path = null;
 	let indicatorPath = null;
+	let shadowPath = null;
+	let positivePath = null;
+	let negativePath = null;
 
-	let currentValue = intialValue;
+	let currentValue;
 	let hasNewValue = true;
 	this.hasFocus = false;
 
@@ -80,11 +83,36 @@ function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, int
 		} else if(newValue > highVal) {
 			currentValue = highVal;
 		} else {
-			currentValue = newValue;
+			let lowerValue = lowVal;
+			let higherValue = lowVal + INCREMENT;
+
+			while(higherValue < newValue) {
+				lowerValue = higherValue;
+				higherValue += INCREMENT;
+			}
+
+			const lowerDelta = newValue - lowerValue;
+			const higherDelta = higherValue - newValue;
+
+			let valueToUse;
+			if(lowerDelta <= higherDelta) {
+				valueToUse = lowerValue;
+			} else {
+				valueToUse = higherValue;
+			}
+
+			if(valueToUse < lowVal) {
+				currentValue = lowVal;
+			} else if(valueToUse > highVal) {
+				currentValue = highVal;
+			} else {
+				currentValue = valueToUse;
+			}
 		}
 
 		hasNewValue = true;
 	};
+	this.setValue(intialValue);
 
 	this.setValueForClick = function(pointerX, pointerY) {
 		if(isHorizontal) {
@@ -136,42 +164,93 @@ function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, int
 		canvasContext.stroke(path);
 
 		canvasContext.fillStyle = color;
+		canvasContext.fill(positivePath);
+
+		canvasContext.fillStyle = Color.Grey;
+		canvasContext.fill(negativePath);
+
+		canvasContext.fillStyle = Color.Black;
+		canvasContext.fill(shadowPath);
+		canvasContext.fillStyle = color;
 		canvasContext.fill(indicatorPath);
 
 		canvasContext.restore();	
 	};
 
 	const buildPath = function() {
-//		canvasContext.save();
-
-//		canvasContext.beginPath();
-		path = new Path2D();
-		const indicatorCenter = {x:0, y:0};
+		let indicatorCenter;
 
 		if(isHorizontal) {
-			path.moveTo(x + RADIUS, y);
-			path.lineTo(x + width - RADIUS, y);
-			path.arc(x + width - RADIUS, y + height / 2, height / 2, -Math.PI / 2, Math.PI / 2, false);
-			path.lineTo(x + RADIUS, y + height);
-			path.arc(x + RADIUS, y + height / 2, height / 2, Math.PI / 2, -Math.PI / 2, false);
-
-			indicatorCenter.x = x + (width * (currentValue - lowVal) / SPAN);
-			indicatorCenter.y = y + height / 2;
+			buildHorizontalOutline();
+			indicatorCenter = setHorizontalIndicatorCenter();
+			buildHorizontalPositive(indicatorCenter);
+			buildHorizontalNegative(indicatorCenter);
 		} else {
-			path.moveTo(x, y + RADIUS);
-			path.arc(x + width / 2, y + RADIUS, width / 2, -Math.PI, 0, false);
-			path.lineTo(x + width, y + height - RADIUS);
-			path.arc(x + width / 2, y + height - RADIUS, width / 2, 0, -Math.PI, false);
-
-			indicatorCenter.x = x + width / 2;
-			indicatorCenter.y = y + (height * (currentValue - lowVal) / SPAN);
+			buildVerticalOutline();
+			indicatorCenter = setVerticalIndicatorCenter();
 		}
 
+		indicatorPath = buildIndicatorPath(indicatorCenter);
+		indicatorCenter.x += 2;
+		shadowPath = buildIndicatorPath(indicatorCenter);
+	};
+
+	const buildHorizontalOutline = function() {
+		path = new Path2D();
+		path.moveTo(x + RADIUS, y);
+		path.lineTo(x + width - RADIUS, y);
+		path.arc(x + width - RADIUS, y + height / 2, height / 2, -Math.PI / 2, Math.PI / 2, false);
+		path.lineTo(x + RADIUS, y + height);
+		path.arc(x + RADIUS, y + height / 2, height / 2, Math.PI / 2, -Math.PI / 2, false);
 		path.closePath();
+	};
 
-		indicatorPath = new Path2D();
-		indicatorPath.arc(indicatorCenter.x, indicatorCenter.y, RADIUS, 0, 2 * Math.PI);
+	const setHorizontalIndicatorCenter = function() {
+		const centerX = x + RADIUS / 2 + ((width - RADIUS) * (currentValue - lowVal) / SPAN);
+		const centerY = y + height / 2;
+		return {x:centerX, y:centerY};
+	};
 
-//		canvasContext.restore();
+	const buildHorizontalPositive = function(indicatorCenter) {
+		positivePath = new Path2D();
+		positivePath.moveTo(x + RADIUS, y);
+		positivePath.lineTo(indicatorCenter.x, y);
+		positivePath.lineTo(indicatorCenter.x, y + height);
+		positivePath.lineTo(x + RADIUS, y + height);
+		positivePath.arc(x + RADIUS, y + height / 2, height / 2, Math.PI / 2, -Math.PI / 2, false);
+		positivePath.closePath();
+	};
+
+	const buildHorizontalNegative = function(indicatorCenter) {
+		negativePath = new Path2D();
+		negativePath.moveTo(indicatorCenter.x, y);
+		negativePath.lineTo(x + width - RADIUS, y);
+		negativePath.arc(x + width - RADIUS, y + height / 2, height / 2, -Math.PI / 2, Math.PI / 2, false);
+		negativePath.lineTo(indicatorCenter.x, y + height);
+		negativePath.closePath();
+	};
+
+
+	const buildVerticalOutline = function() {
+		path = new Path2D();
+		path.moveTo(x, y + RADIUS);
+		path.arc(x + width / 2, y + RADIUS, width / 2, -Math.PI, 0, false);
+		path.lineTo(x + width, y + height - RADIUS);
+		path.arc(x + width / 2, y + height - RADIUS, width / 2, 0, -Math.PI, false);
+		path.closePath();
+	};
+
+	const setVerticalIndicatorCenter = function() {
+		const centerX = x + width / 2;
+		const centerY = y + (height * (currentValue - lowVal) / SPAN);
+		return {x:centerX, y:centerY};
+	};
+
+	const buildIndicatorPath = function(center) {
+		const thisPath = new Path2D();
+		thisPath.arc(center.x, center.y, RADIUS, 0, 2 * Math.PI);
+		thisPath.closePath();
+
+		return thisPath;
 	};
 }

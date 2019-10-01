@@ -21,7 +21,9 @@ const Color = {
 	Orange: "orange",
 	Tan:"tan",
 	Brown:"brown",
-	SaddleBrown:"SaddleBrown"
+	SaddleBrown:"SaddleBrown",
+	Grey:"grey",
+	DarkGrey:"darkgrey"
 };
 
 //--------------Player-----------------//
