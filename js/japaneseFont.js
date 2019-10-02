@@ -1,29 +1,31 @@
-function JapaneseFont(jpFont, charSize, context) {
+function fontSystem(jpFont, charSize, context) {
 	let letters = [];
 	let lettersStartPos = [];
-
-	this.testDraw = function(){
-		this.printTextAt("0@P GHIKLMNOPQRSTUVZ", {x:100, y:200});
-		//context.drawImage(jpFont, 100, 200);
-	}
+	
 	this.getString = function(text,position, alignment, drawSize){
 		for(let i = 0; i < text.length; i++) {
 			let letter = text.charAt(i);
-			let letterPos = getCharPos(i, position, alignment, text.length, drawSize);
-			letters.push(letters(letter, frameSize, drawSize, {x:letterPos.x, y:letterPos.y + currentScrollPosY}, context));
+			let letterPos = getLetterPos(i, position, alignment, text.length);
+			letters.push(letter, charSize, {x:position.x, y:position.y}, context);
 			lettersStartPos.push(letterPos);
 		}
 	}
 
-	const getLetterPos = function(index, stringPos, alignment, charCount, drawSize) {
-	console.log("function not defined");
+	this.testDraw = function(){
+		text = getLocalizedStringForKey.ja;
+		this.printTextAt(text, {x:100, y:200});
+	}
+
+	const getLetterPos = function(index, stringPos, alignment, charCount) {
+		alignCentered => position.x -= (Math.floor(drawWidth * text.length / 2));
+		alignRight => position.x += (drawWidth * text.length);
+		alignLeft => position.x -= (drawWidth * text.length);
+
 	};
 
 	this.printTextAt = function(text, position) {
-
 		for(let i = 0; i < text.length; i++) {	//Go through alll characters
 			const thisFrame = this.findLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
-			console.log(position.x);
 			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, position.x +  (i * charSize.width), position.y, charSize.width, charSize.height);
 		}
 	};
@@ -186,7 +188,7 @@ function JapaneseFont(jpFont, charSize, context) {
 			case "ぁ": 
 				return {x:15 * charSize.width, y:3 * charSize.width};
 			case "あ": 
-				return {x:0, y:3 * charSize.width};
+				return {x:0, y:4 * charSize.width};
 			case "ぃ":
 				return {x:charSize.width, y:4 * charSize.width};
 			case "い":
