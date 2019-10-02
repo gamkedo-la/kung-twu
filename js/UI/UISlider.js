@@ -60,14 +60,14 @@ function UIProgressBar() {
 /**
  * Creates a horizontal slider, useful for menu UI
  */
-function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, intialValue = 50, steps = 4, isHorizontal = true, color = Color.Aqua) {
+function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, intialValue = 50, steps = 10, isHorizontal = true, color = Color.Aqua) {
 	const RADIUS = (isHorizontal? height : width);
 	const SPAN = highVal - lowVal;
 	const INCREMENT = SPAN / steps;
 
 	let path = null;
 	let indicatorPath = null;
-	let shadowPath = null;
+//	let shadowPath = null;
 	let positivePath = null;
 	let negativePath = null;
 
@@ -160,7 +160,8 @@ function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, int
 		}
 
 		canvasContext.save();
-		canvasContext.strokeStyle = color;
+		canvasContext.strokeStyle = Color.Black;
+		canvasContext.lineWidth = 2;
 		canvasContext.stroke(path);
 
 		canvasContext.fillStyle = color;
@@ -169,10 +170,13 @@ function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, int
 		canvasContext.fillStyle = Color.Grey;
 		canvasContext.fill(negativePath);
 
-		canvasContext.fillStyle = Color.Black;
-		canvasContext.fill(shadowPath);
+//		canvasContext.fillStyle = Color.Black;
+//		canvasContext.fill(shadowPath);
 		canvasContext.fillStyle = color;
 		canvasContext.fill(indicatorPath);
+		canvasContext.strokeStyle = Color.Black;
+		canvasContext.lineWidth = 1;
+		canvasContext.stroke(indicatorPath);
 
 		canvasContext.restore();	
 	};
@@ -188,11 +192,13 @@ function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, int
 		} else {
 			buildVerticalOutline();
 			indicatorCenter = setVerticalIndicatorCenter();
+			buildVerticalPositive(indicatorCenter);
+			buildVerticalNegative(indicatorCenter);
 		}
 
 		indicatorPath = buildIndicatorPath(indicatorCenter);
-		indicatorCenter.x += 2;
-		shadowPath = buildIndicatorPath(indicatorCenter);
+//		indicatorCenter.x += 2;
+//		shadowPath = buildIndicatorPath(indicatorCenter);
 	};
 
 	const buildHorizontalOutline = function() {
@@ -242,7 +248,7 @@ function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, int
 
 	const setVerticalIndicatorCenter = function() {
 		const centerX = x + width / 2;
-		const centerY = y + (height * (currentValue - lowVal) / SPAN);
+		const centerY = y + RADIUS / 2 + ((height - RADIUS) * (currentValue - lowVal) / SPAN);
 		return {x:centerX, y:centerY};
 	};
 
@@ -253,4 +259,23 @@ function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, int
 
 		return thisPath;
 	};
+
+	const buildVerticalPositive = function(indicatorCenter) {
+		positivePath = new Path2D();
+		positivePath.moveTo(x, indicatorCenter.y);
+		positivePath.lineTo(x + width, indicatorCenter.y);
+		positivePath.lineTo(x + width, y + height - RADIUS);
+		positivePath.arc(x + width / 2, y + height - RADIUS, width / 2, 0, -Math.PI, false);
+		positivePath.closePath();
+	};
+
+	const buildVerticalNegative = function(indicatorCenter) {
+		negativePath = new Path2D();
+		negativePath.moveTo(x, y + RADIUS);
+		negativePath.arc(x + width / 2, y + RADIUS, width / 2, -Math.PI, 0, false);
+		negativePath.lineTo(x + width, indicatorCenter.y);
+		negativePath.lineTo(x, indicatorCenter.y);
+		negativePath.closePath();
+	};
+
 }

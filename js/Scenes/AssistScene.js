@@ -13,9 +13,10 @@ function AssistScene() {
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
-	const sliders = [];
-
-	let sampleSlider = null;
+	const slider = {
+		maxPlayerHealth:null,
+		startingBelt:null
+	};
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -30,7 +31,8 @@ function AssistScene() {
 
 			updateButtonPositions();
 
-			sliders.push(new UISlider(100, 100));//, 10, 200, 0, 100, 50, 10, false, Color.Orange));
+			slider.maxPlayerHealth = new UISlider(50, 150, 200, 10, 1, 1000, 100, 999, true, Color.Orange);
+			slider.startingBelt = new UISlider(50, 250, 200, 10, 0, 5, 0, 6, true, Color.White);
 		} else {
 			updateButtonPositions();
 			updateButtonTitles();
@@ -130,9 +132,10 @@ function AssistScene() {
 			if(wasClicked) {break;}
 		}
 
-		for(let slider of sliders) {
-			if(slider.wasClicked(mouseX, mouseY)) {
-				slider.setValueForClick(mouseX, mouseY);
+		const sliders = Object.values(slider);
+		for(let aSlider of sliders) {
+			if(aSlider.wasClicked(mouseX, mouseY)) {
+				aSlider.setValueForClick(mouseX, mouseY);
 				break;
 			}
 		}
@@ -184,8 +187,9 @@ function AssistScene() {
 		drawTitle();
         
 //		drawHelpScreenContents();
-		for(slider of sliders) {
-			slider.draw();
+		const sliders = Object.values(slider);
+		for(aSlider of sliders) {
+			aSlider.draw();
 		}
 
 		// render menu
