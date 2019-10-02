@@ -31,8 +31,7 @@ function AssistScene() {
 
 			updateButtonPositions();
 
-			slider.maxPlayerHealth = new UISlider(50, 150, 200, 10, 1, 1000, 100, 999, true, Color.Orange);
-			slider.startingBelt = new UISlider(50, 250, 200, 10, 0, 5, 0, 6, true, Color.White);
+			buildSlider();
 		} else {
 			updateButtonPositions();
 			updateButtonTitles();
@@ -69,6 +68,22 @@ function AssistScene() {
 		}
         
 		return false;
+	};
+
+	const buildSlider = function() {
+		let maxHealth = localStorageHelper.getInt(localStorageKey.PlayerMaxHealth);
+		if((maxHealth === undefined) || (maxHealth === null) || (isNaN(maxHealth))) {
+			maxHealth = 100;
+			localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, maxHealth);
+		}
+		slider.maxPlayerHealth = new UISlider(50, 150, 200, 10, "Max Health", 1, "1", 200, "200", maxHealth, 20, true, Color.Orange);
+		
+		let startBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
+		if((startBelt === undefined) || (startBelt === null) || (isNaN(startBelt))) {
+			startBelt = 0;
+			localStorageHelper.setInt(localStorageKey.StartingBelt, startBelt);
+		}
+		slider.startingBelt = new UISlider(50, 250, 200, 10, "Starting Belt", 0, "White", 5, "Black", startBelt, 5, true, Color.White);
 	};
 
 	const update = function() {

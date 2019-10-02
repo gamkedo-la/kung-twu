@@ -290,6 +290,9 @@ function TitleScene() {
 
 		drawTitle();
 
+		//TODO: This is just a sample of how to make the custom font work
+		JPFont.printTextAt("こうかおんのおんりょう", {x:400, y:400});
+
 		for(let bird of birds) {
 			if(bird.scale >= 1.0) {
 				bird.draw();

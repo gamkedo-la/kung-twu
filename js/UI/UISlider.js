@@ -60,10 +60,11 @@ function UIProgressBar() {
 /**
  * Creates a horizontal slider, useful for menu UI
  */
-function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, intialValue = 50, steps = 10, isHorizontal = true, color = Color.Aqua) {
+function UISlider(x, y, width = 150, height = 10, label = "", lowVal = 0, lowLabel = "", highVal = 100, highLabel = "", intialValue = 50, steps = 10, isHorizontal = true, color = Color.Aqua) {
 	const RADIUS = (isHorizontal? height : width);
 	const SPAN = highVal - lowVal;
 	const INCREMENT = SPAN / steps;
+	const LABEL_PADDING = 10;
 
 	let path = null;
 	let indicatorPath = null;
@@ -177,6 +178,15 @@ function UISlider(x, y, width = 150, height = 10, lowVal = 0, highVal = 100, int
 		canvasContext.strokeStyle = Color.Black;
 		canvasContext.lineWidth = 1;
 		canvasContext.stroke(indicatorPath);
+
+		colorText(label, x + width / 2, y - LABEL_PADDING, Color.White, Fonts.ButtonTitle, TextAlignment.Center, 1, true);
+		if(isHorizontal) {
+			colorText(lowLabel, x, y + 2 * height + LABEL_PADDING, Color.White, Fonts.ButtonTitle, TextAlignment.Left, 1, true);
+			colorText(highLabel, x + width, y + 2 * height + LABEL_PADDING, Color.White, Fonts.ButtonTitle, TextAlignment.Right, 1, true);
+		} else {
+			colorText(lowLabel, x + width / 2, y + height + LABEL_PADDING, Color.White, Fonts.ButtonTitle, TextAlignment.Center, 1, true);
+			colorText(highLabel, x + width / 2, y - LABEL_PADDING, Color.White, Fonts.ButtonTitle, TextAlignment.Center, 1, true);
+		}
 
 		canvasContext.restore();	
 	};

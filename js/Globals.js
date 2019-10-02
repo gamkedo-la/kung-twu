@@ -58,7 +58,9 @@ const localStorageKey = {
 	CrouchKeys: "kungTwu-Crouch",
 	KickKeys: "kungTwu-Kick",
 	PunchKeys: "kungTwu-Punch",
-	HighScore:"kungTwu-HighScore"
+	HighScore:"kungTwu-HighScore",
+	PlayerMaxHealth:"kungTwu-PlayerMaxHealth",
+	StartingBelt:"kungTwu-StartingBelt"
 };
 
 //----------State Management----------//
@@ -89,6 +91,20 @@ let firstLoad;
 let timer;
 const TOTAL_LEVELS = 5;
 let currentLevel = 1;
+
+const BELT = {
+	White:0,
+	Yellow:1,
+	Tan:2,
+	Brown:3,
+	Red:4,
+	Black:5
+};
+
+const ASSIST_DEFAULT = {
+	MaxHealth:100,
+	StartBelt:BELT.White
+};
 
 //------------Asset Management----------//
 const assetPath = {
