@@ -3,8 +3,7 @@ function JapaneseFont(jpFont, charSize, context) {
 	let lettersStartPos = [];
 
 	this.testDraw = function(){
-		drawRect(50, 150, 200, 200, 'red' );
-		this.printTextAt("てA5", {x:100, y:200});
+		this.printTextAt("0@P GHIKLMNOPQRSTUVZ", {x:100, y:200});
 		//context.drawImage(jpFont, 100, 200);
 	}
 	this.getString = function(text,position, alignment, drawSize){
@@ -22,17 +21,50 @@ function JapaneseFont(jpFont, charSize, context) {
 
 	this.printTextAt = function(text, position) {
 
-		for(let i = 0; i < text.length; i++) {
-			const thisFrame = this.findLetterCorner(text.charAt(i));
-			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, position.x + (i * charSize.width), position.y, charSize.width, charSize.height);
+		for(let i = 0; i < text.length; i++) {	//Go through alll characters
+			const thisFrame = this.findLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
+			console.log(position.x);
+			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, position.x +  (i * charSize.width), position.y, charSize.width, charSize.height);
 		}
 	};
 
-
+//Address of each character on the sheet
 	this.findLetterCorner = function(character) {
 		switch(character) {
+			case " ":
+				return {x:0, y:0};
+			case "!":
+				return {x:charSize.width, y:0};
+			case "\"":
+				return {x:2 * charSize.width, y:0};
+			case "#":
+				return {x:3 * charSize.width, y:0};
+			case "$":
+				return {x:4 * charSize.width, y:0};
+			case "%":
+				return {x:5 * charSize.width, y:0};
+			case "&":
+				return {x:6 * charSize.width, y:0};
+			case "'":
+				return {x:7 * charSize.width, y:0};
+			case "(":
+				return {x:8 * charSize.width, y:0};
+			case ")":
+				return {x:9 * charSize.width, y:0};
+			case "*":
+				return {x:10 * charSize.width, y:0};
+			case "+":
+				return {x:11 * charSize.width, y:0};
+			case ",":
+				return {x:12 * charSize.width, y:0};
+			case "ー":
+				return {x:13 * charSize.width, y:0};
+			case ".":
+				return {x:14 * charSize.width, y:0};
+			case "/":
+				return {x:15 * charSize.width, y:0};
 			case "0":
-				return {x:0, y:charSize.height};
+				return {x:charSize.width, y:charSize.height};
 			case "1":
 				return {x:charSize.width, y:charSize.height};
 			case "2":
@@ -55,12 +87,10 @@ function JapaneseFont(jpFont, charSize, context) {
 				return {x:10 * charSize.width, y:charSize.height};
 			case ";":
 				return {x:11 * charSize.width, y:charSize.height};
-			case "(":
 			case ">":
 				return {x:12 * charSize.width, y:charSize.height};
 			case "=":
 				return {x:13 * charSize.width, y:charSize.height};
-			case ")":
 			case ">":
 				return {x:14 * charSize.width, y:charSize.height};
 			case "?":
@@ -147,11 +177,11 @@ function JapaneseFont(jpFont, charSize, context) {
 				return {x:10 * charSize.width, y:3 * charSize.height};
 			case "[":
 				return {x:11 * charSize.width, y:3 * charSize.height};
-			case "/":
+			case "\\":
 				return {x:12 * charSize.width, y:3 * charSize.height};
 			case "]":
 				return {x:13 * charSize.width, y:3 * charSize.height};
-			case "ー":
+			case "_":
 				return {x:14 * charSize.width, y:3 * charSize.width};
 			case "ぁ": 
 				return {x:15 * charSize.width, y:3 * charSize.width};
@@ -380,7 +410,7 @@ function JapaneseFont(jpFont, charSize, context) {
 			case "ゾ":
 				return {x:15 * charSize.width, y:10 *charSize.height};
 			case "タ":
-				return {x:0 * charSize.width, y:11 *charSize.height};
+				return {x:0, y:11 *charSize.height};
 			case "ダ":
 				return {x:charSize.width, y:11 *charSize.height};
 			case "チ":
@@ -412,7 +442,7 @@ function JapaneseFont(jpFont, charSize, context) {
 			case "ノ":
 				return {x:15 * charSize.width, y:11 * charSize.height};
 			case "ハ":
-				return {x:0 * charSize.width, y:12 * charSize.height};
+				return {x:0, y:12 * charSize.height};
 			case "バ":
 				return {x:charSize.width, y:12 * charSize.height};
 			case "パ":
@@ -476,7 +506,7 @@ function JapaneseFont(jpFont, charSize, context) {
 			case "ヮ":
 				return {x:15 * charSize.width, y:13 * charSize.height};
 			case "ワ":
-				return {x:0 * charSize.width, y:14 * charSize.height};
+				return {x:0, y:14 * charSize.height};
 			case "ヰ":
 				return {x:charSize.width, y:14 * charSize.height};
 			case "ヱ":
