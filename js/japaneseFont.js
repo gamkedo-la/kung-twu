@@ -89,13 +89,14 @@ function fontSystem(jpFont, charSize, context) {
 			return {x:10 * charSize.width, y:charSize.height};
 		case ";":
 			return {x:11 * charSize.width, y:charSize.height};
-		case ">":
+		case "<":
+		case "＜":
 			return {x:12 * charSize.width, y:charSize.height};
 		case "=":
 			return {x:13 * charSize.width, y:charSize.height};
-			//TODO: This is a duplicate ">" is it supposed to be something else?
-		//case ">":
-			//return {x:14 * charSize.width, y:charSize.height};
+		case ">":
+		case "＞":
+			return {x:14 * charSize.width, y:charSize.height};
 		case "?":
 			return {x:15 * charSize.width, y:charSize.height};
 		case "@":
@@ -194,11 +195,10 @@ function fontSystem(jpFont, charSize, context) {
 			return {x:charSize.width, y:4 * charSize.width};
 		case "い":
 			return {x:2 * charSize.width, y:4 * charSize.width};
-		case "う":
+		case "ぅ":
 			return {x:3 * charSize.width, y:4 * charSize.width};
-			//TODO: This is a duplicate "う" is it supposed to be something else?
-		//case "う":
-			//return {x:4 * charSize.width, y:4 * charSize.width};
+		case "う":
+			return {x:4 * charSize.width, y:4 * charSize.width};
 		case "ぇ":
 			return {x:5 * charSize.width, y:4 * charSize.width};
 		case "え":
@@ -241,9 +241,8 @@ function fontSystem(jpFont, charSize, context) {
 			return {x:8 * charSize.width,y:5 *charSize.height};
 		case "せ":
 			return {x:9 * charSize.width, y:5 *charSize.height};
-			//TODO: This is a duplicate "ざ" is it supposed to be something else?
-		//case "ざ":
-			//return {x:10 * charSize.width, y:5 *charSize.height};
+		case "ぜ":
+			return {x:10 * charSize.width, y:5 *charSize.height};
 		case "そ":
 			return {x:11 * charSize.width, y:5 *charSize.height};
 		case "ぞ":
@@ -284,9 +283,8 @@ function fontSystem(jpFont, charSize, context) {
 			return {x:13 * charSize.width, y:6 * charSize.height};
 		case "ば":
 			return {x:14 * charSize.width, y:6 * charSize.height};
-			//TODO: This is a duplicate "ば" is it supposed to be something else?
-		//case "ば":
-			//return {x:15 * charSize.width, y:6 * charSize.height};
+		case "ぱ":
+			return {x:15 * charSize.width, y:6 * charSize.height};
 		case "ひ":
 			return {x:0 * charSize.width, y:7 * charSize.height};
 		case "び":
@@ -347,9 +345,8 @@ function fontSystem(jpFont, charSize, context) {
 			return {x:12 * charSize.width, y:8 * charSize.height};
 		case "わ":
 			return {x:13 * charSize.width, y:8 * charSize.height};
-			//TODO: This is a duplicate "み" is it supposed to be something else?
-		//case "み":
-			//return {x:14 * charSize.width, y:8 * charSize.height};
+		case "ゐ":
+			return {x:14 * charSize.width, y:8 * charSize.height};
 		case "ゑ":
 			return {x:15 * charSize.width, y:8 * charSize.height};
 		case "を":
