@@ -276,21 +276,24 @@ function GameScene() {
 		camera.draw();
 		const cameraX = camera.getPosition().x;
 		const roofTop = roof.getTop();
-		drawBackground(cameraX, roofTop);
-		wall.draw();
-		subfloor.draw();
-		floor.draw();
 
+        drawBackground(cameraX, roofTop);
+        wall.draw();
+        
+        // FIXME scrolling is broken - they move even if set to stay still,
+        // there's an open canvas transform from a previous operation?
+        // if (wallDecorations) wallDecorations.draw(cameraX/5000);
+        
+        subfloor.draw();
+		floor.draw();
 		for (let i = 0; i < enemies.length; i++) {
 			enemies[i].draw();
 		}
 
-		player.draw();
-
-		if (decorations) decorations.draw(cameraX/800);
-
+        player.draw();
 		if (wooshFX) wooshFX.draw();
 
+        if (foregroundDecorations) foregroundDecorations.draw(cameraX/800);
 		columnManager.draw(cameraX);
 		roof.draw();
 

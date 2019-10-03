@@ -27,10 +27,13 @@ window.onload = function() {
 	subTitleTextX = canvas.width / 2;
 	opacity = 0;
 
-	pauseManager = new PauseManager();
+    pauseManager = new PauseManager();
+    
     //wooshFX = new WooshFXManager(wooshPunchPic);
-    decorations = new DecorationManager(decorationSpritesheet);
-    decorations.parseTiledData(); // FIXME - parse tiled level data later on
+    foregroundDecorations = new DecorationManager(decorationSpritesheet);
+    foregroundDecorations.generate();
+    wallDecorations = new DecorationManager(decorationSpritesheet);
+    wallDecorations.generate(20,-4000,500,360,380,7,7);
 
 	/** Instantiate input-related objects */
 	keyMapper = new KeyMapper();
