@@ -34,7 +34,6 @@ let keyMapper = null;
 /** @type InputProcessor */
 let inputProcessor = null;
 let animationManager = null;
-const MAX_PLAYER_HEALTH = 100;
 
 //-------------Camera------------------//
 const deadZoneHalfWidth = 25;

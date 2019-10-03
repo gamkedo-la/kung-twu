@@ -21,7 +21,7 @@ function Player(config) {
 	let velocity = { x: 0, y: 0 };
 
 	this.type = ENTITY_TYPE.Player;
-	this.health = MAX_PLAYER_HEALTH;
+	this.health = ASSIST_DEFAULT.MaxHealth;
 	this.pointsToShow = {points:null, position:{x:0, y:0}};
 
 	if (config != undefined) {
@@ -30,6 +30,10 @@ function Player(config) {
 		}
 		if (config.y != undefined) {
 			position.y = config.y;
+		}
+
+		if (config.health != undefined) {
+			this.health = config.health;
 		}
 	}
 

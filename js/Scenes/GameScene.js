@@ -20,7 +20,7 @@ function GameScene() {
 	let didTransitionOut = false;
 	let defeatedEnemyCount = 0;
 	let bossHasBeenSpawned = false;
-	let bossHealth = MAX_PLAYER_HEALTH;
+	let bossHealth = ASSIST_DEFAULT.MaxHealth;
 	const displayPoints = [];
 
 	this.transitionIn = function() {
@@ -337,7 +337,7 @@ function GameScene() {
 			TextAlignment.Left);
 
 		drawRect(screenLeft + 180, 60, player.health, 22, Color.Orange);
-		drawBorder(screenLeft + 180, 60, MAX_PLAYER_HEALTH, 22, Color.Orange);
+		drawBorder(screenLeft + 180, 60, ASSIST_DEFAULT.MaxHealth, 22, Color.Orange);
 
 		colorText(
 			getLocalizedStringForKey(STRINGS_KEY.Time),
@@ -372,8 +372,8 @@ function GameScene() {
 			Fonts.Subtitle,
 			TextAlignment.Right);
 	
-		drawRect(screenRight - 340, 60, bossHealth * (MAX_PLAYER_HEALTH / levelData.bossHealth), 22, levelData.bossMeterColor);
-		drawBorder(screenRight  - 340, 60, MAX_PLAYER_HEALTH, 22, levelData.bossMeterColor);
+		drawRect(screenRight - 340, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / levelData.bossHealth), 22, levelData.bossMeterColor);
+		drawBorder(screenRight  - 340, 60, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
 	};
 
 	const stringsKeyForLevel = function(level) {
@@ -417,9 +417,16 @@ function GameScene() {
 
 	const initializePlayerIfReqd = function() {
 		if (player === null) {
+			let health = localStorageHelper.getInt(localStorageKey.PlayerMaxHealth);
+			if((health === undefined) || (health === null) || (isNaN(health))) {
+				health = ASSIST_DEFAULT.MaxHealth;
+				localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, health);
+			}
+
 			const config = {
 				x: (2 * canvas.width) / 3,
-				y: (3 * canvas.height) / 5
+				y: (3 * canvas.height) / 5,
+				health:health
 			};
 
 			player = new Player(config);

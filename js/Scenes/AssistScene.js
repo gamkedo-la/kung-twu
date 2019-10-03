@@ -73,9 +73,11 @@ function AssistScene() {
 	const buildSlider = function() {
 		let maxHealth = localStorageHelper.getInt(localStorageKey.PlayerMaxHealth);
 		if((maxHealth === undefined) || (maxHealth === null) || (isNaN(maxHealth))) {
-			maxHealth = 100;
+			maxHealth = ASSIST_DEFAULT.MaxHealth;
 			localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, maxHealth);
 		}
+		console.log(`Max Health Key: ${maxHealth}`);
+		//		slider.maxPlayerHealth = new UISlider(50, 150, 10, 200, "Max Health", 1, "1", 200, "200", maxHealth, 20, false, Color.Orange);
 		slider.maxPlayerHealth = new UISlider(50, 150, 200, 10, "Max Health", 1, "1", 200, "200", maxHealth, 20, true, Color.Orange);
 		
 		let startBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
@@ -151,8 +153,20 @@ function AssistScene() {
 		for(let aSlider of sliders) {
 			if(aSlider.wasClicked(mouseX, mouseY)) {
 				aSlider.setValueForClick(mouseX, mouseY);
+				updatePlayerPrefs(aSlider);
 				break;
 			}
+		}
+	};
+
+	const updatePlayerPrefs = function(aSlider) {
+		switch(aSlider) {
+		case slider.maxPlayerHealth:
+			localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, aSlider.getValue());
+			break;
+		case slider.startingBelt:
+			localStorageHelper.setInt(localStorageKey.StartingBelt, aSlider.getValue());
+			break;
 		}
 	};
 
@@ -201,9 +215,9 @@ function AssistScene() {
         
 		drawTitle();
         
-//		drawHelpScreenContents();
+		//		drawHelpScreenContents();
 		const sliders = Object.values(slider);
-		for(aSlider of sliders) {
+		for(let aSlider of sliders) {
 			aSlider.draw();
 		}
 
@@ -214,7 +228,7 @@ function AssistScene() {
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(titleScreenDecore, 0, 0);
-//		canvasContext.drawImage(titleBlock, canvas.width / 2 - titleBlock.width / 2, canvas.height / 2 - 38);        
+		//		canvasContext.drawImage(titleBlock, canvas.width / 2 - titleBlock.width / 2, canvas.height / 2 - 38);        
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);     
 	};
     
