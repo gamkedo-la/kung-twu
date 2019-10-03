@@ -1,6 +1,7 @@
 function fontSystem(jpFont, charSize, context) {
 	let letters = [];
 	let lettersStartPos = [];
+	let buttons = [];
 	
 	this.getString = function(text,position, alignment, drawSize){
 		for(let i = 0; i < text.length; i++) {
@@ -11,9 +12,13 @@ function fontSystem(jpFont, charSize, context) {
 		}
 	};
 
-	this.testDraw = function(){
-		text = getLocalizedStringForKey.ja;
-		this.printTextAt(text, {x:100, y:200});
+	this.draw = function(){
+		text = getLocalizedStringForKey(STRINGS_KEY.Subtitle);
+		this.printTextAt(text, {x:100, y:310});
+		for (let i = 0; i < buttons.length; i++) {
+			buttons[i].txt = getLocalizedStringForKey(mainMenu.buttons[i].txtKey);
+			this.printTextAt([i].text, position);
+		}
 	};
 
 	const getLetterPos = function(index, stringPos, alignment, charCount) {

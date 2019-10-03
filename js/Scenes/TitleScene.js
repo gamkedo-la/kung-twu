@@ -291,7 +291,7 @@ function TitleScene() {
 		drawTitle();
 
 		//TODO: This is just a sample of how to make the custom font work
-		JPFont.printTextAt("こうかおんのおんりょう", {x:400, y:400});
+		//JPFont.printTextAt("こうかおんのおんりょう", {x:400, y:400});
 
 		for(let bird of birds) {
 			if(bird.scale >= 1.0) {
@@ -314,9 +314,7 @@ function TitleScene() {
 		const titleXPos = (canvas.width - titleImage.width) / 2;
 		canvasContext.drawImage(titleImage, titleXPos, canvas.height / 10);
 		colorText(getLocalizedStringForKey(STRINGS_KEY.Subtitle), canvas.width / 2, canvas.height / 3 + 40, Color.White, Fonts.Subtitle, TextAlignment.Center);
-		if (currentLanguage == "Japanese"){
-			//JPFont.testDraw(); //Uncoment when when working on Font support
-		}
+			JPFont.draw(); //Uncoment when working on Font support
 	};
         
 	return this;
