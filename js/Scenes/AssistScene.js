@@ -176,7 +176,7 @@ function AssistScene() {
 			break;
 		case slider.startingLevel:
 			currentLevel = 1 + aSlider.getValue();//levels start at 1
-			localStorageHelper.setInt(localStorageKey.StartingLevel, aSlider.getValue());
+			localStorageHelper.setInt(localStorageKey.StartingLevel, aSlider.getValue() + 1);
 			break;
 		}
 	};

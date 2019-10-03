@@ -86,6 +86,7 @@ function GameScene() {
 		bossHasBeenSpawned = false;
 		columnManager = null;
 		levelData = dataForCurrentLevel();
+		console.log(`Level Data: ${levelData}, current Level: ${currentLevel}`);
 		bossHealth = levelData.bossHealth;
 		player.reset(levelData.playerStart);
 		collisionManager = null;
@@ -281,23 +282,23 @@ function GameScene() {
 		const cameraX = camera.getPosition().x;
 		const roofTop = roof.getTop();
 
-        drawBackground(cameraX, roofTop);
-        wall.draw();
+		drawBackground(cameraX, roofTop);
+		wall.draw();
         
-        // FIXME scrolling is broken - they move even if set to stay still,
-        // there's an open canvas transform from a previous operation?
-        // if (wallDecorations) wallDecorations.draw(cameraX/5000);
+		// FIXME scrolling is broken - they move even if set to stay still,
+		// there's an open canvas transform from a previous operation?
+		// if (wallDecorations) wallDecorations.draw(cameraX/5000);
         
-        subfloor.draw();
+		subfloor.draw();
 		floor.draw();
 		for (let i = 0; i < enemies.length; i++) {
 			enemies[i].draw();
 		}
 
-        player.draw();
+		player.draw();
 		if (wooshFX) wooshFX.draw();
 
-        if (foregroundDecorations) foregroundDecorations.draw(cameraX/800);
+		if (foregroundDecorations) foregroundDecorations.draw(cameraX/800);
 		columnManager.draw(cameraX);
 		roof.draw();
 
@@ -663,6 +664,7 @@ const Level3Data = {
 const Level4Data = {
 	level: 4,
 	maxEnemies: 5,
+	totalEnemies:5,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1175 * Math.random());
 		const rnd2 = Math.ceil(1175 * Math.random());

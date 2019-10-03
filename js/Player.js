@@ -140,12 +140,24 @@ function Player(config) {
 	this.reset = function(startPos) {
 		velocity = { x: 0, y: 0 };
 
-		this.health = 100;
+		this.health = ASSIST_DEFAULT.MaxHealth;
+		let startBelt = ASSIST_DEFAULT.StartBelt;
+		if(config != undefined) {
+			if (config.health != undefined) {
+				this.health = config.health;
+			} 
+	
+			if (config.belt != undefined) {
+				startBelt = config.belt;
+			}
+		}
 
 		position.x = startPos.x;
 		position.y = startPos.y;
 
 		stateManager.reset();
+		stateManager.setNewBelt(startBelt);
+
 		this.collisionBody = hitBoxManager.bodyColliderForState(
 			stateManager.getCurrentState(),
 			position,

@@ -84,6 +84,10 @@ const lvl2Column = document.createElement("img");
 const lvl3Column = document.createElement("img");
 const lvl4Column = document.createElement("img");
 const yellowPresentation = document.createElement("img");
+const tanPresentation = document.createElement("img");
+const brownPresentation = document.createElement("img");
+const redPresentation = document.createElement("img");
+const blackPresentation = document.createElement("img");
 const basicEnemyIdle = document.createElement("img");
 const basicEnemyWalk = document.createElement("img");
 const basicEnemyKick = document.createElement("img");
@@ -178,6 +182,10 @@ function loadImages() {
 		{ imgName: lvl3Column, theFile: "column_03.png" },
 		{ imgName: lvl4Column, theFile: "column_04.png" },
 		{ imgName: yellowPresentation, theFile: "YellowBeltPresentation.png" },
+		{ imgName: tanPresentation, theFile: "TanBeltPresentation.png" },
+		{ imgName: brownPresentation, theFile: "BrownBeltPresentation.png" },
+		{ imgName: redPresentation, theFile: "RedBeltPresentation.png" },
+		{ imgName: blackPresentation, theFile: "BlackBeltPresentation.png" },
 		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
 		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
