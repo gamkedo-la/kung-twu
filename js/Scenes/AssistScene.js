@@ -76,7 +76,7 @@ function AssistScene() {
 			maxHealth = ASSIST_DEFAULT.MaxHealth;
 			localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, maxHealth);
 		}
-		console.log(`Max Health Key: ${maxHealth}`);
+
 		//		slider.maxPlayerHealth = new UISlider(50, 150, 10, 200, "Max Health", 1, "1", 200, "200", maxHealth, 20, false, Color.Orange);
 		slider.maxPlayerHealth = new UISlider(50, 150, 200, 10, "Max Health", 1, "1", 200, "200", maxHealth, 20, true, Color.Orange);
 		

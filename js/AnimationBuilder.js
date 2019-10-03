@@ -549,7 +549,7 @@ function AnimationBuilder() {
 	};
 
 	const playerYellowBeltData = {
-		/*		idle:{
+			idle:{
 			name:STATE.Idle,
 			image:playerIdleYellow,
 			frames:[0, 1],
@@ -605,11 +605,11 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}*/
+		knockback:{}
 	};
 
 	const playerTanBeltData = {
-		/*		idle:{
+			idle:{
 			name:STATE.Idle,
 			image:playerIdleTan,
 			frames:[0, 1],
@@ -665,11 +665,11 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}*/
+		knockback:{}
 	};
 
 	const playerBrownBeltData = {
-		/*		idle:{
+			idle:{
 			name:STATE.Idle,
 			image:playerIdleBrown,
 			frames:[0, 1],
@@ -725,11 +725,11 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}*/
+		knockback:{}
 	};
 
 	const playerRedBeltData = {
-		/*		idle:{
+			idle:{
 			name:STATE.Idle,
 			image:playerIdleRed,
 			frames:[0, 1],
@@ -785,11 +785,11 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}*/
+		knockback:{}
 	};
 
 	const playerBlackBeltData = {
-		/*		idle:{
+			idle:{
 			name:STATE.Idle,
 			image:playerIdleBlack,
 			frames:[0, 1],
@@ -845,6 +845,6 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}*/
+		knockback:{}
 	};
 }
