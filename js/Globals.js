@@ -59,7 +59,8 @@ const localStorageKey = {
 	PunchKeys: "kungTwu-Punch",
 	HighScore:"kungTwu-HighScore",
 	PlayerMaxHealth:"kungTwu-PlayerMaxHealth",
-	StartingBelt:"kungTwu-StartingBelt"
+	StartingBelt:"kungTwu-StartingBelt",
+	StartingLevel:"kungTwu-StartingLevel"
 };
 
 //----------State Management----------//
@@ -102,7 +103,8 @@ const BELT = {
 
 const ASSIST_DEFAULT = {
 	MaxHealth:100,
-	StartBelt:BELT.White
+	StartBelt:BELT.White,
+	StartLevel:1
 };
 
 //------------Asset Management----------//

@@ -81,6 +81,14 @@ function Player(config) {
 		return damageForState() + stateManager.getCurrentBelt() * DELTA_DAMAGE;
 	};
 
+	this.getMaxHealth = function() {
+		if ((config != undefined) && (config.health != undefined)) {
+			return config.health;
+		}
+
+		return ASSIST_DEFAULT.MaxHealth;
+	};
+
 	const damageForState = function() {
 		const aState = stateManager.getCurrentState();
 		switch (aState) {

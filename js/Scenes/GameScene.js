@@ -67,7 +67,11 @@ function GameScene() {
 	};
 
 	this.quit = function() {
-		currentLevel = 1;
+		currentLevel = localStorageHelper.getInt(localStorageKey.StartingLevel);
+		if((currentLevel === undefined) || (currentLevel === null) || (isNaN(currentLevel))) {
+			currentLevel = 1;
+		}
+
 		this.reset();
 		player.quit();
 	};
@@ -336,7 +340,8 @@ function GameScene() {
 			Fonts.Subtitle,
 			TextAlignment.Left);
 
-		drawRect(screenLeft + 180, 60, player.health, 22, Color.Orange);
+		const playerHealthWidth = ASSIST_DEFAULT.MaxHealth * player.health / player.getMaxHealth();
+		drawRect(screenLeft + 180, 60, playerHealthWidth, 22, Color.Orange);
 		drawBorder(screenLeft + 180, 60, ASSIST_DEFAULT.MaxHealth, 22, Color.Orange);
 
 		colorText(

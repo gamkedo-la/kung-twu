@@ -31,7 +31,7 @@ function AssistScene() {
 
 			updateButtonPositions();
 
-			buildSlider();
+			buildSliders();
 		} else {
 			updateButtonPositions();
 			updateButtonTitles();
@@ -70,7 +70,7 @@ function AssistScene() {
 		return false;
 	};
 
-	const buildSlider = function() {
+	const buildSliders = function() {
 		let maxHealth = localStorageHelper.getInt(localStorageKey.PlayerMaxHealth);
 		if((maxHealth === undefined) || (maxHealth === null) || (isNaN(maxHealth))) {
 			maxHealth = ASSIST_DEFAULT.MaxHealth;
@@ -82,10 +82,17 @@ function AssistScene() {
 		
 		let startBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
 		if((startBelt === undefined) || (startBelt === null) || (isNaN(startBelt))) {
-			startBelt = 0;
+			startBelt = ASSIST_DEFAULT.StartBelt;
 			localStorageHelper.setInt(localStorageKey.StartingBelt, startBelt);
 		}
-		slider.startingBelt = new UISlider(50, 250, 200, 10, "Starting Belt", 0, "White", 5, "Black", startBelt, 5, true, Color.White);
+		slider.startingBelt = new UISlider(50, 250, 200, 10, "Start Belt", 0, "White", 5, "Black", startBelt, 5, true, Color.White);
+
+		let startLevel = localStorageHelper.getInt(localStorageKey.StartingLevel);
+		if((startLevel === undefined) || (startLevel === null) || (isNaN(startLevel))) {
+			startLevel = ASSIST_DEFAULT.StartLevel;
+			localStorageHelper.setInt(localStorageKey.StartingLevel, startLevel);
+		}
+		slider.startingLevel = new UISlider(50, 350, 200, 10, "Start Level", 0, "Tiger", 4, "Dragon", startLevel, 4, true, Color.Aqua);
 	};
 
 	const update = function() {
@@ -166,6 +173,10 @@ function AssistScene() {
 			break;
 		case slider.startingBelt:
 			localStorageHelper.setInt(localStorageKey.StartingBelt, aSlider.getValue());
+			break;
+		case slider.startingLevel:
+			currentLevel = 1 + aSlider.getValue();//levels start at 1
+			localStorageHelper.setInt(localStorageKey.StartingLevel, aSlider.getValue());
 			break;
 		}
 	};
