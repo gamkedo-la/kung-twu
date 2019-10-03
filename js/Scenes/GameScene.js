@@ -423,10 +423,17 @@ function GameScene() {
 				localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, health);
 			}
 
+			let belt = localStorageHelper.getInt(localStorageKey.StartingBelt);
+			if((belt === undefined) || (belt === null) || (isNaN(belt))) {
+				belt = ASSIST_DEFAULT.StartBelt;
+				localStorageHelper.setInt(localStorageKey.StartingBelt, belt);
+			}
+
 			const config = {
 				x: (2 * canvas.width) / 3,
 				y: (3 * canvas.height) / 5,
-				health:health
+				health:health,
+				belt:belt
 			};
 
 			player = new Player(config);

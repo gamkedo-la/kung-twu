@@ -104,11 +104,21 @@ const redEnemyIdle = document.createElement("img");
 const redEnemyWalk = document.createElement("img");
 const redEnemyKick = document.createElement("img");
 const redEnemyPunch = document.createElement("img");
-const playerIdle = document.createElement("img");
+const playerIdleWhite = document.createElement("img");
+const playerIdleYellow = document.createElement("img");
+const playerIdleTan = document.createElement("img");
+const playerIdleBrown = document.createElement("img");
+const playerIdleRed = document.createElement("img");
+const playerIdleBlack = document.createElement("img");
 const playerWalkFwd = document.createElement("img");
 const playerWalkBack = document.createElement("img");
 const playerPunch = document.createElement("img");
-const playerKick = document.createElement("img");
+const playerKickWhite = document.createElement("img");
+const playerKickYellow = document.createElement("img");
+const playerKickTan = document.createElement("img");
+const playerKickBrown = document.createElement("img");
+const playerKickRed = document.createElement("img");
+const playerKickBlack = document.createElement("img");
 const wooshPunchPic = document.createElement("img");
 const wooshKickPic = document.createElement("img");
 const wooshHurtPic = document.createElement("img");
@@ -174,11 +184,21 @@ function loadImages() {
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 
 		// player related
-		{ imgName: playerIdle, theFile: "Player_Idle_Condensed.png"},
+		{ imgName: playerIdleWhite, theFile: "Player_Idle_White.png"},
+		{ imgName: playerIdleYellow, theFile: "Player_Idle_Yellow.png"},
+		{ imgName: playerIdleTan, theFile: "Player_Idle_Tan.png"},
+		{ imgName: playerIdleBrown, theFile: "Player_Idle_Brown.png"},
+		{ imgName: playerIdleRed, theFile: "Player_Idle_Red.png"},
+		{ imgName: playerIdleBlack, theFile: "Player_Idle_Black.png"},
 		{ imgName: playerWalkFwd, theFile: "Player_Walk-Forward_Condensed.png"},
 		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
 		{ imgName: playerPunch, theFile: "Player_Punch_Condensed.png"},
-		{ imgName: playerKick, theFile: "Player_Kick_Condensed.png"},
+		{ imgName: playerKickWhite, theFile: "Player_Kick_White.png"},
+		{ imgName: playerKickYellow, theFile: "Player_Kick_Yellow.png"},
+		{ imgName: playerKickTan, theFile: "Player_Kick_Tan.png"},
+		{ imgName: playerKickBrown, theFile: "Player_Kick_Brown.png"},
+		{ imgName: playerKickRed, theFile: "Player_Kick_Red.png"},
+		{ imgName: playerKickBlack, theFile: "Player_Kick_Black.png"},
 		{ imgName: wooshPunchPic, theFile: "wooshPunch.png"},
 		{ imgName: wooshKickPic, theFile: "wooshKick.png"},
 		{ imgName: wooshHurtPic, theFile: "wooshHurt.png"},

@@ -24,6 +24,7 @@ function Player(config) {
 	this.health = ASSIST_DEFAULT.MaxHealth;
 	this.pointsToShow = {points:null, position:{x:0, y:0}};
 
+	let startBelt = BELT.White;
 	if (config != undefined) {
 		if (config.x != undefined) {
 			position.x = config.x;
@@ -35,10 +36,14 @@ function Player(config) {
 		if (config.health != undefined) {
 			this.health = config.health;
 		}
+
+		if (config.belt != undefined) {
+			startBelt = config.belt;
+		}
 	}
 
-	const animations = animationManager.getAnimationsFor(RIVAL_TYPE.player, BELT.White, SCALE);
-	stateManager = new StateManager(animations, BELT.White, AITYPE.Player);
+	const animations = animationManager.getAnimationsFor(RIVAL_TYPE.player, startBelt, SCALE);
+	stateManager = new StateManager(animations, startBelt, AITYPE.Player);
 
 	this.collisionBody = hitBoxManager.bodyColliderForState(
 		stateManager.getCurrentState(),
