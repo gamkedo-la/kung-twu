@@ -1,27 +1,27 @@
 function fontSystem(jpFont, charSize, context) {
 	let letters = [];
 	let lettersStartPos = [];
-	let buttons = [];
 	
 	this.getString = function(text,position, alignment, drawSize){
 		for(let i = 0; i < text.length; i++) {
 			let letter = text.charAt(i);
-			let letterPos = getLetterPos(i, position, alignment, text.length);
+			let letterPos = alignment(i, position, alignment, text.length);
 			letters.push(letter, charSize, {x:position.x, y:position.y}, context);
 			lettersStartPos.push(letterPos);
+			console.log(letters)
 		}
 	};
 
 	this.draw = function(){
 		text = getLocalizedStringForKey(STRINGS_KEY.Subtitle);
 		this.printTextAt(text, {x:100, y:310});
-		for (let i = 0; i < buttons.length; i++) {
-			buttons[i].txt = getLocalizedStringForKey(mainMenu.buttons[i].txtKey);
-			this.printTextAt([i].text, position);
+		//console.log(userStrings[currentLanguage]);
+		for (let i = 0; i < userStrings[currentLanguage]; i++) {
+			this.printTextAt(userStrings[i], position);
 		}
 	};
 
-	const getLetterPos = function(index, stringPos, alignment, charCount) {
+	const alignment = function(index, stringPos, alignment, charCount) {
 		alignCentered => position.x -= (Math.floor(drawWidth * text.length / 2));
 		alignRight => position.x += (drawWidth * text.length);
 		alignLeft => position.x -= (drawWidth * text.length);

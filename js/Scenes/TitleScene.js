@@ -314,7 +314,7 @@ function TitleScene() {
 		const titleXPos = (canvas.width - titleImage.width) / 2;
 		canvasContext.drawImage(titleImage, titleXPos, canvas.height / 10);
 		colorText(getLocalizedStringForKey(STRINGS_KEY.Subtitle), canvas.width / 2, canvas.height / 3 + 40, Color.White, Fonts.Subtitle, TextAlignment.Center);
-			JPFont.draw(); //Uncoment when working on Font support
+		JPFont.draw();
 	};
         
 	return this;
