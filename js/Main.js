@@ -27,10 +27,13 @@ window.onload = function() {
 	subTitleTextX = canvas.width / 2;
 	opacity = 0;
 
-	pauseManager = new PauseManager();
-    //wooshFX = new WooshFXManager(wooshPunchPic);
-    decorations = new DecorationManager(decorationSpritesheet);
-    decorations.parseTiledData(); // FIXME - parse tiled level data later on
+    pauseManager = new PauseManager();
+    
+    wooshFX = new WooshFXManager(wooshPunchPic);
+    foregroundDecorations = new DecorationManager(decorationSpritesheet);
+    foregroundDecorations.generate();
+    wallDecorations = new DecorationManager(decorationSpritesheet);
+    wallDecorations.generate(20,-4000,500,360,380,7,7);
 
 	/** Instantiate input-related objects */
 	keyMapper = new KeyMapper();
@@ -56,8 +59,8 @@ function configureGameField() {
 
 function loadingDoneSoStartGame() {
 	if(finishedLoading) {
-		let jpCharSize = {width: 10 , height: 20};
-		JPFont = new JapaneseFont(jpFontImg, jpCharSize, canvasContext);
+		let jpCharSize = {width: 32 , height: 32};
+		JPFont = new fontSystem(jpFontImg, jpCharSize, canvasContext);
 		timer = new Chronogram();
 		SceneState.setState(SCENE.TITLE);
 		requestAnimationFrame(update);

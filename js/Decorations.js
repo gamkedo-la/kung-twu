@@ -4,9 +4,14 @@ function DecorationManager(spritesheet) {
     var SPR_W = 100; // sprite dimensions in px
     var all = []; // pos and sprite num of each
 
-    this.parseTiledData = function(data) { // TODO parse tiled data
-        for (let n=0; n<40; n++) { // random decorations for now
-            all.push({x:Math.floor(Math.random()*8000)-4000,y:632,i:Math.floor(Math.random()*SPR_NUM)});
+    this.generate = function(howmany=50,minx=-4000,maxx=500,miny=628,maxy=636,minspr=0,maxspr=7) { 
+        for (let n=0; n<howmany; n++) {
+            all.push({ 
+                x:Math.floor(minx+Math.random()*(maxx-minx)),
+                y:Math.floor(miny+Math.random()*(maxy-miny)),
+                i:Math.floor(minspr+Math.random()*(maxspr-minspr)),
+                //i:Math.floor(Math.random()*SPR_NUM)
+            });
         }
     };
 

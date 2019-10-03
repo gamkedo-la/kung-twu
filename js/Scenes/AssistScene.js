@@ -13,9 +13,10 @@ function AssistScene() {
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
-	const sliders = [];
-
-	let sampleSlider = null;
+	const slider = {
+		maxPlayerHealth:null,
+		startingBelt:null
+	};
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -30,7 +31,7 @@ function AssistScene() {
 
 			updateButtonPositions();
 
-			sliders.push(new UISlider(100, 100));//, 10, 200, 0, 100, 50, 10, false, Color.Orange));
+			buildSliders();
 		} else {
 			updateButtonPositions();
 			updateButtonTitles();
@@ -67,6 +68,31 @@ function AssistScene() {
 		}
         
 		return false;
+	};
+
+	const buildSliders = function() {
+		let maxHealth = localStorageHelper.getInt(localStorageKey.PlayerMaxHealth);
+		if((maxHealth === undefined) || (maxHealth === null) || (isNaN(maxHealth))) {
+			maxHealth = ASSIST_DEFAULT.MaxHealth;
+			localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, maxHealth);
+		}
+
+		//		slider.maxPlayerHealth = new UISlider(50, 150, 10, 200, "Max Health", 1, "1", 200, "200", maxHealth, 20, false, Color.Orange);
+		slider.maxPlayerHealth = new UISlider(50, 150, 200, 10, "Max Health", 1, "1", 200, "200", maxHealth, 20, true, Color.Orange);
+		
+		let startBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
+		if((startBelt === undefined) || (startBelt === null) || (isNaN(startBelt))) {
+			startBelt = ASSIST_DEFAULT.StartBelt;
+			localStorageHelper.setInt(localStorageKey.StartingBelt, startBelt);
+		}
+		slider.startingBelt = new UISlider(50, 250, 200, 10, "Start Belt", 0, "White", 5, "Black", startBelt, 5, true, Color.White);
+
+		let startLevel = localStorageHelper.getInt(localStorageKey.StartingLevel);
+		if((startLevel === undefined) || (startLevel === null) || (isNaN(startLevel))) {
+			startLevel = ASSIST_DEFAULT.StartLevel;
+			localStorageHelper.setInt(localStorageKey.StartingLevel, startLevel);
+		}
+		slider.startingLevel = new UISlider(50, 350, 200, 10, "Start Level", 0, "Tiger", 4, "Dragon", startLevel, 4, true, Color.Aqua);
 	};
 
 	const update = function() {
@@ -130,11 +156,28 @@ function AssistScene() {
 			if(wasClicked) {break;}
 		}
 
-		for(let slider of sliders) {
-			if(slider.wasClicked(mouseX, mouseY)) {
-				slider.setValueForClick(mouseX, mouseY);
+		const sliders = Object.values(slider);
+		for(let aSlider of sliders) {
+			if(aSlider.wasClicked(mouseX, mouseY)) {
+				aSlider.setValueForClick(mouseX, mouseY);
+				updatePlayerPrefs(aSlider);
 				break;
 			}
+		}
+	};
+
+	const updatePlayerPrefs = function(aSlider) {
+		switch(aSlider) {
+		case slider.maxPlayerHealth:
+			localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, aSlider.getValue());
+			break;
+		case slider.startingBelt:
+			localStorageHelper.setInt(localStorageKey.StartingBelt, aSlider.getValue());
+			break;
+		case slider.startingLevel:
+			currentLevel = 1 + aSlider.getValue();//levels start at 1
+			localStorageHelper.setInt(localStorageKey.StartingLevel, aSlider.getValue() + 1);
+			break;
 		}
 	};
 
@@ -183,9 +226,10 @@ function AssistScene() {
         
 		drawTitle();
         
-//		drawHelpScreenContents();
-		for(slider of sliders) {
-			slider.draw();
+		//		drawHelpScreenContents();
+		const sliders = Object.values(slider);
+		for(let aSlider of sliders) {
+			aSlider.draw();
 		}
 
 		// render menu
@@ -195,7 +239,7 @@ function AssistScene() {
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(titleScreenDecore, 0, 0);
-//		canvasContext.drawImage(titleBlock, canvas.width / 2 - titleBlock.width / 2, canvas.height / 2 - 38);        
+		//		canvasContext.drawImage(titleBlock, canvas.width / 2 - titleBlock.width / 2, canvas.height / 2 - 38);        
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);     
 	};
     

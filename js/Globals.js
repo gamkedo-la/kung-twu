@@ -34,7 +34,6 @@ let keyMapper = null;
 /** @type InputProcessor */
 let inputProcessor = null;
 let animationManager = null;
-const MAX_PLAYER_HEALTH = 100;
 
 //-------------Camera------------------//
 const deadZoneHalfWidth = 25;
@@ -58,13 +57,17 @@ const localStorageKey = {
 	CrouchKeys: "kungTwu-Crouch",
 	KickKeys: "kungTwu-Kick",
 	PunchKeys: "kungTwu-Punch",
-	HighScore:"kungTwu-HighScore"
+	HighScore:"kungTwu-HighScore",
+	PlayerMaxHealth:"kungTwu-PlayerMaxHealth",
+	StartingBelt:"kungTwu-StartingBelt",
+	StartingLevel:"kungTwu-StartingLevel"
 };
 
 //----------State Management----------//
 let pauseManager;
 let wooshFX;
-let decorations;
+let foregroundDecorations;
+let wallDecorations;
 
 const CAUSE = {
 	Keypress: "keypress",
@@ -89,6 +92,21 @@ let firstLoad;
 let timer;
 const TOTAL_LEVELS = 5;
 let currentLevel = 1;
+
+const BELT = {
+	White:0,
+	Yellow:1,
+	Tan:2,
+	Brown:3,
+	Red:4,
+	Black:5
+};
+
+const ASSIST_DEFAULT = {
+	MaxHealth:100,
+	StartBelt:BELT.White,
+	StartLevel:1
+};
 
 //------------Asset Management----------//
 const assetPath = {

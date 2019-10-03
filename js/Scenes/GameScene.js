@@ -20,7 +20,7 @@ function GameScene() {
 	let didTransitionOut = false;
 	let defeatedEnemyCount = 0;
 	let bossHasBeenSpawned = false;
-	let bossHealth = MAX_PLAYER_HEALTH;
+	let bossHealth = ASSIST_DEFAULT.MaxHealth;
 	const displayPoints = [];
 
 	this.transitionIn = function() {
@@ -67,7 +67,11 @@ function GameScene() {
 	};
 
 	this.quit = function() {
-		currentLevel = 1;
+		currentLevel = localStorageHelper.getInt(localStorageKey.StartingLevel);
+		if((currentLevel === undefined) || (currentLevel === null) || (isNaN(currentLevel))) {
+			currentLevel = 1;
+		}
+
 		this.reset();
 		player.quit();
 	};
@@ -82,6 +86,7 @@ function GameScene() {
 		bossHasBeenSpawned = false;
 		columnManager = null;
 		levelData = dataForCurrentLevel();
+		console.log(`Level Data: ${levelData}, current Level: ${currentLevel}`);
 		bossHealth = levelData.bossHealth;
 		player.reset(levelData.playerStart);
 		collisionManager = null;
@@ -276,21 +281,24 @@ function GameScene() {
 		camera.draw();
 		const cameraX = camera.getPosition().x;
 		const roofTop = roof.getTop();
+
 		drawBackground(cameraX, roofTop);
 		wall.draw();
+        
+		// FIXME scrolling is broken - they move even if set to stay still,
+		// there's an open canvas transform from a previous operation?
+		// if (wallDecorations) wallDecorations.draw(cameraX/5000);
+        
 		subfloor.draw();
 		floor.draw();
-
 		for (let i = 0; i < enemies.length; i++) {
 			enemies[i].draw();
 		}
 
 		player.draw();
-
-		if (decorations) decorations.draw(cameraX/800);
-
 		if (wooshFX) wooshFX.draw();
 
+		if (foregroundDecorations) foregroundDecorations.draw(cameraX/800);
 		columnManager.draw(cameraX);
 		roof.draw();
 
@@ -336,8 +344,9 @@ function GameScene() {
 			Fonts.Subtitle,
 			TextAlignment.Left);
 
-		drawRect(screenLeft + 180, 60, player.health, 22, Color.Orange);
-		drawBorder(screenLeft + 180, 60, MAX_PLAYER_HEALTH, 22, Color.Orange);
+		const playerHealthWidth = ASSIST_DEFAULT.MaxHealth * player.health / player.getMaxHealth();
+		drawRect(screenLeft + 180, 60, playerHealthWidth, 22, Color.Orange);
+		drawBorder(screenLeft + 180, 60, ASSIST_DEFAULT.MaxHealth, 22, Color.Orange);
 
 		colorText(
 			getLocalizedStringForKey(STRINGS_KEY.Time),
@@ -372,8 +381,8 @@ function GameScene() {
 			Fonts.Subtitle,
 			TextAlignment.Right);
 	
-		drawRect(screenRight - 340, 60, bossHealth * (MAX_PLAYER_HEALTH / levelData.bossHealth), 22, levelData.bossMeterColor);
-		drawBorder(screenRight  - 340, 60, MAX_PLAYER_HEALTH, 22, levelData.bossMeterColor);
+		drawRect(screenRight - 340, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / levelData.bossHealth), 22, levelData.bossMeterColor);
+		drawBorder(screenRight  - 340, 60, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
 	};
 
 	const stringsKeyForLevel = function(level) {
@@ -417,9 +426,23 @@ function GameScene() {
 
 	const initializePlayerIfReqd = function() {
 		if (player === null) {
+			let health = localStorageHelper.getInt(localStorageKey.PlayerMaxHealth);
+			if((health === undefined) || (health === null) || (isNaN(health))) {
+				health = ASSIST_DEFAULT.MaxHealth;
+				localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, health);
+			}
+
+			let belt = localStorageHelper.getInt(localStorageKey.StartingBelt);
+			if((belt === undefined) || (belt === null) || (isNaN(belt))) {
+				belt = ASSIST_DEFAULT.StartBelt;
+				localStorageHelper.setInt(localStorageKey.StartingBelt, belt);
+			}
+
 			const config = {
 				x: (2 * canvas.width) / 3,
-				y: (3 * canvas.height) / 5
+				y: (3 * canvas.height) / 5,
+				health:health,
+				belt:belt
 			};
 
 			player = new Player(config);
@@ -641,6 +664,7 @@ const Level3Data = {
 const Level4Data = {
 	level: 4,
 	maxEnemies: 5,
+	totalEnemies:5,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1175 * Math.random());
 		const rnd2 = Math.ceil(1175 * Math.random());

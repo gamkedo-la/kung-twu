@@ -84,6 +84,10 @@ const lvl2Column = document.createElement("img");
 const lvl3Column = document.createElement("img");
 const lvl4Column = document.createElement("img");
 const yellowPresentation = document.createElement("img");
+const tanPresentation = document.createElement("img");
+const brownPresentation = document.createElement("img");
+const redPresentation = document.createElement("img");
+const blackPresentation = document.createElement("img");
 const basicEnemyIdle = document.createElement("img");
 const basicEnemyWalk = document.createElement("img");
 const basicEnemyKick = document.createElement("img");
@@ -104,13 +108,24 @@ const redEnemyIdle = document.createElement("img");
 const redEnemyWalk = document.createElement("img");
 const redEnemyKick = document.createElement("img");
 const redEnemyPunch = document.createElement("img");
-const playerIdle = document.createElement("img");
+const playerIdleWhite = document.createElement("img");
+const playerIdleYellow = document.createElement("img");
+const playerIdleTan = document.createElement("img");
+const playerIdleBrown = document.createElement("img");
+const playerIdleRed = document.createElement("img");
+const playerIdleBlack = document.createElement("img");
 const playerWalkFwd = document.createElement("img");
 const playerWalkBack = document.createElement("img");
 const playerPunch = document.createElement("img");
-const playerKick = document.createElement("img");
+const playerKickWhite = document.createElement("img");
+const playerKickYellow = document.createElement("img");
+const playerKickTan = document.createElement("img");
+const playerKickBrown = document.createElement("img");
+const playerKickRed = document.createElement("img");
+const playerKickBlack = document.createElement("img");
 const wooshPunchPic = document.createElement("img");
 const wooshKickPic = document.createElement("img");
+const wooshKickPic2 = document.createElement("img");
 const wooshHurtPic = document.createElement("img");
 const wooshKnockoutPic = document.createElement("img");
 const decorationSpritesheet = document.createElement("img");
@@ -167,6 +182,10 @@ function loadImages() {
 		{ imgName: lvl3Column, theFile: "column_03.png" },
 		{ imgName: lvl4Column, theFile: "column_04.png" },
 		{ imgName: yellowPresentation, theFile: "YellowBeltPresentation.png" },
+		{ imgName: tanPresentation, theFile: "TanBeltPresentation.png" },
+		{ imgName: brownPresentation, theFile: "BrownBeltPresentation.png" },
+		{ imgName: redPresentation, theFile: "RedBeltPresentation.png" },
+		{ imgName: blackPresentation, theFile: "BlackBeltPresentation.png" },
 		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
 		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
@@ -174,13 +193,24 @@ function loadImages() {
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 
 		// player related
-		{ imgName: playerIdle, theFile: "Player_Idle_Condensed.png"},
+		{ imgName: playerIdleWhite, theFile: "Player_Idle_White.png"},
+		{ imgName: playerIdleYellow, theFile: "Player_Idle_Yellow.png"},
+		{ imgName: playerIdleTan, theFile: "Player_Idle_Tan.png"},
+		{ imgName: playerIdleBrown, theFile: "Player_Idle_Brown.png"},
+		{ imgName: playerIdleRed, theFile: "Player_Idle_Red.png"},
+		{ imgName: playerIdleBlack, theFile: "Player_Idle_Black.png"},
 		{ imgName: playerWalkFwd, theFile: "Player_Walk-Forward_Condensed.png"},
 		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
 		{ imgName: playerPunch, theFile: "Player_Punch_Condensed.png"},
-		{ imgName: playerKick, theFile: "Player_Kick_Condensed.png"},
+		{ imgName: playerKickWhite, theFile: "Player_Kick_White.png"},
+		{ imgName: playerKickYellow, theFile: "Player_Kick_Yellow.png"},
+		{ imgName: playerKickTan, theFile: "Player_Kick_Tan.png"},
+		{ imgName: playerKickBrown, theFile: "Player_Kick_Brown.png"},
+		{ imgName: playerKickRed, theFile: "Player_Kick_Red.png"},
+		{ imgName: playerKickBlack, theFile: "Player_Kick_Black.png"},
 		{ imgName: wooshPunchPic, theFile: "wooshPunch.png"},
 		{ imgName: wooshKickPic, theFile: "wooshKick.png"},
+		{ imgName: wooshKickPic2, theFile: "wooshKick2.png"},
 		{ imgName: wooshHurtPic, theFile: "wooshHurt.png"},
 		{ imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
 

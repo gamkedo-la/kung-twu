@@ -21,9 +21,10 @@ function Player(config) {
 	let velocity = { x: 0, y: 0 };
 
 	this.type = ENTITY_TYPE.Player;
-	this.health = MAX_PLAYER_HEALTH;
+	this.health = ASSIST_DEFAULT.MaxHealth;
 	this.pointsToShow = {points:null, position:{x:0, y:0}};
 
+	let startBelt = BELT.White;
 	if (config != undefined) {
 		if (config.x != undefined) {
 			position.x = config.x;
@@ -31,10 +32,18 @@ function Player(config) {
 		if (config.y != undefined) {
 			position.y = config.y;
 		}
+
+		if (config.health != undefined) {
+			this.health = config.health;
+		}
+
+		if (config.belt != undefined) {
+			startBelt = config.belt;
+		}
 	}
 
-	const animations = animationManager.getAnimationsFor(RIVAL_TYPE.player, BELT.White, SCALE);
-	stateManager = new StateManager(animations, BELT.White, AITYPE.Player);
+	const animations = animationManager.getAnimationsFor(RIVAL_TYPE.player, startBelt, SCALE);
+	stateManager = new StateManager(animations, startBelt, AITYPE.Player);
 
 	this.collisionBody = hitBoxManager.bodyColliderForState(
 		stateManager.getCurrentState(),
@@ -70,6 +79,14 @@ function Player(config) {
 
 	this.getCurrentDamage = function() {
 		return damageForState() + stateManager.getCurrentBelt() * DELTA_DAMAGE;
+	};
+
+	this.getMaxHealth = function() {
+		if ((config != undefined) && (config.health != undefined)) {
+			return config.health;
+		}
+
+		return ASSIST_DEFAULT.MaxHealth;
 	};
 
 	const damageForState = function() {
@@ -123,12 +140,24 @@ function Player(config) {
 	this.reset = function(startPos) {
 		velocity = { x: 0, y: 0 };
 
-		this.health = 100;
+		this.health = ASSIST_DEFAULT.MaxHealth;
+		let startBelt = ASSIST_DEFAULT.StartBelt;
+		if(config != undefined) {
+			if (config.health != undefined) {
+				this.health = config.health;
+			} 
+	
+			if (config.belt != undefined) {
+				startBelt = config.belt;
+			}
+		}
 
 		position.x = startPos.x;
 		position.y = startPos.y;
 
 		stateManager.reset();
+		stateManager.setNewBelt(startBelt);
+
 		this.collisionBody = hitBoxManager.bodyColliderForState(
 			stateManager.getCurrentState(),
 			position,

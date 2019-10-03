@@ -491,10 +491,10 @@ function AnimationBuilder() {
 	const playerWhiteBeltData = {
 		idle:{
 			name:STATE.Idle,
-			image:playerIdle,
+			image:playerIdleWhite,
 			frames:[0, 1],
-			width:playerIdle.width / 2,
-			height:playerIdle.height,
+			width:playerIdleWhite.width / 2,
+			height:playerIdleWhite.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
@@ -533,10 +533,10 @@ function AnimationBuilder() {
 		},
 		kick:{
 			name:STATE.Kick,
-			image:playerKick,
+			image:playerKickWhite,
 			frames:[0, 1, 2, 1],
-			width:playerKick.width / 3,
-			height:playerKick.height,
+			width:playerKickWhite.width / 3,
+			height:playerKickWhite.height,
 			frameTimes:[60, 120, 150, 60],
 			reverses:false,
 			loops:false
@@ -549,12 +549,12 @@ function AnimationBuilder() {
 	};
 
 	const playerYellowBeltData = {
-		/*		idle:{
+			idle:{
 			name:STATE.Idle,
-			image:playerIdle,
+			image:playerIdleYellow,
 			frames:[0, 1],
-			width:playerIdle.width / 2,
-			height:playerIdle.height,
+			width:playerIdleYellow.width / 2,
+			height:playerIdleYellow.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
@@ -593,10 +593,10 @@ function AnimationBuilder() {
 		},
 		kick:{
 			name:STATE.Kick,
-			image:playerKick,
+			image:playerKickYellow,
 			frames:[0, 1, 2, 1],
-			width:playerKick.width / 3,
-			height:playerKick.height,
+			width:playerKickYellow.width / 3,
+			height:playerKickYellow.height,
 			frameTimes:[60, 120, 150, 60],
 			reverses:false,
 			loops:false
@@ -605,16 +605,16 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}*/
+		knockback:{}
 	};
 
 	const playerTanBeltData = {
-		/*		idle:{
+			idle:{
 			name:STATE.Idle,
-			image:playerIdle,
+			image:playerIdleTan,
 			frames:[0, 1],
-			width:playerIdle.width / 2,
-			height:playerIdle.height,
+			width:playerIdleTan.width / 2,
+			height:playerIdleTan.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
@@ -653,10 +653,10 @@ function AnimationBuilder() {
 		},
 		kick:{
 			name:STATE.Kick,
-			image:playerKick,
+			image:playerKickTan,
 			frames:[0, 1, 2, 1],
-			width:playerKick.width / 3,
-			height:playerKick.height,
+			width:playerKickTan.width / 3,
+			height:playerKickTan.height,
 			frameTimes:[60, 120, 150, 60],
 			reverses:false,
 			loops:false
@@ -665,16 +665,16 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}*/
+		knockback:{}
 	};
 
 	const playerBrownBeltData = {
-		/*		idle:{
+			idle:{
 			name:STATE.Idle,
-			image:playerIdle,
+			image:playerIdleBrown,
 			frames:[0, 1],
-			width:playerIdle.width / 2,
-			height:playerIdle.height,
+			width:playerIdleBrown.width / 2,
+			height:playerIdleBrown.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
@@ -713,10 +713,10 @@ function AnimationBuilder() {
 		},
 		kick:{
 			name:STATE.Kick,
-			image:playerKick,
+			image:playerKickBrown,
 			frames:[0, 1, 2, 1],
-			width:playerKick.width / 3,
-			height:playerKick.height,
+			width:playerKickBrown.width / 3,
+			height:playerKickBrown.height,
 			frameTimes:[60, 120, 150, 60],
 			reverses:false,
 			loops:false
@@ -725,16 +725,16 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}*/
+		knockback:{}
 	};
 
 	const playerRedBeltData = {
-		/*		idle:{
+			idle:{
 			name:STATE.Idle,
-			image:playerIdle,
+			image:playerIdleRed,
 			frames:[0, 1],
-			width:playerIdle.width / 2,
-			height:playerIdle.height,
+			width:playerIdleRed.width / 2,
+			height:playerIdleRed.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
@@ -773,10 +773,10 @@ function AnimationBuilder() {
 		},
 		kick:{
 			name:STATE.Kick,
-			image:playerKick,
+			image:playerKickRed,
 			frames:[0, 1, 2, 1],
-			width:playerKick.width / 3,
-			height:playerKick.height,
+			width:playerKickRed.width / 3,
+			height:playerKickRed.height,
 			frameTimes:[60, 120, 150, 60],
 			reverses:false,
 			loops:false
@@ -785,16 +785,16 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}*/
+		knockback:{}
 	};
 
 	const playerBlackBeltData = {
-		/*		idle:{
+			idle:{
 			name:STATE.Idle,
-			image:playerIdle,
+			image:playerIdleBlack,
 			frames:[0, 1],
-			width:playerIdle.width / 2,
-			height:playerIdle.height,
+			width:playerIdleBlack.width / 2,
+			height:playerIdleBlack.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
@@ -833,10 +833,10 @@ function AnimationBuilder() {
 		},
 		kick:{
 			name:STATE.Kick,
-			image:playerKick,
+			image:playerKickBlack,
 			frames:[0, 1, 2, 1],
-			width:playerKick.width / 3,
-			height:playerKick.height,
+			width:playerKickBlack.width / 3,
+			height:playerKickBlack.height,
 			frameTimes:[60, 120, 150, 60],
 			reverses:false,
 			loops:false
@@ -845,6 +845,6 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}*/
+		knockback:{}
 	};
 }

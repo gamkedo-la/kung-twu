@@ -143,13 +143,23 @@ function PowerUpScene() {
 	
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
-		canvasContext.drawImage(yellowPresentation, 0, 0, 
-			yellowPresentation.width, yellowPresentation.height,
-			(canvas.width - yellowPresentation.width) / 2,
-			(canvas.height - yellowPresentation.height) / 5,
-			yellowPresentation.width,
-			yellowPresentation.height);
+		const beltImage = presentationImageForLevel();
+		canvasContext.drawImage(beltImage, 0, 0, 
+			beltImage.width, beltImage.height,
+			(canvas.width - beltImage.width) / 2,
+			(canvas.height - beltImage.height) / 5,
+			beltImage.width, beltImage.height);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);     
+	};
+
+	const presentationImageForLevel = function() {
+		switch(currentLevel) {
+		case 2: return yellowPresentation;
+		case 3: return tanPresentation;
+		case 4: return brownPresentation;
+		case 5: return redPresentation;
+		default: return blackPresentation;
+		}
 	};
 
 	const drawMessage = function() {

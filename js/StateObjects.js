@@ -29,19 +29,10 @@ const ACTION = {
 	Dash:"dash"
 };
 
-const BELT = {
-	White:0,
-	Yellow:1,
-	Tan:2,
-	Brown:3,
-	Red:4,
-	Black:5
-};
-
 const WALK_LEFT_STATE = {
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Left) {
-			if((currentState === STATE.Idle) || (currentLevel === STATE.WalkRight)) {
+			if((currentState === STATE.Idle) || (currentState === STATE.WalkRight)) {
 				return true;
 			}
 		}
@@ -77,7 +68,7 @@ const WALK_LEFT_STATE = {
 const WALK_RIGHT_STATE = {
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Right) {
-			if((currentState === STATE.Idle) || (currentLevel === STATE.WalkLeft)) {
+			if((currentState === STATE.Idle) || (currentState === STATE.WalkLeft)) {
 				return true;
 			}
 		}
