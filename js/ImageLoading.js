@@ -121,6 +121,7 @@ const playerKickRed = document.createElement("img");
 const playerKickBlack = document.createElement("img");
 const wooshPunchPic = document.createElement("img");
 const wooshKickPic = document.createElement("img");
+const wooshKickPic2 = document.createElement("img");
 const wooshHurtPic = document.createElement("img");
 const wooshKnockoutPic = document.createElement("img");
 const decorationSpritesheet = document.createElement("img");
@@ -201,6 +202,7 @@ function loadImages() {
 		{ imgName: playerKickBlack, theFile: "Player_Kick_Black.png"},
 		{ imgName: wooshPunchPic, theFile: "wooshPunch.png"},
 		{ imgName: wooshKickPic, theFile: "wooshKick.png"},
+		{ imgName: wooshKickPic2, theFile: "wooshKick2.png"},
 		{ imgName: wooshHurtPic, theFile: "wooshHurt.png"},
 		{ imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
 

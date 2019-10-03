@@ -4,6 +4,7 @@
 
 const DEBUG_WOOSHES = false;
 const DEG_TO_RAD = Math.PI/180;
+const MAX_ALPHA = 0.6; // 1.0 = starts at full opaque
 
 function WooshFXManager(wooshImage) {
 	var wooshPool = [];
@@ -14,27 +15,27 @@ function WooshFXManager(wooshImage) {
     // game-specific effects
     this.triggerPunch = function (pos,left) {
         if (left)
-            this.trigger(pos.x-20,pos.y+45,0,wooshPunchPic);
+            this.trigger(pos.x+30,pos.y+48,0,wooshPunchPic);
         else
-            this.trigger(pos.x+110,pos.y+45,180*DEG_TO_RAD,wooshPunchPic);
+            this.trigger(pos.x+40,pos.y+48,180*DEG_TO_RAD,wooshPunchPic);
     };
     this.triggerKick = function (pos,left) {
         if (left)
-            this.trigger(pos.x-20,pos.y+20,0,wooshKickPic);
+            this.trigger(pos.x+30,pos.y+64,0,wooshKickPic);
         else
-            this.trigger(pos.x+110,pos.y+20,180*DEG_TO_RAD,wooshKickPic);
+            this.trigger(pos.x+40,pos.y+64,0,wooshKickPic2);
     };
     this.triggerJKick = function (pos,left) {
         if (left)
-            this.trigger(pos.x-20,pos.y+20,0,wooshKickPic);
+            this.trigger(pos.x+30,pos.y+64,0,wooshKickPic);
         else
-            this.trigger(pos.x+110,pos.y+20,180*DEG_TO_RAD,wooshKickPic);
+            this.trigger(pos.x+40,pos.y+64,0,wooshKickPic2);
     };
     this.triggerHKick = function (pos,left) {
         if (left)
-            this.trigger(pos.x-20,pos.y+20,0,wooshKickPic);
+            this.trigger(pos.x+30,pos.y+64,0,wooshKickPic);
         else
-            this.trigger(pos.x+110,pos.y+20,180*DEG_TO_RAD,wooshKickPic);
+            this.trigger(pos.x+40,pos.y+64,0,wooshKickPic2);
     };
 
     // called by the custom fx above or on its own
@@ -71,7 +72,7 @@ function Woosh(wooshImage) { // a single woosh, reused often
     const GROW_AND_SHRINK = false; // if false, it gets bigger only
 	this.active = false; // if true, manager reuses it
 	this.img = wooshImage;
-	this.frameCount = 8; // length of animation 
+	this.frameCount = 10; // length of animation 
     // size when full size
     this.w = 320; //wooshImage.width;
 	this.h = 320; //wooshImage.height;
@@ -99,6 +100,18 @@ function Woosh(wooshImage) { // a single woosh, reused often
 
             // animate
             percent = this.frame / this.frameCount;
+            
+            // new version odes not use scale - more stable, more like a swoosh spin
+            canvasContext.save(); //	allows	us	to	undo	translate	movement	and	rotate	spin
+            canvasContext.translate(this.x, this.y);
+            canvasContext.rotate(this.r);
+            canvasContext.globalAlpha = MAX_ALPHA * (1 - percent); // fade out
+            canvasContext.drawImage(this.img, Math.round(-this.img.width/2),Math.round(-this.img.height/2)); //	center,	draw
+            canvasContext.restore(); //	undo	the	translation	movement	and	rotation	since	save()
+
+
+            /*
+            // first version of this effect looked lame - removed
             currentSize = this.w * (percent);
             if (GROW_AND_SHRINK) { 
                 if (this.frame > this.frameCount / 2) { // shrink at 50% time
@@ -108,7 +121,6 @@ function Woosh(wooshImage) { // a single woosh, reused often
                 }
             }
 			offset = currentSize / 2; // center
-
             // draw
             canvasContext.save(); //	allows	us	to	undo	translate	movement	and	rotate	spin
             canvasContext.globalAlpha = 1 - percent; // fade out
@@ -120,6 +132,7 @@ function Woosh(wooshImage) { // a single woosh, reused often
             //canvasContext.drawImage(this.img,0,0); // draw
             canvasContext.globalAlpha = 1;
             canvasContext.restore(); //	undo	the	translation	movement	and	rotation	since	save()
+            */
 
             // step
             this.frame++;

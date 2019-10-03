@@ -29,7 +29,7 @@ window.onload = function() {
 
     pauseManager = new PauseManager();
     
-    //wooshFX = new WooshFXManager(wooshPunchPic);
+    wooshFX = new WooshFXManager(wooshPunchPic);
     foregroundDecorations = new DecorationManager(decorationSpritesheet);
     foregroundDecorations.generate();
     wallDecorations = new DecorationManager(decorationSpritesheet);
