@@ -66,7 +66,8 @@ const localStorageKey = {
 //----------State Management----------//
 let pauseManager;
 let wooshFX;
-let decorations;
+let foregroundDecorations;
+let wallDecorations;
 
 const CAUSE = {
 	Keypress: "keypress",
