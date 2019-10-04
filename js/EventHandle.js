@@ -29,7 +29,7 @@ function EventHandle() {
    * The handle that holds all of the callback data
    * @type {{callback: Function, context: any, isOnce: boolean}[]}
    */
-  let _handle = [];
+  const _handle = [];
 
   /**
    * A list of callbacks to be removed if the EventHandle is currently busy sending
@@ -129,7 +129,10 @@ function EventHandle() {
         _removeQueue.push(callback);
       });
     } else {
-      _handle = [];
+      // Directly remove all items on handle
+      while(_handle.length > 0) {
+        _handle.shift();
+      }
     }
   };
 
