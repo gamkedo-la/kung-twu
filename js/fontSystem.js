@@ -2,33 +2,27 @@ function fontSystem(jpFont, charSize, context) {
 	let letters = [];
 	let lettersStartPos = [];
 	
-	this.getString = function(text,position, alignment, drawSize){
+	this.getString = function(text,position, alignment, drawwidth){
 		for(let i = 0; i < text.length; i++) {
 			let letter = text.charAt(i);
-			let letterPos = alignment(i, position, alignment, text.length);
+			let letterPos = alignment(i, position, align, text.length);
 			letters.push(letter, charSize, {x:position.x, y:position.y}, context);
 			lettersStartPos.push(letterPos);
 			console.log(letters)
 		}
 	};
 
-	this.draw = function(){
-		text = getLocalizedStringForKey(STRINGS_KEY.Subtitle);
-		this.printTextAt(text, {x:100, y:310});
-		//console.log(userStrings[currentLanguage]);
-		for (let i = 0; i < userStrings[currentLanguage]; i++) {
-			this.printTextAt(userStrings[i], position);
-		}
-	};
+	text = getLocalizedStringForKey(STRINGS_KEY.Subtitle);
+	this.printTextAt(text, {x:100, y:310});
 
-	const alignment = function(index, stringPos, alignment, charCount) {
+	const adjustment = function(text, position, alignment, scale) {
 		alignCentered => position.x -= (Math.floor(drawWidth * text.length / 2));
 		alignRight => position.x += (drawWidth * text.length);
 		alignLeft => position.x -= (drawWidth * text.length);
 
 	};
 
-	this.printTextAt = function(text, position) {
+	this.printTextAt = function(text, position, alignment, scale) {
 		for(let i = 0; i < text.length; i++) {	//Go through alll characters
 			const thisFrame = this.findLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
 			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, position.x +  (i * charSize.width), position.y, charSize.width, charSize.height);
