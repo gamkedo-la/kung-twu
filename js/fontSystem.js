@@ -12,9 +12,6 @@ function fontSystem(jpFont, charSize, context) {
 		}
 	};
 
-	text = getLocalizedStringForKey(STRINGS_KEY.Subtitle);
-	this.printTextAt(text, {x:100, y:310});
-
 	const adjustment = function(text, position, alignment, scale) {
 		alignCentered => position.x -= (Math.floor(drawWidth * text.length / 2));
 		alignRight => position.x += (drawWidth * text.length);
