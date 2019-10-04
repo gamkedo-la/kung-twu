@@ -3,14 +3,11 @@
  * @param {Chronogram} chronogram The game's Chronogram instance. Used in CountDownTimer for counting deltaTime.
  * @param {boolean} isDeltaTimer Whether or not this timer will count in seconds (true) or game frames (false). Default: true
  */
-function CountDownTimer(chronogram, isDeltaTimer = true) {
+function CountDownTimer(isDeltaTimer = true) {
   // Validate parameters
   Debug.isValid(isDeltaTimer, "boolean");
-  Debug.isValid(chronogram, Chronogram);
 
   // ======= Class Properties + Setters/Getters ====== //
-  // Reference to game Chronogram instance
-  const _chronogram = chronogram;
   let _isDeltaTimer = isDeltaTimer;
   /**
    * Determines time units this CountDownTimer counts by. Is either seconds (true) or game frames (false) depending on value of isDeltaTimer.
@@ -91,14 +88,16 @@ function CountDownTimer(chronogram, isDeltaTimer = true) {
 
   /**
    * Call every frame to keep this timer functioning properly.
+   * Should be called before game activity depending on this timer.
    * Or stop calling when timer is no longer needed.
+   * @param {number} deltaTime Milliseconds passed since last frame
    */
-  this.update = function() {
+  this.update = function(deltaTime) {
     if (_isActive && !_isPaused) {
       // Timer is active and unpaused
       
       // Convert to seconds
-      const _deltaSeconds = _chronogram.timeSinceUpdate() * 0.001;
+      const _deltaSeconds = deltaTime * 0.001;
       // Count down timer
       if (_isDeltaTimer) {
         // Timer is delta timer, count down seconds elapsed
@@ -128,7 +127,6 @@ function CountDownTimer(chronogram, isDeltaTimer = true) {
     _onZero.unsubscribeAll();
     delete _onUpdate;
     delete _onZero;
-    _chronogram = null;
   }
 
    
