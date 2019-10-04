@@ -87,8 +87,18 @@ const SCENE = {
 	ENDING: "ending"
 };
 
+/**
+ * Tracks whether the user has yet interacted with the window.
+ * Scope: Global
+ */
 let didInteract = false;
 let firstLoad;
+/** 
+ * Global Chronogram instance
+ * Register your event for stopwatch-like timing in milliseconds.
+ * Please look at Chronogram.js for more info on how to use it.
+ * @type Chronogram 
+ */
 let timer;
 const TOTAL_LEVELS = 5;
 let currentLevel = 1;
@@ -126,8 +136,14 @@ const GAME_FIELD = {
 	midX: 0,
 	midY: 0
 };
-
+/**
+ * Flag for debugging colliders. Will draw them if set to true.
+ */
 const DRAW_COLLIDERS = false;
+/**
+ * Css color string for setting debug collider color. 
+ * Make sure DRAW_COLLIDERS global flag is set to true to see.
+ */
 const COLLIDER_COLOR = "yellow";
 
 const ENTITY_TYPE = {
