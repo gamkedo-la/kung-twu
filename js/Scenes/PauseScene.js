@@ -69,23 +69,28 @@ function PauseScene() {
 		case ALIAS.PAUSE:
 			pauseManager.resumeGame(CAUSE.Keypress);
 			SceneState.setState(SceneState.getPreviousState());
+			menuSelectionSound.play();
 			return true;
 		case ALIAS.BACK:
 			pauseManager.resumeGame(CAUSE.Keypress);
 			SceneState.setState(SceneState.getPreviousState());
-//			SceneState.setState(SCENE.GAME);
+			//SceneState.setState(SCENE.GAME);
+			menuSelectionSound.play();
 			return true;
 		case ALIAS.QUIT:
 			pauseManager.resumeGame(CAUSE.Keypress);
 			SceneState.setState(SCENE.TITLE, {didQuit:true});
+			menuSelectionSound.play();
 			return true;
 		case ALIAS.CONTROLS:
 			console.log("Controls Scene doesn't exist yet");
 			//pauseManager.resumeGame(CAUSE.Keypress);
 			//SceneState.setState(SCENE.CONTROLS);
+			menuSelectionSound.play();
 			return true;
 		case ALIAS.HELP:
 			SceneState.setState(SCENE.HELP);
+			menuSelectionSound.play();
 			return true;
 		case ALIAS.POINTER:
 			checkButtons();
@@ -116,6 +121,7 @@ function PauseScene() {
 						selectorPositionsIndex += selections.length;
 					}
 					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
+					menuNavigationSound.play();
 					break;			
 				case NAV_ACTION.DOWN:
 				case NAV_ACTION.RIGHT:
@@ -124,6 +130,7 @@ function PauseScene() {
 						selectorPositionsIndex = 0;
 					}
 					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
+					menuNavigationSound.play();
 					break;
 				case NAV_ACTION.SELECT:
 					if(selections[selectorPositionsIndex] === SCENE.GAME) {
@@ -135,6 +142,7 @@ function PauseScene() {
 					} else {
 						SceneState.setState(selections[selectorPositionsIndex]);
 					}
+					menuSelectionSound.play();
 					break;
 				case NAV_ACTION.BACK:
 					break;//nowhere to go 'back' to

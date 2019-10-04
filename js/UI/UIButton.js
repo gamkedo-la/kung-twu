@@ -1,6 +1,7 @@
 //UIButton
 function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.Blue) {
 	const bounds = {};
+	let isHovering = false;
 	this.title = getLocalizedStringForKey(stringsKey);
     
 	this.onClick = onClick;
@@ -39,7 +40,7 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 		} else {
 			transformedX -= canvasContext.getTransform().m41;
 		}
-//		const transformedX = pointerX - canvasContext.getTransform().m41;
+
 		if(pointInside(transformedX, pointerY, bounds.x, bounds.y, bounds.width, bounds.height)) {
 			return true;
 		} else {
@@ -49,6 +50,7 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 
 	this.respondIfClicked = function(pointerX, pointerY) {
 		if(didHit(pointerX, pointerY)) {
+			menuSelectionSound.play();
 			this.onClick();
 			return true;
 		} else {
@@ -63,7 +65,8 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
         
 		colorText(this.title, posX, posY, color, Fonts.ButtonTitle, TextAlignment.Left);
 
-		if((DEBUG) || (didHit(mouseX, mouseY))) { // draw bounds for buttons in semi-transparent colors
+		const wasHit = didHit(mouseX, mouseY);
+		if((DEBUG) || wasHit) { // draw bounds for buttons in semi-transparent colors
 			const BGColor = Color.Aqua;
             
 			const tempAlpha = canvasContext.globalAlpha;
@@ -72,6 +75,15 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 			drawRect(bounds.x, bounds.y, bounds.width, bounds.height, BGColor);
             
 			canvasContext.globalAlpha = tempAlpha;
+		}
+
+		if(wasHit && !isHovering) {
+			menuNavigationSound.play();
+			isHovering = true;
+		}
+		
+		if(!wasHit) {
+			isHovering = false;
 		}
 	};
 }

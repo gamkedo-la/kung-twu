@@ -21,6 +21,13 @@ let playerHitSound;
 let playerFailedSound;
 let basicEnemyHitSound;
 let basicEnemyDefeated;
+let oneUpSound;
+let footstepsSound;
+let lowHealthSound;
+let menuNavigationSound;
+let menuSelectionSound;
+let swish1Sound;
+let swish2Sound;
 const EFFECTS_BASE = 0.75;
 let menuMusic;
 let gameMusic;
@@ -63,6 +70,14 @@ function loadAudio() {
 	playerFailedSound = new SoundOverlapsClass(assetPath.Audio + "PlayerFailed");
 	basicEnemyHitSound = new SoundOverlapsClass(assetPath.Audio + "BasicEnemyHit");
 	basicEnemyDefeated = new SoundOverlapsClass(assetPath.Audio + "lowPain");
+	oneUpSound = new SoundOverlapsClass(assetPath.Audio + "1_UP");
+	footstepsSound = new SoundOverlapsClass(assetPath.Audio + "Footsteps");
+	lowHealthSound = new SoundOverlapsClass(assetPath.Audio + "lowHealth");
+	menuNavigationSound = new SoundOverlapsClass(assetPath.Audio + "MenuNavigation");
+	menuSelectionSound = new SoundOverlapsClass(assetPath.Audio + "MenuSelection");
+	swish1Sound = new SoundOverlapsClass(assetPath.Audio + "SwishTrim1");
+	swish2Sound = new SoundOverlapsClass(assetPath.Audio + "SwishTrim2");
+
 	menuMusic = assetPath.Audio + "gameplayMusicV1";
 	gameMusic = assetPath.Audio + "gameplayMusicV2";
 	bossMusic1 = assetPath.Audio + "DragonPulse";

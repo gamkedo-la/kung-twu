@@ -124,6 +124,8 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 		} else {
 			this.setValue(SPAN * (pointerY - y) / height);
 		}
+
+		menuSelectionSound.play();
 	};
 
 	this.getValue = function() {

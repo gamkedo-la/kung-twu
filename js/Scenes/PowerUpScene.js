@@ -80,6 +80,7 @@ function PowerUpScene() {
 				switch(newNavAction) {
 				case NAV_ACTION.SELECT:
 					SceneState.setState(SCENE.GAME, {restartLevel:true});
+					menuSelectionSound.play();
 					break;
 				}
 			}

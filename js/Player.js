@@ -336,7 +336,7 @@ function Player(config) {
 			}
 
 			velocity.x = speed;
-			//playerDashSound.play();
+			swish1Sound.play();
 		}
 	};
 
@@ -386,7 +386,7 @@ function Player(config) {
 	const sweep = function() {
 		console.log("Sweeping !!!");
 		if (stateManager.getIsNewState()) {
-			//playerSweepSound.play();
+			swish2Sound.play();
 			velocity.x = 0;
 			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
