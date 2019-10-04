@@ -29,7 +29,7 @@ function EventHandle() {
    * The handle that holds all of the callback data
    * @type {{callback: Function, context: any, isOnce: boolean}[]}
    */
-  const _handle = [];
+  let _handle = [];
 
   /**
    * A list of callbacks to be removed if the EventHandle is currently busy sending
