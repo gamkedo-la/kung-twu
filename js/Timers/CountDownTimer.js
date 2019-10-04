@@ -1,7 +1,7 @@
 /**
  * A timer that counts down to zero, and sends notification when that happens.
  * @param {Chronogram} chronogram The game's Chronogram instance. Used in CountDownTimer for counting deltaTime.
- * @param {*} isDeltaTimer Whether or not this timer will count in seconds (true) or game frames (false). Default: true
+ * @param {boolean} isDeltaTimer Whether or not this timer will count in seconds (true) or game frames (false). Default: true
  */
 function CountDownTimer(chronogram, isDeltaTimer = true) {
   // Validate parameters
@@ -58,7 +58,7 @@ function CountDownTimer(chronogram, isDeltaTimer = true) {
   const _onUpdate = new EventHandle();
   /**
    * Event that fires on every update tick.
-   * Callback Signature: (timeLeft: number) => void
+   * Callback Signature: (timeLeft: number, deltaTime: number) => void
    */
   this.onUpdate = _onUpdate;
 
@@ -96,18 +96,20 @@ function CountDownTimer(chronogram, isDeltaTimer = true) {
   this.update = function() {
     if (_isActive && !_isPaused) {
       // Timer is active and unpaused
-
+      
+      // Convert to seconds
+      const _deltaSeconds = _chronogram.timeSinceUpdate() * 0.001;
       // Count down timer
       if (_isDeltaTimer) {
         // Timer is delta timer, count down seconds elapsed
-        _time -= _chronogram.timeSinceUpdate();
+        _time -= _deltaSeconds;
       } else {
         // Timer is a game frame timer, count down one frame
         _time -= 1;
       }
 
       // Send callbacks
-      _onUpdate.send(_time);
+      _onUpdate.send(_time, _deltaSeconds);
 
       if (_time <= 0) {
         // Timer has reached zero
