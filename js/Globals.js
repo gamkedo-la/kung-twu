@@ -100,6 +100,11 @@ let firstLoad;
  * @type Chronogram 
  */
 let timer;
+/** 
+ * A manager of CountDownTimers. Can fire and forget timers, and tracks persistent timers indexed by number.
+ * @type CountDownTimerManager 
+ */
+let countDownTimers;
 const TOTAL_LEVELS = 5;
 let currentLevel = 1;
 
