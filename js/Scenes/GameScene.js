@@ -51,10 +51,13 @@ function GameScene() {
 			levelData = dataForCurrentLevel();
 			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
 			initializeFloor(levelData.columnImage, VERTICAL_OFFSET);
+			foregroundDecorations.generate(50,-4000,500,628,636,0,7,floor.getFrontHeight(),floor.getBackHeight());
+			wallDecorations.generate(20,-4000,500,360,380,7,7,floor.getFrontHeight(),floor.getBackHeight());
 			InitializeRoof();
 			InitializeBackWall();
 			initializeColumns(levelData.columnImage, VERTICAL_OFFSET);
 		}
+
 		if (currentBackgroundMusic.getCurrentTrack() !== gameMusic) {
 			currentBackgroundMusic.loopSong(gameMusic);
 		}
@@ -86,7 +89,6 @@ function GameScene() {
 		bossHasBeenSpawned = false;
 		columnManager = null;
 		levelData = dataForCurrentLevel();
-		console.log(`Level Data: ${levelData}, current Level: ${currentLevel}`);
 		bossHealth = levelData.bossHealth;
 		player.reset(levelData.playerStart);
 		collisionManager = null;
@@ -189,6 +191,8 @@ function GameScene() {
 		subfloor.update(newCameraX, floorImageShifts);
 		roof.update(newCameraX, floorImageShifts);
 		wall.update(newCameraX, floorImageShifts);
+		foregroundDecorations.update(floorImageShifts);
+		wallDecorations.update(floorImageShifts);
 	};
 
 	const updateEnemies = function(deltaTime) {
@@ -216,7 +220,6 @@ function GameScene() {
 	const processDefeatedEntities = function(defeatedEntities) {
 		for (let defeatedEntity of defeatedEntities) {
 			if (defeatedEntity === player) {
-				console.log("Game over man! Game Over!");
 				let highScore = parseInt(localStorageHelper.getObject(localStorageKey.HighScore));
 				if((isNaN(highScore)) || (highScore === null) || (highScore === undefined)) {highScore = -1;}
 				if(score > highScore) {
@@ -285,9 +288,7 @@ function GameScene() {
 		drawBackground(cameraX, roofTop);
 		wall.draw();
         
-		// FIXME scrolling is broken - they move even if set to stay still,
-		// there's an open canvas transform from a previous operation?
-		// if (wallDecorations) wallDecorations.draw(cameraX/5000);
+		if (wallDecorations) wallDecorations.draw(cameraX);
         
 		subfloor.draw();
 		floor.draw();
@@ -298,7 +299,7 @@ function GameScene() {
 		player.draw();
 		if (wooshFX) wooshFX.draw();
 
-		if (foregroundDecorations) foregroundDecorations.draw(cameraX/800);
+		if (foregroundDecorations) foregroundDecorations.draw(cameraX);
 		columnManager.draw(cameraX);
 		roof.draw();
 

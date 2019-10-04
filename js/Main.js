@@ -27,13 +27,12 @@ window.onload = function() {
 	subTitleTextX = canvas.width / 2;
 	opacity = 0;
 
-    pauseManager = new PauseManager();
+	pauseManager = new PauseManager();
     
-    wooshFX = new WooshFXManager(wooshPunchPic);
-    foregroundDecorations = new DecorationManager(decorationSpritesheet);
-    foregroundDecorations.generate();
-    wallDecorations = new DecorationManager(decorationSpritesheet);
-    wallDecorations.generate(20,-4000,500,360,380,7,7);
+	wooshFX = new WooshFXManager(wooshPunchPic);
+	foregroundDecorations = new DecorationManager(decorationSpritesheet);
+	
+	wallDecorations = new DecorationManager(decorationSpritesheet);
 
 	/** Instantiate input-related objects */
 	keyMapper = new KeyMapper();

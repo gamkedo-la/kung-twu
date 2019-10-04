@@ -40,8 +40,16 @@ function InfiniteSurface(config, verticalOffset) {
 	const Y_POS = canvas.height - TILE_HEIGHT - VERTICAL_OFFSET;
 	const tiles = [];
 
+	this.getBackHeight = function() {
+		return Y_POS;
+	};
+	
 	this.getMidHeight = function() {
 		return Y_POS + TILE_HEIGHT / 2;
+	};
+
+	this.getFrontHeight = function() {
+		return Y_POS + TILE_HEIGHT;
 	};
 
 	this.update = function(cameraXPos) {
