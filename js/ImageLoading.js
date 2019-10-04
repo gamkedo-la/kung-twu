@@ -116,7 +116,12 @@ const playerIdleRed = document.createElement("img");
 const playerIdleBlack = document.createElement("img");
 const playerWalkFwd = document.createElement("img");
 const playerWalkBack = document.createElement("img");
-const playerPunch = document.createElement("img");
+const playerPunchWhite = document.createElement("img");
+const playerPunchYellow = document.createElement("img");
+const playerPunchTan = document.createElement("img");
+const playerPunchBrown = document.createElement("img");
+const playerPunchRed = document.createElement("img");
+const playerPunchBlack = document.createElement("img");
 const playerKickWhite = document.createElement("img");
 const playerKickYellow = document.createElement("img");
 const playerKickTan = document.createElement("img");
@@ -201,7 +206,12 @@ function loadImages() {
 		{ imgName: playerIdleBlack, theFile: "Player_Idle_Black.png"},
 		{ imgName: playerWalkFwd, theFile: "Player_Walk-Forward_Condensed.png"},
 		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
-		{ imgName: playerPunch, theFile: "Player_Punch_Condensed.png"},
+		{ imgName: playerPunchWhite, theFile: "Player_Punch_White.png"},
+		{ imgName: playerPunchYellow, theFile: "Player_Punch_Yellow.png"},
+		{ imgName: playerPunchTan, theFile: "Player_Punch_Tan.png"},
+		{ imgName: playerPunchBrown, theFile: "Player_Punch_Brown.png"},
+		{ imgName: playerPunchRed, theFile: "Player_Punch_Red.png"},
+		{ imgName: playerPunchBlack, theFile: "Player_Punch_Black.png"},
 		{ imgName: playerKickWhite, theFile: "Player_Kick_White.png"},
 		{ imgName: playerKickYellow, theFile: "Player_Kick_Yellow.png"},
 		{ imgName: playerKickTan, theFile: "Player_Kick_Tan.png"},
