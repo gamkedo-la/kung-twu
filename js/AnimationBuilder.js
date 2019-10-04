@@ -523,10 +523,10 @@ function AnimationBuilder() {
 		crouch:{},
 		punch:{
 			name:STATE.Punch,
-			image:playerPunch,
+			image:playerPunchWhite,
 			frames:[0, 1, 2, 1],
-			width:playerPunch.width / 3,
-			height:playerPunch.height,
+			width:playerPunchWhite.width / 3,
+			height:playerPunchWhite.height,
 			frameTimes:[30, 80, 100, 30],
 			reverses:false,
 			loops:false
@@ -549,7 +549,7 @@ function AnimationBuilder() {
 	};
 
 	const playerYellowBeltData = {
-			idle:{
+		idle:{
 			name:STATE.Idle,
 			image:playerIdleYellow,
 			frames:[0, 1],
@@ -583,10 +583,10 @@ function AnimationBuilder() {
 		crouch:{},
 		punch:{
 			name:STATE.Punch,
-			image:playerPunch,
+			image:playerPunchYellow,
 			frames:[0, 1, 2, 1],
-			width:playerPunch.width / 3,
-			height:playerPunch.height,
+			width:playerPunchYellow.width / 3,
+			height:playerPunchYellow.height,
 			frameTimes:[30, 80, 100, 30],
 			reverses:false,
 			loops:false
@@ -609,7 +609,7 @@ function AnimationBuilder() {
 	};
 
 	const playerTanBeltData = {
-			idle:{
+		idle:{
 			name:STATE.Idle,
 			image:playerIdleTan,
 			frames:[0, 1],
@@ -643,10 +643,10 @@ function AnimationBuilder() {
 		crouch:{},
 		punch:{
 			name:STATE.Punch,
-			image:playerPunch,
+			image:playerPunchTan,
 			frames:[0, 1, 2, 1],
-			width:playerPunch.width / 3,
-			height:playerPunch.height,
+			width:playerPunchTan.width / 3,
+			height:playerPunchTan.height,
 			frameTimes:[30, 80, 100, 30],
 			reverses:false,
 			loops:false
@@ -669,7 +669,7 @@ function AnimationBuilder() {
 	};
 
 	const playerBrownBeltData = {
-			idle:{
+		idle:{
 			name:STATE.Idle,
 			image:playerIdleBrown,
 			frames:[0, 1],
@@ -703,10 +703,10 @@ function AnimationBuilder() {
 		crouch:{},
 		punch:{
 			name:STATE.Punch,
-			image:playerPunch,
+			image:playerPunchBrown,
 			frames:[0, 1, 2, 1],
-			width:playerPunch.width / 3,
-			height:playerPunch.height,
+			width:playerPunchBrown.width / 3,
+			height:playerPunchBrown.height,
 			frameTimes:[30, 80, 100, 30],
 			reverses:false,
 			loops:false
@@ -729,7 +729,7 @@ function AnimationBuilder() {
 	};
 
 	const playerRedBeltData = {
-			idle:{
+		idle:{
 			name:STATE.Idle,
 			image:playerIdleRed,
 			frames:[0, 1],
@@ -763,10 +763,10 @@ function AnimationBuilder() {
 		crouch:{},
 		punch:{
 			name:STATE.Punch,
-			image:playerPunch,
+			image:playerPunchRed,
 			frames:[0, 1, 2, 1],
-			width:playerPunch.width / 3,
-			height:playerPunch.height,
+			width:playerPunchRed.width / 3,
+			height:playerPunchRed.height,
 			frameTimes:[30, 80, 100, 30],
 			reverses:false,
 			loops:false
@@ -789,7 +789,7 @@ function AnimationBuilder() {
 	};
 
 	const playerBlackBeltData = {
-			idle:{
+		idle:{
 			name:STATE.Idle,
 			image:playerIdleBlack,
 			frames:[0, 1],
@@ -823,10 +823,10 @@ function AnimationBuilder() {
 		crouch:{},
 		punch:{
 			name:STATE.Punch,
-			image:playerPunch,
+			image:playerPunchBlack,
 			frames:[0, 1, 2, 1],
-			width:playerPunch.width / 3,
-			height:playerPunch.height,
+			width:playerPunchBlack.width / 3,
+			height:playerPunchBlack.height,
 			frameTimes:[30, 80, 100, 30],
 			reverses:false,
 			loops:false
