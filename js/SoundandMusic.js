@@ -109,7 +109,7 @@ function backgroundMusicClass() {
 		
 		// Fades out currently playing song in one second
 		if (musicSound) {
-			_fadeTo(0, 1, () => console.log("faded out song from loopstarting a new one"))
+			_fadeTo(0, 1, () => console.log("faded out song from loopstarting a new one"));
 		}
 		
 

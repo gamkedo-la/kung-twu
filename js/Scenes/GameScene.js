@@ -13,6 +13,7 @@ function GameScene() {
 	let floor = null;
 	let roof = null;
 	let wall = null;
+	let waterfall = null;
 	let floorMidHeight = 0;
 	let timeTilSpawn = 0;
 	let score = 0;
@@ -56,6 +57,7 @@ function GameScene() {
 			InitializeRoof();
 			InitializeBackWall();
 			initializeColumns(levelData.columnImage, VERTICAL_OFFSET);
+			if(currentLevel === 1) initializeWaterfall();
 		}
 
 		if (currentBackgroundMusic.getCurrentTrack() !== gameMusic) {
@@ -174,7 +176,6 @@ function GameScene() {
 
 		camera.update(deltaTime);
 
-
 		collisionManager.doCollisionChecks();
 
 		processDefeatedEntities(collisionManager.defeatedEntities);
@@ -182,6 +183,8 @@ function GameScene() {
 		processAndUpdatePointsToDisplay(deltaTime);
 
 		processUserInput();
+
+		if(currentLevel === 1) waterfall.update(deltaTime);
 	};
 
 	const updateEnvironment = function(newCameraX) {
@@ -456,6 +459,10 @@ function GameScene() {
 		columnManager.positionFirstColumn(colPos);
 	};
 
+	const initializeWaterfall = function() {
+		waterfall = new SpriteAnimation("waterfall", waterfallSheet, [0, 1, 2, 3], 200, 140, [128, 128, 128, 32], false, true);
+	};
+
 	const initializeCollisionManager = function(player) {
 		collisionManager = new CollisionManager(player);
 	};
@@ -468,13 +475,15 @@ function GameScene() {
 		const vertClip = levelData.wallWindowHeight;
 		const startClipY = titleScreenBG.height - vertClip - levelData.bgClipLevel; //100 makes it look good
 		const startDrawingY = roofTop + levelData.wallWindowTop; //215 based on back wall image
-
+		
 		canvasContext.drawImage(
 			titleScreenBG,
 			0, startClipY,
 			titleScreenBG.width, vertClip,
 			cameraX - canvas.width / 2, startDrawingY,
 			canvas.width, vertClip);
+
+		if(currentLevel === 1) waterfall.drawAt(-200 + cameraX + canvas.width / 2, startDrawingY, false);
 	};
 
 	const dataForCurrentLevel = function() {
