@@ -151,7 +151,14 @@ function backgroundMusicClass() {
 		if(isMuted) {
 			musicSound.volume = 0;
 		} else {
-			musicSound.volume = Math.pow(musicSound.baseVolume * volume, 2);
+			let newVolume = Math.pow(musicSound.baseVolume * volume, 2);
+			if(newVolume < 0) {
+				newVolume = 0;
+			} else if(newVolume > 1) {
+				newVolume = 1;
+			}
+
+			musicSound.volume = newVolume;
 		}
 	};
 
@@ -247,7 +254,7 @@ function backgroundMusicClass() {
 		/** @type HTMLAudioElement */
 		const track = musicSound;
 		if (!track) {
-			console.log("Warning! Tried to fade track, but track in musicSound global variable was " + (typeof musicSound === "object") ? "null" : "undefined" + "!")
+			console.log(`Warning! Tried to fade track, but track in musicSound global variable was ${(typeof musicSound === "object" ? "null" : "undefined")}!`);
 			return null;
 		}
 		/** @type number */

@@ -57,10 +57,6 @@ function TitleScene() {
 			updateButtonTitles();
 			updateButtonPositions();
 		}
-
-		if(currentBackgroundMusic.getCurrentTrack() != menuMusic) {
-//			currentBackgroundMusic.loopSong(menuMusic);
-		}
 	};
 
 	this.transitionOut = function() {
@@ -76,7 +72,7 @@ function TitleScene() {
 	this.control = function(newKeyEvent, pressed) {
 		if((!didInteract) && ((newKeyEvent == MouseButton.LEFT) || (newKeyEvent == MouseButton.RIGHT))) {
 			didInteract = true;
-//			currentBackgroundMusic.loopSong(menuMusic);
+			currentBackgroundMusic.loopSong(menuMusic);
 		}
 
 		if (pressed) {//only act on key released events => prevent multiple changes on single press

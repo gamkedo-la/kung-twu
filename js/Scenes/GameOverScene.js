@@ -53,7 +53,7 @@ function GameOverScene() {
 		}
 
 		if(currentBackgroundMusic.getCurrentTrack() != gameOverMusic) {
-//			currentBackgroundMusic.loopSong(gameOverMusic);
+			currentBackgroundMusic.loopSong(gameOverMusic);
 		}
 	};
 
