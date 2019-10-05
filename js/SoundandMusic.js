@@ -217,7 +217,7 @@ function backgroundMusicClass() {
 			// Not sure why we're taking volume level to power of 2.
 			return _fadeTo(Math.pow(musicSound.baseVolume * musicVolume, 2), seconds, onTargetReached);
 		} else {
-			console.log("Warning! Tried to fadeIn music, but musicSound was " + typeof musicSound === "object" ? "null" : "undefined" + "!");
+			console.log("Warning! Tried to fadeIn music, but musicSound was " + (typeof musicSound === "object" ? "null" : "undefined" + "!"));
 			return null;
 		}
 	};
