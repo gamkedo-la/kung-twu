@@ -59,7 +59,7 @@ function GameScene() {
 		}
 
 		if (currentBackgroundMusic.getCurrentTrack() !== gameMusic) {
-			currentBackgroundMusic.loopSong(gameMusic);
+//			currentBackgroundMusic.loopSong(gameMusic);
 		}
 		
 	};

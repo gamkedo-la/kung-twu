@@ -62,7 +62,7 @@ function loadingDoneSoStartGame() {
 		JPFont = new fontSystem(jpFontImg, jpCharSize, canvasContext);
 		timer = new Chronogram();
 		countDownTimers = new CountDownTimerManager(10);
-		countDownTimers.fireAndForget(10, () => {console.log("finished")}, (tl, dt)=>{console.log("timeleft:", tl, "| delta:", dt)});
+//		countDownTimers.fireAndForget(10, () => {console.log("finished")}, (tl, dt)=>{console.log("timeleft:", tl, "| delta:", dt)});
 		SceneState.setState(SCENE.TITLE);
 		requestAnimationFrame(update);
 	} else {
