@@ -212,9 +212,14 @@ function backgroundMusicClass() {
 	 * @param {(track: HTMLAudioElement) => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
 	 */
 	this.fadeIn = function(seconds, onTargetReached) {
-		// Following the forumula set in setVolume in this class. 
-		// Not sure why we're taking volume level to power of 2.
-		return _fadeTo(Math.pow(musicSound.baseVolume * musicVolume, 2), seconds, onTargetReached);
+		if (musicSound) {
+			// Following the forumula set in setVolume in this class. 
+			// Not sure why we're taking volume level to power of 2.
+			return _fadeTo(Math.pow(musicSound.baseVolume * musicVolume, 2), seconds, onTargetReached);
+		} else {
+			console.log("Warning! Tried to fadeIn music, but musicSound was " + typeof musicSound === "object" ? "null" : "undefined" + "!");
+			return null;
+		}
 	};
 
 	/**
