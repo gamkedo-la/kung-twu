@@ -2,14 +2,14 @@
  * Initializes and finalizes connection to the window/document
  * Plan to become the center for input querying and management.
  * @param {InputProcessor} inputProcessor
- * @param {gamepad} gamepad 
+ * @param {gamepad} gamepad
  */
 function InputManager(inputProcessor, gamepad) {
 	if (!(inputProcessor instanceof InputProcessor)) {
-		throw new Error('inputProcessor param passed into InputManager is not a valid instanceof InputProcessor!');
+		throw new Error("inputProcessor param passed into InputManager is not a valid instanceof InputProcessor!");
 	}
 	if (!gamepad) {
-		throw new Error('Please pass valid gamepad into InputManager. It is either null or undefined!');
+		throw new Error("Please pass valid gamepad into InputManager. It is either null or undefined!");
 	}
 	const _gamepad = gamepad;
 	const _inputProcessor = inputProcessor;
@@ -26,7 +26,7 @@ function InputManager(inputProcessor, gamepad) {
 		document.addEventListener("mouseup", mouseButtonReleased);
 		document.addEventListener("mousemove", calculateMousePos);
 	
-		//The following events are on the window as  
+		//The following events are on the window as
 		//they don't seem to work on the document
 		window.addEventListener("gamepadconnected", _gamepad.connect);
 		window.addEventListener("gamepaddisconnected", _gamepad.disconnect);

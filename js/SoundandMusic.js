@@ -278,8 +278,12 @@ function backgroundMusicClass() {
 					onTargetReached(track);
 				}
 			} else {
+				const newVal = track.volume + fadePerFrame;
 				// Increment/decrement volume at the fadePerFrame value
-				track.volume = track.volume + fadePerFrame;
+				track.volume = clamp(newVal, 0, 1);
+				if (newVal > 1 || newVal < 0) {
+					console.log("Warning! Attempted to set volume to a value outside of the 0 to 1 range!");
+				}
 			}
 		}, 1000/grain);
 		return fadeInterval;

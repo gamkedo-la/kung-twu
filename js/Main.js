@@ -28,7 +28,7 @@ window.onload = function() {
 	opacity = 0;
 
 	pauseManager = new PauseManager();
-    
+		
 	wooshFX = new WooshFXManager(wooshPunchPic);
 	foregroundDecorations = new DecorationManager(decorationSpritesheet);
 	
@@ -39,6 +39,9 @@ window.onload = function() {
 	inputProcessor = new InputProcessor();
 	input = new InputManager(inputProcessor, gamepad);
 	input.initialize();
+
+	// Set the UIProgressBar configuration defaults for use with creating a new UIProgressBar.
+	UIProgressBarDefaults = new IProgressBarConfig();
 	
 	configureGameAudio();
 	loadAudio();
@@ -60,8 +63,7 @@ function loadingDoneSoStartGame() {
 	if(finishedLoading) {
 		JPFont = new fontSystem(jpFontImg, CHAR_SIZE, canvasContext);
 		timer = new Chronogram();
-		countDownTimers = new CountDownTimerManager(10);
-//		countDownTimers.fireAndForget(10, () => {console.log("finished")}, (tl, dt)=>{console.log("timeleft:", tl, "| delta:", dt)});
+
 		SceneState.setState(SCENE.TITLE);
 		requestAnimationFrame(update);
 	} else {
@@ -77,7 +79,6 @@ function updateButtonText() {
 
 function update() {
 	const deltaTime = timer.update();
-	countDownTimers.update(deltaTime);
 	if (gamepad.active) {
 		gamepad.update();
 	}

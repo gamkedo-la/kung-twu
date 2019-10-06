@@ -1,5 +1,9 @@
 /**
  * 
+ * @param {HTMLImageElement} image The html <img> to render
+ * @param {number} x x-position
+ * @param {number} y y-position
+ * @param {number} xAnchor
  */
 function UITextureButton(image, x, y) {
 	const _DEBUG = true;
@@ -8,13 +12,12 @@ function UITextureButton(image, x, y) {
 	this.state = State.NONE;
 	this.rectangle = new Rectangle(x, y, image.width, image.height);
 	
-	/** The active state of the button */
+	/** Enumeration of possible button States */
 	const State = {
 		NONE: "NONE",
 		HOVER: "HOVER",
 		PRESSED: "PRESSED"
-	};
-	
+  };
 	
 	this.update = function() {
 		const pointerX = mouseX;
@@ -52,19 +55,17 @@ function UITextureButton(image, x, y) {
 
 }
 
-
-function UIProgressBar() {
-
-}
-
 /**
- * Creates a horizontal slider, useful for menu UI
+ * Creates a slider, useful for menu UI
  */
 function UISlider(x, y, width = 150, height = 10, label = "", 
 	lowVal = 0, lowLabel = "", highVal = 100, highLabel = "", intialValue = 50, 
 	steps = 10, isHorizontal = true, color = Color.Aqua) {
 
-	const RADIUS = (isHorizontal? height : width);
+  const RADIUS = (isHorizontal? height : width);
+  /**
+   * The difference between high and low values
+   */
 	const SPAN = highVal - lowVal;
 	const INCREMENT = SPAN / steps;
 	const LABEL_PADDING = 10;
