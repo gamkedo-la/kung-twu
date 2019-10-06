@@ -1,6 +1,7 @@
 //Globals
 //----------Drawing and Canvas---------//
 let canvas;
+/** @type CanvasRenderingContext2D */
 let canvasContext;
 let currentLanguage;
 
