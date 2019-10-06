@@ -4,6 +4,16 @@ function lerp(start, end, amount) {
 }
 
 /**
+ * Clamps a value between two boundaries
+ * @param {number} value Value to clamp
+ * @param {number} min Minimum boundary
+ * @param {number} max Max boundary
+ */
+function clamp(value, min, max) {
+	return Math.min(max, Math.max(min, value));
+}
+
+/**
  * Function for creating an axis aligned rectangle including
  * several useful helper methods.
  * @param {number} x x-position of upper left corner
