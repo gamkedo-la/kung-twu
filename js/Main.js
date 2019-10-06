@@ -28,7 +28,7 @@ window.onload = function() {
 	opacity = 0;
 
 	pauseManager = new PauseManager();
-    
+		
 	wooshFX = new WooshFXManager(wooshPunchPic);
 	foregroundDecorations = new DecorationManager(decorationSpritesheet);
 	
@@ -39,6 +39,9 @@ window.onload = function() {
 	inputProcessor = new InputProcessor();
 	input = new InputManager(inputProcessor, gamepad);
 	input.initialize();
+
+	// Set the UIProgressBar configuration defaults for use with creating a new UIProgressBar.
+	UIProgressBarDefaults = new IProgressBarConfig();
 	
 	configureGameAudio();
 	loadAudio();
@@ -61,6 +64,7 @@ function loadingDoneSoStartGame() {
 		let jpCharSize = {width: 32 , height: 32};
 		JPFont = new fontSystem(jpFontImg, jpCharSize, canvasContext);
 		timer = new Chronogram();
+
 		SceneState.setState(SCENE.TITLE);
 		requestAnimationFrame(update);
 	} else {

@@ -26,6 +26,9 @@ const Color = {
 	DarkGrey:"darkgrey"
 };
 
+/** @type IProgressBarConfig */
+let UIProgressBarDefaults;
+
 //--------------Player-----------------//
 let player = null;
 let aiManager = null;
