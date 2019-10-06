@@ -135,6 +135,7 @@ const wooshHurtPic = document.createElement("img");
 const wooshKnockoutPic = document.createElement("img");
 const decorationSpritesheet = document.createElement("img");
 const waterfallSheet = document.createElement("img");
+const lamp = document.createElement("img");
 
 let picsToLoad = 0;
 
@@ -198,6 +199,7 @@ function loadImages() {
 		{ imgName: wallGradient, theFile: "wall-gradient.png"},
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 		{ imgName: waterfallSheet, theFile: "waterfallSheet.png"},
+		{ imgName: lamp, theFile: "Lamp.png"},
 
 		// player related
 		{ imgName: playerIdleWhite, theFile: "Player_Idle_White.png"},

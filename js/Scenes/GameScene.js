@@ -7,6 +7,7 @@ function GameScene() {
 	let camera = null;
 	let enemies = [];
 	let columnManager = null;
+	let lampManager = null;
 	let levelData = null;
 	let collisionManager = null;
 	let subfloor = null;
@@ -57,6 +58,7 @@ function GameScene() {
 			InitializeRoof();
 			InitializeBackWall();
 			initializeColumns(levelData.columnImage, VERTICAL_OFFSET);
+			initializeLamps(350);
 			if(currentLevel === 1) initializeWaterfall();
 		}
 
@@ -90,6 +92,7 @@ function GameScene() {
 		defeatedEnemyCount = 0;
 		bossHasBeenSpawned = false;
 		columnManager = null;
+		lampManager = null;
 		levelData = dataForCurrentLevel();
 		bossHealth = levelData.bossHealth;
 		player.reset(levelData.playerStart);
@@ -98,6 +101,7 @@ function GameScene() {
 		floor = null;
 		roof = null;
 		wall = null;
+		waterfall = null;
 		floorMidHeight = 0;
 		timeTilSpawn = 0;
 		score = 0;
@@ -194,6 +198,7 @@ function GameScene() {
 		subfloor.update(newCameraX, floorImageShifts);
 		roof.update(newCameraX, floorImageShifts);
 		wall.update(newCameraX, floorImageShifts);
+		lampManager.update(newCameraX, floorImageShifts);
 		foregroundDecorations.update(floorImageShifts);
 		wallDecorations.update(floorImageShifts);
 	};
@@ -302,6 +307,7 @@ function GameScene() {
 		player.draw();
 		if (wooshFX) wooshFX.draw();
 
+		lampManager.draw();
 		if (foregroundDecorations) foregroundDecorations.draw(cameraX);
 		columnManager.draw(cameraX);
 		roof.draw();
@@ -457,6 +463,12 @@ function GameScene() {
 		columnManager = new InfiniteColumn(image, offset);
 		const colPos = 100 + camera.getPosition().x + (2 * canvas.width) / 3;
 		columnManager.positionFirstColumn(colPos);
+	};
+
+	const initializeLamps = function(offset) {
+		lampManager = new InfiniteLamp(offset);
+		const lampPos = 150 + camera.getPosition().x + (2 * canvas.width) / 3;
+		lampManager.positionFirstLamp(lampPos);
 	};
 
 	const initializeWaterfall = function() {
