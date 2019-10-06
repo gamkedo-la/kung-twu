@@ -278,7 +278,7 @@ function backgroundMusicClass() {
 					onTargetReached(track);
 				}
 			} else {
-				const newVal = track.volume + fadePerframe;
+				const newVal = track.volume + fadePerFrame;
 				// Increment/decrement volume at the fadePerFrame value
 				track.volume = clamp(newVal, 0, 1);
 				if (newVal > 1 || newVal < 0) {
