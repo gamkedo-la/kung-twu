@@ -27,8 +27,9 @@ function Rectangle(x, y, width, height) {
 	this.width = width;
 	this.height = height;
 	this.anchor = {
-		x: anchorX,
-		y: anchorY};
+		x: 0,
+		y: 0
+	};
 	/**
 	 * Gets the left-most x position of the Rectangle
 	 */
@@ -60,4 +61,4 @@ function Rectangle(x, y, width, height) {
 		this.anchor.y = this.top + (this.height * y);
 	};
 }
-  
+	
