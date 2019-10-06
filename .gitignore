@@ -5,3 +5,4 @@
 *.iml
 
 not_for_repo/
+node_modules/
