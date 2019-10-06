@@ -12,10 +12,9 @@
             "error",
             "tab"
         ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
+        // "linebreak-style": [
+        //     "unix"
+        // ],
         "quotes": [
             "error",
             "double"
