@@ -41,3 +41,14 @@ function drawBorder(x, y, w, h, color) {
 	canvasContext.strokeStyle = color;
 	canvasContext.stroke();
 }
+
+/**
+ * Creates a CSS string color
+ * @param {number} r red value (0-255)
+ * @param {number} g green value (0-255)
+ * @param {number} b blue value (0-255)
+ * @param {number} a alpha value (0-1)
+ */
+function rgba(r, g, b, a = 1) {
+	return `rgba(${r},${g},${b},${a})`;
+}
