@@ -78,22 +78,26 @@ function AssistScene() {
 			localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, maxHealth);
 		}
 
+		const pHealthMin = 1;
+		const pHealthMax = 200;
 		//		slider.maxPlayerHealth = new UISlider(50, 150, 10, 200, "Max Health", 1, "1", 200, "200", maxHealth, 20, false, Color.Orange);
-		slider.maxPlayerHealth = new UISlider(50, 150, 200, 10, "Max Health", 1, "1", 200, "200", maxHealth, 20, true, Color.Orange);
+		slider.maxPlayerHealth = new UISlider(50, 150, 200, 10, getLocalizedStringForKey(STRINGS_KEY.MaxHealth), pHealthMin, pHealthMin.toString(), pHealthMax, pHealthMax.toString(), maxHealth, 20, true, Color.Orange);
 		
 		let startBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
 		if((startBelt === undefined) || (startBelt === null) || (isNaN(startBelt))) {
 			startBelt = ASSIST_DEFAULT.StartBelt;
 			localStorageHelper.setInt(localStorageKey.StartingBelt, startBelt);
 		}
-		slider.startingBelt = new UISlider(50, 250, 200, 10, "Start Belt", 0, "White", 5, "Black", startBelt, 5, true, Color.White);
+		slider.startingBelt = new UISlider(50, 250, 200, 10, getLocalizedStringForKey(STRINGS_KEY.StartBelt), 0, getLocalizedStringForKey(STRINGS_KEY.BeltWhite), 5, getLocalizedStringForKey(STRINGS_KEY.BeltBlack), startBelt, 5, true, Color.White);
 
 		let startLevel = localStorageHelper.getInt(localStorageKey.StartingLevel);
 		if((startLevel === undefined) || (startLevel === null) || (isNaN(startLevel))) {
 			startLevel = ASSIST_DEFAULT.StartLevel;
 			localStorageHelper.setInt(localStorageKey.StartingLevel, startLevel);
 		}
-		slider.startingLevel = new UISlider(50, 350, 200, 10, "Start Level", 0, "Tiger", 4, "Dragon", startLevel, 4, true, Color.Aqua);
+		const sLevelMin = 0;
+		const sLevelMax = 4;
+		slider.startingLevel = new UISlider(50, 350, 200, 10, getLocalizedStringForKey(STRINGS_KEY.StartLevel), sLevelMin, getLocalizedStringForKey(STRINGS_KEY.Level1), sLevelMax, getLocalizedStringForKey(STRINGS_KEY.Level5), startLevel, 4, true, Color.Aqua);
 	};
 
 	const update = function() {

@@ -61,7 +61,16 @@ const STRINGS_KEY = {
 	HowToJ_Kick:"HowToJ_Kick",
 	HowToH_Kick:"HowToH_Kick",
 	EndGameMessage:"EndGameMessage",
-	Boss:"Boss"
+	Boss:"Boss",
+	BeltWhite:"beltWhite",
+	BeltYellow:"beltYellow",
+	BeltTan:"beltTan",
+	BeltBrown:"beltBrown",
+	BeltRed:"beltRed",
+	BeltBlack:"beltBlack",
+	MaxHealth:"maxHealth",
+	StartBelt:"startBelt",
+	StartLevel:"startLevel"
 };
 
 function getLocalizedStringForKey(key) {
@@ -112,6 +121,15 @@ const userStrings = {
 		[STRINGS_KEY.Level3]:"Leopard",
 		[STRINGS_KEY.Level4]:"Snake",
 		[STRINGS_KEY.Level5]:"Dragon",
+		[STRINGS_KEY.BeltWhite]:"White",
+		[STRINGS_KEY.BeltYellow]:"Yellow",
+		[STRINGS_KEY.BeltTan]:"Tan",
+		[STRINGS_KEY.BeltBrown]:"Brown",
+		[STRINGS_KEY.BeltRed]:"Red",
+		[STRINGS_KEY.BeltBlack]:"Black",
+		[STRINGS_KEY.MaxHealth]:"Max Health",
+		[STRINGS_KEY.StartBelt]:"Start Belt",
+		[STRINGS_KEY.StartLevel]:"Start Level",
 		[STRINGS_KEY.HelpScreenContents]:"[ARROWS or WASD] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[V] Block\n[P] Pause\n[Esc] Menu",
 		[STRINGS_KEY.HowToDash]:"[SPACE] to Dash back from rivals",
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching to Leg Sweep rivals",
@@ -172,7 +190,16 @@ const userStrings = {
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
-		[STRINGS_KEY.Assist]:"[Z] for Assist Mode"
+		[STRINGS_KEY.Assist]:"[Z] for Assist Mode",
+		[STRINGS_KEY.BeltWhite]:"White",
+		[STRINGS_KEY.BeltYellow]:"Yellow",
+		[STRINGS_KEY.BeltTan]:"Tan",
+		[STRINGS_KEY.BeltBrown]:"Brown",
+		[STRINGS_KEY.BeltRed]:"Red",
+		[STRINGS_KEY.BeltBlack]:"Black",
+		[STRINGS_KEY.MaxHealth]:"Max Health",
+		[STRINGS_KEY.StartBelt]:"Start Belt",
+		[STRINGS_KEY.StartLevel]:"Start Level"
 	},
 
 	Japanese: {
@@ -227,7 +254,16 @@ const userStrings = {
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
-		[STRINGS_KEY.Assist]:"[Z] for Assist Mode"
+		[STRINGS_KEY.Assist]:"[Z] for Assist Mode",
+		[STRINGS_KEY.BeltWhite]:"White",
+		[STRINGS_KEY.BeltYellow]:"Yellow",
+		[STRINGS_KEY.BeltTan]:"Tan",
+		[STRINGS_KEY.BeltBrown]:"Brown",
+		[STRINGS_KEY.BeltRed]:"Red",
+		[STRINGS_KEY.BeltBlack]:"Black",
+		[STRINGS_KEY.MaxHealth]:"Max Health",
+		[STRINGS_KEY.StartBelt]:"Start Belt",
+		[STRINGS_KEY.StartLevel]:"Start Level"
 	},
 
 	French: {
@@ -281,7 +317,16 @@ const userStrings = {
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
-		[STRINGS_KEY.Assist]:"[Z] for Assist Mode"
+		[STRINGS_KEY.Assist]:"[Z] for Assist Mode",
+		[STRINGS_KEY.BeltWhite]:"White",
+		[STRINGS_KEY.BeltYellow]:"Yellow",
+		[STRINGS_KEY.BeltTan]:"Tan",
+		[STRINGS_KEY.BeltBrown]:"Brown",
+		[STRINGS_KEY.BeltRed]:"Red",
+		[STRINGS_KEY.BeltBlack]:"Black",
+		[STRINGS_KEY.MaxHealth]:"Max Health",
+		[STRINGS_KEY.StartBelt]:"Start Belt",
+		[STRINGS_KEY.StartLevel]:"Start Level"
 	},
 
 	Russian: {
@@ -335,7 +380,16 @@ const userStrings = {
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
-		[STRINGS_KEY.Assist]:"[Z] for Assist Mode"
+		[STRINGS_KEY.Assist]:"[Z] for Assist Mode",
+		[STRINGS_KEY.BeltWhite]:"White",
+		[STRINGS_KEY.BeltYellow]:"Yellow",
+		[STRINGS_KEY.BeltTan]:"Tan",
+		[STRINGS_KEY.BeltBrown]:"Brown",
+		[STRINGS_KEY.BeltRed]:"Red",
+		[STRINGS_KEY.BeltBlack]:"Black",
+		[STRINGS_KEY.MaxHealth]:"Max Health",
+		[STRINGS_KEY.StartBelt]:"Start Belt",
+		[STRINGS_KEY.StartLevel]:"Start Level"
 	},
 	
 	Polish: {
@@ -387,6 +441,16 @@ const userStrings = {
 		[STRINGS_KEY.EndGameMessage]:"Gratulacje! Osiągnąłeś oświecenie\nidź teraz i nauczaj\nco sam się\nwłaśnie nauczyłeś.",
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"TRYB ASYSTY",
-		[STRINGS_KEY.Assist]:"[Z] Tryb Asysty"
+		[STRINGS_KEY.Assist]:"[Z] Tryb Asysty",
+
+		[STRINGS_KEY.BeltWhite]:"White",
+		[STRINGS_KEY.BeltYellow]:"Yellow",
+		[STRINGS_KEY.BeltTan]:"Tan",
+		[STRINGS_KEY.BeltBrown]:"Brown",
+		[STRINGS_KEY.BeltRed]:"Red",
+		[STRINGS_KEY.BeltBlack]:"Black",
+		[STRINGS_KEY.MaxHealth]:"Max Health",
+		[STRINGS_KEY.StartBelt]:"Start Belt",
+		[STRINGS_KEY.StartLevel]:"Start Level"
 	}
 };

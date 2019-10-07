@@ -12,9 +12,6 @@
             "error",
             "tab"
         ],
-        // "linebreak-style": [
-        //     "unix"
-        // ],
         "quotes": [
             "error",
             "double"
