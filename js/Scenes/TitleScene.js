@@ -320,7 +320,7 @@ function TitleScene() {
 
 		//Example use of JPFont
 		text = getLocalizedStringForKey(STRINGS_KEY.Subtitle);
-		JPFont.printTextAt(text, {x:100, y:310});
+		JPFont.printTextAt(text, {x:canvas.width / 2, y:310}, TextAlignment.Center, 0.5);
 	};
         
 	return this;

@@ -8,21 +8,33 @@ function fontSystem(jpFont, charSize, context) {
 			let letterPos = alignment(i, position, align, text.length);
 			letters.push(letter, charSize, {x:position.x, y:position.y}, context);
 			lettersStartPos.push(letterPos);
-			console.log(letters)
+			console.log(letters);
 		}
 	};
 
-	const adjustment = function(text, position, alignment, scale) {
-		alignCentered => position.x -= (Math.floor(drawWidth * text.length / 2));
-		alignRight => position.x += (drawWidth * text.length);
-		alignLeft => position.x -= (drawWidth * text.length);
+	const leftSideOfTextForPosAlignmentAndScale = function(text, xPos, alignment, scale) {
+		const totalWidth = text.length * charAdvancementForLanguage() * scale;
+		switch(alignment) {
+		case TextAlignment.Left: return xPos;
+		case TextAlignment.Center: return (xPos - totalWidth / 2);
+		case TextAlignment.Right: return (xPos - totalWidth);
 
+		}
 	};
 
-	this.printTextAt = function(text, position, alignment, scale) {
+	this.printTextAt = function(text, position, alignment = TextAlignment.Left, scale = 1) {
+		const advancement = charAdvancementForLanguage();
+		const startPos = leftSideOfTextForPosAlignmentAndScale(text, position.x, alignment, scale);
 		for(let i = 0; i < text.length; i++) {	//Go through alll characters
 			const thisFrame = this.findLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
-			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, position.x +  (i * charSize.width), position.y, charSize.width, charSize.height);
+			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, startPos +  (i * advancement * scale), position.y, charSize.width * scale, charSize.height * scale);
+		}
+	};
+
+	const charAdvancementForLanguage = function() {
+		switch(currentLanguage) {
+		case Language.English: return 66;//magic numbers based on widest character in image
+		default: return CHAR_SIZE.width;
 		}
 	};
 
