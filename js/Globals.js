@@ -160,6 +160,14 @@ const ENTITY_TYPE = {
 //---------------Audio------------------//
 let isMuted = false;
 
+/**
+ * Enum-like, defines the sub-audio busses in the game
+ */
+const AudioBus = {
+	SFX: "SFX",
+	MUSIC: "MUSIC"
+}; Object.freeze(AudioBus);
+
 //------------Text------------------//
 const TextAlignment = {
 	Left: "left",
