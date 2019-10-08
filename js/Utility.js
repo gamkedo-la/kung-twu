@@ -33,24 +33,24 @@ function Rectangle(x, y, width, height) {
 	/**
 	 * Gets the left-most x position of the Rectangle
 	 */
-	this.left = () => this.x - this.anchor.x;
+	this.getLeft = () => this.x - this.anchor.x;
 	/**
 	 * Gets the right-most x position of the Rectangle
 	 */
-	this.right = () => this.x - this.anchor.x + this.width;
+	this.getRight = () => this.x - this.anchor.x + this.width;
 	/**
 	 * Gets the top-most y position of the Rectangle
 	 */
-	this.top = () => this.y - this.anchor.y;
+	this.getTop = () => this.y - this.anchor.y;
 	/**
 	 * Gets the bottom-most y position of the Rectangle
 	 */
-	this.bottom = () => this.y - this.anchor.y + this.height;
+	this.getBottom = () => this.y - this.anchor.y + this.height;
 	/**
 	 * Gets the center position of the Rectangle as an object:
 	 * {x: centerXPos, y: centerYPos }
 	 */
-	this.center = () => {
+	this.getCenterPos = () => {
 		return {x: this.left + this.width/2, y: this.top + this.width/2};
 	};
 	/**

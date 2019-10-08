@@ -129,16 +129,16 @@ function UIProgressBar(config) {
 		let x = 0;
 		switch(_destination) {
 		case "RIGHT":
-			x = _progressBar.right;
+			x = _progressBar.getRight();
 			break;
 		case "LEFT":
-			x = _progressBar.left;
+			x = _progressBar.getLeft();
 			break;
 		case "TOP":
-			x = _progressBar.left + _progressBar.width/2;
+			x = _progressBar.getLeft() + _progressBar.width/2;
 			break;
 		case "BOTTOM":
-			x = _progressBar.left + _progressBar.width/2;
+			x = _progressBar.getLeft() + _progressBar.width/2;
 			break;
 		default:
 			throw new Error("UIProgressBar destination set to an invalid value!");
@@ -157,16 +157,16 @@ function UIProgressBar(config) {
 		let y = 0;
 		switch(_destination) {
 		case "RIGHT":
-			y = _progressBar.top() + _progressBar.height/2;
+			y = _progressBar.getTop() + _progressBar.height/2;
 			break;
 		case "LEFT":
-			y = _progressBar.top() + _progressBar.height/2;
+			y = _progressBar.getTop() + _progressBar.height/2;
 			break;
 		case "TOP":
-			y = _progressBar.top();
+			y = _progressBar.getTop();
 			break;
 		case "BOTTOM":
-			y = _progressBar.bottom();
+			y = _progressBar.getBottom();
 			break;
 		default:
 			throw new Error("UIProgressBar destination set to an invalid value!");
@@ -193,16 +193,16 @@ function UIProgressBar(config) {
 	this.setValueByScreenPos = function(x, y) {
 		switch(_destination) {
 		case "LEFT":
-			_value = 1 - (x - _baseBar.left()) / _baseBar.width;
+			_value = 1 - (x - _baseBar.getLeft()) / _baseBar.width;
 			break;
 		case "RIGHT":
-			_value = (x - _baseBar.left()) / _baseBar.width;
+			_value = (x - _baseBar.getLeft()) / _baseBar.width;
 			break;
 		case "TOP":
-			_value = 1 - (y - _baseBar.top())/ _baseBar.height;
+			_value = 1 - (y - _baseBar.getTop())/ _baseBar.height;
 			break;
 		case "BOTTOM":
-			_value = (y - _baseBar.top())/ _baseBar.height;
+			_value = (y - _baseBar.getTop())/ _baseBar.height;
 			break;
 		}
 		_value = clamp(_value, 0, 1);
@@ -227,10 +227,10 @@ function UIProgressBar(config) {
 	 * @returns {CanvasGradient} Returns a canvas gradient, or null if direction is not one of the four viable options
 	 */
 	this.makeGradient = function(direction, ...colors) {
-		const left = _baseBar.left();
-		const right = _baseBar.right();
-		const top = _baseBar.top();
-		const bottom = _baseBar.bottom();
+		const left = _baseBar.getLeft();
+		const right = _baseBar.getRight();
+		const top = _baseBar.getTop();
+		const bottom = _baseBar.getBottom();
 		/** @type CanvasGradient */
 		let grad = null;
 
@@ -295,26 +295,26 @@ function UIProgressBar(config) {
 		// hmm there must be a more functional way to handle this calculation?...
 		switch (_destination) {
 		case "RIGHT":
-			_progressBar.x = _baseBar.left();
-			_progressBar.y = _baseBar.top();
+			_progressBar.x = _baseBar.getLeft();
+			_progressBar.y = _baseBar.getTop();
 			_progressBar.width = _value * _baseBar.width;
 			_progressBar.height = _baseBar.height;
 			break;
 		case "LEFT":
-			_progressBar.x = _baseBar.right() + (1 - _baseBar.width * _value);
-			_progressBar.y = _baseBar.top();
+			_progressBar.x = _baseBar.getRight() + (1 - _baseBar.width * _value);
+			_progressBar.y = _baseBar.getTop();
 			_progressBar.width = _baseBar.width * _value;
 			_progressBar.height = _baseBar.height;
 			break;
 		case "TOP":
-			_progressBar.x = _baseBar.left();
-			_progressBar.y = _baseBar.bottom() + (1 - _baseBar.height * _value);
+			_progressBar.x = _baseBar.getLeft();
+			_progressBar.y = _baseBar.getBottom() + (1 - _baseBar.height * _value);
 			_progressBar.width = _baseBar.width;
 			_progressBar.height = _baseBar.height * _value;
 			break;
 		case "BOTTOM":
-			_progressBar.x = _baseBar.left();
-			_progressBar.y = _baseBar.top();
+			_progressBar.x = _baseBar.getLeft();
+			_progressBar.y = _baseBar.getTop();
 			_progressBar.width = _baseBar.width;
 			_progressBar.height = _baseBar.height * _value;
 			break;
@@ -329,7 +329,7 @@ function UIProgressBar(config) {
 		canvasContext.fillStyle = _bgColor;
 		canvasContext.strokeStyle = _bgOutlineColor;
 		canvasContext.beginPath();
-		canvasContext.rect(_baseBar.left(), _baseBar.top(), _baseBar.width, _baseBar.height);
+		canvasContext.rect(_baseBar.getLeft(), _baseBar.getTop(), _baseBar.width, _baseBar.height);
 		canvasContext.closePath();
 
 		canvasContext.fill();
@@ -342,7 +342,7 @@ function UIProgressBar(config) {
 	function _drawProgressBar() {
 		canvasContext.fillStyle = _progressColor;
 		canvasContext.beginPath();
-		canvasContext.rect(_progressBar.left(), _progressBar.top(), _progressBar.width, _progressBar.height);
+		canvasContext.rect(_progressBar.getLeft(), _progressBar.getTop(), _progressBar.width, _progressBar.height);
 		canvasContext.closePath();
 
 		canvasContext.fill();
