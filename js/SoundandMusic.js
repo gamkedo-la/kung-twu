@@ -224,7 +224,7 @@ function backgroundMusicClass() {
 		if (musicSound) {
 			// Following the forumula set in setVolume in this class. 
 			// Not sure why we're taking volume level to power of 2.
-			return _fadeTo(Math.pow(musicSound.baseVolume * musicVolume, 2), seconds, onTargetReached);
+			return _fadeTo(1, seconds, onTargetReached);
 		} else {
 			console.log("Warning! Tried to fadeIn music, but musicSound was " + (typeof musicSound === "object" ? "null" : "undefined" + "!"));
 			return null;
@@ -235,6 +235,7 @@ function backgroundMusicClass() {
 	 * Simple fade to a target volume in a set amount of seconds. If you need to set a starting value, please do that before calling.
 	 * Returns the NodeJS.Timeout so you can stop it on your own with clearInterval if needed before it reaches its target.
 	 * Returns null if volume is already at the passed targetVol or no track could be found in the musicSound global var
+	 * @param {number} startingVol
 	 * @param {number} targetVol
 	 * @param {number} seconds 
 	 * @param {(track: HTMLAudioElement) => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
@@ -259,33 +260,31 @@ function backgroundMusicClass() {
 			console.log(`Warning! Tried to fade track, but track in musicSound global variable was ${(typeof musicSound === "object" ? "null" : "undefined")}!`);
 			return null;
 		}
-		/** @type number */
-		const startingVol = track.volume;
 
+		const startingVol = getLinearTrackVolumeValue(track, AudioBus.MUSIC);
+	
 		if (startingVol == targetVol) return null;
+
 		const diff = targetVol - startingVol;
 		const grain = 60; // in fps
 		const fadePerFrame = diff / grain / seconds;
-
 		// Set up a new interval that will fade the track
 		const fadeInterval = setInterval(() => {
-			const currentVol = track.volume;
+			const currentVol = getLinearTrackVolumeValue(track, AudioBus.MUSIC); // bit of a round-about while to do this. Will add this metadata to sound object
+			console.log("currentVol", currentVol, "targetVol", targetVol);
 			// Check if we have arrived
 			if (currentVol > targetVol - Math.abs(fadePerFrame) && 
-			currentVol < targetVol + Math.abs(fadePerFrame) || currentVol == targetVol) 
+			currentVol < targetVol + Math.abs(fadePerFrame)) 
 			{
-				track.volume = targetVol; // make sure volume is at target
+				setTrackVolume(track, AudioBus.MUSIC, targetVol); // make sure volume is at target
 				clearInterval(fadeInterval); // clear this interval so it is no longer called
 				if (onTargetReached) {
 					onTargetReached(track);
 				}
 			} else {
-				const newVal = track.volume + fadePerFrame;
+				const newVal = currentVol + fadePerFrame;
 				// Increment/decrement volume at the fadePerFrame value
-				track.volume = clamp(newVal, 0, 1);
-				if (newVal > 1 || newVal < 0) {
-					console.log("Warning! Attempted to set volume to a value outside of the 0 to 1 range!");
-				}
+				setTrackVolume(track, AudioBus.MUSIC, newVal);
 			}
 		}, 1000/grain);
 		return fadeInterval;
@@ -345,14 +344,8 @@ function toggleMute() {
  * The function clamps the value between 0 and 1 should it exceed these boundaries
  * @returns void
  */
-function setEffectsVolume(amount) {
-	effectsVolume = amount;
-	if(effectsVolume > 1.0) {
-		effectsVolume = 1.0;
-	} else if (effectsVolume < 0.0) {
-		effectsVolume = 0.0;
-	}
-
+function setGlobalEffectsVolume(amount) {
+	effectsVolume = clamp(amount, 0 , 1);
 	localStorageHelper.setItem(localStorageKey.SFXVolume, effectsVolume);
 }
 
@@ -362,14 +355,10 @@ function setEffectsVolume(amount) {
  * The function clamps the value between 0 and 1 should it exceed these boundaries
  * @returns void
  */
-function setMusicVolume(amount){
-	musicVolume = amount;
-	if(musicVolume > 1.0) {
-		musicVolume = 1.0;
-	} else if (musicVolume < 0.0) {
-		musicVolume = 0.0;
-	}
-	currentBackgroundMusic.setVolume(musicVolume);
+function setGlobalMusicVolume(amount){
+	musicVolume = clamp(amount, 0, 1);
+	setTrackVolume(musicSound, AudioBus.MUSIC, getLinearTrackVolumeValue(musicSound, AudioBus.MUSIC));
+	//currentBackgroundMusic.setVolume(musicVolume);
 	localStorageHelper.setItem(localStorageKey.MusicVolume, musicVolume);
 }
 
@@ -377,14 +366,111 @@ function setMusicVolume(amount){
  * Relatively increases the level of both SFX and Music global volume levels by the VOLUME_INCREMENT constant
  */
 function turnVolumeUp() {
-	setMusicVolume(musicVolume + VOLUME_INCREMENT);
-	setEffectsVolume(effectsVolume + VOLUME_INCREMENT);
+	setGlobalMusicVolume(musicVolume + VOLUME_INCREMENT);
+	setGlobalEffectsVolume(effectsVolume + VOLUME_INCREMENT);
 }
 
 /**
  * Relatively decreases the level of both SFX and Music global volume levels by the VOLUME_INCREMENT constant
  */
 function turnVolumeDown() {
-	setMusicVolume(musicVolume - VOLUME_INCREMENT);
-	setEffectsVolume(effectsVolume - VOLUME_INCREMENT);
+	setGlobalMusicVolume(musicVolume - VOLUME_INCREMENT);
+	setGlobalEffectsVolume(effectsVolume - VOLUME_INCREMENT);
+}
+
+/**
+ * Sets the volume of any htmlAudioElement according to the game's bus audio graph/bus routing
+ * @param {HTMLAudioElement} htmlAudioElement The audio element to adjust. 
+ * Please make sure that the 'baseVolume' property has been injected and set.
+ * @param {string} bus A value from AudioBus enum-like object
+ * @param {number} volume The value to set the volume to. Defaults to 1 if no value passed.
+ */
+function setTrackVolume(htmlAudioElement, bus, volume) {
+	console.log(_calculateTrackVolume(htmlAudioElement, bus, volume));
+	htmlAudioElement.volume = _calculateTrackVolume(htmlAudioElement, bus, volume);
+}
+
+/**
+ * Gets the volume of any htmlAudioElement according to the game's bus audio graph/bus routing
+ * @param {HTMLAudioElement} htmlAudioElement The audio element to get the volume of
+ * Please make sure that the 'baseVolume' property has been injected and set.
+ * @param {string} bus A value from AudioBus enum-like object
+ * @param {number?} volume The current linear value the volume is at. Defaults to 1 if no value passed
+ */
+function getTrackVolume(htmlAudioElement, bus, volume) {
+	return _calculateTrackVolume(htmlAudioElement, bus, volume);
+}
+
+/**
+ * Calculates the volume of any htmlAudioElement according to the game's bus audio graph/bus routing
+ * @param {HTMLAudioElement} htmlAudioElement The audio element to adjust. 
+ * Please make sure that the 'baseVolume' property has been injected and set.
+ * @param {string} bus A value from AudioBus enum-like object
+ * @param {number?} volume The value to set the volume to. 
+ * Passing a value is optional. Will not have any effect on total if value not passed, 
+ * but merely update the sound volume based on bus volume changes.
+ */
+function _calculateTrackVolume(htmlAudioElement, bus, volume) {
+	// Make sure these values are as expected
+	// Remove later for performance
+	Debug.isValid(htmlAudioElement, HTMLAudioElement);
+	Debug.isValid(htmlAudioElement.baseVolume, "number");
+	Debug.isValid(bus, "string");
+	Debug.isValid(volume, "number");
+	Debug.isValid(musicVolume, "number");
+	Debug.isValid(effectsVolume, "number");
+	Debug.isValid(masterVolume, "number");
+	Debug.isValid(isMuted, "boolean");
+
+	// Calculate volume here. User can omit or set volume to null to not alter the value, but rather update the volume based on bus.
+	if (isMuted) {
+		// avoid having to calculate volume if muted
+		return 0;
+	} else {
+		let _vol = 1; // default val if user does not pass volume param
+		if (volume != undefined && volume != null) {
+			_vol = volume;
+		}
+		const _bus = getBusVolume(bus);
+		const _base = htmlAudioElement.baseVolume;
+		const _master = masterVolume;
+		return Math.pow(_vol * _base * _bus * _master, 2);
+	}
+}
+
+/**
+ * Gets our 'magic number' linear (auto-converted to logarithmic) value. Will abstract later. Sorry for the mess.
+ * @param {HTMLAudioElement} htmlAudioElement HTML Audio element
+ * @param {string} audioBus Value from AudioBus object
+ */
+function getLinearTrackVolumeValue(htmlAudioElement, audioBus) {
+	const _bus = getBusVolume(audioBus);
+	const _base = htmlAudioElement.baseVolume;
+	const _master = masterVolume;
+	const _current = htmlAudioElement.volume;
+	return (Math.sqrt(_current)/(_bus*_base*_master)) * ((isMuted) ? 0 : 1);
+}
+
+/** 
+ * Helper to get the bus volume from AudioBus value passed
+ * @param {string} audioBus A value from AudioBus enum object
+ */
+function getBusVolume(audioBus) {
+	// Get the bus volume value
+	/** @type number */
+	let busVolume = 1;
+	switch(audioBus) {
+	case AudioBus.MUSIC:
+		busVolume = musicVolume;
+		break;
+	case AudioBus.SFX:
+		busVolume = effectsVolume;
+		break;
+	case AudioBus.NONE:
+		busVolume = 1; // will have no effect in equation
+		break;
+	default:
+		throw new Error("'bus' parameter passed into 'setTrackVolume' was not a valid entry within AudioBus!");
+	}
+	return busVolume;
 }

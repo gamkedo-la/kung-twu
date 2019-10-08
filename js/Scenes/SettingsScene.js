@@ -76,7 +76,7 @@ function SettingsScene() {
 	const update = function() {
 		processUserInput();
 		uiProgBar.setValueByScreenPos(mouseX, mouseY);
-		setMusicVolume(uiProgBar.getValue());
+		setGlobalMusicVolume(uiProgBar.getValue());
 	};
 
 	const processUserInput = function() {

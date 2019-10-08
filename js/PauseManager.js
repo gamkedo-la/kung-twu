@@ -14,7 +14,7 @@ function PauseManager() {
 		if (!gameIsPaused) {
 			gameIsPaused = true;
 			pauseSound.play();
-			currentBackgroundMusic.fadeTo(.06, 1);
+			currentBackgroundMusic.fadeTo(.4, 1);
 		}
 	};
 
