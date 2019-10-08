@@ -165,7 +165,8 @@ let isMuted = false;
  */
 const AudioBus = {
 	SFX: "SFX",
-	MUSIC: "MUSIC"
+	MUSIC: "MUSIC",
+	NONE: "NONE"
 }; Object.freeze(AudioBus);
 
 //------------Text------------------//
