@@ -13,12 +13,14 @@ function SettingsScene() {
 	let buttonPadding;
 	const buttons = [];
 	/** @type UIProgressBar */
-	let uiProgBar;
+	let uiProgBarMusicVolume;
+	/** @type UIProgressBar */
+	let uiProgBarEffectsVolume;
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 		
 		// Testing new UIProgressBar
-		uiProgBar = new UIProgressBar({
+		uiProgBarMusicVolume = new UIProgressBar({
 			x: 40,
 			y: 200,
 			width: 700,
@@ -28,8 +30,22 @@ function SettingsScene() {
 			bgOutlineColor: "black",
 			startingValue: 0.0
 		});
-		let grad = uiProgBar.makeGradient("RIGHT", rgba(200, 200, 200, 1), "gold");
-		uiProgBar.setProgressBarColor(grad);
+		let grad = uiProgBarMusicVolume.makeGradient("RIGHT", rgba(200, 200, 200, 1), "gold");
+		uiProgBarMusicVolume.setProgressBarColor(grad);
+
+		uiProgBarEffectsVolume = new UIProgressBar({
+			x: 40,
+			y: 240,
+			width: 700,
+			height: 5,
+			destination: "RIGHT",
+			bgColor: rgba(0, 0, 0, 0),
+			bgOutlineColor: "black",
+			startingValue: 0.0
+		});
+		let grad2 = uiProgBarEffectsVolume.makeGradient("RIGHT", rgba(200, 200, 200, 1), "gold");
+		uiProgBarEffectsVolume.setProgressBarColor(grad2);
+		// End instantiating progress bars
 
 		buttonPadding = canvas.width / 40;
 
@@ -75,8 +91,8 @@ function SettingsScene() {
 
 	const update = function() {
 		processUserInput();
-		uiProgBar.setValueByScreenPos(mouseX, mouseY);
-		setGlobalMusicVolume(uiProgBar.getValue());
+		uiProgBarMusicVolume.setValueByScreenPos(mouseX, mouseY);
+		setGlobalMusicVolume(uiProgBarMusicVolume.getValue());
 	};
 
 	const processUserInput = function() {
@@ -181,7 +197,8 @@ function SettingsScene() {
 		// render menu
 		printButtons();
 		
-		uiProgBar.draw();
+		uiProgBarMusicVolume.draw();
+		uiProgBarEffectsVolume.draw();
 	};
 	
 	const drawBG = function() {
