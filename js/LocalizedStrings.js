@@ -442,15 +442,14 @@ const userStrings = {
 		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"TRYB ASYSTY",
 		[STRINGS_KEY.Assist]:"[Z] Tryb Asysty",
-
-		[STRINGS_KEY.BeltWhite]:"White",
-		[STRINGS_KEY.BeltYellow]:"Yellow",
-		[STRINGS_KEY.BeltTan]:"Tan",
-		[STRINGS_KEY.BeltBrown]:"Brown",
-		[STRINGS_KEY.BeltRed]:"Red",
-		[STRINGS_KEY.BeltBlack]:"Black",
-		[STRINGS_KEY.MaxHealth]:"Max Health",
-		[STRINGS_KEY.StartBelt]:"Start Belt",
-		[STRINGS_KEY.StartLevel]:"Start Level"
+		[STRINGS_KEY.BeltWhite]:"Biały",
+		[STRINGS_KEY.BeltYellow]:"Żółty",
+		[STRINGS_KEY.BeltTan]:"Jasnobrązowy",
+		[STRINGS_KEY.BeltBrown]:"Brązowy",
+		[STRINGS_KEY.BeltRed]:"Czerwony",
+		[STRINGS_KEY.BeltBlack]:"Czarny",
+		[STRINGS_KEY.MaxHealth]:"Maksymalne Życie",
+		[STRINGS_KEY.StartBelt]:"Początkowy Pas",
+		[STRINGS_KEY.StartLevel]:"Początkowy Poziom"
 	}
 };
