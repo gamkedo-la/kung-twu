@@ -35,7 +35,7 @@ let bossMusic1;
 let bossMusic2;
 let gameOverMusic;
 // All base volumes must be 1 or less
-const GAMEPLAY_BASE = 1;
+const GAMEPLAY_BASE = 1.0;
 const GAMEPLAY2_BASE = 0.5;
 const DRAGON_BASE = .5;
 const DRAGON2_BASE = 0.35;
@@ -442,11 +442,22 @@ function _calculateTrackVolume(htmlAudioElement, bus, volume) {
  * @param {string} audioBus Value from AudioBus object
  */
 function getLinearTrackVolumeValue(htmlAudioElement, audioBus) {
-	const _bus = getBusVolume(audioBus);
-	const _base = htmlAudioElement.baseVolume;
-	const _master = masterVolume;
-	const _current = htmlAudioElement.volume;
-	return (Math.sqrt(_current)/(_bus*_base*_master)) * ((isMuted) ? 0 : 1);
+
+	if (isMuted) { // prevent needing to make calculations if muted
+		return 0;
+	} else {
+		const _bus = getBusVolume(audioBus);
+		const _base = htmlAudioElement.baseVolume;
+		const _master = masterVolume;
+		const _current = htmlAudioElement.volume;
+		const _divisor = (_bus*_base*_master);
+		if (_divisor <= 0) { // prevent division by zero if a bus is at 0
+			return 0;
+		} else {
+			return (Math.sqrt(_current)/_divisor);
+		}
+		
+	}
 }
 
 /** 
