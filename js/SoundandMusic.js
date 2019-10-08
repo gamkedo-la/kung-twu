@@ -34,13 +34,15 @@ let gameMusic;
 let bossMusic1;
 let bossMusic2;
 let gameOverMusic;
-const GAMEPLAY_BASE = 1.5;
-const GAMEPLAY2_BASE = 0.6;
-const DRAGON_BASE = 1.25;
+// All base volumes must be 1 or less
+const GAMEPLAY_BASE = .5;
+const GAMEPLAY2_BASE = 0.4;
+const DRAGON_BASE = .5;
 const DRAGON2_BASE = 0.35;
 const WARRIOR_BASE = 0.35;
-let musicVolume;
-let effectsVolume;
+let masterVolume = 1;
+let musicVolume = 1;
+let effectsVolume = 1;
 /** @type backgroundMusicClass */
 let currentBackgroundMusic;
 const VOLUME_INCREMENT = 0.05;
