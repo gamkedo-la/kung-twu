@@ -35,8 +35,8 @@ let bossMusic1;
 let bossMusic2;
 let gameOverMusic;
 // All base volumes must be 1 or less
-const GAMEPLAY_BASE = .5;
-const GAMEPLAY2_BASE = 0.4;
+const GAMEPLAY_BASE = 1;
+const GAMEPLAY2_BASE = 0.5;
 const DRAGON_BASE = .5;
 const DRAGON2_BASE = 0.35;
 const WARRIOR_BASE = 0.35;
@@ -46,7 +46,7 @@ let effectsVolume = 1;
 /** @type backgroundMusicClass */
 let currentBackgroundMusic;
 const VOLUME_INCREMENT = 0.05;
-
+ 
 function configureGameAudio() {
 	musicVolume = parseFloat(localStorageHelper.getItem(localStorageKey.MusicVolume));
 	effectsVolume = parseFloat(localStorageHelper.getItem(localStorageKey.SFXVolume));
@@ -222,8 +222,6 @@ function backgroundMusicClass() {
 	 */
 	this.fadeIn = function(seconds, onTargetReached) {
 		if (musicSound) {
-			// Following the forumula set in setVolume in this class. 
-			// Not sure why we're taking volume level to power of 2.
 			return _fadeTo(1, seconds, onTargetReached);
 		} else {
 			console.log("Warning! Tried to fadeIn music, but musicSound was " + (typeof musicSound === "object" ? "null" : "undefined" + "!"));
@@ -357,7 +355,7 @@ function setGlobalEffectsVolume(amount) {
  */
 function setGlobalMusicVolume(amount){
 	musicVolume = clamp(amount, 0, 1);
-	setTrackVolume(musicSound, AudioBus.MUSIC, getLinearTrackVolumeValue(musicSound, AudioBus.MUSIC));
+	setTrackVolume(musicSound, AudioBus.MUSIC, 1);
 	//currentBackgroundMusic.setVolume(musicVolume);
 	localStorageHelper.setItem(localStorageKey.MusicVolume, musicVolume);
 }
