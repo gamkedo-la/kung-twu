@@ -5,6 +5,7 @@
  * @type string 
  */
 let audioFormat;
+const DEBUG_SOUND = false;
 
 /**
  * Global current music HTMLAudioElement <audio>
@@ -111,7 +112,7 @@ function backgroundMusicClass() {
 		
 		// Fades out currently playing song in one second
 		if (musicSound) {
-			_fadeTo(0, 1, () => console.log("faded out song from loopstarting a new one"));
+			_fadeTo(0, 1, () => if (DEBUG_SOUND) console.log("faded out song from loopstarting a new one"));
 		}
 		
 
@@ -224,7 +225,7 @@ function backgroundMusicClass() {
 		if (musicSound) {
 			return _fadeTo(1, seconds, onTargetReached);
 		} else {
-			console.log("Warning! Tried to fadeIn music, but musicSound was " + (typeof musicSound === "object" ? "null" : "undefined" + "!"));
+			if (DEBUG_SOUND) console.log("Warning! Tried to fadeIn music, but musicSound was " + (typeof musicSound === "object" ? "null" : "undefined" + "!"));
 			return null;
 		}
 	};
@@ -255,7 +256,7 @@ function backgroundMusicClass() {
 		/** @type HTMLAudioElement */
 		const track = musicSound;
 		if (!track) {
-			console.log(`Warning! Tried to fade track, but track in musicSound global variable was ${(typeof musicSound === "object" ? "null" : "undefined")}!`);
+			if (DEBUG_SOUND) console.log(`Warning! Tried to fade track, but track in musicSound global variable was ${(typeof musicSound === "object" ? "null" : "undefined")}!`);
 			return null;
 		}
 
@@ -269,7 +270,7 @@ function backgroundMusicClass() {
 		// Set up a new interval that will fade the track
 		const fadeInterval = setInterval(() => {
 			const currentVol = getLinearTrackVolumeValue(track, AudioBus.MUSIC); // bit of a round-about while to do this. Will add this metadata to sound object
-			console.log("currentVol", currentVol, "targetVol", targetVol);
+			if (DEBUG_SOUND) console.log("currentVol", currentVol, "targetVol", targetVol);
 			// Check if we have arrived
 			if (currentVol > targetVol - Math.abs(fadePerFrame) && 
 			currentVol < targetVol + Math.abs(fadePerFrame)) 
@@ -384,7 +385,7 @@ function turnVolumeDown() {
  * @param {number} volume The value to set the volume to. Defaults to 1 if no value passed.
  */
 function setTrackVolume(htmlAudioElement, bus, volume) {
-	console.log(_calculateTrackVolume(htmlAudioElement, bus, volume));
+	if (DEBUG_SOUND) console.log(_calculateTrackVolume(htmlAudioElement, bus, volume));
 	htmlAudioElement.volume = _calculateTrackVolume(htmlAudioElement, bus, volume);
 }
 
