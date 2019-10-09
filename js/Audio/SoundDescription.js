@@ -38,4 +38,8 @@ function SoundDescription(key, filepath, baseVolume, audioBus, isLoop) {
 	 * @type {boolean}
 	 */
 	this.isLoop = isLoop;
+
+	this.createInstance = function() {
+		return new SoundInstance(this.filepath, this.baseVolume, 1, this.audioBus, this.isLoop);
+	};
 }
