@@ -103,7 +103,7 @@ function SoundEngine(descriptions) {
 	 * Please make sure to bind 'this' ahead of time if necessary.
 	 * @returns NodeJS.Timeout | null
 	 */
-	this.fadeFromTo = function(sound, startingVol, targetVol, seconds, onTargetReached) {
+	this.__fadeFromTo = function(sound, startingVol, targetVol, seconds, onTargetReached) {
 	
 		if (startingVol == targetVol) return null; // if already at fade destination
 

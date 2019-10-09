@@ -50,7 +50,7 @@ function SoundInstance(soundEngine, filepath, baseVolume, startingVol, audioBus,
 	 */
 	this.fadeTo = function(targetVol, seconds, onTargetReached) {
 		this.cancelFade();
-		const fade = _engine.fadeFromTo(this, _volume, targetVol, seconds, (sound) => {
+		const fade = _engine.__fadeFromTo(this, _volume, targetVol, seconds, (sound) => {
 			onTargetReached(sound);
 			_fade = null;
 		});
