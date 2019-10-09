@@ -7,9 +7,25 @@ function SoundEngine(descriptions) {
 	/**
 	 * Internal map of SoundDescription objects
 	 */
-	const _desc = new Map();
+	const _descs = new Map();
 	_addDesc(descriptions);
+	const _busses = new Map();
 
+	/**
+	 * Sets a bus' volume, or creates an entry were it not there before
+	 * @param {any} key Please use the AudioBus object enum for key values
+	 * @param {number} startingVol A number 0-1, default 1 if no value passed.
+	 */
+	this.setBusVolume = function(key, startingVol = 1) {
+		_busses.set(key, clamp(startingVol, 0, 1));
+	};
+
+	/**
+	 * Gets a bus' volume. Value (0-1)
+	 */
+	this.getBusVolume = function(key) {
+		return _busses.get(key);
+	};
 
 
 	/**
@@ -50,7 +66,7 @@ function SoundEngine(descriptions) {
 	 * @returns {SoundDescription | null} SoundDescription or null if key has not been registered
 	 */
 	function _getDescription(key) {
-		const desc = _desc.get(key);
+		const desc = _descs.get(key);
 		if (desc) {
 			return desc;
 		} else {
@@ -69,10 +85,10 @@ function SoundEngine(descriptions) {
 			const length = descriptions.length;
 			for (let i = 0; i < length; i++) {
 				const desc = descriptions[i];
-				_desc.set(desc.key, desc[i]);
+				_descs.set(desc.key, desc[i]);
 			}
 		} else {
-			_desc.set(descriptions);
+			_descs.set(descriptions);
 		}	
 	}
 
@@ -83,21 +99,13 @@ function SoundEngine(descriptions) {
 	 * @param {SoundInstance} sound
 	 * @param {number} targetVol
 	 * @param {number} seconds 
-	 * @param {(track: HTMLAudioElement) => void} onTargetReached Optional callback to send when the fade has reached its target. Receives the HTMLAudioElement. 
+	 * @param {(track: SoundInstance) => void} onTargetReached Optional callback to send when the fade has reached its target. Receives the HTMLAudioElement. 
 	 * Please make sure to bind 'this' ahead of time if necessary.
 	 * @returns NodeJS.Timeout | null
 	 */
-	function _fadeTo(sound, targetVol, seconds, onTargetReached) {
-		/** @type HTMLAudioElement */
-		const track = sound;
-		if (!track) {
-			console.log(`Warning! Tried to fade track, but track in musicSound global variable was ${(typeof musicSound === "object" ? "null" : "undefined")}!`);
-			return null;
-		}
-
-		const startingVol = sound.getVolume();
+	this.fadeFromTo = function(sound, startingVol, targetVol, seconds, onTargetReached) {
 	
-		if (startingVol == targetVol) return null;
+		if (startingVol == targetVol) return null; // if already at fade destination
 
 		const diff = targetVol - startingVol;
 		const grain = 60; // in fps
@@ -110,15 +118,15 @@ function SoundEngine(descriptions) {
 			if (currentVol > targetVol - Math.abs(fadePerFrame) && 
 			currentVol < targetVol + Math.abs(fadePerFrame)) 
 			{
-				setTrackVolume(track, AudioBus.MUSIC, targetVol); // make sure volume is at target
+				sound.setVolume(targetVol);
 				clearInterval(fadeInterval); // clear this interval so it is no longer called
-				if (onTargetReached) {
-					onTargetReached(track);
+				if (onTargetReached) { // call callback if there is one
+					onTargetReached(sound);
 				}
 			} else {
 				const newVal = currentVol + fadePerFrame;
 				// Increment/decrement volume at the fadePerFrame value
-				setTrackVolume(track, AudioBus.MUSIC, newVal);
+				sound.setVolume(newVal);
 			}
 		}, 1000/grain);
 		return fadeInterval;

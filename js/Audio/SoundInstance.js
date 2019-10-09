@@ -1,19 +1,23 @@
 
 /**
  * A sound instance. 
- * TODO: make compatible with the SoundOverlaps class
+ * @param {SoundEngine} soundEngine Sound engine instance this instance belongs to
  * @param {string} filepath 
  * @param {number} baseVolume
  * @param {number} startingVol
  * @param {string} audioBus A value within the AudioBus 'enum' object
  * @param {boolean} isLoop Sets if this is a loop or not
  */
-function SoundInstance(filepath, baseVolume, startingVol, audioBus, isLoop) {
+function SoundInstance(soundEngine, filepath, baseVolume, startingVol, audioBus, isLoop) {
 
 	// ========= Initialization =============== //
-	/** @type {number} */
+	/** 
+	 * This is the value that the user interfaces with. It's a bit of a magic number that has a dB-like logarithmic curve. Range: 0-1
+	 * @type {number} 
+	 */
 	let _volume = clamp(startingVol, 0, 1);
-
+	/** @type {SoundEngine} */
+	const _engine = soundEngine;
 	/** @type {HTMLAudioElement} */
 	const _element = new Audio(filepath);
 	const _baseVolume = baseVolume; // inject baseVolume for volume calculation
@@ -21,19 +25,52 @@ function SoundInstance(filepath, baseVolume, startingVol, audioBus, isLoop) {
 	/** @type {string} A value within AudioBus enum object */
 	let _audioBus = audioBus || AudioBus.NONE;
 
-	_setLoop(isLoop); // set looping to the inner html element
+	_setLooping(isLoop); // set looping to the inner html element
 
+	/** @type {NodeJS.Timeout} */
+	let _fade = null;
 	// ======== Public API ========== //
 	this.play = function() {
 		_element.play();
 	};
 
-	this.getLoop = function() {
+	this.getLooping = function() {
 		return _element.loop;
 	};
 
-	this.setLoop = _setLoop;
-	function _setLoop(isLoop) {
+	this.getIsFading = function() {
+		(_fade) ? true : false;
+	};
+
+	/**
+	 * Fade this sound to a target volume
+	 * @param {number} targetVol value between 0-1
+	 * @param {number} seconds fade time in seconds
+	 * @param {(inst: SoundInstance)=>void}onTargetReached The callback to call when this fade is complete, please make sure to bind 'this' ahead of time
+	 */
+	this.fadeTo = function(targetVol, seconds, onTargetReached) {
+		this.cancelFade();
+		const fade = _engine.fadeFromTo(this, _volume, targetVol, seconds, (sound) => {
+			onTargetReached(sound);
+			_fade = null;
+		});
+		if (fade) {
+			_fade = fade;
+		}
+	};
+
+	/**
+	 * Cancels the current fade if there is one
+	 */
+	this.cancelFade = function() {
+		if (_fade) {
+			clearInterval(_fade);
+			_fade = null;
+		}
+	};
+
+	this.setLooping = _setLooping;
+	function _setLooping(isLoop) {
 		if (isLoop === true) { // using triple equals to make sure it's a boolean
 			_element.loop = true;
 		} else if (isLoop === false) {
