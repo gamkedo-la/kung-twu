@@ -288,7 +288,10 @@ function Player(config) {
 	};
 
 	const respondToKnockBack = function() {
-		if(velocity.x < 0) {
+
+        if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
+
+        if(velocity.x < 0) {
 			velocity.x += KNOCK_BACK_SPEED / 25;
 			if (velocity.x >= 0) {
 				velocity.x = 0;
@@ -298,7 +301,8 @@ function Player(config) {
 			if (velocity.x <= 0) {
 				velocity.x = 0;
 			}
-		}
+        }
+
 	};
 
 	const fallDueToGravity = function(timeStep, gravity) {

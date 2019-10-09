@@ -38,6 +38,27 @@ function WooshFXManager(wooshImage) {
             this.trigger(pos.x+40,pos.y+64,0,wooshKickPic2);
     };
 
+    this.triggerKnockback = function (pos,left) {
+        if (left)
+            this.trigger(pos.x+30,pos.y+64,0,wooshKnockoutPic);
+        else
+            this.trigger(pos.x+40,pos.y+64,0,wooshKnockoutPic);
+    };
+
+    this.triggerHurt = function (pos,left) {
+        if (left)
+            this.trigger(pos.x+30,pos.y+64,0,wooshHurtPic);
+        else
+            this.trigger(pos.x+40,pos.y+64,0,wooshHurtPic);
+    };
+
+    this.triggerKnockout = function (pos,left) {
+        if (left)
+            this.trigger(pos.x+30,pos.y+64,0,wooshHurtPic);
+        else
+            this.trigger(pos.x+40,pos.y+64,0,wooshHurtPic);
+    };
+
     // called by the custom fx above or on its own
     this.trigger = function (x, y, r, img) {
 		aWoosh = null;
