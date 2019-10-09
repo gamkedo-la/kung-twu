@@ -50,7 +50,7 @@ function SoundInstance(soundEngine, filepath, baseVolume, startingVol, audioBus,
 	 */
 	this.fadeTo = function(targetVol, seconds, onTargetReached) {
 		this.cancelFade();
-		const fade = _engine.__fadeFromTo(this, _volume, targetVol, seconds, (sound) => {
+		const fade = _fadeFromTo(this, _volume, targetVol, seconds, (sound) => {
 			onTargetReached(sound);
 			_fade = null;
 		});
@@ -136,6 +136,7 @@ function SoundInstance(soundEngine, filepath, baseVolume, startingVol, audioBus,
 	 * @param {number} vol 
 	 */
 	function _setVolume(vol) {
+		this.cancelFade();
 		// Update magic number _volume if a value is passed
 		if (vol != undefined && vol != null && typeof vol === "number") {
 			_volume = clamp(vol, 0, 1);
@@ -170,12 +171,49 @@ function SoundInstance(soundEngine, filepath, baseVolume, startingVol, audioBus,
 			if (volume != undefined && volume != null) {
 				_vol = volume;
 			}
-			// TODO: Move getBusVolume to AudioEngine. Create AudioBus objects
-			const _bus = getBusVolume(bus);
+
+			const _bus = _engine.getBusVolume(bus);
 			const _base = baseVolume;
 			const _master = masterVolume;
 			return Math.pow(_vol * _base * _bus * _master, 2);
 		}
 	}
 
+	/**
+	 * Simple fade to a target volume in a set amount of seconds. If you need to set a starting value, please do that before calling.
+	 * Returns the NodeJS.Timeout so you can stop it on your own with clearInterval if needed before it reaches its target.
+	 * @param {SoundInstance} sound
+	 * @param {number} targetVol
+	 * @param {number} seconds 
+	 * @param {(track: SoundInstance) => void} onTargetReached Optional callback to send when the fade has reached its target. Receives the HTMLAudioElement. 
+	 * Please make sure to bind 'this' ahead of time if necessary.
+	 * @returns NodeJS.Timeout | null
+	 */
+	function _fadeFromTo(sound, startingVol, targetVol, seconds, onTargetReached) {
+	
+		if (startingVol == targetVol) return null; // if already at fade destination
+
+		const diff = targetVol - startingVol;
+		const grain = 60; // in fps
+		const fadePerFrame = diff / grain / seconds;
+		// Set up a new interval that will fade the track
+		const fadeInterval = setInterval(() => {
+			const currentVol = sound.getVolume();
+			// Check if we have arrived
+			if (currentVol > targetVol - Math.abs(fadePerFrame) && 
+			currentVol < targetVol + Math.abs(fadePerFrame)) 
+			{
+				sound.setVolume(targetVol);
+				clearInterval(fadeInterval); // clear this interval so it is no longer called
+				if (onTargetReached) { // call callback if there is one
+					onTargetReached(sound);
+				}
+			} else {
+				const newVal = currentVol + fadePerFrame;
+				// Increment/decrement volume at the fadePerFrame value
+				sound.setVolume(newVal);
+			}
+		}, 1000/grain);
+		return fadeInterval;
+	}
 }
