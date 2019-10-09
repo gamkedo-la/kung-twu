@@ -40,9 +40,9 @@ function WooshFXManager(wooshImage) {
 
     this.triggerKnockback = function (pos,left) {
         if (left)
-            this.trigger(pos.x+30,pos.y+64,0,wooshKnockoutPic);
+            this.trigger(pos.x,pos.y+64,0,wooshKnockoutPic);
         else
-            this.trigger(pos.x+40,pos.y+64,0,wooshKnockoutPic);
+            this.trigger(pos.x+10,pos.y+64,0,wooshKnockoutPic);
     };
 
     this.triggerHurt = function (pos,left) {
@@ -122,42 +122,15 @@ function Woosh(wooshImage) { // a single woosh, reused often
             // animate
             percent = this.frame / this.frameCount;
             
-            // new version odes not use scale - more stable, more like a swoosh spin
-            canvasContext.save(); //	allows	us	to	undo	translate	movement	and	rotate	spin
+            canvasContext.save();
             canvasContext.translate(this.x, this.y);
             canvasContext.rotate(this.r);
             canvasContext.globalAlpha = MAX_ALPHA * (1 - percent); // fade out
             canvasContext.drawImage(this.img, Math.round(-this.img.width/2),Math.round(-this.img.height/2)); //	center,	draw
-            canvasContext.restore(); //	undo	the	translation	movement	and	rotation	since	save()
+            canvasContext.restore();
 
-
-            /*
-            // first version of this effect looked lame - removed
-            currentSize = this.w * (percent);
-            if (GROW_AND_SHRINK) { 
-                if (this.frame > this.frameCount / 2) { // shrink at 50% time
-                    currentSize = this.w - (currentSize*2); // get smaller
-                } else { // still growing
-                    currentSize *= 2; // full size at halfway point
-                }
-            }
-			offset = currentSize / 2; // center
-            // draw
-            canvasContext.save(); //	allows	us	to	undo	translate	movement	and	rotate	spin
-            canvasContext.globalAlpha = 1 - percent; // fade out
-            canvasContext.translate(this.x, this.y);
-            canvasContext.rotate(this.r);
-            canvasContext.scale(currentSize/this.img.width,currentSize/this.img.width); 
-            //canvasContext.translate(-offset,-offset);
-            canvasContext.drawImage(this.img, -offset,-offset); //	center,	draw
-            //canvasContext.drawImage(this.img,0,0); // draw
-            canvasContext.globalAlpha = 1;
-            canvasContext.restore(); //	undo	the	translation	movement	and	rotation	since	save()
-            */
-
-            // step
             this.frame++;
-			this.active = this.frame < this.frameCount; // keep going?
+            this.active = this.frame < this.frameCount; // keep going?
 
 		}
 
