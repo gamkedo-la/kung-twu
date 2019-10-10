@@ -362,6 +362,50 @@ function fontSystem(jpFont, charSize, context) {
 		case "|": return {x:13 * charSize.width, y:14 * charSize.height};
 		case "~": return {x:13 * charSize.width, y:14 * charSize.height};
 		case "`": return {x:13 * charSize.width, y:14 * charSize.height};
+
+		case "é": 
+		case "É": 
+			return {x:0, y:15 * charSize.height};
+		case "ñ": 
+		case "Ñ":
+			return {x:charSize.width, y:15 * charSize.height};
+		case "ç": 
+		case "Ç":
+			return {x:2 * charSize.width, y:15 * charSize.height};
+		case "ó": 
+		case "Ó":
+			return {x:3 * charSize.width, y:15 * charSize.height};
+		case "ś": 
+		case "Ś": 
+			return {x:4 * charSize.width, y:15 * charSize.height};
+		case "ć":
+		case "Ć":
+			return {x:5 * charSize.width, y:15 * charSize.height};
+		case "ź":
+		case "Ź":
+			return {x:6* charSize.width, y:15 * charSize.height};
+		case "ę":
+		case "Ę":
+			return {x:7 * charSize.width, y:15 * charSize.height};
+		case "ż": 
+		case "Ż": 
+			return {x:8 * charSize.width, y:15 * charSize.height};
+		case "ą":
+		case "Ą":
+			return {x:9 * charSize.width, y:15 * charSize.height};
+		case "ł": 
+		case "Ł":
+			return {x:10 * charSize.width, y:15 * charSize.height};
+		case "ī":
+		case "Ī":
+			return {x:11 * charSize.width, y:15 * charSize.height};
+		case "ù":
+		case "Ù":
+			return {x:12 * charSize.width, y:15 * charSize.height};
+/*		case "|": return {x:13 * charSize.width, y:15 * charSize.height};
+		case "~": return {x:13 * charSize.width, y:15 * charSize.height};
+		case "`": return {x:13 * charSize.width, y:15 * charSize.height};*/
+
 		default: return {x:18.5 * charSize.width, y:charSize.height};//18.5 so it doesn't crash, but you can tell something's not right
 		}
 	};
