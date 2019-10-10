@@ -55,6 +55,6 @@ function SoundDescription(soundEngine, key, filepath, baseVolume, audioBus, isLo
 	this.fadeOutTime = fadeOutTime;
 
 	this.createInstance = function() {
-		return new SoundInstance(_engine, this.filepath, this.baseVolume, 1, this.audioBus, this.isLoop, this.maxInstances, this.fadeOutTime);
+		return new SoundOverlaps(_engine, this.filepath, this.baseVolume, 1, this.audioBus, this.isLoop, this.maxInstances, this.fadeOutTime);
 	};
 }

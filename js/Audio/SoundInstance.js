@@ -1,6 +1,6 @@
 
 /**
- * A sound instance. 
+ * A container that holds a number of duplicate instances of a sound to allow overlapping. Will be held by the SoundEngine, and not to be interfaced with directly 
  * @param {SoundEngine} soundEngine Sound engine instance this instance belongs to
  * @param {string} filepath Filepath of the audio file
  * @param {number} baseVolume Base volume
@@ -10,7 +10,7 @@
  * @param {number} maxInstances The max number of inner instances that can play at one time
  * @param {number} fadeOutTime The number of seconds of fading out a sound when calling "stop".
  */
-function SoundInstance(soundEngine, filepath, baseVolume, startingVol, audioBus, isLoop, maxInstances, fadeOutTime) {
+function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus, isLoop, maxInstances, fadeOutTime) {
 
 	// ========= Initialization =============== //
 	/** 
@@ -72,13 +72,15 @@ function SoundInstance(soundEngine, filepath, baseVolume, startingVol, audioBus,
 	 */
 	this.stop = function(fadeOut = true, overrideFadeTimeValue) {
 		if (fadeOut) {
-			_fadeTo(0, overrideFadeTimeValue ||  _fadeOutTime, (e)=> {
-				e.setPaused(true);
+			_fadeTo(0, overrideFadeTimeValue ||  _fadeOutTime, (inst)=> {
+				// Reset the sound on finished fade
+				inst.setPausedAll(true);
+				_elements.forEach((e) => {
+					e.currentTime = 0;
+				});
 			});
 		} else {
-			_elements.forEach((e) => {
-				e.pause();
-			});
+			this.setPausedAll(true);
 		}
 	};
 
