@@ -12,29 +12,50 @@ function fontSystem(jpFont, charSize, context) {
 		}
 	};
 
-	const leftSideOfTextForPosAlignmentAndScale = function(text, xPos, alignment, scale) {
-		const totalWidth = text.length * charAdvancementForLanguage() * scale;
+	this.getStringWidth = function(text, scale) {
+		let totalWidth = 0;
+		for(let char of text) {
+			totalWidth += (scale * advancementForLanguageAndCharacter(char));
+		}
+		return totalWidth;
+	};
+
+	const leftSideOfTextForPosAlignmentAndScale = function(width, xPos, alignment) {
 		switch(alignment) {
 		case TextAlignment.Left: return xPos;
-		case TextAlignment.Center: return (xPos - totalWidth / 2);
-		case TextAlignment.Right: return (xPos - totalWidth);
-
+		case TextAlignment.Center: return (xPos - width / 2);
+		case TextAlignment.Right: return (xPos - width);
 		}
 	};
 
 	this.printTextAt = function(text, position, alignment = TextAlignment.Left, scale = 1) {
-		const advancement = charAdvancementForLanguage();
-		const startPos = leftSideOfTextForPosAlignmentAndScale(text, position.x, alignment, scale);
-		for(let i = 0; i < text.length; i++) {	//Go through alll characters
+		const stringWidth = this.getStringWidth(text, scale);
+		const startPos = leftSideOfTextForPosAlignmentAndScale(stringWidth, position.x, alignment);
+		let drawPos = startPos;
+		for(let i = 0; i < text.length; i++) {	//Go through all characters
 			const thisFrame = this.findLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
-			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, startPos +  (i * advancement * scale), position.y, charSize.width * scale, charSize.height * scale);
+			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, drawPos, position.y, charSize.width * scale, charSize.height * scale);
+
+			const advance = scale * advancementForLanguageAndCharacter(text[i]);
+			drawPos += advance;
 		}
 	};
 
-	const charAdvancementForLanguage = function() {
-		switch(currentLanguage) {
-		case Language.English: return 66;//magic numbers based on widest character in image
-		default: return CHAR_SIZE.width;
+	const advancementForLanguageAndCharacter = function(character) {
+		if(currentLanguage === Language.Japanese) {
+			if(character === " ") {
+				return 40;
+			} else {
+				return 72;
+			}
+		}
+
+		switch(character) {
+		case "'": return 10;
+		case " ": return 35;
+		case "W":
+		case "w": return 55;
+		default: return 50;
 		}
 	};
 
