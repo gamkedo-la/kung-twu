@@ -183,7 +183,7 @@ function fontSystem(jpFont, charSize, context) {
 			return {x:12 * charSize.width, y:3 * charSize.height};
 		case "]":
 			return {x:13 * charSize.width, y:3 * charSize.height};
-		case "_":
+		case "^":
 			return {x:14 * charSize.width, y:3 * charSize.width};
 		case "ぁ": return {x:15 * charSize.width, y:3 * charSize.width};
 		case "あ": return {x:0, y:4 * charSize.width};
@@ -356,6 +356,12 @@ function fontSystem(jpFont, charSize, context) {
 		case "ヶ": return {x:7* charSize.width, y:14 * charSize.height};
 		case "、": return {x:8 * charSize.width, y:14 * charSize.height};
 		case "。": return {x:9 * charSize.width, y:14 * charSize.height};
+		case "_": return {x:10 * charSize.width, y:14 * charSize.height};
+		case "{": return {x:11 * charSize.width, y:14 * charSize.height};
+		case "}": return {x:12 * charSize.width, y:14 * charSize.height};
+		case "|": return {x:13 * charSize.width, y:14 * charSize.height};
+		case "~": return {x:13 * charSize.width, y:14 * charSize.height};
+		case "`": return {x:13 * charSize.width, y:14 * charSize.height};
 		default: return {x:18.5 * charSize.width, y:charSize.height};//18.5 so it doesn't crash, but you can tell something's not right
 		}
 	};
