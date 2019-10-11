@@ -14,6 +14,25 @@ function clamp(value, min, max) {
 }
 
 /**
+ * A modulo function that does not mirror values when negative. Returns the result of this function.
+ * @param {number} x value to perform function on
+ * @param {number} n value to mod by
+ */
+function mod(x, n) {
+	return (x % n + n) % n;
+}
+
+/**
+ * 'Wraps' a numerical value between two boundaries. Returns the result of this function.
+ * @param {number} x value to perform function on
+ * @param {number} low the lower boundary
+ * @param {number} high the upper boundary
+ */
+function wrap(x, low, high) {
+	return mod(x - low, high - low) + low;
+}
+
+/**
  * Function for creating an axis aligned rectangle including
  * several useful helper methods.
  * @param {number} x x-position of upper left corner
