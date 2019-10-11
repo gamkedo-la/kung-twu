@@ -14,7 +14,7 @@ function SoundInstance(filename) {
 	 * Current handle to a NodeJS.Timeout
 	 * @type {number | null}
 	 */
-	let _fade = null;
+	this._fade = null;
 
 	/**
 	 * The 'dial' the api turns for setting volume. Under the hood it calculates bus volume values.
@@ -44,6 +44,14 @@ function SoundInstance(filename) {
 		}
 	};
 
+	this.getIsPlaying = function() {
+		return !_element.paused;
+	};
+
+	this.getIsPaused = function() {
+		return _element.paused;
+	};
+
 	this.getVolume = function() {
 		return _volume;
 	};
@@ -53,11 +61,14 @@ function SoundInstance(filename) {
 	 */
 	this.setVolume = function(vol) {
 		_volume = clamp(vol, 0, 1);
-		
+	};
+
+	this._setInnerVolume = function(vol) {
+		_element.volume = clamp(vol, 0, 1);
 	};
 
 	/**
-	 * Sets the paused value of this instance
+	 * Pauses the audio
 	 */
 	this.pause = function() {
 		_element.pause();

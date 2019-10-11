@@ -14,19 +14,21 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 
 	// ========= Initialization =============== //
 	/** 
-	 * This is the value that the user interfaces with. It's a bit of a magic number that has a dB-like logarithmic curve. Range: 0-1
+	 * This is the 'dial' that the user interfaces with. It's a bit of a magic number that has a dB-like logarithmic curve. Range: 0-1
 	 * @type {number} 
 	 */
 	let _volume = clamp(startingVol, 0, 1);
 	/** @type {SoundEngine} */
 	const _engine = soundEngine;
-	/** @type {HTMLAudioElement[]} */
-	const _elements = [];
+
+	/** @type {SoundInstance[]} */
+	const _instances = [];
 	for (let i = 0; i < Math.max(1, maxInstances); i++) { // (make sure maxInstnaces is at least 1)
-		_elements.push(new Audio(filepath));
+		_instances.push(new SoundInstance(filepath));
 	}
+
 	let _playIndex = 0; // current index of elements to play next
-	const _baseVolume = baseVolume; // inject baseVolume for volume calculation
+	const _baseVolume = baseVolume; // base volume for this particular sound
 
 	/** @type {string} A value within AudioBus enum object */
 	let _audioBus = audioBus || AudioBus.NONE;
@@ -51,7 +53,7 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 	 * If all are currently playing, the oldest one will be 'stolen'
 	 */
 	this.play = function() {
-		const e = _elements[_playIndex];
+		const e = _instances[_playIndex];
 		if (e.paused) {
 			// Next free instance is free to play: play it
 			e.play();
@@ -62,7 +64,7 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 			e.play();
 		}
 		// Increase the playindex by 1, and wrap around to 0 if outside the bounds
-		_playIndex = (_playIndex + 1) % _elements.length;
+		_playIndex = (_playIndex + 1) % _instances.length;
 	};
 
 	/**
@@ -75,7 +77,7 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 			_fadeTo(0, overrideFadeTimeValue ||  _fadeOutTime, (inst)=> {
 				// Reset the sound on finished fade
 				inst.setPausedAll(true);
-				_elements.forEach((e) => {
+				_instances.forEach((e) => {
 					e.currentTime = 0;
 				});
 			});
@@ -100,29 +102,53 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 	};
 
 	/**
-	 * Cancels the current fade if there is one
+	 * Cancels the latest SoundInstance's fade if there is one
 	 */
-	this.cancelFade = function() {
-		if (_fade != null) {
-			// There is a fade to cancel: clear it, set it to the default val null
-			clearInterval(_fade);
-			_fade = null;
-		}
+	this.cancelFade = () => {
+		_cancelFade(_getLastPlayed()._fade);
 	};
+
+	/**
+	 * Cancels the fades of all instances in SoundOverlaps if they have any current fading
+	 */
+	this.cancelFadeAll = () => {
+		_instances.forEach((inst) => {
+			_cancelFade(inst);
+		});
+	};
+	/**
+	 * Cancels a fade on a sound instance
+	 * @param {SoundInstance} soundInstance The handle from the fade function
+	 */
+	function _cancelFade(soundInstance) {
+		const fade = soundInstance._fade;
+		if (fade != null) {
+			// There is a fade to cancel: clear it, set it to the default val null
+			clearInterval(fade);
+			soundInstance._fade = null;
+		}
+	}
+
+ 
 
 	/**
 	 * Sets the looping status of each internal sound instance mid-game.
 	 * Suggestion: Loops are best faded out. If the preset fadeout length is 0, you can override it in stop
 	 */
-	this.setLooping = _setLooping; // open this function for public use also
+	this.setLoopingAll = _setLooping; // open this function for public use also
 	function _setLooping(isLoop) {
-		_elements.forEach((e) => {
+		_instances.forEach((e) => {
 			e.loop = isLoop;
 		});
 	}
 
 	this.getLooping = function() {
-		return _elements[0].loop;
+		if (_instances.length > 0) { // extra check that length of inner SoundInstances is greater than 0. Should be at least one though.
+			return _instances[0].loop;
+		} else {
+			return false;
+		}
+		
 	};
 
 	/**
@@ -132,7 +158,12 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 	 */
 	this.setVolume = _setVolume; // Open this function for public use also
 
-	this.getVolume = () => _volume;
+	/**
+	 * Gets the volume of the last played instance
+	 */
+	this.getVolume = () => {
+		_getLastPlayed().getVolume();
+	};
 
 	/**
 	 * Sets this instance's audio bus to another one
@@ -157,12 +188,12 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 	 */
 	this.setPausedAll = function(paused) {
 		if (paused === true) { // Using triple equals to make sure it is a boolean
-			_elements.forEach((e) => {
+			_instances.forEach((e) => {
 				e.pause();
 			});
 		} else if (paused === false) {
 			// We've unpaused the instance: Set all inner instances that were playing to start playing again
-			_elements.forEach((e) => {
+			_instances.forEach((e) => {
 				if (e.currentTime > 0) { // Detecting was playing by the currentTime being beyond the starting point
 					e.play();
 				}
@@ -189,16 +220,22 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 	 * @returns {boolean}
 	 */
 	this.getPaused = function() {
-		return _elements[_getLastPlayedIndex()].paused;
+		return _getLastPlayed().getIsPaused();
 	};
 
 	/**
-	 * Sets the track time of the last played inner instance. If in the middle of playing, will continue from that point on, if paused, it will play at that position when played or unpaused.
-	 * Caveat: if this current inner instance is paused and if this.setPause is set to false later, this instance will play at the set track time.
+	 * Sets the current track time of the last played inner instance. 
+	 * @param {number} time The time in seconds to set the last played track to
+	 * @param {boolean} playEvenIfEnded If true, will play the last played track at the indicated time even if it had ended already. Default = false.
 	 */
-	this.setTrackTime = function(time) {
+	this.setCurrentTime = function(time, playEvenIfEnded = false) {
 		const e = _getLastPlayed();
-		e.currentTime = time;
+		if (e.getIsPlaying()) {
+			e.setCurrentTime(time);
+		} else if (playEvenIfEnded) {
+			e.setCurrentTime(time);
+			e.play();
+		}	
 	};
 
 	/**
@@ -217,14 +254,14 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 	 * Helper that gets the last played inner instance
 	 */
 	function _getLastPlayed() {
-		return _elements[_getLastPlayedIndex()];
+		return _instances[_getLastPlayedIndex()];
 	}
 	/**
 	 * Helper that gets the last played inner instance index
 	 */
 	function _getLastPlayedIndex() {
 		// Quick hack to wrap around to last index if below 0 (since we don't have a true modulus function)
-		return (_playIndex - 1 < 0) ? _elements.length - 1 : _playIndex - 1; 
+		return (_playIndex - 1 < 0) ? _instances.length - 1 : _playIndex - 1; 
 	}
 
 	/**
@@ -239,7 +276,7 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 			_volume = clamp(vol, 0, 1);
 		}
 		// Calculate and set the volume param of every internal instance
-		_elements.forEach((e) => {
+		_instances.forEach((e) => {
 			e.volume = _calculateTrackVolume(_baseVolume, _audioBus, _volume);
 		});
 	} 
@@ -269,16 +306,17 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 	}
 
 	/**
-	 * Fade this sound to a target volume
+	 * Fade the last played sound to a target volume
+	 * @param {SoundInstance} soundInst SoundInstance to fade
 	 * @param {number} targetVol value between 0-1
 	 * @param {number} seconds fade time in seconds
 	 * @param {(inst: SoundInstance)=>void}onTargetReached The callback to call when this fade is complete, please make sure to bind 'this' ahead of time
 	 */
-	function _fadeTo(targetVol, seconds, onTargetReached) {
+	function _fadeTo(soundInst, targetVol, seconds, onTargetReached) {
 		this.cancelFade(); // cancel current fade to prevent jumpy multi-fade bug
-		const fade = _fadeFromTo(this, _volume, targetVol, seconds, (sound) => {
+		const fade = _fadeFromTo(soundInst, soundInst.getVolume(), targetVol, seconds, (sound) => {
 			// Target volume has been reached: Reset fade value and call callback.
-			_fade = null;
+			sound._fade = null;
 			onTargetReached(sound);	
 		});
 		// If we have a fade returned, set the fade property to that value
@@ -311,7 +349,7 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 			if (currentVol > targetVol - Math.abs(fadePerFrame) && 
 			currentVol < targetVol + Math.abs(fadePerFrame)) 
 			{
-				sound.setVolume(targetVol);
+				_setTrackVolume(sound, targetVol);
 				clearInterval(fadeInterval); // clear this interval so it is no longer called
 				if (onTargetReached) { // call callback if there is one
 					onTargetReached(sound);
@@ -319,9 +357,18 @@ function SoundOverlaps(soundEngine, filepath, baseVolume, startingVol, audioBus,
 			} else {
 				const newVal = currentVol + fadePerFrame;
 				// Increment/decrement volume at the fadePerFrame value
-				sound.setVolume(newVal);
+				_setTrackVolume(sound, newVal);
 			}
 		}, 1000/grain);
 		return fadeInterval;
+	}
+
+	/**
+	 * Sets the volume of a sound instance and updates it according to the bus routing values
+	 * @param {SoundInstance} soundInst 
+	 */
+	function _setTrackVolume(soundInst, vol) {
+		soundInst.setVolume(clamp(vol, 0, 1));
+		soundInst._setInnerVolume(_calculateTrackVolume(_baseVolume, _audioBus, vol));
 	}
 }
