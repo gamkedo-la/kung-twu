@@ -12,7 +12,18 @@ function SoundEngine(descriptions) {
 	_addDesc(descriptions);
 	const _busses = new Map();
 	const _format = _getFormat();
+
+	let _isMuted = false;
 	// ======== Public API ==============
+
+	/**
+	 * Returns the browser-compatible audio format as a string. e.g. ".mp3"
+	 * Used to get the correct format when creating new sound instances, or debugging purposes.
+	 */
+	this.getAudioFormat = function() {
+		return _format;
+	};
+
 	/**
 	 * Sets a bus' volume, or creates an entry were it not there before
 	 * @param {any} key Please use the AudioBus object enum for key values
@@ -30,11 +41,11 @@ function SoundEngine(descriptions) {
 	};
 
 	this.getIsMuted = function() {
-
+		return _isMuted;
 	};
 
 	this.setMuted = function(isMuted) {
-
+		_isMuted = isMuted;
 	};
 
 	/**
