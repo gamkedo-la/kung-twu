@@ -325,74 +325,40 @@ function GameScene() {
 		const screenRight = cameraX + canvas.width / 2;
 		canvasContext.drawImage(uiScreenBg, screenLeft, 0);
 
-		colorText(
-			getLocalizedStringForKey(STRINGS_KEY.Score),
-			screenLeft + 40,
-			40,
-			Color.White,
-			Fonts.Subtitle,
-			TextAlignment.Left);
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Score),
+			{x: screenLeft + 40, y: 10}, 
+			TextAlignment.Left, 0.4);
 
 		let stringScore = score.toString();
 		while (stringScore.length < 9) {
 			stringScore = "0" + stringScore;
 		}
 
-		colorText(
-			stringScore,
-			screenLeft + 180,
-			40,
-			Color.White,
-			Fonts.Subtitle,
-			TextAlignment.Left);
+		JPFont.printTextAt(stringScore, {x:screenLeft + 180, y:10}, TextAlignment.Left, 0.4);
 
-		colorText(
-			getLocalizedStringForKey(STRINGS_KEY.Health),
-			screenLeft + 40,
-			80,
-			Color.White,
-			Fonts.Subtitle,
-			TextAlignment.Left);
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Health),
+			{x:screenLeft + 40, y: 55}, TextAlignment.Left, 0.4);
 
 		const playerHealthWidth = ASSIST_DEFAULT.MaxHealth * player.health / player.getMaxHealth();
-		drawRect(screenLeft + 180, 60, playerHealthWidth, 22, Color.Orange);
-		drawBorder(screenLeft + 180, 60, ASSIST_DEFAULT.MaxHealth, 22, Color.Orange);
+		drawRect(screenLeft + 190, 60, playerHealthWidth, 22, Color.Orange);
+		drawBorder(screenLeft + 190, 60, ASSIST_DEFAULT.MaxHealth, 22, Color.Orange);
 
-		colorText(
-			getLocalizedStringForKey(STRINGS_KEY.Time),
-			screenLeft + 40,
-			120,
-			Color.White,
-			Fonts.Subtitle,
-			TextAlignment.Left);
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Time),
+			{x:screenLeft + 40, y:95}, TextAlignment.Left, 0.4);
 
-		colorText(
-			getLocalizedStringForKey(STRINGS_KEY.Level),
-			screenLeft + 40,
-			160,
-			Color.White,
-			Fonts.Subtitle,
-			TextAlignment.Left);
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Level),
+			{x:screenLeft + 40, y: 135}, TextAlignment.Left, 0.4);
 
 		const keyForThisLevelName = stringsKeyForLevel(currentLevel);
-		colorText(
-			getLocalizedStringForKey(keyForThisLevelName),
-			screenLeft + 180,
-			160,
-			Color.White,
-			Fonts.Subtitle,
-			TextAlignment.Left);
 
-		colorText(
-			getLocalizedStringForKey(STRINGS_KEY.Boss),
-			screenRight - 380,
-			80,
-			Color.White,
-			Fonts.Subtitle,
-			TextAlignment.Right);
+		JPFont.printTextAt(getLocalizedStringForKey(keyForThisLevelName),
+			{x:screenLeft + 180, y:135}, TextAlignment.Left, 0.4);
+
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Boss),
+			{x:screenRight - 290, y:55}, TextAlignment.Right, 0.4);
 	
-		drawRect(screenRight - 340, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / levelData.bossHealth), 22, levelData.bossMeterColor);
-		drawBorder(screenRight  - 340, 60, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
+		drawRect(screenRight - 280, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / levelData.bossHealth), 22, levelData.bossMeterColor);
+		drawBorder(screenRight  - 280, 60, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
 	};
 
 	const stringsKeyForLevel = function(level) {

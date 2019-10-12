@@ -78,7 +78,7 @@ function fontSystem(jpFont, charSize, context) {
 		case "ー": return {x:13 * charSize.width, y:0};
 		case ".": return {x:14 * charSize.width, y:0};
 		case "/": return {x:15 * charSize.width, y:0};
-		case "0": return {x:charSize.width, y:charSize.height};
+		case "0": return {x:0, y:charSize.height};
 		case "1": return {x:charSize.width, y:charSize.height};
 		case "2": return {x:2 * charSize.width, y:charSize.height};
 		case "3": return {x:3 * charSize.width, y:charSize.height};

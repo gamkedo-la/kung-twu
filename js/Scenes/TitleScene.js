@@ -316,7 +316,6 @@ function TitleScene() {
 	const drawTitle = function() {
 		const titleXPos = (canvas.width - titleImage.width) / 2;
 		canvasContext.drawImage(titleImage, titleXPos, canvas.height / 10);
-		colorText(getLocalizedStringForKey(STRINGS_KEY.Subtitle), canvas.width / 2, canvas.height / 3 + 40, Color.White, Fonts.Subtitle, TextAlignment.Center);
 
 		//Example use of JPFont
 		text = getLocalizedStringForKey(STRINGS_KEY.Subtitle);

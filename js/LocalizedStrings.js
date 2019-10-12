@@ -136,7 +136,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
-		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 	},
     
 	Spanish: {
@@ -188,7 +188,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
-		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
 		[STRINGS_KEY.Assist]:"[Z] for Assist Mode",
 		[STRINGS_KEY.BeltWhite]:"White",
@@ -252,7 +252,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
-		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
 		[STRINGS_KEY.Assist]:"[Z] for Assist Mode",
 		[STRINGS_KEY.BeltWhite]:"White",
@@ -315,7 +315,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
-		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
 		[STRINGS_KEY.Assist]:"[Z] for Assist Mode",
 		[STRINGS_KEY.BeltWhite]:"White",
@@ -378,7 +378,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping to Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
-		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
 		[STRINGS_KEY.Assist]:"[Z] for Assist Mode",
 		[STRINGS_KEY.BeltWhite]:"White",
@@ -439,7 +439,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToJ_Kick]:"Użyj Kopnięcia w trakcie Skoku aby wykonać Kopnięcie z Wyskoku",
 		[STRINGS_KEY.HowToH_Kick]:"Użyj Kopnięcia w trakcie Odskoku aby wykonać Obrotowe Kopnięcie",
 		[STRINGS_KEY.EndGameMessage]:"Gratulacje! Osiągnąłeś oświecenie\nidź teraz i nauczaj\nco sam się\nwłaśnie nauczyłeś.",
-		[STRINGS_KEY.Boss]:"Shīfù",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"TRYB ASYSTY",
 		[STRINGS_KEY.Assist]:"[Z] Tryb Asysty",
 		[STRINGS_KEY.BeltWhite]:"Biały",
