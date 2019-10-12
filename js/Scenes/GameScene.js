@@ -329,19 +329,21 @@ function GameScene() {
 			{x: screenLeft + 40, y: 10}, 
 			TextAlignment.Left, 0.4);
 
+		const scoreStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Score), 0.4);
 		let stringScore = score.toString();
 		while (stringScore.length < 9) {
 			stringScore = "0" + stringScore;
 		}
 
-		JPFont.printTextAt(stringScore, {x:screenLeft + 180, y:10}, TextAlignment.Left, 0.4);
+		JPFont.printTextAt(stringScore, {x:screenLeft + scoreStringWidth + 50, y:10}, TextAlignment.Left, 0.4);
 
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Health),
 			{x:screenLeft + 40, y: 55}, TextAlignment.Left, 0.4);
 
+		const healthStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Health), 0.4);
 		const playerHealthWidth = ASSIST_DEFAULT.MaxHealth * player.health / player.getMaxHealth();
-		drawRect(screenLeft + 190, 60, playerHealthWidth, 22, Color.Orange);
-		drawBorder(screenLeft + 190, 60, ASSIST_DEFAULT.MaxHealth, 22, Color.Orange);
+		drawRect(screenLeft + healthStringWidth + 50, 60, playerHealthWidth, 22, Color.Orange);
+		drawBorder(screenLeft + healthStringWidth + 50, 60, ASSIST_DEFAULT.MaxHealth, 22, Color.Orange);
 
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Time),
 			{x:screenLeft + 40, y:95}, TextAlignment.Left, 0.4);
@@ -349,16 +351,19 @@ function GameScene() {
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Level),
 			{x:screenLeft + 40, y: 135}, TextAlignment.Left, 0.4);
 
+		const levelStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Level), 0.4);
 		const keyForThisLevelName = stringsKeyForLevel(currentLevel);
 
 		JPFont.printTextAt(getLocalizedStringForKey(keyForThisLevelName),
-			{x:screenLeft + 180, y:135}, TextAlignment.Left, 0.4);
+			{x:screenLeft + levelStringWidth + 50, y:135}, TextAlignment.Left, 0.4);
 
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Boss),
-			{x:screenRight - 290, y:55}, TextAlignment.Right, 0.4);
+			{x:cameraX, y:55}, TextAlignment.Left, 0.4);
+
+		const bossStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Boss), 0.4);
 	
-		drawRect(screenRight - 280, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / levelData.bossHealth), 22, levelData.bossMeterColor);
-		drawBorder(screenRight  - 280, 60, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
+		drawRect(cameraX + bossStringWidth + 10, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / levelData.bossHealth), 22, levelData.bossMeterColor);
+		drawBorder(cameraX + bossStringWidth + 10, 60, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
 	};
 
 	const stringsKeyForLevel = function(level) {

@@ -45,6 +45,8 @@ function fontSystem(jpFont, charSize, context) {
 		if(currentLanguage === Language.Japanese) {
 			if(character === " ") {
 				return 40;
+			} else if(charIsNumeral(character)) {
+				return 50;
 			} else {
 				return 72;
 			}
@@ -57,6 +59,24 @@ function fontSystem(jpFont, charSize, context) {
 		case "w": return 55;
 		default: return 50;
 		}
+	};
+
+	const charIsNumeral = function(char) {
+		switch(char) {
+		case "0":
+		case "1":
+		case "2":
+		case "3":
+		case "4":
+		case "5":
+		case "6":
+		case "7":
+		case "8":
+		case "9":
+			return true;	
+		}
+
+		return false;
 	};
 
 	//Address of each character on the sheet
@@ -402,7 +422,7 @@ function fontSystem(jpFont, charSize, context) {
 		case "ù":
 		case "Ù":
 			return {x:12 * charSize.width, y:15 * charSize.height};
-/*		case "|": return {x:13 * charSize.width, y:15 * charSize.height};
+			/*		case "|": return {x:13 * charSize.width, y:15 * charSize.height};
 		case "~": return {x:13 * charSize.width, y:15 * charSize.height};
 		case "`": return {x:13 * charSize.width, y:15 * charSize.height};*/
 
