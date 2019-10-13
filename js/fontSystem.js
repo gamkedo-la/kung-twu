@@ -422,6 +422,9 @@ function fontSystem(jpFont, charSize, context) {
 		case "ù":
 		case "Ù":
 			return {x:12 * charSize.width, y:15 * charSize.height};
+		case "ń":
+		case "Ń":
+			return {x:13 * charSize.width, y:15 * charSize.height};
 			/*		case "|": return {x:13 * charSize.width, y:15 * charSize.height};
 		case "~": return {x:13 * charSize.width, y:15 * charSize.height};
 		case "`": return {x:13 * charSize.width, y:15 * charSize.height};*/
