@@ -65,6 +65,7 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 		}
 		// Increase the playindex by 1, and wrap around to 0 if outside the bounds
 		_playIndex = (_playIndex + 1) % _instances.length;
+		return e;
 	};
 
 	/**
