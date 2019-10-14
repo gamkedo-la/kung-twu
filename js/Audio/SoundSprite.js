@@ -1,8 +1,7 @@
-
 /**
  * A container that holds a number of duplicate instances of a sound to allow overlapping. Will be held by the SoundEngine, and not to be interfaced with directly 
  * @param {SoundEngine} soundEngine Sound engine instance this instance belongs to
- * @param {string} key
+ * @param {string} key The key string to reference this by
  * @param {string} filepath Filepath of the audio file
  * @param {number} baseVolume Base volume
  * @param {string} audioBus A value within the AudioBus 'enum' object
@@ -10,7 +9,7 @@
  * @param {number} maxInstances The max number of inner instances that can play at one time
  * @param {number} fadeOutTime The number of seconds of fading out a sound when calling "stop".
  */
-function SoundOverlaps(soundEngine, key, filepath, baseVolume, audioBus, isLoop, maxInstances, fadeOutTime) {
+function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, maxInstances, fadeOutTime) {
 
 	// ========= Initialization =============== //
 
