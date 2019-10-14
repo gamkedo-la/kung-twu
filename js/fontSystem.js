@@ -121,18 +121,26 @@ function fontSystem(jpFont, charSize, context) {
 		case "@": return {x:0, y:2 * charSize.height};
 		case "a":
 		case "A":
+		case "А": //Russian A
+		case "а": //Russian a
 			return {x:charSize.width, y:2 * charSize.height};
 		case "b":
 		case "B":
+		case "В": //Russian B
+		case "в": //Russian b
 			return {x:2 * charSize.width, y:2 * charSize.height};
 		case "c":
 		case "C":
+		case "С": //Russian C
+		case "с": //Russian c
 			return {x:3 * charSize.width, y:2 * charSize.height};
 		case "d":
 		case "D":
 			return {x:4 * charSize.width, y:2 * charSize.height};
 		case "e":
 		case "E":
+		case "Е": //Russian E
+		case "е": //Russian e
 			return {x:5 * charSize.width, y:2 * charSize.height};
 		case "f":
 		case "F":
@@ -142,6 +150,8 @@ function fontSystem(jpFont, charSize, context) {
 			return {x:7 * charSize.width, y:2 * charSize.height};
 		case "h":
 		case "H":
+		case "Н": //Russian H
+		case "н": //Russian h
 			return {x:8 * charSize.width, y:2 * charSize.height};
 		case "i":
 		case "I":
@@ -151,21 +161,29 @@ function fontSystem(jpFont, charSize, context) {
 			return {x:10 * charSize.width, y:2 * charSize.height};
 		case "k":
 		case "K":
+		case "К": //Russian K
+		case "к": //Russian k
 			return {x:11 * charSize.width, y:2 * charSize.height};
 		case "l":
 		case "L":
 			return {x:12 * charSize.width, y:2 * charSize.height};
 		case "m":
 		case "M":
+		case "М": //Russian M
+		case "м": //Russian m
 			return {x:13 * charSize.width, y:2 * charSize.height};
 		case "n":
 		case "N":
 			return {x:14 * charSize.width, y:2 * charSize.height};
 		case "o":
 		case "O":
+		case "О": //Russian O
+		case "о": //Russian o
 			return {x:15 * charSize.width, y:2 * charSize.height};
 		case "p":
 		case "P":
+		case "Р": //Russian P
+		case "р": //Russian p
 			return {x:0 , y:3 * charSize.height};
 		case "q":
 		case "Q":
@@ -178,6 +196,8 @@ function fontSystem(jpFont, charSize, context) {
 			return {x:3 * charSize.width, y:3 * charSize.height};
 		case "t":
 		case "T":
+		case "Т": //Russian T
+		case "т": //Russian t
 			return {x:4 * charSize.width, y:3 * charSize.height};
 		case "u":
 		case "U":
@@ -190,6 +210,8 @@ function fontSystem(jpFont, charSize, context) {
 			return {x:7 * charSize.width, y:3 * charSize.height};
 		case "x":
 		case "X":
+		case "Х": //Russian X
+		case "х": //Russian x
 			return {x:8 * charSize.width, y:3 * charSize.height};
 		case "y":
 		case "Y":
@@ -380,8 +402,8 @@ function fontSystem(jpFont, charSize, context) {
 		case "{": return {x:11 * charSize.width, y:14 * charSize.height};
 		case "}": return {x:12 * charSize.width, y:14 * charSize.height};
 		case "|": return {x:13 * charSize.width, y:14 * charSize.height};
-		case "~": return {x:13 * charSize.width, y:14 * charSize.height};
-		case "`": return {x:13 * charSize.width, y:14 * charSize.height};
+		case "~": return {x:14 * charSize.width, y:14 * charSize.height};
+		case "`": return {x:15 * charSize.width, y:14 * charSize.height};
 
 		case "é": 
 		case "É": 
@@ -425,6 +447,73 @@ function fontSystem(jpFont, charSize, context) {
 		case "ń":
 		case "Ń":
 			return {x:13 * charSize.width, y:15 * charSize.height};
+
+		case "Б":
+		case "б":
+			return {x:14 * charSize.width, y:15 * charSize.height};
+		case "Г":
+		case "г":
+			return {x:15 * charSize.width, y:15 * charSize.height};
+		case "Ё":
+		case "ё":
+			return {x:0 * charSize.width, y:16 * charSize.height};
+		case "Ж":
+		case "ж":
+			return {x:1 * charSize.width, y:16 * charSize.height};
+		case "З":
+		case "з":
+			return {x:2 * charSize.width, y:16 * charSize.height};
+		case "И":
+		case "и":
+			return {x:3 * charSize.width, y:16 * charSize.height};
+		case "Й":
+		case "й":
+			return {x:4 * charSize.width, y:16 * charSize.height};
+		case "Л":
+		case "л":
+			return {x:5 * charSize.width, y:16 * charSize.height};
+		case "П":
+		case "п":
+			return {x:6 * charSize.width, y:16 * charSize.height};
+		case "Ф":
+		case "ф":
+			return {x:7 * charSize.width, y:16 * charSize.height};
+		case "Ц":
+		case "ц":
+			return {x:8 * charSize.width, y:16 * charSize.height};
+		case "Ш":
+		case "ш":
+			return {x:9 * charSize.width, y:16 * charSize.height};
+		case "Щ":
+		case "щ":
+			return {x:10 * charSize.width, y:16 * charSize.height};
+		case "Ч":
+		case "ч":
+			return {x:11 * charSize.width, y:16 * charSize.height};
+		case "Я":
+		case "я":
+			return {x:12 * charSize.width, y:16 * charSize.height};
+		case "Ъ":
+		case "ъ":
+			return {x:13 * charSize.width, y:16 * charSize.height};
+		case "Ы":
+		case "ы":
+			return {x:14 * charSize.width, y:16 * charSize.height};
+		case "Ь":
+		case "ь":
+			return {x:15 * charSize.width, y:16 * charSize.height};
+		case "Э":
+		case "э":
+			return {x:0 * charSize.width, y:17 * charSize.height};
+		case "Ю":
+		case "ю":
+			return {x:1 * charSize.width, y:17 * charSize.height};
+		case "У":
+		case "у":
+			return {x:2 * charSize.width, y:17 * charSize.height};
+		case "Д":
+		case "д":
+			return {x:2 * charSize.width, y:17 * charSize.height};
 			/*		case "|": return {x:13 * charSize.width, y:15 * charSize.height};
 		case "~": return {x:13 * charSize.width, y:15 * charSize.height};
 		case "`": return {x:13 * charSize.width, y:15 * charSize.height};*/
