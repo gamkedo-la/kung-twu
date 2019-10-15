@@ -177,6 +177,7 @@ function TitleScene() {
 			}
 		}
 		titleBlockWidth = maxWidth + selector.width + (3 * BUTTON_PADDING);
+		titleBlockPosition.x = selectorPosition.x - (3 * BUTTON_PADDING / 2);
 	};
 
 	const updateButtonPositions = function() {
