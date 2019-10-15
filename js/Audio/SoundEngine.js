@@ -4,6 +4,7 @@
  */
 function SoundEngine(descriptions) {
 	const _DEBUG = true;
+	
 	// ======== Initialization ======== //
 	/**
 	 * Internal map of SoundSprite objects
@@ -53,35 +54,6 @@ function SoundEngine(descriptions) {
 
 	this.setMuted = function(isMuted) {
 		_isMuted = isMuted;
-	};
-
-	/**
-	 * Creates a sound instance from a SoundDescription mold of the corresponding key
-	 * @param {string} key The key of the SoundDescription to create an instance of
-	 */
-	this.createInstance = _createInstance;
-	function _createInstance(key) {
-		const desc = _getGetSound(key);
-		if (desc) {
-			return desc.createInstance();
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * Plays a sound once and leaves it to garbage collection. 
-	 * Best for quick one shots that you won't need to use again in the near future such as a musical stinger.
-	 * More performant to create and store a SoundInstance.
-	 */
-	this.playOneShot = function(key) {
-		const inst = _createInstance(key);
-		const isLoop = inst.getLoop();
-		if (isLoop) {
-			console.log("[SoundEngine] Error! Sound is looping, and not a one shot! Cancelling playOneShot");
-		} else {
-			inst.play();
-		}
 	};
 
 	/**
