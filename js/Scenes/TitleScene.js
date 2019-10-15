@@ -4,6 +4,7 @@ function TitleScene() {
 	let selectorPositionsIndex = 0;
 	let selectorPosition = {x:0, y:0};
 	let titleBlockPosition = {x:0, y:0};
+	let titleBlockWidth = 0;
 	const selections = [
 		SCENE.GAME,
 		SCENE.HELP,
@@ -47,6 +48,8 @@ function TitleScene() {
 			buttons.push(buildSettingsButton(mainMenuX, mainMenuY + 2 * deltaY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildCreditsButton(mainMenuX, mainMenuY + 3 * deltaY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildAssistButton(mainMenuX, mainMenuY + 4 * deltaY, buttonHeight, buttonTitlePadding));
+
+			findMenuWidth();
 
 			buildLanguageButtons();
 
@@ -161,6 +164,19 @@ function TitleScene() {
 		for(let button of buttons) {
 			button.updateTitle();
 		}
+
+		findMenuWidth();
+	};
+
+	const findMenuWidth = function() {
+		let maxWidth = 0;
+		for(let button of buttons) {
+			const thisBounds = button.getBounds();
+			if(thisBounds.width > maxWidth) {
+				maxWidth = thisBounds.width;
+			}
+		}
+		titleBlockWidth = maxWidth + selector.width + (3 * BUTTON_PADDING);
 	};
 
 	const updateButtonPositions = function() {
@@ -181,7 +197,7 @@ function TitleScene() {
 	const buildLanguageButtons = function() {
 		const languages = Object.keys(Language);
 
-		const interButtonPadding = 3 * buttonHeight / 2;
+		const interButtonPadding = buttonHeight;// 3 * buttonHeight / 2;
 		let xPos = 0;//interButtonPadding;
 		let totalButtonWidth = 0;
 		const langButtons = [];
@@ -194,7 +210,7 @@ function TitleScene() {
 
 			langButtons.push(new UIButton(STRINGS_KEY[language], 
 				xPos, canvas.height - (9 * buttonHeight / 2), 
-				buttonHeight, buttonTitlePadding, thisClick, Color.Red));
+				buttonHeight, buttonTitlePadding, thisClick, Color.Red, language));
 
 			totalButtonWidth += (langButtons[langButtons.length - 1].getBounds().width);
 		}
@@ -309,7 +325,7 @@ function TitleScene() {
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(titleScreenDecore, 0, 0);
-		canvasContext.drawImage(titleBlock, titleBlockPosition.x, titleBlockPosition.y);
+		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlockPosition.x, titleBlockPosition.y, titleBlockWidth, titleBlock.height);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 	};
     
@@ -317,7 +333,6 @@ function TitleScene() {
 		const titleXPos = (canvas.width - titleImage.width) / 2;
 		canvasContext.drawImage(titleImage, titleXPos, canvas.height / 10);
 
-		//Example use of JPFont
 		text = getLocalizedStringForKey(STRINGS_KEY.Subtitle);
 		JPFont.printTextAt(text, {x:canvas.width / 2, y:310}, TextAlignment.Center, 0.5);
 	};
