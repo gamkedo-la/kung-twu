@@ -20,7 +20,9 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 	/** @type {SoundInstance[]} */
 	const _instances = [];
 	for (let i = 0; i < Math.max(1, maxInstances); i++) { // (make sure maxInstnaces is at least 1)
-		_instances.push(new SoundInstance(filepath));
+		const inst = new SoundInstance(filepath + _engine.getAudioFormat());
+		_instances.push(inst);
+		
 	}
 
 	let _playIndex = 0; // current index of elements to play next
@@ -54,13 +56,14 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 	 */
 	this.play = function() {
 		const e = _instances[_playIndex];
-		if (e.paused) {
+		_setTrackVolume(e, 1);
+		if (e.getIsPaused()) {
 			// Next free instance is free to play: play it
 			e.play();
 		} else {
 			// Next free instance is actually still busy: pause, reset, and play it
 			e.pause();
-			e.currentTime = 0;
+			e.setCurrentTime(0);
 			e.play();
 		}
 		// Increase the playindex by 1, and wrap around to 0 if outside the bounds
@@ -293,9 +296,10 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 				vol = volume;
 			}
 
-			const _bus = _engine.getBusVolume(bus);
+			const _bus = _engine.getBusVolume(bus) || 1;
 			const _base = baseVolume;
-			const _master = masterVolume;
+			const _master = _engine.getMasterVolume();
+			console.log(_bus, _base, _master);
 			return Math.pow(vol * _base * _bus * _master, 2);
 		}
 	}

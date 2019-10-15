@@ -4,10 +4,21 @@
  * @param {SoundEngine} soundEngine A reference to the game's SoundEngine
  */
 function SoundManager(soundEngine) {
+	const _bus = {
+		SFX: "SFX",
+		BGM: "BGM",
+		NONE: "NONE"
+	}; Object.freeze(this.AudioBus);
+
 	/**
 	 * @type SoundSprite
 	 */
 	let _currentMusic = null;
+	let _sfxBusVolume = 1;
+	
+	let _bgmBusVolume = 1;
+	
+
 	const _engine = soundEngine;
 
 	/**
@@ -21,6 +32,45 @@ function SoundManager(soundEngine) {
 			sound.play();
 			return sound;
 		}
+	};
+
+	/**
+	 * Set the BGM bus volume of the SoundEngine
+	 * @param {number} vol The volume to set the bus to. Range (0-1)
+	 */
+	this.setBGMVolume = function(vol) {
+		_bgmBusVolume = clamp(vol, 0, 1);
+		_engine.setBusVolume(_bus.BGM, _bgmBusVolume);
+	};
+	this.setBGMVolume(_bgmBusVolume); // initilize bgm volume
+	
+	this.getBGMVolume = function() {
+		return _bgmBusVolume;
+	};
+
+	/**
+	 * Set the SFX bus volume of the SoundEngine
+	 * @param {number} vol The volume to set the bus to. Range (0-1)
+	 */
+	this.setSFXVolume = function(vol) {
+		_sfxBusVolume = clamp(vol, 0, 1);
+		_engine.setBusVolume(_bus.SFX, _sfxBusVolume);
+	};
+	this.setSFXVolume(_sfxBusVolume); // initialize sfx volume
+
+	this.getSFXVolume = function() {
+		return _sfxBusVolume;
+	};
+
+	/**
+	 * Set the Master bus volume of the SoundEngine
+	 * @param {number} vol The volume to set the bus to. Range(0-1)
+	 */
+	this.setMasterVolume = function(vol) {
+		_engine.setMasterVolume = _masterVolume;
+	};
+	this.getMasterVolume = function() {
+		_engine.getMasterVolume();
 	};
 
 	/**

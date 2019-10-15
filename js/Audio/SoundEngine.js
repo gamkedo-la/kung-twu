@@ -1,21 +1,23 @@
 /**
  * 
- * @param {SoundDescription | SoundDescription[]} soundDescriptions 
+ * @param {SoundSprite | SoundSprite[]} soundSprites
  */
-function SoundEngine(descriptions) {
+function SoundEngine(soundSprites) {
 	const _DEBUG = true;
-	
+
 	// ======== Initialization ======== //
 	/**
 	 * Internal map of SoundSprite objects
 	 * @type Map<string, SoundSprite>
 	 */
 	const _sounds = new Map();
-	_addSound(descriptions);
+	if (soundSprites) {_addSound(soundSprites); }
 	const _busses = new Map();
 	const _format = _getFormat();
 
 	let _isMuted = false;
+
+	let _masterVolume = 1;
 	// ======== Public API ==============
 
 	/**
@@ -24,6 +26,14 @@ function SoundEngine(descriptions) {
 	 */
 	this.getAudioFormat = function() {
 		return _format;
+	};
+
+	this.getMasterVolume = function() {
+		return _masterVolume;
+	};
+
+	this.setMasterVolume = function(val) {
+		_masterVolume = clamp(val, 0, 1);
 	};
 
 	/**
@@ -119,20 +129,22 @@ function SoundEngine(descriptions) {
 		}
 	}
 
+	this.addSound = _addSound;
+
 	// ======== Private Helpers ============
 	/**
 	 * Adds a SoundDescription or an array of SoundDescriptions to the SoundEngine internal map
-	 * @param {(SoundOverlaps | SoundOverlaps[])} descriptions
+	 * @param {(SoundSprite | SoundSprite[])} soundSprites
 	 */
-	function _addSound(soundOverlaps) {
-		if (Array.isArray(soundOverlaps)) {
-			const length = soundOverlaps.length;
+	function _addSound(soundSprites) {
+		if (Array.isArray(soundSprites)) {
+			const length = soundSprites.length;
 			for (let i = 0; i < length; i++) {
-				const sound = soundOverlaps[i];
-				_sounds.set(sound.key, sound);
+				const sound = soundSprites[i];
+				_sounds.set(sound.getKey(), sound);
 			}
 		} else {
-			_sounds.set(soundOverlaps.key, soundOverlaps);
+			_sounds.set(soundSprites.getKey(), soundSprites);
 		}	
 	}
 
