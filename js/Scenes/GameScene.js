@@ -324,6 +324,8 @@ function GameScene() {
 		//TODO: We need a way to find out how wide these strings will be, should be easy with a custom font
 		const screenLeft = cameraX - canvas.width / 2;
 		const screenRight = cameraX + canvas.width / 2;
+
+		//Background and Border
 		canvasContext.drawImage(uiScreenBg, screenLeft, 0);
 		canvasContext.drawImage(uiBorder, 0, 0, uiBorder.width, uiBorder.height, screenLeft, 0, uiBorder.width / 2, uiBorder.height / 2);
 
@@ -421,7 +423,7 @@ function GameScene() {
 	};
 
 	const InitializeBackWall = function() {
-		wall = new InfiniteWall(canvas.height - tiledWall.height);
+		wall = new InfiniteWall(canvas.height - tiledWall.height, levelData.wallScroll);
 	};
 
 	const initializePlayerIfReqd = function() {
@@ -600,6 +602,7 @@ const Level1Data = {
 	},
 	scrollsLeft: true,
 	allowedTime: 999,
+	wallScroll:wallScrollTiger,
 	enemyBelt: BELT.White,
 	bossBelt: BELT.Yellow,
 	bossHealth:100,
@@ -628,6 +631,7 @@ const Level2Data = {
 	},
 	scrollsLeft: false,
 	allowedTime: 899,
+	wallScroll:wallScrollCrane,
 	enemyBelt: BELT.Yellow,
 	bossBelt: BELT.Tan,
 	bossHealth:120,
@@ -656,6 +660,7 @@ const Level3Data = {
 	},
 	scrollsLeft: true,
 	allowedTime: 799,
+	wallScroll:wallScrollSnake,
 	enemyBelt: BELT.Tan,
 	bossBelt: BELT.Brown,
 	bossHealth:140,
@@ -684,6 +689,7 @@ const Level4Data = {
 	},
 	scrollsLeft: false,
 	allowedTime: 699,
+	wallScroll:wallScrollLeopard,
 	enemyBelt: BELT.Brown,
 	bossBelt: BELT.Red,
 	bossHealth:160,
@@ -712,6 +718,7 @@ const Level5Data = {
 	},
 	scrollsLeft: true,
 	allowedTime: 599,
+	wallScroll:wallScrollDragon,
 	enemyBelt: BELT.Red,
 	bossBelt: BELT.Black,
 	bossHealth:400,//this is the final boss, so BUFF!!
