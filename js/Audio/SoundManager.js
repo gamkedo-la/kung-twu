@@ -43,7 +43,7 @@ function SoundManager(soundEngine) {
 		_engine.setBusVolume(_bus.BGM, _bgmBusVolume);
 	};
 	this.setBGMVolume(_bgmBusVolume); // initilize bgm volume
-	
+
 	this.getBGMVolume = function() {
 		return _bgmBusVolume;
 	};
@@ -67,7 +67,7 @@ function SoundManager(soundEngine) {
 	 * @param {number} vol The volume to set the bus to. Range(0-1)
 	 */
 	this.setMasterVolume = function(vol) {
-		_engine.setMasterVolume = _masterVolume;
+		_engine.setMasterVolume = clamp(vol, 0, 1);
 	};
 	this.getMasterVolume = function() {
 		_engine.getMasterVolume();
