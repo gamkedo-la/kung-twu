@@ -320,47 +320,65 @@ function GameScene() {
 	};
 
 	const drawUI = function(cameraX) {
+		const UI_SCALE = 0.4;
 		//TODO: We need a way to find out how wide these strings will be, should be easy with a custom font
 		const screenLeft = cameraX - canvas.width / 2;
 		const screenRight = cameraX + canvas.width / 2;
 		canvasContext.drawImage(uiScreenBg, screenLeft, 0);
 
+		//Score
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Score),
 			{x: screenLeft + 40, y: 10}, 
-			TextAlignment.Left, 0.4);
+			TextAlignment.Left, UI_SCALE);
 
-		const scoreStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Score), 0.4);
+		const scoreStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Score), UI_SCALE);
 		let stringScore = score.toString();
 		while (stringScore.length < 9) {
 			stringScore = "0" + stringScore;
 		}
 
-		JPFont.printTextAt(stringScore, {x:screenLeft + scoreStringWidth + 50, y:10}, TextAlignment.Left, 0.4);
+		JPFont.printTextAt(stringScore, {x:screenLeft + scoreStringWidth + 50, y:10}, TextAlignment.Left, UI_SCALE);
 
+		//Player Health
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Health),
-			{x:screenLeft + 40, y: 55}, TextAlignment.Left, 0.4);
+			{x:screenLeft + 40, y: 55}, TextAlignment.Left, UI_SCALE);
 
-		const healthStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Health), 0.4);
+		const healthStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Health), UI_SCALE);
 		const playerHealthWidth = ASSIST_DEFAULT.MaxHealth * player.health / player.getMaxHealth();
 		drawRect(screenLeft + healthStringWidth + 50, 60, playerHealthWidth, 22, Color.Orange);
 		drawBorder(screenLeft + healthStringWidth + 50, 60, ASSIST_DEFAULT.MaxHealth, 22, Color.Orange);
 
+		//Time Counter
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Time),
-			{x:screenLeft + 40, y:95}, TextAlignment.Left, 0.4);
+			{x:screenLeft + 40, y:95}, TextAlignment.Left, UI_SCALE);
 
+		//Level Name
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Level),
-			{x:screenLeft + 40, y: 135}, TextAlignment.Left, 0.4);
+			{x:screenLeft + 40, y: 135}, TextAlignment.Left, UI_SCALE);
 
-		const levelStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Level), 0.4);
+		const levelStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Level), UI_SCALE);
 		const keyForThisLevelName = stringsKeyForLevel(currentLevel);
 
 		JPFont.printTextAt(getLocalizedStringForKey(keyForThisLevelName),
-			{x:screenLeft + levelStringWidth + 50, y:135}, TextAlignment.Left, 0.4);
+			{x:screenLeft + levelStringWidth + 50, y:135}, TextAlignment.Left, UI_SCALE);
 
+		//Rivals Remaining
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Rivals),
+			{x:cameraX, y:10}, TextAlignment.Left, UI_SCALE);
+		const rivalsWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Rivals), UI_SCALE);
+
+		let thisX = cameraX + rivalsWidth + 10;
+		for(let i = 0; i < (levelData.totalEnemies - defeatedEnemyCount); i++) {
+			canvasContext.drawImage(basicEnemyIdle, 0, 0, basicEnemyIdle.width / 2, basicEnemyIdle.height, thisX, 10, basicEnemyIdle.width / 4, basicEnemyIdle.height / 2);
+
+			thisX += (10 + basicEnemyIdle.width / 4);
+		}
+
+		//Boss Health
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Boss),
-			{x:cameraX, y:55}, TextAlignment.Left, 0.4);
+			{x:cameraX, y:55}, TextAlignment.Left, UI_SCALE);
 
-		const bossStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Boss), 0.4);
+		const bossStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Boss), UI_SCALE);
 	
 		drawRect(cameraX + bossStringWidth + 10, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / levelData.bossHealth), 22, levelData.bossMeterColor);
 		drawBorder(cameraX + bossStringWidth + 10, 60, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
