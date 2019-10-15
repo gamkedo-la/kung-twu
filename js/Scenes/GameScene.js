@@ -325,6 +325,7 @@ function GameScene() {
 		const screenLeft = cameraX - canvas.width / 2;
 		const screenRight = cameraX + canvas.width / 2;
 		canvasContext.drawImage(uiScreenBg, screenLeft, 0);
+		canvasContext.drawImage(uiBorder, 0, 0, uiBorder.width, uiBorder.height, screenLeft, 0, uiBorder.width / 2, uiBorder.height / 2);
 
 		//Score
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Score),

@@ -70,6 +70,7 @@ const titleBlock = document.createElement("img");
 const titleScreenBird = document.createElement("img");
 const selector = document.createElement("img");
 const uiScreenBg = document.createElement("img");
+const uiBorder = document.createElement("img");
 const windowedWall = document.createElement("img");
 const tiledWallScroll = document.createElement("img");
 const tiledWall = document.createElement("img");
@@ -177,6 +178,7 @@ function loadImages() {
 
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
+		{ imgName: uiBorder, theFile: "UI_Border.png"},
 		{ imgName: windowedWall, theFile: "TiledBackgroundWindow.png" },
 		{ imgName: tiledWallScroll, theFile: "TiledBackgroundScroll.png" },
 		{ imgName: tiledWall, theFile: "TiledBackgroundWall.png" },
