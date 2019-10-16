@@ -1,77 +1,86 @@
-// Create SoundSprites
-const soundSpriteConfigs = [
-	{
-		key: "1_UP",
-		filepath: "../../audio/1_UP",
-		baseVolume: .1,
-		audioBus: AudioBus.SFX,
-		isLoop: false,
-		maxInstances: 2,
-		fadeOutTime: 0
-	},
-	{
-		key: "TitleBGM",
-		filepath: "../../audio/gameplayMusicV1",
-		baseVolume: .5,
-		audioBus: AudioBus.MUSIC,
-		isLoop: true,
-		maxInstances: 2,
-		fadeOutTime: 1.5
-	},		
-	{
-		key: "BossBGM",
-		filepath: "../../audio/DragonPulse",
-		baseVolume: .25,
-		audioBus: AudioBus.MUSIC,
-		isLoop: true,
-		maxInstances: 2,
-		fadeOutTime: 1.5
-	},
-	{
-		key: "Footsteps",
-		filepath: "../../audio/Footsteps",
-		baseVolume: .4,
-		audioBus: AudioBus.SFX,
-		isLoop: false,
-		maxInstances: 2,
-		fadeOutTime: 0
-	}
-];
-
 // Create the SoundManager
-const sounds = new SoundManager();
+const sound = new SoundManager();
 
 // Add SoundSprites
-sounds.addSounds(soundSpriteConfigs);
+sound.addSounds(soundSpriteConfigs);
 
 
 // ======== Test Functionality =========
 // Play Sounds
 const bossBGM = document.getElementById("bossBGM");
 bossBGM.addEventListener("click", () => {
-	sounds.playBGM("BossBGM");
+	sound.playBGM(Sounds.BGM_Title);
 });
 
 const titleBGM = document.getElementById("titleBGM");
 titleBGM.addEventListener("click", () => {
-	sounds.playBGM("TitleBGM");
+	sound.playBGM(Sounds.BGM_Title);
 });
 
 const oneupSFX = document.getElementById("oneupSFX");
 oneupSFX.addEventListener("click", () => {
-	sounds.playSFX("1_UP");
+	sound.playSFX(Sounds.SFX_1UP);
 });
 
 const footstepSFX = document.getElementById("footstepSFX");
 footstepSFX.addEventListener("click", () => {
-	sounds.playSFX("Footsteps");
+	sound.playSFX(Sounds.SFX_Footsteps);
 });
 
 // Stop All Sounds
 const stopAll = document.getElementById("stopAll");
 stopAll.addEventListener("click", () => {
-	sounds.stopAllSounds();
+	sound.stopAllSounds();
 });
+
+// Sound Volume Test
+const soundList = document.getElementById("soundList");
+const soundTestSlider = document.getElementById("soundTestSlider");
+const soundTestPlay = document.getElementById("soundTestPlay");
+const soundTestStop = document.getElementById("soundTestStop");
+const soundTestVolDisplay = document.getElementById("soundTestVolDisplay");
+const soundTestVolDisplayOld = document.getElementById("soundTestVolDisplayOld");
+const keys = Object.getOwnPropertyNames(Sounds);
+for (let i = 0; i < keys.length; i++) {
+	const option = document.createElement("option");
+	option.innerText = Sounds[keys[i]];
+	soundList.appendChild(option);
+}
+
+soundTestPlay.addEventListener("click", () => {
+	sound.stopAllSounds();
+	const key = soundList.value;
+	const snd = sound.playSFX(key);
+	snd._setBaseVolume(parseFloat(soundTestSlider.value));
+	snd.setVolume(1);
+});
+
+soundTestStop.addEventListener("click", () => {
+	const key = soundList.value;
+	sound.stopSound(key);
+});
+
+soundList.addEventListener("input", (evt) => {
+	updateBaseVolume();
+});
+
+function updateBaseVolume() {
+	const baseVol = sound._getEngine()._getSound(soundList.value).getBaseVolume() + "";
+	soundTestVolDisplay.innerText = baseVol;
+	soundTestSlider.value = baseVol;
+	soundTestVolDisplayOld.innerText = baseVol;
+}
+updateBaseVolume(); // initialize value for first option that appears on list
+
+
+soundTestSlider.addEventListener("input", () => {
+	soundTestVolDisplay.innerText = soundTestSlider.value;
+	const snd = sound._getEngine()._getSound(soundList.value);
+	snd._setBaseVolume(parseFloat(soundTestSlider.value));
+	snd.setVolume();
+
+});
+
 
 // Fade BGM Slider
 const fadeBGMTo = document.getElementById("fadeBGMTo");
@@ -79,26 +88,24 @@ const fadeBGMTime = document.getElementById("fadeBGMTime");
 // Activate button
 const fadeBGM = document.getElementById("fadeBGM");
 fadeBGM.addEventListener("click", () => {
-	sounds.fadeBGMTo(parseFloat(fadeBGMTo.value), parseFloat(fadeBGMTime.value));
+	sound.fadeBGMTo(parseFloat(fadeBGMTo.value), parseFloat(fadeBGMTime.value));
 });
 
 // Bus sliders
 const sfxBus = document.getElementById("sfxBus");
-sfxBus.value = sounds.getSFXVolume() + "";
+sfxBus.value = sound.getSFXVolume() + "";
 sfxBus.addEventListener("input", (evt) => {
-	sounds.setSFXVolume(parseFloat(evt.target.value, 10));
+	sound.setSFXVolume(parseFloat(evt.target.value, 10));
 });
 
 const musicBus = document.getElementById("musicBus");
-musicBus.value = sounds.getBGMVolume() + "";
+musicBus.value = sound.getBGMVolume() + "";
 musicBus.addEventListener("input", (evt) => {
-	sounds.setBGMVolume(parseFloat(evt.target.value, 10));
+	sound.setBGMVolume(parseFloat(evt.target.value, 10));
 });
 
 const masterBus = document.getElementById("masterBus");
-masterBus.value = sounds.getMasterVolume() + "";
+masterBus.value = sound.getMasterVolume() + "";
 masterBus.addEventListener("input", (evt) => {
-	sounds.setMasterVolume(parseFloat(evt.target.value, 10));
+	sound.setMasterVolume(parseFloat(evt.target.value, 10));
 });
-
-

@@ -35,7 +35,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	let _playIndex = 0;
 
 	/** base volume for this particular sound */
-	const _baseVolume = baseVolume;
+	let _baseVolume = baseVolume;
 
 	/** @type {string} A value within AudioBus enum object */
 	let _audioBus = audioBus;
@@ -69,6 +69,17 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 
 	this.getKey = function() {
 		return _key;
+	};
+
+	this.getBaseVolume = function() {
+		return _baseVolume;
+	};
+
+	/**
+	 * Purely for debugging purposes
+	 */
+	this._setBaseVolume = function(volume) {
+		_baseVolume = clamp(volume, 0, 1);
 	};
 
 	/**
