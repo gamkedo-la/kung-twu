@@ -35,7 +35,8 @@ const Sounds = {
 	SFX_Swish_02: "SFX_Swish_02",
 	BGM_Boss: "BGM_Boss",
 	BGM_GamePlay: "BGM_GamePlay",
-	BGM_Title: "BGM_Title"
+	BGM_Title: "BGM_Title",
+	BGM_GameOver: "BGM_GameOver"
 }; Object.freeze(Sounds);
 // ========================
 
@@ -240,5 +241,14 @@ const soundSpriteConfigs = [
 		isLoop: true,
 		maxInstances: 2,
 		fadeOutTime: 1.5
-	}
+	},
+	{
+		key: Sounds.BGM_GameOver,
+		filepath: "./audio/AWarriorsResolution(loop)",
+		baseVolume: .35,
+		audioBus: AudioBus.MUSIC,
+		isLoop: true,
+		maxInstances: 2,
+		fadeOutTime: 1.5
+	},
 ];
