@@ -1,9 +1,15 @@
-// Sound Globals
+// Sound Constants
 /// ===============================================
 /// * To add a new sound to the game              *
 /// * 1. Add a new property to Sounds             *
 /// * 2. Create a new entry in soundSpriteConfigs *
 /// ===============================================
+
+/**
+ * Game's globally accessible SoundManager
+ * @type SoundManager
+ */
+let sound;
 
 /**
  * Keys to access sounds with

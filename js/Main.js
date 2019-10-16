@@ -40,6 +40,9 @@ window.onload = function() {
 	input = new InputManager(inputProcessor, gamepad);
 	input.initialize();
 
+	sound = new SoundManager(); // create sound manager, variable declared in SoundGlobals.js
+	sound.addSounds(soundSpriteConfigs); // adds previously declared soundSpriteConfigs from SoundGlobals.js
+
 	// Set the UIProgressBar configuration defaults for use with creating a new UIProgressBar.
 	UIProgressBarDefaults = new IProgressBarConfig();
 	
