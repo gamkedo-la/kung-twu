@@ -24,8 +24,14 @@ function SoundInstance(soundSprite, filename) {
 		}
 	};
 
+	/**
+	 * Cancels a specific fade on this SoundInstance. (Currently not used, but may become necessary while bug testing)
+	 */
 	this.cancelFade = function(fade) {
-
+		const index = _fades.indexOf(fade);
+		if (index !== -1) {
+			_fades.splice(index, 1);
+		}
 	};
 
 	/**
