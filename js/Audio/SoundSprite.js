@@ -1,5 +1,6 @@
 /**
- * A container that holds a number of duplicate instances of a sound to allow overlapping. Will be held by the SoundEngine, and not to be interfaced with directly 
+ * A container that holds a number of duplicate sound instances to allow overlapping. 
+ * Will be managed by the SoundEngine, and usually not to be interfaced with directly.
  * @param {string} key The key string to reference this by
  * @param {string} filepath Filepath of the audio file minus the extension
  * @param {number} baseVolume Base volume
@@ -93,12 +94,13 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	};
 
 	/**
-	 * Stops all inner instances of the SoundInstance
+	 * Stops all inner sound instances, with optional fadeout. Fades out by default.
 	 * @param fadeOut Default = true. Fades out on true, immediate stop on false
 	 * @param {number?} overrideFadeTimeValue Optional parameter. When set with a number, it will override the instance's preset fadeOutTime value.
 	 */
 	this.stop = function(allowFadeOut = true, overrideFadeTimeValue) {
 		if (allowFadeOut) {
+			// allow fade out for each instance
 			_instances.forEach((inst) => {
 				_fadeTo(inst, 0, overrideFadeTimeValue || _fadeOutTime, (inst) => {
 					inst.pause();
@@ -106,9 +108,10 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 				});
 			});
 		} else {
+			// no fade out: just pause and reset each instance
 			_instances.forEach((inst) => {
-				inst.setCurrentTime(0);
 				inst.pause();
+				inst.setCurrentTime(0);
 			});
 		}
 	};
@@ -146,6 +149,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 			_cancelFade(inst);
 		});
 	};
+
 	/**
 	 * Cancels a fade on a sound instance
 	 * @param {SoundInstance} soundInstance The handle from the fade function
@@ -156,10 +160,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 		} else {
 			console.log("Warning! Tried _cancelFade, but soundInstance was null or undefined!");
 		}
-
 	}
-
- 
 
 	/**
 	 * Sets the looping status of each internal sound instance mid-game.
@@ -188,7 +189,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	 * Gets the volume of the last played instance
 	 */
 	this.getVolume = () => {
-		_getLastPlayed().getVolume();
+		return _getLastPlayed().getVolume();
 	};
 
 	/**
@@ -242,7 +243,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	};
 
 	/**
-	 * Gets whether or not the latest inner instance is paused.
+	 * Gets whether or not the last-played instance is paused.
 	 * @returns {boolean}
 	 */
 	this.getPaused = function() {
@@ -271,6 +272,9 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 		return _getLastPlayed().currentTime;
 	};
 
+	/**
+	 * Returns the last-played inner sound instance
+	 */
 	this.getLastPlayed = _getLastPlayed;
 
 	// ====================================== //
@@ -303,7 +307,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	} 
 
 	/**
-	 * Internal calculation taking bus values into consideration. May move to an audio engine object later
+	 * Internal volume calculation taking bus values into consideration.
 	 * @param {number} baseVolume 
 	 * @param {string} bus 
 	 * @param {number} volume 
@@ -327,7 +331,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	}
 
 	/**
-	 * 
+	 * Main fading function within the SoundSprite
 	 * @param {SoundInstance} soundInst 
 	 * @param {number} targetVol 
 	 * @param {number} seconds 
@@ -351,7 +355,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	}
 
 	/**
-	 * Simple fade to a target volume in a set amount of seconds. If you need to set a starting value, please do that before calling.
+	 * Please use _fadeTo and not this function directly. Simple fade to a target volume in a set amount of seconds.
 	 * Returns the NodeJS.Timeout so you can stop it on your own with clearInterval if needed before it reaches its target.
 	 * @param {SoundInstance} sound The SoundInstance to fade
 	 * @param {number} targetVol

@@ -7,15 +7,23 @@ function SoundManager() {
 	 * @type SoundSprite
 	 */
 	let _currentMusic = null;
+	/**
+	 * Internal sfx bus volume value
+	 */
 	let _sfxBusVolume = 1;
-	
+	/**
+	 * Internal bgm bus volume value
+	 */
 	let _bgmBusVolume = 1;
 	
-
+	/**
+	 * Private core sound engine to hide unnecessary details.
+	 * If you want to handle it manually, please use this._getEngine() to retrieve it.
+	 */
 	const _engine = new SoundEngine();
 
 	/**
-	 * Get the engine for own handling
+	 * Get the core SoundEngine for own handling
 	 */
 	this._getEngine = function() {
 		return _engine;
@@ -44,7 +52,7 @@ function SoundManager() {
 
 	/**
 	 * Set the BGM bus volume of the SoundEngine
-	 * @param {number} vol The volume to set the bus to. Range (0-1)
+	 * @param {number} vol The volume to set the bus to. (Range: 0-1)
 	 */
 	this.setBGMVolume = function(vol) {
 		_bgmBusVolume = clamp(vol, 0, 1);
@@ -55,13 +63,16 @@ function SoundManager() {
 	};
 	this.setBGMVolume(_bgmBusVolume); // initilize bgm volume
 
+	/**
+	 * Get the current background music bus volume level. (Range: 0-1)
+	 */
 	this.getBGMVolume = function() {
 		return _bgmBusVolume;
 	};
 
 	/**
-	 * Set the SFX bus volume of the SoundEngine
-	 * @param {number} vol The volume to set the bus to. Range (0-1)
+	 * Set the SFX bus volume
+	 * @param {number} vol The volume to set the bus to. (Range: 0-1)
 	 */
 	this.setSFXVolume = function(vol) {
 		_sfxBusVolume = clamp(vol, 0, 1);
@@ -69,12 +80,15 @@ function SoundManager() {
 	};
 	this.setSFXVolume(_sfxBusVolume); // initialize sfx volume
 
+	/**
+	 * Get the current sfx bus volume. (Range: 0-1)
+	 */
 	this.getSFXVolume = function() {
 		return _sfxBusVolume;
 	};
 
 	/**
-	 * Set the Master bus volume of the SoundEngine
+	 * Set the master bus volume
 	 * @param {number} vol The volume to set the bus to. Range(0-1)
 	 */
 	this.setMasterVolume = function(vol) {
@@ -83,19 +97,23 @@ function SoundManager() {
 			_currentMusic.setVolume();
 		}
 	};
+
+	/**
+	 * Retrieves the master bus volume level
+	 */
 	this.getMasterVolume = function() {
 		return _engine.getMasterVolume();
 	};
 
 	/**
 	 * Play a music track
-	 * @param {string} key The key of the SoundSprite music track
+	 * @param {string} key The key of the music track to play.
 	 * @param {number} delay (optional) If there is a currently playing track, this is number of seconds
 	 * the new track will wait before playing to allow the current one to fade out.
-	 * Default: 1.5 seconds
+	 * (Default: 1.5 seconds)
 	 * @param {number} fadeScale (optional) Multiply this number by the delay parameter to 
 	 * determine the fade out time of the current track.
-	 * Default: 1.5
+	 * (Default: 1.5 seconds)
 	 */
 	this.playBGM = function(key, delay = 1.5, fadeScale = 1.5) {
 		const sound = _engine._getSound(key);
@@ -136,12 +154,23 @@ function SoundManager() {
 		}
 	};
 
+	/**
+	 * Stops the currently playing background music
+	 * @param {boolean} allowFadeOut Will allow the track to fade out with its default fadeOutTime
+	 * (default: true)
+	 */
 	this.stopBGM = function(allowFadeOut = true) {
 		if (_currentMusic) {
 			_currentMusic.stop(allowFadeOut);
 		}
 	};
 
+	/**
+	 * Stops all sounds. A relatively expensive task, especially if there are many sounds with many instances registered with the SoundEngine, 
+	 * even more so if allowFadeOut is true. Please use sparingly. 
+	 * Note to self: In future versions of a sound engine, it would probably be wiser to
+	 * manage a list of current sound instances instead of cycling through every sound instance.
+	 */
 	this.stopAllSounds = function(allowFadeOut = true) {
 		_engine.stopAllSounds(allowFadeOut);
 		_currentMusic = null; // clears current music reference for fresh start

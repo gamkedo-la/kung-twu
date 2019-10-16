@@ -3,8 +3,6 @@
  * Sprites should be added after instantiation with addSounds(configs)
  */
 function SoundEngine() {
-	const _DEBUG = true;
-
 	// ======== Initialization ======== //
 	const _this = this;
 	/**
@@ -12,7 +10,6 @@ function SoundEngine() {
 	 * @type Map<string, SoundSprite>
 	 */
 	const _sounds = new Map();
-
 	const _busses = new Map();
 	const _format = _getFormat();
 
@@ -21,7 +18,6 @@ function SoundEngine() {
 	let _masterVolume = 1;
 
 	// ======== Public API ==============
-
 	/**
 	 * Returns the browser-compatible audio format as a string. e.g. ".mp3"
 	 * Used to get the correct format when creating new sound instances, or debugging purposes.
@@ -30,12 +26,19 @@ function SoundEngine() {
 		return _format;
 	};
 
+	/**
+	 * Returns the current Master Volume level. (Range 0-1)
+	 */
 	this.getMasterVolume = function() {
 		return _masterVolume;
 	};
 
-	this.setMasterVolume = function(val) {
-		_masterVolume = clamp(val, 0, 1);
+	/**
+	 * Sets the current Master Volume level. (Range 0-1)
+	 * @param {number} volume The volume to set. (Range 0-1)
+	 */
+	this.setMasterVolume = function(volume) {
+		_masterVolume = clamp(volume, 0, 1);
 	};
 
 	/**
@@ -47,6 +50,11 @@ function SoundEngine() {
 		_busses.set(key, clamp(startingVol, 0, 1));
 	};
 
+	/**
+	 * Stop all sounds in the SoundEngine. May be a costly function if there are many sounds.
+	 * For future designs of a sound engine, it may be better to have a current sounds dynamic array.
+	 * @param {boolean} allowFadeOut Whether or not to allow the sound's default fade out to happen
+	 */
 	this.stopAllSounds = function(allowFadeOut = true) {
 		_sounds.forEach((sound) => {
 			sound.stop(allowFadeOut);
@@ -90,14 +98,9 @@ function SoundEngine() {
 		let timeCounter = 0; // tracks the time before starting new track
 		const startingTimeInMs = startingTime * 1000; // converts ahead of time so it doesn't need to every frame
 		const currentTrack = trackToFade;
-		const currentInst = trackToFade.getLastPlayed();
 
 		if (currentTrack) {
 			currentTrack.stop(true, fadeOutTime);
-			// fadeInterval = currentTrack.fadeTo(currentTrack.getLastPlayed(), 0, fadeOutTime, () => {
-			// 	currentInst.pause();
-			// 	currentInst.setCurrentTime(0);
-			// });
 		}
 		
 		// The interval to check how much time has passed before starting new track loop
