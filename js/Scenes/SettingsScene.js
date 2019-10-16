@@ -108,7 +108,7 @@ function SettingsScene() {
 						selectorPositionsIndex += selections.length;
 					}
 					updateSelectorPosition();
-					menuNavigationSound.play();
+					// @SoundHook: menuNavigationSound.play();
 					break;			
 				case NAV_ACTION.DOWN:
 				case NAV_ACTION.RIGHT:
@@ -117,7 +117,7 @@ function SettingsScene() {
 						selectorPositionsIndex = 0;
 					}
 					updateSelectorPosition();
-					menuNavigationSound.play();
+					// @SoundHook: menuNavigationSound.play();
 					break;
 				case NAV_ACTION.SELECT:
 					if(selectorPositionsIndex === 0) {
@@ -126,7 +126,7 @@ function SettingsScene() {
 						pauseManager.resumeGame(CAUSE.Keypress);
 						SceneState.setState(selections[selectorPositionsIndex]);
 					}
-					menuSelectionSound.play();
+					// @SoundHook: menuSelectionSound.play();
 					break;
 				}
 			}

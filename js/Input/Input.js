@@ -54,11 +54,7 @@ function InputManager(inputProcessor, gamepad) {
 	}
 	function keyPress(evt) {
 		evt.preventDefault();
-		// Testing Music Transition, will delete soon!
-		if (evt.keyCode == KeyCode.O) {
-			currentBackgroundMusic.transitionTo(bossMusic1, 3, 1);
-		}
-			
+	
 		if(_inputProcessor != null) {
 			_inputProcessor.addActiveKey(evt.keyCode);
 		}

@@ -66,9 +66,10 @@ function GameScene() {
 			if(currentLevel === 1) initializeWaterfall();
 		}
 
-		if (currentBackgroundMusic.getCurrentTrack() !== gameMusic) {
-			currentBackgroundMusic.loopSong(gameMusic);
-		}
+		// @SoundHook:
+		// if (currentBackgroundMusic.getCurrentTrack() !== gameMusic) {
+		// 	currentBackgroundMusic.loopSong(gameMusic);
+		// }
 		
 	};
 

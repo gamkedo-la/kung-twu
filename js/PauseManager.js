@@ -13,8 +13,8 @@ function PauseManager() {
 
 		if (!gameIsPaused) {
 			gameIsPaused = true;
-			pauseSound.play();
-			currentBackgroundMusic.fadeTo(.4, 1);
+			// @SoundHook: pauseSound.play();
+			// @SoundHook: currentBackgroundMusic.fadeTo(.4, 1);
 		}
 	};
 
@@ -22,8 +22,8 @@ function PauseManager() {
 		if (resumeCause === CAUSE.Keypress) {
 			gameIsPaused = false;
 			cause = null;
-			resumeSound.play();
-			currentBackgroundMusic.fadeIn(1);
+			// @SoundHook: resumeSound.play();
+			// @SoundHook: currentBackgroundMusic.fadeIn(1);
 		}
 	};
 }

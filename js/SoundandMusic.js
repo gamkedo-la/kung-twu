@@ -47,7 +47,7 @@ let effectsVolume = 1;
 /** @type backgroundMusicClass */
 let currentBackgroundMusic;
 const VOLUME_INCREMENT = 0.05;
- 
+
 function configureGameAudio() {
 	musicVolume = parseFloat(localStorageHelper.getItem(localStorageKey.MusicVolume));
 	effectsVolume = parseFloat(localStorageHelper.getItem(localStorageKey.SFXVolume));
