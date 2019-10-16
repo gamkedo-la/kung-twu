@@ -18,6 +18,22 @@ function SoundInstance(soundSprite, filename) {
 	this._fade = null;
 
 	/**
+	 * Sets the looping status of this instance
+	 * @param {boolean} isLoop
+	 */
+	this.setLoop = function(isLoop) {
+		_element.loop = isLoop;
+	};
+
+	/**
+	 * Sets the looping status of this instance
+	 * @param {boolean} isLoop
+	 */
+	this.getLoop = function() {
+		return _element.loop;
+	};
+
+	/**
 	 * The 'dial' the api turns for setting volume. Under the hood it calculates bus volume values.
 	 */
 	let _volume = 1;

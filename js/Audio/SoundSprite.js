@@ -11,11 +11,6 @@
 function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, fadeOutTime) {
 
 	// ========= Initialization =============== //
-	/**
-	 * this
-	 * @type SoundSprite
-	 */
-	const _this = this;
 
 	/**
 	 * Reference to the SoundEngine. Will be set autmatically when added to that SoundEngine. 
@@ -23,7 +18,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	 */
 	let _engine = null;
 
-	/** 
+	/**
 	 * Reference key by which to call this SoundSprite
 	 * @type {string}
 	 */
@@ -181,7 +176,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	this.setLoopingAll = _setLooping; // open this function for public use also
 	function _setLooping(isLoop) {
 		_instances.forEach((e) => {
-			e.loop = isLoop;
+			e.setLoop(isLoop);
 		});
 		_isLoop = isLoop;
 	}
