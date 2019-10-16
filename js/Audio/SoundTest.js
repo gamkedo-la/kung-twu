@@ -9,7 +9,7 @@ sound.addSounds(soundSpriteConfigs);
 // Play Sounds
 const bossBGM = document.getElementById("bossBGM");
 bossBGM.addEventListener("click", () => {
-	sound.playBGM(Sounds.BGM_Title);
+	sound.playBGM(Sounds.BGM_Boss);
 });
 
 const titleBGM = document.getElementById("titleBGM");
@@ -48,7 +48,7 @@ for (let i = 0; i < keys.length; i++) {
 }
 
 soundTestPlay.addEventListener("click", () => {
-	sound.stopAllSounds();
+	//sound.stopAllSounds();
 	const key = soundList.value;
 	const snd = sound.playSFX(key);
 	snd._setBaseVolume(parseFloat(soundTestSlider.value));
