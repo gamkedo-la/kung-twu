@@ -304,6 +304,8 @@ function GameScene() {
 			enemies[i].draw();
 		}
 
+		canvasContext.drawImage(tempRightWall, 0, 0, tempRightWall.width, tempRightWall.height, levelData.cameraMax - tempRightWall.width + canvas.width / 2, floor.getFrontHeight() - tempRightWall.height - 5, tempRightWall.width, tempRightWall.height);
+
 		player.draw();
 		if (wooshFX) wooshFX.draw();
 
