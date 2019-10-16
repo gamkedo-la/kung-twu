@@ -49,7 +49,7 @@ function SoundManager() {
 	this.setBGMVolume = function(vol) {
 		_bgmBusVolume = clamp(vol, 0, 1);
 		_engine.setBusVolume(AudioBus.MUSIC, _bgmBusVolume);
-		if (_currentMusic !== null && _currentMusic !== undefined) {
+		if (_currentMusic !== null && _currentMusic !== undefined) { // live adjusts only currently playing music. All subsequently played sounds will be affected
 			_currentMusic.setVolume();
 		}
 	};
@@ -79,6 +79,9 @@ function SoundManager() {
 	 */
 	this.setMasterVolume = function(vol) {
 		_engine.setMasterVolume(clamp(vol, 0, 1));
+		if (_currentMusic !== null && _currentMusic !== undefined) { // live adjusts only currently playing music. All subsequently played sounds will be affected.
+			_currentMusic.setVolume();
+		}
 	};
 	this.getMasterVolume = function() {
 		return _engine.getMasterVolume();
@@ -106,6 +109,18 @@ function SoundManager() {
 			}
 			_currentMusic = sound;
 			return sound;
+		}
+	};
+
+	/**
+	 * Fade the currently playing background music to a level in variable amount of seconds.
+	 * @param {number} volume Volume to fade to. Range (0-1)
+	 * @param {number} seconds The number of seconds it will take to fade
+	 * @param {(inst: SoundInstance)=>void} onTargetReached An optional callback that fires when target volume is reached 
+	 */
+	this.fadeBGMTo = (volume, seconds, onTargetReached) => {
+		if (_currentMusic) {
+			_currentMusic.fadeTo(_currentMusic.getLastPlayed(), clamp(volume, 0, 1), seconds, onTargetReached);
 		}
 	};
 

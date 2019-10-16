@@ -306,12 +306,12 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	function _setVolumeAll(vol) {
 		this.cancelFade();
 		// Update magic number _volume if a value is passed
-		if (vol != undefined && vol != null && typeof vol === "number") {
-			_volume = clamp(vol, 0, 1);
+		if (vol !== undefined && vol !== null && typeof vol === "number") {
+			vol = clamp(vol, 0, 1);
 		}
 		// Calculate and set the volume param of every internal instance
 		_instances.forEach((inst) => {
-			_setTrackVolume(inst, vol);
+			_setTrackVolume(inst, vol || inst.getVolume());
 		});
 	} 
 
@@ -332,7 +332,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 				vol = volume;
 			}
 
-			const _bus = _engine.getBusVolume(bus) || 1;
+			const _bus = _engine.getBusVolume(bus);
 			const _base = baseVolume;
 			const _master = _engine.getMasterVolume();
 			return Math.pow(vol * _base * _bus * _master, 2);
@@ -353,7 +353,9 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 		const fade = _fadeFromTo(soundInst, soundInst.getVolume(), targetVol, seconds, (sound) => {
 			// Target volume has been reached: Reset fade value and call callback.
 			sound._fade = null;
-			onTargetReached(sound);	
+			if (onTargetReached) {
+				onTargetReached(sound);	
+			}
 		});
 		// If we have a fade returned, set the fade property to that value
 		if (fade != null && fade != undefined) {

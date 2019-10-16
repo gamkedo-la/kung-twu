@@ -2,8 +2,58 @@
 <html>
 <head>
 	<title>SoundTest</title>
+	<style>
+		h1 {
+			max-width: 700px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		#main {
+			border: 1px solid rgb(200, 200, 200);
+			border-radius: 4px;
+			max-width: 700px;
+			margin: 0 auto;
+		}
+		#block {
+			padding: 10px; 
+			margin: 10px;
+		}
+	</style>
 </head>
 <body>
+	<h1>Sound Engine Test Room</h1>
+	<div id="main">
+		<!-- Test buttons -->
+		<div id="block">
+			<button id="bossBGM">Play Boss Theme</button>
+			<button id="titleBGM">Play Title Theme</button>
+			<button id="footstepSFX">Play Footstep SFX</button>
+			<button id="oneupSFX">Play One-Up SFX</button>
+			<button id="stopAll">Stop All Sounds</button>
+		</div>
+
+		<!-- Test sliders -->
+		<div id="block">
+			<label for="fadeBGMTo">Fade Current Music to This Value</label>
+			<input id="fadeBGMTo" type="range" min="0" max="1" step=".01">
+			<label for="fadeBGMTime">Seconds</label>
+			<input id="fadeBGMTime" type="number" value="2" min="0" max="10" step=".5">
+			<button id="fadeBGM">Activate Fade</button>
+		</div>
+		<div id="block">
+			<label for="musicBus">Music Bus Volume</label>
+			<input id="musicBus" type="range" min="0" max="1" step=".01">
+			<label for="sfxBus">SFX Bus Volume</label>
+			<input id="sfxBus" type="range" min="0" max="1" step=".01">
+		</div>
+		<div id="block">
+			<label for="masterBus">Master Bus Volume</label>
+			<input id="masterBus" type="range" min="0" max="1" step=".01">
+		</div>
+</div>
+
+	<!-- Scripts -->
+	<script src="../Globals.js"></script>
 	<script src="../Utility.js"></script>
 	<script src="./SoundEngine.js"></script>
 	<script src="./SoundInstance.js"></script>

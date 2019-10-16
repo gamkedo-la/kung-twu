@@ -58,10 +58,14 @@ function SoundInstance(soundSprite, filename) {
 	};
 
 	/**
-	 * Make sure that the overlaps class updates volume after a call to this fn
+	 * Make sure that the sound sprite updates volume after a call to this fn
 	 */
 	this.setVolume = function(vol) {
-		_volume = clamp(vol, 0, 1);
+		if (typeof vol === "number" && !Number.isNaN(vol)) {
+			_volume = clamp(vol, 0, 1);
+		} else {
+			throw new Error("Trying to set volume to a value that is not a number!");
+		}
 	};
 
 	this._setInnerVolume = function(vol) {
