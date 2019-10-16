@@ -56,6 +56,10 @@ function GameOverScene() {
 		// if(currentBackgroundMusic.getCurrentTrack() != gameOverMusic) {
 		// 	currentBackgroundMusic.loopSong(gameOverMusic);
 		// }
+		if (sound.getCurrentBGMKey() != Sounds.BGM_GameOver) {
+			sound.playBGM(Sounds.BGM_GameOver);
+		}
+
 	};
 
 	this.transitionOut = function() {
@@ -77,6 +81,7 @@ function GameOverScene() {
 		case ALIAS.DEBUG:
 			DEBUG = !DEBUG;
 			// @SoundHook: menuSelectionSound.play();
+			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.POINTER:
 			checkButtons();
@@ -182,6 +187,7 @@ function GameOverScene() {
 					}
 					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
 					// @SoundHook: menuNavigationSound.play();
+					sound.playSFX(Sounds.SFX_MenuNav);
 					break;
 				case NAV_ACTION.DOWN:
 				case NAV_ACTION.RIGHT:
@@ -191,6 +197,7 @@ function GameOverScene() {
 					}
 					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
 					// @SoundHook menuNavigationSound.play();
+					sound.playSFX(Sounds.SFX_MenuNav);
 					break;
 				case NAV_ACTION.SELECT:
 					if(selections[selectorPositionsIndex] === SCENE.GAME) {
@@ -199,6 +206,7 @@ function GameOverScene() {
 						properties = {didQuit:true};
 					} 
 					// @SoundHook: menuSelectionSound.play();
+					sound.playSFX(Sounds.SFX_MenuSelect);
 					SceneState.setState(selections[selectorPositionsIndex], properties);
 					break;
 				case NAV_ACTION.BACK:

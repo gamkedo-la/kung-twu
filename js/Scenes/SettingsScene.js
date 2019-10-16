@@ -109,6 +109,7 @@ function SettingsScene() {
 					}
 					updateSelectorPosition();
 					// @SoundHook: menuNavigationSound.play();
+					sound.playSFX(Sounds.SFX_MenuNav);
 					break;			
 				case NAV_ACTION.DOWN:
 				case NAV_ACTION.RIGHT:
@@ -118,6 +119,7 @@ function SettingsScene() {
 					}
 					updateSelectorPosition();
 					// @SoundHook: menuNavigationSound.play();
+					sound.playSFX(Sounds.SFX_MenuNav);
 					break;
 				case NAV_ACTION.SELECT:
 					if(selectorPositionsIndex === 0) {
@@ -127,6 +129,7 @@ function SettingsScene() {
 						SceneState.setState(selections[selectorPositionsIndex]);
 					}
 					// @SoundHook: menuSelectionSound.play();
+					sound.playSFX(Sounds.SFX_MenuSelect);
 					break;
 				}
 			}

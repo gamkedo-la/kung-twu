@@ -81,6 +81,7 @@ function PowerUpScene() {
 				case NAV_ACTION.SELECT:
 					SceneState.setState(SCENE.GAME, {restartLevel:true});
 					// @SoundHook: menuSelectionSound.play();
+					sound.playSFX(Sounds.SFX_MenuSelect);
 					break;
 				}
 			}

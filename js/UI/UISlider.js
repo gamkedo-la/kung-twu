@@ -139,6 +139,7 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 		}
 
 		// @SoundHook: menuSelectionSound.play();
+		sound.playSFX(Sounds.SFX_MenuSelect);
 	};
 
 	this.getValue = function() {

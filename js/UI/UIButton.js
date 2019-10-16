@@ -61,6 +61,7 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 	this.respondIfClicked = function(pointerX, pointerY) {
 		if(didHit(pointerX, pointerY)) {
 			// @SoundHook: menuSelectionSound.play();
+			sound.playSFX(Sounds.SFX_MenuSelect);
 			this.onClick();
 			return true;
 		} else {
@@ -92,6 +93,7 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 
 		if(wasHit && !isHovering) {
 			// @SoundHook: menuNavigationSound.play();
+			sound.playSFX(Sounds.SFX_MenuNav);
 			isHovering = true;
 		}
 		

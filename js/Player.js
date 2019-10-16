@@ -326,13 +326,14 @@ function Player(config) {
 		if (stateManager.getIsNewState()) {
 			velocity.y = JUMP_SPEED;
 			// @SoundHook: playerJumpSound.play();
+			sound.playSFX(Sounds.SFX_PlayerJump);
 		}
 	};
 
 	const crouch = function() {
 		console.log("I'm crouching now");
 		if (stateManager.getIsNewState()) {
-			// @SoundHook: playerCrouchSound.play();
+			// @SoundHook:TODO playerCrouchSound.play();
 		}
 	};
 
@@ -345,6 +346,8 @@ function Player(config) {
 
 			velocity.x = speed;
 			// @SoundHook swish1Sound.play();
+			sound.playSFX(Sounds.SFX_Swish_01);
+
 		}
 	};
 
@@ -356,6 +359,7 @@ function Player(config) {
 		console.log("I'm blocking now");
 		if (stateManager.getIsNewState()) {
 			// @SoundHook: playerBlockSound.play();
+			sound.playSFX(Sounds.SFX_PlayerBlock);
 		}
 	};
 
@@ -363,6 +367,7 @@ function Player(config) {
 		if (stateManager.getIsNewState()) {
 			velocity.x = 0;
 			// @SoundHook: playerPunchSound.play();
+			sound.playSFX(Sounds.SFX_PlayerPunch);
 			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -371,6 +376,7 @@ function Player(config) {
 		if (stateManager.getIsNewState()) {
 			velocity.x = 0;
 			// @SoundHook: playerKickSound.play();
+			sound.playSFX(Sounds.SFX_PlayerKick);
 			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -379,6 +385,7 @@ function Player(config) {
 		console.log("Jump Kicking");
 		if (stateManager.getIsNewState()) {
 			// @SoundHook: playerKickSound.play();
+			sound.playSFX(Sounds.SFX_PlayerKick);
 			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -386,7 +393,7 @@ function Player(config) {
 	const h_kick = function() {
 		console.log("Helicopter Kicking");
 		if (stateManager.getIsNewState()) {
-			// @SoundHook: playerHelicopterKickSound.play();
+			// @SoundHook:TODO playerHelicopterKickSound.play();
 			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -395,6 +402,7 @@ function Player(config) {
 		console.log("Sweeping !!!");
 		if (stateManager.getIsNewState()) {
 			// @SoundHook: swish2Sound.play();
+			sound.playSFX(Sounds.SFX_Swish_02);
 			velocity.x = 0;
 			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
@@ -442,8 +450,10 @@ function Player(config) {
 		if (this.health <= 0) {
 			this.health = 0;
 			// @SoundHook: playerFailedSound.play();
+			sound.playSFX(Sounds.SFX_PlayerFail);
 		} else {
 			// @SoundHook: playerHitSound.play();
+			sound.playSFX(Sounds.SFX_PlayerHit);
 		}
 	};
 

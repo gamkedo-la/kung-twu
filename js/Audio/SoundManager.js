@@ -51,6 +51,17 @@ function SoundManager() {
 	};
 
 	/**
+	 * Get the key of the currently playing music, or return null if there is none playing.
+	 */
+	this.getCurrentBGMKey = function() {
+		if (_currentMusic) {
+			return _currentMusic.getKey();
+		} else {
+			return null;
+		}
+	};
+
+	/**
 	 * Set the BGM bus volume of the SoundEngine
 	 * @param {number} vol The volume to set the bus to. (Range: 0-1)
 	 */
