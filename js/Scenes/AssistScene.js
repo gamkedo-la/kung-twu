@@ -2,6 +2,8 @@
 function AssistScene() {
 	this.name = "Assist";
 	const TITLE_Y_POS = 100;
+	const TITLE_SCALE = 1;
+	const SLIDER_PADDING = 100;
 	const LINE_HEIGHT = 24;
 	let selectorPositionsIndex = 0;
 	const selectorPosition = {x:0, y:0};
@@ -28,14 +30,12 @@ function AssistScene() {
 		if(buttons.length === 0) {
 			buttons.push(buildBackButton(buttonPadding, menuY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildPlayButton(canvas.width - buttonPadding, menuY, buttonHeight, buttonTitlePadding));
-
-			updateButtonPositions();
-
-			buildSliders();
 		} else {
-			updateButtonPositions();
 			updateButtonTitles();
 		}
+
+		updateButtonPositions();
+		buildSliders();
 
 		selectorPositionsIndex = 0;
 	};
@@ -78,17 +78,17 @@ function AssistScene() {
 			localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, maxHealth);
 		}
 
+		const minSliderY = TITLE_Y_POS + JPFont.getCharacterHeight(TITLE_SCALE) + SLIDER_PADDING / 2;
 		const pHealthMin = 1;
 		const pHealthMax = 200;
-		//		slider.maxPlayerHealth = new UISlider(50, 150, 10, 200, "Max Health", 1, "1", 200, "200", maxHealth, 20, false, Color.Orange);
-		slider.maxPlayerHealth = new UISlider(50, 150, 200, 10, getLocalizedStringForKey(STRINGS_KEY.MaxHealth), pHealthMin, pHealthMin.toString(), pHealthMax, pHealthMax.toString(), maxHealth, 20, true, Color.Orange);
+		slider.maxPlayerHealth = new UISlider(50, minSliderY, 200, 10, getLocalizedStringForKey(STRINGS_KEY.MaxHealth), pHealthMin, pHealthMin.toString(), pHealthMax, pHealthMax.toString(), maxHealth, 20, true, Color.Orange);
 		
 		let startBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
 		if((startBelt === undefined) || (startBelt === null) || (isNaN(startBelt))) {
 			startBelt = ASSIST_DEFAULT.StartBelt;
 			localStorageHelper.setInt(localStorageKey.StartingBelt, startBelt);
 		}
-		slider.startingBelt = new UISlider(50, 250, 200, 10, getLocalizedStringForKey(STRINGS_KEY.StartBelt), 0, getLocalizedStringForKey(STRINGS_KEY.BeltWhite), 5, getLocalizedStringForKey(STRINGS_KEY.BeltBlack), startBelt, 5, true, Color.White);
+		slider.startingBelt = new UISlider(50, minSliderY + SLIDER_PADDING, 200, 10, getLocalizedStringForKey(STRINGS_KEY.StartBelt), 0, getLocalizedStringForKey(STRINGS_KEY.BeltWhite), 5, getLocalizedStringForKey(STRINGS_KEY.BeltBlack), startBelt, 5, true, Color.White);
 
 		let startLevel = localStorageHelper.getInt(localStorageKey.StartingLevel);
 		if((startLevel === undefined) || (startLevel === null) || (isNaN(startLevel))) {
@@ -97,7 +97,7 @@ function AssistScene() {
 		}
 		const sLevelMin = 0;
 		const sLevelMax = 4;
-		slider.startingLevel = new UISlider(50, 350, 200, 10, getLocalizedStringForKey(STRINGS_KEY.StartLevel), sLevelMin, getLocalizedStringForKey(STRINGS_KEY.Level1), sLevelMax, getLocalizedStringForKey(STRINGS_KEY.Level5), startLevel, 4, true, Color.Aqua);
+		slider.startingLevel = new UISlider(50, minSliderY + 2 * SLIDER_PADDING, 200, 10, getLocalizedStringForKey(STRINGS_KEY.StartLevel), sLevelMin, getLocalizedStringForKey(STRINGS_KEY.Level1), sLevelMax, getLocalizedStringForKey(STRINGS_KEY.Level5), startLevel, 4, true, Color.Aqua);
 	};
 
 	const update = function() {
@@ -255,6 +255,6 @@ function AssistScene() {
 //		colorText(getLocalizedStringForKey(STRINGS_KEY.AssistSceneTitle), 
 //			canvas.width / 2, TITLE_Y_POS, Color.White, Fonts.MainTitle, TextAlignment.Center, true);
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.AssistSceneTitle),
-			{x:canvas.width / 2, y:TITLE_Y_POS}, TextAlignment.Center, 1);
+			{x:canvas.width / 2, y:TITLE_Y_POS}, TextAlignment.Center, TITLE_SCALE);
 	};
 }

@@ -17,7 +17,7 @@ function UITextureButton(image, x, y) {
 		NONE: "NONE",
 		HOVER: "HOVER",
 		PRESSED: "PRESSED"
-  };
+	};
 	
 	this.update = function() {
 		const pointerX = mouseX;
@@ -35,16 +35,18 @@ function UITextureButton(image, x, y) {
 	
 		if (pointerX >= rect.left && pointerX <= rect.right 
 			&& pointerY >= rect.top && pointerY <= rect.bottom) {
-
+			//TODO: Need implementation
 		}
 	};
 
 	function stateNone() {
 
 	}
+
 	function stateHover() {
 
 	}
+	
 	function statePressed() {
 
 	}
@@ -62,8 +64,10 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 	lowVal = 0, lowLabel = "", highVal = 100, highLabel = "", intialValue = 50, 
 	steps = 10, isHorizontal = true, color = Color.Aqua) {
 
-  const RADIUS = (isHorizontal? height : width);
-  /**
+	const LABEL_SCALE = 0.3;
+	const LABEL_HEIGHT = JPFont.getCharacterHeight(LABEL_SCALE);
+	const RADIUS = (isHorizontal? height : width);
+	/**
    * The difference between high and low values
    */
 	const SPAN = highVal - lowVal;
@@ -72,7 +76,7 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 
 	let path = null;
 	let indicatorPath = null;
-//	let shadowPath = null;
+	//	let shadowPath = null;
 	let positivePath = null;
 	let negativePath = null;
 
@@ -177,8 +181,8 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 		canvasContext.fillStyle = Color.Grey;
 		canvasContext.fill(negativePath);
 
-//		canvasContext.fillStyle = Color.Black;
-//		canvasContext.fill(shadowPath);
+		//		canvasContext.fillStyle = Color.Black;
+		//		canvasContext.fill(shadowPath);
 		canvasContext.fillStyle = color;
 		canvasContext.fill(indicatorPath);
 		canvasContext.strokeStyle = Color.Black;
@@ -186,13 +190,13 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 		canvasContext.stroke(indicatorPath);
 
 		if(isHorizontal) {
-			colorText(label, x + width / 2, y - LABEL_PADDING, Color.White, Fonts.ButtonTitle, TextAlignment.Center, 1, true);
-			colorText(lowLabel, x, y + 2 * height + LABEL_PADDING, Color.White, Fonts.ButtonTitle, TextAlignment.Left, 1, true);
-			colorText(highLabel, x + width, y + 2 * height + LABEL_PADDING, Color.White, Fonts.ButtonTitle, TextAlignment.Right, 1, true);
+			JPFont.printTextAt(label, {x:x + width / 2, y:y - LABEL_PADDING - LABEL_HEIGHT}, TextAlignment.Center, LABEL_SCALE);
+			JPFont.printTextAt(lowLabel, {x:x, y:y + LABEL_PADDING}, TextAlignment.Left, LABEL_SCALE);
+			JPFont.printTextAt(highLabel, {x:x + width, y:y + LABEL_PADDING}, TextAlignment.Right, LABEL_SCALE);
 		} else {
-			colorText(label, x + width / 2, y - 4 * LABEL_PADDING, Color.White, Fonts.ButtonTitle, TextAlignment.Center, 1, true);
-			colorText(lowLabel, x + width / 2, y + height + 2 * LABEL_PADDING, Color.White, Fonts.ButtonTitle, TextAlignment.Center, 1, true);
-			colorText(highLabel, x + width / 2, y - LABEL_PADDING, Color.White, Fonts.ButtonTitle, TextAlignment.Center, 1, true);
+			JPFont.printTextAt(label, {x:x + width / 2, y:y - 4 * LABEL_PADDING}, TextAlignment.Center, LABEL_SCALE);
+			JPFont.printTextAt(lowLabel, {x:x + width / 2, y:y + height}, TextAlignment.Center, LABEL_SCALE);
+			JPFont.printTextAt(highLabel, {x:x + width / 2, y:y - 2 * LABEL_PADDING}, TextAlignment.Center, LABEL_SCALE);
 		}
 
 		canvasContext.restore();	
@@ -214,8 +218,8 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 		}
 
 		indicatorPath = buildIndicatorPath(indicatorCenter);
-//		indicatorCenter.x += 2;
-//		shadowPath = buildIndicatorPath(indicatorCenter);
+		//		indicatorCenter.x += 2;
+		//		shadowPath = buildIndicatorPath(indicatorCenter);
 	};
 
 	const buildHorizontalOutline = function() {
