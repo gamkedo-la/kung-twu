@@ -3,8 +3,6 @@ function AssistScene() {
 	this.name = "Assist";
 	const TITLE_Y_POS = 100;
 	const TITLE_SCALE = 1;
-	const SLIDER_PADDING = 100;
-	const LINE_HEIGHT = 24;
 	let selectorPositionsIndex = 0;
 	const selectorPosition = {x:0, y:0};
 	const selections = [
@@ -72,19 +70,33 @@ function AssistScene() {
 	};
 
 	const buildSliders = function() {
+		const SLIDER_W = 200;
+		const SLIDER_H = 10;
+
+		const COL_DELTA = 50;
+		const COL1_X = 50;
+		const COL2_X = COL1_X + SLIDER_W + COL_DELTA;
+		const COL3_X = COL2_X + SLIDER_W + COL_DELTA;
+
+		const ROW_DELTA = 100;
+		const ROW1_Y = TITLE_Y_POS + JPFont.getCharacterHeight(TITLE_SCALE) + ROW_DELTA / 2;
+		const ROW2_Y = ROW1_Y + ROW_DELTA;
+		const ROW3_Y = ROW2_Y + ROW_DELTA;
+		const ROW4_Y = ROW3_Y + ROW_DELTA;
+
+		/*First Row of Sliders*/
+		//Player Max Health
 		let maxHealth = localStorageHelper.getInt(localStorageKey.PlayerMaxHealth);
 		if((maxHealth === undefined) || (maxHealth === null) || (isNaN(maxHealth))) {
 			maxHealth = ASSIST_DEFAULT.MaxHealth;
 			localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, maxHealth);
 		}
 
-		const minSliderY = TITLE_Y_POS + JPFont.getCharacterHeight(TITLE_SCALE) + SLIDER_PADDING / 2;
 		const pHealthMin = 1;
 		const pHealthMax = 200;
-		slider.maxPlayerHealth = new UISlider(50, minSliderY, 200, 10, getLocalizedStringForKey(STRINGS_KEY.MaxHealth), pHealthMin, pHealthMin.toString(), pHealthMax, pHealthMax.toString(), maxHealth, 20, true, Color.Orange);
+		slider.maxPlayerHealth = new UISlider(COL1_X, ROW1_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.MaxHealth), pHealthMin, pHealthMin.toString(), pHealthMax, pHealthMax.toString(), maxHealth, 20, true, Color.Orange);
 		
-		const col2X = 50 + slider.maxPlayerHealth.getWidth() + 100;
-
+		//Enemy Max Health
 		const eHealthMin = 1;
 		const eHealthMax = 50;
 		let baseEHealth = localStorageHelper.getInt(localStorageKey.BaseEnemyHealth);
@@ -92,24 +104,9 @@ function AssistScene() {
 			baseEHealth = ASSIST_DEFAULT.BaseEnemyHealth;
 			localStorageHelper.setInt(localStorageKey.BaseEnemyHealth, baseEHealth);
 		}
-		slider.enemyHealth = new UISlider(col2X, minSliderY, 200, 10, getLocalizedStringForKey(STRINGS_KEY.RivalHealth), eHealthMin, eHealthMin.toString(), eHealthMax, eHealthMax.toString(), baseEHealth, 49, true, Color.Red);
+		slider.enemyHealth = new UISlider(COL2_X, ROW1_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.RivalHealth), eHealthMin, eHealthMin.toString(), eHealthMax, eHealthMax.toString(), baseEHealth, 49, true, Color.Red);
 
-		let startBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
-		if((startBelt === undefined) || (startBelt === null) || (isNaN(startBelt))) {
-			startBelt = ASSIST_DEFAULT.StartBelt;
-			localStorageHelper.setInt(localStorageKey.StartingBelt, startBelt);
-		}
-		slider.startingBelt = new UISlider(50, minSliderY + SLIDER_PADDING, 200, 10, getLocalizedStringForKey(STRINGS_KEY.StartBelt), 0, getLocalizedStringForKey(STRINGS_KEY.BeltWhite), 5, getLocalizedStringForKey(STRINGS_KEY.BeltBlack), startBelt, 5, true, Color.White);
-
-		const pDamageMin = 1;
-		const pDamageMax = 50;
-		let pBaseDamage = localStorageHelper.getInt(localStorageKey.PlayerBaseDamage);
-		if((pBaseDamage === undefined) || (pBaseDamage === null) || (isNaN(pBaseDamage))) {
-			pBaseDamage = ASSIST_DEFAULT.PlayerBaseDamage;
-			localStorageHelper.setInt(localStorageKey.PlayerBaseDamage, pBaseDamage);
-		}
-		slider.playerDamage = new UISlider(col2X, minSliderY + SLIDER_PADDING, 200, 10, getLocalizedStringForKey(STRINGS_KEY.PlayerDamage), pDamageMin, pDamageMin.toString(), pDamageMax, pDamageMax.toString(), pBaseDamage, 49, true, Color.Green);
-
+		//Starting Level
 		let startLevel = localStorageHelper.getInt(localStorageKey.StartingLevel);
 		if((startLevel === undefined) || (startLevel === null) || (isNaN(startLevel))) {
 			startLevel = ASSIST_DEFAULT.StartLevel;
@@ -120,7 +117,27 @@ function AssistScene() {
 
 		const sLevelMin = 0;
 		const sLevelMax = 4;
-		slider.startingLevel = new UISlider(50, minSliderY + 2 * SLIDER_PADDING, 200, 10, getLocalizedStringForKey(STRINGS_KEY.StartLevel), sLevelMin, getLocalizedStringForKey(STRINGS_KEY.Level1), sLevelMax, getLocalizedStringForKey(STRINGS_KEY.Level5), startLevel, 4, true, Color.Aqua);
+		slider.startingLevel = new UISlider(COL3_X, ROW1_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.StartLevel), sLevelMin, getLocalizedStringForKey(STRINGS_KEY.Level1), sLevelMax, getLocalizedStringForKey(STRINGS_KEY.Level5), startLevel, 4, true, Color.Aqua);
+
+		/*Second Row of Sliders*/
+		//Starting Belt Color
+		let startBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
+		if((startBelt === undefined) || (startBelt === null) || (isNaN(startBelt))) {
+			startBelt = ASSIST_DEFAULT.StartBelt;
+			localStorageHelper.setInt(localStorageKey.StartingBelt, startBelt);
+		}
+		slider.startingBelt = new UISlider(COL1_X, ROW2_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.StartBelt), 0, getLocalizedStringForKey(STRINGS_KEY.BeltWhite), 5, getLocalizedStringForKey(STRINGS_KEY.BeltBlack), startBelt, 5, true, Color.White);
+
+		/*Third Row of Sliders*/
+		//Player Base Damage
+		const pDamageMin = 1;
+		const pDamageMax = 50;
+		let pBaseDamage = localStorageHelper.getInt(localStorageKey.PlayerBaseDamage);
+		if((pBaseDamage === undefined) || (pBaseDamage === null) || (isNaN(pBaseDamage))) {
+			pBaseDamage = ASSIST_DEFAULT.PlayerBaseDamage;
+			localStorageHelper.setInt(localStorageKey.PlayerBaseDamage, pBaseDamage);
+		}
+		slider.playerDamage = new UISlider(COL1_X, ROW3_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.PlayerDamage), pDamageMin, pDamageMin.toString(), pDamageMax, pDamageMax.toString(), pBaseDamage, 49, true, Color.Green);
 	};
 
 	const update = function() {

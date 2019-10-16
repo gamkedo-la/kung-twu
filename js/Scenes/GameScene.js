@@ -164,7 +164,7 @@ function GameScene() {
 
 
 		if(defeatedEnemyCount >= levelData.totalEnemies) {
-			if(enemies[0].getAIType() != AITYPE.Boss) {
+			if((enemies[0] !== undefined) && (enemies[0].getAIType() != AITYPE.Boss)) {
 				if(bossHasBeenSpawned) {
 					if(currentLevel === TOTAL_LEVELS) {
 						SceneState.setState(SCENE.ENDING);
