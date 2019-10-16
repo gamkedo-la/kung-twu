@@ -1,5 +1,5 @@
 //Infinite Back Wall
-function InfiniteWall(posY, scroll) {
+function InfiniteWall(posY, scroll, minPos, maxPos) {
 	const TILE_WIDTH = 352;
 	const SHADOW_WIDTH = 200;
 	const TILES = [];
@@ -52,7 +52,7 @@ function InfiniteWall(posY, scroll) {
 
 	this.draw = function() {
 		for(let tile of TILES) {
-			tile.draw();
+			tile.draw(minPos, maxPos);
 		}
 
 		for(let shadow of SHADOWS) {
@@ -100,8 +100,15 @@ function InfiniteWall(posY, scroll) {
 			xPos += deltaX;
 		};
 	
-		this.draw = function() {
-			canvasContext.drawImage(image, xPos, yPos);
+		this.draw = function(minPos, maxPos) {
+			if(xPos < minPos) {
+				canvasContext.drawImage(tiledWall, xPos, yPos);
+			} else if(xPos > maxPos) {
+				canvasContext.drawImage(tiledWall, xPos, yPos);
+			} else {
+				canvasContext.drawImage(image, xPos, yPos);
+			}
+//			canvasContext.drawImage(image, xPos, yPos);
 		};
 	}
 

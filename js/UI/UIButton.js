@@ -8,6 +8,10 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 	this.onClick = onClick;
 
 	const setBounds = function(title, x, y, height, padding) {
+		if(JPFont === undefined) {
+			console.error(`JPFont undefined. Button Title:${title}`);
+			return;
+		}
 		if(language === null) {
 			bounds.width = JPFont.getStringWidth(title, TITLE_SCALE) + padding * 2;
 		} else {

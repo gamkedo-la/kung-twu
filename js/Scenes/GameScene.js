@@ -23,6 +23,8 @@ function GameScene() {
 	let defeatedEnemyCount = 0;
 	let bossHasBeenSpawned = false;
 	let bossHealth = ASSIST_DEFAULT.MaxHealth;
+	let enemyMinX;
+	let enemyMaxX;
 	const displayPoints = [];
 
 	this.transitionIn = function() {
@@ -52,6 +54,8 @@ function GameScene() {
 		if (floor === null || currentLevel != levelData.level) {
 			levelData = dataForCurrentLevel();
 			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
+			enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
+			enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
 			initializeFloor(levelData.columnImage, VERTICAL_OFFSET);
 			foregroundDecorations.generate(50,-4000,500,628,636,0,7,floor.getFrontHeight(),floor.getBackHeight());
 			wallDecorations.generate(20,-4000,500,360,380,7,7,floor.getFrontHeight(),floor.getBackHeight());
@@ -94,6 +98,8 @@ function GameScene() {
 		columnManager = null;
 		lampManager = null;
 		levelData = dataForCurrentLevel();
+		enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
+		enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
 		bossHealth = levelData.bossHealth;
 		player.reset(levelData.playerStart);
 		collisionManager = null;
@@ -142,6 +148,8 @@ function GameScene() {
 		if (DEBUG) {
 			levelData = dataForCurrentLevel();
 			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
+			enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
+			enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
 		}
 
 		const newCameraX = camera.getPosition().x;
@@ -206,7 +214,7 @@ function GameScene() {
 	const updateEnemies = function(deltaTime) {
 		const playerPos = player.getPosition();
 		for (let i = 0; i < enemies.length; i++) {
-			enemies[i].update(deltaTime, GRAVITY, playerPos, floorMidHeight, i === 0);
+			enemies[i].update(deltaTime, GRAVITY, playerPos, enemyMinX, enemyMaxX, floorMidHeight, i === 0);
 		}
 
 		if(bossHasBeenSpawned) {
@@ -300,11 +308,17 @@ function GameScene() {
         
 		subfloor.draw();
 		floor.draw();
+
+		canvasContext.drawImage(tempRightWall, 
+			0, 0, 
+			tempRightWall.width, tempRightWall.height, 
+			levelData.cameraMax - tempRightWall.width + canvas.width / 2, floor.getFrontHeight() - tempRightWall.height - 5, 
+			tempRightWall.width, tempRightWall.height);
+		canvasContext.drawImage(wallGradient, levelData.cameraMax - tempRightWall.width + canvas.width / 2, canvas.height - tiledWall.height);
+
 		for (let i = 0; i < enemies.length; i++) {
 			enemies[i].draw();
 		}
-
-		canvasContext.drawImage(tempRightWall, 0, 0, tempRightWall.width, tempRightWall.height, levelData.cameraMax - tempRightWall.width + canvas.width / 2, floor.getFrontHeight() - tempRightWall.height - 5, tempRightWall.width, tempRightWall.height);
 
 		player.draw();
 		if (wooshFX) wooshFX.draw();
@@ -425,7 +439,7 @@ function GameScene() {
 	};
 
 	const InitializeBackWall = function() {
-		wall = new InfiniteWall(canvas.height - tiledWall.height, levelData.wallScroll);
+		wall = new InfiniteWall(canvas.height - tiledWall.height, levelData.wallScroll, levelData.cameraMin, levelData.cameraMax);
 	};
 
 	const initializePlayerIfReqd = function() {
@@ -508,29 +522,20 @@ function GameScene() {
 	};
 
 	const spawnEnemy = function(cameraXPos) {
-		const playerPos = player.getPosition();
-		let atLeft = levelData.scrollsLeft;
-		let leftCount = 0;
-		let rightCount = 0;
-
-		for(let enemy of enemies) {
-			if(enemy.getPosition().x < playerPos.x) {
-				leftCount++;
-			} else {
-				rightCount++;
-			}
+		//Position the new enemy at one side of the screen or the other
+		//depending on whether the level scrolls left or right
+		let xPos;
+		if (levelData.scrollsLeft) {
+			xPos = cameraXPos - (1.5 * canvas.width) / 2;
+		} else {
+			xPos = cameraXPos + (1.5 * canvas.width) / 2;
 		}
 
-		if(enemies.length > 0) {
-			if((levelData.scrollsLeft) && (rightCount === 0)) {
-				atLeft = false;
-			} else if((!levelData.scrollsLeft) && (leftCount === 0)) {
-				atLeft = true;
-			}	
-		}
-
-		let xPos = cameraXPos + (1.5 * canvas.width) / 2;
-		if (atLeft) {
+		//If player is at one edge of the level, spawn enemy from
+		//other side so enemy doesn't pop into existence on screen
+		if(xPos < enemyMinX + canvas.width / 2) {
+			xPos = cameraXPos + (1.5 * canvas.width) / 2;
+		} else if(xPos > enemyMaxX - canvas.width / 2) {
 			xPos = cameraXPos - (1.5 * canvas.width) / 2;
 		}
 

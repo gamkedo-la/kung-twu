@@ -96,7 +96,7 @@ function BasicEnemy(config) {
 		}
 	};
 
-	this.update = function(deltaTime, gravity, playerPos, floorHeight, shouldAttack) {
+	this.update = function(deltaTime, gravity, playerPos, minX, maxX, floorHeight, shouldAttack) {
 		const distToPlayer = playerPos.x - position.x;
 		stateManager.update(deltaTime, distToPlayer, shouldAttack);
 		updateForState(stateManager.getCurrentState());
@@ -112,7 +112,7 @@ function BasicEnemy(config) {
 			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame);
 		}
 
-		updatePosition(deltaTime, gravity, floorHeight);
+		updatePosition(deltaTime, minX, maxX, gravity, floorHeight);
 
 		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
 		if(this.attackBody != null) {
@@ -164,10 +164,16 @@ function BasicEnemy(config) {
 		}
 	};
 
-	const updatePosition = function(deltaTime, gravity, floorHeight) {
+	const updatePosition = function(deltaTime, minX, maxX, gravity, floorHeight) {
 		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
 
 		position.x += velocity.x * timeStep;
+		if(position.x < minX) {
+			position.x = minX;
+		} else if(position.x > maxX) {
+			position.x = maxX;
+		}
+		
 		fallDueToGravity(timeStep, gravity);
 
 		if(velocity.y > 0) {
@@ -183,7 +189,7 @@ function BasicEnemy(config) {
 
 	const respondToKnockBack = function() {
 
-        if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
+		if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
 
 		if(stateManager.getIsFacingLeft()) {
 			velocity.x -= KNOCK_BACK_SPEED / 25;
