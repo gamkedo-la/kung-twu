@@ -83,12 +83,32 @@ function AssistScene() {
 		const pHealthMax = 200;
 		slider.maxPlayerHealth = new UISlider(50, minSliderY, 200, 10, getLocalizedStringForKey(STRINGS_KEY.MaxHealth), pHealthMin, pHealthMin.toString(), pHealthMax, pHealthMax.toString(), maxHealth, 20, true, Color.Orange);
 		
+		const col2X = 50 + slider.maxPlayerHealth.getWidth() + 100;
+
+		const eHealthMin = 1;
+		const eHealthMax = 50;
+		let baseEHealth = localStorageHelper.getInt(localStorageKey.BaseEnemyHealth);
+		if((baseEHealth === undefined) || (baseEHealth === null) || (isNaN(baseEHealth))) {
+			baseEHealth = ASSIST_DEFAULT.BaseEnemyHealth;
+			localStorageHelper.setInt(localStorageKey.BaseEnemyHealth, baseEHealth);
+		}
+		slider.enemyHealth = new UISlider(col2X, minSliderY, 200, 10, getLocalizedStringForKey(STRINGS_KEY.RivalHealth), eHealthMin, eHealthMin.toString(), eHealthMax, eHealthMax.toString(), baseEHealth, 49, true, Color.Red);
+
 		let startBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
 		if((startBelt === undefined) || (startBelt === null) || (isNaN(startBelt))) {
 			startBelt = ASSIST_DEFAULT.StartBelt;
 			localStorageHelper.setInt(localStorageKey.StartingBelt, startBelt);
 		}
 		slider.startingBelt = new UISlider(50, minSliderY + SLIDER_PADDING, 200, 10, getLocalizedStringForKey(STRINGS_KEY.StartBelt), 0, getLocalizedStringForKey(STRINGS_KEY.BeltWhite), 5, getLocalizedStringForKey(STRINGS_KEY.BeltBlack), startBelt, 5, true, Color.White);
+
+		const pDamageMin = 1;
+		const pDamageMax = 50;
+		let pBaseDamage = localStorageHelper.getInt(localStorageKey.PlayerBaseDamage);
+		if((pBaseDamage === undefined) || (pBaseDamage === null) || (isNaN(pBaseDamage))) {
+			pBaseDamage = ASSIST_DEFAULT.PlayerBaseDamage;
+			localStorageHelper.setInt(localStorageKey.PlayerBaseDamage, pBaseDamage);
+		}
+		slider.playerDamage = new UISlider(col2X, minSliderY + SLIDER_PADDING, 200, 10, getLocalizedStringForKey(STRINGS_KEY.PlayerDamage), pDamageMin, pDamageMin.toString(), pDamageMax, pDamageMax.toString(), pBaseDamage, 49, true, Color.Green);
 
 		let startLevel = localStorageHelper.getInt(localStorageKey.StartingLevel);
 		if((startLevel === undefined) || (startLevel === null) || (isNaN(startLevel))) {
@@ -188,6 +208,12 @@ function AssistScene() {
 		case slider.startingLevel:
 			currentLevel = 1 + aSlider.getValue();//levels start at 1
 			localStorageHelper.setInt(localStorageKey.StartingLevel, aSlider.getValue() + 1);
+			break;
+		case slider.enemyHealth:
+			localStorageHelper.setInt(localStorageKey.BaseEnemyHealth, aSlider.getValue());
+			break;
+		case slider.playerDamage:
+			localStorageHelper.setInt(localStorageKey.PlayerBaseDamage, aSlider.getValue());
 			break;
 		}
 	};

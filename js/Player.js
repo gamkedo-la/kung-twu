@@ -9,7 +9,11 @@ function Player(config) {
 	let invincibleTime = 0;
 	let isInvincible = false;
 
-	const BASE_DAMAGE = 10;
+	let baseDamage = localStorageHelper.getInt(localStorageKey.PlayerBaseDamage);
+	if((baseDamage === undefined) || (baseDamage === null) || (isNaN(baseDamage))) {
+		baseDamage = ASSIST_DEFAULT.PlayerBaseDamage;
+		localStorageHelper.setInt(localStorageKey.PlayerBaseDamage, baseDamage);
+	}
 	const DELTA_DAMAGE = 5;
 
 	let stateManager;
@@ -102,15 +106,15 @@ function Player(config) {
 		case STATE.KnockBack:
 			return 0;
 		case STATE.Punch:
-			return 1 * BASE_DAMAGE;
+			return 1 * baseDamage;
 		case STATE.Kick:
-			return 1.5 * BASE_DAMAGE;
+			return 1.5 * baseDamage;
 		case STATE.J_Kick:
-			return 2.0 * BASE_DAMAGE;
+			return 2.0 * baseDamage;
 		case STATE.Sweep:
-			return 2.0 * BASE_DAMAGE;
+			return 2.0 * baseDamage;
 		case STATE.H_Kick:
-			return 2.5 * BASE_DAMAGE;
+			return 2.5 * baseDamage;
 		}
 	};
 
@@ -289,9 +293,9 @@ function Player(config) {
 
 	const respondToKnockBack = function() {
 
-        if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
+		if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
 
-        if(velocity.x < 0) {
+		if(velocity.x < 0) {
 			velocity.x += KNOCK_BACK_SPEED / 25;
 			if (velocity.x >= 0) {
 				velocity.x = 0;
@@ -301,7 +305,7 @@ function Player(config) {
 			if (velocity.x <= 0) {
 				velocity.x = 0;
 			}
-        }
+		}
 
 	};
 

@@ -71,7 +71,9 @@ const STRINGS_KEY = {
 	MaxHealth:"maxHealth",
 	StartBelt:"startBelt",
 	StartLevel:"startLevel",
-	Rivals:"rivals"
+	Rivals:"rivals",
+	RivalHealth:"rivalHealth",
+	PlayerDamage:"playerDamage"
 };
 
 function getLocalizedStringForKey(key) {
@@ -139,6 +141,8 @@ const userStrings = {
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.RivalHealth]:"Rival Health",
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength"
 	},
     
 	Spanish: {
@@ -202,7 +206,9 @@ const userStrings = {
 		[STRINGS_KEY.MaxHealth]:"Max Health",
 		[STRINGS_KEY.StartBelt]:"Start Belt",
 		[STRINGS_KEY.StartLevel]:"Start Level",
-		[STRINGS_KEY.Rivals]:"Rivals:"
+		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.RivalHealth]:"Rival Health",
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength"
 	},
 
 	Japanese: {
@@ -267,7 +273,9 @@ const userStrings = {
 		[STRINGS_KEY.MaxHealth]:"Max Health",
 		[STRINGS_KEY.StartBelt]:"Start Belt",
 		[STRINGS_KEY.StartLevel]:"Start Level",
-		[STRINGS_KEY.Rivals]:"Rivals:"
+		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.RivalHealth]:"Rival Health",
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength"
 	},
 
 	French: {
@@ -331,7 +339,9 @@ const userStrings = {
 		[STRINGS_KEY.MaxHealth]:"Max Health",
 		[STRINGS_KEY.StartBelt]:"Start Belt",
 		[STRINGS_KEY.StartLevel]:"Start Level",
-		[STRINGS_KEY.Rivals]:"Rivals:"
+		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.RivalHealth]:"Rival Health",
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength"
 	},
 
 	Russian: {
@@ -395,7 +405,9 @@ const userStrings = {
 		[STRINGS_KEY.MaxHealth]:"Max Health",
 		[STRINGS_KEY.StartBelt]:"Start Belt",
 		[STRINGS_KEY.StartLevel]:"Start Level",
-		[STRINGS_KEY.Rivals]:"Rivals:"
+		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.RivalHealth]:"Rival Health",
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength"
 	},
 	
 	Polish: {
@@ -458,6 +470,8 @@ const userStrings = {
 		[STRINGS_KEY.StartBelt]:"Początkowy Pas",
 		[STRINGS_KEY.StartLevel]:"Początkowy Poziom",
 
-		[STRINGS_KEY.Rivals]:"Rivals:"
+		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.RivalHealth]:"Rival Health",
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength"
 	}
 };

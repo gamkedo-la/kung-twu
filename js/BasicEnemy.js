@@ -13,6 +13,12 @@ function BasicEnemy(config) {
 
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
+
+	let baseHealth = localStorageHelper.getInt(localStorageKey.BaseEnemyHealth);
+	if((baseHealth === undefined) || (baseHealth === null) || (isNaN(baseHealth))) {
+		baseHealth = ASSIST_DEFAULT.BaseEnemyHealth;
+		localStorageHelper.setInt(localStorageKey.BaseEnemyHealth, baseHealth);
+	}
 	this.health = null;//initialized when first hit by player
 	this.score = 100;
 	
@@ -262,24 +268,24 @@ function BasicEnemy(config) {
 	const kick = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.x = 0;
-            //enemyKickSound.play();//Is there going to be one of these?
-            if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
+			//enemyKickSound.play();//Is there going to be one of these?
+			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
 		}
 	};
 
 	const j_Kick = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Jump Kicking now");
-            //enemyKickSound.play();//Is there going to be one of these?
-            if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
+			//enemyKickSound.play();//Is there going to be one of these?
+			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
 		}
 	};
 
 	const h_kick = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Helicopter Kicking now");
-            //enemyKickSound.play();//Is there going to be one of these?
-            if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
+			//enemyKickSound.play();//Is there going to be one of these?
+			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
 		}
 	};
 
@@ -287,8 +293,8 @@ function BasicEnemy(config) {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Sweeping now");
 			//enemySweepSound.play();//Is there going to be one of these?
-            velocity.x = 0;
-            if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
+			velocity.x = 0;
+			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
 	};
 
@@ -336,12 +342,12 @@ function BasicEnemy(config) {
 
 	const healthForBelt = function(belt) {
 		switch(belt) {
-		case BELT.White: return 20;//This is 1+ White belt kick from player
-		case BELT.Yellow: return 25;//this is 1+ Yellow belt kick from player
-		case BELT.Tan: return 30;//this is 1+ ten belt kick from player
-		case BELT.Brown: return 35;//this is 1+ Brown belt kick from player
-		case BELT.Red: return 40;//this is 1+ Red belt kick from player
-		case BELT.Black: return 45;//this is 1+ Black belt kick from player
+		case BELT.White: return (baseHealth);//This is 1+ White belt kick from player
+		case BELT.Yellow: return (1.25 * baseHealth);//this is 1+ Yellow belt kick from player
+		case BELT.Tan: return (1.5 * baseHealth);//this is 1+ ten belt kick from player
+		case BELT.Brown: return (1.75 * baseHealth);//this is 1+ Brown belt kick from player
+		case BELT.Red: return (2 * baseHealth);//this is 1+ Red belt kick from player
+		case BELT.Black: return (2.5 * baseHealth);//this is 1+ Black belt kick from player
 		}
 	};
 }

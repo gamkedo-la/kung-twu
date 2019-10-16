@@ -64,7 +64,9 @@ const localStorageKey = {
 	HighScore:"kungTwu-HighScore",
 	PlayerMaxHealth:"kungTwu-PlayerMaxHealth",
 	StartingBelt:"kungTwu-StartingBelt",
-	StartingLevel:"kungTwu-StartingLevel"
+	StartingLevel:"kungTwu-StartingLevel",
+	BaseEnemyHealth:"kungTwu-BaseEnemyHealth",
+	PlayerBaseDamage:"kungTwu-PlayerBaseDamage"
 };
 
 //----------State Management----------//
@@ -120,7 +122,9 @@ const BELT = {
 const ASSIST_DEFAULT = {
 	MaxHealth:100,
 	StartBelt:BELT.White,
-	StartLevel:1
+	StartLevel:1,
+	BaseEnemyHealth:20,
+	PlayerBaseDamage:10
 };
 
 //------------Asset Management----------//

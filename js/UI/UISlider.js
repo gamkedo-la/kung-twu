@@ -84,6 +84,14 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 	let hasNewValue = true;
 	this.hasFocus = false;
 
+	this.getWidth = function() {
+		return width;
+	};
+
+	this.getHeight = function() {
+		return height;
+	};
+
 	this.setValue = function(newValue) {
 		if(newValue === currentValue) {return;}
 
