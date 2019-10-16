@@ -1,7 +1,7 @@
 /**
  * A container that holds a number of duplicate instances of a sound to allow overlapping. Will be held by the SoundEngine, and not to be interfaced with directly 
  * @param {string} key The key string to reference this by
- * @param {string} filepath Filepath of the audio file
+ * @param {string} filepath Filepath of the audio file minus the extension
  * @param {number} baseVolume Base volume
  * @param {string} audioBus A value within the AudioBus 'enum' object
  * @param {boolean} isLoop Sets if this is a loop or not
@@ -41,9 +41,6 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 
 	let _isLoop = isLoop;
 
-	/** @type {NodeJS.Timeout} */
-	let _fade = null;
-
 	/** 
 	 * The number of seconds of fade when stopping. May be bypassed to immediate stop by passing false in stop.
 	 * @type {number} 
@@ -79,7 +76,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	 */
 	this.play = function() {
 		const e = _instances[_playIndex];
-		e.cancelFade(); // cancel fade if there is one
+		e.cancelFadeAll(); // cancel fade if there is one
 		_setTrackVolume(e, 1);
 		if (e.getIsPaused()) {
 			// Next free instance is free to play: play it
@@ -128,7 +125,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	 * Gets whether or not the track is currently fading
 	 */
 	this.getIsFading = function() {
-		(_fade === null) ? false : true; // null is the default "not fading" value
+		return this.getLastPlayed().getIsFading(); // null is the default "not fading" value
 	};
 
 	/**
@@ -155,12 +152,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	 */
 	function _cancelFade(soundInstance) {
 		if (soundInstance) {
-			const fade = soundInstance._fade;
-			if (fade != null) {
-				// There is a fade to cancel: clear it, set it to the default val null
-				clearInterval(fade);
-				soundInstance._fade = null;
-			}
+			soundInstance.cancelFadeAll();
 		} else {
 			console.log("Warning! Tried _cancelFade, but soundInstance was null or undefined!");
 		}
@@ -344,17 +336,17 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	function _fadeTo(soundInst, targetVol, seconds, onTargetReached) {
 		if (!soundInst) return null;
 
-		soundInst.cancelFade(); // cancel current fade to prevent jumpy multi-fade bug
+		soundInst.cancelFadeAll(); // cancel current fade to prevent jumpy multi-fade bug
 		const fade = _fadeFromTo(soundInst, soundInst.getVolume(), targetVol, seconds, (sound) => {
 			// Target volume has been reached: Reset fade value and call callback.
-			sound._fade = null;
+			sound.cancelFadeAll();
 			if (onTargetReached) {
 				onTargetReached(sound);	
 			}
 		});
 		// If we have a fade returned, set the fade property to that value
 		if (fade != null && fade != undefined) {
-			soundInst._fade = fade;
+			soundInst.setFade(fade);
 		}
 	}
 

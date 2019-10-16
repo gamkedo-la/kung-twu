@@ -84,7 +84,6 @@ function SoundEngine() {
 	 * @param {SoundSprite} newTrack Filepath + name of the new track to start
 	 * @param {number} fadeOutTime The time (in seconds) to fade the currently playing track
 	 * @param {number} startingTime The delay (in seconds) before the next track begins (lets current track fade a bit before starting new one)
-	 * @returns Returns an array of interval handles that can be easily cleared via the cancelTransition function.
 	 */
 	this.transitionTo = function(trackToFade, newTrack, fadeOutTime, startingTime) {
 		const grain = 1000/60; // ms
@@ -109,22 +108,7 @@ function SoundEngine() {
 				newTrack.play();
 			}
 		}, grain);
-		newTrack.getLastPlayed()._fade = interval;
-		return [interval];
-	};
-
-	/**
-	 * Cancels the transitionTo fade out and the upcoming playing track if it hasn't already started.
-	 * Please make sure to pass the return value from transitionTo into cancelTransition.
-	 * @param {number[]} transition transitionTo return value
-	 */
-	this.cancelTransition = function(transition) {
-		for (let i = 0; i < transition.length; i++) {
-			const interval = transition[i];
-			if (interval !== undefined || interval !== null) {
-				clearInterval(interval);
-			}
-		}
+		newTrack.getLastPlayed().setFade(interval); // Set this as the current fade of the sound instance so it will be cancelled/overwritten if a new fade comes later.
 	};
 
 	/**

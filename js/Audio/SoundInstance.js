@@ -5,6 +5,7 @@
  */
 function SoundInstance(soundSprite, filename) {
 	this.sprite = soundSprite;
+
 	/**
 	 * The inner HTMLAudioElement
 	 * @type {HTMLAudioElement}
@@ -12,10 +13,20 @@ function SoundInstance(soundSprite, filename) {
 	const _element = new Audio(filename);
 
 	/**
-	 * Current handle to a NodeJS.Timeout
-	 * @type {number | null}
+	 * Current handles to a NodeJS.Timeout
+	 * @type {number[]}
 	 */
-	this._fade = null;
+	const _fades = [];
+
+	this.setFade = function(fade) {
+		if (_fades.indexOf(fade) === -1) {
+			_fades.push(fade);
+		}
+	};
+
+	this.cancelFade = function(fade) {
+
+	};
 
 	/**
 	 * Sets the looping status of this instance
@@ -49,15 +60,16 @@ function SoundInstance(soundSprite, filename) {
 	this.filename = filename;
 
 	this.getIsFading = function() {
-		(this._fade === null) ? false : true;
+		(_fades.length > 0) ? true : false;
 	};
 
 	/**
-	 * Cancels the current fade if there is one
+	 * Cancels the current fade if there are any
 	 */
-	this.cancelFade = function() {
-		if (this._fade !== null && this._fade != undefined) {
-			clearInterval(this._fade);
+	this.cancelFadeAll = function() {
+		while (_fades.length > 0) {
+			const fade = _fades.shift();
+			clearInterval(fade);
 		}
 	};
 
