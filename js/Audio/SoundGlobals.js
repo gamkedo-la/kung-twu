@@ -33,7 +33,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_1UP,
 		filepath: "./audio/1_UP",
-		baseVolume: .15,
+		baseVolume: .3,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -42,7 +42,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_BoneCrack,
 		filepath: "./audio/boneCrack",
-		baseVolume: .5,
+		baseVolume: .25,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -51,7 +51,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_EnemyHit,
 		filepath: "./audio/BasicEnemyHit",
-		baseVolume: .5,
+		baseVolume: .6,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -60,7 +60,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_Footsteps,
 		filepath: "./audio/Footsteps",
-		baseVolume: .4,
+		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -69,7 +69,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_LowHealth,
 		filepath: "./audio/lowHealth",
-		baseVolume: .4,
+		baseVolume: .6,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -78,7 +78,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_LowPain,
 		filepath: "./audio/lowPain",
-		baseVolume: .4,
+		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -96,7 +96,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_MenuSelect,
 		filepath: "./audio/MenuSelection",
-		baseVolume: .4,
+		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -105,7 +105,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_PauseLow,
 		filepath: "./audio/PauseSoundLow",
-		baseVolume: .4,
+		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -114,7 +114,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_PlayerBlock,
 		filepath: "./audio/PlayerBlocking",
-		baseVolume: .4,
+		baseVolume: .45,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -123,7 +123,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_PlayerFail,
 		filepath: "./audio/PlayerFailed",
-		baseVolume: .4,
+		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -132,7 +132,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_PlayerHit,
 		filepath: "./audio/PlayerHit",
-		baseVolume: .4,
+		baseVolume: .9,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -141,7 +141,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_PlayerJump,
 		filepath: "./audio/PlayerJump",
-		baseVolume: .4,
+		baseVolume: .325,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -150,7 +150,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_PlayerKick,
 		filepath: "./audio/PlayerKick",
-		baseVolume: .4,
+		baseVolume: .425,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -159,7 +159,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_PlayerPunch,
 		filepath: "./audio/PlayerPunch",
-		baseVolume: .4,
+		baseVolume: .3,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -168,7 +168,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_ResumeLow,
 		filepath: "./audio/ResumeSoundLow",
-		baseVolume: .4,
+		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -177,7 +177,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_Swish_01,
 		filepath: "./audio/SwishTrim1",
-		baseVolume: .4,
+		baseVolume: 1,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -186,7 +186,7 @@ const soundSpriteConfigs = [
 	{
 		key: Sounds.SFX_Swish_02,
 		filepath: "./audio/SwishTrim2",
-		baseVolume: .4,
+		baseVolume: .65,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
 		maxInstances: 2,
@@ -194,8 +194,8 @@ const soundSpriteConfigs = [
 	},
 	{
 		key: Sounds.BGM_Title,
-		filepath: "./audio/gameplayMusicV2",
-		baseVolume: .5,
+		filepath: "./audio/gameplayMusicV1",
+		baseVolume: .85,
 		audioBus: AudioBus.MUSIC,
 		isLoop: true,
 		maxInstances: 2,
@@ -203,8 +203,8 @@ const soundSpriteConfigs = [
 	},		
 	{
 		key: Sounds.BGM_GamePlay,
-		filepath: "./audio/Dragon Pulse_v2",
-		baseVolume: .25,
+		filepath: "./audio/gameplayMusicV2",
+		baseVolume: .35,
 		audioBus: AudioBus.MUSIC,
 		isLoop: true,
 		maxInstances: 2,
@@ -212,8 +212,8 @@ const soundSpriteConfigs = [
 	},
 	{
 		key: Sounds.BGM_Boss,
-		filepath: "./audio/AWarriorsResolution(loop)",
-		baseVolume: .25,
+		filepath: "./audio/Dragon Pulse_v2",
+		baseVolume: .35,
 		audioBus: AudioBus.MUSIC,
 		isLoop: true,
 		maxInstances: 2,
