@@ -94,7 +94,10 @@ function AssistScene() {
 		if((startLevel === undefined) || (startLevel === null) || (isNaN(startLevel))) {
 			startLevel = ASSIST_DEFAULT.StartLevel;
 			localStorageHelper.setInt(localStorageKey.StartingLevel, startLevel);
+		} else {
+			startLevel -= 1;//Game Levels start at 1, slider starts at 0
 		}
+
 		const sLevelMin = 0;
 		const sLevelMax = 4;
 		slider.startingLevel = new UISlider(50, minSliderY + 2 * SLIDER_PADDING, 200, 10, getLocalizedStringForKey(STRINGS_KEY.StartLevel), sLevelMin, getLocalizedStringForKey(STRINGS_KEY.Level1), sLevelMax, getLocalizedStringForKey(STRINGS_KEY.Level5), startLevel, 4, true, Color.Aqua);
