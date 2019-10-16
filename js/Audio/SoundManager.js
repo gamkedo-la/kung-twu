@@ -1,14 +1,7 @@
-
 /**
  * SoundManager will interface with the SoundEngine to keep a simple, yet customizable API for the end user.
- * @param {SoundEngine} soundEngine A reference to the game's SoundEngine
  */
-function SoundManager(soundEngine) {
-	const _bus = {
-		SFX: "SFX",
-		BGM: "BGM",
-		NONE: "NONE"
-	}; Object.freeze(this.AudioBus);
+function SoundManager() {
 
 	/**
 	 * @type SoundSprite
@@ -19,7 +12,22 @@ function SoundManager(soundEngine) {
 	let _bgmBusVolume = 1;
 	
 
-	const _engine = soundEngine;
+	const _engine = new SoundEngine();
+
+	/**
+	 * Get the engine for own handling
+	 */
+	this._getEngine = function() {
+		return _engine;
+	};
+
+	/**
+	 * Add a sound or multiple sounds to the SoundEngine.
+	 * @param {SoundSpriteConfig | SoundSpriteConfig[]} configs SoundSprite configuration or array of configurations passed as object literals
+	 */
+	this.addSounds = function(configs) {
+		_engine.addSounds(configs);
+	};
 
 	/**
 	 * Plays a sound effect
@@ -40,7 +48,10 @@ function SoundManager(soundEngine) {
 	 */
 	this.setBGMVolume = function(vol) {
 		_bgmBusVolume = clamp(vol, 0, 1);
-		_engine.setBusVolume(_bus.BGM, _bgmBusVolume);
+		_engine.setBusVolume(AudioBus.MUSIC, _bgmBusVolume);
+		if (_currentMusic !== null && _currentMusic !== undefined) {
+			_currentMusic.setVolume();
+		}
 	};
 	this.setBGMVolume(_bgmBusVolume); // initilize bgm volume
 
@@ -54,7 +65,7 @@ function SoundManager(soundEngine) {
 	 */
 	this.setSFXVolume = function(vol) {
 		_sfxBusVolume = clamp(vol, 0, 1);
-		_engine.setBusVolume(_bus.SFX, _sfxBusVolume);
+		_engine.setBusVolume(AudioBus.SFX, _sfxBusVolume);
 	};
 	this.setSFXVolume(_sfxBusVolume); // initialize sfx volume
 
@@ -67,10 +78,10 @@ function SoundManager(soundEngine) {
 	 * @param {number} vol The volume to set the bus to. Range(0-1)
 	 */
 	this.setMasterVolume = function(vol) {
-		_engine.setMasterVolume = clamp(vol, 0, 1);
+		_engine.setMasterVolume(clamp(vol, 0, 1));
 	};
 	this.getMasterVolume = function() {
-		_engine.getMasterVolume();
+		return _engine.getMasterVolume();
 	};
 
 	/**
@@ -86,7 +97,7 @@ function SoundManager(soundEngine) {
 	this.playBGM = function(key, delay = 1.5, fadeScale = 1.5) {
 		const sound = _engine._getSound(key);
 		if (sound) {
-			if (_currentMusic) {
+			if (_currentMusic !== null && _currentMusic !== undefined) {	
 				// There is a currently playing BGM track: Fade it out, and start new track delayed by seconds
 				_engine.transitionTo(_currentMusic, sound, delay * fadeScale, delay);
 			} else {
@@ -112,11 +123,12 @@ function SoundManager(soundEngine) {
 
 	this.stopBGM = function(allowFadeOut = true) {
 		if (_currentMusic) {
-			_currentMusic.stop(true);
+			_currentMusic.stop(allowFadeOut);
 		}
 	};
 
 	this.stopAllSounds = function(allowFadeOut = true) {
 		_engine.stopAllSounds(allowFadeOut);
+		_currentMusic = null; // clears current music reference for fresh start
 	};
 }

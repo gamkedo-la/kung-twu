@@ -1,9 +1,10 @@
 /**
  * This class represents a single HTMLAudioElement with extra metadata. It will be managed by SoundOverlap class, and probably not interacted with directly by users.
+ * @param {SoundSprite} soundSprite
  * @param {string} filename Filename + extension. Please get the compatible extension from AudioEngine.getSoundFormat
  */
-function SoundInstance(filename) {
-	
+function SoundInstance(soundSprite, filename) {
+	this.sprite = soundSprite;
 	/**
 	 * The inner HTMLAudioElement
 	 * @type {HTMLAudioElement}
@@ -32,15 +33,15 @@ function SoundInstance(filename) {
 	this.filename = filename;
 
 	this.getIsFading = function() {
-		(_fade === null) ? false : true;
+		(this._fade === null) ? false : true;
 	};
 
 	/**
 	 * Cancels the current fade if there is one
 	 */
 	this.cancelFade = function() {
-		if (_fade !== null && _fade != undefined) {
-			clearInterval(_fade);
+		if (this._fade !== null && this._fade != undefined) {
+			clearInterval(this._fade);
 		}
 	};
 
@@ -94,5 +95,13 @@ function SoundInstance(filename) {
 	 */
 	this.getCurrentTime = function() {
 		return _element.currentTime;
+	};
+
+	/**
+	 * Checks if instance of a SoundSprite
+	 * @param {SoundSprite} soundSprite
+	 */
+	this.isInstanceOf = function(soundSprite) {
+		return (soundSprite === this.sprite);
 	};
 }

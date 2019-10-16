@@ -1,6 +1,5 @@
 /**
  * A container that holds a number of duplicate instances of a sound to allow overlapping. Will be held by the SoundEngine, and not to be interfaced with directly 
- * @param {SoundEngine} soundEngine Sound engine instance this instance belongs to
  * @param {string} key The key string to reference this by
  * @param {string} filepath Filepath of the audio file
  * @param {number} baseVolume Base volume
@@ -9,28 +8,43 @@
  * @param {number} maxInstances The max number of inner instances that can play at one time
  * @param {number} fadeOutTime The number of seconds of fading out a sound when calling "stop".
  */
-function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, maxInstances, fadeOutTime) {
+function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, fadeOutTime) {
 
 	// ========= Initialization =============== //
+	/**
+	 * this
+	 * @type SoundSprite
+	 */
+	const _this = this;
 
-	/** @type {SoundEngine} */
-	const _engine = soundEngine;
-	/** @type {string} */
+	/**
+	 * Reference to the SoundEngine. Will be set autmatically when added to that SoundEngine. 
+	 * @type {SoundEngine} 
+	 */
+	let _engine = null;
+
+	/** 
+	 * Reference key by which to call this SoundSprite
+	 * @type {string}
+	 */
 	const _key = key;
-	/** @type {SoundInstance[]} */
-	const _instances = [];
-	for (let i = 0; i < Math.max(1, maxInstances); i++) { // (make sure maxInstnaces is at least 1)
-		const inst = new SoundInstance(filepath + _engine.getAudioFormat());
-		_instances.push(inst);
-		
-	}
 
-	let _playIndex = 0; // current index of elements to play next
-	const _baseVolume = baseVolume; // base volume for this particular sound
+	/** 
+	 * Internal SoundInstance list
+	 * @type {SoundInstance[]} 
+	 */
+	const _instances = [];
+
+	/** current index of elements to play next */
+	let _playIndex = 0;
+
+	/** base volume for this particular sound */
+	const _baseVolume = baseVolume;
 
 	/** @type {string} A value within AudioBus enum object */
-	let _audioBus = audioBus || AudioBus.NONE;
-	_setLooping(isLoop); // set looping to the inner html elements
+	let _audioBus = audioBus;
+
+	let _isLoop = isLoop;
 
 	/** @type {NodeJS.Timeout} */
 	let _fade = null;
@@ -41,10 +55,24 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 	 */
 	let _fadeOutTime = fadeOutTime;
 
-
 	// ============================== //
 	// ======== Public API ========== //
 	// ============================== //
+
+	/**
+	 * Connects this SoundSprite to a SoundEngine. Initializes the SoundInstances within.
+	 * This is automatically called by the SoundEngine when you add this SoundSprite to it.
+	 * @param {SoundEngine} engine The SoundEngine to connect the SoundSprite to.
+	 */
+	this._connectToSoundEngine = function(engine) {
+		_engine = engine;
+		// Initialize instance list
+		for (let i = 0; i < Math.max(1, maxInstances); i++) { // (make sure maxInstnaces is at least 1)
+			const inst = new SoundInstance(this, filepath + _engine.getAudioFormat());
+			_instances.push(inst);
+		}
+		_setLooping(_isLoop);
+	};
 
 	this.getKey = function() {
 		return _key;
@@ -56,6 +84,7 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 	 */
 	this.play = function() {
 		const e = _instances[_playIndex];
+		e.cancelFade(); // cancel fade if there is one
 		_setTrackVolume(e, 1);
 		if (e.getIsPaused()) {
 			// Next free instance is free to play: play it
@@ -76,17 +105,19 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 	 * @param fadeOut Default = true. Fades out on true, immediate stop on false
 	 * @param {number?} overrideFadeTimeValue Optional parameter. When set with a number, it will override the instance's preset fadeOutTime value.
 	 */
-	this.stop = function(fadeOut = true, overrideFadeTimeValue) {
-		if (fadeOut) {
-			_fadeTo(0, overrideFadeTimeValue ||  _fadeOutTime, (inst)=> {
-				// Reset the sound on finished fade
-				inst.setPausedAll(true);
-				_instances.forEach((e) => {
-					e.currentTime = 0;
+	this.stop = function(allowFadeOut = true, overrideFadeTimeValue) {
+		if (allowFadeOut) {
+			_instances.forEach((inst) => {
+				_fadeTo(inst, 0, overrideFadeTimeValue || _fadeOutTime, (inst) => {
+					inst.pause();
+					inst.setCurrentTime(0);
 				});
 			});
 		} else {
-			this.setPausedAll(true);
+			_instances.forEach((inst) => {
+				inst.setCurrentTime(0);
+				inst.pause();
+			});
 		}
 	};
 
@@ -109,7 +140,10 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 	 * Cancels the latest SoundInstance's fade if there is one
 	 */
 	this.cancelFade = () => {
-		_cancelFade(_getLastPlayed()._fade);
+		const lastPlayed = _getLastPlayed();
+		if (lastPlayed !== null && lastPlayed !== undefined) {
+			_cancelFade(lastPlayed);
+		}
 	};
 
 	/**
@@ -125,12 +159,17 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 	 * @param {SoundInstance} soundInstance The handle from the fade function
 	 */
 	function _cancelFade(soundInstance) {
-		const fade = soundInstance._fade;
-		if (fade != null) {
-			// There is a fade to cancel: clear it, set it to the default val null
-			clearInterval(fade);
-			soundInstance._fade = null;
+		if (soundInstance) {
+			const fade = soundInstance._fade;
+			if (fade != null) {
+				// There is a fade to cancel: clear it, set it to the default val null
+				clearInterval(fade);
+				soundInstance._fade = null;
+			}
+		} else {
+			console.log("Warning! Tried _cancelFade, but soundInstance was null or undefined!");
 		}
+
 	}
 
  
@@ -144,21 +183,17 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 		_instances.forEach((e) => {
 			e.loop = isLoop;
 		});
+		_isLoop = isLoop;
 	}
 
 	this.getLooping = function() {
-		if (_instances.length > 0) { // extra check that length of inner SoundInstances is greater than 0. Should be at least one though.
-			return _instances[0].loop;
-		} else {
-			return false;
-		}
-		
+		return _isLoop;
 	};
 
 	/**
 	 * Sets the volume of the track or simply updates it if no volume is passed.
 	 * Affects all inner sound instances.
-	 * @param {number} vol 
+	 * @param {number} vol (optional) The volume to set to, or if left undefined, will just update the sound volume according to new bus changes.
 	 */
 	this.setVolume = _setVolumeAll; // Open this function for public use also
 
@@ -249,6 +284,7 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 		return _getLastPlayed().currentTime;
 	};
 
+	this.getLastPlayed = _getLastPlayed;
 
 	// ====================================== //
 	// ======== Private Helpers ============= //
@@ -299,20 +335,21 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 			const _bus = _engine.getBusVolume(bus) || 1;
 			const _base = baseVolume;
 			const _master = _engine.getMasterVolume();
-			console.log(_bus, _base, _master);
 			return Math.pow(vol * _base * _bus * _master, 2);
 		}
 	}
 
 	/**
-	 * Fade the last played sound to a target volume
-	 * @param {SoundInstance} soundInst SoundInstance to fade
-	 * @param {number} targetVol value between 0-1
-	 * @param {number} seconds fade time in seconds
-	 * @param {(inst: SoundInstance)=>void}onTargetReached The callback to call when this fade is complete, please make sure to bind 'this' ahead of time
+	 * 
+	 * @param {SoundInstance} soundInst 
+	 * @param {number} targetVol 
+	 * @param {number} seconds 
+	 * @param {(inst: SoundInstance)=>void} onTargetReached 
 	 */
 	function _fadeTo(soundInst, targetVol, seconds, onTargetReached) {
-		this.cancelFade(); // cancel current fade to prevent jumpy multi-fade bug
+		if (!soundInst) return null;
+
+		soundInst.cancelFade(); // cancel current fade to prevent jumpy multi-fade bug
 		const fade = _fadeFromTo(soundInst, soundInst.getVolume(), targetVol, seconds, (sound) => {
 			// Target volume has been reached: Reset fade value and call callback.
 			sound._fade = null;
@@ -320,7 +357,7 @@ function SoundSprite(soundEngine, key, filepath, baseVolume, audioBus, isLoop, m
 		});
 		// If we have a fade returned, set the fade property to that value
 		if (fade != null && fade != undefined) {
-			_fade = fade;
+			soundInst._fade = fade;
 		}
 	}
 
