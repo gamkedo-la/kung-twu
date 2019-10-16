@@ -108,7 +108,8 @@ function SoundEngine() {
 				clearInterval(interval);
 				newTrack.play();
 			}
-		}, grain); 
+		}, grain);
+		newTrack.getLastPlayed()._fade = interval;
 		return [interval];
 	};
 
