@@ -1,3 +1,10 @@
+// Sound Globals
+/// ===============================================
+/// * To add a new sound to the game              *
+/// * 1. Add a new property to Sounds             *
+/// * 2. Create a new entry in soundSpriteConfigs *
+/// ===============================================
+
 /**
  * Keys to access sounds with
  */
@@ -25,6 +32,15 @@ const Sounds = {
 	BGM_Title: "BGM_Title"
 }; Object.freeze(Sounds);
 // ========================
+
+/**
+ * Audio busses
+ */
+const AudioBus = {
+	SFX: "SFX",
+	MUSIC: "MUSIC",
+	NONE: "NONE"
+}; Object.freeze(AudioBus);
 
 /**
  * SoundSprite Configuration 
@@ -220,9 +236,3 @@ const soundSpriteConfigs = [
 		fadeOutTime: 1.5
 	}
 ];
-
-// // Create the SoundManager
-// const sounds = new SoundManager();
-
-// // Add SoundSprites
-// sounds.addSounds(soundSpriteConfigs);
