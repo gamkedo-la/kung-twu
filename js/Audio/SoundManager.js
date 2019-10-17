@@ -10,11 +10,11 @@ function SoundManager() {
 	/**
 	 * Internal sfx bus volume value
 	 */
-	let _sfxBusVolume = 1;
+	let _sfxBusVolume = 1; //localStorageHelper.getFloat(localStorageKey.SFXVolume) || 1;
 	/**
 	 * Internal bgm bus volume value
 	 */
-	let _bgmBusVolume = 1;
+	let _bgmBusVolume = 1; //localStorageHelper.getFloat(localStorageKey.MusicVolume) || 1;
 	
 	/**
 	 * Private core sound engine to hide unnecessary details.

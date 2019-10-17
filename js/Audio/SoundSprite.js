@@ -87,6 +87,11 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	 * If all are currently playing, the oldest one will be 'stolen'
 	 */
 	this.play = function() {
+		if (!_engine.getDidInteract()) {
+			console.log("Did not interact yet, cancelling play!");
+			return;
+		}
+
 		const e = _instances[_playIndex];
 		e.cancelFadeAll(); // cancel fade if there is one
 		_setTrackVolume(e, 1);

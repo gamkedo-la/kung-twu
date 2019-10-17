@@ -17,6 +17,12 @@ function SoundEngine() {
 
 	let _masterVolume = 1;
 
+	let _iOS = (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream);
+	let _didInteract = false;
+	_setDidInteractWorkaround();
+	
+
+
 	// ======== Public API ==============
 	/**
 	 * Returns the browser-compatible audio format as a string. e.g. ".mp3"
@@ -24,6 +30,10 @@ function SoundEngine() {
 	 */
 	this.getAudioFormat = function() {
 		return _format;
+	};
+
+	this.getDidInteract = function() {
+		return _didInteract;
 	};
 
 	/**
@@ -135,6 +145,23 @@ function SoundEngine() {
 	this.addSounds = _parseSoundSpriteConfigs;
 
 	// ======== Private Helpers ============
+
+	function _setDidInteractWorkaround() {
+		if (_iOS) {
+			window.addEventListener("touchend", _onDidInteract, false);
+		} else {
+			document.addEventListener("click", _onDidInteract);
+		}
+	}
+
+	function _onDidInteract() {
+		if (_iOS) {
+			window.removeEventListener("touchend", _onDidInteract, false);
+		} else {
+			document.removeEventListener("click", _onDidInteract);
+		}
+		_didInteract = true;
+	}
 
 	/**
 	 * Converts passed SoundSpriteConfigs into SoundSprites and adds them to the SoundEngine
