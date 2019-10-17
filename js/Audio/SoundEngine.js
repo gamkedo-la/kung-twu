@@ -2,7 +2,7 @@
  * SoundEngine core object. Stores SoundSprites, bus volumes, master volume, global muting, viable audio format, other helper functions.
  * Sprites should be added after instantiation with addSounds(configs)
  */
-function SoundEngine() {
+function SoundEngine(setDidInteractWorkaround = false) {
 	// ======== Initialization ======== //
 	const _this = this;
 	/**
@@ -19,7 +19,12 @@ function SoundEngine() {
 
 	let _iOS = (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream);
 	let _didInteract = false;
-	_setDidInteractWorkaround();
+	if (setDidInteractWorkaround) {
+		_setDidInteractWorkaround();
+	} else {
+		_didInteract = true;
+	}
+
 	
 
 
