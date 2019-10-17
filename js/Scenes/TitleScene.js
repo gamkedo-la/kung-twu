@@ -49,17 +49,15 @@ function TitleScene() {
 			buttons.push(buildCreditsButton(mainMenuX, mainMenuY + 3 * deltaY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildAssistButton(mainMenuX, mainMenuY + 4 * deltaY, buttonHeight, buttonTitlePadding));
 
-			findMenuWidth();
-
 			buildLanguageButtons();
-
-			updateButtonPositions();
 
 			buildBirds();
 		} else {
 			updateButtonTitles();
-			updateButtonPositions();
 		}
+
+		updateButtonPositions();
+		findMenuWidth();
 	};
 
 	this.transitionOut = function() {
@@ -195,7 +193,7 @@ function TitleScene() {
 			if(thisWidth > maxWidth) {maxWidth = thisWidth;}
 		}
 
-		const menuPos = (canvas.width / 2) - (maxWidth / 2);
+		const menuPos = (canvas.width / 2) - (maxWidth / 2) + selector.width / 2 + (1.5 * BUTTON_PADDING);
 		for(button of buttons) {
 			button.updateXPosition(menuPos);
 		}

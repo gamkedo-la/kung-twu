@@ -6,6 +6,7 @@ function PauseScene() {
 	let selectorPositionsIndex = 0;
 	let selectorPosition = {x:0, y:0};
 	let titleBlockPosition = {x:0, y:0};
+	let titleBlockWidth = 0;
 	const selections = [
 		SCENE.GAME,
 		SCENE.TITLE,
@@ -41,13 +42,14 @@ function PauseScene() {
 			buttons.push(buildControlsButton(mainMenuX, mainMenuY + 2 * deltaY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildHelpButton(mainMenuX, mainMenuY + 3 * deltaY, buttonHeight, buttonTitlePadding));
 
-			updateButtonPositions();
 
 			buildBirds();
 		} else {
 			updateButtonTitles();
-			updateButtonPositions();
 		}
+
+		updateButtonPositions();
+		findMenuWidth();
 	};
 
 	this.transitionOut = function() {
@@ -204,6 +206,18 @@ function PauseScene() {
 		return new UIButton(STRINGS_KEY.Help, x, y, height, padding, thisClick, Color.Green);
 	};
 
+	const findMenuWidth = function() {
+		let maxWidth = 0;
+		for(let button of buttons) {
+			const thisBounds = button.getBounds();
+			if(thisBounds.width > maxWidth) {
+				maxWidth = thisBounds.width;
+			}
+		}
+		titleBlockWidth = maxWidth + selector.width + (3 * BUTTON_PADDING);
+		titleBlockPosition.x = selectorPosition.x - (3 * BUTTON_PADDING / 2);
+	};
+
 	const updateButtonPositions = function() {
 		let maxWidth = 0;
 		for(let button of buttons) {
@@ -262,7 +276,7 @@ function PauseScene() {
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(titleScreenDecore, 0, 0);
-		canvasContext.drawImage(titleBlock, titleBlockPosition.x, titleBlockPosition.y);
+		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlockPosition.x, titleBlockPosition.y, titleBlockWidth, titleBlock.height);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 	};
 	

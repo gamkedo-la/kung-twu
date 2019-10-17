@@ -2,7 +2,8 @@
 function HelpScene() {
 	this.name = "Help";
 	const TITLE_Y_POS = 100;
-	const LINE_HEIGHT = 24;
+	let titleBlockWidth = 0;
+	let titleBlockPos = {x:0, y:0};
 	let selectorPositionsIndex = 0;
 	const selectorPosition = {x:0, y:0};
 	const selections = [
@@ -25,12 +26,13 @@ function HelpScene() {
 			buttons.push(buildBackButton(buttonPadding, menuY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildPlayButton(canvas.width - buttonPadding, menuY, buttonHeight, buttonTitlePadding));
 
-			updateButtonPositions();
+			
 		} else {
-			updateButtonPositions();
 			updateButtonTitles();
 		}
 
+		updateButtonPositions();
+		findTitleBlockWidth();
 		selectorPositionsIndex = 0;
 	};
 
@@ -153,6 +155,21 @@ function HelpScene() {
 		return new UIButton(STRINGS_KEY.Back, x, y, height, padding, thisClick, Color.Purple);
 	};
 
+	const findTitleBlockWidth = function() {
+		let maxWidth = 0;
+		let lines = getLocalizedStringForKey(STRINGS_KEY.HelpScreenContents).split("\n");
+		for (let num=0; num<lines.length; num++) {
+			const thisWidth = JPFont.getStringWidth(lines[num], 0.3);
+			if(thisWidth > maxWidth) {
+				maxWidth = thisWidth;
+			}
+		}
+
+		titleBlockWidth = 30 + maxWidth;
+		titleBlockPos.x = canvas.width / 2 - titleBlockWidth / 2 + 4;
+		titleBlockPos.y = canvas.height / 2 - 38;
+	};
+
 	const updateButtonPositions = function() {
 		buttons[0].updateXPosition(buttonPadding);
 		const button1Width = buttons[1].getBounds().width;
@@ -188,7 +205,7 @@ function HelpScene() {
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(titleScreenDecore, 0, 0);
-		canvasContext.drawImage(titleBlock, canvas.width / 2 - titleBlock.width / 2, canvas.height / 2 - 38);        
+		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlockPos.x, titleBlockPos.y, titleBlockWidth, titleBlock.height);        
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);     
 	};
     
@@ -198,11 +215,10 @@ function HelpScene() {
 	};
 
 	const drawHelpScreenContents = function() {
+		const LINE_HEIGHT = JPFont.getCharacterHeight(0.35);
 		let lines = getLocalizedStringForKey(STRINGS_KEY.HelpScreenContents).split("\n");
 		for (let num=0; num<lines.length; num++) {
-			colorText(lines[num], 
-				canvas.width / 2, canvas.height / 2 + (num*LINE_HEIGHT), Color.White, 
-				Fonts.CreditsText, TextAlignment.Center, true);
+			JPFont.printTextAt(lines[num], {x:canvas.width / 2, y:canvas.height / 2 + ((num - 1)*LINE_HEIGHT)}, TextAlignment.Center, 0.3);
 		}
 	};
 }
