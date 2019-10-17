@@ -1,9 +1,18 @@
 // Sound Constants
-/// ===============================================
-/// * To add a new sound to the game              *
-/// * 1. Add a new property to Sounds             *
-/// * 2. Create a new entry in soundSpriteConfigs *
-/// ===============================================
+/// =========================================================
+/// * To add a new sound to the game                        *
+/// * 1. Add a new property key to Sounds                   *
+/// * 2. Create a new entry in soundSpriteConfigs           *
+/// =========================================================
+
+/// =========================================================
+/// * To access current sound hooks:                        *
+/// * 1. Search codebase for "@SoundHook"                   *
+/// * 2. For sections that need work done "@SoundHook:TODO" *
+/// * 3. For sound parameter implementation "@SoundParam"   *
+/// * 4. Please leave a comment with these tags in them if  *
+/// * you create a new @SoundHook or @SoundParam            *
+/// =========================================================
 
 /**
  * Game's globally accessible SoundManager
