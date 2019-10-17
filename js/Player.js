@@ -5,7 +5,7 @@ function Player(config) {
 	const WALK_SPEED = 200;
 	const JUMP_SPEED = -600;
 	const KNOCK_BACK_SPEED = 800;
-	const INVINCIBLE_DURATION = 1000;
+	let INVINCIBLE_DURATION = null;
 	let invincibleTime = 0;
 	let isInvincible = false;
 
@@ -432,6 +432,14 @@ function Player(config) {
 			//just got hit
 			stateManager.wasHit();
 			isInvincible = true;
+
+			if(INVINCIBLE_DURATION === null) {
+				INVINCIBLE_DURATION = localStorageHelper.getInt(localStorageKey.InvincibleDuration);
+				if((INVINCIBLE_DURATION === undefined) || (INVINCIBLE_DURATION === null) || (isNaN(INVINCIBLE_DURATION))) {
+					INVINCIBLE_DURATION = ASSIST_DEFAULT.InvincibleDuration;
+					localStorageHelper.setInt(localStorageKey.InvincibleDuration, INVINCIBLE_DURATION);
+				}
+			}
 
 			velocity.y = -KNOCK_BACK_SPEED / 2;
 			if(otherEntity.getPosition().x < position.x) {

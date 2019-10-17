@@ -139,6 +139,17 @@ function AssistScene() {
 			localStorageHelper.setInt(localStorageKey.PlayerBaseDamage, pBaseDamage);
 		}
 		slider.playerDamage = new UISlider(COL1_X, ROW3_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.PlayerDamage), pDamageMin, pDamageMin.toString(), pDamageMax, pDamageMax.toString(), pBaseDamage, 49, true, Color.Green);
+		
+		/*Fourth Row of Sliders*/
+		//Player Invincibility
+		const invDurationMin = 0;
+		const invDurationMax = 5000;
+		let baseInvDuration = localStorageHelper.getInt(localStorageKey.InvincibleDuration);
+		if((baseInvDuration === undefined) || (baseInvDuration === null) || (isNaN(baseInvDuration))) {
+			baseInvDuration = ASSIST_DEFAULT.InvincibleDuration;
+			localStorageHelper.setInt(localStorageKey.InvincibleDuration, baseInvDuration);
+		}
+		slider.invincibleDuration = new UISlider(COL1_X, ROW4_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.Invicibility), invDurationMin, invDurationMin.toString(), invDurationMax, invDurationMax.toString(), baseInvDuration, 50, true, Color.White);
 	};
 
 	const update = function() {
@@ -235,6 +246,9 @@ function AssistScene() {
 			break;
 		case slider.playerDamage:
 			localStorageHelper.setInt(localStorageKey.PlayerBaseDamage, aSlider.getValue());
+			break;
+		case slider.invincibleDuration:
+			localStorageHelper.setInt(localStorageKey.InvincibleDuration, aSlider.getValue());
 			break;
 		}
 	};

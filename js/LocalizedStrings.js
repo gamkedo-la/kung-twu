@@ -73,7 +73,8 @@ const STRINGS_KEY = {
 	StartLevel:"startLevel",
 	Rivals:"rivals",
 	RivalHealth:"rivalHealth",
-	PlayerDamage:"playerDamage"
+	PlayerDamage:"playerDamage",
+	Invicibility:"invincibility"
 };
 
 function getLocalizedStringForKey(key) {
@@ -142,7 +143,8 @@ const userStrings = {
 		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
-		[STRINGS_KEY.PlayerDamage]:"Hit Strength"
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
+		[STRINGS_KEY.Invicibility]:"Invincible Time"
 	},
     
 	Spanish: {
@@ -208,7 +210,8 @@ const userStrings = {
 		[STRINGS_KEY.StartLevel]:"Start Level",
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
-		[STRINGS_KEY.PlayerDamage]:"Hit Strength"
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
+		[STRINGS_KEY.Invicibility]:"Invincible Time"
 	},
 
 	Japanese: {
@@ -275,7 +278,8 @@ const userStrings = {
 		[STRINGS_KEY.StartLevel]:"Start Level",
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
-		[STRINGS_KEY.PlayerDamage]:"Hit Strength"
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
+		[STRINGS_KEY.Invicibility]:"Invincible Time"
 	},
 
 	French: {
@@ -341,7 +345,8 @@ const userStrings = {
 		[STRINGS_KEY.StartLevel]:"Start Level",
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
-		[STRINGS_KEY.PlayerDamage]:"Hit Strength"
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
+		[STRINGS_KEY.Invicibility]:"Invincible Time"
 	},
 
 	Russian: {
@@ -407,7 +412,8 @@ const userStrings = {
 		[STRINGS_KEY.StartLevel]:"Start Level",
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
-		[STRINGS_KEY.PlayerDamage]:"Hit Strength"
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
+		[STRINGS_KEY.Invicibility]:"Invincible Time"
 	},
 	
 	Polish: {
@@ -472,6 +478,7 @@ const userStrings = {
 
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
-		[STRINGS_KEY.PlayerDamage]:"Hit Strength"
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
+		[STRINGS_KEY.Invicibility]:"Invincible Time"
 	}
 };

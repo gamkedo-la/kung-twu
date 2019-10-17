@@ -66,7 +66,8 @@ const localStorageKey = {
 	StartingBelt:"kungTwu-StartingBelt",
 	StartingLevel:"kungTwu-StartingLevel",
 	BaseEnemyHealth:"kungTwu-BaseEnemyHealth",
-	PlayerBaseDamage:"kungTwu-PlayerBaseDamage"
+	PlayerBaseDamage:"kungTwu-PlayerBaseDamage",
+	InvincibleDuration:"kungTwu-InvincibleDuration"
 };
 
 //----------State Management----------//
@@ -124,7 +125,8 @@ const ASSIST_DEFAULT = {
 	StartBelt:BELT.White,
 	StartLevel:1,
 	BaseEnemyHealth:20,
-	PlayerBaseDamage:10
+	PlayerBaseDamage:10,
+	InvincibleDuration:1000
 };
 
 //------------Asset Management----------//
