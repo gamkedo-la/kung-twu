@@ -117,7 +117,10 @@ function SoundInstance(soundSprite, filename) {
 	 * Start playing the audio
 	 */
 	this.play = function() {
-		_element.play();
+		_element.play()
+			.catch(() => {
+				console.log("For your enjoyment of the web, the game has prevented sounds from playing.\nPlease click or tap anywhere on the screen to allow sound.");
+			});
 	};
 
 	/**

@@ -226,7 +226,7 @@ function BasicEnemy(config) {
 	const jump = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.y = JUMP_SPEED;
-			// @SoundHook: enemyJumpSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO: enemyJumpSound.play();//Is there going to be one of these?
 		}
 	};
 
@@ -234,7 +234,7 @@ function BasicEnemy(config) {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Crouching now");
 			velocity.x = 0;
-			// @SoundHook: enemyCrouchSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO enemyCrouchSound.play();//Is there going to be one of these?
 		}
 	};
 
@@ -242,14 +242,14 @@ function BasicEnemy(config) {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Blocking now");
 			velocity.x = 0;
-			// @SoundHook: enemyBlockSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO enemyBlockSound.play();//Is there going to be one of these?
 		}
 	};
 
 	const dash = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is dashing now");
-			// @SoundHook: enemyDashSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO enemyDashSound.play();//Is there going to be one of these?
 		}
 	};
 
@@ -260,7 +260,7 @@ function BasicEnemy(config) {
 	const punch = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.x = 0;
-			// @SoundHook: enemyPunchSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO enemyPunchSound.play();//Is there going to be one of these?
 			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -268,7 +268,7 @@ function BasicEnemy(config) {
 	const kick = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.x = 0;
-			// @SoundHook: enemyKickSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO enemyKickSound.play();//Is there going to be one of these?
 			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -276,7 +276,7 @@ function BasicEnemy(config) {
 	const j_Kick = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Jump Kicking now");
-			// @SoundHook: enemyKickSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO enemyKickSound.play();//Is there going to be one of these?
 			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -284,7 +284,7 @@ function BasicEnemy(config) {
 	const h_kick = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Helicopter Kicking now");
-			// @SoundHook: enemyKickSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO enemyKickSound.play();//Is there going to be one of these?
 			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -292,7 +292,7 @@ function BasicEnemy(config) {
 	const sweep = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Sweeping now");
-			// @SoundHook: enemySweepSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO enemySweepSound.play();//Is there going to be one of these?
 			velocity.x = 0;
 			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
@@ -331,8 +331,10 @@ function BasicEnemy(config) {
 
 		if(this.health <= 0) {
 			// @SoundHook basicEnemyDefeated.play();
+			sound.playSFX(Sounds.SFX_LowPain);
 		} else {
 			// @SoundHook basicEnemyHitSound.play();
+			sound.playSFX(Sounds.SFX_EnemyHit);
 		}
 	};
 

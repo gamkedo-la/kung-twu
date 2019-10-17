@@ -70,27 +70,32 @@ function PauseScene() {
 			pauseManager.resumeGame(CAUSE.Keypress);
 			SceneState.setState(SceneState.getPreviousState());
 			// @SoundHook: menuSelectionSound.play();
+			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.BACK:
 			pauseManager.resumeGame(CAUSE.Keypress);
 			SceneState.setState(SceneState.getPreviousState());
 			//SceneState.setState(SCENE.GAME);
 			// @SoundHook: menuSelectionSound.play();
+			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.QUIT:
 			pauseManager.resumeGame(CAUSE.Keypress);
 			SceneState.setState(SCENE.TITLE, {didQuit:true});
 			// @SoundHook: menuSelectionSound.play();
+			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.CONTROLS:
 			console.log("Controls Scene doesn't exist yet");
 			//pauseManager.resumeGame(CAUSE.Keypress);
 			//SceneState.setState(SCENE.CONTROLS);
 			// @SoundHook: menuSelectionSound.play();
+			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.HELP:
 			SceneState.setState(SCENE.HELP);
 			// @SoundHook: menuSelectionSound.play();
+			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.POINTER:
 			checkButtons();
@@ -122,6 +127,7 @@ function PauseScene() {
 					}
 					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
 					// @SoundHook: menuNavigationSound.play();
+					sound.playSFX(Sounds.SFX_MenuNav);
 					break;			
 				case NAV_ACTION.DOWN:
 				case NAV_ACTION.RIGHT:
@@ -131,6 +137,7 @@ function PauseScene() {
 					}
 					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
 					// @SoundHook: menuNavigationSound.play();
+					sound.playSFX(Sounds.SFX_MenuNav);
 					break;
 				case NAV_ACTION.SELECT:
 					if(selections[selectorPositionsIndex] === SCENE.GAME) {
@@ -143,6 +150,7 @@ function PauseScene() {
 						SceneState.setState(selections[selectorPositionsIndex]);
 					}
 					// @SoundHook: menuSelectionSound.play();
+					sound.playSFX(Sounds.SFX_MenuSelect);
 					break;
 				case NAV_ACTION.BACK:
 					break;//nowhere to go 'back' to
