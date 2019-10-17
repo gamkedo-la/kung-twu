@@ -74,7 +74,8 @@ const STRINGS_KEY = {
 	Rivals:"rivals",
 	RivalHealth:"rivalHealth",
 	PlayerDamage:"playerDamage",
-	Invicibility:"invincibility"
+	Invicibility:"invincibility",
+	Knockback:"knockback"
 };
 
 function getLocalizedStringForKey(key) {
@@ -144,7 +145,8 @@ const userStrings = {
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
 		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
-		[STRINGS_KEY.Invicibility]:"Invincible Time"
+		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.Knockback]:"Knockback"
 	},
     
 	Spanish: {
@@ -211,7 +213,8 @@ const userStrings = {
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
 		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
-		[STRINGS_KEY.Invicibility]:"Invincible Time"
+		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.Knockback]:"Knockback"
 	},
 
 	Japanese: {
@@ -279,7 +282,8 @@ const userStrings = {
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
 		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
-		[STRINGS_KEY.Invicibility]:"Invincible Time"
+		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.Knockback]:"Knockback"
 	},
 
 	French: {
@@ -346,7 +350,8 @@ const userStrings = {
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
 		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
-		[STRINGS_KEY.Invicibility]:"Invincible Time"
+		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.Knockback]:"Knockback"
 	},
 
 	Russian: {
@@ -413,7 +418,8 @@ const userStrings = {
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
 		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
-		[STRINGS_KEY.Invicibility]:"Invincible Time"
+		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.Knockback]:"Knockback"
 	},
 	
 	Polish: {
@@ -479,6 +485,7 @@ const userStrings = {
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
 		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
-		[STRINGS_KEY.Invicibility]:"Invincible Time"
+		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.Knockback]:"Knockback"
 	}
 };

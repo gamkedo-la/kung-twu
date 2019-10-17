@@ -84,6 +84,7 @@ function AssistScene() {
 		const ROW2_Y = ROW1_Y + ROW_DELTA;
 		const ROW3_Y = ROW2_Y + ROW_DELTA;
 		const ROW4_Y = ROW3_Y + ROW_DELTA;
+		const ROW5_Y = ROW4_Y + ROW_DELTA;
 
 		/*First Row of Sliders*/
 		//Player Max Health
@@ -150,6 +151,17 @@ function AssistScene() {
 			localStorageHelper.setInt(localStorageKey.InvincibleDuration, baseInvDuration);
 		}
 		slider.invincibleDuration = new UISlider(COL1_X, ROW4_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.Invicibility), invDurationMin, invDurationMin.toString(), invDurationMax, invDurationMax.toString(), baseInvDuration, 50, true, Color.White);
+
+		/*Fifth Row of Sliders*/
+		//Player Knockback
+		const knockbackMin = 0;
+		const knockbackMax = 2000;
+		let initialKnockback = localStorageHelper.getInt(localStorageKey.KnockbackSpeed);
+		if((initialKnockback === undefined) || (initialKnockback === null) || (isNaN(initialKnockback))) {
+			initialKnockback = ASSIST_DEFAULT.KnockbackSpeed;
+			localStorageHelper.setInt(localStorageKey.KnockbackSpeed, initialKnockback);
+		}
+		slider.knockback = new UISlider(COL1_X, ROW5_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.Knockback), knockbackMin, knockbackMin.toString(), knockbackMax, knockbackMax.toString(), initialKnockback, 40, true, Color.Blue);
 	};
 
 	const update = function() {
@@ -249,6 +261,9 @@ function AssistScene() {
 			break;
 		case slider.invincibleDuration:
 			localStorageHelper.setInt(localStorageKey.InvincibleDuration, aSlider.getValue());
+			break;
+		case slider.knockback:
+			localStorageHelper.setInt(localStorageKey.KnockbackSpeed, aSlider.getValue());
 			break;
 		}
 	};

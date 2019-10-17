@@ -67,7 +67,8 @@ const localStorageKey = {
 	StartingLevel:"kungTwu-StartingLevel",
 	BaseEnemyHealth:"kungTwu-BaseEnemyHealth",
 	PlayerBaseDamage:"kungTwu-PlayerBaseDamage",
-	InvincibleDuration:"kungTwu-InvincibleDuration"
+	InvincibleDuration:"kungTwu-InvincibleDuration",
+	KnockbackSpeed:"kungTwu-KnockbackSpeed"
 };
 
 //----------State Management----------//
@@ -126,7 +127,8 @@ const ASSIST_DEFAULT = {
 	StartLevel:1,
 	BaseEnemyHealth:20,
 	PlayerBaseDamage:10,
-	InvincibleDuration:1000
+	InvincibleDuration:1000,
+	KnockbackSpeed:800
 };
 
 //------------Asset Management----------//

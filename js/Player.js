@@ -4,7 +4,7 @@ function Player(config) {
 	const SCREEN_MARGIN = 10;
 	const WALK_SPEED = 200;
 	const JUMP_SPEED = -600;
-	const KNOCK_BACK_SPEED = 800;
+	let KNOCK_BACK_SPEED = null;
 	let INVINCIBLE_DURATION = null;
 	let invincibleTime = 0;
 	let isInvincible = false;
@@ -296,12 +296,12 @@ function Player(config) {
 		if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
 
 		if(velocity.x < 0) {
-			velocity.x += KNOCK_BACK_SPEED / 25;
+			velocity.x += ASSIST_DEFAULT.KnockbackSpeed / 10;
 			if (velocity.x >= 0) {
 				velocity.x = 0;
 			}
 		} else if(velocity.x > 0) {
-			velocity.x -= KNOCK_BACK_SPEED / 25;
+			velocity.x -= ASSIST_DEFAULT.KnockbackSpeed / 10;
 			if (velocity.x <= 0) {
 				velocity.x = 0;
 			}
@@ -441,6 +441,13 @@ function Player(config) {
 				}
 			}
 
+			if(KNOCK_BACK_SPEED === null) {
+				KNOCK_BACK_SPEED = localStorageHelper.getInt(localStorageKey.KnockbackSpeed);
+				if((KNOCK_BACK_SPEED === undefined) || (KNOCK_BACK_SPEED === null) || (isNaN(KNOCK_BACK_SPEED))) {
+					KNOCK_BACK_SPEED = ASSIST_DEFAULT.KnockbackSpeed;
+					localStorageHelper.setInt(localStorageKey.KnockbackSpeed, KNOCK_BACK_SPEED);
+				}
+			}
 			velocity.y = -KNOCK_BACK_SPEED / 2;
 			if(otherEntity.getPosition().x < position.x) {
 				velocity.x = KNOCK_BACK_SPEED;
