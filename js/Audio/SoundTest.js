@@ -1,5 +1,5 @@
 // Create the SoundManager
-const sound = new SoundManager();
+sound = new SoundManager();
 
 // Add SoundSprites
 sound.addSounds(soundSpriteConfigs);
