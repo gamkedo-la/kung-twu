@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SoundTest</title>
+	<style>
+		body {
+			font-family: 'Courier New', 'Times New Roman';
+		}
+		h1 {
+			max-width: 700px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+		.main {
+			border: 1px solid rgb(200, 200, 200);
+			border-radius: 4px;
+			max-width: 700px;
+			margin: 0 auto;
+		}
+		.block {
+			padding: 10px; 
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Sound Engine Test Room</h1>
+	<div class="main">
+		<!-- Test buttons -->
+		<div class="block">
+			<button id="bossBGM">Play Boss Theme</button>
+			<button id="titleBGM">Play Title Theme</button>
+			<button id="footstepSFX">Play Footstep SFX</button>
+			<button id="oneupSFX">Play One-Up SFX</button>
+			<button id="stopAll">Stop All Sounds</button>
+		</div>
+
+		<!-- Test sliders -->
+		<div class="block">
+			<h2>Bus Volume</h2>
+			<label for="musicBus">Music Bus Volume</label>
+			<input id="musicBus" type="range" min="0" max="1" step=".01">
+			<label for="sfxBus">SFX Bus Volume</label>
+			<input id="sfxBus" type="range" min="0" max="1" step=".01">
+		</div>
+		<div class="block">
+			<label for="masterBus">Master Bus Volume</label>
+			<input id="masterBus" type="range" min="0" max="1" step=".01">
+		</div>
+		<div class="block">
+				<h2>Current Music Fade Test</h2>
+				<label for="fadeBGMTo">Volume</label>
+				<input id="fadeBGMTo" type="range" min="0" max="1" step=".01">
+				<label for="fadeBGMTime">Seconds</label>
+				<input id="fadeBGMTime" type="number" value="2" min="0" max="10" step=".5">
+				<button id="fadeBGM">Activate Fade</button>
+			</div>
+</div>
+<div class="main">
+	<!-- Individual Volume Testing -->
+	<div class="block">
+		<h2>Base Volume Test</h2>
+		<p><em>Please make sure all bus values are at 1 while testing to ensure even balance.</em></p>
+		<div class="block">
+				<select id="soundList"></select>
+				<input id="soundTestSlider" type="range" min="0" max="1" step=".001">
+				<button id="soundTestPlay">Play</button>
+				<button id="soundTestStop">Stop</button>
+				<div>
+					<span>vol test: </span><span id="soundTestVolDisplay"></span>
+					<span>default: </span><span id="soundTestVolDisplayOld"></span>
+				</div>
+		</div>
+
+	</div>
+</div>
+
+	<!-- Scripts -->
+	<script src="./js/Globals.js"></script>
+	<script src="./js/Audio/SoundGlobals.js"></script>
+	<script src="./js/Utility.js"></script>
+	<script src="./js/Audio/SoundEngine.js"></script>
+	<script src="./js/Audio/SoundInstance.js"></script>
+	<script src="./js/Audio/SoundSprite.js"></script>
+	<script src="./js/Audio/SoundManager.js"></script> 
+	<script src="./js/Audio/SoundTest.js"></script>
+</body>
+</html>

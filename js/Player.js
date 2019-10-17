@@ -4,12 +4,16 @@ function Player(config) {
 	const SCREEN_MARGIN = 10;
 	const WALK_SPEED = 200;
 	const JUMP_SPEED = -600;
-	const KNOCK_BACK_SPEED = 800;
-	const INVINCIBLE_DURATION = 1000;
+	let KNOCK_BACK_SPEED = null;
+	let INVINCIBLE_DURATION = null;
 	let invincibleTime = 0;
 	let isInvincible = false;
 
-	const BASE_DAMAGE = 10;
+	let baseDamage = localStorageHelper.getInt(localStorageKey.PlayerBaseDamage);
+	if((baseDamage === undefined) || (baseDamage === null) || (isNaN(baseDamage))) {
+		baseDamage = ASSIST_DEFAULT.PlayerBaseDamage;
+		localStorageHelper.setInt(localStorageKey.PlayerBaseDamage, baseDamage);
+	}
 	const DELTA_DAMAGE = 5;
 
 	let stateManager;
@@ -102,15 +106,15 @@ function Player(config) {
 		case STATE.KnockBack:
 			return 0;
 		case STATE.Punch:
-			return 1 * BASE_DAMAGE;
+			return 1 * baseDamage;
 		case STATE.Kick:
-			return 1.5 * BASE_DAMAGE;
+			return 1.5 * baseDamage;
 		case STATE.J_Kick:
-			return 2.0 * BASE_DAMAGE;
+			return 2.0 * baseDamage;
 		case STATE.Sweep:
-			return 2.0 * BASE_DAMAGE;
+			return 2.0 * baseDamage;
 		case STATE.H_Kick:
-			return 2.5 * BASE_DAMAGE;
+			return 2.5 * baseDamage;
 		}
 	};
 
@@ -289,19 +293,19 @@ function Player(config) {
 
 	const respondToKnockBack = function() {
 
-        if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
+		if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
 
-        if(velocity.x < 0) {
-			velocity.x += KNOCK_BACK_SPEED / 25;
+		if(velocity.x < 0) {
+			velocity.x += ASSIST_DEFAULT.KnockbackSpeed / 10;
 			if (velocity.x >= 0) {
 				velocity.x = 0;
 			}
 		} else if(velocity.x > 0) {
-			velocity.x -= KNOCK_BACK_SPEED / 25;
+			velocity.x -= ASSIST_DEFAULT.KnockbackSpeed / 10;
 			if (velocity.x <= 0) {
 				velocity.x = 0;
 			}
-        }
+		}
 
 	};
 
@@ -321,14 +325,15 @@ function Player(config) {
 	const jump = function() {
 		if (stateManager.getIsNewState()) {
 			velocity.y = JUMP_SPEED;
-			playerJumpSound.play();
+			// @SoundHook: playerJumpSound.play();
+			sound.playSFX(Sounds.SFX_PlayerJump);
 		}
 	};
 
 	const crouch = function() {
 		console.log("I'm crouching now");
 		if (stateManager.getIsNewState()) {
-			//playerCrouchSound.play();
+			// @SoundHook:TODO playerCrouchSound.play();
 		}
 	};
 
@@ -340,7 +345,9 @@ function Player(config) {
 			}
 
 			velocity.x = speed;
-			swish1Sound.play();
+			// @SoundHook swish1Sound.play();
+			sound.playSFX(Sounds.SFX_Swish_01);
+
 		}
 	};
 
@@ -351,14 +358,16 @@ function Player(config) {
 	const block = function() {
 		console.log("I'm blocking now");
 		if (stateManager.getIsNewState()) {
-			playerBlockSound.play();
+			// @SoundHook: playerBlockSound.play();
+			sound.playSFX(Sounds.SFX_PlayerBlock);
 		}
 	};
 
 	const punch = function() {
 		if (stateManager.getIsNewState()) {
 			velocity.x = 0;
-			playerPunchSound.play();
+			// @SoundHook: playerPunchSound.play();
+			sound.playSFX(Sounds.SFX_PlayerPunch);
 			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -366,7 +375,8 @@ function Player(config) {
 	const kick = function() {
 		if (stateManager.getIsNewState()) {
 			velocity.x = 0;
-			playerKickSound.play();
+			// @SoundHook: playerKickSound.play();
+			sound.playSFX(Sounds.SFX_PlayerKick);
 			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -374,7 +384,8 @@ function Player(config) {
 	const j_Kick = function() {
 		console.log("Jump Kicking");
 		if (stateManager.getIsNewState()) {
-			playerKickSound.play();
+			// @SoundHook: playerKickSound.play();
+			sound.playSFX(Sounds.SFX_PlayerKick);
 			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -382,7 +393,7 @@ function Player(config) {
 	const h_kick = function() {
 		console.log("Helicopter Kicking");
 		if (stateManager.getIsNewState()) {
-			//playerHelicopterKickSound.play();
+			// @SoundHook:TODO playerHelicopterKickSound.play();
 			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -390,7 +401,8 @@ function Player(config) {
 	const sweep = function() {
 		console.log("Sweeping !!!");
 		if (stateManager.getIsNewState()) {
-			swish2Sound.play();
+			// @SoundHook: swish2Sound.play();
+			sound.playSFX(Sounds.SFX_Swish_02);
 			velocity.x = 0;
 			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
@@ -421,6 +433,21 @@ function Player(config) {
 			stateManager.wasHit();
 			isInvincible = true;
 
+			if(INVINCIBLE_DURATION === null) {
+				INVINCIBLE_DURATION = localStorageHelper.getInt(localStorageKey.InvincibleDuration);
+				if((INVINCIBLE_DURATION === undefined) || (INVINCIBLE_DURATION === null) || (isNaN(INVINCIBLE_DURATION))) {
+					INVINCIBLE_DURATION = ASSIST_DEFAULT.InvincibleDuration;
+					localStorageHelper.setInt(localStorageKey.InvincibleDuration, INVINCIBLE_DURATION);
+				}
+			}
+
+			if(KNOCK_BACK_SPEED === null) {
+				KNOCK_BACK_SPEED = localStorageHelper.getInt(localStorageKey.KnockbackSpeed);
+				if((KNOCK_BACK_SPEED === undefined) || (KNOCK_BACK_SPEED === null) || (isNaN(KNOCK_BACK_SPEED))) {
+					KNOCK_BACK_SPEED = ASSIST_DEFAULT.KnockbackSpeed;
+					localStorageHelper.setInt(localStorageKey.KnockbackSpeed, KNOCK_BACK_SPEED);
+				}
+			}
 			velocity.y = -KNOCK_BACK_SPEED / 2;
 			if(otherEntity.getPosition().x < position.x) {
 				velocity.x = KNOCK_BACK_SPEED;
@@ -437,9 +464,11 @@ function Player(config) {
 
 		if (this.health <= 0) {
 			this.health = 0;
-			playerFailedSound.play();
+			// @SoundHook: playerFailedSound.play();
+			sound.playSFX(Sounds.SFX_PlayerFail);
 		} else {
-			playerHitSound.play();
+			// @SoundHook: playerHitSound.play();
+			sound.playSFX(Sounds.SFX_PlayerHit);
 		}
 	};
 

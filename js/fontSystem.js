@@ -12,12 +12,16 @@ function fontSystem(jpFont, charSize, context) {
 		}
 	};
 
-	this.getStringWidth = function(text, scale) {
+	this.getStringWidth = function(text, scale, language = currentLanguage) {
 		let totalWidth = 0;
 		for(let char of text) {
-			totalWidth += (scale * advancementForLanguageAndCharacter(char));
+			totalWidth += (scale * advancementForLanguageAndCharacter(language, char));
 		}
 		return totalWidth;
+	};
+
+	this.getCharacterHeight = function(scale) {
+		return charSize.height * scale;
 	};
 
 	const leftSideOfTextForPosAlignmentAndScale = function(width, xPos, alignment) {
@@ -28,7 +32,7 @@ function fontSystem(jpFont, charSize, context) {
 		}
 	};
 
-	this.printTextAt = function(text, position, alignment = TextAlignment.Left, scale = 1) {
+	this.printTextAt = function(text, position, alignment = TextAlignment.Left, scale = 1, language = currentLanguage) {
 		const stringWidth = this.getStringWidth(text, scale);
 		const startPos = leftSideOfTextForPosAlignmentAndScale(stringWidth, position.x, alignment);
 		let drawPos = startPos;
@@ -36,13 +40,13 @@ function fontSystem(jpFont, charSize, context) {
 			const thisFrame = this.findLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
 			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, drawPos, position.y, charSize.width * scale, charSize.height * scale);
 
-			const advance = scale * advancementForLanguageAndCharacter(text[i]);
+			const advance = scale * advancementForLanguageAndCharacter(language, text[i]);
 			drawPos += advance;
 		}
 	};
 
-	const advancementForLanguageAndCharacter = function(character) {
-		if(currentLanguage === Language.Japanese) {
+	const advancementForLanguageAndCharacter = function(language, character) {
+		if(language === Language.Japanese) {
 			if(character === " ") {
 				return 40;
 			} else if(charIsNumeral(character)) {
@@ -514,9 +518,6 @@ function fontSystem(jpFont, charSize, context) {
 		case "Д":
 		case "д":
 			return {x:2 * charSize.width, y:17 * charSize.height};
-			/*		case "|": return {x:13 * charSize.width, y:15 * charSize.height};
-		case "~": return {x:13 * charSize.width, y:15 * charSize.height};
-		case "`": return {x:13 * charSize.width, y:15 * charSize.height};*/
 
 		default: return {x:18.5 * charSize.width, y:charSize.height};//18.5 so it doesn't crash, but you can tell something's not right
 		}

@@ -68,7 +68,8 @@ function EndingScene() {
 				switch(newNavAction) {
 				case NAV_ACTION.SELECT:
 					SceneState.setState(SCENE.TITLE);
-					menuSelectionSound.play();
+					// @SoundHook: menuSelectionSound.play();
+					sound.playSFX(Sounds.SFX_MenuSelect);
 					break;
 				}
 			}

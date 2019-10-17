@@ -1,17 +1,27 @@
 //UIButton
-function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.Blue) {
+function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.Blue, language = null) {
 	const bounds = {};
+	const TITLE_SCALE = 0.3;
 	let isHovering = false;
 	this.title = getLocalizedStringForKey(stringsKey);
     
 	this.onClick = onClick;
 
 	const setBounds = function(title, x, y, height, padding) {
-		bounds.width = getTextWidth(title, Fonts.ButtonTitle) + padding * 2;
-		bounds.height = height;
+		if(JPFont === undefined) {
+			console.error(`JPFont undefined. Button Title:${title}`);
+			return;
+		}
+		if(language === null) {
+			bounds.width = JPFont.getStringWidth(title, TITLE_SCALE) + padding * 2;
+		} else {
+			bounds.width = JPFont.getStringWidth(title, TITLE_SCALE, language) + padding * 2;
+		}
+		
+		bounds.height = JPFont.getCharacterHeight(TITLE_SCALE);
         
-		bounds.x = x;// - (bounds.width/2);
-		bounds.y = y;// - (height * fontOverhangRatio) + height;
+		bounds.x = x;
+		bounds.y = y;
 	};
 
 	setBounds(this.title, x, y, height, padding);
@@ -50,7 +60,8 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 
 	this.respondIfClicked = function(pointerX, pointerY) {
 		if(didHit(pointerX, pointerY)) {
-			menuSelectionSound.play();
+			// @SoundHook: menuSelectionSound.play();
+			sound.playSFX(Sounds.SFX_MenuSelect);
 			this.onClick();
 			return true;
 		} else {
@@ -59,11 +70,14 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 	};
 
 	this.draw = function() {
-		const fontOverhangAdjustment = (bounds.height - padding * 2) * fontOverhangRatio;
 		const posX = bounds.x + padding;
-		const posY = bounds.y + padding + fontOverhangAdjustment;
-        
-		colorText(this.title, posX, posY, color, Fonts.ButtonTitle, TextAlignment.Left);
+		const posY = bounds.y;// + padding + fontOverhangAdjustment;
+		
+		if(language === null) {
+			JPFont.printTextAt(this.title, {x:posX,y:posY}, TextAlignment.Left, TITLE_SCALE);
+		} else {
+			JPFont.printTextAt(this.title, {x:posX,y:posY}, TextAlignment.Left, TITLE_SCALE, language);
+		}
 
 		const wasHit = didHit(mouseX, mouseY);
 		if((DEBUG) || wasHit) { // draw bounds for buttons in semi-transparent colors
@@ -78,7 +92,8 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 		}
 
 		if(wasHit && !isHovering) {
-			menuNavigationSound.play();
+			// @SoundHook: menuNavigationSound.play();
+			sound.playSFX(Sounds.SFX_MenuNav);
 			isHovering = true;
 		}
 		

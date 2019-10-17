@@ -70,7 +70,12 @@ const STRINGS_KEY = {
 	BeltBlack:"beltBlack",
 	MaxHealth:"maxHealth",
 	StartBelt:"startBelt",
-	StartLevel:"startLevel"
+	StartLevel:"startLevel",
+	Rivals:"rivals",
+	RivalHealth:"rivalHealth",
+	PlayerDamage:"playerDamage",
+	Invicibility:"invincibility",
+	Knockback:"knockback"
 };
 
 function getLocalizedStringForKey(key) {
@@ -137,6 +142,11 @@ const userStrings = {
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing to Helicopter Kick",
 		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.RivalHealth]:"Rival Health",
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
+		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.Knockback]:"Knockback"
 	},
     
 	Spanish: {
@@ -199,7 +209,12 @@ const userStrings = {
 		[STRINGS_KEY.BeltBlack]:"Black",
 		[STRINGS_KEY.MaxHealth]:"Max Health",
 		[STRINGS_KEY.StartBelt]:"Start Belt",
-		[STRINGS_KEY.StartLevel]:"Start Level"
+		[STRINGS_KEY.StartLevel]:"Start Level",
+		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.RivalHealth]:"Rival Health",
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
+		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.Knockback]:"Knockback"
 	},
 
 	Japanese: {
@@ -241,9 +256,9 @@ const userStrings = {
 		[STRINGS_KEY.Resume]:"[ESC] つづく",
 		[STRINGS_KEY.Controls]:"[C] コントロール",
 		[STRINGS_KEY.Quit]:"[Q] ゲームをやめる",
-
 		[STRINGS_KEY.Continue]:"[C] やりなおす",		
 		[STRINGS_KEY.End]:"[E] おわり",
+
 		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
 		[STRINGS_KEY.HighScore]:"HIGH SCORE:",
 		[STRINGS_KEY.Done]:"かんりょう",
@@ -263,7 +278,12 @@ const userStrings = {
 		[STRINGS_KEY.BeltBlack]:"Black",
 		[STRINGS_KEY.MaxHealth]:"Max Health",
 		[STRINGS_KEY.StartBelt]:"Start Belt",
-		[STRINGS_KEY.StartLevel]:"Start Level"
+		[STRINGS_KEY.StartLevel]:"Start Level",
+		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.RivalHealth]:"Rival Health",
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
+		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.Knockback]:"Knockback"
 	},
 
 	French: {
@@ -326,7 +346,12 @@ const userStrings = {
 		[STRINGS_KEY.BeltBlack]:"Black",
 		[STRINGS_KEY.MaxHealth]:"Max Health",
 		[STRINGS_KEY.StartBelt]:"Start Belt",
-		[STRINGS_KEY.StartLevel]:"Start Level"
+		[STRINGS_KEY.StartLevel]:"Start Level",
+		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.RivalHealth]:"Rival Health",
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
+		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.Knockback]:"Knockback"
 	},
 
 	Russian: {
@@ -389,7 +414,12 @@ const userStrings = {
 		[STRINGS_KEY.BeltBlack]:"Black",
 		[STRINGS_KEY.MaxHealth]:"Max Health",
 		[STRINGS_KEY.StartBelt]:"Start Belt",
-		[STRINGS_KEY.StartLevel]:"Start Level"
+		[STRINGS_KEY.StartLevel]:"Start Level",
+		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.RivalHealth]:"Rival Health",
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
+		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.Knockback]:"Knockback"
 	},
 	
 	Polish: {
@@ -450,6 +480,12 @@ const userStrings = {
 		[STRINGS_KEY.BeltBlack]:"Czarny",
 		[STRINGS_KEY.MaxHealth]:"Maksymalne Życie",
 		[STRINGS_KEY.StartBelt]:"Początkowy Pas",
-		[STRINGS_KEY.StartLevel]:"Początkowy Poziom"
+		[STRINGS_KEY.StartLevel]:"Początkowy Poziom",
+
+		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.RivalHealth]:"Rival Health",
+		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
+		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.Knockback]:"Knockback"
 	}
 };

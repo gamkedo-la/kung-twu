@@ -1,5 +1,5 @@
 //Infinite Back Wall
-function InfiniteWall(posY) {
+function InfiniteWall(posY, scroll, minPos, maxPos) {
 	const TILE_WIDTH = 352;
 	const SHADOW_WIDTH = 200;
 	const TILES = [];
@@ -8,7 +8,7 @@ function InfiniteWall(posY) {
 
 	this.update = function(cameraXPos, shifts) {
 		if(TILES.length === 0) {
-			initializeTiles();
+			initializeTiles(scroll);
 		}
 
 		for(let tile of TILES) {
@@ -52,7 +52,7 @@ function InfiniteWall(posY) {
 
 	this.draw = function() {
 		for(let tile of TILES) {
-			tile.draw();
+			tile.draw(minPos, maxPos);
 		}
 
 		for(let shadow of SHADOWS) {
@@ -60,16 +60,18 @@ function InfiniteWall(posY) {
 		}
 	};
 
-	const initializeTiles = function() {
-		const tileCount = 4 + Math.floor(canvas.width / TILE_WIDTH);
+	const initializeTiles = function(scroll) {
+		const tileCount = 8 + Math.floor(canvas.width / TILE_WIDTH);
 
 		let currentXPos = -TILE_WIDTH / 2;
 		for(let i = 0; i < tileCount; i++) {
 			let imageToUse = windowedWall;
-			if(i % 3 === 0) {
+			if(i % 4 === 0) {
 				imageToUse = tiledWall;
-			} else if(i % 3 === 1) {
+			} else if(i % 4 === 1) {
 				imageToUse = tiledWallScroll;
+			} else if(i % 4 === 2) {
+				imageToUse = scroll;
 			}
 			TILES.push(new WallTile(imageToUse, currentXPos + (i * TILE_WIDTH), posY));
 		}
@@ -98,8 +100,15 @@ function InfiniteWall(posY) {
 			xPos += deltaX;
 		};
 	
-		this.draw = function() {
-			canvasContext.drawImage(image, xPos, yPos);
+		this.draw = function(minPos, maxPos) {
+			if(xPos < minPos) {
+				canvasContext.drawImage(tiledWall, xPos, yPos);
+			} else if(xPos > maxPos) {
+				canvasContext.drawImage(tiledWall, xPos, yPos);
+			} else {
+				canvasContext.drawImage(image, xPos, yPos);
+			}
+//			canvasContext.drawImage(image, xPos, yPos);
 		};
 	}
 

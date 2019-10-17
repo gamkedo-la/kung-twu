@@ -70,9 +70,16 @@ const titleBlock = document.createElement("img");
 const titleScreenBird = document.createElement("img");
 const selector = document.createElement("img");
 const uiScreenBg = document.createElement("img");
+const uiBorder = document.createElement("img");
 const windowedWall = document.createElement("img");
 const tiledWallScroll = document.createElement("img");
+const wallScrollTiger = document.createElement("img");
+const wallScrollCrane = document.createElement("img");
+const wallScrollSnake = document.createElement("img");
+const wallScrollLeopard = document.createElement("img");
+const wallScrollDragon = document.createElement("img");
 const tiledWall = document.createElement("img");
+const tempRightWall = document.createElement("img");
 const wallGradient = document.createElement("img");
 const jpFontImg = document.createElement("img");
 const roofTileTop = document.createElement("img");
@@ -177,9 +184,16 @@ function loadImages() {
 
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
+		{ imgName: uiBorder, theFile: "UI_Border.png"},
 		{ imgName: windowedWall, theFile: "TiledBackgroundWindow.png" },
 		{ imgName: tiledWallScroll, theFile: "TiledBackgroundScroll.png" },
+		{ imgName: wallScrollTiger, theFile: "TiledBackgroundScroll-Tiger.png" },
+		{ imgName: wallScrollCrane, theFile: "TiledBackgroundScroll-Crane.png" },
+		{ imgName: wallScrollSnake, theFile: "TiledBackgroundScroll-Snake.png" },
+		{ imgName: wallScrollLeopard, theFile: "TiledBackgroundScroll-Leopard.png" },
+		{ imgName: wallScrollDragon, theFile: "TiledBackgroundScroll-Dragon.png" },
 		{ imgName: tiledWall, theFile: "TiledBackgroundWall.png" },
+		{ imgName: tempRightWall, theFile: "TempRightWall.png" },
 		{ imgName: roofTileTop, theFile: "RoofBricks.png" },
 		{ imgName: roofTileBottom, theFile: "roof-tile-bottom.png" },
 		{ imgName: roofboardSheet, theFile: "Roof-Frames.png" },

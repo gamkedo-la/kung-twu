@@ -92,7 +92,8 @@ function SettingsScene() {
 	const update = function() {
 		processUserInput();
 		uiProgBarMusicVolume.setValueByScreenPos(mouseX, mouseY);
-		setGlobalMusicVolume(uiProgBarMusicVolume.getValue());
+		// @SoundParam: Music Volume Bus
+		sound.setBGMVolume(uiProgBarMusicVolume.getValue());
 	};
 
 	const processUserInput = function() {
@@ -108,7 +109,8 @@ function SettingsScene() {
 						selectorPositionsIndex += selections.length;
 					}
 					updateSelectorPosition();
-					menuNavigationSound.play();
+					// @SoundHook: menuNavigationSound.play();
+					sound.playSFX(Sounds.SFX_MenuNav);
 					break;			
 				case NAV_ACTION.DOWN:
 				case NAV_ACTION.RIGHT:
@@ -117,7 +119,8 @@ function SettingsScene() {
 						selectorPositionsIndex = 0;
 					}
 					updateSelectorPosition();
-					menuNavigationSound.play();
+					// @SoundHook: menuNavigationSound.play();
+					sound.playSFX(Sounds.SFX_MenuNav);
 					break;
 				case NAV_ACTION.SELECT:
 					if(selectorPositionsIndex === 0) {
@@ -126,7 +129,8 @@ function SettingsScene() {
 						pauseManager.resumeGame(CAUSE.Keypress);
 						SceneState.setState(selections[selectorPositionsIndex]);
 					}
-					menuSelectionSound.play();
+					// @SoundHook: menuSelectionSound.play();
+					sound.playSFX(Sounds.SFX_MenuSelect);
 					break;
 				}
 			}

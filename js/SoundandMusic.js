@@ -47,7 +47,7 @@ let effectsVolume = 1;
 /** @type backgroundMusicClass */
 let currentBackgroundMusic;
 const VOLUME_INCREMENT = 0.05;
- 
+
 function configureGameAudio() {
 	musicVolume = parseFloat(localStorageHelper.getItem(localStorageKey.MusicVolume));
 	effectsVolume = parseFloat(localStorageHelper.getItem(localStorageKey.SFXVolume));
@@ -107,6 +107,7 @@ function setFormat() {
 function backgroundMusicClass() {
 	let currentFileName;
 	this.loopSong = function(filenameWithPath) {
+		throw new Error("Deprecated audio function");
 		currentFileName = filenameWithPath;
 		setFormat(); // calling this to ensure that audioFormat is set before needed
 		
@@ -133,6 +134,7 @@ function backgroundMusicClass() {
 	 * Pauses the currently playing music
 	 */
 	this.pauseSound = function() {
+		throw new Error("Deprecated audio function");
 		if(musicSound != null) {
 			musicSound.pause();
 		}
@@ -140,12 +142,14 @@ function backgroundMusicClass() {
 
 	
 	this.resumeSound = function() {
+		throw new Error("Deprecated audio function");
 		if(musicSound != null) {
 			musicSound.play();
 		}
 	};
 
 	this.startOrStopMusic = function() {
+		throw new Error("Deprecated audio function");
 		if (musicSound.paused) {
 			musicSound.play();
 		} else {
@@ -154,6 +158,7 @@ function backgroundMusicClass() {
 	};
 	
 	this.setVolume = function(volume) {
+		throw new Error("Deprecated audio function");
 		if(isMuted) {
 			musicSound.volume = 0;
 		} else {
@@ -176,6 +181,7 @@ function backgroundMusicClass() {
 	 * @param {number} startingTime The delay (in seconds) before the next track begins (lets current track fade a bit before starting new one)
 	 */
 	this.transitionTo = function(newTrackFilePath, fadeOutTime, startingTime) {
+		throw new Error("Deprecated audio function");
 		const grain = 1000/60; // ms
 		let timeCounter = 0; // tracks the time before starting new track
 		const startingTimeInMs = startingTime * 1000; // converts ahead of time so it doesn't need to every frame
@@ -200,6 +206,7 @@ function backgroundMusicClass() {
 	 * @param {NodeJS.Timeout} intervalID The handle that came out of a fade or transition event in this class
 	 */
 	this.cancelFadeEvent = function(intervalID) {
+		throw new Error("Deprecated audio function");
 		clearInterval(intervalID);
 	};
 
@@ -210,6 +217,7 @@ function backgroundMusicClass() {
 	 * @param {(track: HTMLAudioElement) => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
 	 */
 	this.fadeOut = function(seconds, onTargetReached) {
+		throw new Error("Deprecated audio function");
 		return _fadeTo(0, seconds, (track) => {
 			track.pause();
 			if (onTargetReached) {
@@ -225,6 +233,7 @@ function backgroundMusicClass() {
 	 * @param {(track: HTMLAudioElement) => void} onTargetReached Optional callback to send when the fade has reached its target. Please make sure to bind 'this' ahead of time if necessary.
 	 */
 	this.fadeIn = function(seconds, onTargetReached) {
+		throw new Error("Deprecated audio function");
 		if (musicSound) {
 			return _fadeTo(1, seconds, onTargetReached);
 		} else {
@@ -336,6 +345,7 @@ function SoundOverlapsClass(filenameWithPath) {
  * Sets global audio muting
  */
 function toggleMute() {
+	throw new Error("Deprecated audio function");
 	isMuted = !isMuted;
 	currentBackgroundMusic.setVolume(musicVolume);
 }
@@ -347,6 +357,7 @@ function toggleMute() {
  * @returns void
  */
 function setGlobalEffectsVolume(amount) {
+	throw new Error("Deprecated audio function");
 	effectsVolume = clamp(amount, 0 , 1);
 	localStorageHelper.setItem(localStorageKey.SFXVolume, effectsVolume);
 }
@@ -358,6 +369,7 @@ function setGlobalEffectsVolume(amount) {
  * @returns void
  */
 function setGlobalMusicVolume(amount){
+	throw new Error("Deprecated audio function");
 	musicVolume = clamp(amount, 0, 1);
 	setTrackVolume(musicSound, AudioBus.MUSIC, 1);
 	//currentBackgroundMusic.setVolume(musicVolume);
@@ -368,6 +380,7 @@ function setGlobalMusicVolume(amount){
  * Relatively increases the level of both SFX and Music global volume levels by the VOLUME_INCREMENT constant
  */
 function turnVolumeUp() {
+	throw new Error("Deprecated audio function");
 	setGlobalMusicVolume(musicVolume + VOLUME_INCREMENT);
 	setGlobalEffectsVolume(effectsVolume + VOLUME_INCREMENT);
 }
@@ -376,6 +389,7 @@ function turnVolumeUp() {
  * Relatively decreases the level of both SFX and Music global volume levels by the VOLUME_INCREMENT constant
  */
 function turnVolumeDown() {
+	throw new Error("Deprecated audio function");
 	setGlobalMusicVolume(musicVolume - VOLUME_INCREMENT);
 	setGlobalEffectsVolume(effectsVolume - VOLUME_INCREMENT);
 }
@@ -388,6 +402,7 @@ function turnVolumeDown() {
  * @param {number} volume The value to set the volume to. Defaults to 1 if no value passed.
  */
 function setTrackVolume(htmlAudioElement, bus, volume) {
+	throw new Error("Deprecated audio function");
 	if (DEBUG_SOUND) console.log(_calculateTrackVolume(htmlAudioElement, bus, volume));
 	htmlAudioElement.volume = _calculateTrackVolume(htmlAudioElement, bus, volume);
 }
@@ -400,6 +415,7 @@ function setTrackVolume(htmlAudioElement, bus, volume) {
  * @param {number?} volume The current linear value the volume is at. Defaults to 1 if no value passed
  */
 function getTrackVolume(htmlAudioElement, bus, volume) {
+	throw new Error("Deprecated audio function");
 	return _calculateTrackVolume(htmlAudioElement, bus, volume);
 }
 
@@ -413,6 +429,7 @@ function getTrackVolume(htmlAudioElement, bus, volume) {
  * but merely update the sound volume based on bus volume changes.
  */
 function _calculateTrackVolume(htmlAudioElement, bus, volume) {
+	throw new Error("Deprecated audio function");
 	// Make sure these values are as expected
 	// Remove later for performance
 	Debug.isValid(htmlAudioElement, HTMLAudioElement);
@@ -446,6 +463,7 @@ function _calculateTrackVolume(htmlAudioElement, bus, volume) {
  * @param {string} audioBus Value from AudioBus object
  */
 function getLinearTrackVolumeValue(htmlAudioElement, audioBus) {
+	throw new Error("Deprecated audio function");
 
 	if (isMuted) { // prevent needing to make calculations if muted
 		return 0;
@@ -469,6 +487,7 @@ function getLinearTrackVolumeValue(htmlAudioElement, audioBus) {
  * @param {string} audioBus A value from AudioBus enum object
  */
 function getBusVolume(audioBus) {
+	throw new Error("Deprecated audio function");
 	// Get the bus volume value
 	/** @type number */
 	let busVolume = 1;

@@ -23,6 +23,8 @@ function GameScene() {
 	let defeatedEnemyCount = 0;
 	let bossHasBeenSpawned = false;
 	let bossHealth = ASSIST_DEFAULT.MaxHealth;
+	let enemyMinX;
+	let enemyMaxX;
 	const displayPoints = [];
 
 	this.transitionIn = function() {
@@ -52,6 +54,8 @@ function GameScene() {
 		if (floor === null || currentLevel != levelData.level) {
 			levelData = dataForCurrentLevel();
 			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
+			enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
+			enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
 			initializeFloor(levelData.columnImage, VERTICAL_OFFSET);
 			foregroundDecorations.generate(50,-4000,500,628,636,0,7,floor.getFrontHeight(),floor.getBackHeight());
 			wallDecorations.generate(20,-4000,500,360,380,7,7,floor.getFrontHeight(),floor.getBackHeight());
@@ -62,8 +66,12 @@ function GameScene() {
 			if(currentLevel === 1) initializeWaterfall();
 		}
 
-		if (currentBackgroundMusic.getCurrentTrack() !== gameMusic) {
-			currentBackgroundMusic.loopSong(gameMusic);
+		// @SoundHook:
+		// if (currentBackgroundMusic.getCurrentTrack() !== gameMusic) {
+		// 	currentBackgroundMusic.loopSong(gameMusic);
+		// }
+		if (sound.getCurrentBGMKey() !== Sounds.BGM_GamePlay) {
+			sound.playBGM(Sounds.BGM_GamePlay);
 		}
 		
 	};
@@ -94,6 +102,8 @@ function GameScene() {
 		columnManager = null;
 		lampManager = null;
 		levelData = dataForCurrentLevel();
+		enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
+		enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
 		bossHealth = levelData.bossHealth;
 		player.reset(levelData.playerStart);
 		collisionManager = null;
@@ -142,6 +152,8 @@ function GameScene() {
 		if (DEBUG) {
 			levelData = dataForCurrentLevel();
 			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
+			enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
+			enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
 		}
 
 		const newCameraX = camera.getPosition().x;
@@ -156,8 +168,8 @@ function GameScene() {
 
 
 		if(defeatedEnemyCount >= levelData.totalEnemies) {
-			if(enemies[0].getAIType() != AITYPE.Boss) {
-				if(bossHasBeenSpawned) {
+			if(bossHasBeenSpawned) {
+				if((enemies[0] === undefined) || (enemies[0].getAIType() != AITYPE.Boss)) {
 					if(currentLevel === TOTAL_LEVELS) {
 						SceneState.setState(SCENE.ENDING);
 					} else {
@@ -166,10 +178,10 @@ function GameScene() {
 					}
 
 					return;//don't continue processing this frame
-				} else {
-					spawnBoss(newCameraX);
-					bossHasBeenSpawned = true;
 				}
+			} else {
+				spawnBoss(newCameraX);
+				bossHasBeenSpawned = true;
 			}
 		} else {
 			//Didn't get to the boss yet, keep spawning new enemies
@@ -206,11 +218,15 @@ function GameScene() {
 	const updateEnemies = function(deltaTime) {
 		const playerPos = player.getPosition();
 		for (let i = 0; i < enemies.length; i++) {
-			enemies[i].update(deltaTime, GRAVITY, playerPos, floorMidHeight, i === 0);
+			enemies[i].update(deltaTime, GRAVITY, playerPos, enemyMinX, enemyMaxX, floorMidHeight, i === 0);
 		}
 
 		if(bossHasBeenSpawned) {
-			bossHealth = enemies[0].health;
+			if((enemies[0] !== undefined) && (enemies[0].getAIType() === AITYPE.Boss)) {
+				bossHealth = enemies[0].health;
+			} else {
+				bossHealth = 0;
+			}
 		}
 	};
 
@@ -300,6 +316,14 @@ function GameScene() {
         
 		subfloor.draw();
 		floor.draw();
+
+		canvasContext.drawImage(tempRightWall, 
+			0, 0, 
+			tempRightWall.width, tempRightWall.height, 
+			levelData.cameraMax - tempRightWall.width + canvas.width / 2, floor.getFrontHeight() - tempRightWall.height - 5, 
+			tempRightWall.width, tempRightWall.height);
+		canvasContext.drawImage(wallGradient, levelData.cameraMax - tempRightWall.width + canvas.width / 2, canvas.height - tiledWall.height);
+
 		for (let i = 0; i < enemies.length; i++) {
 			enemies[i].draw();
 		}
@@ -320,47 +344,68 @@ function GameScene() {
 	};
 
 	const drawUI = function(cameraX) {
+		const UI_SCALE = 0.4;
 		//TODO: We need a way to find out how wide these strings will be, should be easy with a custom font
 		const screenLeft = cameraX - canvas.width / 2;
 		const screenRight = cameraX + canvas.width / 2;
-		canvasContext.drawImage(uiScreenBg, screenLeft, 0);
 
+		//Background and Border
+		canvasContext.drawImage(uiScreenBg, screenLeft, 0);
+		canvasContext.drawImage(uiBorder, 0, 0, uiBorder.width, uiBorder.height, screenLeft, 0, uiBorder.width / 2, uiBorder.height / 2);
+
+		//Score
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Score),
 			{x: screenLeft + 40, y: 10}, 
-			TextAlignment.Left, 0.4);
+			TextAlignment.Left, UI_SCALE);
 
-		const scoreStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Score), 0.4);
+		const scoreStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Score), UI_SCALE);
 		let stringScore = score.toString();
 		while (stringScore.length < 9) {
 			stringScore = "0" + stringScore;
 		}
 
-		JPFont.printTextAt(stringScore, {x:screenLeft + scoreStringWidth + 50, y:10}, TextAlignment.Left, 0.4);
+		JPFont.printTextAt(stringScore, {x:screenLeft + scoreStringWidth + 50, y:10}, TextAlignment.Left, UI_SCALE);
 
+		//Player Health
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Health),
-			{x:screenLeft + 40, y: 55}, TextAlignment.Left, 0.4);
+			{x:screenLeft + 40, y: 55}, TextAlignment.Left, UI_SCALE);
 
-		const healthStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Health), 0.4);
+		const healthStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Health), UI_SCALE);
 		const playerHealthWidth = ASSIST_DEFAULT.MaxHealth * player.health / player.getMaxHealth();
 		drawRect(screenLeft + healthStringWidth + 50, 60, playerHealthWidth, 22, Color.Orange);
 		drawBorder(screenLeft + healthStringWidth + 50, 60, ASSIST_DEFAULT.MaxHealth, 22, Color.Orange);
 
+		//Time Counter
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Time),
-			{x:screenLeft + 40, y:95}, TextAlignment.Left, 0.4);
+			{x:screenLeft + 40, y:95}, TextAlignment.Left, UI_SCALE);
 
+		//Level Name
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Level),
-			{x:screenLeft + 40, y: 135}, TextAlignment.Left, 0.4);
+			{x:screenLeft + 40, y: 135}, TextAlignment.Left, UI_SCALE);
 
-		const levelStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Level), 0.4);
+		const levelStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Level), UI_SCALE);
 		const keyForThisLevelName = stringsKeyForLevel(currentLevel);
 
 		JPFont.printTextAt(getLocalizedStringForKey(keyForThisLevelName),
-			{x:screenLeft + levelStringWidth + 50, y:135}, TextAlignment.Left, 0.4);
+			{x:screenLeft + levelStringWidth + 50, y:135}, TextAlignment.Left, UI_SCALE);
 
+		//Rivals Remaining
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Rivals),
+			{x:cameraX, y:10}, TextAlignment.Left, UI_SCALE);
+		const rivalsWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Rivals), UI_SCALE);
+
+		let thisX = cameraX + rivalsWidth + 10;
+		for(let i = 0; i < (levelData.totalEnemies - defeatedEnemyCount); i++) {
+			canvasContext.drawImage(basicEnemyIdle, 0, 0, basicEnemyIdle.width / 2, basicEnemyIdle.height, thisX, 10, basicEnemyIdle.width / 4, basicEnemyIdle.height / 2);
+
+			thisX += (10 + basicEnemyIdle.width / 4);
+		}
+
+		//Boss Health
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Boss),
-			{x:cameraX, y:55}, TextAlignment.Left, 0.4);
+			{x:cameraX, y:55}, TextAlignment.Left, UI_SCALE);
 
-		const bossStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Boss), 0.4);
+		const bossStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Boss), UI_SCALE);
 	
 		drawRect(cameraX + bossStringWidth + 10, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / levelData.bossHealth), 22, levelData.bossMeterColor);
 		drawBorder(cameraX + bossStringWidth + 10, 60, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
@@ -402,7 +447,7 @@ function GameScene() {
 	};
 
 	const InitializeBackWall = function() {
-		wall = new InfiniteWall(canvas.height - tiledWall.height);
+		wall = new InfiniteWall(canvas.height - tiledWall.height, levelData.wallScroll, levelData.cameraMin, levelData.cameraMax);
 	};
 
 	const initializePlayerIfReqd = function() {
@@ -485,29 +530,20 @@ function GameScene() {
 	};
 
 	const spawnEnemy = function(cameraXPos) {
-		const playerPos = player.getPosition();
-		let atLeft = levelData.scrollsLeft;
-		let leftCount = 0;
-		let rightCount = 0;
-
-		for(let enemy of enemies) {
-			if(enemy.getPosition().x < playerPos.x) {
-				leftCount++;
-			} else {
-				rightCount++;
-			}
+		//Position the new enemy at one side of the screen or the other
+		//depending on whether the level scrolls left or right
+		let xPos;
+		if (levelData.scrollsLeft) {
+			xPos = cameraXPos - (1.5 * canvas.width) / 2;
+		} else {
+			xPos = cameraXPos + (1.5 * canvas.width) / 2;
 		}
 
-		if(enemies.length > 0) {
-			if((levelData.scrollsLeft) && (rightCount === 0)) {
-				atLeft = false;
-			} else if((!levelData.scrollsLeft) && (leftCount === 0)) {
-				atLeft = true;
-			}	
-		}
-
-		let xPos = cameraXPos + (1.5 * canvas.width) / 2;
-		if (atLeft) {
+		//If player is at one edge of the level, spawn enemy from
+		//other side so enemy doesn't pop into existence on screen
+		if(xPos < enemyMinX + canvas.width / 2) {
+			xPos = cameraXPos + (1.5 * canvas.width) / 2;
+		} else if(xPos > enemyMaxX - canvas.width / 2) {
 			xPos = cameraXPos - (1.5 * canvas.width) / 2;
 		}
 
@@ -581,6 +617,7 @@ const Level1Data = {
 	},
 	scrollsLeft: true,
 	allowedTime: 999,
+	wallScroll:wallScrollTiger,
 	enemyBelt: BELT.White,
 	bossBelt: BELT.Yellow,
 	bossHealth:100,
@@ -609,6 +646,7 @@ const Level2Data = {
 	},
 	scrollsLeft: false,
 	allowedTime: 899,
+	wallScroll:wallScrollCrane,
 	enemyBelt: BELT.Yellow,
 	bossBelt: BELT.Tan,
 	bossHealth:120,
@@ -637,6 +675,7 @@ const Level3Data = {
 	},
 	scrollsLeft: true,
 	allowedTime: 799,
+	wallScroll:wallScrollSnake,
 	enemyBelt: BELT.Tan,
 	bossBelt: BELT.Brown,
 	bossHealth:140,
@@ -665,6 +704,7 @@ const Level4Data = {
 	},
 	scrollsLeft: false,
 	allowedTime: 699,
+	wallScroll:wallScrollLeopard,
 	enemyBelt: BELT.Brown,
 	bossBelt: BELT.Red,
 	bossHealth:160,
@@ -693,6 +733,7 @@ const Level5Data = {
 	},
 	scrollsLeft: true,
 	allowedTime: 599,
+	wallScroll:wallScrollDragon,
 	enemyBelt: BELT.Red,
 	bossBelt: BELT.Black,
 	bossHealth:400,//this is the final boss, so BUFF!!

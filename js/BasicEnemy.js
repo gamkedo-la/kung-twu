@@ -13,6 +13,12 @@ function BasicEnemy(config) {
 
 	let position = {x:0, y:0};
 	let velocity = {x:0, y:0};
+
+	let baseHealth = localStorageHelper.getInt(localStorageKey.BaseEnemyHealth);
+	if((baseHealth === undefined) || (baseHealth === null) || (isNaN(baseHealth))) {
+		baseHealth = ASSIST_DEFAULT.BaseEnemyHealth;
+		localStorageHelper.setInt(localStorageKey.BaseEnemyHealth, baseHealth);
+	}
 	this.health = null;//initialized when first hit by player
 	this.score = 100;
 	
@@ -96,7 +102,7 @@ function BasicEnemy(config) {
 		}
 	};
 
-	this.update = function(deltaTime, gravity, playerPos, floorHeight, shouldAttack) {
+	this.update = function(deltaTime, gravity, playerPos, minX, maxX, floorHeight, shouldAttack) {
 		const distToPlayer = playerPos.x - position.x;
 		stateManager.update(deltaTime, distToPlayer, shouldAttack);
 		updateForState(stateManager.getCurrentState());
@@ -112,7 +118,7 @@ function BasicEnemy(config) {
 			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame);
 		}
 
-		updatePosition(deltaTime, gravity, floorHeight);
+		updatePosition(deltaTime, minX, maxX, gravity, floorHeight);
 
 		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
 		if(this.attackBody != null) {
@@ -164,10 +170,16 @@ function BasicEnemy(config) {
 		}
 	};
 
-	const updatePosition = function(deltaTime, gravity, floorHeight) {
+	const updatePosition = function(deltaTime, minX, maxX, gravity, floorHeight) {
 		const timeStep = deltaTime / 1000;//deltaTime is in milliseconds
 
 		position.x += velocity.x * timeStep;
+		if(position.x < minX) {
+			position.x = minX;
+		} else if(position.x > maxX) {
+			position.x = maxX;
+		}
+		
 		fallDueToGravity(timeStep, gravity);
 
 		if(velocity.y > 0) {
@@ -183,7 +195,7 @@ function BasicEnemy(config) {
 
 	const respondToKnockBack = function() {
 
-        if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
+		if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
 
 		if(stateManager.getIsFacingLeft()) {
 			velocity.x -= KNOCK_BACK_SPEED / 25;
@@ -214,7 +226,7 @@ function BasicEnemy(config) {
 	const jump = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.y = JUMP_SPEED;
-			//enemyJumpSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO: enemyJumpSound.play();//Is there going to be one of these?
 		}
 	};
 
@@ -222,7 +234,7 @@ function BasicEnemy(config) {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Crouching now");
 			velocity.x = 0;
-			//enemyCrouchSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO enemyCrouchSound.play();//Is there going to be one of these?
 		}
 	};
 
@@ -230,14 +242,14 @@ function BasicEnemy(config) {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Blocking now");
 			velocity.x = 0;
-			//enemyBlockSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO enemyBlockSound.play();//Is there going to be one of these?
 		}
 	};
 
 	const dash = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is dashing now");
-			//enemyDashSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO enemyDashSound.play();//Is there going to be one of these?
 		}
 	};
 
@@ -248,7 +260,7 @@ function BasicEnemy(config) {
 	const punch = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.x = 0;
-			//enemyPunchSound.play();//Is there going to be one of these?
+			// @SoundHook:TODO enemyPunchSound.play();//Is there going to be one of these?
 			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -256,33 +268,33 @@ function BasicEnemy(config) {
 	const kick = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.x = 0;
-            //enemyKickSound.play();//Is there going to be one of these?
-            if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
+			// @SoundHook:TODO enemyKickSound.play();//Is there going to be one of these?
+			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
 		}
 	};
 
 	const j_Kick = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Jump Kicking now");
-            //enemyKickSound.play();//Is there going to be one of these?
-            if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
+			// @SoundHook:TODO enemyKickSound.play();//Is there going to be one of these?
+			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
 		}
 	};
 
 	const h_kick = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Helicopter Kicking now");
-            //enemyKickSound.play();//Is there going to be one of these?
-            if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
+			// @SoundHook:TODO enemyKickSound.play();//Is there going to be one of these?
+			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
 		}
 	};
 
 	const sweep = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Sweeping now");
-			//enemySweepSound.play();//Is there going to be one of these?
-            velocity.x = 0;
-            if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
+			// @SoundHook:TODO enemySweepSound.play();//Is there going to be one of these?
+			velocity.x = 0;
+			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
 	};
 
@@ -318,9 +330,11 @@ function BasicEnemy(config) {
 		}
 
 		if(this.health <= 0) {
-			basicEnemyDefeated.play();
+			// @SoundHook basicEnemyDefeated.play();
+			sound.playSFX(Sounds.SFX_LowPain);
 		} else {
-			basicEnemyHitSound.play();
+			// @SoundHook basicEnemyHitSound.play();
+			sound.playSFX(Sounds.SFX_EnemyHit);
 		}
 	};
 
@@ -330,12 +344,12 @@ function BasicEnemy(config) {
 
 	const healthForBelt = function(belt) {
 		switch(belt) {
-		case BELT.White: return 20;//This is 1+ White belt kick from player
-		case BELT.Yellow: return 25;//this is 1+ Yellow belt kick from player
-		case BELT.Tan: return 30;//this is 1+ ten belt kick from player
-		case BELT.Brown: return 35;//this is 1+ Brown belt kick from player
-		case BELT.Red: return 40;//this is 1+ Red belt kick from player
-		case BELT.Black: return 45;//this is 1+ Black belt kick from player
+		case BELT.White: return (baseHealth);//This is 1+ White belt kick from player
+		case BELT.Yellow: return (1.25 * baseHealth);//this is 1+ Yellow belt kick from player
+		case BELT.Tan: return (1.5 * baseHealth);//this is 1+ ten belt kick from player
+		case BELT.Brown: return (1.75 * baseHealth);//this is 1+ Brown belt kick from player
+		case BELT.Red: return (2 * baseHealth);//this is 1+ Red belt kick from player
+		case BELT.Black: return (2.5 * baseHealth);//this is 1+ Black belt kick from player
 		}
 	};
 }

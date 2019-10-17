@@ -64,7 +64,11 @@ const localStorageKey = {
 	HighScore:"kungTwu-HighScore",
 	PlayerMaxHealth:"kungTwu-PlayerMaxHealth",
 	StartingBelt:"kungTwu-StartingBelt",
-	StartingLevel:"kungTwu-StartingLevel"
+	StartingLevel:"kungTwu-StartingLevel",
+	BaseEnemyHealth:"kungTwu-BaseEnemyHealth",
+	PlayerBaseDamage:"kungTwu-PlayerBaseDamage",
+	InvincibleDuration:"kungTwu-InvincibleDuration",
+	KnockbackSpeed:"kungTwu-KnockbackSpeed"
 };
 
 //----------State Management----------//
@@ -120,7 +124,11 @@ const BELT = {
 const ASSIST_DEFAULT = {
 	MaxHealth:100,
 	StartBelt:BELT.White,
-	StartLevel:1
+	StartLevel:1,
+	BaseEnemyHealth:20,
+	PlayerBaseDamage:10,
+	InvincibleDuration:1000,
+	KnockbackSpeed:800
 };
 
 //------------Asset Management----------//
@@ -159,15 +167,6 @@ const ENTITY_TYPE = {
 
 //---------------Audio------------------//
 let isMuted = false;
-
-/**
- * Enum-like, defines the sub-audio busses in the game
- */
-const AudioBus = {
-	SFX: "SFX",
-	MUSIC: "MUSIC",
-	NONE: "NONE"
-}; Object.freeze(AudioBus);
 
 //------------Text------------------//
 const TextAlignment = {

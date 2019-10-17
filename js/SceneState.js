@@ -75,13 +75,22 @@ const SceneState = {
 	},
 	control: function(newKeyEvent, pressed) {
 		if((newKeyEvent === ALIAS.VOLUME_UP) && (!pressed)) {
-			turnVolumeUp();
+
+			// @SoundParam: Master Volume Increase
+			sound.setMasterVolume(clamp(sound.getMasterVolume() + .1, 0, 1));
+
 			return true;
 		} else if((newKeyEvent === ALIAS.VOLUME_DOWN) && (!pressed)) {
-			turnVolumeDown();
+
+			// @SoundParam: Master Volume Decrease
+			sound.setMasterVolume(clamp(sound.getMasterVolume() - .1, 0, 1));
+
 			return true;
 		} else if((newKeyEvent === ALIAS.MUTE) && (!pressed)) {
-			toggleMute();
+
+			// @SoundParam: Toggle Mute
+			sound.setMuted(!sound.getIsMuted());
+			
 		} else if((DEBUG) && (newKeyEvent === ALIAS.LEVEL_UP) && (!pressed)) {
 			currentLevel++;
 			if(currentLevel > 5) currentLevel = 1;

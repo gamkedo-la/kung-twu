@@ -1,9 +1,11 @@
 /**
  * This class represents a single HTMLAudioElement with extra metadata. It will be managed by SoundOverlap class, and probably not interacted with directly by users.
+ * @param {SoundSprite} soundSprite
  * @param {string} filename Filename + extension. Please get the compatible extension from AudioEngine.getSoundFormat
  */
-function SoundInstance(filename) {
-	
+function SoundInstance(soundSprite, filename) {
+	this.sprite = soundSprite;
+
 	/**
 	 * The inner HTMLAudioElement
 	 * @type {HTMLAudioElement}
@@ -11,10 +13,42 @@ function SoundInstance(filename) {
 	const _element = new Audio(filename);
 
 	/**
-	 * Current handle to a NodeJS.Timeout
-	 * @type {number | null}
+	 * Current handles to a NodeJS.Timeout
+	 * @type {number[]}
 	 */
-	this._fade = null;
+	const _fades = [];
+
+	this.setFade = function(fade) {
+		if (_fades.indexOf(fade) === -1) {
+			_fades.push(fade);
+		}
+	};
+
+	/**
+	 * Cancels a specific fade on this SoundInstance. (Currently not used, but may become necessary while bug testing)
+	 */
+	this.cancelFade = function(fade) {
+		const index = _fades.indexOf(fade);
+		if (index !== -1) {
+			_fades.splice(index, 1);
+		}
+	};
+
+	/**
+	 * Sets the looping status of this instance
+	 * @param {boolean} isLoop
+	 */
+	this.setLoop = function(isLoop) {
+		_element.loop = isLoop;
+	};
+
+	/**
+	 * Sets the looping status of this instance
+	 * @param {boolean} isLoop
+	 */
+	this.getLoop = function() {
+		return _element.loop;
+	};
 
 	/**
 	 * The 'dial' the api turns for setting volume. Under the hood it calculates bus volume values.
@@ -32,15 +66,16 @@ function SoundInstance(filename) {
 	this.filename = filename;
 
 	this.getIsFading = function() {
-		(_fade === null) ? false : true;
+		(_fades.length > 0) ? true : false;
 	};
 
 	/**
-	 * Cancels the current fade if there is one
+	 * Cancels the current fade if there are any
 	 */
-	this.cancelFade = function() {
-		if (_fade !== null && _fade != undefined) {
-			clearInterval(_fade);
+	this.cancelFadeAll = function() {
+		while (_fades.length > 0) {
+			const fade = _fades.shift();
+			clearInterval(fade);
 		}
 	};
 
@@ -57,10 +92,14 @@ function SoundInstance(filename) {
 	};
 
 	/**
-	 * Make sure that the overlaps class updates volume after a call to this fn
+	 * Make sure that the sound sprite updates volume after a call to this fn
 	 */
 	this.setVolume = function(vol) {
-		_volume = clamp(vol, 0, 1);
+		if (typeof vol === "number" && !Number.isNaN(vol)) {
+			_volume = clamp(vol, 0, 1);
+		} else {
+			throw new Error("Trying to set volume to a value that is not a number!");
+		}
 	};
 
 	this._setInnerVolume = function(vol) {
@@ -78,7 +117,10 @@ function SoundInstance(filename) {
 	 * Start playing the audio
 	 */
 	this.play = function() {
-		_element.play();
+		_element.play()
+			.catch(() => {
+				console.log("For your enjoyment of the web, the game has prevented sounds from playing.\nPlease click or tap anywhere on the screen to allow sound.");
+			});
 	};
 
 	/**
@@ -94,5 +136,13 @@ function SoundInstance(filename) {
 	 */
 	this.getCurrentTime = function() {
 		return _element.currentTime;
+	};
+
+	/**
+	 * Checks if instance of a SoundSprite
+	 * @param {SoundSprite} soundSprite
+	 */
+	this.isInstanceOf = function(soundSprite) {
+		return (soundSprite === this.sprite);
 	};
 }
