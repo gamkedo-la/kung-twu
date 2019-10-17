@@ -165,6 +165,10 @@ function PowerUpScene() {
 	};
 
 	const drawMessage = function() {
-		colorText(message, canvas.width / 2, MESSAGE_Y_POS, Color.White, Fonts.MainTitle, TextAlignment.Center);
+		const LINE_HEIGHT = JPFont.getCharacterHeight(0.35);
+		let lines = message.split("\n");
+		for (let num=0; num<lines.length; num++) {
+			JPFont.printTextAt(lines[num], {x:canvas.width / 2, y:MESSAGE_Y_POS + ((num - 1)*LINE_HEIGHT)}, TextAlignment.Center, 0.3);
+		}
 	};
 }
