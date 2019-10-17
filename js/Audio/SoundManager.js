@@ -1,5 +1,7 @@
 /**
  * SoundManager will interface with the SoundEngine to keep a simple, yet customizable API for the end user.
+ * It currently owns its own SoundEngine instance, which it initializes on its own.
+ * The user can interact directly with the engine by calling _getEngine().
  */
 function SoundManager() {
 
@@ -7,15 +9,20 @@ function SoundManager() {
 	 * @type SoundSprite
 	 */
 	let _currentMusic = null;
+
 	/**
 	 * Internal sfx bus volume value
 	 */
-	let _sfxBusVolume = 1; //localStorageHelper.getFloat(localStorageKey.SFXVolume) || 1;
+	let _sfxBusVolume = 1;
+
 	/**
 	 * Internal bgm bus volume value
 	 */
-	let _bgmBusVolume = 1; //localStorageHelper.getFloat(localStorageKey.MusicVolume) || 1;
-	
+	let _bgmBusVolume = 1;
+
+	// Local function to get bus volumes from localStorageHelper
+	_setBusVolumesFromLocalStorage();
+
 	/**
 	 * Private core sound engine to hide unnecessary details.
 	 * If you want to handle it manually, please use this._getEngine() to retrieve it.
@@ -77,14 +84,28 @@ function SoundManager() {
 	};
 
 	/**
+	 * Gets the interaction status
+	 */
+	this.didUserInteract = function() {
+		return _engine.getDidInteract();
+	};
+
+	/**
 	 * Set the BGM bus volume of the SoundEngine
 	 * @param {number} vol The volume to set the bus to. (Range: 0-1)
 	 */
 	this.setBGMVolume = function(vol) {
-		_bgmBusVolume = clamp(vol, 0, 1);
+		Debug.isValid(vol, "number"); // type check to protect local storage and bus val
+
+		const newVol = clamp(vol, 0, 1);
+		_bgmBusVolume = newVol;
 		_engine.setBusVolume(AudioBus.MUSIC, _bgmBusVolume);
 		if (_currentMusic !== null && _currentMusic !== undefined) { // live adjusts only currently playing music. All subsequently played sounds will be affected
 			_currentMusic.setVolume();
+		}
+		// update local storage value
+		if (localStorage && localStorageHelper) {
+			localStorageHelper.setFloat(localStorageKey.MusicVolume, newVol);
 		}
 	};
 	this.setBGMVolume(_bgmBusVolume); // initilize bgm volume
@@ -101,7 +122,14 @@ function SoundManager() {
 	 * @param {number} vol The volume to set the bus to. (Range: 0-1)
 	 */
 	this.setSFXVolume = function(vol) {
-		_sfxBusVolume = clamp(vol, 0, 1);
+		Debug.isValid(vol, "number"); // type check to protect local storage and bus val
+
+		const newVol = clamp(vol, 0, 1);
+		_sfxBusVolume = newVol;
+		// update local storage value
+		if (localStorage && localStorageHelper) {
+			localStorageHelper.setFloat(localStorageKey.SFXVolume, newVol);
+		}
 		_engine.setBusVolume(AudioBus.SFX, _sfxBusVolume);
 	};
 	this.setSFXVolume(_sfxBusVolume); // initialize sfx volume
@@ -201,4 +229,19 @@ function SoundManager() {
 		_engine.stopAllSounds(allowFadeOut);
 		_currentMusic = null; // clears current music reference for fresh start
 	};
+
+
+	// ==== HELPERS ==== //
+	function _setBusVolumesFromLocalStorage() {
+		if (localStorage && localStorageHelper) {
+			const sfxVol = localStorageHelper.getFloat(localStorageKey.SFXVolume);
+			const bgmVol = localStorageHelper.getFloat(localStorageKey.MusicVolume);
+			if (sfxVol !== null && sfxVol !== undefined && typeof sfxVol === "number" && !isNaN(sfxVol)) {
+				_sfxBusVolume = sfxVol;
+			}
+			if (bgmVol !== null && bgmVol !== undefined && typeof bgmVol === "number" && !isNaN(bgmVol)) {
+				_bgmBusVolume = bgmVol;
+			}
+		}
+	}
 }
