@@ -46,8 +46,8 @@ window.onload = function() {
 	// Set the UIProgressBar configuration defaults for use with creating a new UIProgressBar.
 	UIProgressBarDefaults = new IProgressBarConfig();
 	
-	configureGameAudio();
-	loadAudio();
+	// Removed old audio init functions that used to be here -Aaron
+
 	loadGamkedoLogo();
 };
 
