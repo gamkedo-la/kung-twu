@@ -92,7 +92,8 @@ function SettingsScene() {
 	const update = function() {
 		processUserInput();
 		uiProgBarMusicVolume.setValueByScreenPos(mouseX, mouseY);
-		setGlobalMusicVolume(uiProgBarMusicVolume.getValue());
+		// @SoundParam: Music Volume Bus
+		sound.setBGMVolume(uiProgBarMusicVolume.getValue());
 	};
 
 	const processUserInput = function() {
