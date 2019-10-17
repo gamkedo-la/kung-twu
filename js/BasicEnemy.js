@@ -4,7 +4,7 @@ function BasicEnemy(config) {
 	const JUMP_SPEED = -600;
 	const KNOCK_BACK_SPEED = 800;
 
-	const BASE_DAMAGE = 5;
+	let BASE_DAMAGE = null;
 	const DELTA_DAMAGE = 5;
 
 	let scale = 2;
@@ -66,6 +66,22 @@ function BasicEnemy(config) {
 	};
 
 	this.getCurrentDamage = function() {
+		if(BASE_DAMAGE === null) {
+			if(this.getAIType() === AITYPE.Boss) {
+				BASE_DAMAGE = localStorageHelper.getInt(localStorageKey.BossStrength);
+				if((BASE_DAMAGE === undefined) || (BASE_DAMAGE === null) || (isNaN(BASE_DAMAGE))) {
+					BASE_DAMAGE = ASSIST_DEFAULT.BossBaseStrength;
+					localStorageHelper.setInt(localStorageKey.BossStrength, BASE_DAMAGE);
+				}
+			} else {
+				BASE_DAMAGE = localStorageHelper.getInt(localStorageKey.EnemyStrength);
+				if((BASE_DAMAGE === undefined) || (BASE_DAMAGE === null) || (isNaN(BASE_DAMAGE))) {
+					BASE_DAMAGE = ASSIST_DEFAULT.EnemyBaseStrength;
+					localStorageHelper.setInt(localStorageKey.EnemyStrength, BASE_DAMAGE);
+				}	
+			}
+		}
+
 		return (damageForState() + stateManager.getCurrentBelt() * DELTA_DAMAGE);
 	};
 

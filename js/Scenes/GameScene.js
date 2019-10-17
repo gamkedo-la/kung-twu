@@ -23,6 +23,7 @@ function GameScene() {
 	let defeatedEnemyCount = 0;
 	let bossHasBeenSpawned = false;
 	let bossHealth = ASSIST_DEFAULT.MaxHealth;
+	let bossMaxHealth = null;
 	let enemyMinX;
 	let enemyMaxX;
 	const displayPoints = [];
@@ -105,6 +106,7 @@ function GameScene() {
 		enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
 		enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
 		bossHealth = levelData.bossHealth;
+		bossMaxHealth = null;
 		player.reset(levelData.playerStart);
 		collisionManager = null;
 		subfloor = null;
@@ -407,7 +409,11 @@ function GameScene() {
 
 		const bossStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Boss), UI_SCALE);
 	
-		drawRect(cameraX + bossStringWidth + 10, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / levelData.bossHealth), 22, levelData.bossMeterColor);
+		if(bossMaxHealth === null) {
+			drawRect(cameraX + bossStringWidth + 10, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / levelData.bossHealth), 22, levelData.bossMeterColor);
+		} else {
+			drawRect(cameraX + bossStringWidth + 10, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / bossMaxHealth), 22, levelData.bossMeterColor);
+		}
 		drawBorder(cameraX + bossStringWidth + 10, 60, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
 	};
 
@@ -591,13 +597,21 @@ function GameScene() {
 			xPos = cameraXPos - (1.5 * canvas.width) / 2;
 		}
 
+		let baseHealth = localStorageHelper.getInt(localStorageKey.BossHealth);
+		if((baseHealth === undefined) || (baseHealth === null) || (isNaN(baseHealth))) {
+			baseHealth = ASSIST_DEFAULT.BossBaseHealth;
+			localStorageHelper.setInt(localStorageKey.BossHealth,  baseHealth);
+		}
+
 		const config = {
 			x: xPos,
 			y: (3 * canvas.height) / 5,
 			belt:levelData.bossBelt,
 			aiType: AITYPE.Boss,
-			health:levelData.bossHealth
+			health:(baseHealth + levelData.bossHealth)
 		};
+
+		bossMaxHealth = baseHealth + levelData.bossHealth;
 
 		const aBoss = new BasicEnemy(config);
 		collisionManager.addEntity(aBoss);

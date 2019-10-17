@@ -130,6 +130,16 @@ function AssistScene() {
 		}
 		slider.startingBelt = new UISlider(COL1_X, ROW2_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.StartBelt), 0, getLocalizedStringForKey(STRINGS_KEY.BeltWhite), 5, getLocalizedStringForKey(STRINGS_KEY.BeltBlack), startBelt, 5, true, Color.White);
 
+		//Basic Enemy Strength
+		const eStrengthMin = 1;
+		const eStrengthMax = 50;
+		let baseEnemyStrength = localStorageHelper.getInt(localStorageKey.EnemyStrength);
+		if((baseEnemyStrength === undefined) || (baseEnemyStrength === null) || (isNaN(baseEnemyStrength))) {
+			baseEnemyStrength = ASSIST_DEFAULT.EnemyBaseStrength;
+			localStorageHelper.setInt(localStorageKey.EnemyStrength, baseEnemyStrength);
+		}
+		slider.enemyStrength = new UISlider(COL2_X, ROW2_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.EnemyStrength), eStrengthMin, eStrengthMin.toString(), eStrengthMax, eStrengthMax.toString(), baseEnemyStrength, 10, true, Color.Brown);
+
 		/*Third Row of Sliders*/
 		//Player Base Damage
 		const pDamageMin = 1;
@@ -141,6 +151,16 @@ function AssistScene() {
 		}
 		slider.playerDamage = new UISlider(COL1_X, ROW3_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.PlayerDamage), pDamageMin, pDamageMin.toString(), pDamageMax, pDamageMax.toString(), pBaseDamage, 49, true, Color.Green);
 		
+		//Boss Health
+		const bHealthMin = 1;
+		const bHealthMax = 400;
+		let initialBHealth = localStorageHelper.getInt(localStorageKey.BossHealth);
+		if((initialBHealth === undefined) || (initialBHealth === null) || (isNaN(initialBHealth))) {
+			initialBHealth = ASSIST_DEFAULT.BossBaseHealth;
+			localStorageHelper.setInt(localStorageKey.BossHealth, initialBHealth);
+		}
+		slider.bossHealth = new UISlider(COL2_X, ROW3_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.BossHealth), bHealthMin, bHealthMin.toString(), bHealthMax, bHealthMax.toString(), initialBHealth, 40, true, Color.Yellow);
+
 		/*Fourth Row of Sliders*/
 		//Player Invincibility
 		const invDurationMin = 0;
@@ -151,6 +171,15 @@ function AssistScene() {
 			localStorageHelper.setInt(localStorageKey.InvincibleDuration, baseInvDuration);
 		}
 		slider.invincibleDuration = new UISlider(COL1_X, ROW4_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.Invicibility), invDurationMin, invDurationMin.toString(), invDurationMax, invDurationMax.toString(), baseInvDuration, 50, true, Color.White);
+
+		const bStrengthMin = 1;
+		const bStrengthMax = 100;
+		let baseBStrength = localStorageHelper.getInt(localStorageKey.BossStrength);
+		if((baseBStrength === undefined) || (baseBStrength === null) || (isNaN(baseBStrength))) {
+			baseBStrength = ASSIST_DEFAULT.BossBaseStrength;
+			localStorageHelper.setInt(localStorageKey.BossStrength, baseBStrength);
+		}
+		slider.bossStrength = new UISlider(COL2_X, ROW4_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.BossStrength), bStrengthMin, bStrengthMin.toString(), bStrengthMax, bStrengthMax.toString(), baseBStrength, 20, true, Color.Red);
 
 		/*Fifth Row of Sliders*/
 		//Player Knockback
@@ -264,6 +293,15 @@ function AssistScene() {
 			break;
 		case slider.knockback:
 			localStorageHelper.setInt(localStorageKey.KnockbackSpeed, aSlider.getValue());
+			break;
+		case slider.enemyStrength:
+			localStorageHelper.setInt(localStorageKey.EnemyStrength, aSlider.getValue());
+			break;
+		case slider.bossHealth:
+			localStorageHelper.setInt(localStorageKey.BossHealth, aSlider.getValue());
+			break;
+		case slider.bossStrength:
+			localStorageHelper.setInt(localStorageKey.BossStrength, aSlider.getValue());
 			break;
 		}
 	};

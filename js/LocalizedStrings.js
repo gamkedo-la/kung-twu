@@ -75,7 +75,10 @@ const STRINGS_KEY = {
 	RivalHealth:"rivalHealth",
 	PlayerDamage:"playerDamage",
 	Invicibility:"invincibility",
-	Knockback:"knockback"
+	Knockback:"knockback",
+	EnemyStrength:"enemyStrength",
+	BossStrength:"bossStrength",
+	BossHealth:"bossHealth"
 };
 
 function getLocalizedStringForKey(key) {
@@ -146,7 +149,10 @@ const userStrings = {
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
 		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
 		[STRINGS_KEY.Invicibility]:"Invincible Time",
-		[STRINGS_KEY.Knockback]:"Knockback"
+		[STRINGS_KEY.Knockback]:"Knockback",
+		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
+		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
+		[STRINGS_KEY.BossHealth]:"Shīfù Health"
 	},
     
 	Spanish: {
@@ -214,7 +220,10 @@ const userStrings = {
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
 		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
 		[STRINGS_KEY.Invicibility]:"Invincible Time",
-		[STRINGS_KEY.Knockback]:"Knockback"
+		[STRINGS_KEY.Knockback]:"Knockback",
+		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
+		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
+		[STRINGS_KEY.BossHealth]:"Shīfù Health"
 	},
 
 	Japanese: {
@@ -283,7 +292,10 @@ const userStrings = {
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
 		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
 		[STRINGS_KEY.Invicibility]:"Invincible Time",
-		[STRINGS_KEY.Knockback]:"Knockback"
+		[STRINGS_KEY.Knockback]:"Knockback",
+		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
+		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
+		[STRINGS_KEY.BossHealth]:"Shīfù Health"
 	},
 
 	French: {
@@ -351,7 +363,10 @@ const userStrings = {
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
 		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
 		[STRINGS_KEY.Invicibility]:"Invincible Time",
-		[STRINGS_KEY.Knockback]:"Knockback"
+		[STRINGS_KEY.Knockback]:"Knockback",
+		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
+		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
+		[STRINGS_KEY.BossHealth]:"Shīfù Health"
 	},
 
 	Russian: {
@@ -419,7 +434,10 @@ const userStrings = {
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
 		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
 		[STRINGS_KEY.Invicibility]:"Invincible Time",
-		[STRINGS_KEY.Knockback]:"Knockback"
+		[STRINGS_KEY.Knockback]:"Knockback",
+		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
+		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
+		[STRINGS_KEY.BossHealth]:"Shīfù Health"
 	},
 	
 	Polish: {
@@ -486,6 +504,9 @@ const userStrings = {
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
 		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
 		[STRINGS_KEY.Invicibility]:"Invincible Time",
-		[STRINGS_KEY.Knockback]:"Knockback"
+		[STRINGS_KEY.Knockback]:"Knockback",
+		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
+		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
+		[STRINGS_KEY.BossHealth]:"Shīfù Health"
 	}
 };

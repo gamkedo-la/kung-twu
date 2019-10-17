@@ -68,7 +68,10 @@ const localStorageKey = {
 	BaseEnemyHealth:"kungTwu-BaseEnemyHealth",
 	PlayerBaseDamage:"kungTwu-PlayerBaseDamage",
 	InvincibleDuration:"kungTwu-InvincibleDuration",
-	KnockbackSpeed:"kungTwu-KnockbackSpeed"
+	KnockbackSpeed:"kungTwu-KnockbackSpeed",
+	EnemyStrength:"kungTwu-EnemyStrength",
+	BossStrength:"kungTwu-BossStrength",
+	BossHealth:"kungTwu-BossHealth"
 };
 
 //----------State Management----------//
@@ -126,6 +129,9 @@ const ASSIST_DEFAULT = {
 	StartBelt:BELT.White,
 	StartLevel:1,
 	BaseEnemyHealth:20,
+	EnemyBaseStrength:5,
+	BossBaseHealth:100,
+	BossBaseStrength:20,
 	PlayerBaseDamage:10,
 	InvincibleDuration:1000,
 	KnockbackSpeed:800
