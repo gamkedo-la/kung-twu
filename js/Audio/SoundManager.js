@@ -62,6 +62,21 @@ function SoundManager() {
 	};
 
 	/**
+	 * Sets the mute status of the sound engine
+	 * @param {boolean} isMuted
+	 */
+	this.setMuted = function(isMuted) {
+		_engine.setMuted(isMuted);
+	};
+
+	/**
+	 * Gets the muted status of the sound engine as a bool
+	 */
+	this.getIsMuted = function() {
+		return _engine.getIsMuted();
+	};
+
+	/**
 	 * Set the BGM bus volume of the SoundEngine
 	 * @param {number} vol The volume to set the bus to. (Range: 0-1)
 	 */
