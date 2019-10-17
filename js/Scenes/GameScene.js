@@ -165,8 +165,8 @@ function GameScene() {
 
 
 		if(defeatedEnemyCount >= levelData.totalEnemies) {
-			if((enemies[0] !== undefined) && (enemies[0].getAIType() != AITYPE.Boss)) {
-				if(bossHasBeenSpawned) {
+			if(bossHasBeenSpawned) {
+				if((enemies[0] === undefined) || (enemies[0].getAIType() != AITYPE.Boss)) {
 					if(currentLevel === TOTAL_LEVELS) {
 						SceneState.setState(SCENE.ENDING);
 					} else {
@@ -175,10 +175,10 @@ function GameScene() {
 					}
 
 					return;//don't continue processing this frame
-				} else {
-					spawnBoss(newCameraX);
-					bossHasBeenSpawned = true;
 				}
+			} else {
+				spawnBoss(newCameraX);
+				bossHasBeenSpawned = true;
 			}
 		} else {
 			//Didn't get to the boss yet, keep spawning new enemies
@@ -219,7 +219,11 @@ function GameScene() {
 		}
 
 		if(bossHasBeenSpawned) {
-			bossHealth = enemies[0].health;
+			if((enemies[0] !== undefined) && (enemies[0].getAIType() === AITYPE.Boss)) {
+				bossHealth = enemies[0].health;
+			} else {
+				bossHealth = 0;
+			}
 		}
 	};
 
