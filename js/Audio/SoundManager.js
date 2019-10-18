@@ -88,7 +88,7 @@ function SoundManager() {
 	 * @param {number} iterations
 	 * @param {number} intervalMs
 	 */
-	this.playEcho = function (key, volRange = [1, 0], speedRange = [1, .1], iterations = 5, intervalMs = 80) {
+	this.playEcho = function (key, volRange = [1, 0], speedRange = [1, .5], iterations = 3, intervalMs = 150) {
 		_engine.playEcho(_engine._getSound(key), volRange, speedRange, iterations, intervalMs);
 	};
 

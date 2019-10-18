@@ -68,7 +68,7 @@ const soundSpriteConfigs = [
 		baseVolume: .3,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -77,7 +77,7 @@ const soundSpriteConfigs = [
 		baseVolume: .25,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -86,7 +86,7 @@ const soundSpriteConfigs = [
 		baseVolume: .6,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -95,7 +95,7 @@ const soundSpriteConfigs = [
 		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -104,7 +104,7 @@ const soundSpriteConfigs = [
 		baseVolume: .6,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -113,7 +113,7 @@ const soundSpriteConfigs = [
 		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -122,7 +122,7 @@ const soundSpriteConfigs = [
 		baseVolume: .8,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 5,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -131,7 +131,7 @@ const soundSpriteConfigs = [
 		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 4,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -140,7 +140,7 @@ const soundSpriteConfigs = [
 		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -149,7 +149,7 @@ const soundSpriteConfigs = [
 		baseVolume: .45,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -158,7 +158,7 @@ const soundSpriteConfigs = [
 		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -167,7 +167,7 @@ const soundSpriteConfigs = [
 		baseVolume: .9,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -176,7 +176,7 @@ const soundSpriteConfigs = [
 		baseVolume: .325,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -185,7 +185,7 @@ const soundSpriteConfigs = [
 		baseVolume: .425,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -194,7 +194,7 @@ const soundSpriteConfigs = [
 		baseVolume: .3,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 20,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -203,7 +203,7 @@ const soundSpriteConfigs = [
 		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -212,7 +212,7 @@ const soundSpriteConfigs = [
 		baseVolume: 1,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{
@@ -221,7 +221,7 @@ const soundSpriteConfigs = [
 		baseVolume: .65,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 3,
 		fadeOutTime: 0
 	},
 	{

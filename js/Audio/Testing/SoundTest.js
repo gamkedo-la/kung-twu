@@ -39,6 +39,7 @@ const soundList_ = document.getElementById("soundList");
 const soundTestSlider_ = document.getElementById("soundTestSlider");
 const soundTestPlay_ = document.getElementById("soundTestPlay");
 const soundTestStop_ = document.getElementById("soundTestStop");
+const soundTestEcho_ = document.getElementById("soundTestEcho");
 const soundTestSpeed_ = document.getElementById("soundTestSpeed");
 const soundTestReversed_ = document.getElementById("soundTestReversed");
 const soundTestVolDisplay_ = document.getElementById("soundTestVolDisplay");
@@ -53,8 +54,14 @@ for (let i = 0; i < keys_.length; i++) {
 soundTestPlay_.addEventListener("click", () => {
 	//sound.stopAllSounds();
 	const key = soundList_.value;
-	const snd = sound.playSFX(key, 1, parseFloat(soundTestSpeed_.value));
-	snd._setBaseVolume(parseFloat(soundTestSlider_.value));
+	const snd = sound._getEngine()._getSound(key);
+	if (soundTestEcho_.checked) {
+		sound.playEcho(key);
+	} else {
+		sound.playSFX(key, 1, parseFloat(soundTestSpeed_.value));
+		snd._setBaseVolume(parseFloat(soundTestSlider_.value));
+	}
+
 });
 
 soundTestStop_.addEventListener("click", () => {
@@ -80,7 +87,6 @@ soundTestSlider_.addEventListener("input", () => {
 	const snd = sound._getEngine()._getSound(soundList_.value);
 	snd._setBaseVolume(parseFloat(soundTestSlider_.value));
 	snd.setVolume();
-
 });
 
 
@@ -152,7 +158,7 @@ sfxRandomSpdRangeMax_.addEventListener("input", ()=>{
 	randomizer.setSpeedRandMax(val);
 });
 sfxRandomAvoidLast_.addEventListener("input", ()=>{
-	const val = parseInt(sfxRandomSpdRangeMax_.value);
+	const val = parseInt(sfxRandomAvoidLast_.value);
 	randomizer.setDontPlayLastNum(val);
 });
 

@@ -162,7 +162,7 @@ function SoundEngine(setDidInteractWorkaround = false) {
 		let currentSpd = speedRange[0];
 		let currentIterations = 0;
 		soundSprite.play(currentVol, currentSpd);
-		const i = setInterval((interval) => {
+		const i = setInterval(() => {
 			currentVol += volIncrement;
 			currentSpd += speedIncrement;
 			currentIterations += 1;
