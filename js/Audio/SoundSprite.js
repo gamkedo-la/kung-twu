@@ -169,7 +169,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	};
 	this.setDefaultSpeed(1);
 
-	getDefaultSpeed = function() {
+	this.getDefaultSpeed = function() {
 		return this.defaultSpeed;
 	};
 
