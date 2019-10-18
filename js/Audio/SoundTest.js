@@ -39,6 +39,8 @@ const soundList_ = document.getElementById("soundList");
 const soundTestSlider_ = document.getElementById("soundTestSlider");
 const soundTestPlay_ = document.getElementById("soundTestPlay");
 const soundTestStop_ = document.getElementById("soundTestStop");
+const soundTestSpeed_ = document.getElementById("soundTestSpeed");
+const soundTestReversed_ = document.getElementById("soundTestReversed");
 const soundTestVolDisplay_ = document.getElementById("soundTestVolDisplay");
 const soundTestVolDisplayOld_ = document.getElementById("soundTestVolDisplayOld");
 const keys_ = Object.getOwnPropertyNames(Sounds);
@@ -51,9 +53,8 @@ for (let i = 0; i < keys_.length; i++) {
 soundTestPlay_.addEventListener("click", () => {
 	//sound.stopAllSounds();
 	const key = soundList_.value;
-	const snd = sound.playSFX(key);
+	const snd = sound.playSFX(key, 1, parseFloat(soundTestSpeed_.value));
 	snd._setBaseVolume(parseFloat(soundTestSlider_.value));
-	snd.setVolume(1);
 });
 
 soundTestStop_.addEventListener("click", () => {

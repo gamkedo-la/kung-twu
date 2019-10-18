@@ -67,8 +67,14 @@
 				<button id="soundTestPlay">Play</button>
 				<button id="soundTestStop">Stop</button>
 				<div>
-					<span>vol test: </span><span id="soundTestVolDisplay"></span>
-					<span>default: </span><span id="soundTestVolDisplayOld"></span>
+						<span>vol test: </span><span id="soundTestVolDisplay"></span>
+						<span>default: </span><span id="soundTestVolDisplayOld"></span>
+					</div>
+				<div>
+						<label for="soundTestSpeed">Playback Speed: </label>
+						<input id="soundTestSpeed" value="1" type="number">
+						<!-- <label for="soundTestReversed">Reversed: </label>
+						<input type="checkbox" id="soundTestReversed"> -->
 				</div>
 		</div>
 
@@ -79,6 +85,7 @@
 		<h2>Sfx Randomizer Test</h2>
 		<button id="sfxRandomButton">Play</button><span>Just played: "</span><span id="sfxRandomDisplay"></span><span>"</span>
 		<div id="sfxRandomSounds">
+
 			<button id="addRandom">+</button><button id="removeRandom">-</button>
 		</div>
 	</div>
