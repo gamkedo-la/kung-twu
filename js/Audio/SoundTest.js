@@ -1,3 +1,5 @@
+// SoundTest should be loaded separately from game's Main.js since it initializes its own SoundManager
+
 // Create the SoundManager
 sound = new SoundManager();
 
@@ -60,7 +62,7 @@ soundTestStop.addEventListener("click", () => {
 	sound.stopSound(key);
 });
 
-soundList.addEventListener("input", (evt) => {
+soundList.addEventListener("input", () => {
 	updateBaseVolume();
 });
 
@@ -83,29 +85,29 @@ soundTestSlider.addEventListener("input", () => {
 
 
 // Fade BGM Slider
-const fadeBGMTo = document.getElementById("fadeBGMTo");
-const fadeBGMTime = document.getElementById("fadeBGMTime");
+const fadeBGMTo_ = document.getElementById("fadeBGMTo");
+const fadeBGMTime_ = document.getElementById("fadeBGMTime");
 // Activate button
-const fadeBGM = document.getElementById("fadeBGM");
-fadeBGM.addEventListener("click", () => {
-	sound.fadeBGMTo(parseFloat(fadeBGMTo.value), parseFloat(fadeBGMTime.value));
+const fadeBGM_ = document.getElementById("fadeBGM");
+fadeBGM_.addEventListener("click", () => {
+	sound.fadeBGMTo(parseFloat(fadeBGMTo_.value), parseFloat(fadeBGMTime_.value));
 });
 
 // Bus sliders
-const sfxBus = document.getElementById("sfxBus");
-sfxBus.value = sound.getSFXVolume() + "";
-sfxBus.addEventListener("input", (evt) => {
+const sfxBus_ = document.getElementById("sfxBus");
+sfxBus_.value = sound.getSFXVolume() + "";
+sfxBus_.addEventListener("input", (evt) => {
 	sound.setSFXVolume(parseFloat(evt.target.value, 10));
 });
 
-const musicBus = document.getElementById("musicBus");
-musicBus.value = sound.getBGMVolume() + "";
-musicBus.addEventListener("input", (evt) => {
+const musicBus_ = document.getElementById("musicBus");
+musicBus_.value = sound.getBGMVolume() + "";
+musicBus_.addEventListener("input", (evt) => {
 	sound.setBGMVolume(parseFloat(evt.target.value, 10));
 });
 
-const masterBus = document.getElementById("masterBus");
-masterBus.value = sound.getMasterVolume() + "";
-masterBus.addEventListener("input", (evt) => {
+const masterBus_ = document.getElementById("masterBus");
+masterBus_.value = sound.getMasterVolume() + "";
+masterBus_.addEventListener("input", (evt) => {
 	sound.setMasterVolume(parseFloat(evt.target.value, 10));
 });
