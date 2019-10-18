@@ -1,0 +1,78 @@
+// Sound Implementation How To:
+
+/// I have a new audio file, how do I add it to the game?
+/// =========================================================
+/// * To add a new sound to the game
+/// * 1. Add a new property key to the Sounds object in SoundGlobals.js
+/// * 2. Create a new entry in soundSpriteConfigs in same file.
+/// *		by looking at the other entries, you can easily copy one and fill in your own
+/// * 3. The sound is now ready to be played in the game onload
+/// * 4. Please look at Connecting sound for guidelines on
+/// *		adding sounds to the game, and "Playing Sounds" for
+/// * 	for instructions on playing sounds in-game
+/// =========================================================
+
+/// Connecting sound to the game
+/// =========================================================
+/// * To access current sound hooks/triggers:
+/// * 1. Search codebase for "@SoundHook"
+/// * 2. For sections that need work done "@SoundHook:TODO"
+/// * 3. For sound parameter implementation "@SoundParam" 
+/// * 4. Please leave a comment with these tags in them if
+/// * you create a new @SoundHook or @SoundParam
+/// =========================================================
+
+/// Playing Sounds
+/// ==========================================================
+/// * --- PLAYING ---
+/// * 1. To play an SFX use sound.playSFX(key)
+/// * Note:"sound" is a global instance of SoundManager
+/// * Note2: Keys are available in Sounds (a globally object
+/// * 	containing the key constants listed in SoundGlobals.js)
+/// * 2. To play music, use sound.playBGM(key)
+/// * Note: Please read the section below on background music for more info
+/// * 3. Experimental, but you can also use sound.playEcho(key)
+/// * 		for a pseudo-echo effect. Please read note below for more info
+/// * --- STOPPING ---
+/// * 4. To stop a sound use sound.stopSound(key).
+/// * 5. to stop all sounds: sound.stopAllSounds()
+/// * Note: More expensive, since it cycles through all instances
+/// * --- RANDOMIZATION ---
+/// * 5. To add some randomization/"humanized" effect,
+/// *			create an SFXRandomizerBox
+/// *		You can either:
+/// *		a. use sounds.createRandomizer(...params) //returns one
+/// * 	b. instantiate on your own new SFXRandomizerBox(...params)
+/// * Note: Make sure to pass the sound object into it
+/// *		c. once you've created it, you can play the randomizer
+/// *			by calling play()
+/// ============================================================
+
+/// Note on Background Music in SoundManager
+/// ============================================================
+/// Background music differs from SFX in that it automatically
+/// fades out and delays start to allow the fadeout if there is 
+/// already current music playing. Please make sure when calling
+/// sound.playBGM, it really is a background music/atmosphere sound file!
+/// Unwanted behavior will happen otherwise, resulting from the engine
+/// thinking there is music playing when it isn't.
+/// In sound.playBGM, there are preset params in place that you don't have to
+/// fill in manually, only the key value. Currently this preset delays 
+/// the new track 1.5 seconds, allowing a 2.75 fade out of curent track
+/// seconds fade simulataneously.
+/// Please check out these parameters in the playBGM function header in SoundManager.js
+
+/// Note on Experimental Delay effect
+/// =============================================================
+/// When using sound.playDelay, make sure that the number of maxInstances
+/// in the soundSprite you are calling (set in config settings in SoundGlobals.js)
+/// SoundGlobals.js is high enough to not cause clipping (popping).
+/// The way the delay effect works is playing multiple sound instances
+/// delayed over set intervals, fading it in or out, altering its 
+/// speed depending on values set in the sound.playDelay func.
+/// We have the engine set up to override any currently
+/// playing sounds when instances run out, so ideally maxInstances
+/// should be ~twice as high as the number of delay iterations
+/// called for, and used sparingly. Needs testing in different
+/// browsers. In Firefox I'm guessing it's going to cause
+/// a lot of errors from a media bug in the browser from slow loading

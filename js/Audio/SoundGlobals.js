@@ -1,18 +1,4 @@
-// Sound Implementation How To:
-/// =========================================================
-/// * To add a new sound to the game                        *
-/// * 1. Add a new property key to Sounds                   *
-/// * 2. Create a new entry in soundSpriteConfigs           *
-/// =========================================================
-
-/// =========================================================
-/// * To access current sound hooks:                        *
-/// * 1. Search codebase for "@SoundHook"                   *
-/// * 2. For sections that need work done "@SoundHook:TODO" *
-/// * 3. For sound parameter implementation "@SoundParam"   *
-/// * 4. Please leave a comment with these tags in them if  *
-/// * you create a new @SoundHook or @SoundParam            *
-/// =========================================================
+// Please check SoundInstructions.txt for info on using sound
 
 /**
  * Game's globally accessible SoundManager
@@ -59,7 +45,19 @@ const AudioBus = {
 }; Object.freeze(AudioBus);
 
 /**
- * SoundSprite Configuration 
+ * SoundSprite Configurations.
+ * This is the list of configurations telling the SoundEngine details about the sounds we want in-game.
+ * @type SoundSpriteConfig[]
+ * Properties in a config:
+ * @property key: string - a value from Sounds, please enter your own if you are adding a new sound
+ * @property filepath: string - the relative filepath to the raw audio file - no extension, the engine will figure that out.
+ * 		Please make sure that you have uploaded both .mp3 and .ogg versions of the sound in the same directory location to work correctly
+ * @property baseVolume: number - (range: 0-1) The base volume of the track. After filling out a spriteConfig here and dropping the audio files in the right place, you can test this baseValue out in the soundtest.html file in the root directory. Move the knob around under BaseVolume Test
+ * @property audioBus: string - a value from AudioBus. Please set to either AudioBus.SFX or AudioBus.MUSIC
+ * @property isLoop: boolean - whether or not this track is to be looped by the engine. Most music will be, most sfx will not.
+ * @property maxInstances - the max number of times this audio file can be played at any given time in the game. 
+ * 	Once instances have run out, the engine will override the oldest one. It may cause popping, so make sure to set this value higher if it is played frequently in fast intervals
+ * @property fadeOutTime: number - the number of seconds the sound instance will take to fade out when sound.stopAllSounds is called if allowFadeOut=true in that function
  */
 const soundSpriteConfigs = [
 	{
