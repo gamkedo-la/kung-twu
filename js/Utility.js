@@ -4,6 +4,43 @@ function lerp(start, end, amount) {
 }
 
 /**
+ * Returns a float between 0 (inclusive) and num (non-inclusive)
+ * @param {number} num 
+ */
+function random(num) {
+	return Math.random() * num;
+}
+
+/**
+ * Returns an integer between 0 (inclusive) and num (non-inclusive)
+ * @param {number} num 
+ */
+function irandom(num) {
+	return Math.floor(random(num));
+}
+
+/**
+ * Returns a float between low (inclusive) and high (non-inclusive)
+ * @param {number} low 
+ * @param {number} high 
+ */
+function randomRange(low, high) {
+	return random(high - low) + low;
+}
+
+/**
+ * Returns an integer between low (inclusive) and high (non-inclusive)
+ * Chops off the decimal points of passed low and high numbers
+ * @param {number} low 
+ * @param {number} high 
+ */
+function irandomRange(low, high) {
+	low = Math.floor(low);
+	high = Math.floor(high);
+	return Math.floor(randomRange(low, high));
+}
+
+/**
  * Clamps a value between two boundaries
  * @param {number} value Value to clamp
  * @param {number} min Minimum boundary
