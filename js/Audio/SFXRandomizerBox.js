@@ -2,8 +2,9 @@
 /**
  * Adds more realism to audio by having multiple takes of a sound play at random
  * @param {SoundManager} soundManager The game SoundManager object
- * @param {string[]} keys Keys of sounds to randomize
  * @param {number} dontPlayLastNum Setting to have the randomizer to ignore a number of sounds last played when picking randomly. This ensures no repeat sounds.
+ * @param {string[]} keys Keys of sounds to randomize
+ *
  */
 function SFXRandomizerBox(soundManager, dontPlayLastNum, keys) {
 	const _manager = soundManager;
@@ -27,7 +28,7 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, keys) {
 	function _getDontPlayLastNum() {
 		// Make sure this number is less than key's length. Use this func internally too to get this num.
 		return Math.min(_dontPlayLastNum, _keys.length - 1);
-	};
+	}
 	this.addKey = function(key) {
 		if (_keys.indexOf(key) === -1) {
 			_keys.push(key);
@@ -43,10 +44,16 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, keys) {
 		return _keys;
 	};
 
+	/**
+	 * Play a randomly picked sound
+	 */
 	this.play = function() {
-		const key = pickKey();
+		const key = _pickKey();
+		console.log("Key playing:", key);
+		console.log("lastPlayed list (before):", _lastPlayed);
 		const sprite = _manager.playSFX(key);
-		addToLastPlayed(key);
+		_addToLastPlayed(key);
+		console.log("lastPlayed list (after):", _lastPlayed);
 		return sprite;
 	};
 
@@ -54,15 +61,15 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, keys) {
 	/** @type string[] */
 	const _lastPlayed = [];
 
-	function pickKey() {
+	function _pickKey() {
 		let key;
 		do {
-			key = _keys[getRandomIndex()];
+			key = _keys[_getRandomIndex()];
 		} while (_lastPlayed.indexOf(key) >= 0);
 		return key;
 	}
 
-	function getRandomIndex() {
+	function _getRandomIndex() {
 		return Math.floor(_keys.length * Math.random());
 	}
 
@@ -70,7 +77,7 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, keys) {
 	 * Manages adding a new key to the lastPlayed list
 	 * @param {string} key 
 	 */
-	function addToLastPlayed(key) {
+	function _addToLastPlayed(key) {
 		_lastPlayed.shift();
 		if (_lastPlayed.indexOf(key) === -1) {
 			_lastPlayed.push(key);
