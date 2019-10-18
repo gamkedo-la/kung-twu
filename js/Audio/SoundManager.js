@@ -70,6 +70,18 @@ function SoundManager() {
 	};
 
 	/**
+	 * Plays a pseudo echo effect by playing multiple instances of a sound. Make sure sound max instance counts are at least the number of set iterations for the SoundSprite you are using this on.
+	 * @param {SoundSprite} soundSprite
+	 * @param {[number, number]} volRange
+	 * @param {[number, number]} speedRange
+	 * @param {number} iterations
+	 * @param {number} intervalMs
+	 */
+	this.playEcho = function (key, volRange = [1, 0], speedRange = [1, .1], iterations = 5, intervalMs = 80) {
+		_engine.playEcho(_engine._getSound(key), volRange, speedRange, iterations, intervalMs);
+	};
+
+	/**
 	 * Get the key of the currently playing music, or return null if there is none playing.
 	 */
 	this.getCurrentBGMKey = function() {

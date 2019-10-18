@@ -145,6 +145,44 @@ function SoundEngine(setDidInteractWorkaround = false) {
 	}
 
 	/**
+	 * 
+	 * @param {SoundSprite} soundSprite
+	 * @param {[number, number]} volRange
+	 * @param {[number, number]} speedRange
+	 * @param {number} iterations
+	 * @param {number} intervalMs
+	 */
+	this.playEcho = function(soundSprite, volRange, speedRange, iterations, intervalMs) {
+		iterations = Math.max(1, iterations);
+		intervalMs = Math.max(1, intervalMs);
+
+		const volIncrement = (volRange[1] - volRange[0])/iterations;
+		const speedIncrement = (speedRange[1] - speedRange[0])/iterations;
+		let currentVol = volRange[0];
+		let currentSpd = speedRange[0];
+		let currentIterations = 0;
+		soundSprite.play(currentVol, currentSpd);
+		const i = setInterval((interval) => {
+			currentVol += volIncrement;
+			currentSpd += speedIncrement;
+			currentIterations += 1;
+			soundSprite.play(currentVol, currentSpd);
+			if (currentIterations >= iterations) {
+				clearInterval(i);
+			}
+		}, intervalMs);
+
+	};
+
+	/**
+	 * 
+	 * @param {number} echoHandle
+	 */
+	this.cancelEcho = function(echoHandle) {
+		clearInterval(echoHandle);
+	};
+
+	/**
 	 * Converts passed SoundSpriteConfigs into SoundSprites and adds them to the SoundEngine
 	 * @param {SoundSpriteConfig | SoundSpriteConfig[]} configs SoundSpriteConfigs passed as an array of object literals
 	 */

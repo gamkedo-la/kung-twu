@@ -194,7 +194,7 @@ const soundSpriteConfigs = [
 		baseVolume: .3,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 20,
 		fadeOutTime: 0
 	},
 	{
