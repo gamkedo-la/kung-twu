@@ -3,13 +3,17 @@
 /// I have a new audio file, how do I add it to the game?
 /// =========================================================
 /// * To add a new sound to the game
-/// * 1. Add a new property key to the Sounds object in SoundGlobals.js
-/// * 2. Create a new entry in soundSpriteConfigs in same file.
-/// *		by looking at the other entries, you can easily copy one and fill in your own
+/// * 1. Add a new property key string to the Sounds object in SoundGlobals.js, following the format as you'll see it.
+/// * 2. Drop the sound files into the audio folder. 
+/// * 	- For each file, you will need to convert it both to ".mp3" and ".ogg" (we have it this way for cross compatibility)
+/// *		- Both filenames should be exactly the same besides the extension.
+/// * 2. Create a new configuration entry in soundSpriteConfigs in SoundGlobals.js underneath the keys/bus entries.
+/// *		- By looking at the other entries, you can copy one and fill in your own.
+/// *		- Hopefully by looking at the others it will be clear, but there is also parameter info in the comments.
 /// * 3. The sound is now ready to be played in the game onload
-/// * 4. Please look at Connecting sound for guidelines on
+/// * 4. Please look at the section below this one "Connecting sound to the game" for guidelines on
 /// *		adding sounds to the game, and "Playing Sounds" for
-/// * 	for instructions on playing sounds in-game
+/// * 	for instructions on playing sounds at runtime
 /// =========================================================
 
 /// Connecting sound to the game
@@ -27,9 +31,9 @@
 /// * --- PLAYING ---
 /// * 1. To play an SFX use sound.playSFX(key)
 /// * Note:"sound" is a global instance of SoundManager
-/// * Note2: Keys are available in Sounds (a globally object
-/// * 	containing the key constants listed in SoundGlobals.js)
-/// * 2. To play music, use sound.playBGM(key)
+/// * Note2: Keys are available in "Sounds", a global object
+/// * 	containing the key constants (initialized in SoundGlobals.js)
+/// * 2. To play music or atmospheric tones (only one can play at a time in this implementation), use sound.playBGM(key)
 /// * Note: Please read the section below on background music for more info
 /// * 3. Experimental, but you can also use sound.playEcho(key)
 /// * 		for a pseudo-echo effect. Please read note below for more info
@@ -42,9 +46,9 @@
 /// *			create an SFXRandomizerBox
 /// *		You can either:
 /// *		a. use sounds.createRandomizer(...params) //returns one
-/// * 	b. instantiate on your own new SFXRandomizerBox(...params)
+/// * 	b. instantiate one on your own with: new SFXRandomizerBox(...params)
 /// * Note: Make sure to pass the sound object into it
-/// *		c. once you've created it, you can play the randomizer
+/// *		c. once you've created it, you can play the SFXRandomizerBox
 /// *			by calling play()
 /// ============================================================
 
