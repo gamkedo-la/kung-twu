@@ -9,76 +9,76 @@ sound.addSounds(soundSpriteConfigs);
 
 // ======== Test Functionality =========
 // Play Sounds
-const bossBGM = document.getElementById("bossBGM");
-bossBGM.addEventListener("click", () => {
+const bossBGM_ = document.getElementById("bossBGM");
+bossBGM_.addEventListener("click", () => {
 	sound.playBGM(Sounds.BGM_Boss);
 });
 
-const titleBGM = document.getElementById("titleBGM");
-titleBGM.addEventListener("click", () => {
+const titleBGM_ = document.getElementById("titleBGM");
+titleBGM_.addEventListener("click", () => {
 	sound.playBGM(Sounds.BGM_Title);
 });
 
-const oneupSFX = document.getElementById("oneupSFX");
-oneupSFX.addEventListener("click", () => {
+const oneupSFX_ = document.getElementById("oneupSFX");
+oneupSFX_.addEventListener("click", () => {
 	sound.playSFX(Sounds.SFX_1UP);
 });
 
-const footstepSFX = document.getElementById("footstepSFX");
-footstepSFX.addEventListener("click", () => {
+const footstepSFX_ = document.getElementById("footstepSFX");
+footstepSFX_.addEventListener("click", () => {
 	sound.playSFX(Sounds.SFX_Footsteps);
 });
 
 // Stop All Sounds
-const stopAll = document.getElementById("stopAll");
-stopAll.addEventListener("click", () => {
+const stopAll_ = document.getElementById("stopAll");
+stopAll_.addEventListener("click", () => {
 	sound.stopAllSounds();
 });
 
 // Sound Volume Test
-const soundList = document.getElementById("soundList");
-const soundTestSlider = document.getElementById("soundTestSlider");
-const soundTestPlay = document.getElementById("soundTestPlay");
-const soundTestStop = document.getElementById("soundTestStop");
-const soundTestVolDisplay = document.getElementById("soundTestVolDisplay");
-const soundTestVolDisplayOld = document.getElementById("soundTestVolDisplayOld");
-const keys = Object.getOwnPropertyNames(Sounds);
-for (let i = 0; i < keys.length; i++) {
+const soundList_ = document.getElementById("soundList");
+const soundTestSlider_ = document.getElementById("soundTestSlider");
+const soundTestPlay_ = document.getElementById("soundTestPlay");
+const soundTestStop_ = document.getElementById("soundTestStop");
+const soundTestVolDisplay_ = document.getElementById("soundTestVolDisplay");
+const soundTestVolDisplayOld_ = document.getElementById("soundTestVolDisplayOld");
+const keys_ = Object.getOwnPropertyNames(Sounds);
+for (let i = 0; i < keys_.length; i++) {
 	const option = document.createElement("option");
-	option.innerText = Sounds[keys[i]];
-	soundList.appendChild(option);
+	option.innerText = Sounds[keys_[i]];
+	soundList_.appendChild(option);
 }
 
-soundTestPlay.addEventListener("click", () => {
+soundTestPlay_.addEventListener("click", () => {
 	//sound.stopAllSounds();
-	const key = soundList.value;
+	const key = soundList_.value;
 	const snd = sound.playSFX(key);
-	snd._setBaseVolume(parseFloat(soundTestSlider.value));
+	snd._setBaseVolume(parseFloat(soundTestSlider_.value));
 	snd.setVolume(1);
 });
 
-soundTestStop.addEventListener("click", () => {
-	const key = soundList.value;
+soundTestStop_.addEventListener("click", () => {
+	const key = soundList_.value;
 	sound.stopSound(key);
 });
 
-soundList.addEventListener("input", () => {
+soundList_.addEventListener("input", () => {
 	updateBaseVolume();
 });
 
 function updateBaseVolume() {
-	const baseVol = sound._getEngine()._getSound(soundList.value).getBaseVolume() + "";
-	soundTestVolDisplay.innerText = baseVol;
-	soundTestSlider.value = baseVol;
-	soundTestVolDisplayOld.innerText = baseVol;
+	const baseVol = sound._getEngine()._getSound(soundList_.value).getBaseVolume() + "";
+	soundTestVolDisplay_.innerText = baseVol;
+	soundTestSlider_.value = baseVol;
+	soundTestVolDisplayOld_.innerText = baseVol;
 }
 updateBaseVolume(); // initialize value for first option that appears on list
 
 
-soundTestSlider.addEventListener("input", () => {
-	soundTestVolDisplay.innerText = soundTestSlider.value;
-	const snd = sound._getEngine()._getSound(soundList.value);
-	snd._setBaseVolume(parseFloat(soundTestSlider.value));
+soundTestSlider_.addEventListener("input", () => {
+	soundTestVolDisplay_.innerText = soundTestSlider_.value;
+	const snd = sound._getEngine()._getSound(soundList_.value);
+	snd._setBaseVolume(parseFloat(soundTestSlider_.value));
 	snd.setVolume();
 
 });
