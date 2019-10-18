@@ -78,13 +78,16 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, keys) {
 	 * @param {string} key 
 	 */
 	function _addToLastPlayed(key) {
-		_lastPlayed.shift();
+		if (_lastPlayed.length > _getDontPlayLastNum()) {
+			_lastPlayed.shift();
+		}
 		if (_lastPlayed.indexOf(key) === -1) {
 			_lastPlayed.push(key);
 		}
 
 		// Just double check that the array is at the right length.
 		// User may have changed it
+		console.log("getdontplaylastnum:", _getDontPlayLastNum());
 		while (_lastPlayed.length > _getDontPlayLastNum()) {
 			_lastPlayed.shift();
 		}		
