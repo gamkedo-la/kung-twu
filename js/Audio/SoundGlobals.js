@@ -122,7 +122,7 @@ const soundSpriteConfigs = [
 		baseVolume: .8,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 5,
 		fadeOutTime: 0
 	},
 	{
@@ -131,7 +131,7 @@ const soundSpriteConfigs = [
 		baseVolume: .5,
 		audioBus: AudioBus.SFX,
 		isLoop: false,
-		maxInstances: 2,
+		maxInstances: 4,
 		fadeOutTime: 0
 	},
 	{
