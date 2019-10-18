@@ -1,22 +1,9 @@
 /**
- * This class represents a single HTMLAudioElement with extra metadata. It will be managed by SoundOverlap class, and probably not interacted with directly by users.
+ * This class represents a single HTMLAudioElement with extra metadata. It will be managed by SoundSprite class, and probably not interacted with directly by users.
  * @param {SoundSprite} soundSprite
  * @param {string} filename Filename + extension. Please get the compatible extension from AudioEngine.getSoundFormat
  */
 class SoundInstance {
-	/** @type SoundSprite */
-	sprite;
-
-	/**
-	 * Sound's filename including extension
-	 */
-	filename;
-
-	/**
-	 * The inner HTMLAudioElement
-	 * @type {HTMLAudioElement}
-	 */
-	_element;
 
 	/**
 	 * The inner HTMLAudioElement
@@ -35,6 +22,8 @@ class SoundInstance {
 	_volume = 1;
 
 	constructor(soundSprite, filename) {
+
+		this._fades = [];
 		this.sprite = soundSprite;
 		this._element = new Audio(filename);
 		this.filename = filename;
