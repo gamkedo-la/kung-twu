@@ -140,7 +140,6 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, volRange, speedRange, k
 	 */
 	this.play = function() {
 		const key = _pickKey();
-		console.log(_speedRange);
 		const sprite = _manager.playSFX(key, randomRange(_volRange[0], _volRange[1]), randomRange(_speedRange[0], _speedRange[1]));
 		_addToLastPlayed(key);
 		return sprite;
@@ -176,7 +175,6 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, volRange, speedRange, k
 
 		// Just double check that the array is at the right length.
 		// User may have changed it
-		console.log("getdontplaylastnum:", _getDontPlayLastNum());
 		while (_lastPlayed.length > _getDontPlayLastNum()) {
 			_lastPlayed.shift();
 		}		

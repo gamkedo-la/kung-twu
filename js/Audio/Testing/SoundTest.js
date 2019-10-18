@@ -123,6 +123,7 @@ const sfxRandomVolRangeMin_ = document.getElementById("sfxRandomVolRangeMin");
 const sfxRandomVolRangeMax_ = document.getElementById("sfxRandomVolRangeMax");
 const sfxRandomSpdRangeMin_ = document.getElementById("sfxRandomSpdRangeMin");
 const sfxRandomSpdRangeMax_ = document.getElementById("sfxRandomSpdRangeMax");
+const sfxRandomAvoidLast_ = document.getElementById("sfxRandomAvoidLast");
 const randomizer = new SFXRandomizerBox(sound, 2, [.8, 1], [.8, 1.2],
 	[
 		Sounds.SFX_PlayerBlock, 
@@ -149,6 +150,10 @@ sfxRandomSpdRangeMin_.addEventListener("input", ()=>{
 sfxRandomSpdRangeMax_.addEventListener("input", ()=>{
 	const val = parseFloat(sfxRandomSpdRangeMax_.value);
 	randomizer.setSpeedRandMax(val);
+});
+sfxRandomAvoidLast_.addEventListener("input", ()=>{
+	const val = parseInt(sfxRandomSpdRangeMax_.value);
+	randomizer.setDontPlayLastNum(val);
 });
 
 sfxRandomButton_.addEventListener("click", ()=> {
