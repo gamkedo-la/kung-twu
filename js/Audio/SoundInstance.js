@@ -10,22 +10,33 @@ class SoundInstance {
 	 */
 	get element() { return this._element; }
 
-	/**
-	 * Current handles to a NodeJS.Timeout
-	 * @type {number[]}
-	 */
-	_fades = [];
-
-	/**
-	 * The 'dial' the api turns for setting volume. Under the hood it calculates bus volume values.
-	 */
-	_volume = 1;
-
 	constructor(soundSprite, filename) {
+		/**
+		 * The 'dial' the api turns for setting volume. Used by fades.
+		 */
+		this._volume = 1;
+		/** 
+		 * @type {number[]} 
+		 */
+		const newFades = []; 
+		/**
+		 * The inner list of current fades. Not to be handled directly.
+		 */
+		this._fades = newFades;
 
-		this._fades = [];
+		/**
+		 * SoundSprite this SoundInstance belongs to
+		 */
 		this.sprite = soundSprite;
+
+		/**
+		 * The inner HTMLAudioElement this SoundInstance wraps.
+		 */
 		this._element = new Audio(filename);
+
+		/**
+		 * The filename of the sound file including extension. (The extension is set by the SoundSprite.)
+		 */
 		this.filename = filename;
 	}
 
@@ -67,13 +78,13 @@ class SoundInstance {
 		return this._element.loop;
 	}
 
-
 	/**
 	 * Gets the current fading status of the sound instance
 	 */
 	getIsFading() {
 		(this._fades.length > 0) ? true : false;
 	}
+	
 	/**
 	 * Cancels the current fade if there are any
 	 */
