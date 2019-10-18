@@ -154,7 +154,7 @@ class SoundInstance {
 	}
 
 	/**
-	 * Get the duration of the instance. Returns -1 if value was NaN (duration not available) or Infinite (streaming).
+	 * Get the duration of the instance. Returns duration in seconds. -1 if value was NaN (duration not available) or Infinite (streaming).
 	 */
 	getDuration() {
 		const time = this._element.duration;

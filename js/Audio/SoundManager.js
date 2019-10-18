@@ -51,12 +51,20 @@ function SoundManager() {
 	/**
 	 * Plays a sound effect
 	 * @param {string} key The key of the SoundSprite
-	 * @returns the SoundSprite that was played
+	 * @param {number} volume The volume value to set (defaul: 1)
+	 * @param {number} playbackspeed The playbackspeed multiplier. Will force a positive value (default: 1)
+ 	 * @returns the SoundSprite that was played
 	 */
-	this.playSFX = function(key) {
+	this.playSFX = function(key, volume = 1, playbackspeed = 1) {
 		const sound = _engine._getSound(key);
 		if (sound) {
-			sound.play();
+			// limit volume
+			volume = clamp(volume, 0, 1);
+			// set playback speed according to reverse bool
+			playbackspeed = Math.abs(playbackspeed);
+
+			sound.play(volume, playbackspeed);
+
 			return sound;
 		}
 	};
