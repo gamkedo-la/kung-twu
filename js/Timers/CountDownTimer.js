@@ -60,11 +60,14 @@ function CountDownTimer(isDeltaTimer = true) {
 	 */
 	this.onUpdate = _onUpdate;
 
+	/**
+	 * @type EventHandle<(timer: CountDownTimer)=>void>
+	 */
 	const _onZero = new EventHandle();
 	/**
 	 * Event that fires when the timer 'goes off'.
 	 * Callback Signature: (CountDownTimer) => void
-	 * @type EventHandle
+	 * @type EventHandle<(timer: CountDownTimer)=>void>
 	 */
 	this.onZero = _onZero;
 
