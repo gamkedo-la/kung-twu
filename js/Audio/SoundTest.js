@@ -119,7 +119,7 @@ const sfxRandomSounds_ = document.getElementById("sfxRandomSounds");
 const sfxAddRandom_ = document.getElementById("addRandom");
 const sfxRemoveRandom_ = document.getElementById("removeRandom");
 const sfxRandomDisplay_ = document.getElementById("sfxRandomDisplay");
-const randomizer = new SFXRandomizerBox(sound, 4,
+const randomizer = new SFXRandomizerBox(sound, 2, [.75, 1], [.45, .6],
 	[
 		Sounds.SFX_PlayerBlock, 
 		Sounds.SFX_PlayerFail, 
@@ -134,6 +134,3 @@ sfxRandomButton_.addEventListener("click", ()=> {
 	const sprite = randomizer.play();
 	sfxRandomDisplay_.innerText = sprite.getKey();
 });
-
-
-
