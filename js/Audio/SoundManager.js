@@ -49,6 +49,17 @@ function SoundManager() {
 	};
 
 	/**
+	 * Creates and returns an SFX Sound Randomizer with the sounds you specify inside of it.
+	 * @param {string[]} keys The keys of the sounds to randomly choose between
+	 * @param {number} dontPlayLastNum (optional default: 1) The number of last sounds to avoid when picking a new random sound
+	 * @param {[number, number]} volRange (optional default: [.8, 1]) The range of volume to randomize on play
+	 * @param {[number, number]} speedRange (optional default: [.8, 1.2]) The range of playback speed to randomize on play
+	 */
+	this.createRandomizer = function(keys, dontPlayLastNum = 1, volRange = [.8, 1], speedRange = [.8, 1.2]) {
+		return new SFXRandomizerBox(this, dontPlayLastNum,volRange, speedRange, keys);
+	};
+
+	/**
 	 * Plays a sound effect
 	 * @param {string} key The key of the SoundSprite
 	 * @param {number} volume The volume value to set (defaul: 1)
