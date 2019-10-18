@@ -52,6 +52,7 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, volRange, speedRange, k
 	 * If the value passed is greater than the maximum, the maximum will be also set to the passed value.
 	 * @param {number} value The value to set the volume randomizer's minimum value to (Range: 0 to 1)
 	 */
+	this.setVolumeRandMin = _setVolumeRandMin;
 	function _setVolumeRandMin(value) {
 		value = clamp(value, 0, 1);
 		// max should always be equal or higher than min value, this adjusts it accordingly
@@ -66,6 +67,7 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, volRange, speedRange, k
 	 * If the value passed is less than the minimum, the minimum will be also set to the passed value.
 	 * @param {number} value The value to set volume randomizer's maximum to (Range: 0 to 1)
 	 */
+	this.setVolumeRandMax = _setVolumeRandMax;
 	function _setVolumeRandMax(value) {
 		value = clamp(value, 0, 1);
 		// min should always be equal or lower than max value, this adjusts it accordingly
@@ -80,6 +82,7 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, volRange, speedRange, k
 	 * If the value passed is greater than the maximum, the maximum will be also set to the passed value.
 	 * @param {number} value The value to set the speed randomizer's minimum value to. Will be forced to a positive number.
 	 */
+	this.setSpeedRandMin = _setSpeedRandMin;
 	function _setSpeedRandMin(value) {
 		value = Math.abs(value);
 		if (value > _speedRange[1]) {
@@ -93,6 +96,7 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, volRange, speedRange, k
 	 * If the value passed is less than the minimum, the minimum will be also set to the passed value.
 	 * @param {number} value The value to set the speed randomizer's minimum value to. Will be forced to a positive number.
 	 */
+	this.setSpeedRandMax = _setSpeedRandMax;
 	function _setSpeedRandMax(value) {
 		value = Math.abs(value);
 		if (value < _speedRange[0]) {

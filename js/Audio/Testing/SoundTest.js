@@ -119,7 +119,11 @@ const sfxRandomSounds_ = document.getElementById("sfxRandomSounds");
 const sfxAddRandom_ = document.getElementById("addRandom");
 const sfxRemoveRandom_ = document.getElementById("removeRandom");
 const sfxRandomDisplay_ = document.getElementById("sfxRandomDisplay");
-const randomizer = new SFXRandomizerBox(sound, 2, [.75, 1], [.45, .6],
+const sfxRandomVolRangeMin_ = document.getElementById("sfxRandomVolRangeMin");
+const sfxRandomVolRangeMax_ = document.getElementById("sfxRandomVolRangeMax");
+const sfxRandomSpdRangeMin_ = document.getElementById("sfxRandomSpdRangeMin");
+const sfxRandomSpdRangeMax_ = document.getElementById("sfxRandomSpdRangeMax");
+const randomizer = new SFXRandomizerBox(sound, 2, [.8, 1], [.8, 1.2],
 	[
 		Sounds.SFX_PlayerBlock, 
 		Sounds.SFX_PlayerFail, 
@@ -129,6 +133,23 @@ const randomizer = new SFXRandomizerBox(sound, 2, [.75, 1], [.45, .6],
 		Sounds.SFX_PlayerPunch
 	]
 );
+
+sfxRandomVolRangeMin_.addEventListener("input", ()=>{
+	const val = parseFloat(sfxRandomVolRangeMin_.value);
+	randomizer.setVolumeRandMin(val);
+});
+sfxRandomVolRangeMax_.addEventListener("input", ()=>{
+	const val = parseFloat(sfxRandomVolRangeMax_.value);
+	randomizer.setVolumeRandMax(val);
+});
+sfxRandomSpdRangeMin_.addEventListener("input", ()=>{
+	const val = parseFloat(sfxRandomSpdRangeMin_.value);
+	randomizer.setSpeedRandMin(val);
+});
+sfxRandomSpdRangeMax_.addEventListener("input", ()=>{
+	const val = parseFloat(sfxRandomSpdRangeMax_.value);
+	randomizer.setSpeedRandMax(val);
+});
 
 sfxRandomButton_.addEventListener("click", ()=> {
 	const sprite = randomizer.play();
