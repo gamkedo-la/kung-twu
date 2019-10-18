@@ -39,6 +39,8 @@ class SoundInstance {
 		 * The filename of the sound file including extension. (The extension is set by the SoundSprite.)
 		 */
 		this.filename = filename;
+
+		this.defaultSpeed = 1;
 	}
 
 	/**
@@ -50,6 +52,21 @@ class SoundInstance {
 		if (_fades.indexOf(fade) === -1) {
 			_fades.push(fade);
 		}
+	}
+
+	/**
+	 * Sets the playback speed of the instance. Please use right after it has played. It will automatically reset back to default speed otherwise.
+	 * @param {number} speed The speed to set this instance to
+	 */
+	setSpeed(speed) {
+		this._element.playbackRate = speed;
+	}
+
+	/**
+	 * Gets the current playback speed of the instance
+	 */
+	getSpeed() {
+		return this._element.playbackRate;
 	}
 
 	/**
@@ -134,6 +151,18 @@ class SoundInstance {
 	 */
 	pause() {
 		this._element.pause();
+	}
+
+	/**
+	 * Get the duration of the instance. Returns -1 if value was NaN (duration not available) or Infinite (streaming).
+	 */
+	getDuration() {
+		const time = this._element.duration;
+		if (isNaN(time) || !Number.isFinite(time)) {
+			return -1;
+		} else {
+			return time;
+		}
 	}
 
 	/**

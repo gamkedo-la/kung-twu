@@ -85,24 +85,37 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	/**
 	 * Start playing the next free inner sound instance.
 	 * If all are currently playing, the oldest one will be 'stolen'
+	 * @param {number} playbackspeed
 	 */
-	this.play = function() {
+	this.play = function(volume, playbackspeed) {
 		if (!_engine.getDidInteract()) {
 			console.log("Did not interact yet, cancelling play!");
 			return;
 		}
 
+		// Set playback speed
+		const speed = (playbackspeed === undefined) ? this.getDefaultSpeed() : playbackspeed;
+
 		const e = _instances[_playIndex];
 		e.cancelFadeAll(); // cancel fade if there is one
-		_setTrackVolume(e, 1);
+
+		// set instance's volume
+		if (volume !== undefined) {
+			_setTrackVolume(e, volume);
+		} else {
+			_setTrackVolume(e, 1);
+		}
+		
 		if (e.getIsPaused()) {
 			// Next free instance is free to play: play it
 			e.play();
+			e.setSpeed(speed); // set playback speed
 		} else {
 			// Next free instance is actually still busy: pause, reset, and play it
 			e.pause();
 			e.setCurrentTime(0);
 			e.play();
+			e.setSpeed(speed); // set playback speed
 		}
 		// Increase the playindex by 1, and wrap around to 0 if outside the bounds
 		_playIndex = (_playIndex + 1) % _instances.length;
@@ -145,6 +158,19 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	 */
 	this.getIsFading = function() {
 		return this.getLastPlayed().getIsFading(); // null is the default "not fading" value
+	};
+
+	/**
+	 * Sets the default speed of the instance
+	 * @param {number} speed The speed to set this instance's default playback speed to
+	 */
+	this.setDefaultSpeed = function(speed) {
+		this.defaultSpeed = speed;
+	};
+	this.setDefaultSpeed(1);
+
+	getDefaultSpeed = function() {
+		return this.defaultSpeed;
 	};
 
 	/**
