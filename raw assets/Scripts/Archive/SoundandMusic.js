@@ -1,4 +1,6 @@
 //SoundandMusic
+// To initialize, please make sure to call configureGameAudio() and loadAudio() before attempting to use soundOverlaps classes.
+
 /** 
  * The audio format of the game, automatically set through the function setFormat.
  * Can either be ".mp3" or ".ogg"
