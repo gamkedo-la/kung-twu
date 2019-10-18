@@ -44,7 +44,7 @@ window.onload = function() {
 	sound.addSounds(soundSpriteConfigs); // adds previously declared soundSpriteConfigs from SoundGlobals.js
 
 	// Set the UIProgressBar configuration defaults for use with creating a new UIProgressBar.
-	UIProgressBarDefaults = new IProgressBarConfig();
+	UIProgressBarDefaults = new IProgressBarConfigDefaults();
 	
 	// Removed old audio init functions that used to be here -Aaron
 
