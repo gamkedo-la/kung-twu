@@ -6,7 +6,6 @@ sound = new SoundManager();
 // Add SoundSprites
 sound.addSounds(soundSpriteConfigs);
 
-
 // ======== Test Functionality =========
 // Play Sounds
 const bossBGM_ = document.getElementById("bossBGM");
@@ -111,3 +110,29 @@ masterBus_.value = sound.getMasterVolume() + "";
 masterBus_.addEventListener("input", (evt) => {
 	sound.setMasterVolume(parseFloat(evt.target.value, 10));
 });
+
+//// SOUND RANDOMIZER /////
+// sound randomiser is a British one
+const sfxRandomButton_ = document.getElementById("sfxRandomButton");
+const sfxRandomSounds_ = document.getElementById("sfxRandomSounds");
+const sfxAddRandom_ = document.getElementById("addRandom");
+const sfxRemoveRandom_ = document.getElementById("removeRandom");
+const sfxRandomDisplay_ = document.getElementById("sfxRandomDisplay");
+const randomizer = new SFXRandomizerBox(sound, 4,
+	[
+		Sounds.SFX_PlayerBlock, 
+		Sounds.SFX_PlayerFail, 
+		Sounds.SFX_PlayerHit, 
+		Sounds.SFX_PlayerJump, 
+		Sounds.SFX_PlayerKick, 
+		Sounds.SFX_PlayerPunch
+	]
+);
+
+sfxRandomButton_.addEventListener("click", ()=> {
+	const sprite = randomizer.play();
+	sfxRandomDisplay_.innerText = sprite.getKey();
+});
+
+
+

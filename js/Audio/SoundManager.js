@@ -2,6 +2,10 @@
  * SoundManager will interface with the SoundEngine to keep a simple, yet customizable API for the end user.
  * It currently owns its own SoundEngine instance, which it initializes on its own.
  * The user can interact directly with the engine by calling _getEngine().
+ * Please read SoundGlobals.js for directions on how to implement and add new sounds.
+ * 
+ * An idea I had for expanding sound is to create your own 'sound randomizer box' which can randomly choose within an
+ * array of key values, then call that SFX with playSFX(key) in this manager.
  */
 function SoundManager() {
 

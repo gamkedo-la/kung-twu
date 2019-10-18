@@ -1,6 +1,7 @@
 /**
- * SoundEngine core object. Stores SoundSprites, bus volumes, master volume, global muting, viable audio format, other helper functions.
- * Sprites should be added after instantiation with addSounds(configs)
+ * SoundEngine core object. In this game, it is owned by a SoundManager object. 
+ * Please use that object to interface with sound, and read SoundGlobals.js for directions on how to add new sounds.
+ * Stores SoundSprites, bus volumes, master volume, global muting, viable audio format, other helper functions.
  */
 function SoundEngine(setDidInteractWorkaround = false) {
 	// ======== Initialization ======== //

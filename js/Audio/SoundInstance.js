@@ -1,5 +1,6 @@
 /**
  * This class represents a single HTMLAudioElement with extra metadata. It will be managed by SoundSprite class, and probably not interacted with directly by users.
+ * Please access sound functionality with the SoundManager, and look at SoundGlobals.js for directions on how to implement new sounds.
  * @param {SoundSprite} soundSprite
  * @param {string} filename Filename + extension. Please get the compatible extension from AudioEngine.getSoundFormat
  */

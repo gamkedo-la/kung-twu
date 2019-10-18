@@ -60,7 +60,7 @@
 	<!-- Individual Volume Testing -->
 	<div class="block">
 		<h2>Base Volume Test</h2>
-		<p><em>Please make sure all bus values are at 1 while testing to ensure even balance.</em></p>
+		<p><em>Please make sure all bus values are at full or even volume while testing to ensure even balance.</em></p>
 		<div class="block">
 				<select id="soundList"></select>
 				<input id="soundTestSlider" type="range" min="0" max="1" step=".001">
@@ -74,12 +74,22 @@
 
 	</div>
 </div>
+<div class="main">
+	<div class="block">
+		<h2>Sfx Randomizer Test</h2>
+		<button id="sfxRandomButton">Play</button><span>Just played: "</span><span id="sfxRandomDisplay"></span><span>"</span>
+		<div id="sfxRandomSounds">
+			<button id="addRandom">+</button><button id="removeRandom">-</button>
+		</div>
+	</div>
+</div>
 
 	<!-- Scripts -->
 	<script src="./js/Globals.js"></script>
 	<script src="./js/Audio/SoundGlobals.js"></script>
 	<script src="./js/Utility.js"></script>
 	<script src="./js/Debug.js"></script>
+	<script src="./js/Audio/SFXRandomizerBox.js"></script>
 	<script src="./js/Audio/SoundEngine.js"></script>
 	<script src="./js/Audio/SoundInstance.js"></script>
 	<script src="./js/Audio/SoundSprite.js"></script>

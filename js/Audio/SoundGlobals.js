@@ -1,4 +1,4 @@
-// Sound Constants
+// Sound Implementation How To:
 /// =========================================================
 /// * To add a new sound to the game                        *
 /// * 1. Add a new property key to Sounds                   *
