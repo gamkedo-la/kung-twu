@@ -1,5 +1,6 @@
 /**
- * An interface with the recipe to create a UIProgressBar, containing default values. 
+ * @type IProgressBarConfig
+ * @description An interface with the recipe to create a UIProgressBar, containing default values. 
  * Create your custom UIProgressBar using object literal notation like in the examples below. 
  * If you forget the parameters, hitting "space + ctrl" on Windows or "space + cmd" on Mac while your cursor 
  * is inside the config object literal should bring up suggestions in autocomplete if using Sublime/VSCode.
@@ -16,7 +17,7 @@
  * });
  * ```
  */
-function IProgressBarConfig() {
+function IProgressBarConfigDefaults() {
 	/**
 	 * X position of the top-left corner of the progress bar
 	 * @type {number}
