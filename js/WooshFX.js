@@ -2,13 +2,13 @@
 // made for Kung Twu by McF
 // pools vars for "no gc" performance
 
-const DEBUG_WOOSHES = false;
+const DEBUG_WOOSHES = true;
 const DEG_TO_RAD = Math.PI/180;
 const MAX_ALPHA = 0.6; // 1.0 = starts at full opaque
+const WOOSH_FRAMECOUNT = 16; // how long they fade out for
 
 function WooshFXManager(wooshImage) {
 	var wooshPool = [];
-    var num, aWoosh;
 
 	if (DEBUG_WOOSHES) console.log("Creating the WooshFXManager...");
 
@@ -61,12 +61,13 @@ function WooshFXManager(wooshImage) {
 
     // called by the custom fx above or on its own
     this.trigger = function (x, y, r, img) {
-		aWoosh = null;
+		var aWoosh = null;
 		// look for a woosh
-		for (num = 0; num < wooshPool.length; num++) {
+		for (var num = 0; num < wooshPool.length; num++) {
 			if (!wooshPool[num].active) {
 				aWoosh = wooshPool[num]; // reuse an old one
-				if (DEBUG_WOOSHES) console.log("Reusing woosh " + num);
+                if (DEBUG_WOOSHES) console.log("Reusing woosh " + num);
+                break; // found one, don't need to look further
 			}
 		}
 		if (!aWoosh) { // need to create a new one?
@@ -79,8 +80,9 @@ function WooshFXManager(wooshImage) {
 	};
 
 	this.draw = function () {
-		for (num = 0; num < wooshPool.length; num++) {
+		for (var num = 0; num < wooshPool.length; num++) {
 			if (wooshPool[num].active) {
+                var aWoosh = wooshPool[num];
 				aWoosh.draw();
 			}
 		}
@@ -93,7 +95,7 @@ function Woosh(wooshImage) { // a single woosh, reused often
     const GROW_AND_SHRINK = false; // if false, it gets bigger only
 	this.active = false; // if true, manager reuses it
 	this.img = wooshImage;
-	this.frameCount = 16; // length of animation 
+	this.frameCount = WOOSH_FRAMECOUNT; // length of animation 
     // size when full size
     this.w = 320; //wooshImage.width;
 	this.h = 320; //wooshImage.height;
@@ -108,7 +110,8 @@ function Woosh(wooshImage) { // a single woosh, reused often
     this.trigger = function (x, y, r, img) {
 		if (DEBUG_WOOSHES) console.log("Woosh pos:" + x + "," +  y + " ang:" + r);
 		this.active = true;
-		this.frame = 0;
+        this.frame = 0;
+        this.frameCount = WOOSH_FRAMECOUNT;
 		this.x = x;
 		this.y = y;
         this.r = r;
@@ -120,16 +123,15 @@ function Woosh(wooshImage) { // a single woosh, reused often
 		if (this.active) {
 
             // animate
-            percent = this.frame / this.frameCount;
+            this.frame++;
             
             canvasContext.save();
             canvasContext.translate(this.x, this.y);
             canvasContext.rotate(this.r);
-            canvasContext.globalAlpha = MAX_ALPHA * (1 - percent); // fade out
+            canvasContext.globalAlpha = MAX_ALPHA * (1 - (this.frame / this.frameCount)); // fade out
             canvasContext.drawImage(this.img, Math.round(-this.img.width/2),Math.round(-this.img.height/2)); //	center,	draw
             canvasContext.restore();
 
-            this.frame++;
             this.active = this.frame < this.frameCount; // keep going?
 
 		}
