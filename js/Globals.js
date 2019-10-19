@@ -188,6 +188,7 @@ const Fonts = {
 	CreditsText: "16px Tahoma"
 };
 
+/** @type fontSystem */
 let JPFont;
 const CHAR_SIZE = {
 	width:80,

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Timer to both keep track of time and render the number of seconds left. 
  * Composed of a CountDownTimer with a draw function. Must be updated with deltaTime every frame for accurate timing.

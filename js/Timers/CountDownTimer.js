@@ -106,7 +106,6 @@ function CountDownTimer(isDeltaTimer = true) {
 	this.update = function(deltaTime) {
 		if (_isActive && !_isPaused) {
 			// Timer is active and unpaused
-			
 			// Convert to seconds
 			const _deltaSeconds = deltaTime * 0.001;
 			// Count down timer
@@ -117,7 +116,6 @@ function CountDownTimer(isDeltaTimer = true) {
 				// Timer is a game frame timer, count down one frame
 				_time -= 1;
 			}
-
 			// Send callbacks
 			_onUpdate.send(_time, _deltaSeconds);
 

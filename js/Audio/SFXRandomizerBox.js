@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Adds more realism to audio by having multiple takes of a sound play at random
  * @param {SoundManager} soundManager The game SoundManager object
@@ -8,6 +10,7 @@
  *
  */
 function SFXRandomizerBox(soundManager, dontPlayLastNum, volRange, speedRange, keys) {
+	const _DEBUG = false;
 	const _manager = soundManager;
 	/**
 	 * The master list of sound keys to pick from
@@ -166,11 +169,16 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, volRange, speedRange, k
 	 * @param {string} key 
 	 */
 	function _addToLastPlayed(key) {
+		// If exceeding the lastPlayed cap, shift the first value out.
 		if (_lastPlayed.length > _getDontPlayLastNum()) {
 			_lastPlayed.shift();
 		}
+
+		// Only push the new key if it doesn't exist on the list
 		if (_lastPlayed.indexOf(key) === -1) {
 			_lastPlayed.push(key);
+		} else {
+			if (_DEBUG) console.log("Warning! SFXRandomizerBox tried to add a value to the lastPlayed list, but it already exists!");
 		}
 
 		// Just double check that the array is at the right length.
