@@ -1,3 +1,9 @@
+/**
+ * 
+ * @param {HTMLImageElement} jpFont 
+ * @param {{width: number, height: number}} charSize 
+ * @param {CanvasRenderingContext2D} context 
+ */
 function fontSystem(jpFont, charSize, context) {
 	let letters = [];
 	let lettersStartPos = [];
@@ -32,17 +38,25 @@ function fontSystem(jpFont, charSize, context) {
 		}
 	};
 
-	this.printTextAt = function(text, position, alignment = TextAlignment.Left, scale = 1, language = currentLanguage) {
+	this.printTextAt = function(text, position, alignment = TextAlignment.Left, scale = 1, language = currentLanguage, alpha = 1) {
 		const stringWidth = this.getStringWidth(text, scale);
 		const startPos = leftSideOfTextForPosAlignmentAndScale(stringWidth, position.x, alignment);
 		let drawPos = startPos;
+		
+		// set alpha
+		const oldAlpha = context.globalAlpha;
+		context.globalAlpha = alpha;
+
 		for(let i = 0; i < text.length; i++) {	//Go through all characters
 			const thisFrame = this.findLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
 			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, drawPos, position.y, charSize.width * scale, charSize.height * scale);
-
+			
 			const advance = scale * advancementForLanguageAndCharacter(language, text[i]);
 			drawPos += advance;
 		}
+
+		// restore alpha value
+		context.globalAlpha = oldAlpha;
 	};
 
 	const advancementForLanguageAndCharacter = function(language, character) {
