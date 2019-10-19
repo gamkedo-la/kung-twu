@@ -4,6 +4,29 @@ function GameScene() {
 	const GRAVITY = 1500;
 	const VERTICAL_OFFSET = 50;
 
+	// Game Timer Scene Settings
+	// For more detailed settings please go to "js/Timers/GameTimer.js"
+	let gameTimer = new GameTimer({
+		startTime: 30, // in seconds
+		decimalPlaces: 3, // 3 digits zero-padded
+		timeWarningThreshold: 10, // in seconds
+		onZeroText: "Time Up!", // use "" if you just want to see zeroes
+		startNow: true, // start immediately on scene start. Change this when there's a count down to start. Just instantiate another one of these.
+	});
+	gameTimer.onZero.subscribe(() => {
+		// TODO: set a game over flag here
+		sound.playEcho(Sounds.SFX_PlayerFail, [.4, 1], [1, .3], 5, 200);
+		sound.playEcho(Sounds.SFX_PlayerKick, [1, .4], [.4, 1], 5, 150);
+
+		console.log("Time's UP!!");
+	});
+	gameTimer.onWarningCount.subscribe((seconds) => {
+		// Play some kind of beep here!
+		sound.playSFX(Sounds.SFX_ResumeLow); // temporary
+		console.log(seconds); // please remove when it's seen working without bugs
+	});
+	
+
 	let camera = null;
 	let enemies = [];
 	let columnManager = null;
@@ -26,6 +49,7 @@ function GameScene() {
 	let bossMaxHealth = null;
 	let enemyMinX;
 	let enemyMaxX;
+
 	const displayPoints = [];
 
 	this.transitionIn = function() {
@@ -160,6 +184,9 @@ function GameScene() {
 
 		const newCameraX = camera.getPosition().x;
 		updateEnvironment(newCameraX);
+
+		// Timer countdown update
+		gameTimer.update(deltaTime);
 
 		player.update(
 			deltaTime,
@@ -380,6 +407,10 @@ function GameScene() {
 		//Time Counter
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Time),
 			{x:screenLeft + 40, y:95}, TextAlignment.Left, UI_SCALE);
+		
+		// GameTimer text rendering
+		gameTimer.setPosition(screenLeft + 150, 96);
+		gameTimer.draw();
 
 		//Level Name
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Level),

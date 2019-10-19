@@ -36,19 +36,25 @@ const SceneState = {
 		return this.log[this.log.length-1];
 	},
 	run: function(deltaTime, previousState) {
-		const currentlyInGame = (this.scenes[this.currentScene] === this.scenes[SCENE.GAME]);
-		const wasInGame = (this.scenes[this.getPreviousState()] === this.scenes[SCENE.GAME]);
-		if(((currentlyInGame) || (wasInGame)) && (this.didStartTransition)) {
-			this.runSegue(deltaTime, previousState);
+		const scene = this.scenes[this.currentScene];
+		if (scene) {
+			const currentlyInGame = (scene === this.scenes[SCENE.GAME]);
+			const wasInGame = (this.scenes[this.getPreviousState()] === this.scenes[SCENE.GAME]);
+			if ((currentlyInGame || wasInGame) && this.didStartTransition) {
+				this.runSegue(deltaTime, previousState);
+			} else {
+				// Run the scene
+				scene.run(deltaTime);
+			}
+
+			if (sound.getIsMuted()) {
+				JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Muted), {x:760, y: 10}, 14, textAlignment.Left);
+			}
+
+			inputProcessor.clear();
 		} else {
-			this.scenes[this.currentScene].run(deltaTime);
+			console.log("ERROR! The SceneState object tried to run state, but its reference was", typeof scene === "object" ? "null" : typeof scene, "!");
 		}
-
-		if (isMuted) {
-			// gameFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Muted), {x:760, y: 10}, 14, textAlignment.Left);
-		}
-
-		inputProcessor.clear();
 	},
 	runSegue: function(deltaTime, previousState) {
 		this.transitionTime += deltaTime;
