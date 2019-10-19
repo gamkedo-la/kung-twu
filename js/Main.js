@@ -81,13 +81,13 @@ function updateButtonText() {
 }
 
 function update() {
+	requestAnimationFrame(update);
 	const deltaTime = timer.update();
 	if (gamepad.active) {
 		gamepad.update();
 	}
 
 	SceneState.run(deltaTime);
-	requestAnimationFrame(update);
 }
 
 function startGame() {
