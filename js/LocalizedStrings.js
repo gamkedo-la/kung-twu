@@ -499,14 +499,13 @@ const userStrings = {
 		[STRINGS_KEY.MaxHealth]:"Maksymalne Życie",
 		[STRINGS_KEY.StartBelt]:"Początkowy Pas",
 		[STRINGS_KEY.StartLevel]:"Początkowy Poziom",
-
-		[STRINGS_KEY.Rivals]:"Rivals:",
-		[STRINGS_KEY.RivalHealth]:"Rival Health",
-		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
-		[STRINGS_KEY.Invicibility]:"Invincible Time",
-		[STRINGS_KEY.Knockback]:"Knockback",
-		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
-		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
-		[STRINGS_KEY.BossHealth]:"Shīfù Health"
+		[STRINGS_KEY.Rivals]:"Rywale:",
+		[STRINGS_KEY.RivalHealth]:"Życie Rywala",
+		[STRINGS_KEY.PlayerDamage]:"Siła Uderzenia",
+		[STRINGS_KEY.Invicibility]:"Czas Nietykalności",
+		[STRINGS_KEY.Knockback]:"Odrzucenie",
+		[STRINGS_KEY.EnemyStrength]:"Siła Rywala",
+		[STRINGS_KEY.BossStrength]:"Siła Shīfù",
+		[STRINGS_KEY.BossHealth]:"Życie Shīfù"
 	}
 };
