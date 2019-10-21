@@ -272,10 +272,10 @@ const userStrings = {
 		[STRINGS_KEY.HighScore]:"HIGH SCORE:",
 		[STRINGS_KEY.Done]:"かんりょう",
 		[STRINGS_KEY.HowToDash]:"[SPACE]ライバルからのがれれるように\nダッシュする",
-		[STRINGS_KEY.HowToSweep]:"ライバルをはくてめに\nしゃがみながらけってください",
+		[STRINGS_KEY.HowToSweep]:"ライバルをはくてように\nしゃがみながらけってください",
 		[STRINGS_KEY.HowToJ_Kick]:"ジャンプキックするように\nジャンプしながらけってください",
 		[STRINGS_KEY.HowToH_Kick]:"ヘリコプターキックへするように\nダッシュしながらけってください",
-		[STRINGS_KEY.EndGameMessage]:"おめでとうございます!\n さとりをてにれました。\n みちをすすみます。\nそしてまなんだことをおしえるようにできます。",
+		[STRINGS_KEY.EndGameMessage]:"おめでとうございます!\n さとりをてにれました。\n みちをすすして。\nそしてまなんだことをおしえるようにできます。",
 		[STRINGS_KEY.Boss]:"シフウ:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"アシストモード",
 		[STRINGS_KEY.Assist]:"[Z] しえんために ",
