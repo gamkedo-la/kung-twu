@@ -27,6 +27,7 @@ function DisplayPoints(points, startPos) {
 	};
 
 	this.draw = function() {
+		//Leave as plain text
 		colorText(pointsString,
 			this.position.x, this.position.y,
 			Color.White, Fonts.CreditsText,

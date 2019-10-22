@@ -434,15 +434,6 @@ function GameScene() {
 			thisX += (10 + basicEnemyIdle.width / 4);
 		}
 
-		// Health bar for the enemies
-		for(let i = 0; i < enemies.length; i++) {
-			const enemyPos = enemies[i].getPosition();
-			const enemyHealth = (enemies[i].health == null ? ASSIST_DEFAULT.BaseEnemyHealth*2 : enemies[i].health*2);
-
-			drawRect(enemyPos.x+5, enemyPos.y-30, enemyHealth, 22, Color.White);
-			drawBorder(enemyPos.x+5, enemyPos.y-30, ASSIST_DEFAULT.BaseEnemyHealth*2, 22, Color.White);
-		}
-
 		//Boss Health
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Boss),
 			{x:cameraX, y:55}, TextAlignment.Left, UI_SCALE);

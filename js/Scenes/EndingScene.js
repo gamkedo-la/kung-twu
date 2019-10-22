@@ -138,9 +138,7 @@ function EndingScene() {
 
 	const drawMessage = function() {
 		for (let i = 0; i < message.length; i++) {
-			colorText(message[i], 
-				canvas.width / 2, MESSAGE_Y_POS + (i * LINE_HEIGHT),
-				Color.White, Fonts.MainTitle, TextAlignment.Center, true);
+			JPFont.printTextAt(message[i], {x:canvas.width / 2, y:MESSAGE_Y_POS + (i * LINE_HEIGHT)}, TextAlignment.Center, 0.5);
 		}
 	};
 }

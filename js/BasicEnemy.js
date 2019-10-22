@@ -20,6 +20,8 @@ function BasicEnemy(config) {
 		localStorageHelper.setInt(localStorageKey.BaseEnemyHealth, baseHealth);
 	}
 	this.health = null;//initialized when first hit by player
+	let maxHealth = null;
+	let healthColor = Color.White;//Correct color set below
 	this.score = 100;
 	
 	this.type = ENTITY_TYPE.Enemy;
@@ -119,6 +121,12 @@ function BasicEnemy(config) {
 	};
 
 	this.update = function(deltaTime, gravity, playerPos, minX, maxX, floorHeight, shouldAttack) {
+		if(this.health === null) {
+			this.health = healthForBelt(stateManager.getCurrentBelt());
+			maxHealth = this.health;
+			healthColor = healthColorForBelt(stateManager.getCurrentBelt());
+		}
+
 		const distToPlayer = playerPos.x - position.x;
 		stateManager.update(deltaTime, distToPlayer, shouldAttack);
 		updateForState(stateManager.getCurrentState());
@@ -317,6 +325,15 @@ function BasicEnemy(config) {
 	this.draw = function() {
 		stateManager.drawAt(position.x, position.y);
 
+		if(this.getAIType() !== AITYPE.Boss) {
+			let healthPos = 5;
+			if(stateManager.getIsFacingLeft()) {
+				healthPos = 30;
+			}
+			drawRect(position.x+healthPos, position.y-30, this.health, 11, healthColor);
+			drawBorder(position.x+healthPos, position.y-30, maxHealth, 11, healthColor);	
+		}
+
 		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
 		if(this.attackBody != null) {
 			this.attackBody.draw();
@@ -368,4 +385,15 @@ function BasicEnemy(config) {
 		case BELT.Black: return (2.5 * baseHealth);//this is 1+ Black belt kick from player
 		}
 	};
+
+	const healthColorForBelt = function(belt) {
+		switch(belt) {
+		case BELT.White: return (Color.White);//This is 1+ White belt kick from player
+		case BELT.Yellow: return (Color.Yellow);//this is 1+ Yellow belt kick from player
+		case BELT.Tan: return (Color.Tan);//this is 1+ ten belt kick from player
+		case BELT.Brown: return (Color.Brown);//this is 1+ Brown belt kick from player
+		case BELT.Red: return (Color.Red);//this is 1+ Red belt kick from player
+		case BELT.Black: return (Color.Black);//this is 1+ Black belt kick from player
+		}
+	}
 }

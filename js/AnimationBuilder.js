@@ -429,22 +429,22 @@ function AnimationBuilder() {
 	};
 
 	const basicBlackBeltData = {
-		/*		idle:{
+		idle:{
 			name:STATE.Idle,
-			image:blackEnemyIdle,
+			image:basicEnemyIdle,//blackEnemyIdle,
 			frames:[0, 1],
-			width:blackEnemyIdle.width / 2,
-			height:blackEnemyIdle.height,
+			width:basicEnemyIdle.width/2,//blackEnemyIdle.width / 2,
+			height:basicEnemyIdle.height,//blackEnemyIdle.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
 		},
 		walk:{
 			name:STATE.WalkRight,
-			image:blackEnemyWalk,
+			image:basicEnemyWalk,//blackEnemyWalk,
 			frames:[0, 1, 2],
-			width:blackEnemyWalk.width / 3,
-			height:blackEnemyWalk.height,
+			width:basicEnemyWalk.width/3,//blackEnemyWalk.width / 3,
+			height:basicEnemyWalk.height,//blackEnemyWalk.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
@@ -463,20 +463,20 @@ function AnimationBuilder() {
 		crouch:{},
 		punch:{
 			name:STATE.Punch,
-			image:blackEnemyPunch,
+			image:basicEnemyPunch,//blackEnemyPunch,
 			frames:[0, 1, 2, 1],
-			width:blackEnemyPunch.width / 3,
-			height:blackEnemyPunch.height,
+			width:basicEnemyPunch.width/3,//blackEnemyPunch.width / 3,
+			height:basicEnemyPunch.height,//blackEnemyPunch.height,
 			frameTimes:[50, 150, 225, 50],
 			reverses:false,
 			loops:false
 		},
 		kick:{
 			name:STATE.Kick,
-			image:blackEnemyKick,
+			image:basicEnemyKick,//blackEnemyKick,
 			frames:[0, 1, 2, 1],
-			width:blackEnemyKick.width / 3,
-			height:blackEnemyKick.height,
+			width:basicEnemyKick.width/3,//blackEnemyKick.width / 3,
+			height:basicEnemyKick.height,//blackEnemyKick.height,
 			frameTimes:[50, 150, 225, 50],
 			reverses:false,
 			loops:false
@@ -485,7 +485,7 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}*/
+		knockback:{}
 	};
 
 	const playerWhiteBeltData = {

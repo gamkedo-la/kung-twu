@@ -16,9 +16,12 @@ function GameOverScene() {
 	const buttons = [];
 	const birds = [];
 	let score = 0;
+	const TEXT_SCALE = 0.5;
+	let lineHeight;
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
+		lineHeight = JPFont.getCharacterHeight(TEXT_SCALE);
 
 		if(this.properties) {
 			score = this.properties.score;
@@ -252,18 +255,20 @@ function GameOverScene() {
 		const titleXPos = (canvas.width - (scale * titleImage.width)) / 2;
 		canvasContext.drawImage(titleImage, 0, 0, titleImage.width, titleImage.height, titleXPos, drawY, scale * titleImage.width, scale * titleImage.height);
 
-		colorText(getLocalizedStringForKey(STRINGS_KEY.GameOverTitle), canvas.width / 2, canvas.height / 3 - 60, Color.White, Fonts.Subtitle, TextAlignment.Center);
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.GameOverTitle), {x:canvas.width / 2, y:canvas.height / 3 - 100}, TextAlignment.Center, 1);
 		
-		colorText(getLocalizedStringForKey(STRINGS_KEY.HighScore), 60, canvas.height / 3, Color.White, Fonts.Subtitle, TextAlignment.Left);
 		let highScore = localStorageHelper.getObject(localStorageKey.HighScore);
-		colorText(highScore, 270, canvas.height / 3, Color.White, Fonts.Subtitle, TextAlignment.Left);
+
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.HighScore), {x:canvas.width / 2, y:canvas.height / 3}, TextAlignment.Right, TEXT_SCALE);
+		JPFont.printTextAt(highScore, {x:canvas.width / 2, y:canvas.height / 3}, TextAlignment.Left, TEXT_SCALE);
 		
-		colorText(getLocalizedStringForKey(STRINGS_KEY.Score), 60, canvas.height / 3 + 60, Color.White, Fonts.Subtitle, TextAlignment.Left);
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Score), {x:canvas.width / 2, y:(canvas.height / 3) + lineHeight}, TextAlignment.Right, TEXT_SCALE);
 		let scoreString = score.toString();
 		while(scoreString.length < 9) {
 			scoreString = "0" + scoreString;
 		}
-		colorText(scoreString, 270, canvas.height / 3 + 60, Color.White, Fonts.Subtitle, TextAlignment.Left);
+
+		JPFont.printTextAt(scoreString, {x:canvas.width / 2, y:(canvas.height / 3) + lineHeight}, TextAlignment.Left, TEXT_SCALE);
 	};
 		
 	return this;

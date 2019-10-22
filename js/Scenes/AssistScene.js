@@ -369,8 +369,6 @@ function AssistScene() {
 	};
     
 	const drawTitle = function() {
-//		colorText(getLocalizedStringForKey(STRINGS_KEY.AssistSceneTitle), 
-//			canvas.width / 2, TITLE_Y_POS, Color.White, Fonts.MainTitle, TextAlignment.Center, true);
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.AssistSceneTitle),
 			{x:canvas.width / 2, y:TITLE_Y_POS}, TextAlignment.Center, TITLE_SCALE);
 	};

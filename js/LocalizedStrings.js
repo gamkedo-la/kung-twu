@@ -143,7 +143,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching\nto Leg Sweep rivals",
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping\nto Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing\nto Helicopter Kick",
-		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
+		[STRINGS_KEY.EndGameMessage]:"Congratulations!\nYou have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.Rivals]:"Rivals:",
 		[STRINGS_KEY.RivalHealth]:"Rival Health",
@@ -203,7 +203,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToSweep]:"Patear mientras estás agachado\npara Barrer Piernas de enemigo",
 		[STRINGS_KEY.HowToJ_Kick]:"Patear mientras brincas para\nPatada en Brinco",
 		[STRINGS_KEY.HowToH_Kick]:"Patear mientras te alejas\nrepentínamente de enemigo para\nPatada de Helicóptero",
-		[STRINGS_KEY.EndGameMessage]:"Felicidades! Has logrado \nentendimiento, sigue adelante\ny enseña lo que\nhas aprendido.",
+		[STRINGS_KEY.EndGameMessage]:"Felicidades!\nHas logrado \nentendimiento, sigue adelante\ny enseña lo que\nhas aprendido.",
 		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"MODO de AYUDA",
 		[STRINGS_KEY.Assist]:"[Z] para MODO de AYUDA",
@@ -267,7 +267,6 @@ const userStrings = {
 		[STRINGS_KEY.Quit]:"[Q] ゲームをやめる",
 		[STRINGS_KEY.Continue]:"[C] やりなおす",		
 		[STRINGS_KEY.End]:"[E] おわり",
-
 		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
 		[STRINGS_KEY.HighScore]:"HIGH SCORE:",
 		[STRINGS_KEY.Done]:"かんりょう",
@@ -346,7 +345,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching\nto Leg Sweep rivals",
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping\nto Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing\nto Helicopter Kick",
-		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
+		[STRINGS_KEY.EndGameMessage]:"Congratulations!\nYou have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
 		[STRINGS_KEY.Assist]:"[Z] for Assist Mode",
@@ -417,7 +416,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching\nto Leg Sweep rivals",
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping\nto Jump Kick",
 		[STRINGS_KEY.HowToH_Kick]:"Kick while Dashing\nto Helicopter Kick",
-		[STRINGS_KEY.EndGameMessage]:"Congratulations! You have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
+		[STRINGS_KEY.EndGameMessage]:"Congratulations!\nYou have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
 		[STRINGS_KEY.Assist]:"[Z] for Assist Mode",
@@ -486,7 +485,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToSweep]:"Użyj Kopnięcia w trakcie\nKucnięcia aby Podciąć rywali",
 		[STRINGS_KEY.HowToJ_Kick]:"Użyj Kopnięcia w trakcie\nSkoku aby wykonać Kopnięcie z Wyskoku",
 		[STRINGS_KEY.HowToH_Kick]:"Użyj Kopnięcia w trakcie\nOdskoku aby wykonać Obrotowe Kopnięcie",
-		[STRINGS_KEY.EndGameMessage]:"Gratulacje! Osiągnąłeś oświecenie\nidź teraz i nauczaj\nco sam się\nwłaśnie nauczyłeś.",
+		[STRINGS_KEY.EndGameMessage]:"Gratulacje!\nOsiągnąłeś oświecenie\nidź teraz i nauczaj\nco sam się\nwłaśnie nauczyłeś.",
 		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"TRYB ASYSTY",
 		[STRINGS_KEY.Assist]:"[Z] Tryb Asysty",

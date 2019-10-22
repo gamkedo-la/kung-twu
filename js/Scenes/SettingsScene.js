@@ -18,8 +18,8 @@ function SettingsScene() {
 	let uiProgBarEffectsVolume;
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
-		
-		// Testing new UIProgressBar
+
+/*		// Testing new UIProgressBar
 		uiProgBarMusicVolume = new UIProgressBar({
 			x: 40,
 			y: 200,
@@ -45,7 +45,7 @@ function SettingsScene() {
 		});
 		let grad2 = uiProgBarEffectsVolume.makeGradient("RIGHT", rgba(200, 200, 200, 1), "gold");
 		uiProgBarEffectsVolume.setProgressBarColor(grad2);
-		// End instantiating progress bars
+		// End instantiating progress bars*/
 
 		buttonPadding = canvas.width / 40;
 
@@ -91,9 +91,10 @@ function SettingsScene() {
 
 	const update = function() {
 		processUserInput();
-		uiProgBarMusicVolume.setValueByScreenPos(mouseX, mouseY);
+
+/*		uiProgBarMusicVolume.setValueByScreenPos(mouseX, mouseY);
 		// @SoundParam: Music Volume Bus
-		sound.setBGMVolume(uiProgBarMusicVolume.getValue());
+		sound.setBGMVolume(uiProgBarMusicVolume.getValue());*/
 	};
 
 	const processUserInput = function() {
@@ -200,9 +201,9 @@ function SettingsScene() {
 
 		// render menu
 		printButtons();
-		
-		uiProgBarMusicVolume.draw();
-		uiProgBarEffectsVolume.draw();
+
+/*		uiProgBarMusicVolume.draw();
+		uiProgBarEffectsVolume.draw();*/
 	};
 	
 	const drawBG = function() {
@@ -212,6 +213,6 @@ function SettingsScene() {
 	};
     
 	const drawTitle = function() {
-		colorText(getLocalizedStringForKey(STRINGS_KEY.SettingsScreenTitle), canvas.width / 2, TITLE_Y_POS, Color.White, Fonts.MainTitle, TextAlignment.Center);
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.SettingsScreenTitle), {x:canvas.width / 2, y:TITLE_Y_POS}, TextAlignment.Center, 1);
 	};
 }
