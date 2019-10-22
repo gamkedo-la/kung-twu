@@ -143,6 +143,15 @@ const wooshKnockoutPic = document.createElement("img");
 const decorationSpritesheet = document.createElement("img");
 const waterfallSheet = document.createElement("img");
 const lamp = document.createElement("img");
+const temple = document.createElement("img");
+const table = document.createElement("img");
+const rock = document.createElement("img");
+const statue = document.createElement("img");
+const spear = document.createElement("img");
+const bamboo = document.createElement("img");
+const tree = document.createElement("img");
+const carpet = document.createElement("img");
+const carpet2 = document.createElement("img");
 
 let picsToLoad = 0;
 
@@ -214,6 +223,15 @@ function loadImages() {
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 		{ imgName: waterfallSheet, theFile: "waterfallSheet.png"},
 		{ imgName: lamp, theFile: "Lamp.png"},
+		{ imgName: temple, theFile: "Temple.png"},
+		{ imgName: table, theFile: "table.png"},
+		{ imgName: rock, theFile: "rock.png"},
+		{ imgName: statue, theFile: "Statue.png"},
+		{ imgName: spear, theFile: "spear2.png"},
+		{ imgName: bamboo, theFile: "Bamboo.png"},
+		{ imgName: tree, theFile: "Tree.png"},
+		{ imgName: carpet, theFile: "carpet.png"},
+		{ imgName: carpet2, theFile: "carpet_2.png"},
 
 		// player related
 		{ imgName: playerIdleWhite, theFile: "Player_Idle_White.png"},

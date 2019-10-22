@@ -5,8 +5,11 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 	const TILES = [];
 	const SHADOWS = [];
 	const DELTA_PER_SHIFT = -2;
+	let lastCameraPos;
 
 	this.update = function(cameraXPos, shifts) {
+		lastCameraPos = cameraXPos;
+
 		if(TILES.length === 0) {
 			initializeTiles(scroll);
 		}
@@ -14,45 +17,11 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 		for(let tile of TILES) {
 			tile.update(DELTA_PER_SHIFT * shifts);
 		}
-
-		let didShiftLeft = false;
-		while(TILES[0].getXPos() < cameraXPos - canvas.width / 2 - TILE_WIDTH) {
-			const rightMostTileX = TILES[TILES.length - 1].getXPos();
-			const leftMostTile = TILES.shift();
-			leftMostTile.setXPos(rightMostTileX + TILE_WIDTH);
-			TILES.push(leftMostTile);
-			didShiftLeft = true;
-		}
-
-		if(didShiftLeft) {
-			while(SHADOWS[0].getXPos() < cameraXPos - canvas.width / 2 - SHADOW_WIDTH) {
-				const rightMostShadowX = SHADOWS[SHADOWS.length - 1].getXPos();
-				const leftMostShadow = SHADOWS.shift();
-				leftMostShadow.setXPos(rightMostShadowX + SHADOW_WIDTH);
-				SHADOWS.push(leftMostShadow);
-			}
-		} else {
-			while(TILES[TILES.length - 1].getXPos() > cameraXPos + canvas.width / 2 + TILE_WIDTH) {
-				const leftMostTileX = TILES[0].getXPos();
-				const rightMostTile = TILES.pop();
-				rightMostTile.setXPos(cameraXPos - (canvas.width / 2) - TILE_WIDTH);
-				rightMostTile.setXPos(leftMostTileX - TILE_WIDTH);
-				TILES.unshift(rightMostTile);
-			}
-
-			while(SHADOWS[SHADOWS.length - 1].getXPos() > cameraXPos + canvas.width / 2 + SHADOW_WIDTH) {
-				const leftMostShadowX = SHADOWS[0].getXPos();
-				const rightMostShadow = SHADOWS.pop();
-				rightMostShadow.setXPos(cameraXPos - (canvas.width / 2) - SHADOW_WIDTH);
-				rightMostShadow.setXPos(leftMostShadowX - SHADOW_WIDTH);
-				SHADOWS.unshift(rightMostShadow);
-			}
-		}
 	};
 
 	this.draw = function() {
 		for(let tile of TILES) {
-			tile.draw(minPos, maxPos);
+			tile.draw(lastCameraPos);
 		}
 
 		for(let shadow of SHADOWS) {
@@ -61,19 +30,44 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 	};
 
 	const initializeTiles = function(scroll) {
-		const tileCount = 8 + Math.floor(canvas.width / TILE_WIDTH);
+		const tileCount = 2 + Math.ceil((maxPos - minPos + canvas.width) / TILE_WIDTH);
 
-		let currentXPos = -TILE_WIDTH / 2;
+		let imageToUse;
+		let decorationToUse = null;
+		let decorationIndex = 0;
+		let currentXPos = minPos - (canvas.width / 2) - (TILE_WIDTH / 2);
 		for(let i = 0; i < tileCount; i++) {
-			let imageToUse = windowedWall;
-			if(i % 4 === 0) {
+			if((i === 0) ||(i === 1) || (i === tileCount - 1) || (i === tileCount - 2)) {
+				//0, 1, 18 & 19
 				imageToUse = tiledWall;
-			} else if(i % 4 === 1) {
-				imageToUse = tiledWallScroll;
-			} else if(i % 4 === 2) {
+			} else if((i === 2) || (i === tileCount - 3)) {
+				//2 & 17
 				imageToUse = scroll;
+			} else if((i === 3) || (i === tileCount - 4)) {
+				//3 & 16
+				imageToUse = tiledWallScroll;
+			} else if(i % 2 === 0) {
+				//4, 6, 8, 10, 12, 14
+				imageToUse = tiledWall;
+				if(decorationIndex === 0) {
+					decorationToUse = spear;
+					decorationIndex = 1;
+				} else if(decorationIndex === 1) {
+					decorationToUse = carpet;
+					decorationIndex = 2;
+				} else if(decorationIndex === 2) {
+					decorationToUse = carpet2;
+					decorationIndex = 0;
+				}
+			} else {
+				//5, 7, 9, 11, 13, 15
+				imageToUse = windowedWall;
 			}
-			TILES.push(new WallTile(imageToUse, currentXPos + (i * TILE_WIDTH), posY));
+
+			const thisTile = new WallTile(imageToUse, currentXPos + (i * TILE_WIDTH), posY);
+			thisTile.setDecoration(decorationToUse);
+			TILES.push(thisTile);
+			decorationToUse = null;
 		}
 
 		const shadowCount = 4 + Math.floor(canvas.width / SHADOW_WIDTH);
@@ -87,6 +81,7 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 	function WallTile(image, posX, posY) {
 		let xPos = posX;
 		let yPos = posY;
+		let decoration = null;
 	
 		this.getXPos = function() {
 			return xPos;
@@ -95,20 +90,30 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 		this.setXPos = function(newXPos) {
 			xPos = newXPos;
 		};
+
+		this.setDecoration = function(aDecoration) {
+			decoration = aDecoration;
+		};
 	
 		this.update = function(deltaX) {
 			xPos += deltaX;
 		};
 	
-		this.draw = function(minPos, maxPos) {
-			if(xPos < minPos) {
-				canvasContext.drawImage(tiledWall, xPos, yPos);
-			} else if(xPos > maxPos) {
-				canvasContext.drawImage(tiledWall, xPos, yPos);
-			} else {
-				canvasContext.drawImage(image, xPos, yPos);
+		this.draw = function(cameraXPos) {
+			if(xPos < cameraXPos - (canvas.width / 2) - image.width) return;
+			if(xPos > cameraXPos + canvas.width / 2) return;
+
+			canvasContext.drawImage(image, xPos, yPos);
+
+			if(decoration != null) {
+				if(decoration === spear) {
+					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 200);
+				} else if(decoration === carpet) {
+					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 175);
+				} else if(decoration === carpet2) {
+					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 150);
+				}
 			}
-//			canvasContext.drawImage(image, xPos, yPos);
 		};
 	}
 

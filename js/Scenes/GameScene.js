@@ -83,7 +83,7 @@ function GameScene() {
 			enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
 			initializeFloor(levelData.columnImage, VERTICAL_OFFSET);
 			foregroundDecorations.generate(50,-4000,500,628,636,0,7,floor.getFrontHeight(),floor.getBackHeight());
-			wallDecorations.generate(20,-4000,500,360,380,7,7,floor.getFrontHeight(),floor.getBackHeight());
+//			wallDecorations.generate(20,-4000,500,360,380,7,7,floor.getFrontHeight(),floor.getBackHeight());
 			InitializeRoof();
 			InitializeBackWall();
 			initializeColumns(levelData.columnImage, VERTICAL_OFFSET);
@@ -241,7 +241,7 @@ function GameScene() {
 		wall.update(newCameraX, floorImageShifts);
 		lampManager.update(newCameraX, floorImageShifts);
 		foregroundDecorations.update(floorImageShifts);
-		wallDecorations.update(floorImageShifts);
+//		wallDecorations.update(floorImageShifts);
 	};
 
 	const updateEnemies = function(deltaTime) {
@@ -341,7 +341,7 @@ function GameScene() {
 		drawBackground(cameraX, roofTop);
 		wall.draw();
         
-		if (wallDecorations) wallDecorations.draw(cameraX);
+//		if (wallDecorations) wallDecorations.draw(cameraX);
         
 		subfloor.draw();
 		floor.draw();
@@ -671,7 +671,7 @@ const Level1Data = {
 	wallWindowTop: 215,
 	bgClipLevel: 100,
 	columnImage:lvl1Column,
-	cameraMin: -1000,
+	cameraMin: -5000,
 	cameraMax: 350,
 	didReachBoss: function(cameraPos) {
 		if(cameraPos <= Level1Data.cameraMin) return true;
