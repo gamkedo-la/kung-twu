@@ -38,6 +38,7 @@ function GameScene() {
 	let roof = null;
 	let wall = null;
 	let waterfall = null;
+	let tables = [];
 	let floorMidHeight = 0;
 	let timeTilSpawn = 0;
 	let score = 0;
@@ -83,12 +84,12 @@ function GameScene() {
 			enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
 			initializeFloor(levelData.columnImage, VERTICAL_OFFSET);
 			foregroundDecorations.generate(50,-4000,500,628,636,0,7,floor.getFrontHeight(),floor.getBackHeight());
-//			wallDecorations.generate(20,-4000,500,360,380,7,7,floor.getFrontHeight(),floor.getBackHeight());
 			InitializeRoof();
 			InitializeBackWall();
 			initializeColumns(levelData.columnImage, VERTICAL_OFFSET);
 			initializeLamps(350);
 			if(currentLevel === 1) initializeWaterfall();
+			initializeTables();
 		}
 
 		// @SoundHook:
@@ -138,6 +139,7 @@ function GameScene() {
 		roof = null;
 		wall = null;
 		waterfall = null;
+		tables = [];
 		floorMidHeight = 0;
 		timeTilSpawn = 0;
 		score = 0;
@@ -241,7 +243,9 @@ function GameScene() {
 		wall.update(newCameraX, floorImageShifts);
 		lampManager.update(newCameraX, floorImageShifts);
 		foregroundDecorations.update(floorImageShifts);
-//		wallDecorations.update(floorImageShifts);
+		for(let aTable of tables) {
+			aTable.update(newCameraX, floorImageShifts);
+		}
 	};
 
 	const updateEnemies = function(deltaTime) {
@@ -341,8 +345,6 @@ function GameScene() {
 		drawBackground(cameraX, roofTop);
 		wall.draw();
         
-//		if (wallDecorations) wallDecorations.draw(cameraX);
-        
 		subfloor.draw();
 		floor.draw();
 
@@ -352,6 +354,10 @@ function GameScene() {
 			levelData.cameraMax - tempRightWall.width + canvas.width / 2, floor.getFrontHeight() - tempRightWall.height - 5, 
 			tempRightWall.width, tempRightWall.height);
 		canvasContext.drawImage(wallGradient, levelData.cameraMax - tempRightWall.width + canvas.width / 2, canvas.height - tiledWall.height);
+
+		for(let aTable of tables) {
+			aTable.draw();
+		}
 
 		for (let i = 0; i < enemies.length; i++) {
 			enemies[i].draw();
@@ -528,6 +534,14 @@ function GameScene() {
 		waterfall = new SpriteAnimation("waterfall", waterfallSheet, [0, 1, 2, 3], 200, 140, [128, 128, 128, 32], false, true);
 	};
 
+	const initializeTables = function() {
+		for(let tableData of levelData.tables) {
+			const thisTable = new Table(tableData.x, tableData.y);
+			tables.push(thisTable);
+			collisionManager.addEntity(thisTable);
+		}
+	};
+
 	const initializeCollisionManager = function(player) {
 		collisionManager = new CollisionManager(player);
 	};
@@ -677,7 +691,8 @@ const Level1Data = {
 		if(cameraPos <= Level1Data.cameraMin) return true;
 		return false;
 	},
-	playerStart:{x:350, y:500} //x = cameraMax
+	playerStart:{x:350, y:500}, //x = cameraMax
+	tables:[{x:0, y: 500}]
 };
 
 const Level2Data = {

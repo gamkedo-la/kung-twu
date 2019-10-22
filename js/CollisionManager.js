@@ -10,6 +10,10 @@ function Collider(type, data) {
 	this.radius = 1;
 	this.points = [];
 	this.isActive = true;
+	this.isEnvironment = false;
+	if(data.environment) {
+		this.isEnvironment = data.environment;
+	}
 	
 	for(let i = 0; i < data.points.length; i++) {
 		this.points[i] = {x:data.points[i].x, y:data.points[i].y};
@@ -105,8 +109,15 @@ function CollisionManager(player) {
 	const entities = new Set();
 	this.player = player;
 	this.defeatedEntities = [];
+	const environment = new Set();
 
 	this.addEntity = function(newEntity) {
+		const beforeEnviromentLength = environment.size;
+		if(newEntity.collisionBody.isEnvironment) {
+			environment.add(newEntity);
+			return (!(beforeEnviromentLength === environment.size));
+		}
+
 		const beforeLength = entities.size;
 		entities.add(newEntity);
 
@@ -116,7 +127,9 @@ function CollisionManager(player) {
 	this.removeEntity = function(entityToRemove) {
 		if(entities.has(entityToRemove)) {
 			entities.delete(entityToRemove);
-
+			return true;
+		} else if(environment.has(entityToRemove)) {
+			environment.delete(entityToRemove);
 			return true;
 		}
 
@@ -178,9 +191,7 @@ function CollisionManager(player) {
 		this.defeatedEntities.length = 0;//Empties the array - Don't you love JavaScript?
 
 		for(let entity of entities) {
-			const entityPosition = entity.getPosition();
-			if( (entityPosition.x > GAME_FIELD.right) || 
-				(entityPosition.x < GAME_FIELD.x - entity.getWidth())) {continue;}//entity is not on screen => bail out early
+			if(isNotOnScreen(entity)) continue;//entity is not on screen => bail out early
 
 			const wasDefeated = checkAttacks(entity, this.player);
 			if(wasDefeated.entity) {
@@ -189,7 +200,35 @@ function CollisionManager(player) {
 				this.defeatedEntities.push(player);
 				return;//player has been defeated - we're done here
 			}
-		}		
+
+			for(let enviro of environment) {
+				if(isNotOnScreen(enviro)) continue;//entity is not on screen => bail out early
+
+				if(colliderCheck(entity.collisionBody, enviro.collisionBody)) {
+					entity.wasHitBy(enviro);
+					enviro.wasHitBy(entity);
+				}
+			}
+		}	
+		
+		for(let enviro of environment) {
+			if(isNotOnScreen(enviro)) continue;//entity is not on screen => bail out early
+
+			if(colliderCheck(player.collisionBody, enviro.collisionBody)) {
+				player.wasHitBy(enviro);
+				enviro.wasHitBy(player);
+			}
+		}
+	};
+
+	const isNotOnScreen = function(entity) {
+		const entityPosition = entity.getPosition();
+		if( (entityPosition.x > GAME_FIELD.right) || 
+				(entityPosition.x < GAME_FIELD.x - entity.getWidth())) {
+			return true;
+		}
+
+		return false;
 	};
 
 	const withinSquareRadii = function(body1, body2) {
