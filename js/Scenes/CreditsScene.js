@@ -176,6 +176,10 @@ function CreditsScene() {
         
 		drawTitle();
 
+		drawCredits();
+
+		creditReel();
+
 		// render menu
 		printButtons();        
 	};
@@ -189,4 +193,27 @@ function CreditsScene() {
 	const drawTitle = function() {
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.CreditsScreenTitle),{x:canvas.width / 2,y:TITLE_Y_POS}, TextAlignment.Center, 1);
 	};
+
+	var creditPosY = 300;
+	const drawCredits = function() {
+		console.log("credit text here");
+		colorText(
+			"Lorem ipsum dolor sit amet consectetur",
+		canvas.width/2, creditPosY,
+		'black', 'century gothic',
+		textAlign = "center",
+		opacity = 1,
+		dropShadow = false) 
+	};
+
+	 const creditReel = function() {
+	 	creditPosY = creditPosY;
+	 	creditReelPos = creditPosY -= .25;
+	 }
+
+	// function for user to control credits by scrolling with mouse wheel
+	const creditScroll = function() {
+
+	}
+
 }
