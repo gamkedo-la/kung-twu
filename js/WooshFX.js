@@ -2,7 +2,7 @@
 // made for Kung Twu by McF
 // pools vars for "no gc" performance
 
-const DEBUG_WOOSHES = true;
+const DEBUG_WOOSHES = false;
 const DEG_TO_RAD = Math.PI/180;
 const MAX_ALPHA = 0.6; // 1.0 = starts at full opaque
 const WOOSH_FRAMECOUNT = 16; // how long they fade out for

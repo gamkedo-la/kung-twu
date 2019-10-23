@@ -412,7 +412,11 @@ function Player(config) {
 		if((isInvincible) && (invincibleTime % 200 < 50)) {
 			//do nothing for now
 		} else{
-			stateManager.drawAt(position.x, position.y);
+			if (stateManager.getCurrentState() == STATE.Crouch) {
+				stateManager.drawAt(position.x, position.y + 40);
+			} else {
+				stateManager.drawAt(position.x, position.y);
+			}
 		}
 
 		this.collisionBody.draw(); //colliders know to draw only when DRAW_COLLIDERS = true;
