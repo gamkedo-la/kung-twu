@@ -721,7 +721,8 @@ const Level2Data = {
 		if(cameraPos >= Level2Data.cameraMax) return true;
 		return false;
 	},
-	playerStart:{x:-100, y:500} //x = cameraMin
+	playerStart:{x:-100, y:500}, //x = cameraMin
+	tables:[{x:-200, y: 600}]
 };
 
 const Level3Data = {
@@ -750,7 +751,8 @@ const Level3Data = {
 		if(cameraPos <= Level3Data.cameraMin) return true;
 		return false;
 	},
-	playerStart:{x:350, y:500} //x = cameraMax
+	playerStart:{x:350, y:500}, //x = cameraMax
+	tables:[{x:-200, y: 600}]
 };
 
 const Level4Data = {
@@ -779,7 +781,8 @@ const Level4Data = {
 		if(cameraPos >= Level4Data.cameraMax) return true;
 		return false;
 	},
-	playerStart:{x:-100, y:500} //x = cameraMin
+	playerStart:{x:-100, y:500}, //x = cameraMin
+	tables:[{x:-200, y: 600}]
 };
 
 const Level5Data = {
@@ -808,5 +811,6 @@ const Level5Data = {
 		if(cameraPos <= Level5Data.cameraMin) return true;
 		return false;
 	},
-	playerStart:{x:350, y:500} //x = cameraMax
+	playerStart:{x:350, y:500}, //x = cameraMax
+	tables:[{x:-200, y: 600}]
 };
