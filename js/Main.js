@@ -21,6 +21,12 @@ window.onload = function() {
 		localStorageHelper.setItem(localStorageKey.Language, currentLanguage);
 	}
 
+	currentLevel = localStorageHelper.getInt(localStorageKey.StartingLevel);
+	if((currentLevel === undefined) || (currentLevel === null) || (isNaN(currentLevel))) {
+		currentLevel = ASSIST_DEFAULT.StartLevel;
+		localStorageHelper.setInt(localStorageKey.StartingLevel, currentLevel);
+	}
+
 	pauseManager = new PauseManager();
 		
 	wooshFX = new WooshFXManager(wooshPunchPic);

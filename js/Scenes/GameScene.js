@@ -3,29 +3,7 @@ function GameScene() {
 	this.name = "Game Play";
 	const GRAVITY = 1500;
 	const VERTICAL_OFFSET = 50;
-
-	// Game Timer Scene Settings
-	// For more detailed settings please go to "js/Timers/GameTimer.js"
-	let gameTimer = new GameTimer({
-		startTime: 30, // in seconds
-		decimalPlaces: 3, // 3 digits zero-padded
-		timeWarningThreshold: 10, // in seconds
-		onZeroText: "Time Up!", // use "" if you just want to see zeroes
-		startNow: true, // start immediately on scene start. Change this when there's a count down to start. Just instantiate another one of these.
-	});
-	gameTimer.onZero.subscribe(() => {
-		// TODO: set a game over flag here
-		sound.playEcho(Sounds.SFX_PlayerFail, [.4, 1], [1, .3], 5, 200);
-		sound.playEcho(Sounds.SFX_PlayerKick, [1, .4], [.4, 1], 5, 150);
-
-		console.log("Time's UP!!");
-	});
-	gameTimer.onWarningCount.subscribe((seconds) => {
-		// Play some kind of beep here!
-		sound.playSFX(Sounds.SFX_ResumeLow); // temporary
-		console.log(seconds); // please remove when it's seen working without bugs
-	});
-	
+	const displayPoints = [];
 
 	let camera = null;
 	let enemies = [];
@@ -51,7 +29,29 @@ function GameScene() {
 	let enemyMinX;
 	let enemyMaxX;
 
-	const displayPoints = [];
+	// Game Timer Scene Settings
+	// For more detailed settings please go to "js/Timers/GameTimer.js"
+	let gameTimer = new GameTimer({
+		startTime: 30, // in seconds
+		decimalPlaces: 3, // 3 digits zero-padded
+		timeWarningThreshold: 10, // in seconds
+
+		//TODO: Need a Localizable string here
+		onZeroText: "Time Up!", // use "" if you just want to see zeroes
+		
+		startNow: true, // start immediately on scene start. Change this when there's a count down to start. Just instantiate another one of these.
+	});
+
+	gameTimer.onZero.subscribe(() => {
+		// TODO: set a game over flag here
+		sound.playEcho(Sounds.SFX_PlayerFail, [.4, 1], [1, .3], 5, 200);
+		sound.playEcho(Sounds.SFX_PlayerKick, [1, .4], [.4, 1], 5, 150);
+	});
+
+	gameTimer.onWarningCount.subscribe(() => {
+		// Play some kind of beep here!
+		sound.playSFX(Sounds.SFX_ResumeLow); // TODO: Pick something else
+	});
 
 	this.transitionIn = function() {
 		if((this.properties != undefined) && (this.properties.restartLevel)) {
@@ -110,7 +110,8 @@ function GameScene() {
 	this.quit = function() {
 		currentLevel = localStorageHelper.getInt(localStorageKey.StartingLevel);
 		if((currentLevel === undefined) || (currentLevel === null) || (isNaN(currentLevel))) {
-			currentLevel = 1;
+			currentLevel = ASSIST_DEFAULT.StartLevel;
+			localStorageHelper.setInt(localStorageKey.StartingLevel, currentLevel);
 		}
 
 		this.reset();
@@ -715,8 +716,8 @@ const Level2Data = {
 	wallWindowTop: 215,
 	bgClipLevel: 200,
 	columnImage:lvl2Column,
-	cameraMin: -100,
-	cameraMax: 2000,
+	cameraMin: -5000,
+	cameraMax: 350,
 	didReachBoss: function(cameraPos) {
 		if(cameraPos >= Level2Data.cameraMax) return true;
 		return false;
@@ -745,7 +746,7 @@ const Level3Data = {
 	wallWindowTop: 215,
 	bgClipLevel: 300,
 	columnImage:lvl3Column,
-	cameraMin: -1000,
+	cameraMin: -5000,
 	cameraMax: 350,
 	didReachBoss: function(cameraPos) {
 		if(cameraPos <= Level3Data.cameraMin) return true;
@@ -775,8 +776,8 @@ const Level4Data = {
 	wallWindowTop: 215,
 	bgClipLevel: 400,
 	columnImage:lvl4Column,
-	cameraMin: -100,
-	cameraMax: 2000,
+	cameraMin: -5000,
+	cameraMax: 350,
 	didReachBoss: function(cameraPos) {
 		if(cameraPos >= Level4Data.cameraMax) return true;
 		return false;
@@ -805,7 +806,7 @@ const Level5Data = {
 	wallWindowTop: 215,
 	bgClipLevel: 500,
 	columnImage:lvl4Column,
-	cameraMin: -1000,
+	cameraMin: -5000,
 	cameraMax: 350,
 	didReachBoss: function(cameraPos) {
 		if(cameraPos <= Level5Data.cameraMin) return true;
