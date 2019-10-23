@@ -434,13 +434,15 @@ function Player(config) {
 	};
 
 	this.wasHitBy = function(otherEntity) {
-		if(isInvincible) {return;}
-
 		if(otherEntity.type === ENTITY_TYPE.Environment) {
 			resetPositionWithEdges(this.getColliderEdges(), otherEntity.getColliderEdges());
 			this.collisionBody.setPosition(position); //keep collider in sync with sprite position
+			return;
+		}
 
-		} else if (stateManager.getCurrentState() === STATE.Block) {
+		if(isInvincible) {return;}
+
+		if (stateManager.getCurrentState() === STATE.Block) {
 			this.health -= Math.ceil(otherEntity.getCurrentDamage() / 10);
 		} else if (stateManager.getCurrentState() === STATE.KnockBack) {
 			//do nothing for now

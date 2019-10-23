@@ -346,7 +346,7 @@ function BasicEnemy(config) {
 		}
 		
 		if(otherEntity.type === ENTITY_TYPE.Environment) {
-			console.log(`I hit a piece of the environment`);
+//			console.log(`I hit a piece of the environment`);
 		} else if(stateManager.getCurrentState() === STATE.Block) {
 			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10));
 		} else if(stateManager.getCurrentState() === STATE.KnockBack) {

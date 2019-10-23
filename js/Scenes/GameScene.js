@@ -692,7 +692,7 @@ const Level1Data = {
 		return false;
 	},
 	playerStart:{x:350, y:500}, //x = cameraMax
-	tables:[{x:0, y: 600}]
+	tables:[{x:-200, y: 600}]
 };
 
 const Level2Data = {
