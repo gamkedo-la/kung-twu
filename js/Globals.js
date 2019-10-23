@@ -168,7 +168,8 @@ const COLLIDER_COLOR = "yellow";
 const ENTITY_TYPE = {
 	Player: "player",
 	Enemy: "enemy",
-	Floor: "floor"
+	Floor: "floor",
+	Environment:"environment"
 };
 
 //---------------Audio------------------//

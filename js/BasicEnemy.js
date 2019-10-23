@@ -345,7 +345,9 @@ function BasicEnemy(config) {
 			this.health = healthForBelt(stateManager.getCurrentBelt());
 		}
 		
-		if(stateManager.getCurrentState() === STATE.Block) {
+		if(otherEntity.type === ENTITY_TYPE.Environment) {
+			console.log(`I hit a piece of the environment`);
+		} else if(stateManager.getCurrentState() === STATE.Block) {
 			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10));
 		} else if(stateManager.getCurrentState() === STATE.KnockBack) {
 		//do nothing for now
@@ -365,7 +367,7 @@ function BasicEnemy(config) {
 		if(this.health <= 0) {
 			// @SoundHook basicEnemyDefeated.play();
 			sound.playSFX(Sounds.SFX_LowPain);
-		} else {
+		} else if(otherEntity.type !== ENTITY_TYPE.Environment) {
 			// @SoundHook basicEnemyHitSound.play();
 			sound.playSFX(Sounds.SFX_EnemyHit);
 		}

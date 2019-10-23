@@ -1,9 +1,10 @@
 //Table Object
 function Table(posX, posY, isFront) {
+	this.type = ENTITY_TYPE.Environment;
 	let oldCameraPos;
 	let position = {x:posX, y:posY};
 
-	colliderData = {};
+	const colliderData = {};
 	const colliderPoints = [
 		{x:posX, y:posY},
 		{x:posX + table.width, y:posY},
@@ -21,6 +22,14 @@ function Table(posX, posY, isFront) {
 
 	this.getWidth = function() {
 		return table.width;
+	};
+
+	this.getColliderEdges = function() {
+		return {
+			lowX: colliderPoints[0].x, 
+			highX:colliderPoints[1].x, 
+			lowY: colliderPoints[0].y, 
+			highY:colliderPoints[2].y};
 	};
 
 	this.getCurrentDamage = function() {
@@ -46,7 +55,7 @@ function Table(posX, posY, isFront) {
 	};
 
 	this.wasHitBy = function(otherEntity) {
-//		console.log(`Somebody bumped me!!! (${otherEntity.type})`);
+		//		console.log(`Somebody bumped me!!! (${otherEntity.type})`);
 		return;
 	};
 

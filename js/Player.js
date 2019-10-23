@@ -8,6 +8,7 @@ function Player(config) {
 	let INVINCIBLE_DURATION = null;
 	let invincibleTime = 0;
 	let isInvincible = false;
+	let canFall = false;
 
 	let baseDamage = localStorageHelper.getInt(localStorageKey.PlayerBaseDamage);
 	if((baseDamage === undefined) || (baseDamage === null) || (isNaN(baseDamage))) {
@@ -283,11 +284,18 @@ function Player(config) {
 		if (velocity.y > 0) {
 			if (position.y > floorHeight - animHeight) {
 				position.y = floorHeight - animHeight;
-				velocity.y = 0;
-				if (!stateManager.getIsOnGround()) {
-					stateManager.didLand();
-				}
+				respondToLanding();
+				canFall = false;
+			} else if(canFall) {
+				stateManager.isFalling();
 			}
+		}
+	};
+
+	const respondToLanding = function() {
+		velocity.y = 0;
+		if (!stateManager.getIsOnGround()) {
+			stateManager.didLand();
 		}
 	};
 
@@ -428,7 +436,11 @@ function Player(config) {
 	this.wasHitBy = function(otherEntity) {
 		if(isInvincible) {return;}
 
-		if (stateManager.getCurrentState() === STATE.Block) {
+		if(otherEntity.type === ENTITY_TYPE.Environment) {
+			resetPositionWithEdges(this.getColliderEdges(), otherEntity.getColliderEdges());
+			this.collisionBody.setPosition(position); //keep collider in sync with sprite position
+
+		} else if (stateManager.getCurrentState() === STATE.Block) {
 			this.health -= Math.ceil(otherEntity.getCurrentDamage() / 10);
 		} else if (stateManager.getCurrentState() === STATE.KnockBack) {
 			//do nothing for now
@@ -470,7 +482,7 @@ function Player(config) {
 			this.health = 0;
 			// @SoundHook: playerFailedSound.play();
 			sound.playSFX(Sounds.SFX_PlayerFail);
-		} else {
+		} else if(otherEntity.type !== ENTITY_TYPE.Environment) {
 			// @SoundHook: playerHitSound.play();
 			sound.playSFX(Sounds.SFX_PlayerHit);
 		}
@@ -491,5 +503,41 @@ function Player(config) {
 		case STATE.J_Kick: return 150;
 		case STATE.H_Kick: return 150;
 		}
+	};
+
+	const resetPositionWithEdges = function(myEdges, otherEdges) {
+		//velocity is known, edges of both colliders is known
+		if(!stateManager.getIsOnGround()) {
+			//land on top of the other object
+			position.y -= (myEdges.highY - otherEdges.lowY);
+			respondToLanding();
+			canFall = true;
+		} else if((myEdges.highY - otherEdges.lowY > 0) && (myEdges.highY - otherEdges.lowY < 4)) {
+			position.y -= (myEdges.highY - otherEdges.lowY);
+		} else {
+			if(velocity.x > 0) {
+				//Player is moving to the right
+				if(position.x < otherEdges.lowX) {
+					//Player is to the left of other object => move to left
+					position.x -= (myEdges.highX - otherEdges.lowX);
+					velocity.x = 0;
+				}
+			} else if(velocity.x < 0) {
+				//Player is moving to the left
+				if((position.x > otherEdges.lowX) && (position.x < otherEdges.highX)) {
+					//Player is the right of other object => move to right
+					position.x -= (myEdges.lowX - otherEdges.highX);
+				}
+			}
+		}
+	};
+
+	this.getColliderEdges = function() {
+		return {
+			lowX: this.collisionBody.points[0].x, 
+			highX:this.collisionBody.points[2].x, 
+			lowY: this.collisionBody.points[0].y, 
+			highY:this.collisionBody.points[1].y
+		};
 	};
 }

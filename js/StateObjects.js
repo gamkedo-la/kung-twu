@@ -418,6 +418,11 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		}
 	};
 
+	this.isFalling = function() {
+		landed = false;
+		isOnGround = false;
+	};
+
 	this.getIsOnGround = function() {
 		return (isOnGround === true);
 	};
