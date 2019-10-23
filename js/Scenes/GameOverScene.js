@@ -4,6 +4,7 @@ function GameOverScene() {
 	let selectorPositionsIndex = 0;
 	let selectorPosition = {x:0, y:0};
 	let titleBlockPosition = {x:0, y:0};
+	let titleBlockWidth = 0;
 	const selections = [
 		SCENE.GAME,
 		SCENE.TITLE,
@@ -51,9 +52,11 @@ function GameOverScene() {
 
 			buildBirds();
 		} else {
-			updateButtonPositions();
 			updateButtonTitles();
 		}
+
+		updateButtonPositions();
+		findMenuWidth();
 
 		// @SoundHook:
 		// if(currentBackgroundMusic.getCurrentTrack() != gameOverMusic) {
@@ -72,7 +75,7 @@ function GameOverScene() {
 	this.run = function(deltaTime) {
 		update(deltaTime);
 
-		draw(buttons);
+		draw();
 	};
 
 	this.control = function(newKeyEvent, pressed) {
@@ -126,6 +129,18 @@ function GameOverScene() {
 		return new UIButton(STRINGS_KEY.Credits, x, y, height, padding, thisClick, Color.Purple);
 	};
 
+	const findMenuWidth = function() {
+		let maxWidth = 0;
+		for(let button of buttons) {
+			const thisBounds = button.getBounds();
+			if(thisBounds.width > maxWidth) {
+				maxWidth = thisBounds.width;
+			}
+		}
+		titleBlockWidth = maxWidth + selector.width + (3 * BUTTON_PADDING);
+		titleBlockPosition.x = selectorPosition.x - (3 * BUTTON_PADDING / 2);
+	};
+
 	const updateButtonPositions = function() {
 		let maxWidth = 0;
 		for(let button of buttons) {
@@ -134,7 +149,7 @@ function GameOverScene() {
 		}
 
 		const menuPos = (canvas.width / 2) - (maxWidth / 2);
-		for(button of buttons) {
+		for(let button of buttons) {
 			button.updateXPosition(menuPos);
 		}
 
@@ -245,7 +260,7 @@ function GameOverScene() {
 	
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
-		canvasContext.drawImage(titleBlock, titleBlockPosition.x, titleBlockPosition.y);
+		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlockPosition.x, titleBlockPosition.y, titleBlockWidth, titleBlock.height);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 	};
 	

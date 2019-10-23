@@ -194,7 +194,7 @@ function TitleScene() {
 		}
 
 		const menuPos = (canvas.width / 2) - (maxWidth / 2) + selector.width / 2 + (1.5 * BUTTON_PADDING);
-		for(button of buttons) {
+		for(let button of buttons) {
 			button.updateXPosition(menuPos);
 		}
 
