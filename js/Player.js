@@ -491,7 +491,6 @@ function Player(config) {
 	};
 
 	this.didHit = function(otherEntity) {
-
 		this.attackBody = null;
 		this.pointsToShow.points = pointsToShowForState(stateManager.getCurrentState());
 		this.pointsToShow.position = otherEntity.getPosition();
