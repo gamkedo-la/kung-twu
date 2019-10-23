@@ -12,6 +12,29 @@ function CreditsScene() {
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
+	const creditsList = ["line 01",
+						  "line 02",
+						  "line 03",
+						  "line 03",
+						  "line 03",
+						  "line 02",
+						  "line 0A",
+						  "line 03",
+						  "line 03",
+						  "line 02",
+						  "line 03",
+						  "line 03",
+						  "line 0B",
+						  "line 02",
+						  "line 03",
+						  "line 02",
+						  "line 03",
+						  "line 03",
+						  "line 03",
+						  "line 02",
+						  "line 03",
+						  "line 03",
+						  "END OF CREDITS"];
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -196,19 +219,19 @@ function CreditsScene() {
 
 	var creditPosY = 300;
 	const drawCredits = function() {
-		console.log("credit text here");
-		colorText(
-			"Lorem ipsum dolor sit amet consectetur",
-		canvas.width/2, creditPosY,
-		'black', 'century gothic',
-		textAlign = "center",
-		opacity = 1,
-		dropShadow = false) 
+		for(var i=0; i<creditsList.length; i++) {
+			var yPos = creditPosY + i * 30;
+			if (200 < yPos && yPos < 600) {
+				colorText(
+					creditsList[i],
+				canvas.width/2, yPos,
+				'white', '20px century gothic', "center");
+			}
+		}
 	};
 
 	 const creditReel = function() {
-	 	creditPosY = creditPosY;
-	 	creditReelPos = creditPosY -= .25;
+	 	creditPosY = creditPosY -= .25;
 	 }
 
 	// function for user to control credits by scrolling with mouse wheel
