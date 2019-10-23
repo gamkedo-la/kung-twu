@@ -206,7 +206,7 @@ const userStrings = {
 		[STRINGS_KEY.EndGameMessage]:"Felicidades!\nHas logrado \nentendimiento, sigue adelante\ny enseña lo que\nhas aprendido.",
 		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"MODO de AYUDA",
-		[STRINGS_KEY.Assist]:"[Z] para MODO de AYUDA",
+		[STRINGS_KEY.Assist]:"[Z] MODO de ASISTENCIA",
 		[STRINGS_KEY.BeltWhite]:"Blanco",
 		[STRINGS_KEY.BeltYellow]:"Amarillo",
 		[STRINGS_KEY.BeltTan]:"Crema",
