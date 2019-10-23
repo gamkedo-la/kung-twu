@@ -48,7 +48,7 @@ const SceneState = {
 			}
 
 			if (sound.getIsMuted()) {
-				JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Muted), {x:760, y: 10}, 14, "left");
+				JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Muted), {x:760, y: 10}, 14, TextAlignment.Left);
 			}
 
 			inputProcessor.clear();

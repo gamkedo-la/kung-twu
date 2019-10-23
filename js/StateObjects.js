@@ -213,7 +213,7 @@ const IDLE_STATE = {
 			return STATE.WalkLeft;
 		} else if(action === ACTION.Jump) {
 			return STATE.Jump;
-		} else if(action === ACTION.Down) {
+		} else if(action === ACTION.Crouch) {
 			return STATE.Crouch;
 		} else if((action === ACTION.Dash) && (belt >= BELT.Yellow)) {
 			return STATE.Dash;
@@ -347,7 +347,7 @@ const BLOCK_STATE = {
 			if((currentState === STATE.WalkRight) ||
 			(currentState === STATE.WalkLeft) || 
 			(currentState === STATE.Idle) || 
-			(currentState === STATE.Crouch)) {//TODO: Might need to change this (block crouch?)
+			(currentState === STATE.Crouch)) {
 				return true;
 			}
 		}
@@ -429,8 +429,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 
 	this.getCurrentAnimation = function() {
 		if((currentAnimation === null) || (currentAnimation === undefined)) {
-			console.log(`Current Animation: ${currentAnimation}`);
-			currentAnimation = theAnimations.idle;//TODO: remove this hack once all the animations exist
+			currentAnimation = theAnimations.idle;
 			return theAnimations.idle;
 		}
 		return currentAnimation;
@@ -523,6 +522,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 	};
 
 	const checkAutoStateChanges = function() {
+		let newState;
 		if(knockBackDidEnd) {
 			knockBackDidEnd = false;
 			newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, ACTION.End));
@@ -545,6 +545,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 	const updateStateWithAI = function(deltaTime, distToPlayer, shouldAttack) {
 		let action = aiManager.actionForTypeTimeStateAndPos(belt, rivalType, timeSinceAction, currentState, distToPlayer, shouldAttack);
 
+		let newState;
 		if(action === null) {
 			newState = currentState;
 		} else {
