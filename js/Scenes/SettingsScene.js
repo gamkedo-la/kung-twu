@@ -8,14 +8,14 @@ function SettingsScene() {
 		SCENE.TITLE,
 		SCENE.GAME
 	];
-	const buttonHeight = 25;//TODO: Adjust this size based on custom font
+	const buttonHeight = 25;
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
 	/** @type UIProgressBar */
-	let uiProgBarMusicVolume;
+	//let uiProgBarMusicVolume;
 	/** @type UIProgressBar */
-	let uiProgBarEffectsVolume;
+	//let uiProgBarEffectsVolume;
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 

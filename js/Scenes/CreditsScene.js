@@ -8,33 +8,34 @@ function CreditsScene() {
 		SCENE.TITLE,
 		SCENE.GAME
 	];
-	const buttonHeight = 25;//TODO: Adjust this size based on custom font
+	const buttonHeight = 25;
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
-	const creditsList = ["line 01",
-						  "line 02",
-						  "line 03",
-						  "line 03",
-						  "line 03",
-						  "line 02",
-						  "line 0A",
-						  "line 03",
-						  "line 03",
-						  "line 02",
-						  "line 03",
-						  "line 03",
-						  "line 0B",
-						  "line 02",
-						  "line 03",
-						  "line 02",
-						  "line 03",
-						  "line 03",
-						  "line 03",
-						  "line 02",
-						  "line 03",
-						  "line 03",
-						  "END OF CREDITS"];
+	const creditsList = [
+		"line 01",				  
+		"line 02",
+		"line 03",
+		"line 03",
+		"line 03",
+		"line 02",
+		"line 0A",
+		"line 03",
+		"line 03",
+		"line 02",
+		"line 03",
+		"line 03",
+		"line 0B",
+		"line 02",
+		"line 03",
+		"line 02",
+		"line 03",
+		"line 03",
+		"line 03",
+		"line 02",
+		"line 03",
+		"line 03",
+		"END OF CREDITS"];
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -43,7 +44,7 @@ function CreditsScene() {
 
 		let mainMenuX = 0;
 		const mainMenuY = canvas.height - (9 * buttonHeight / 2);
-        
+		
 		if(buttons.length === 0) {
 			buttons.push(buildBackButton(canvas.width / 40, mainMenuY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildPlayButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
@@ -71,7 +72,7 @@ function CreditsScene() {
 		if (pressed) {//only act on key released events => prevent multiple changes on single press
 			return false;
 		}
-        
+		
 		switch (newKeyEvent) {
 		case ALIAS.SELECT2:
 			if(pauseManager.getIsPaused()) {
@@ -85,12 +86,14 @@ function CreditsScene() {
 			checkButtons();
 			return true;
 		}
-        
+		
 		return false;
 	};
 
-	const update = function() {
+	const update = function(deltaTime) {
 		processUserInput();
+
+		creditReel(deltaTime);
 	};
 
 	const processUserInput = function() {
@@ -196,12 +199,10 @@ function CreditsScene() {
 	const draw = function() {
 		// render the menu background
 		drawBG();
-        
+		
 		drawTitle();
 
 		drawCredits();
-
-		creditReel();
 
 		// render menu
 		printButtons();        
@@ -212,7 +213,7 @@ function CreditsScene() {
 		canvasContext.drawImage(titleScreenDecore, 0, 0); 
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);            
 	};
-    
+	
 	const drawTitle = function() {
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.CreditsScreenTitle),{x:canvas.width / 2,y:TITLE_Y_POS}, TextAlignment.Center, 1);
 	};
@@ -224,19 +225,18 @@ function CreditsScene() {
 			if (200 < yPos && yPos < 600) {
 				colorText(
 					creditsList[i],
-				canvas.width/2, yPos,
-				'white', '20px century gothic', "center");
+					canvas.width/2, yPos,
+					Color.White, Fonts.CreditsText, TextAlignment.Center);
 			}
 		}
 	};
 
-	 const creditReel = function() {
-	 	creditPosY = creditPosY -= .25;
-	 }
+	const creditReel = function(deltaTime) {
+		creditPosY -= (0.025 * deltaTime);
+	};
 
 	// function for user to control credits by scrolling with mouse wheel
 	const creditScroll = function() {
-
-	}
-
+		//TODO: Add implementation here
+	};
 }

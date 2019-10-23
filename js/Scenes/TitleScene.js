@@ -12,7 +12,7 @@ function TitleScene() {
 		SCENE.CREDITS,
 		SCENE.ASSIST
 	];
-	const buttonHeight = 25;//TODO: Adjust this size based on custom font
+	const buttonHeight = 25;
 	const buttonTitlePadding = 2;
 	const BUTTON_PADDING = 0.75 * buttonHeight;
 	const buttons = [];
@@ -343,7 +343,7 @@ function TitleScene() {
 		const titleXPos = (canvas.width - titleImage.width) / 2;
 		canvasContext.drawImage(titleImage, titleXPos, canvas.height / 10);
 
-		text = getLocalizedStringForKey(STRINGS_KEY.Subtitle);
+		const text = getLocalizedStringForKey(STRINGS_KEY.Subtitle);
 		JPFont.printTextAt(text, {x:canvas.width / 2, y:310}, TextAlignment.Center, 0.5);
 	};
         

@@ -3,7 +3,7 @@ function PowerUpScene() {
 	this.name = "Power Up Scene";
 	let selectorPositionsIndex = 0;
 	const selectorPosition = {x:0, y:0};
-	const buttonHeight = 25;//TODO: Adjust this size based on custom font
+	const buttonHeight = 25;
 	const buttonTitlePadding = 2;
 	const buttons = [];
 	let MESSAGE_Y_POS;

@@ -10,7 +10,7 @@ function HelpScene() {
 		SCENE.TITLE,
 		SCENE.GAME
 	];
-	const buttonHeight = 25;//TODO: Adjust this size based on custom font
+	const buttonHeight = 25;
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
