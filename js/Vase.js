@@ -20,8 +20,8 @@ function Vase(posX, posY, index, frontY, backY) {
 
 	const colliderData = {};
 	const colliderPoints = [
-		{x:posX + 25, y:posY + 20},
-		{x:posX + width - 25, y:posY + 20},
+		{x:posX + 25, y:posY - 4},
+		{x:posX + width - 25, y:posY - 4},
 		{x:posX + width - 25, y:posY + height},
 		{x:posX + 25, y:posY + height}
 	];
@@ -129,6 +129,7 @@ function Vase(posX, posY, index, frontY, backY) {
 		const otherEdges = otherEntity.getColliderEdges();
 		const myEdges = this.getColliderEdges();
 		if(!((otherEdges.highY - myEdges.lowY <= 0) && (otherEdges.highY - myEdges.lowY >= -4))) {
+			console.log(`Inside? ${otherEdges.highY - myEdges.lowY}`);
 			if(otherEntity.getPosition().x < position.x) {
 				position.x += 1;
 			} else if(otherEntity.getPosition().x > position.x) {

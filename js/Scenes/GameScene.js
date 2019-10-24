@@ -307,6 +307,8 @@ function GameScene() {
 	const spawnNewEnemies = function(cameraXPos) {
 		if (enemies.length >= levelData.maxEnemies) return;
 
+		if(enemies.length >= 1) return;//TODO: Remove after testing
+
 		const timeSince = timer.timeSinceUpdateForEvent(EVENT.EnemySpawn);
 		if (timeSince > timeTilSpawn) {
 			timer.updateEvent(EVENT.EnemySpawn);
@@ -798,7 +800,7 @@ const Level1Data = {
 	tables:[{x:-600, y: 635}],
 	frontTables:[{x:-700, y: 680}],
 	backVases:[{x:-200, y: 552, index:0}],
-	vases:[{x:-300, y: 590, index:1}, {x:-200, y: 590, index:1}, {x:-100, y: 590, index:1}, {x:0, y: 590, index:1}],
+	vases:[/*{x:-300, y: 590, index:1}, {x:-200, y: 590, index:1},*/ {x:-100, y: 590, index:1}, /*{x:0, y: 590, index:1}*/],
 	frontVases:[{x:-400, y: 640, index:2}]
 };
 

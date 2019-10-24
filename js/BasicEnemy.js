@@ -344,10 +344,14 @@ function BasicEnemy(config) {
 		if(this.health === null) {
 			this.health = healthForBelt(stateManager.getCurrentBelt());
 		}
-		
+
 		if(otherEntity.type === ENTITY_TYPE.Environment) {
-//			console.log(`I hit a piece of the environment`);
-		} else if(stateManager.getCurrentState() === STATE.Block) {
+			resetPositionWithEdges(this.getColliderEdges(), otherEntity.getColliderEdges());
+			this.collisionBody.setPosition(position); //keep collider in sync with sprite position
+			return;
+		}
+		
+		if(stateManager.getCurrentState() === STATE.Block) {
 			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10));
 		} else if(stateManager.getCurrentState() === STATE.KnockBack) {
 		//do nothing for now
@@ -396,6 +400,34 @@ function BasicEnemy(config) {
 		case BELT.Brown: return (Color.Brown);//this is 1+ Brown belt kick from player
 		case BELT.Red: return (Color.Red);//this is 1+ Red belt kick from player
 		case BELT.Black: return (Color.Black);//this is 1+ Black belt kick from player
+		}
+	};
+
+	const resetPositionWithEdges = function(myEdges, otherEdges) {
+		//velocity is known, edges of both colliders is known
+		if(!stateManager.getIsOnGround()) {
+			//land on top of the other object
+			position.y -= (myEdges.highY - otherEdges.lowY);
+//			respondToLanding();
+//			canFall = true;
+		} else if((myEdges.highY - otherEdges.lowY > 0) && (myEdges.highY - otherEdges.lowY < 4)) {
+			position.y -= (myEdges.highY - otherEdges.lowY);
+			velocity.y = 0;
+		} else {
+			if(velocity.x > 0) {
+				//Player is moving to the right
+				if(position.x < otherEdges.lowX) {
+					//Player is to the left of other object => move to left
+					position.x -= (myEdges.highX - otherEdges.lowX);
+					velocity.x = 0;
+				}
+			} else if(velocity.x < 0) {
+				//Player is moving to the left
+				if((position.x > otherEdges.lowX) && (position.x < otherEdges.highX)) {
+					//Player is the right of other object => move to right
+					position.x -= (myEdges.lowX - otherEdges.highX);
+				}
+			}
 		}
 	};
 

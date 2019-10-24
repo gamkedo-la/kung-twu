@@ -515,6 +515,7 @@ function Player(config) {
 			canFall = true;
 		} else if((myEdges.highY - otherEdges.lowY > 0) && (myEdges.highY - otherEdges.lowY < 4)) {
 			position.y -= (myEdges.highY - otherEdges.lowY);
+			velocity.y = 0;
 		} else {
 			if(velocity.x > 0) {
 				//Player is moving to the right
