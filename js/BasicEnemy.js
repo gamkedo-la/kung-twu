@@ -397,5 +397,14 @@ function BasicEnemy(config) {
 		case BELT.Red: return (Color.Red);//this is 1+ Red belt kick from player
 		case BELT.Black: return (Color.Black);//this is 1+ Black belt kick from player
 		}
-	}
+	};
+
+	this.getColliderEdges = function() {
+		return {
+			lowX: this.collisionBody.points[0].x, 
+			highX:this.collisionBody.points[2].x, 
+			lowY: this.collisionBody.points[0].y, 
+			highY:this.collisionBody.points[1].y
+		};
+	};
 }

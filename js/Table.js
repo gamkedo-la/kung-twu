@@ -66,6 +66,18 @@ function Table(posX, posY, frontY, backY) {
 		}
 	};
 
+	this.wasAttackedBy = function(otherEntity) {
+		const otherEdges = otherEntity.getColliderEdges();
+		const myEdges = this.getColliderEdges();
+		if(!((otherEdges.highY - myEdges.lowY <= 0) && (otherEdges.highY - myEdges.lowY >= -4))) {
+			if(otherEntity.getPosition().x < position.x) {
+				position.x += 5;
+			} else if(otherEntity.getPosition().x > position.x) {
+				position.x -= 5;
+			}
+		}
+	};
+
 	this.didHit = function(otherEntity) {
 		return;
 	};

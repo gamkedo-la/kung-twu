@@ -208,6 +208,11 @@ function CollisionManager(player) {
 					entity.wasHitBy(enviro);
 					enviro.wasHitBy(entity);
 				}
+
+				if(checkEntityAttack(entity, enviro)) {
+					enviro.wasAttackedBy(entity);
+					entity.didHit(enviro);
+				}
 			}
 		}	
 		
@@ -217,6 +222,11 @@ function CollisionManager(player) {
 			if(colliderCheck(player.collisionBody, enviro.collisionBody)) {
 				player.wasHitBy(enviro);
 				enviro.wasHitBy(player);
+			}
+
+			if(checkEntityAttack(player, enviro)) {
+				enviro.wasAttackedBy(player);
+				player.didHit(enviro);
 			}
 		}
 	};

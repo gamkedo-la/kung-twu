@@ -199,7 +199,7 @@ function GameScene() {
 		}
 
 		const newCameraX = camera.getPosition().x;
-		updateEnvironment(newCameraX);
+		updateEnvironment(deltaTime, newCameraX);
 
 		// Timer countdown update
 		gameTimer.update(deltaTime);
@@ -230,7 +230,7 @@ function GameScene() {
 			}
 		} else {
 			//Didn't get to the boss yet, keep spawning new enemies
-//			spawnNewEnemies(newCameraX);
+			spawnNewEnemies(newCameraX);
 		}
 	
 		updateEnemies(deltaTime);
@@ -248,7 +248,7 @@ function GameScene() {
 		if(currentLevel === 1) waterfall.update(deltaTime);
 	};
 
-	const updateEnvironment = function(newCameraX) {
+	const updateEnvironment = function(deltaTime, newCameraX) {
 		updateGameField(newCameraX);
 		const floorImageShifts = floor.update(newCameraX);
 		columnManager.update(newCameraX);
@@ -258,7 +258,7 @@ function GameScene() {
 		lampManager.update(newCameraX, floorImageShifts);
 //		foregroundDecorations.update(floorImageShifts);
 		updateTables(newCameraX, floorImageShifts);
-		updateVases(newCameraX, floorImageShifts);
+		updateVases(deltaTime, GRAVITY, newCameraX, floorImageShifts);
 	};
 
 	const updateTables = function(cameraX, shifts) {
@@ -275,17 +275,17 @@ function GameScene() {
 		}
 	};
 
-	const updateVases = function(cameraX, shifts) {
+	const updateVases = function(deltaTime, grav, cameraX, shifts) {
 		for(let aVase of backVases) {
-			aVase.update(cameraX, shifts);
+			aVase.update(deltaTime, grav, cameraX, shifts);
 		}
 		
 		for(let aVase of vases) {
-			aVase.update(cameraX, shifts);
+			aVase.update(deltaTime, grav, cameraX, shifts);
 		}
 		
 		for(let aVase of frontVases) {
-			aVase.update(cameraX, shifts);
+			aVase.update(deltaTime, grav, cameraX, shifts);
 		}
 	};
 
@@ -408,8 +408,20 @@ function GameScene() {
 			aTable.draw();
 		}
 
-		for(let aVase of vases) {
-			aVase.draw();
+		const indicesToRemove = [];
+		for(let i = 0; i < vases.length; i++) {
+			const aVase = vases[i];
+
+			if(aVase.shouldDraw()) {
+				aVase.draw();
+			} else {
+				indicesToRemove.push(i);
+			}
+		}
+
+		for(let indexToRemove of indicesToRemove) {
+			collisionManager.removeEntity(vases[indexToRemove]);
+			vases.splice(indexToRemove, 1);
 		}
 
 		for (let i = 0; i < enemies.length; i++) {
@@ -786,7 +798,7 @@ const Level1Data = {
 	tables:[{x:-600, y: 635}],
 	frontTables:[{x:-700, y: 680}],
 	backVases:[{x:-200, y: 552, index:0}],
-	vases:[{x:-300, y: 590, index:1}],
+	vases:[{x:-300, y: 590, index:1}, {x:-200, y: 590, index:1}, {x:-100, y: 590, index:1}, {x:0, y: 590, index:1}],
 	frontVases:[{x:-400, y: 640, index:2}]
 };
 
