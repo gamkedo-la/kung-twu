@@ -1,6 +1,6 @@
 //Basic Enemy
 function BasicEnemy(config) {
-	const WALK_SPEED = 600; //250
+	const WALK_SPEED = 250; 
 	const JUMP_SPEED = -600;
 	const KNOCK_BACK_SPEED = 800;
 
