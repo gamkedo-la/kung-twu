@@ -129,7 +129,6 @@ function Vase(posX, posY, index, frontY, backY) {
 		const otherEdges = otherEntity.getColliderEdges();
 		const myEdges = this.getColliderEdges();
 		if(!((otherEdges.highY - myEdges.lowY <= 0) && (otherEdges.highY - myEdges.lowY >= -4))) {
-			console.log(`Inside? ${otherEdges.highY - myEdges.lowY}`);
 			if(otherEntity.getPosition().x < position.x) {
 				position.x += 1;
 			} else if(otherEntity.getPosition().x > position.x) {
