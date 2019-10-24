@@ -13,7 +13,7 @@ const COOLDOWN = {
 	Red: 400,
 	Black: 350
 };
-// This is a test comment. I'll remove in a second.
+
 const IDEAL_STRIKE_DIST = 100;//60;
 const BUFFER_DIST = 140;
 
