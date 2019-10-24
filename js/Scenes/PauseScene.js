@@ -59,7 +59,7 @@ function PauseScene() {
 	this.run = function(deltaTime) {
 		update(deltaTime);
 
-		draw(buttons);
+		draw();
 	};
 
 	this.control = function(newKeyEvent, pressed) {
@@ -191,7 +191,7 @@ function PauseScene() {
 
 	const buildControlsButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			//			SceneState.setState(SCENE.CONTROLS);
+			//SceneState.setState(SCENE.CONTROLS);
 			console.log("Going to the Controls Screen now...");
 		};
 
@@ -226,7 +226,7 @@ function PauseScene() {
 		}
 
 		const menuPos = (canvas.width / 2) - (maxWidth / 2);
-		for(button of buttons) {
+		for(let button of buttons) {
 			button.updateXPosition(menuPos);
 		}
 

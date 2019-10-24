@@ -1,17 +1,20 @@
-//Table Object
-function Table(posX, posY, frontY, backY) {
+//Vase
+function Vase(posX, posY, index, frontY, backY) {
 	this.type = ENTITY_TYPE.Environment;
 	let oldCameraPos;
 	let position = {x:posX, y:posY};
-	const thisBottom = posY + table.height;
+	const height = decorationSpritesheet.height;
+	const width = decorationSpritesheet.width / 8;//8 images in decorations spritesheet
+	const clipXPos = index * width;
+	const thisBottom = posY + height;
 	const thisRatio = 2 * ((frontY - thisBottom) / (frontY - backY));
 
 	const colliderData = {};
 	const colliderPoints = [
 		{x:posX, y:posY},
-		{x:posX + table.width, y:posY},
-		{x:posX + table.width, y:posY + table.height},
-		{x:posX, y:posY + table.height}
+		{x:posX + width, y:posY},
+		{x:posX + width, y:posY + height},
+		{x:posX, y:posY + height}
 	];
 	colliderData.points = colliderPoints;
 	colliderData.position = {x:posX, y:posY};
@@ -23,7 +26,7 @@ function Table(posX, posY, frontY, backY) {
 	};
 
 	this.getWidth = function() {
-		return table.width;
+		return width;
 	};
 
 	this.getColliderEdges = function() {
@@ -46,10 +49,10 @@ function Table(posX, posY, frontY, backY) {
 	};
 
 	this.draw = function() {
-		if(position.x < oldCameraPos - (canvas.width / 2) - table.width) return;
+		if(position.x < oldCameraPos - (canvas.width / 2) - width) return;
 		if(position.x > oldCameraPos + (canvas.width / 2)) return;
 
-		canvasContext.drawImage(table, position.x, position.y);
+		canvasContext.drawImage(decorationSpritesheet, clipXPos, 0, width, height, position.x, position.y, width, height);
 
 		this.collisionBody.draw(); //colliders know to draw only when DRAW_COLLIDERS = true;
 	};

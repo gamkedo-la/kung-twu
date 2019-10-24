@@ -16,7 +16,12 @@ function GameScene() {
 	let roof = null;
 	let wall = null;
 	let waterfall = null;
+	let backTables = [];
 	let tables = [];
+	let frontTables = [];
+	let backVases = [];
+	let vases = [];
+	let frontVases = [];
 	let floorMidHeight = 0;
 	let timeTilSpawn = 0;
 	let score = 0;
@@ -83,13 +88,16 @@ function GameScene() {
 			enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
 			enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
 			initializeFloor(levelData.columnImage, VERTICAL_OFFSET);
-			foregroundDecorations.generate(50,-4000,500,628,636,0,7,floor.getFrontHeight(),floor.getBackHeight());
+			const frontY = floor.getFrontHeight();
+			const backY = floor.getBackHeight();
+//			foregroundDecorations.generate(50,-4000,500,628,636,0,7,frontY,backY);
 			InitializeRoof();
 			InitializeBackWall();
 			initializeColumns(levelData.columnImage, VERTICAL_OFFSET);
 			initializeLamps(350);
 			if(currentLevel === 1) initializeWaterfall();
-			initializeTables();
+			initializeTables(frontY, backY);
+			initializeVases(frontY, backY);
 		}
 
 		// @SoundHook:
@@ -140,7 +148,12 @@ function GameScene() {
 		roof = null;
 		wall = null;
 		waterfall = null;
+		backTables = [];
 		tables = [];
+		frontTables = [];
+		backVases = [];
+		vases = [];
+		frontVases = [];
 		floorMidHeight = 0;
 		timeTilSpawn = 0;
 		score = 0;
@@ -217,7 +230,7 @@ function GameScene() {
 			}
 		} else {
 			//Didn't get to the boss yet, keep spawning new enemies
-			spawnNewEnemies(newCameraX);
+//			spawnNewEnemies(newCameraX);
 		}
 	
 		updateEnemies(deltaTime);
@@ -243,9 +256,36 @@ function GameScene() {
 		roof.update(newCameraX, floorImageShifts);
 		wall.update(newCameraX, floorImageShifts);
 		lampManager.update(newCameraX, floorImageShifts);
-		foregroundDecorations.update(floorImageShifts);
+//		foregroundDecorations.update(floorImageShifts);
+		updateTables(newCameraX, floorImageShifts);
+		updateVases(newCameraX, floorImageShifts);
+	};
+
+	const updateTables = function(cameraX, shifts) {
+		for(let aTable of backTables) {
+			aTable.update(cameraX, shifts);
+		}
+		
 		for(let aTable of tables) {
-			aTable.update(newCameraX, floorImageShifts);
+			aTable.update(cameraX, shifts);
+		}
+		
+		for(let aTable of frontTables) {
+			aTable.update(cameraX, shifts);
+		}
+	};
+
+	const updateVases = function(cameraX, shifts) {
+		for(let aVase of backVases) {
+			aVase.update(cameraX, shifts);
+		}
+		
+		for(let aVase of vases) {
+			aVase.update(cameraX, shifts);
+		}
+		
+		for(let aVase of frontVases) {
+			aVase.update(cameraX, shifts);
 		}
 	};
 
@@ -356,8 +396,20 @@ function GameScene() {
 			tempRightWall.width, tempRightWall.height);
 		canvasContext.drawImage(wallGradient, levelData.cameraMax - tempRightWall.width + canvas.width / 2, canvas.height - tiledWall.height);
 
+		for(let aTable of backTables) {
+			aTable.draw();
+		}
+
+		for(let aVase of backVases) {
+			aVase.draw();
+		}
+
 		for(let aTable of tables) {
 			aTable.draw();
+		}
+
+		for(let aVase of vases) {
+			aVase.draw();
 		}
 
 		for (let i = 0; i < enemies.length; i++) {
@@ -368,7 +420,16 @@ function GameScene() {
 		if (wooshFX) wooshFX.draw();
 
 		lampManager.draw();
-		if (foregroundDecorations) foregroundDecorations.draw(cameraX);
+//		if (foregroundDecorations) foregroundDecorations.draw(cameraX);
+
+		for(let aTable of frontTables) {
+			aTable.draw();
+		}
+
+		for(let aVase of frontVases) {
+			aVase.draw();
+		}
+
 		columnManager.draw(cameraX);
 		roof.draw();
 
@@ -535,11 +596,39 @@ function GameScene() {
 		waterfall = new SpriteAnimation("waterfall", waterfallSheet, [0, 1, 2, 3], 200, 140, [128, 128, 128, 32], false, true);
 	};
 
-	const initializeTables = function() {
+	const initializeTables = function(frontY, backY) {
+		for(let tableData of levelData.backTables) {
+			const thisTable = new Table(tableData.x, tableData.y, frontY, backY);
+			backTables.push(thisTable);
+		}
+
 		for(let tableData of levelData.tables) {
-			const thisTable = new Table(tableData.x, tableData.y);
+			const thisTable = new Table(tableData.x, tableData.y, frontY, backY);
 			tables.push(thisTable);
 			collisionManager.addEntity(thisTable);
+		}
+
+		for(let tableData of levelData.frontTables) {
+			const thisTable = new Table(tableData.x, tableData.y, frontY, backY);
+			frontTables.push(thisTable);
+		}
+	};
+
+	const initializeVases = function(frontY, backY) {
+		for(let vaseData of levelData.backVases) {
+			const thisVase = new Vase(vaseData.x, vaseData.y, vaseData.index, frontY, backY);
+			backVases.push(thisVase);
+		}
+
+		for(let vaseData of levelData.vases) {
+			const thisVase = new Vase(vaseData.x, vaseData.y, vaseData.index, frontY, backY);
+			vases.push(thisVase);
+			collisionManager.addEntity(thisVase);
+		}
+
+		for(let vaseData of levelData.frontVases) {
+			const thisVase = new Vase(vaseData.x, vaseData.y, vaseData.index, frontY, backY);
+			frontVases.push(thisVase);
 		}
 	};
 
@@ -693,7 +782,12 @@ const Level1Data = {
 		return false;
 	},
 	playerStart:{x:350, y:500}, //x = cameraMax
-	tables:[{x:-200, y: 600}]
+	backTables:[{x:-500, y: 590}],
+	tables:[{x:-600, y: 635}],
+	frontTables:[{x:-700, y: 680}],
+	backVases:[{x:-200, y: 552, index:0}],
+	vases:[{x:-300, y: 590, index:1}],
+	frontVases:[{x:-400, y: 640, index:2}]
 };
 
 const Level2Data = {
@@ -723,7 +817,9 @@ const Level2Data = {
 		return false;
 	},
 	playerStart:{x:-100, y:500}, //x = cameraMin
-	tables:[{x:-200, y: 600}]
+	backTables:[{x:-200, y: 590}],
+	tables:[{x:-300, y: 635}],
+	frontTables:[{x:-400, y: 680}]
 };
 
 const Level3Data = {
@@ -753,7 +849,9 @@ const Level3Data = {
 		return false;
 	},
 	playerStart:{x:350, y:500}, //x = cameraMax
-	tables:[{x:-200, y: 600}]
+	backTables:[{x:-200, y: 590}],
+	tables:[{x:-300, y: 635}],
+	frontTables:[{x:-400, y: 680}]
 };
 
 const Level4Data = {
@@ -783,7 +881,9 @@ const Level4Data = {
 		return false;
 	},
 	playerStart:{x:-100, y:500}, //x = cameraMin
-	tables:[{x:-200, y: 600}]
+	backTables:[{x:-200, y: 590}],
+	tables:[{x:-300, y: 635}],
+	frontTables:[{x:-400, y: 680}]
 };
 
 const Level5Data = {
@@ -813,5 +913,7 @@ const Level5Data = {
 		return false;
 	},
 	playerStart:{x:350, y:500}, //x = cameraMax
-	tables:[{x:-200, y: 600}]
+	backTables:[{x:-200, y: 590}],
+	tables:[{x:-300, y: 635}],
+	frontTables:[{x:-400, y: 680}]
 };

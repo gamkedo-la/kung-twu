@@ -20,6 +20,24 @@ const BUFFER_DIST = 140;
 function AIManager() {
 	this.coolDownForBelt = function (belt) {
 		switch (belt) {
+		case BELT.White:
+			return COOLDOWN.White;
+		case BELT.Yellow:
+			return COOLDOWN.Yellow;
+		case BELT.Tan:
+			return COOLDOWN.Tan;
+		case BELT.Brown:
+			return COOLDOWN.Brown;
+		case BELT.Red:
+			return COOLDOWN.Red;
+		case BELT.Black:
+			return COOLDOWN.Black;
+		}
+	};
+
+	this.coolDownForBeltAndType = function (belt, type) {
+		if (type === AITYPE.Standard) {
+			switch (belt) {
 			case BELT.White:
 				return COOLDOWN.White;
 			case BELT.Yellow:
@@ -32,37 +50,19 @@ function AIManager() {
 				return COOLDOWN.Red;
 			case BELT.Black:
 				return COOLDOWN.Black;
-		}
-	};
-
-	this.coolDownForBeltAndType = function (belt, type) {
-		if (type === AITYPE.Standard) {
-			switch (belt) {
-				case BELT.White:
-					return COOLDOWN.White;
-				case BELT.Yellow:
-					return COOLDOWN.Yellow;
-				case BELT.Tan:
-					return COOLDOWN.Tan;
-				case BELT.Brown:
-					return COOLDOWN.Brown;
-				case BELT.Red:
-					return COOLDOWN.Red;
-				case BELT.Black:
-					return COOLDOWN.Black;
 			}
 		} else if (type === AITYPE.Boss) {
 			switch (belt) {
-				case BELT.Yellow:
-					return 0.5 * COOLDOWN.Yellow;
-				case BELT.Tan:
-					return 0.5 * COOLDOWN.Tan;
-				case BELT.Brown:
-					return 0.5 * COOLDOWN.Brown;
-				case BELT.Red:
-					return 0.5 * COOLDOWN.Red;
-				case BELT.Black:
-					return 0.5 * COOLDOWN.Black;
+			case BELT.Yellow:
+				return 0.5 * COOLDOWN.Yellow;
+			case BELT.Tan:
+				return 0.5 * COOLDOWN.Tan;
+			case BELT.Brown:
+				return 0.5 * COOLDOWN.Brown;
+			case BELT.Red:
+				return 0.5 * COOLDOWN.Red;
+			case BELT.Black:
+				return 0.5 * COOLDOWN.Black;
 			}
 		}
 	};
@@ -120,51 +120,51 @@ function AIManager() {
 		let strikeDistance = maxStrikeDistanceForBeltAndType(belt, type);
 		if (type === AITYPE.Standard) {
 			switch (belt) {
-				case BELT.White:
-					if (shouldAttack) {
-						return strikeDistance;
-					} else {
-						return 6 * strikeDistance;
-					}
-				case BELT.Yellow:
-					if (shouldAttack) {
-						return strikeDistance;
-					} else {
-						return 5.5 * strikeDistance;
-					}
-				case BELT.Tan:
-					if (shouldAttack) {
-						return strikeDistance;
-					} else {
-						return 5 * strikeDistance;
-					}
-				case BELT.Brown:
-					if (shouldAttack) {
-						return strikeDistance;
-					} else {
-						return 4.5 * strikeDistance;
-					}
-				case BELT.Red:
-					if (shouldAttack) {
-						return strikeDistance;
-					} else {
-						return 3.5 * strikeDistance;
-					}
-				case BELT.Black:
-					if (shouldAttack) {
-						return strikeDistance;
-					} else {
-						return 2.5 * strikeDistance;
-					}
+			case BELT.White:
+				if (shouldAttack) {
+					return strikeDistance;
+				} else {
+					return 6 * strikeDistance;
+				}
+			case BELT.Yellow:
+				if (shouldAttack) {
+					return strikeDistance;
+				} else {
+					return 5.5 * strikeDistance;
+				}
+			case BELT.Tan:
+				if (shouldAttack) {
+					return strikeDistance;
+				} else {
+					return 5 * strikeDistance;
+				}
+			case BELT.Brown:
+				if (shouldAttack) {
+					return strikeDistance;
+				} else {
+					return 4.5 * strikeDistance;
+				}
+			case BELT.Red:
+				if (shouldAttack) {
+					return strikeDistance;
+				} else {
+					return 3.5 * strikeDistance;
+				}
+			case BELT.Black:
+				if (shouldAttack) {
+					return strikeDistance;
+				} else {
+					return 2.5 * strikeDistance;
+				}
 			}
 		} else if (type === AITYPE.Boss) {
 			switch (belt) {
-				case BELT.Yellow:
-				case BELT.Tan:
-				case BELT.Brown:
-				case BELT.Red:
-				case BELT.Black:
-					return strikeDistance;
+			case BELT.Yellow:
+			case BELT.Tan:
+			case BELT.Brown:
+			case BELT.Red:
+			case BELT.Black:
+				return strikeDistance;
 			}
 		}
 	};
@@ -173,42 +173,42 @@ function AIManager() {
 		let range = IDEAL_STRIKE_DIST;
 		if (type === AITYPE.Standard) {
 			switch (belt) {
-				case BELT.White:
-					range = 30;
-					break;
-				case BELT.Yellow:
-					range = 24;
-					break;
-				case BELT.Tan:
-					range = 18;
-					break;
-				case BELT.Brown:
-					range = 10;
-					break;
-				case BELT.Red:
-					range = 4;
-					break;
-				case BELT.Black:
-					range = 0;
-					break;
+			case BELT.White:
+				range = 30;
+				break;
+			case BELT.Yellow:
+				range = 24;
+				break;
+			case BELT.Tan:
+				range = 18;
+				break;
+			case BELT.Brown:
+				range = 10;
+				break;
+			case BELT.Red:
+				range = 4;
+				break;
+			case BELT.Black:
+				range = 0;
+				break;
 			}
 		} else if (type === AITYPE.Boss) {
 			switch (belt) {
-				case BELT.Yellow:
-					range = 18;
-					break;
-				case BELT.Tan:
-					range = 10;
-					break;
-				case BELT.Brown:
-					range = 8;
-					break;
-				case BELT.Red:
-					range = 4;
-					break;
-				case BELT.Black:
-					range = 0;
-					break;
+			case BELT.Yellow:
+				range = 18;
+				break;
+			case BELT.Tan:
+				range = 10;
+				break;
+			case BELT.Brown:
+				range = 8;
+				break;
+			case BELT.Red:
+				range = 4;
+				break;
+			case BELT.Black:
+				range = 0;
+				break;
 			}
 		}
 
@@ -234,64 +234,64 @@ function AIManager() {
 
 		if (type === AITYPE.Standard) {
 			switch (belt) {
-				case BELT.White:
-					if (timeSinceAction > cooldown) {
-						return attackActionForWhiteBelt();
-					}
-					break;
-				case BELT.Yellow:
-					if (timeSinceAction > cooldown) {
-						return attackActionForYellowBelt();
-					}
-					break;
-				case BELT.Tan:
-					if (timeSinceAction > cooldown) {
-						return attackActionForTanBelt(currentState);
-					}
-					break;
-				case BELT.Brown:
-					if (timeSinceAction > cooldown) {
-						return attackActionForBrownBelt(currentState);
-					}
-					break;
-				case BELT.Red:
-					if (timeSinceAction > cooldown) {
-						return attackActionForRedBelt(currentState);
-					}
-					break;
-				case BELT.Black:
-					if (timeSinceAction > cooldown) {
-						return attackActionForBlackBelt(currentState);
-					}
-					break;
+			case BELT.White:
+				if (timeSinceAction > cooldown) {
+					return attackActionForWhiteBelt();
+				}
+				break;
+			case BELT.Yellow:
+				if (timeSinceAction > cooldown) {
+					return attackActionForYellowBelt();
+				}
+				break;
+			case BELT.Tan:
+				if (timeSinceAction > cooldown) {
+					return attackActionForTanBelt(currentState);
+				}
+				break;
+			case BELT.Brown:
+				if (timeSinceAction > cooldown) {
+					return attackActionForBrownBelt(currentState);
+				}
+				break;
+			case BELT.Red:
+				if (timeSinceAction > cooldown) {
+					return attackActionForRedBelt(currentState);
+				}
+				break;
+			case BELT.Black:
+				if (timeSinceAction > cooldown) {
+					return attackActionForBlackBelt(currentState);
+				}
+				break;
 			}
 		} else if (type === AITYPE.Boss) {
 			switch (belt) {
-				case BELT.Yellow:
-					if (timeSinceAction > cooldown) {
-						return attackActionForYellowBossBelt(currentState);
-					}
-					break;
-				case BELT.Tan:
-					if (timeSinceAction > cooldown) {
-						return attackActionForTanBossBelt(currentState);
-					}
-					break;
-				case BELT.Brown:
-					if (timeSinceAction > cooldown) {
-						return attackActionForBrownBossBelt(currentState);
-					}
-					break;
-				case BELT.Red:
-					if (timeSinceAction > cooldown) {
-						return attackActionForRedBossBelt(currentState);
-					}
-					break;
-				case BELT.Black:
-					if (timeSinceAction > cooldown) {
-						return attackActionForBlackBossBelt(currentState);
-					}
-					break;
+			case BELT.Yellow:
+				if (timeSinceAction > cooldown) {
+					return attackActionForYellowBossBelt(currentState);
+				}
+				break;
+			case BELT.Tan:
+				if (timeSinceAction > cooldown) {
+					return attackActionForTanBossBelt(currentState);
+				}
+				break;
+			case BELT.Brown:
+				if (timeSinceAction > cooldown) {
+					return attackActionForBrownBossBelt(currentState);
+				}
+				break;
+			case BELT.Red:
+				if (timeSinceAction > cooldown) {
+					return attackActionForRedBossBelt(currentState);
+				}
+				break;
+			case BELT.Black:
+				if (timeSinceAction > cooldown) {
+					return attackActionForBlackBossBelt(currentState);
+				}
+				break;
 			}
 		}
 
