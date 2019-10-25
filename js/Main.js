@@ -74,12 +74,6 @@ function loadingDoneSoStartGame() {
 	}
 }
 
-function updateButtonText() {
-	for (let i = 0; i < mainMenu.buttons.length; i++) {
-		mainMenu.buttons[i].txt = getLocalizedStringForKey(mainMenu.buttons[i].txtKey);
-	}
-}
-
 function update() {
 	requestAnimationFrame(update);
 	const deltaTime = timer.update();
@@ -103,14 +97,8 @@ function startGame() {
 
 	if((firstLoad === null) || (firstLoad === undefined)) {
 		firstLoad = false;
-		localStorageHelper.setItem(localStorageKey.FirstLoad, firstLoad);
-		
-		return;
+		localStorageHelper.setItem(localStorageKey.FirstLoad, firstLoad.toString());
 	} 
-
-	windowState.help = false;
-	windowState.mainMenu = false;
-	windowState.playing = true;
 }
 
 function windowOnFocus() {
