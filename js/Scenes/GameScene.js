@@ -616,7 +616,7 @@ function GameScene() {
 		bkgdManager = new BackgroundManager();
 		const bkgdImages = levelData.backgroundImages;
 		for(let anImage of bkgdImages) {
-			const thisImage = new BackgroundSprite(anImage.image, anImage.x, anImage.y, anImage.depth);
+			const thisImage = new BackgroundSprite(anImage.image, anImage.x, anImage.y, anImage.depth, anImage.scrollOffscreen);
 			bkgdManager.addImage(thisImage);
 		}
 	};
@@ -816,23 +816,49 @@ const Level1Data = {
 	vases:[{x:-300, y: 590, index:1}, {x:-200, y: 590, index:1}, {x:-100, y: 590, index:1}, {x:0, y: 590, index:1}],
 	frontVases:[{x:-400, y: 640, index:2}],
 	backgroundImages:[
-		{image:bambooLight, x:0, y:250, depth:3}, {image:bambooLight, x:-100, y:250, depth:3}, {image:bambooLight, x:-250, y:250, depth:3},
-		{image:bambooDark, x:-40, y:250, depth:5}, {image:bambooDark, x:-140, y:250, depth:5}, {image:bambooDark, x:-190, y:250, depth:5},
+		{image:temple, x:-100, y:250, depth:10, scrollOffscreen:true},
+		{image:bambooLight, x:0, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-100, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-250, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-40, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-140, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-190, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-800, y:250, depth:3}, {image:bambooLight, x:-900, y:250, depth:3}, {image:bambooLight, x:-1060, y:250, depth:3},
-		{image:bambooDark, x:-840, y:250, depth:5}, {image:bambooDark, x:-940, y:250, depth:5}, {image:bambooDark, x:-1000, y:250, depth:5},
+		{image:bambooLight, x:-800, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-900, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-1060, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-840, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-940, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-1000, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-1600, y:250, depth:3}, {image:bambooLight, x:-1700, y:250, depth:3}, {image:bambooLight, x:-1850, y:250, depth:3},
-		{image:bambooDark, x:-1640, y:250, depth:5}, {image:bambooDark, x:-1740, y:250, depth:5}, {image:bambooDark, x:-1900, y:250, depth:5},
+		{image:templeDark, x:-250, y:400, depth:13, scrollOffscreen:true},
+		{image:bambooLight, x:-1600, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-1700, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-1850, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-1640, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-1740, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-1900, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-2400, y:250, depth:3}, {image:bambooLight, x:-2500, y:250, depth:3}, {image:bambooLight, x:-2650, y:250, depth:3},
-		{image:bambooDark, x:-2440, y:250, depth:5}, {image:bambooDark, x:-2540, y:250, depth:5}, {image:bambooDark, x:-2700, y:250, depth:5},
+		{image:bambooLight, x:-2400, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-2500, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-2650, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-2440, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-2540, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-2700, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-3200, y:250, depth:3}, {image:bambooLight, x:-3300, y:250, depth:3}, {image:bambooLight, x:-3450, y:250, depth:3},
-		{image:bambooDark, x:-3240, y:250, depth:5}, {image:bambooDark, x:-3340, y:250, depth:5}, {image:bambooDark, x:-3500, y:250, depth:5},
+		{image:bambooLight, x:-3200, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-3300, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-3450, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-3240, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-3340, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-3500, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-4000, y:250, depth:3}, {image:bambooLight, x:-4100, y:250, depth:3}, {image:bambooLight, x:-4250, y:250, depth:3},
-		{image:bambooDark, x:-4040, y:250, depth:5}, {image:bambooDark, x:-4140, y:250, depth:5}, {image:bambooDark, x:-4300, y:250, depth:5}
+		{image:bambooLight, x:-4000, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-4100, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-4250, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-4040, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-4140, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-4300, y:250, depth:5, scrollOffscreen:false}
 	]
 };
 
@@ -867,23 +893,49 @@ const Level2Data = {
 	tables:[{x:-300, y: 635}],
 	frontTables:[{x:-400, y: 680}],
 	backgroundImages:[
-		{image:bambooLight, x:0, y:250, depth:3}, {image:bambooLight, x:-100, y:250, depth:3}, {image:bambooLight, x:-250, y:250, depth:3},
-		{image:bambooDark, x:-40, y:250, depth:5}, {image:bambooDark, x:-140, y:250, depth:5}, {image:bambooDark, x:-190, y:250, depth:5},
+		{image:temple, x:-100, y:350, depth:10, scrollOffscreen:true},
+		{image:bambooLight, x:0, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-100, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-250, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-40, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-140, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-190, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-800, y:250, depth:3}, {image:bambooLight, x:-900, y:250, depth:3}, {image:bambooLight, x:-1060, y:250, depth:3},
-		{image:bambooDark, x:-840, y:250, depth:5}, {image:bambooDark, x:-940, y:250, depth:5}, {image:bambooDark, x:-1000, y:250, depth:5},
+		{image:bambooLight, x:-800, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-900, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-1060, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-840, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-940, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-1000, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-1600, y:250, depth:3}, {image:bambooLight, x:-1700, y:250, depth:3}, {image:bambooLight, x:-1850, y:250, depth:3},
-		{image:bambooDark, x:-1640, y:250, depth:5}, {image:bambooDark, x:-1740, y:250, depth:5}, {image:bambooDark, x:-1900, y:250, depth:5},
+		{image:templeDark, x:-250, y:425, depth:13, scrollOffscreen:true},
+		{image:bambooLight, x:-1600, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-1700, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-1850, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-1640, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-1740, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-1900, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-2400, y:250, depth:3}, {image:bambooLight, x:-2500, y:250, depth:3}, {image:bambooLight, x:-2650, y:250, depth:3},
-		{image:bambooDark, x:-2440, y:250, depth:5}, {image:bambooDark, x:-2540, y:250, depth:5}, {image:bambooDark, x:-2700, y:250, depth:5},
+		{image:bambooLight, x:-2400, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-2500, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-2650, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-2440, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-2540, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-2700, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-3200, y:250, depth:3}, {image:bambooLight, x:-3300, y:250, depth:3}, {image:bambooLight, x:-3450, y:250, depth:3},
-		{image:bambooDark, x:-3240, y:250, depth:5}, {image:bambooDark, x:-3340, y:250, depth:5}, {image:bambooDark, x:-3500, y:250, depth:5},
+		{image:bambooLight, x:-3200, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-3300, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-3450, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-3240, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-3340, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-3500, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-4000, y:250, depth:3}, {image:bambooLight, x:-4100, y:250, depth:3}, {image:bambooLight, x:-4250, y:250, depth:3},
-		{image:bambooDark, x:-4040, y:250, depth:5}, {image:bambooDark, x:-4140, y:250, depth:5}, {image:bambooDark, x:-4300, y:250, depth:5}
+		{image:bambooLight, x:-4000, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-4100, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-4250, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-4040, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-4140, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-4300, y:250, depth:5, scrollOffscreen:false}
 	]
 };
 
@@ -918,21 +970,35 @@ const Level3Data = {
 	tables:[{x:-300, y: 635}],
 	frontTables:[{x:-400, y: 680}],
 	backgroundImages:[
-		{image:bambooLight, x:0, y:250, depth:3}, {image:bambooLight, x:-100, y:250, depth:3}, {image:bambooLight, x:-250, y:250, depth:3},
+		{image:temple, x:-100, y:450, depth:10, scrollOffscreen:true},
+		{image:bambooLight, x:0, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-100, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-250, y:250, depth:3, scrollOffscreen:false},
 
-		{image:bambooDark, x:-840, y:250, depth:5}, {image:bambooDark, x:-940, y:250, depth:5}, {image:bambooDark, x:-1000, y:250, depth:5},
+		{image:bambooDark, x:-840, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-940, y:250, depth:5, scrollOffscreen:false},
+		{image:bambooDark, x:-1000, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-1600, y:250, depth:3}, {image:bambooLight, x:-1850, y:250, depth:3},
-		{image:bambooDark, x:-1740, y:250, depth:5}, {image:bambooDark, x:-1900, y:250, depth:5},
+		{image:templeDark, x:-250, y:450, depth:13, scrollOffscreen:true},
+		{image:bambooLight, x:-1600, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-1850, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-1740, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-1900, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-2500, y:250, depth:3}, {image:bambooLight, x:-2650, y:250, depth:3},
-		{image:bambooDark, x:-2440, y:250, depth:5}, {image:bambooDark, x:-2700, y:250, depth:5},
+		{image:bambooLight, x:-2500, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-2650, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-2440, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-2700, y:250, depth:5, scrollOffscreen:false},
 
-		{image:bambooLight, x:-3200, y:250, depth:3}, {image:bambooLight, x:-3450, y:250, depth:3},
-		{image:bambooDark, x:-3240, y:250, depth:5}, {image:bambooDark, x:-3340, y:250, depth:5}, 
+		{image:bambooLight, x:-3200, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-3450, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-3240, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-3340, y:250, depth:5, scrollOffscreen:false}, 
 
-		{image:bambooLight, x:-4000, y:250, depth:3}, {image:bambooLight, x:-4100, y:250, depth:3},
-		{image:bambooDark, x:-4140, y:250, depth:5}, {image:bambooDark, x:-4300, y:250, depth:5}
+		{image:bambooLight, x:-4000, y:250, depth:3, scrollOffscreen:false}, 
+		{image:bambooLight, x:-4100, y:250, depth:3, scrollOffscreen:false},
+		{image:bambooDark, x:-4140, y:250, depth:5, scrollOffscreen:false}, 
+		{image:bambooDark, x:-4300, y:250, depth:5, scrollOffscreen:false}
 	]
 };
 
@@ -966,7 +1032,9 @@ const Level4Data = {
 	backTables:[{x:-200, y: 590}],
 	tables:[{x:-300, y: 635}],
 	frontTables:[{x:-400, y: 680}],
-	backgroundImages:[]
+	backgroundImages:[
+		{image:templeDark, x:-250, y:500, depth:13, scrollOffscreen:true},
+	]
 };
 
 const Level5Data = {

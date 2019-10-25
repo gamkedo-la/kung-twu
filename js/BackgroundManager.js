@@ -1,12 +1,13 @@
 //BackgroundSprite Object
-function BackgroundSprite(image, posX, posY, depth) {
+function BackgroundSprite(image, posX, posY, depth, scrollOffscreen) {
 	this.type = ENTITY_TYPE.Environment;
 	let oldCameraPos;
 	let position = {x:posX, y:posY};
 
 	this.update = function(cameraXPos, shifts) {
 		oldCameraPos = cameraXPos;
-		if((position.x > cameraXPos - canvas.width / 2) && (position.x < cameraXPos + canvas.width / 2)) {
+		if( (scrollOffscreen) ||
+			((position.x > cameraXPos - canvas.width / 2) && (position.x < cameraXPos + canvas.width / 2))) {
 			position.x -= (shifts * depth);
 		}
 	};

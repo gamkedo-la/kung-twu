@@ -144,6 +144,7 @@ const decorationSpritesheet = document.createElement("img");
 const waterfallSheet = document.createElement("img");
 const lamp = document.createElement("img");
 const temple = document.createElement("img");
+const templeDark = document.createElement("img");
 const table = document.createElement("img");
 const rock = document.createElement("img");
 const statue = document.createElement("img");
@@ -225,6 +226,7 @@ function loadImages() {
 		{ imgName: waterfallSheet, theFile: "waterfallSheet.png"},
 		{ imgName: lamp, theFile: "Lamp.png"},
 		{ imgName: temple, theFile: "Temple.png"},
+		{ imgName: templeDark, theFile: "TempleTweaked.png"},
 		{ imgName: table, theFile: "table.png"},
 		{ imgName: rock, theFile: "rock.png"},
 		{ imgName: statue, theFile: "Statue.png"},
