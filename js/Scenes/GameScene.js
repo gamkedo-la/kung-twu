@@ -16,6 +16,7 @@ function GameScene() {
 	let roof = null;
 	let wall = null;
 	let waterfall = null;
+	let bkgdManager = null;
 	let backTables = [];
 	let tables = [];
 	let frontTables = [];
@@ -96,6 +97,7 @@ function GameScene() {
 			initializeColumns(levelData.columnImage, VERTICAL_OFFSET);
 			initializeLamps(350);
 			if(currentLevel === 1) initializeWaterfall();
+			initializeBackgroundManager();
 			initializeTables(frontY, backY);
 			initializeVases(frontY, backY);
 		}
@@ -148,6 +150,7 @@ function GameScene() {
 		roof = null;
 		wall = null;
 		waterfall = null;
+		bkgdManager = null;
 		backTables = [];
 		tables = [];
 		frontTables = [];
@@ -259,6 +262,7 @@ function GameScene() {
 //		foregroundDecorations.update(floorImageShifts);
 		updateTables(newCameraX, floorImageShifts);
 		updateVases(deltaTime, GRAVITY, newCameraX, floorImageShifts);
+		bkgdManager.update(newCameraX, floorImageShifts);
 	};
 
 	const updateTables = function(cameraX, shifts) {
@@ -608,6 +612,15 @@ function GameScene() {
 		waterfall = new SpriteAnimation("waterfall", waterfallSheet, [0, 1, 2, 3], 200, 140, [128, 128, 128, 32], false, true);
 	};
 
+	const initializeBackgroundManager = function() {
+		bkgdManager = new BackgroundManager();
+		const bkgdImages = levelData.backgroundImages;
+		for(let anImage of bkgdImages) {
+			const thisImage = new BackgroundSprite(anImage.image, anImage.x, anImage.y, anImage.depth);
+			bkgdManager.addImage(thisImage);
+		}
+	};
+
 	const initializeTables = function(frontY, backY) {
 		for(let tableData of levelData.backTables) {
 			const thisTable = new Table(tableData.x, tableData.y, frontY, backY);
@@ -665,6 +678,8 @@ function GameScene() {
 			canvas.width, vertClip);
 
 		if(currentLevel === 1) waterfall.drawAt(-200 + cameraX + canvas.width / 2, startDrawingY, false);
+
+		bkgdManager.draw();
 	};
 
 	const dataForCurrentLevel = function() {
@@ -799,7 +814,26 @@ const Level1Data = {
 	frontTables:[{x:-700, y: 680}],
 	backVases:[{x:-200, y: 552, index:0}],
 	vases:[{x:-300, y: 590, index:1}, {x:-200, y: 590, index:1}, {x:-100, y: 590, index:1}, {x:0, y: 590, index:1}],
-	frontVases:[{x:-400, y: 640, index:2}]
+	frontVases:[{x:-400, y: 640, index:2}],
+	backgroundImages:[
+		{image:bambooLight, x:0, y:250, depth:3}, {image:bambooLight, x:-100, y:250, depth:3}, {image:bambooLight, x:-250, y:250, depth:3},
+		{image:bambooDark, x:-40, y:250, depth:5}, {image:bambooDark, x:-140, y:250, depth:5}, {image:bambooDark, x:-190, y:250, depth:5},
+
+		{image:bambooLight, x:-800, y:250, depth:3}, {image:bambooLight, x:-900, y:250, depth:3}, {image:bambooLight, x:-1060, y:250, depth:3},
+		{image:bambooDark, x:-840, y:250, depth:5}, {image:bambooDark, x:-940, y:250, depth:5}, {image:bambooDark, x:-1000, y:250, depth:5},
+
+		{image:bambooLight, x:-1600, y:250, depth:3}, {image:bambooLight, x:-1700, y:250, depth:3}, {image:bambooLight, x:-1850, y:250, depth:3},
+		{image:bambooDark, x:-1640, y:250, depth:5}, {image:bambooDark, x:-1740, y:250, depth:5}, {image:bambooDark, x:-1900, y:250, depth:5},
+
+		{image:bambooLight, x:-2400, y:250, depth:3}, {image:bambooLight, x:-2500, y:250, depth:3}, {image:bambooLight, x:-2650, y:250, depth:3},
+		{image:bambooDark, x:-2440, y:250, depth:5}, {image:bambooDark, x:-2540, y:250, depth:5}, {image:bambooDark, x:-2700, y:250, depth:5},
+
+		{image:bambooLight, x:-3200, y:250, depth:3}, {image:bambooLight, x:-3300, y:250, depth:3}, {image:bambooLight, x:-3450, y:250, depth:3},
+		{image:bambooDark, x:-3240, y:250, depth:5}, {image:bambooDark, x:-3340, y:250, depth:5}, {image:bambooDark, x:-3500, y:250, depth:5},
+
+		{image:bambooLight, x:-4000, y:250, depth:3}, {image:bambooLight, x:-4100, y:250, depth:3}, {image:bambooLight, x:-4250, y:250, depth:3},
+		{image:bambooDark, x:-4040, y:250, depth:5}, {image:bambooDark, x:-4140, y:250, depth:5}, {image:bambooDark, x:-4300, y:250, depth:5}
+	]
 };
 
 const Level2Data = {
@@ -831,7 +865,26 @@ const Level2Data = {
 	playerStart:{x:-100, y:500}, //x = cameraMin
 	backTables:[{x:-200, y: 590}],
 	tables:[{x:-300, y: 635}],
-	frontTables:[{x:-400, y: 680}]
+	frontTables:[{x:-400, y: 680}],
+	backgroundImages:[
+		{image:bambooLight, x:0, y:250, depth:3}, {image:bambooLight, x:-100, y:250, depth:3}, {image:bambooLight, x:-250, y:250, depth:3},
+		{image:bambooDark, x:-40, y:250, depth:5}, {image:bambooDark, x:-140, y:250, depth:5}, {image:bambooDark, x:-190, y:250, depth:5},
+
+		{image:bambooLight, x:-800, y:250, depth:3}, {image:bambooLight, x:-900, y:250, depth:3}, {image:bambooLight, x:-1060, y:250, depth:3},
+		{image:bambooDark, x:-840, y:250, depth:5}, {image:bambooDark, x:-940, y:250, depth:5}, {image:bambooDark, x:-1000, y:250, depth:5},
+
+		{image:bambooLight, x:-1600, y:250, depth:3}, {image:bambooLight, x:-1700, y:250, depth:3}, {image:bambooLight, x:-1850, y:250, depth:3},
+		{image:bambooDark, x:-1640, y:250, depth:5}, {image:bambooDark, x:-1740, y:250, depth:5}, {image:bambooDark, x:-1900, y:250, depth:5},
+
+		{image:bambooLight, x:-2400, y:250, depth:3}, {image:bambooLight, x:-2500, y:250, depth:3}, {image:bambooLight, x:-2650, y:250, depth:3},
+		{image:bambooDark, x:-2440, y:250, depth:5}, {image:bambooDark, x:-2540, y:250, depth:5}, {image:bambooDark, x:-2700, y:250, depth:5},
+
+		{image:bambooLight, x:-3200, y:250, depth:3}, {image:bambooLight, x:-3300, y:250, depth:3}, {image:bambooLight, x:-3450, y:250, depth:3},
+		{image:bambooDark, x:-3240, y:250, depth:5}, {image:bambooDark, x:-3340, y:250, depth:5}, {image:bambooDark, x:-3500, y:250, depth:5},
+
+		{image:bambooLight, x:-4000, y:250, depth:3}, {image:bambooLight, x:-4100, y:250, depth:3}, {image:bambooLight, x:-4250, y:250, depth:3},
+		{image:bambooDark, x:-4040, y:250, depth:5}, {image:bambooDark, x:-4140, y:250, depth:5}, {image:bambooDark, x:-4300, y:250, depth:5}
+	]
 };
 
 const Level3Data = {
@@ -863,7 +916,24 @@ const Level3Data = {
 	playerStart:{x:350, y:500}, //x = cameraMax
 	backTables:[{x:-200, y: 590}],
 	tables:[{x:-300, y: 635}],
-	frontTables:[{x:-400, y: 680}]
+	frontTables:[{x:-400, y: 680}],
+	backgroundImages:[
+		{image:bambooLight, x:0, y:250, depth:3}, {image:bambooLight, x:-100, y:250, depth:3}, {image:bambooLight, x:-250, y:250, depth:3},
+
+		{image:bambooDark, x:-840, y:250, depth:5}, {image:bambooDark, x:-940, y:250, depth:5}, {image:bambooDark, x:-1000, y:250, depth:5},
+
+		{image:bambooLight, x:-1600, y:250, depth:3}, {image:bambooLight, x:-1850, y:250, depth:3},
+		{image:bambooDark, x:-1740, y:250, depth:5}, {image:bambooDark, x:-1900, y:250, depth:5},
+
+		{image:bambooLight, x:-2500, y:250, depth:3}, {image:bambooLight, x:-2650, y:250, depth:3},
+		{image:bambooDark, x:-2440, y:250, depth:5}, {image:bambooDark, x:-2700, y:250, depth:5},
+
+		{image:bambooLight, x:-3200, y:250, depth:3}, {image:bambooLight, x:-3450, y:250, depth:3},
+		{image:bambooDark, x:-3240, y:250, depth:5}, {image:bambooDark, x:-3340, y:250, depth:5}, 
+
+		{image:bambooLight, x:-4000, y:250, depth:3}, {image:bambooLight, x:-4100, y:250, depth:3},
+		{image:bambooDark, x:-4140, y:250, depth:5}, {image:bambooDark, x:-4300, y:250, depth:5}
+	]
 };
 
 const Level4Data = {
@@ -895,7 +965,8 @@ const Level4Data = {
 	playerStart:{x:-100, y:500}, //x = cameraMin
 	backTables:[{x:-200, y: 590}],
 	tables:[{x:-300, y: 635}],
-	frontTables:[{x:-400, y: 680}]
+	frontTables:[{x:-400, y: 680}],
+	backgroundImages:[]
 };
 
 const Level5Data = {
@@ -927,5 +998,6 @@ const Level5Data = {
 	playerStart:{x:350, y:500}, //x = cameraMax
 	backTables:[{x:-200, y: 590}],
 	tables:[{x:-300, y: 635}],
-	frontTables:[{x:-400, y: 680}]
+	frontTables:[{x:-400, y: 680}],
+	backgroundImages:[]
 };

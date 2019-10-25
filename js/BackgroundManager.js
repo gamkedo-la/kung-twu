@@ -1,17 +1,20 @@
-//Background Image
-function BackgroundImage(shiftDelta, anImage, aPosition) {
-	const deltaPerShift = shiftDelta;
-	const image = anImage;
-	let position = aPosition;
-	this.getPosition = function() {
-		return {x:position.x, y:position.y};
-	};
+//BackgroundSprite Object
+function BackgroundSprite(image, posX, posY, depth) {
+	this.type = ENTITY_TYPE.Environment;
+	let oldCameraPos;
+	let position = {x:posX, y:posY};
 
-	this.update = function(shifts) {
-		position.x += (deltaPerShift * shifts);
+	this.update = function(cameraXPos, shifts) {
+		oldCameraPos = cameraXPos;
+		if((position.x > cameraXPos - canvas.width / 2) && (position.x < cameraXPos + canvas.width / 2)) {
+			position.x -= (shifts * depth);
+		}
 	};
 
 	this.draw = function() {
+		if(position.x < oldCameraPos - (canvas.width / 2) - image.width) return;
+		if(position.x > oldCameraPos + (canvas.width / 2)) return;
+
 		canvasContext.drawImage(image, position.x, position.y);
 	};
 }
@@ -24,9 +27,9 @@ function BackgroundManager() {
 		images.push(newImage);
 	};
 
-	this.update = function(shifts) {
+	this.update = function(cameraXPos, shifts) {
 		for(let image of images) {
-			image.update(shifts);
+			image.update(cameraXPos, shifts);
 		}
 	};
 

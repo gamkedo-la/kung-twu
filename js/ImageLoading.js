@@ -148,7 +148,8 @@ const table = document.createElement("img");
 const rock = document.createElement("img");
 const statue = document.createElement("img");
 const spear = document.createElement("img");
-const bamboo = document.createElement("img");
+const bambooDark = document.createElement("img");
+const bambooLight = document.createElement("img");
 const tree = document.createElement("img");
 const carpet = document.createElement("img");
 const carpet2 = document.createElement("img");
@@ -228,7 +229,8 @@ function loadImages() {
 		{ imgName: rock, theFile: "rock.png"},
 		{ imgName: statue, theFile: "Statue.png"},
 		{ imgName: spear, theFile: "spear2.png"},
-		{ imgName: bamboo, theFile: "Bamboo.png"},
+		{ imgName: bambooDark, theFile: "BambooTall.png"},
+		{ imgName: bambooLight, theFile: "BambooBrightTall.png"},
 		{ imgName: tree, theFile: "Tree.png"},
 		{ imgName: carpet, theFile: "carpet.png"},
 		{ imgName: carpet2, theFile: "carpet_2.png"},
