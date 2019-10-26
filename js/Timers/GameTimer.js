@@ -11,15 +11,15 @@ function GameTimer(config) {
 	// Time below this amount will start a text scale animation
 	const _TIMER_WARNING_THRESHOLD = config.timeWarningThreshold || 10;
 	// lerps an actual text scale value to chase the text scale
-	const _TEXT_SCALE_LERP_CHASE_FACTOR =  .5; // must be greater than 0, less or equal to 1
+	const _TEXT_SCALE_LERP_CHASE_FACTOR =  0.5; // must be greater than 0, less or equal to 1
 	/** Size in pixels of the gap/space between seconds text rendering and decimal number text rendering */
 	const TEXT_SECONDS_DECIMAL_GAP_SIZE = 2;
 	/** The image scale of the numbers to be rendered to the left of the decimal point */
-	let _textBaseScale = .4;
+	let _textBaseScale = 0.8;
 	let _textScale = 1;
 	let _actualTextScale = _textScale;
 	/** The image scale of the numbers to be rendered to the right of the decimal point */
-	let  _decimalRelImageScale = .67;
+	let  _decimalRelImageScale = 0.67;
 	/** There is this image blend effect that will attempt to make the time appear to move smoothly. This is the length of frames of the smear effect */
 	let _trailLength = 7;
 	/** Text that displays when time is up, use "" to fallback to just zeroes */
@@ -210,7 +210,7 @@ function GameTimer(config) {
 		const textScale = _textScale * _textBaseScale;
 		// Calculate text scale
 		if (_actualTextScale !== textScale) {
-			_actualTextScale = lerp(_actualTextScale, textScale, _TEXT_SCALE_LERP_CHASE_FACTOR);
+			_actualTextScale = 1 - lerp(_actualTextScale, textScale, _TEXT_SCALE_LERP_CHASE_FACTOR);
 		}
 
 		// Update last time array (its length is the _trailLength var)
@@ -231,8 +231,8 @@ function GameTimer(config) {
 		if (!font) return; // perhaps we should make a fallback for this if font doesn't load for some reason?
 
 		// Render text
-		if (_timer.getTime() > 0 || _onZeroText === "") {
-			// Time is greater than zero or we just don't need to worry about zero replacement text:
+		if((_timer.getTime() > _TIMER_WARNING_THRESHOLD)) {
+			// Time is greater than warning, so draw in yellow
 			_drawTime(font, secondsStr, decimalsStr, _position, 1);
 			if (_lastTimes.length > 0) {
 				for (let i = _lastTimes.length - 1; i >= 0; i--) {
@@ -241,6 +241,18 @@ function GameTimer(config) {
 					const decimals = _getTimeDecimalDigitsStr(_lastTimes[i], _decimalPlaces);
 					// render the trail of last times
 					_drawTime(font, seconds, decimals, _position, i/(_lastTimes.length-1) * .5);
+				}
+			}
+		} else if (_timer.getTime() > 0 || _onZeroText === "") {
+			// Time is greater than zero but not greater than warning, so draw in red (or we just don't need to worry about zero replacement text):
+			_drawTime(font, secondsStr, decimalsStr, _position, 1, true);
+			if (_lastTimes.length > 0) {
+				for (let i = _lastTimes.length - 1; i >= 0; i--) {
+					// calculate time nums to strings for last time values
+					const seconds = _getTimeWholeDigitsStr(_lastTimes[i], 0);
+					const decimals = _getTimeDecimalDigitsStr(_lastTimes[i], _decimalPlaces);
+					// render the trail of last times
+					_drawTime(font, seconds, decimals, _position, i/(_lastTimes.length-1) * .5, true);
 				}
 			}
 		} else {
@@ -263,10 +275,15 @@ function GameTimer(config) {
 	 * @param {{x: number, y: number}} position The position to render at, left-aligned
 	 * @param {number} alpha range(0-1) Transparency
 	 */
-	function _drawTime(font, secondsStr, decimalsStr, position, alpha) {
+	function _drawTime(font, secondsStr, decimalsStr, position, alpha, red = false) {
 		const lang = currentLanguage;
-		font.printTextAt(secondsStr, position, TextAlignment.Left, _actualTextScale, lang, alpha);
-		font.printTextAt(decimalsStr, {x: position.x + TEXT_SECONDS_DECIMAL_GAP_SIZE + _getSecondsTextWidth(), y: position.y}, TextAlignment.Left, _actualTextScale * _decimalRelImageScale, lang, alpha);
+		if(red) {
+			font.printRedTextAt(secondsStr, position, TextAlignment.Left, _actualTextScale, lang, alpha);
+			font.printRedTextAt(decimalsStr, {x: position.x + TEXT_SECONDS_DECIMAL_GAP_SIZE + _getSecondsTextWidth(), y: position.y}, TextAlignment.Left, _actualTextScale * _decimalRelImageScale, lang, alpha);	
+		} else {
+			font.printTextAt(secondsStr, position, TextAlignment.Left, _actualTextScale, lang, alpha);
+			font.printTextAt(decimalsStr, {x: position.x + TEXT_SECONDS_DECIMAL_GAP_SIZE + _getSecondsTextWidth(), y: position.y}, TextAlignment.Left, _actualTextScale * _decimalRelImageScale, lang, alpha);	
+		}
 	}
 
 	function _addLastTime(time) {

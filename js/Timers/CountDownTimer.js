@@ -77,7 +77,7 @@ function CountDownTimer(isDeltaTimer = true) {
 	 * @param {number} (optional) time The time to countdown. Units are either in seconds (isDeltaTimer === true), or game frames (isDeltaTimer === false).
 	 * Left undefined the timer will count from its currently set value. Please use setTime before, otherwise timer will go off immediately.
 	 */
-	this.start = function(time) {
+	this.start = function(time = undefined) {
 		if (time !== undefined) {
 			_time = time;
 		}
