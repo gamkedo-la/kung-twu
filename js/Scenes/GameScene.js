@@ -448,12 +448,30 @@ function GameScene() {
 			TextAlignment.Left, UI_SCALE);
 
 		const scoreStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Score), UI_SCALE);
-		let stringScore = score.toString();
-		while (stringScore.length < 9) {
-			stringScore = "0" + stringScore;
+		let stringScore;
+		if(score >= 0) {
+			stringScore = score.toString();
+		} else {
+			stringScore = (-score).toString();
 		}
 
-		JPFont.printTextAt(stringScore, {x:screenLeft + scoreStringWidth + 50, y:10}, TextAlignment.Left, UI_SCALE);
+		while (stringScore.length < 9) {
+			if(stringScore.length < 8) {
+				stringScore = "0" + stringScore;
+			} else {
+				if(score >= 0) {
+					stringScore = "0" + stringScore;
+				} else {
+					stringScore = "-" + stringScore;
+				}
+			}
+		}
+
+		if(score >= 0) {
+			JPFont.printTextAt(stringScore, {x:screenLeft + scoreStringWidth + 50, y:10}, TextAlignment.Left, UI_SCALE);
+		} else {
+			JPFont.printRedTextAt(stringScore, {x:screenLeft + scoreStringWidth + 50, y:10}, TextAlignment.Left, UI_SCALE);
+		}
 
 		//Player Health
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Health),

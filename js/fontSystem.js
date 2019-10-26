@@ -44,11 +44,32 @@ function fontSystem(jpFont, charSize, context) {
 		let drawPos = startPos;
 		
 		// set alpha
-		const oldAlpha = context.globalAlpha;
+		context.save();
 		context.globalAlpha = alpha;
 
 		for(let i = 0; i < text.length; i++) {	//Go through all characters
 			const thisFrame = this.findLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
+			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, drawPos, position.y, charSize.width * scale, charSize.height * scale);
+			
+			const advance = scale * advancementForLanguageAndCharacter(language, text[i]);
+			drawPos += advance;
+		}
+
+		// restore alpha value
+		context.restore();
+	};
+
+	this.printRedTextAt = function(text, position, alignment = TextAlignment.Left, scale = 1, language = currentLanguage, alpha = 1) {
+		const stringWidth = this.getStringWidth(text, scale);
+		const startPos = leftSideOfTextForPosAlignmentAndScale(stringWidth, position.x, alignment);
+		let drawPos = startPos;
+		
+		// set alpha
+		const oldAlpha = context.globalAlpha;
+		context.globalAlpha = alpha;
+
+		for(let i = 0; i < text.length; i++) {	//Go through all characters
+			const thisFrame = this.findRedLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
 			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, drawPos, position.y, charSize.width * scale, charSize.height * scale);
 			
 			const advance = scale * advancementForLanguageAndCharacter(language, text[i]);
@@ -531,9 +552,25 @@ function fontSystem(jpFont, charSize, context) {
 			return {x:2 * charSize.width, y:17 * charSize.height};
 		case "Д":
 		case "д":
-			return {x:2 * charSize.width, y:17 * charSize.height};
+			return {x:3 * charSize.width, y:17 * charSize.height};
 
 		default: return {x:18.5 * charSize.width, y:charSize.height};//18.5 so it doesn't crash, but you can tell something's not right
+		}
+	};
+
+	this.findRedLetterCorner = function(character) {
+		switch(character) {
+		case "0": return {x:4 * charSize.width, y:17 * charSize.height};
+		case "1": return {x:5 * charSize.width, y:17 * charSize.height};
+		case "2": return {x:6 * charSize.width, y:17 * charSize.height};
+		case "3": return {x:7 * charSize.width, y:17 * charSize.height};
+		case "4": return {x:8 * charSize.width, y:17 * charSize.height};
+		case "5": return {x:9 * charSize.width, y:17 * charSize.height};
+		case "6": return {x:10 * charSize.width, y:17 * charSize.height};
+		case "7": return {x:11 * charSize.width, y:17 * charSize.height};
+		case "8": return {x:12 * charSize.width, y:17 * charSize.height};
+		case "9": return {x:13 * charSize.width, y:17 * charSize.height};
+		case "-": return {x:14 * charSize.width, y:17 * charSize.height};
 		}
 	};
 }

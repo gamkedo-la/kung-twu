@@ -8,7 +8,12 @@ function DisplayPoints(points, startPos, destination) {
 	let timeFading = 0;
 
 	this.points = points;
-	let pointsString = `+${points.toString()}`;
+	let pointsString;
+	if(points >= 0) {
+		pointsString = `+${points.toString()}`;
+	} else {
+		pointsString = points.toString();
+	}
 	this.position = {x:startPos.x, y:startPos.y};
 	let alpha = 1.0;
 	this.isComplete = false;
@@ -25,7 +30,6 @@ function DisplayPoints(points, startPos, destination) {
 		}
 
 		updatePosition(this.position, deltaTime, cameraXPos);
-//		this.position.y += (VELOCITY * deltaTime);
 	};
 
 	const updatePosition = function(positionToUpdate, deltaTime, cameraXPos) {
@@ -41,6 +45,11 @@ function DisplayPoints(points, startPos, destination) {
 	};
 
 	this.draw = function() {
-		JPFont.printTextAt(pointsString, this.position, TextAlignment.Center, 0.25);
+		if(points >= 0) {
+			JPFont.printTextAt(pointsString, this.position, TextAlignment.Center, 0.25);
+		} else {
+			JPFont.printRedTextAt(pointsString, this.position, TextAlignment.Center, 0.25);
+
+		}
 	};
 }
