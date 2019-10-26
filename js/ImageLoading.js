@@ -253,7 +253,7 @@ function loadImages() {
 		{ imgName: playerIdleBrown, theFile: "Player_Idle_Brown.png"},
 		{ imgName: playerIdleRed, theFile: "Player_Idle_Red.png"},
 		{ imgName: playerIdleBlack, theFile: "Player_Idle_Black.png"},
-		{ imgName: playerWalkFwd, theFile: "Player_Walk-Forward_Condensed.png"},
+		{ imgName: playerWalkFwd, theFile: "player_Walk-Forward.png"},
 		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
 		{ imgName: playerPunchWhite, theFile: "Player_Punch_White.png"},
 		{ imgName: playerPunchYellow, theFile: "Player_Punch_Yellow.png"},
