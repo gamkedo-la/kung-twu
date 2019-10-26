@@ -2,7 +2,8 @@ const RIVAL_TYPE = {
 	basic:"basic",
 	tall:"tall",
 	short:"short",
-	player:"player"
+	player:"player",
+	boss:"boss"
 };
 
 //Animation Builder
@@ -39,12 +40,21 @@ function AnimationBuilder() {
 		} else if(rivalType === RIVAL_TYPE.player) {
 			switch(belt) {
 			case BELT.White: return getAnimationsWithData(playerWhiteBeltData, scale);
-				//TODO: Only white belt spritesheets exist for the player
 			case BELT.Yellow: return getAnimationsWithData(playerYellowBeltData, scale);
 			case BELT.Tan: return getAnimationsWithData(playerTanBeltData, scale);
 			case BELT.Brown: return getAnimationsWithData(playerBrownBeltData, scale);
 			case BELT.Red: return getAnimationsWithData(playerRedBeltData, scale);
 			case BELT.Black: return getAnimationsWithData(playerBlackBeltData, scale);
+			}
+		} else if(rivalType === RIVAL_TYPE.boss) {
+			switch(belt) {
+			case BELT.White: return getAnimationsWithData(basicWhiteBeltData, scale);
+			case BELT.Yellow: return getAnimationsWithData(bossYellowBeltData, scale);
+			case BELT.Tan: return getAnimationsWithData(basicTanBeltData, scale);
+			case BELT.Brown: return getAnimationsWithData(basicBrownBeltData, scale);
+			case BELT.Red: return getAnimationsWithData(basicRedBeltData, scale);
+				//TODO: basic black belt enemy spritesheet doesn't exist
+			case BELT.Black: return getAnimationsWithData(basicBlackBeltData, scale);
 			}
 		}
 	};
@@ -843,6 +853,75 @@ function AnimationBuilder() {
 		},
 		block:{},
 		sweep:{},
+		j_kick:{},
+		h_kick:{},
+		knockback:{}
+	};
+
+	const bossYellowBeltData = {
+		idle:{
+			name:STATE.Idle,
+			image:yellowBossIdle,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7],
+			width:yellowBossIdle.width / 8,
+			height:yellowBossIdle.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:true
+		},
+		walk:{
+			name:STATE.WalkRight,
+			image:yellowBossWalk,
+			frames:[0, 1, 2, 3],
+			width:yellowBossWalk.width / 4,
+			height:yellowBossWalk.height,
+			frameTimes:[150],
+			reverses:false,
+			loops:true
+		},
+		dash:{
+			name:STATE.Dash,
+			image:yellowBossWalk,
+			frames:[0, 1, 2, 3],
+			width:yellowBossWalk.width / 4,
+			height:yellowBossWalk.height,
+			frameTimes:[100],
+			reverses:false,
+			loops:false
+		},
+		jump:{},
+		crouch:{},
+		punch:{
+			name:STATE.Punch,
+			image:yellowEnemyPunch,
+			frames:[0, 1, 2, 1],
+			width:yellowEnemyPunch.width / 3,
+			height:yellowEnemyPunch.height,
+			frameTimes:[50, 150, 225, 50],
+			reverses:false,
+			loops:false
+		},
+		kick:{
+			name:STATE.Kick,
+			image:yellowBossKick,
+			frames:[0, 1, 2, 3, 2, 1],
+			width:yellowBossKick.width / 4,
+			height:yellowBossKick.height,
+			frameTimes:[50, 50, 150, 225, 50, 50],
+			reverses:false,
+			loops:false
+		},
+		block:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:yellowBossSweep,
+			frames:[0, 1, 0],
+			width:yellowBossSweep.width / 2,
+			height:yellowBossSweep.height,
+			frameTimes:[50, 150, 50],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
 		knockback:{}

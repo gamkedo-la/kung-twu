@@ -769,7 +769,9 @@ function GameScene() {
 			y: (3 * canvas.height) / 5,
 			belt:levelData.bossBelt,
 			aiType: AITYPE.Boss,
-			health:(baseHealth + levelData.bossHealth)
+			rivalType:RIVAL_TYPE.boss,
+			health:(baseHealth + levelData.bossHealth),
+			scale:2.5
 		};
 
 		bossMaxHealth = baseHealth + levelData.bossHealth;

@@ -115,6 +115,10 @@ const redEnemyIdle = document.createElement("img");
 const redEnemyWalk = document.createElement("img");
 const redEnemyKick = document.createElement("img");
 const redEnemyPunch = document.createElement("img");
+const yellowBossIdle = document.createElement("img");
+const yellowBossWalk = document.createElement("img");
+const yellowBossKick = document.createElement("img");
+const yellowBossSweep = document.createElement("img");
 const playerIdleWhite = document.createElement("img");
 const playerIdleYellow = document.createElement("img");
 const playerIdleTan = document.createElement("img");
@@ -192,6 +196,11 @@ function loadImages() {
 		{ imgName: redEnemyWalk, theFile: "EnemyWalking_Red.png" },
 		{ imgName: redEnemyKick, theFile: "EnemyKicking_Red.png" },
 		{ imgName: redEnemyPunch, theFile: "EnemyPunching_Red.png" },
+
+		{ imgName: yellowBossIdle, theFile: "Boss_Idle_Yellow.png" },
+		{ imgName: yellowBossWalk, theFile: "BossWalking_Yellow.png" },
+		{ imgName: yellowBossKick, theFile: "BossKicking_Yellow.png" },
+		{ imgName: yellowBossSweep, theFile: "BossSweeping_Yellow.png" },
 
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
