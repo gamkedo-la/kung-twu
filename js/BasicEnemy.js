@@ -408,8 +408,6 @@ function BasicEnemy(config) {
 		if(!stateManager.getIsOnGround()) {
 			//land on top of the other object
 			position.y -= (myEdges.highY - otherEdges.lowY);
-//			respondToLanding();
-//			canFall = true;
 		} else if((myEdges.highY - otherEdges.lowY > 0) && (myEdges.highY - otherEdges.lowY < 4)) {
 			position.y -= (myEdges.highY - otherEdges.lowY);
 			velocity.y = 0;
