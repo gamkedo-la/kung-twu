@@ -22,6 +22,7 @@ function BasicEnemy(config) {
 	this.health = null;//initialized when first hit by player
 	let maxHealth = null;
 	let healthColor = Color.White;//Correct color set below
+	const HEALTH_BAR_WIDTH = 50;
 	this.score = 100;
 	
 	this.type = ENTITY_TYPE.Enemy;
@@ -330,8 +331,8 @@ function BasicEnemy(config) {
 			if(stateManager.getIsFacingLeft()) {
 				healthPos = 30;
 			}
-			drawRect(position.x+healthPos, position.y-30, this.health, 11, healthColor);
-			drawBorder(position.x+healthPos, position.y-30, maxHealth, 11, healthColor);	
+			drawRect(position.x+healthPos, position.y-30, HEALTH_BAR_WIDTH *  this.health / maxHealth, 11, healthColor);
+			drawBorder(position.x+healthPos, position.y-30, HEALTH_BAR_WIDTH, 11, healthColor);	
 		}
 
 		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
