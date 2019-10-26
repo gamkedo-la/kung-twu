@@ -542,7 +542,7 @@ function GameScene() {
 			timeWarningThreshold: 10, // in seconds
 	
 			//TODO: Need a Localizable string here
-			onZeroText: "Time Up!", // use "" if you just want to see zeroes
+			onZeroText: getLocalizedStringForKey(STRINGS_KEY.TimesUp), // use "" if you just want to see zeroes
 			
 			startNow: true, // start immediately on scene start. Change this when there's a count down to start. Just instantiate another one of these.
 		});

@@ -78,7 +78,8 @@ const STRINGS_KEY = {
 	Knockback:"knockback",
 	EnemyStrength:"enemyStrength",
 	BossStrength:"bossStrength",
-	BossHealth:"bossHealth"
+	BossHealth:"bossHealth",
+	TimesUp:"timesUp"
 };
 
 function getLocalizedStringForKey(key) {
@@ -152,7 +153,8 @@ const userStrings = {
 		[STRINGS_KEY.Knockback]:"Knockback",
 		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
 		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
-		[STRINGS_KEY.BossHealth]:"Shīfù Health"
+		[STRINGS_KEY.BossHealth]:"Shīfù Health",
+		[STRINGS_KEY.TimesUp]:"Time's Up!"
 	},
     
 	Spanish: {
@@ -180,7 +182,6 @@ const userStrings = {
 		[STRINGS_KEY.HelpScreenContents]:"",
 		[STRINGS_KEY.SettingsScreenTitle]:"[CONFIGURACIONES]",
 		[STRINGS_KEY.CreditsScreenTitle]:"[CRÉDITOS]",
-
 		[STRINGS_KEY.Score]:"PUNTAJE:",
 		[STRINGS_KEY.Health]:"SALUD:",
 		[STRINGS_KEY.Time]:"TIEMPO:",
@@ -223,7 +224,8 @@ const userStrings = {
 		[STRINGS_KEY.Knockback]:"Retroceso",
 		[STRINGS_KEY.EnemyStrength]:"Fuerza de Rival",
 		[STRINGS_KEY.BossStrength]:"Fuerza de Shīfù",
-		[STRINGS_KEY.BossHealth]:"Salud de Shīfù"
+		[STRINGS_KEY.BossHealth]:"Salud de Shīfù",
+		[STRINGS_KEY.TimesUp]:"Time's Up!"
 	},
 
 	Japanese: {
@@ -294,7 +296,9 @@ const userStrings = {
 		[STRINGS_KEY.Knockback]:"させつ",
 		[STRINGS_KEY.EnemyStrength]:"ライバルのちから",
 		[STRINGS_KEY.BossStrength]:"シフウのちから",
-		[STRINGS_KEY.BossHealth]:"シフウのけんこ"
+		[STRINGS_KEY.BossHealth]:"シフウのけんこ",
+
+		[STRINGS_KEY.TimesUp]:"Time's Up!"
 	},
 
 	French: {
@@ -365,7 +369,8 @@ const userStrings = {
 		[STRINGS_KEY.Knockback]:"Knockback",
 		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
 		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
-		[STRINGS_KEY.BossHealth]:"Shīfù Health"
+		[STRINGS_KEY.BossHealth]:"Shīfù Health",
+		[STRINGS_KEY.TimesUp]:"Time's Up!"
 	},
 
 	Russian: {
@@ -436,7 +441,8 @@ const userStrings = {
 		[STRINGS_KEY.Knockback]:"Knockback",
 		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
 		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
-		[STRINGS_KEY.BossHealth]:"Shīfù Health"
+		[STRINGS_KEY.BossHealth]:"Shīfù Health",
+		[STRINGS_KEY.TimesUp]:"Time's Up!"
 	},
 	
 	Polish: {
@@ -505,6 +511,8 @@ const userStrings = {
 		[STRINGS_KEY.Knockback]:"Odrzucenie",
 		[STRINGS_KEY.EnemyStrength]:"Siła Rywala",
 		[STRINGS_KEY.BossStrength]:"Siła Shīfù",
-		[STRINGS_KEY.BossHealth]:"Życie Shīfù"
+		[STRINGS_KEY.BossHealth]:"Życie Shīfù",
+
+		[STRINGS_KEY.TimesUp]:"Time's Up!"
 	}
 };
