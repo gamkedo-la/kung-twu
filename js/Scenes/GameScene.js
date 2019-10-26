@@ -37,27 +37,7 @@ function GameScene() {
 
 	// Game Timer Scene Settings
 	// For more detailed settings please go to "js/Timers/GameTimer.js"
-	let gameTimer = new GameTimer({
-		startTime: 30, // in seconds
-		decimalPlaces: 3, // 3 digits zero-padded
-		timeWarningThreshold: 10, // in seconds
-
-		//TODO: Need a Localizable string here
-		onZeroText: "Time Up!", // use "" if you just want to see zeroes
-		
-		startNow: true, // start immediately on scene start. Change this when there's a count down to start. Just instantiate another one of these.
-	});
-
-	gameTimer.onZero.subscribe(() => {
-		// TODO: set a game over flag here
-		sound.playEcho(Sounds.SFX_PlayerFail, [.4, 1], [1, .3], 5, 200);
-		sound.playEcho(Sounds.SFX_PlayerKick, [1, .4], [.4, 1], 5, 150);
-	});
-
-	gameTimer.onWarningCount.subscribe(() => {
-		// Play some kind of beep here!
-		sound.playSFX(Sounds.SFX_ResumeLow); // TODO: Pick something else
-	});
+	let gameTimer;
 
 	this.transitionIn = function() {
 		if((this.properties != undefined) && (this.properties.restartLevel)) {
@@ -85,6 +65,7 @@ function GameScene() {
 		//Don't reinitialize if we're just coming back from the pause screen
 		if (floor === null || currentLevel != levelData.level) {
 			levelData = dataForCurrentLevel();
+			initializeGameTimer();
 			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
 			enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
 			enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
@@ -493,7 +474,8 @@ function GameScene() {
 			{x:screenLeft + 40, y:95}, TextAlignment.Left, UI_SCALE);
 		
 		// GameTimer text rendering
-		gameTimer.setPosition(screenLeft + 150, 96);
+		const timeWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Time), UI_SCALE);
+		gameTimer.setPosition(screenLeft + 40 + timeWidth, 96);
 		gameTimer.draw();
 
 		//Level Name
@@ -551,6 +533,32 @@ function GameScene() {
 		GAME_FIELD.x = newCameraX - canvas.width / 2;
 		GAME_FIELD.right = newCameraX + canvas.width / 2;
 		GAME_FIELD.midX = newCameraX;
+	};
+
+	const initializeGameTimer = function() {
+		gameTimer = new GameTimer({
+			startTime: levelData.allowedTime, // in seconds
+			decimalPlaces: 3, // 3 digits zero-padded
+			timeWarningThreshold: 10, // in seconds
+	
+			//TODO: Need a Localizable string here
+			onZeroText: "Time Up!", // use "" if you just want to see zeroes
+			
+			startNow: true, // start immediately on scene start. Change this when there's a count down to start. Just instantiate another one of these.
+		});
+	
+		gameTimer.onZero.subscribe(() => {
+			// TODO: set a game over flag here
+			SceneState.setState(SCENE.GAMEOVER, {score:score});
+
+			sound.playEcho(Sounds.SFX_PlayerFail, [.4, 1], [1, .3], 5, 200);
+			sound.playEcho(Sounds.SFX_PlayerKick, [1, .4], [.4, 1], 5, 150);
+		});
+	
+		gameTimer.onWarningCount.subscribe(() => {
+			// Play some kind of beep here!
+			sound.playSFX(Sounds.SFX_ResumeLow); // TODO: Pick something else
+		});
 	};
 
 	const initializeFloor = function(subfloorColumnImage, verticalOffset) {
@@ -892,6 +900,9 @@ const Level2Data = {
 	backTables:[{x:-200, y: 590}],
 	tables:[{x:-300, y: 635}],
 	frontTables:[{x:-400, y: 680}],
+	backVases:[{x:-200, y: 552, index:0}],
+	vases:[{x:-300, y: 590, index:1}, {x:-200, y: 590, index:1}, {x:-100, y: 590, index:1}, {x:0, y: 590, index:1}],
+	frontVases:[{x:-400, y: 640, index:2}],
 	backgroundImages:[
 		{image:temple, x:-100, y:350, depth:10, scrollOffscreen:true},
 		{image:bambooLight, x:0, y:250, depth:3, scrollOffscreen:false}, 
@@ -969,6 +980,9 @@ const Level3Data = {
 	backTables:[{x:-200, y: 590}],
 	tables:[{x:-300, y: 635}],
 	frontTables:[{x:-400, y: 680}],
+	backVases:[{x:-200, y: 552, index:0}],
+	vases:[{x:-300, y: 590, index:1}, {x:-200, y: 590, index:1}, {x:-100, y: 590, index:1}, {x:0, y: 590, index:1}],
+	frontVases:[{x:-400, y: 640, index:2}],
 	backgroundImages:[
 		{image:temple, x:-100, y:450, depth:10, scrollOffscreen:true},
 		{image:bambooLight, x:0, y:250, depth:3, scrollOffscreen:false}, 
@@ -1032,6 +1046,9 @@ const Level4Data = {
 	backTables:[{x:-200, y: 590}],
 	tables:[{x:-300, y: 635}],
 	frontTables:[{x:-400, y: 680}],
+	backVases:[{x:-200, y: 552, index:0}],
+	vases:[{x:-300, y: 590, index:1}, {x:-200, y: 590, index:1}, {x:-100, y: 590, index:1}, {x:0, y: 590, index:1}],
+	frontVases:[{x:-400, y: 640, index:2}],
 	backgroundImages:[
 		{image:templeDark, x:-250, y:500, depth:13, scrollOffscreen:true},
 	]
@@ -1067,5 +1084,8 @@ const Level5Data = {
 	backTables:[{x:-200, y: 590}],
 	tables:[{x:-300, y: 635}],
 	frontTables:[{x:-400, y: 680}],
+	backVases:[{x:-200, y: 552, index:0}],
+	vases:[{x:-300, y: 590, index:1}, {x:-200, y: 590, index:1}, {x:-100, y: 590, index:1}, {x:0, y: 590, index:1}],
+	frontVases:[{x:-400, y: 640, index:2}],
 	backgroundImages:[]
 };
