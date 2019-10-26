@@ -72,7 +72,6 @@ function GameScene() {
 			initializeFloor(levelData.columnImage, VERTICAL_OFFSET);
 			const frontY = floor.getFrontHeight();
 			const backY = floor.getBackHeight();
-//			foregroundDecorations.generate(50,-4000,500,628,636,0,7,frontY,backY);
 			InitializeRoof();
 			InitializeBackWall();
 			initializeColumns(levelData.columnImage, VERTICAL_OFFSET);
@@ -166,7 +165,6 @@ function GameScene() {
 				return true;
 			case ALIAS.DEBUG:
 				DEBUG = !DEBUG;
-				console.log("Debug " + DEBUG);
 				return true;
 			}
 		}
@@ -225,7 +223,7 @@ function GameScene() {
 
 		processDefeatedEntities(collisionManager.defeatedEntities);
 
-		processAndUpdatePointsToDisplay(deltaTime);
+		processAndUpdatePointsToDisplay(deltaTime, camera.getPosition().x);
 
 		processUserInput();
 
@@ -240,7 +238,6 @@ function GameScene() {
 		roof.update(newCameraX, floorImageShifts);
 		wall.update(newCameraX, floorImageShifts);
 		lampManager.update(newCameraX, floorImageShifts);
-//		foregroundDecorations.update(floorImageShifts);
 		updateTables(newCameraX, floorImageShifts);
 		updateVases(deltaTime, GRAVITY, newCameraX, floorImageShifts);
 		bkgdManager.update(newCameraX, floorImageShifts);
@@ -328,11 +325,12 @@ function GameScene() {
 		}
 	};
 
-	const processAndUpdatePointsToDisplay = function(deltaTime) {
+	const processAndUpdatePointsToDisplay = function(deltaTime, cameraXPos) {
 		if(player.pointsToShow.points != null) {
 			const thisDisplayPoint = new DisplayPoints(player.pointsToShow.points,
 				{x:player.pointsToShow.position.x, 
-					y:player.pointsToShow.position.y - 30});
+					y:player.pointsToShow.position.y - 30},
+				{x:325, y:15});
 
 			displayPoints.push(thisDisplayPoint);
 			score += player.pointsToShow.points;
@@ -341,7 +339,7 @@ function GameScene() {
 
 		for(let i = displayPoints.length - 1; i >= 0; i--) {
 			const aDisplayPoint = displayPoints[i];
-			aDisplayPoint.update(deltaTime);
+			aDisplayPoint.update(deltaTime, cameraXPos);
 			if(aDisplayPoint.isComplete) {
 				displayPoints.splice(i, 1);
 			}
@@ -417,7 +415,6 @@ function GameScene() {
 		if (wooshFX) wooshFX.draw();
 
 		lampManager.draw();
-//		if (foregroundDecorations) foregroundDecorations.draw(cameraX);
 
 		for(let aTable of frontTables) {
 			aTable.draw();
@@ -439,9 +436,7 @@ function GameScene() {
 
 	const drawUI = function(cameraX) {
 		const UI_SCALE = 0.4;
-		//TODO: We need a way to find out how wide these strings will be, should be easy with a custom font
 		const screenLeft = cameraX - canvas.width / 2;
-		const screenRight = cameraX + canvas.width / 2;
 
 		//Background and Border
 		canvasContext.drawImage(uiScreenBg, screenLeft, 0);
@@ -539,16 +534,12 @@ function GameScene() {
 		gameTimer = new GameTimer({
 			startTime: levelData.allowedTime, // in seconds
 			decimalPlaces: 3, // 3 digits zero-padded
-			timeWarningThreshold: 10, // in seconds
-	
-			//TODO: Need a Localizable string here
+			timeWarningThreshold: 10, // in seconds	
 			onZeroText: getLocalizedStringForKey(STRINGS_KEY.TimesUp), // use "" if you just want to see zeroes
-			
 			startNow: true, // start immediately on scene start. Change this when there's a count down to start. Just instantiate another one of these.
 		});
 	
 		gameTimer.onZero.subscribe(() => {
-			// TODO: set a game over flag here
 			SceneState.setState(SCENE.GAMEOVER, {score:score});
 
 			sound.playEcho(Sounds.SFX_PlayerFail, [.4, 1], [1, .3], 5, 200);
