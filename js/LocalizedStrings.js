@@ -79,7 +79,8 @@ const STRINGS_KEY = {
 	EnemyStrength:"enemyStrength",
 	BossStrength:"bossStrength",
 	BossHealth:"bossHealth",
-	TimesUp:"timesUp"
+	TimesUp:"timesUp",
+	RivalsToBeat:"rivalsToBeat"
 };
 
 function getLocalizedStringForKey(key) {
@@ -154,7 +155,8 @@ const userStrings = {
 		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
 		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
 		[STRINGS_KEY.BossHealth]:"Shīfù Health",
-		[STRINGS_KEY.TimesUp]:"Time's Up!"
+		[STRINGS_KEY.TimesUp]:"Time's Up!",
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat"
 	},
     
 	Spanish: {
@@ -225,7 +227,9 @@ const userStrings = {
 		[STRINGS_KEY.EnemyStrength]:"Fuerza de Rival",
 		[STRINGS_KEY.BossStrength]:"Fuerza de Shīfù",
 		[STRINGS_KEY.BossHealth]:"Salud de Shīfù",
-		[STRINGS_KEY.TimesUp]:"Time's Up!"
+
+		[STRINGS_KEY.TimesUp]:"Time's Up!",
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat"
 	},
 
 	Japanese: {
@@ -298,7 +302,8 @@ const userStrings = {
 		[STRINGS_KEY.BossStrength]:"シフウのちから",
 		[STRINGS_KEY.BossHealth]:"シフウのけんこ",
 
-		[STRINGS_KEY.TimesUp]:"Time's Up!"
+		[STRINGS_KEY.TimesUp]:"Time's Up!",
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat"
 	},
 
 	French: {
@@ -370,7 +375,8 @@ const userStrings = {
 		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
 		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
 		[STRINGS_KEY.BossHealth]:"Shīfù Health",
-		[STRINGS_KEY.TimesUp]:"Time's Up!"
+		[STRINGS_KEY.TimesUp]:"Time's Up!",
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat"
 	},
 
 	Russian: {
@@ -442,7 +448,8 @@ const userStrings = {
 		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
 		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
 		[STRINGS_KEY.BossHealth]:"Shīfù Health",
-		[STRINGS_KEY.TimesUp]:"Time's Up!"
+		[STRINGS_KEY.TimesUp]:"Time's Up!",
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat"
 	},
 	
 	Polish: {
@@ -513,6 +520,7 @@ const userStrings = {
 		[STRINGS_KEY.BossStrength]:"Siła Shīfù",
 		[STRINGS_KEY.BossHealth]:"Życie Shīfù",
 
-		[STRINGS_KEY.TimesUp]:"Time's Up!"
+		[STRINGS_KEY.TimesUp]:"Time's Up!",
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat"
 	}
 };

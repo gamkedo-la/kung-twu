@@ -140,6 +140,16 @@ function AssistScene() {
 		}
 		slider.enemyStrength = new UISlider(COL2_X, ROW2_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.EnemyStrength), eStrengthMin, eStrengthMin.toString(), eStrengthMax, eStrengthMax.toString(), baseEnemyStrength, 10, true, Color.Brown);
 
+		//Base Enemies Per Level
+		const ePerLevelMin = 0;
+		const ePerLevelMax = 100;
+		let baseEnemiesPerLevel = localStorageHelper.getInt(localStorageKey.EnemiesPerLevel);
+		if((baseEnemiesPerLevel === undefined) || (baseEnemiesPerLevel === null) || (isNaN(baseEnemiesPerLevel))) {
+			baseEnemiesPerLevel = ASSIST_DEFAULT.EnemiesPerLevel;
+			localStorageHelper.setInt(localStorageKey.EnemiesPerLevel, baseEnemiesPerLevel);
+		}
+		slider.enemiesPerLevel = new UISlider(COL3_X, ROW2_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.RivalsToBeat), ePerLevelMin, ePerLevelMin.toString(), ePerLevelMax, ePerLevelMax.toString(), baseEnemiesPerLevel, 10, true, Color.Orange);
+
 		/*Third Row of Sliders*/
 		//Player Base Damage
 		const pDamageMin = 1;
@@ -302,6 +312,9 @@ function AssistScene() {
 			break;
 		case slider.bossStrength:
 			localStorageHelper.setInt(localStorageKey.BossStrength, aSlider.getValue());
+			break;
+		case slider.enemiesPerLevel:
+			localStorageHelper.setInt(localStorageKey.EnemiesPerLevel, aSlider.getValue());
 			break;
 		}
 	};

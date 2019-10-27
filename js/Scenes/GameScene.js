@@ -25,6 +25,7 @@ function GameScene() {
 	let frontVases = [];
 	let floorMidHeight = 0;
 	let timeTilSpawn = 0;
+	let enemiesThisLevel = 0;
 	let score = 0;
 	let didReset = true;
 	let didTransitionOut = false;
@@ -33,8 +34,8 @@ function GameScene() {
 	let bossHealth = ASSIST_DEFAULT.MaxHealth;
 	let bossMaxHealth = null;
 	let enemyMinX;
-    let enemyMaxX;
-    let knockedOutBodies = new knockedOutBodyManager();
+	let enemyMaxX;
+	let knockedOutBodies = new knockedOutBodyManager();
 
 	// Game Timer Scene Settings
 	// For more detailed settings please go to "js/Timers/GameTimer.js"
@@ -67,6 +68,7 @@ function GameScene() {
 		if (floor === null || currentLevel != levelData.level) {
 			levelData = dataForCurrentLevel();
 			initializeGameTimer();
+			enemiesThisLevel = getEnemiesThisLevel();
 			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
 			enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
 			enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
@@ -122,6 +124,7 @@ function GameScene() {
 		levelData = dataForCurrentLevel();
 		enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
 		enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
+		enemiesThisLevel = 0;
 		bossHealth = levelData.bossHealth;
 		bossMaxHealth = null;
 		player.reset(levelData.playerStart);
@@ -195,7 +198,7 @@ function GameScene() {
 			levelData.cameraMax + canvas.width / 2);
 
 
-		if(defeatedEnemyCount >= levelData.totalEnemies) {
+		if(defeatedEnemyCount >= enemiesThisLevel) {
 			if(bossHasBeenSpawned) {
 				if((enemies[0] === undefined) || (enemies[0].getAIType() != AITYPE.Boss)) {
 					if(currentLevel === TOTAL_LEVELS) {
@@ -321,10 +324,10 @@ function GameScene() {
 				collisionManager.removeEntity(defeatedEntity);
 				if(defeatedEntity.getBelt() === levelData.enemyBelt) {
 					defeatedEnemyCount++;
-                }
-                // TODO: spawn a "knocked out body" that falls to the floor and then fades out
-                // where's the sprite? hidden somewhere in defeatedEntity.animations
-                if (knockedOutBodies) knockedOutBodies.add(defeatedEntity.getPosition().x,defeatedEntity.getPosition().y,defeatedEntity.animations);
+				}
+				// TODO: spawn a "knocked out body" that falls to the floor and then fades out
+				// where's the sprite? hidden somewhere in defeatedEntity.animations
+				if (knockedOutBodies) knockedOutBodies.add(defeatedEntity.getPosition().x,defeatedEntity.getPosition().y,defeatedEntity.animations);
 			}
 		}
 	};
@@ -415,9 +418,9 @@ function GameScene() {
 			enemies[i].draw();
 		}
 
-        if (knockedOutBodies) knockedOutBodies.draw();
+		if (knockedOutBodies) knockedOutBodies.draw();
         
-        player.draw();
+		player.draw();
 		if (wooshFX) wooshFX.draw();
 
 		lampManager.draw();
@@ -512,11 +515,13 @@ function GameScene() {
 			{x:cameraX, y:10}, TextAlignment.Left, UI_SCALE);
 		const rivalsWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Rivals), UI_SCALE);
 
-		let thisX = cameraX + rivalsWidth + 10;
-		for(let i = 0; i < (levelData.totalEnemies - defeatedEnemyCount); i++) {
+		let thisX = cameraX + rivalsWidth + 5;
+		const deltaX = ((cameraX + canvas.width / 2) - thisX - 15) / enemiesThisLevel;
+		for(let i = 0; i < (enemiesThisLevel - defeatedEnemyCount); i++) {
 			canvasContext.drawImage(basicEnemyIdle, 0, 0, basicEnemyIdle.width / 2, basicEnemyIdle.height, thisX, 10, basicEnemyIdle.width / 4, basicEnemyIdle.height / 2);
 
-			thisX += (10 + basicEnemyIdle.width / 4);
+//			thisX += (10 + basicEnemyIdle.width / 4);
+			thisX += deltaX;
 		}
 
 		//Boss Health
@@ -574,6 +579,16 @@ function GameScene() {
 			// Play some kind of beep here!
 			sound.playSFX(Sounds.SFX_ResumeLow); // TODO: Pick something else
 		});
+	};
+
+	const getEnemiesThisLevel = function() {
+		let theseLevelEnemies = localStorageHelper.getInt(localStorageKey.EnemiesPerLevel);
+		if((theseLevelEnemies === undefined) || (theseLevelEnemies === null) || (isNaN(theseLevelEnemies))) {
+			theseLevelEnemies = ASSIST_DEFAULT.EnemiesPerLevel;
+			localStorageHelper.setInt(localStorageKey.EnemiesPerLevel, theseLevelEnemies);
+		}
+
+		return theseLevelEnemies + levelData.totalEnemies;
 	};
 
 	const initializeFloor = function(subfloorColumnImage, verticalOffset) {
@@ -810,7 +825,7 @@ function GameScene() {
 const Level1Data = {
 	level: 1,
 	maxEnemies: 4,
-	totalEnemies:4,
+	totalEnemies:0,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1250 * Math.random());
 		const rnd2 = Math.ceil(1250 * Math.random());
@@ -890,7 +905,7 @@ const Level1Data = {
 const Level2Data = {
 	level: 2,
 	maxEnemies: 4,
-	totalEnemies:4,
+	totalEnemies:2,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1225 * Math.random());
 		const rnd2 = Math.ceil(1225 * Math.random());
@@ -970,7 +985,7 @@ const Level2Data = {
 const Level3Data = {
 	level: 3,
 	maxEnemies: 5,
-	totalEnemies:5,
+	totalEnemies:4,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1200 * Math.random());
 		const rnd2 = Math.ceil(1200 * Math.random());
@@ -1036,7 +1051,7 @@ const Level3Data = {
 const Level4Data = {
 	level: 4,
 	maxEnemies: 5,
-	totalEnemies:5,
+	totalEnemies:8,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1175 * Math.random());
 		const rnd2 = Math.ceil(1175 * Math.random());
@@ -1074,7 +1089,7 @@ const Level4Data = {
 const Level5Data = {
 	level: 5,
 	maxEnemies: 6,
-	totalEnemies:6,
+	totalEnemies:16,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1150 * Math.random());
 		const rnd2 = Math.ceil(1150 * Math.random());
