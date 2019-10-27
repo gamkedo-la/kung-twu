@@ -72,7 +72,8 @@ const localStorageKey = {
 	EnemyStrength:"kungTwu-EnemyStrength",
 	BossStrength:"kungTwu-BossStrength",
 	BossHealth:"kungTwu-BossHealth",
-	EnemiesPerLevel:"kungTwu-EnemiesPerLevel"
+	EnemiesPerLevel:"kungTwu-EnemiesPerLevel",
+	LevelTime:"kungTwu-LevelTime"
 };
 
 //----------State Management----------//
@@ -136,7 +137,8 @@ const ASSIST_DEFAULT = {
 	PlayerBaseDamage:10,
 	InvincibleDuration:1000,
 	KnockbackSpeed:800,
-	EnemiesPerLevel:10
+	EnemiesPerLevel:10,
+	LevelTime:600,
 };
 
 //------------Asset Management----------//

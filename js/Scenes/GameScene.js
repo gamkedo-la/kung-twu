@@ -519,8 +519,6 @@ function GameScene() {
 		const deltaX = ((cameraX + canvas.width / 2) - thisX - 15) / enemiesThisLevel;
 		for(let i = 0; i < (enemiesThisLevel - defeatedEnemyCount); i++) {
 			canvasContext.drawImage(basicEnemyIdle, 0, 0, basicEnemyIdle.width / 2, basicEnemyIdle.height, thisX, 10, basicEnemyIdle.width / 4, basicEnemyIdle.height / 2);
-
-//			thisX += (10 + basicEnemyIdle.width / 4);
 			thisX += deltaX;
 		}
 
@@ -560,8 +558,16 @@ function GameScene() {
 	};
 
 	const initializeGameTimer = function() {
+		let initialTime = localStorageHelper.getInt(localStorageKey.LevelTime);
+		if((initialTime === undefined) || (initialTime === null) || (isNaN(initialTime))) {
+			initialTime = ASSIST_DEFAULT.LevelTime;
+			localStorageHelper.setInt(localStorageKey.LevelTime, initialTime);
+		}
+
+		initialTime += levelData.allowedTime;
+
 		gameTimer = new GameTimer({
-			startTime: levelData.allowedTime, // in seconds
+			startTime: initialTime, // in seconds
 			decimalPlaces: 3, // 3 digits zero-padded
 			timeWarningThreshold: 10, // in seconds	
 			onZeroText: getLocalizedStringForKey(STRINGS_KEY.TimesUp), // use "" if you just want to see zeroes
@@ -832,7 +838,7 @@ const Level1Data = {
 		return (1250 + rnd1 + rnd2);
 	},
 	scrollsLeft: true,
-	allowedTime: 999,
+	allowedTime: 100,
 	wallScroll:wallScrollTiger,
 	enemyBelt: BELT.White,
 	bossBelt: BELT.Yellow,
@@ -912,7 +918,7 @@ const Level2Data = {
 		return (900 + rnd1 + rnd2);
 	},
 	scrollsLeft: false,
-	allowedTime: 899,
+	allowedTime: 100,
 	wallScroll:wallScrollCrane,
 	enemyBelt: BELT.Yellow,
 	bossBelt: BELT.Tan,
@@ -992,7 +998,7 @@ const Level3Data = {
 		return (600 + rnd1 + rnd2);
 	},
 	scrollsLeft: true,
-	allowedTime: 799,
+	allowedTime: 80,
 	wallScroll:wallScrollSnake,
 	enemyBelt: BELT.Tan,
 	bossBelt: BELT.Brown,
@@ -1058,7 +1064,7 @@ const Level4Data = {
 		return (350 + rnd1 + rnd2);
 	},
 	scrollsLeft: false,
-	allowedTime: 699,
+	allowedTime: 60,
 	wallScroll:wallScrollLeopard,
 	enemyBelt: BELT.Brown,
 	bossBelt: BELT.Red,
@@ -1096,7 +1102,7 @@ const Level5Data = {
 		return (150 + rnd1 + rnd2);
 	},
 	scrollsLeft: true,
-	allowedTime: 599,
+	allowedTime: 40,
 	wallScroll:wallScrollDragon,
 	enemyBelt: BELT.Red,
 	bossBelt: BELT.Black,

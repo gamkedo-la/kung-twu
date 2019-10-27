@@ -80,7 +80,8 @@ const STRINGS_KEY = {
 	BossStrength:"bossStrength",
 	BossHealth:"bossHealth",
 	TimesUp:"timesUp",
-	RivalsToBeat:"rivalsToBeat"
+	RivalsToBeat:"rivalsToBeat",
+	LevelTime:"levelTime"
 };
 
 function getLocalizedStringForKey(key) {
@@ -156,7 +157,8 @@ const userStrings = {
 		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
 		[STRINGS_KEY.BossHealth]:"Shīfù Health",
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
-		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat"
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
+		[STRINGS_KEY.LevelTime]:"Time Limit"
 	},
     
 	Spanish: {
@@ -229,7 +231,8 @@ const userStrings = {
 		[STRINGS_KEY.BossHealth]:"Salud de Shīfù",
 
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
-		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat"
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
+		[STRINGS_KEY.LevelTime]:"Time Limit"
 	},
 
 	Japanese: {
@@ -303,7 +306,8 @@ const userStrings = {
 		[STRINGS_KEY.BossHealth]:"シフウのけんこ",
 
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
-		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat"
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
+		[STRINGS_KEY.LevelTime]:"Time Limit"
 	},
 
 	French: {
@@ -376,7 +380,8 @@ const userStrings = {
 		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
 		[STRINGS_KEY.BossHealth]:"Shīfù Health",
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
-		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat"
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
+		[STRINGS_KEY.LevelTime]:"Time Limit"
 	},
 
 	Russian: {
@@ -449,7 +454,8 @@ const userStrings = {
 		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
 		[STRINGS_KEY.BossHealth]:"Shīfù Health",
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
-		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat"
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
+		[STRINGS_KEY.LevelTime]:"Time Limit"
 	},
 	
 	Polish: {
@@ -521,6 +527,7 @@ const userStrings = {
 		[STRINGS_KEY.BossHealth]:"Życie Shīfù",
 
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
-		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat"
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
+		[STRINGS_KEY.LevelTime]:"Time Limit"
 	}
 };

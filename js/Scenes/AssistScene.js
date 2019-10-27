@@ -148,7 +148,7 @@ function AssistScene() {
 			baseEnemiesPerLevel = ASSIST_DEFAULT.EnemiesPerLevel;
 			localStorageHelper.setInt(localStorageKey.EnemiesPerLevel, baseEnemiesPerLevel);
 		}
-		slider.enemiesPerLevel = new UISlider(COL3_X, ROW2_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.RivalsToBeat), ePerLevelMin, ePerLevelMin.toString(), ePerLevelMax, ePerLevelMax.toString(), baseEnemiesPerLevel, 10, true, Color.Orange);
+		slider.enemiesPerLevel = new UISlider(COL3_X, ROW2_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.RivalsToBeat), ePerLevelMin, ePerLevelMin.toString(), ePerLevelMax, ePerLevelMax.toString(), baseEnemiesPerLevel, 100, true, Color.Orange);
 
 		/*Third Row of Sliders*/
 		//Player Base Damage
@@ -170,6 +170,16 @@ function AssistScene() {
 			localStorageHelper.setInt(localStorageKey.BossHealth, initialBHealth);
 		}
 		slider.bossHealth = new UISlider(COL2_X, ROW3_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.BossHealth), bHealthMin, bHealthMin.toString(), bHealthMax, bHealthMax.toString(), initialBHealth, 40, true, Color.Yellow);
+
+		//Variable Time Per Level
+		const minTime = 0;
+		const maxTime = 899;
+		let initialTime = localStorageHelper.getInt(localStorageKey.LevelTime);
+		if((initialTime === undefined) || (initialTime === null) || (isNaN(initialTime))) {
+			initialTime = ASSIST_DEFAULT.LevelTime;
+			localStorageHelper.setInt(localStorageKey.LevelTime, initialTime);
+		}
+		slider.timeLimit = new UISlider(COL3_X, ROW3_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.LevelTime), minTime, minTime.toString(), maxTime, maxTime.toString(), initialTime, 90, true, Color.Red);
 
 		/*Fourth Row of Sliders*/
 		//Player Invincibility
@@ -315,6 +325,9 @@ function AssistScene() {
 			break;
 		case slider.enemiesPerLevel:
 			localStorageHelper.setInt(localStorageKey.EnemiesPerLevel, aSlider.getValue());
+			break;
+		case slider.timeLimit:
+			localStorageHelper.setInt(localStorageKey.LevelTime, aSlider.getValue());
 			break;
 		}
 	};
