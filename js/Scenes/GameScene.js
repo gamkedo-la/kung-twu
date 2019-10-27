@@ -33,7 +33,8 @@ function GameScene() {
 	let bossHealth = ASSIST_DEFAULT.MaxHealth;
 	let bossMaxHealth = null;
 	let enemyMinX;
-	let enemyMaxX;
+    let enemyMaxX;
+    let knockedOutBodies = new knockedOutBodyManager();
 
 	// Game Timer Scene Settings
 	// For more detailed settings please go to "js/Timers/GameTimer.js"
@@ -320,7 +321,10 @@ function GameScene() {
 				collisionManager.removeEntity(defeatedEntity);
 				if(defeatedEntity.getBelt() === levelData.enemyBelt) {
 					defeatedEnemyCount++;
-				}
+                }
+                // TODO: spawn a "knocked out body" that falls to the floor and then fades out
+                // where's the sprite? hidden somewhere in defeatedEntity.animations
+                if (knockedOutBodies) knockedOutBodies.add(defeatedEntity.getPosition().x,defeatedEntity.getPosition().y,defeatedEntity.animations);
 			}
 		}
 	};
@@ -411,7 +415,9 @@ function GameScene() {
 			enemies[i].draw();
 		}
 
-		player.draw();
+        if (knockedOutBodies) knockedOutBodies.draw();
+        
+        player.draw();
 		if (wooshFX) wooshFX.draw();
 
 		lampManager.draw();

@@ -92,7 +92,6 @@ function WooshFXManager(wooshImage) {
 
 function Woosh(wooshImage) { // a single woosh, reused often
 
-	const GROW_AND_SHRINK = false; // if false, it gets bigger only
 	this.active = false; // if true, manager reuses it
 	this.img = wooshImage;
 	this.frameCount = WOOSH_FRAMECOUNT; // length of animation 
@@ -104,7 +103,6 @@ function Woosh(wooshImage) { // a single woosh, reused often
 	this.x = 0;
 	this.y = 0;
 	this.frame = 0;
-	var offset, percent, currentSize; // reused
 
 	// you can change images
 	this.trigger = function (x, y, r, img) {
