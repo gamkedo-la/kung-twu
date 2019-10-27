@@ -117,7 +117,10 @@ const redEnemyKick = document.createElement("img");
 const redEnemyPunch = document.createElement("img");
 const yellowBossIdle = document.createElement("img");
 const yellowBossWalk = document.createElement("img");
+const yellowBossPunch = document.createElement("img");
 const yellowBossKick = document.createElement("img");
+const yellowBossCrouch = document.createElement("img");
+const yellowBossCrouchPunch = document.createElement("img");
 const yellowBossSweep = document.createElement("img");
 const playerIdleWhite = document.createElement("img");
 const playerIdleYellow = document.createElement("img");
@@ -199,8 +202,11 @@ function loadImages() {
 
 		{ imgName: yellowBossIdle, theFile: "Boss_Idle_Yellow.png" },
 		{ imgName: yellowBossWalk, theFile: "BossWalking_Yellow.png" },
+		{ imgName: yellowBossPunch, theFile: "BossPunching_Yellow.png" },
 		{ imgName: yellowBossKick, theFile: "BossKicking_Yellow.png" },
-		{ imgName: yellowBossSweep, theFile: "BossSweeping_Yellow.png" },
+		{ imgName: yellowBossCrouch, theFile: "BossCrouching_Yellow.png" },
+		{ imgName: yellowBossCrouchPunch, theFile: "BossCrouching_Yellow.png" },
+		{ imgName: yellowBossSweep, theFile: "BossCrouchPunch_Yellow.png" },
 
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},

@@ -890,13 +890,21 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:
+		{name:STATE.Crouch,
+			image:yellowBossCrouch,
+			frames:[0],
+			width:yellowBossCrouch.width,
+			height:yellowBossCrouch.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false},
 		punch:{
 			name:STATE.Punch,
-			image:yellowEnemyPunch,
+			image:yellowBossPunch,
 			frames:[0, 1, 2, 1],
-			width:yellowEnemyPunch.width / 3,
-			height:yellowEnemyPunch.height,
+			width:yellowBossPunch.width / 3,
+			height:yellowBossPunch.height,
 			frameTimes:[50, 150, 225, 50],
 			reverses:false,
 			loops:false
