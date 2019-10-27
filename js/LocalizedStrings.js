@@ -525,9 +525,9 @@ const userStrings = {
 		[STRINGS_KEY.EnemyStrength]:"Siła Rywala",
 		[STRINGS_KEY.BossStrength]:"Siła Shīfù",
 		[STRINGS_KEY.BossHealth]:"Życie Shīfù",
-
-		[STRINGS_KEY.TimesUp]:"Time's Up!",
-		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
+		[STRINGS_KEY.TimesUp]:"Koniec czasu!",
+		[STRINGS_KEY.RivalsToBeat]:"Rywale Do Pokonania",
+		
 		[STRINGS_KEY.LevelTime]:"Time Limit"
 	}
 };
