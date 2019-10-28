@@ -20,8 +20,10 @@ function fontSystem(jpFont, charSize, context) {
 
 	this.getStringWidth = function(text, scale, language = currentLanguage) {
 		let totalWidth = 0;
-		for(let char of text) {
-			totalWidth += (scale * advancementForLanguageAndCharacter(language, char));
+		for(let i = 0; i < text.length; i++) {
+			const char1 = text[i];
+			const char2 = text[i+1];
+			totalWidth += (scale * advancementForLanguageAndCharacter(language, char1, char2));
 		}
 		return totalWidth;
 	};
@@ -51,7 +53,7 @@ function fontSystem(jpFont, charSize, context) {
 			const thisFrame = this.findLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
 			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, drawPos, position.y, charSize.width * scale, charSize.height * scale);
 			
-			const advance = scale * advancementForLanguageAndCharacter(language, text[i]);
+			const advance = scale * advancementForLanguageAndCharacter(language, text[i], text[i+1]);
 			drawPos += advance;
 		}
 
@@ -72,7 +74,7 @@ function fontSystem(jpFont, charSize, context) {
 			const thisFrame = this.findRedLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
 			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, drawPos, position.y, charSize.width * scale, charSize.height * scale);
 			
-			const advance = scale * advancementForLanguageAndCharacter(language, text[i]);
+			const advance = scale * advancementForLanguageAndCharacter(language, text[i], text[i+1]);
 			drawPos += advance;
 		}
 
@@ -80,19 +82,22 @@ function fontSystem(jpFont, charSize, context) {
 		context.globalAlpha = oldAlpha;
 	};
 
-	const advancementForLanguageAndCharacter = function(language, character) {
+	const advancementForLanguageAndCharacter = function(language, character1, character2) {
 		if(language === Language.Japanese) {
-			if(character === " ") {
+			if(character1 === " ") {
 				return 40;
-			} else if(charIsNumeral(character)) {
+			} else if(charIsNumeral(character1)) {
 				return 50;
 			} else {
 				return 72;
 			}
 		}
 
-		switch(character) {
-		case "'": return 10;
+		if(character2 === "'") {
+			return 25;
+		}
+
+		switch(character1) {
 		case " ": return 35;
 		case "W":
 		case "w": return 55;

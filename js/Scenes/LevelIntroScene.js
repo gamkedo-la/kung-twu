@@ -1,6 +1,6 @@
-//Power Up Scene
-function PowerUpScene() {
-	this.name = "Power Up Scene";
+//Level Introduction Scene
+function LevelIntroScene() {
+	this.name = "Level Introduction Scene";
 	let selectorPositionsIndex = 0;
 	const selectorPosition = {x:0, y:0};
 	const buttonHeight = 25;
@@ -8,7 +8,9 @@ function PowerUpScene() {
 	const MSG_SCALE = 0.5;
 	const buttons = [];
 	let MESSAGE_Y_POS;
+	let LINE_HEIGHT;
 	let message;
+	let shouldRestart = false;
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -18,7 +20,8 @@ function PowerUpScene() {
 		let mainMenuX = canvas.width / 2;
 		const mainMenuY = canvas.height - (9 * buttonHeight / 2);
 
-		MESSAGE_Y_POS = mainMenuY - (9 * buttonHeight / 2);
+		MESSAGE_Y_POS = canvas.height / 3;
+		LINE_HEIGHT = 2.0 * JPFont.getCharacterHeight(MSG_SCALE);
 		
 		if(buttons.length === 0) {
 			buttons.push(buildDoneButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
@@ -58,14 +61,16 @@ function PowerUpScene() {
 
 	const messageForNewLevel = function() {
 		switch(currentLevel) {
+		case 1:
+			return getLocalizedStringForKey(STRINGS_KEY.LevelIntroText_Lvl1);
 		case 2:
-			return getLocalizedStringForKey(STRINGS_KEY.HowToDash);
+			return getLocalizedStringForKey(STRINGS_KEY.LevelIntroText_Lvl2);
 		case 3:
-			return getLocalizedStringForKey(STRINGS_KEY.HowToSweep);
+			return getLocalizedStringForKey(STRINGS_KEY.LevelIntroText_Lvl3);
 		case 4:
-			return getLocalizedStringForKey(STRINGS_KEY.HowToJ_Kick);
+			return getLocalizedStringForKey(STRINGS_KEY.LevelIntroText_Lvl4);
 		case 5:
-			return getLocalizedStringForKey(STRINGS_KEY.HowToH_Kick);
+			return getLocalizedStringForKey(STRINGS_KEY.LevelIntroText_Lvl5);
 		}
 	};
 
@@ -80,7 +85,8 @@ function PowerUpScene() {
 			if(newNavAction != null) {
 				switch(newNavAction) {
 				case NAV_ACTION.SELECT:
-					SceneState.setState(SCENE.LEVEL_INTRO);
+					SceneState.setState(SCENE.GAME, {restartLevel:shouldRestart});
+					shouldRestart = true;
 					// @SoundHook: menuSelectionSound.play();
 					sound.playSFX(Sounds.SFX_MenuSelect);
 					break;
@@ -107,7 +113,8 @@ function PowerUpScene() {
 
 	const buildDoneButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			SceneState.setState(SCENE.LEVEL_INTRO);
+			SceneState.setState(SCENE.GAME, {restartLevel:shouldRestart});
+			shouldRestart = true;
 		};
 
 		return new UIButton(STRINGS_KEY.Done, x, y, height, padding, thisClick, Color.Aqua);
@@ -146,27 +153,10 @@ function PowerUpScene() {
 	
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
-		const beltImage = presentationImageForLevel();
-		canvasContext.drawImage(beltImage, 0, 0, 
-			beltImage.width, beltImage.height,
-			(canvas.width - beltImage.width) / 2,
-			(canvas.height - beltImage.height) / 5,
-			beltImage.width, beltImage.height);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);     
 	};
 
-	const presentationImageForLevel = function() {
-		switch(currentLevel) {
-		case 2: return yellowPresentation;
-		case 3: return tanPresentation;
-		case 4: return brownPresentation;
-		case 5: return redPresentation;
-		default: return blackPresentation;
-		}
-	};
-
 	const drawMessage = function() {
-		const LINE_HEIGHT = 2.0 * JPFont.getCharacterHeight(0.35);
 		let lines = message.split("\n");
 		for (let num=0; num<lines.length; num++) {
 			JPFont.printTextAt(lines[num], {x:canvas.width / 2, y:MESSAGE_Y_POS + ((num - 1)*LINE_HEIGHT)}, TextAlignment.Center, MSG_SCALE);

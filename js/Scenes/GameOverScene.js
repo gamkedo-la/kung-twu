@@ -99,7 +99,7 @@ function GameOverScene() {
 
 	const buildContinueButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			SceneState.setState(SCENE.GAME, {restartLevel:true});
+			SceneState.setState(SCENE.LEVEL_INTRO, {restartLevel:true});
 		};
 
 		return new UIButton(STRINGS_KEY.Continue, x, y, height, padding, thisClick, Color.Red);

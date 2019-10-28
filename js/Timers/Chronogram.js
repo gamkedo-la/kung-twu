@@ -77,6 +77,8 @@ function Chronogram() {
 	 * @returns {number} The time in milliseconds since lastUpdate or registration if lastUpdate has not yet been called.
 	 */
 	this.updateEvent = function(eventName) {
+		if(events[eventName] === undefined) return null;
+
 		const thisTime = Date.now();
 		const deltaTime = thisTime - events[eventName].lastUpdate;
 		events[eventName].lastUpdate = thisTime;

@@ -56,7 +56,7 @@ function HelpScene() {
 			if(pauseManager.getIsPaused()) {
 				pauseManager.resumeGame(CAUSE.Keypress);
 			}
-			SceneState.setState(SCENE.GAME);
+			SceneState.setState(SCENE.LEVEL_INTRO);
 			// @SoundHook menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
@@ -141,7 +141,7 @@ function HelpScene() {
 			if(pauseManager.getIsPaused()) {
 				pauseManager.resumeGame(CAUSE.Keypress);
 			}
-			SceneState.setState(SCENE.GAME);
+			SceneState.setState(SCENE.LEVEL_INTRO);
 		};
 
 		return new UIButton(STRINGS_KEY.Play, x, y, height, padding, thisClick, Color.Aqua);

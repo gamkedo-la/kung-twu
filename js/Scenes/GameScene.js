@@ -36,7 +36,6 @@ function GameScene() {
 	let enemyMinX;
 	let enemyMaxX;
 	let knockedOutBodies = new knockedOutBodyManager();
-	let levelIntroText = null;
 	let bossIntroText = null;
 
 	// Game Timer Scene Settings
@@ -110,7 +109,9 @@ function GameScene() {
 		}
 
 		this.reset();
-		player.quit();
+		if(player !== null) {
+			player.quit();
+		}
 	};
 
 	this.reset = function() {
@@ -129,7 +130,9 @@ function GameScene() {
 		enemiesThisLevel = 0;
 		bossHealth = levelData.bossHealth;
 		bossMaxHealth = null;
-		player.reset(levelData.playerStart);
+		if(player !== null) {
+			player.reset(levelData.playerStart);
+		}
 		collisionManager = null;
 		subfloor = null;
 		floor = null;

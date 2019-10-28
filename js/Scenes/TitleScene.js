@@ -83,7 +83,7 @@ function TitleScene() {
         
 		switch (newKeyEvent) {
 		case ALIAS.SELECT2:
-			SceneState.setState(SCENE.GAME);
+			SceneState.setState(SCENE.LEVEL_INTRO);
 			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
@@ -127,7 +127,7 @@ function TitleScene() {
 
 	const buildPlayButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			SceneState.setState(SCENE.GAME);
+			SceneState.setState(SCENE.LEVEL_INTRO);
 		};
 
 		return new UIButton(STRINGS_KEY.Play,

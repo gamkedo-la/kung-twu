@@ -95,6 +95,7 @@ const SCENE = {
 	ASSIST: "assist",
 	PAUSE: "pause",
 	CONTROLS: "controls",
+	LEVEL_INTRO:"levelIntro",
 	GAME: "game",
 	POWERUP:"powerUp",
 	ENDING: "ending"
