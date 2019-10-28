@@ -92,6 +92,10 @@ const STRINGS_KEY = {
 	BossIntroText_Lvl3:"level3BossIntroText",
 	BossIntroText_Lvl4:"level4BossIntroText",
 	BossIntroText_Lvl5:"level5BossIntroText",
+	ControlsText_Lvl2:"level2ControlsText",
+	ControlsText_Lvl3:"level3ControlsText",
+	ControlsText_Lvl4:"level4ControlsText",
+	ControlsText_Lvl5:"level5ControlsText",
 };
 
 function getLocalizedStringForKey(key) {
@@ -178,7 +182,11 @@ const userStrings = {
 		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.\nDemonstrate your skill and learn\nhis leg sweep technique.",
 		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.\nDemonstrate your skill and learn\nhis jump kick technique.",
 		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.\nDemonstrate your skill and learn\nhis helicopter kick technique.",
-		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment."
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment.",
+		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
+		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
+		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Helicopter Kick"
 	},
     
 	Spanish: {
@@ -264,7 +272,11 @@ const userStrings = {
 		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.\nDemonstrate your skill and learn\nhis leg sweep technique.",
 		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.\nDemonstrate your skill and learn\nhis jump kick technique.",
 		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.\nDemonstrate your skill and learn\nhis helicopter kick technique.",
-		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment."
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment.",
+		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
+		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
+		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Helicopter Kick"
 	},
 
 	Japanese: {
@@ -351,7 +363,11 @@ const userStrings = {
 		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.\nDemonstrate your skill and learn\nhis leg sweep technique.",
 		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.\nDemonstrate your skill and learn\nhis jump kick technique.",
 		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.\nDemonstrate your skill and learn\nhis helicopter kick technique.",
-		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment."
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment.",
+		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
+		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
+		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Helicopter Kick"
 	},
 
 	French: {
@@ -437,7 +453,11 @@ const userStrings = {
 		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.\nDemonstrate your skill and learn\nhis leg sweep technique.",
 		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.\nDemonstrate your skill and learn\nhis jump kick technique.",
 		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.\nDemonstrate your skill and learn\nhis helicopter kick technique.",
-		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment."
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment.",
+		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
+		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
+		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Helicopter Kick"
 	},
 
 	Russian: {
@@ -523,7 +543,11 @@ const userStrings = {
 		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.\nDemonstrate your skill and learn\nhis leg sweep technique.",
 		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.\nDemonstrate your skill and learn\nhis jump kick technique.",
 		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.\nDemonstrate your skill and learn\nhis helicopter kick technique.",
-		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment."
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment.",
+		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
+		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
+		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Helicopter Kick"
 	},
 	
 	Polish: {
@@ -609,6 +633,10 @@ const userStrings = {
 		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.\nDemonstrate your skill and learn\nhis leg sweep technique.",
 		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.\nDemonstrate your skill and learn\nhis jump kick technique.",
 		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.\nDemonstrate your skill and learn\nhis helicopter kick technique.",
-		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment."
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment.",
+		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
+		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
+		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Helicopter Kick"
 	}
 };

@@ -11,6 +11,12 @@ function LevelIntroScene() {
 
 	let titleBlockWidth = 0;
 	let titleBlockPos = {x:0, y:0};
+	let titleBlock2Width = 0;
+	let titleBlock2Pos = {x:0, y:0};
+	let controlsXPos = 0;
+	let specialsXPos = 0;
+	let specialsText = "";
+	let specialsTextArray = [];
 	let selectorPositionsIndex = 0;
 	let MESSAGE_Y_POS;
 	let CONTROLS_Y_POS;
@@ -45,6 +51,8 @@ function LevelIntroScene() {
 
 		selectorPositionsIndex = 0;
 		updateButtonPositions();
+		findSpecialsText();
+		findControlsXPos();
 		findTitleBlockWidth();
 	};
 
@@ -85,6 +93,25 @@ function LevelIntroScene() {
 		case 5:
 			return getLocalizedStringForKey(STRINGS_KEY.LevelIntroText_Lvl5);
 		}
+	};
+
+	const specialControlsForNewLevel = function() {
+		let resultString = "";
+		switch(currentLevel) {
+		case 5:
+			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl5);
+		// eslint-disable-next-line no-fallthrough
+		case 4:
+			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl4) + "\n" + resultString;
+		// eslint-disable-next-line no-fallthrough
+		case 3:
+			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl3) + "\n" + resultString;
+		// eslint-disable-next-line no-fallthrough
+		case 2:
+			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl2) + "\n" + resultString;
+		}
+
+		return resultString;
 	};
 
 	const update = function() {
@@ -133,11 +160,25 @@ function LevelIntroScene() {
 		return new UIButton(STRINGS_KEY.Done, x, y, height, padding, thisClick, Color.Aqua);
 	};
 
+	const findSpecialsText = function() {
+		specialsText = specialControlsForNewLevel();
+		specialsTextArray = specialsText.split("\n");
+	};
+
+	const findControlsXPos = function() {
+		if(specialsText === "") {
+			controlsXPos = canvas.width / 2;
+		} else {
+			controlsXPos = canvas.width / 4;
+			specialsXPos = 3 * canvas.width / 4;
+		}
+	};
+
 	const findTitleBlockWidth = function() {
 		let maxWidth = 0;
 		let lines = getLocalizedStringForKey(STRINGS_KEY.HelpScreenContents).split("\n");
 		for (let num=0; num<lines.length; num++) {
-			const thisWidth = JPFont.getStringWidth(lines[num], 0.3);
+			const thisWidth = JPFont.getStringWidth(lines[num], CONTROLS_SCALE);
 			if(thisWidth > maxWidth) {
 				maxWidth = thisWidth;
 			}
@@ -146,6 +187,22 @@ function LevelIntroScene() {
 		titleBlockWidth = 30 + maxWidth;
 		titleBlockPos.x = canvas.width / 2 - titleBlockWidth / 2 + 4;
 		titleBlockPos.y = CONTROLS_Y_POS - 44;
+
+		if(specialsText !== "") {
+			let maxWidth = 0;
+			for (let num=0; num<specialsTextArray.length; num++) {
+				const thisWidth = JPFont.getStringWidth(specialsTextArray[num], CONTROLS_SCALE);
+				if(thisWidth > maxWidth) {
+					maxWidth = thisWidth;
+				}
+			}
+	
+			titleBlock2Width = 30 + maxWidth;
+			titleBlock2Pos.x = 3 * canvas.width / 4 - titleBlock2Width / 2 + 4;
+			titleBlock2Pos.y = CONTROLS_Y_POS - 44;
+
+			titleBlockPos.x = canvas.width / 4 - titleBlockWidth / 2 + 4;
+		}
 	};
 
 	const updateButtonPositions = function() {
@@ -186,6 +243,7 @@ function LevelIntroScene() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlockPos.x, titleBlockPos.y, titleBlockWidth, titleBlock.height);   
+		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlock2Pos.x, titleBlock2Pos.y, titleBlock2Width, titleBlock.height);   
 	};
 
 	const drawMessage = function() {
@@ -196,7 +254,13 @@ function LevelIntroScene() {
 
 	const drawControls = function() {
 		for (let num=0; num<controls.length; num++) {
-			JPFont.printTextAt(controls[num], {x:canvas.width / 2, y:CONTROLS_Y_POS + ((num - 1)*MSG_LINE_HEIGHT)}, TextAlignment.Center, CONTROLS_SCALE);
+			JPFont.printTextAt(controls[num], {x:controlsXPos, y:CONTROLS_Y_POS + ((num - 1)*MSG_LINE_HEIGHT)}, TextAlignment.Center, CONTROLS_SCALE);
+		}
+
+		if(specialsText !== "") {
+			for (let num=0; num<specialsTextArray.length; num++) {
+				JPFont.printTextAt(specialsTextArray[num], {x:specialsXPos, y:CONTROLS_Y_POS + ((num - 1)*MSG_LINE_HEIGHT)}, TextAlignment.Center, CONTROLS_SCALE);
+			}
 		}
 	};
 }
