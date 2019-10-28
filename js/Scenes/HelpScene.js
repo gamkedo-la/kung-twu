@@ -14,6 +14,9 @@ function HelpScene() {
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
+	const LINE_SCALE = 0.35;
+	let LINE_HEIGHT;
+
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -21,6 +24,8 @@ function HelpScene() {
 		buttonPadding = canvas.width / 40;
 		
 		const menuY = canvas.height - (9 * buttonHeight / 2);
+		LINE_HEIGHT = JPFont.getCharacterHeight(LINE_SCALE);
+
         
 		if(buttons.length === 0) {
 			buttons.push(buildBackButton(buttonPadding, menuY, buttonHeight, buttonTitlePadding));
@@ -214,7 +219,6 @@ function HelpScene() {
 	};
 
 	const drawHelpScreenContents = function() {
-		const LINE_HEIGHT = JPFont.getCharacterHeight(0.35);
 		let lines = getLocalizedStringForKey(STRINGS_KEY.HelpScreenContents).split("\n");
 		for (let num=0; num<lines.length; num++) {
 			JPFont.printTextAt(lines[num], {x:canvas.width / 2, y:canvas.height / 2 + ((num - 1)*LINE_HEIGHT)}, TextAlignment.Center, 0.3);
