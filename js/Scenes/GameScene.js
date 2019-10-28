@@ -36,6 +36,8 @@ function GameScene() {
 	let enemyMinX;
 	let enemyMaxX;
 	let knockedOutBodies = new knockedOutBodyManager();
+	let levelIntroText = null;
+	let bossIntroText = null;
 
 	// Game Timer Scene Settings
 	// For more detailed settings please go to "js/Timers/GameTimer.js"
@@ -144,6 +146,8 @@ function GameScene() {
 		floorMidHeight = 0;
 		timeTilSpawn = 0;
 		score = 0;
+		levelIntroText = null;
+		bossIntroText = null;
 
 		timer.updateEvent(EVENT.EnemySpawn);
 	};
@@ -197,7 +201,6 @@ function GameScene() {
 			levelData.cameraMin - canvas.width / 2,
 			levelData.cameraMax + canvas.width / 2);
 
-
 		if(defeatedEnemyCount >= enemiesThisLevel) {
 			if(bossHasBeenSpawned) {
 				if((enemies[0] === undefined) || (enemies[0].getAIType() != AITYPE.Boss)) {
@@ -232,6 +235,13 @@ function GameScene() {
 		processUserInput();
 
 		if(currentLevel === 1) waterfall.update(deltaTime);
+
+		if(bossIntroText !== null) {
+			bossIntroText.update(deltaTime, newCameraX);
+			if(bossIntroText.isComplete) {
+				bossIntroText = null;
+			}
+		}
 	};
 
 	const updateEnvironment = function(deltaTime, newCameraX) {
@@ -441,6 +451,10 @@ function GameScene() {
 		}
 
 		drawUI(cameraX);
+
+		if(bossIntroText !== null) {
+			bossIntroText.draw();
+		}
 	};
 
 	const drawUI = function(cameraX) {
@@ -791,6 +805,10 @@ function GameScene() {
 	};
 
 	const spawnBoss = function(cameraXPos) {
+		if(bossIntroText === null) {
+			buildBossIntroText();
+		}
+
 		let atLeft = levelData.scrollsLeft;
 		if(levelData.scrollsLeft) {
 			atLeft = false;
@@ -826,6 +844,11 @@ function GameScene() {
 
 		enemies.unshift(aBoss);
 	};
+
+	const buildBossIntroText = function() {
+		const text = getLocalizedStringForKey(levelData.bossIntroTextKey);
+		bossIntroText = new BossIntroText(text, {x:camera.getPosition().x, y:canvas.height / 2}, TextAlignment.Center, 0.45);
+	};
 }
 
 const Level1Data = {
@@ -843,6 +866,7 @@ const Level1Data = {
 	enemyBelt: BELT.White,
 	bossBelt: BELT.Yellow,
 	bossHealth:100,
+	bossIntroTextKey: STRINGS_KEY.BossIntroText_Lvl1,
 	bossMeterColor:Color.Yellow,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
@@ -924,6 +948,7 @@ const Level2Data = {
 	bossBelt: BELT.Tan,
 	bossHealth:120,
 	bossMeterColor:Color.Tan,
+	bossIntroTextKey: STRINGS_KEY.BossIntroText_Lvl2,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 200,
@@ -1004,6 +1029,7 @@ const Level3Data = {
 	bossBelt: BELT.Brown,
 	bossHealth:140,
 	bossMeterColor:Color.SaddleBrown,
+	bossIntroTextKey: STRINGS_KEY.BossIntroText_Lvl3,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 300,
@@ -1070,6 +1096,7 @@ const Level4Data = {
 	bossBelt: BELT.Red,
 	bossHealth:160,
 	bossMeterColor:Color.Red,
+	bossIntroTextKey: STRINGS_KEY.BossIntroText_Lvl4,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 400,
@@ -1108,6 +1135,7 @@ const Level5Data = {
 	bossBelt: BELT.Black,
 	bossHealth:400,//this is the final boss, so BUFF!!
 	bossMeterColor:Color.White,
+	bossIntroTextKey: STRINGS_KEY.BossIntroText_Lvl5,
 	wallWindowHeight: 175,
 	wallWindowTop: 215,
 	bgClipLevel: 500,

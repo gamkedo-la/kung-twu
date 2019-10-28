@@ -81,7 +81,12 @@ const STRINGS_KEY = {
 	BossHealth:"bossHealth",
 	TimesUp:"timesUp",
 	RivalsToBeat:"rivalsToBeat",
-	LevelTime:"levelTime"
+	LevelTime:"levelTime",
+	BossIntroText_Lvl1:"level1BossIntroText",
+	BossIntroText_Lvl2:"level2BossIntroText",
+	BossIntroText_Lvl3:"level3BossIntroText",
+	BossIntroText_Lvl4:"level4BossIntroText",
+	BossIntroText_Lvl5:"level5BossIntroText",
 };
 
 function getLocalizedStringForKey(key) {
@@ -158,7 +163,12 @@ const userStrings = {
 		[STRINGS_KEY.BossHealth]:"Shīfù Health",
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
 		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
-		[STRINGS_KEY.LevelTime]:"Time Limit"
+		[STRINGS_KEY.LevelTime]:"Time Limit",
+		[STRINGS_KEY.BossIntroText_Lvl1]:"Shīfù Tigero approaches.\nDemonstrate your skill and learn\nhis back dash technique.",
+		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.\nDemonstrate your skill and learn\nhis leg sweep technique.",
+		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.\nDemonstrate your skill and learn\nhis jump kick technique.",
+		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.\nDemonstrate your skill and learn\nhis helicopter kick technique.",
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment."
 	},
     
 	Spanish: {
@@ -232,7 +242,12 @@ const userStrings = {
 
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
 		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
-		[STRINGS_KEY.LevelTime]:"Time Limit"
+		[STRINGS_KEY.LevelTime]:"Time Limit",
+		[STRINGS_KEY.BossIntroText_Lvl1]:"Shīfù Tigero approaches.\nDemonstrate your skill and learn\nhis back dash technique.",
+		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.\nDemonstrate your skill and learn\nhis leg sweep technique.",
+		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.\nDemonstrate your skill and learn\nhis jump kick technique.",
+		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.\nDemonstrate your skill and learn\nhis helicopter kick technique.",
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment."
 	},
 
 	Japanese: {
@@ -307,7 +322,12 @@ const userStrings = {
 
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
 		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
-		[STRINGS_KEY.LevelTime]:"Time Limit"
+		[STRINGS_KEY.LevelTime]:"Time Limit",
+		[STRINGS_KEY.BossIntroText_Lvl1]:"Shīfù Tigero approaches.\nDemonstrate your skill and learn\nhis back dash technique.",
+		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.\nDemonstrate your skill and learn\nhis leg sweep technique.",
+		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.\nDemonstrate your skill and learn\nhis jump kick technique.",
+		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.\nDemonstrate your skill and learn\nhis helicopter kick technique.",
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment."
 	},
 
 	French: {
@@ -381,7 +401,12 @@ const userStrings = {
 		[STRINGS_KEY.BossHealth]:"Shīfù Health",
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
 		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
-		[STRINGS_KEY.LevelTime]:"Time Limit"
+		[STRINGS_KEY.LevelTime]:"Time Limit",
+		[STRINGS_KEY.BossIntroText_Lvl1]:"Shīfù Tigero approaches.\nDemonstrate your skill and learn\nhis back dash technique.",
+		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.\nDemonstrate your skill and learn\nhis leg sweep technique.",
+		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.\nDemonstrate your skill and learn\nhis jump kick technique.",
+		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.\nDemonstrate your skill and learn\nhis helicopter kick technique.",
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment."
 	},
 
 	Russian: {
@@ -455,7 +480,12 @@ const userStrings = {
 		[STRINGS_KEY.BossHealth]:"Shīfù Health",
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
 		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
-		[STRINGS_KEY.LevelTime]:"Time Limit"
+		[STRINGS_KEY.LevelTime]:"Time Limit",
+		[STRINGS_KEY.BossIntroText_Lvl1]:"Shīfù Tigero approaches.\nDemonstrate your skill and learn\nhis back dash technique.",
+		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.\nDemonstrate your skill and learn\nhis leg sweep technique.",
+		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.\nDemonstrate your skill and learn\nhis jump kick technique.",
+		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.\nDemonstrate your skill and learn\nhis helicopter kick technique.",
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment."
 	},
 	
 	Polish: {
@@ -528,6 +558,11 @@ const userStrings = {
 		[STRINGS_KEY.TimesUp]:"Koniec czasu!",
 		[STRINGS_KEY.RivalsToBeat]:"Rywale Do Pokonania",
 		
-		[STRINGS_KEY.LevelTime]:"Time Limit"
+		[STRINGS_KEY.LevelTime]:"Time Limit",
+		[STRINGS_KEY.BossIntroText_Lvl1]:"Shīfù Tigero approaches.\nDemonstrate your skill and learn\nhis back dash technique.",
+		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.\nDemonstrate your skill and learn\nhis leg sweep technique.",
+		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.\nDemonstrate your skill and learn\nhis jump kick technique.",
+		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.\nDemonstrate your skill and learn\nhis helicopter kick technique.",
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.\nDemonstrate your skill and learn\nhis technique for enlightenment."
 	}
 };
