@@ -5,6 +5,7 @@ function PowerUpScene() {
 	const selectorPosition = {x:0, y:0};
 	const buttonHeight = 25;
 	const buttonTitlePadding = 2;
+	const MSG_SCALE = 0.5;
 	const buttons = [];
 	let MESSAGE_Y_POS;
 	let message;
@@ -165,10 +166,10 @@ function PowerUpScene() {
 	};
 
 	const drawMessage = function() {
-		const LINE_HEIGHT = JPFont.getCharacterHeight(0.35);
+		const LINE_HEIGHT = 2.0 * JPFont.getCharacterHeight(0.35);
 		let lines = message.split("\n");
 		for (let num=0; num<lines.length; num++) {
-			JPFont.printTextAt(lines[num], {x:canvas.width / 2, y:MESSAGE_Y_POS + ((num - 1)*LINE_HEIGHT)}, TextAlignment.Center, 0.3);
+			JPFont.printTextAt(lines[num], {x:canvas.width / 2, y:MESSAGE_Y_POS + ((num - 1)*LINE_HEIGHT)}, TextAlignment.Center, MSG_SCALE);
 		}
 	};
 }
