@@ -128,7 +128,12 @@ const playerIdleTan = document.createElement("img");
 const playerIdleBrown = document.createElement("img");
 const playerIdleRed = document.createElement("img");
 const playerIdleBlack = document.createElement("img");
-const playerWalkFwd = document.createElement("img");
+const playerWalkWhite = document.createElement("img");
+const playerWalkYellow = document.createElement("img");
+const playerWalkTan = document.createElement("img");
+const playerWalkBrown = document.createElement("img");
+const playerWalkRed = document.createElement("img");
+const playerWalkBlack = document.createElement("img");
 const playerWalkBack = document.createElement("img");
 const playerPunchWhite = document.createElement("img");
 const playerPunchYellow = document.createElement("img");
@@ -259,7 +264,12 @@ function loadImages() {
 		{ imgName: playerIdleBrown, theFile: "Player_Idle_Brown.png"},
 		{ imgName: playerIdleRed, theFile: "Player_Idle_Red.png"},
 		{ imgName: playerIdleBlack, theFile: "Player_Idle_Black.png"},
-		{ imgName: playerWalkFwd, theFile: "player_Walk-Forward.png"},
+		{ imgName: playerWalkWhite, theFile: "player_Walk_White.png"},
+		{ imgName: playerWalkYellow, theFile: "player_Walk_Yellow.png"},
+		{ imgName: playerWalkTan, theFile: "player_Walk_Tan.png"},
+		{ imgName: playerWalkBrown, theFile: "player_Walk_Brown.png"},
+		{ imgName: playerWalkRed, theFile: "player_Walk_Red.png"},
+		{ imgName: playerWalkBlack, theFile: "player_Walk_Black.png"},
 		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
 		{ imgName: playerPunchWhite, theFile: "Player_Punch_White.png"},
 		{ imgName: playerPunchYellow, theFile: "Player_Punch_Yellow.png"},

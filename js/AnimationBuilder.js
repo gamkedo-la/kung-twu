@@ -511,10 +511,10 @@ function AnimationBuilder() {
 		},
 		walk:{
 			name:STATE.WalkRight,
-			image:playerWalkFwd,
+			image:playerWalkWhite,
 			frames:[0, 1, 2],
-			width:playerWalkFwd.width / 3,
-			height:playerWalkFwd.height,
+			width:playerWalkWhite.width / 3,
+			height:playerWalkWhite.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
@@ -571,10 +571,10 @@ function AnimationBuilder() {
 		},
 		walk:{
 			name:STATE.WalkRight,
-			image:playerWalkFwd,
+			image:playerWalkYellow,
 			frames:[0, 1, 2],
-			width:playerWalkFwd.width / 3,
-			height:playerWalkFwd.height,
+			width:playerWalkYellow.width / 3,
+			height:playerWalkYellow.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
@@ -631,10 +631,10 @@ function AnimationBuilder() {
 		},
 		walk:{
 			name:STATE.WalkRight,
-			image:playerWalkFwd,
+			image:playerWalkTan,
 			frames:[0, 1, 2],
-			width:playerWalkFwd.width / 3,
-			height:playerWalkFwd.height,
+			width:playerWalkTan.width / 3,
+			height:playerWalkTan.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
@@ -691,10 +691,10 @@ function AnimationBuilder() {
 		},
 		walk:{
 			name:STATE.WalkRight,
-			image:playerWalkFwd,
+			image:playerWalkBrown,
 			frames:[0, 1, 2],
-			width:playerWalkFwd.width / 3,
-			height:playerWalkFwd.height,
+			width:playerWalkBrown.width / 3,
+			height:playerWalkBrown.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
@@ -751,10 +751,10 @@ function AnimationBuilder() {
 		},
 		walk:{
 			name:STATE.WalkRight,
-			image:playerWalkFwd,
+			image:playerWalkRed,
 			frames:[0, 1, 2],
-			width:playerWalkFwd.width / 3,
-			height:playerWalkFwd.height,
+			width:playerWalkRed.width / 3,
+			height:playerWalkRed.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
@@ -811,10 +811,10 @@ function AnimationBuilder() {
 		},
 		walk:{
 			name:STATE.WalkRight,
-			image:playerWalkFwd,
+			image:playerWalkBlack,
 			frames:[0, 1, 2],
-			width:playerWalkFwd.width / 3,
-			height:playerWalkFwd.height,
+			width:playerWalkBlack.width / 3,
+			height:playerWalkBlack.height,
 			frameTimes:[200],
 			reverses:false,
 			loops:true
