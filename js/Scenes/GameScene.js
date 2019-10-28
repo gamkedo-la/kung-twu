@@ -37,6 +37,7 @@ function GameScene() {
 	let enemyMaxX;
 	let knockedOutBodies = new knockedOutBodyManager();
 	let bossIntroText = null;
+	let rivalImageDeltaX = null;
 
 	// Game Timer Scene Settings
 	// For more detailed settings please go to "js/Timers/GameTimer.js"
@@ -533,10 +534,12 @@ function GameScene() {
 		const rivalsWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Rivals), UI_SCALE);
 
 		let thisX = cameraX + rivalsWidth + 5;
-		const deltaX = ((cameraX + canvas.width / 2) - thisX - 15) / enemiesThisLevel;
+		if(rivalImageDeltaX === null) {
+			rivalImageDeltaX = ((cameraX + canvas.width / 2) - thisX - 15) / enemiesThisLevel;
+		}
 		for(let i = 0; i < (enemiesThisLevel - defeatedEnemyCount); i++) {
 			canvasContext.drawImage(basicEnemyIdle, 0, 0, basicEnemyIdle.width / 2, basicEnemyIdle.height, thisX, 10, basicEnemyIdle.width / 4, basicEnemyIdle.height / 2);
-			thisX += deltaX;
+			thisX += rivalImageDeltaX;
 		}
 
 		//Boss Health
