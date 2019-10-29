@@ -31,6 +31,7 @@ const ACTION = {
 };
 
 const WALK_LEFT_STATE = {
+	name:"walk left",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Left) {
 			if((currentState === STATE.Idle) || (currentState === STATE.WalkRight)) {
@@ -67,6 +68,7 @@ const WALK_LEFT_STATE = {
 };
 
 const WALK_RIGHT_STATE = {
+	name:"walk right",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Right) {
 			if((currentState === STATE.Idle) || (currentState === STATE.WalkLeft)) {
@@ -103,6 +105,7 @@ const WALK_RIGHT_STATE = {
 };
 
 const JUMP_STATE = {
+	name:"jump",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Jump) {
 			if((currentState === STATE.WalkRight) || 
@@ -129,6 +132,7 @@ const JUMP_STATE = {
 };
 
 const CROUCH_STATE = {
+	name:"crouch",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if((currentState === STATE.Idle) && (action === ACTION.Crouch)) {
 			return true;
@@ -151,6 +155,7 @@ const CROUCH_STATE = {
 };
 
 const DASH_STATE = {
+	name:"dash",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(belt >= BELT.Yellow) {
 			if((currentState === STATE.WalkRight) || 
@@ -177,6 +182,7 @@ const DASH_STATE = {
 };
 
 const IDLE_STATE = {
+	name:"idle",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(currentState === STATE.Sweep) {
 			return false;
@@ -233,6 +239,7 @@ const IDLE_STATE = {
 };
 
 const J_KICK_STATE = {
+	name:"jump kick",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(belt >= BELT.Brown) {
 			if((currentState === STATE.Jump) && (action === ACTION.Kick)) {
@@ -255,6 +262,7 @@ const J_KICK_STATE = {
 };
 
 const SWEEP_STATE = {
+	name:"sweep",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(belt >= BELT.Tan) {
 			if((currentState === STATE.Crouch) && (action === ACTION.Kick)) {
@@ -277,6 +285,7 @@ const SWEEP_STATE = {
 };
 
 const H_KICK_STATE = {
+	name:"helicopter kick",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(belt >= BELT.Red) {
 			if((currentState === STATE.Dash) && (action === ACTION.Kick)) {
@@ -297,6 +306,7 @@ const H_KICK_STATE = {
 };
 
 const PUNCH_STATE = {
+	name:"punch",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Punch) {
 			if((currentState === STATE.WalkRight) || 
@@ -321,6 +331,7 @@ const PUNCH_STATE = {
 };
 
 const KICK_STATE = {
+	name:"kick",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Kick) {
 			if((currentState === STATE.WalkRight) || 
@@ -345,6 +356,7 @@ const KICK_STATE = {
 };
 
 const BLOCK_STATE = {
+	name:"block",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Block) {
 			if((currentState === STATE.WalkRight) ||
@@ -368,6 +380,7 @@ const BLOCK_STATE = {
 };
 
 const KNOCK_BACK_STATE = {
+	name:"knock back",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if((currentState === STATE.Block) || (currentState === STATE.H_Kick)) {
 			return false;

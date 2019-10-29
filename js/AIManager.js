@@ -1,10 +1,3 @@
-//AI Manager
-const AITYPE = {
-	Standard: "standard",
-	Boss: "boss",
-	Player: "player"
-};
-
 const COOLDOWN = {
 	White: 700,
 	Yellow: 650,

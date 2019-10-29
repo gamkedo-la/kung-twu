@@ -1,3 +1,10 @@
+//AI Type
+const AITYPE = {
+	Standard: "standard",
+	Boss: "boss",
+	Player: "player"
+};
+
 //AI Manager 2
 function AIManager2() {
 	const WATCH_DIST = 250;
@@ -53,7 +60,7 @@ function AIManager2() {
 		if(time >= cooldown) {
 			return attackActionFor(belt, type, state);
 		} else {
-			return ACTION.NoChange;
+			return ACTION.Idle;
 		}
 	};
 
@@ -80,11 +87,15 @@ function AIManager2() {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 20) {
 				return ACTION.Crouch;
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === BLOCK_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 20) {
 				return ACTION.Block;
+			} else {
+				return ACTION.Release;
 			}
 		}
 
@@ -107,11 +118,15 @@ function AIManager2() {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 20) {
 				return ACTION.Crouch;
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === BLOCK_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 20) {
 				return ACTION.Block;
+			} else {
+				return ACTION.Release;
 			}
 		}
 
@@ -138,11 +153,15 @@ function AIManager2() {
 				return ACTION.Crouch;
 			} else if(continueAction <= 80) {
 				return ACTION.Kick;//This becomes a Sweep
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === BLOCK_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 10) {
 				return ACTION.Block;
+			} else {
+				return ACTION.Release;
 			}
 		}
 
@@ -169,11 +188,15 @@ function AIManager2() {
 				return ACTION.Crouch;
 			} else if(continueAction <= 80) {
 				return ACTION.Kick;//This becomes a Sweep
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === BLOCK_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 10) {
 				return ACTION.Block;
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === JUMP_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
@@ -205,11 +228,15 @@ function AIManager2() {
 				return ACTION.Crouch;
 			} else if(continueAction <= 80) {
 				return ACTION.Kick;//This becomes a Sweep
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === BLOCK_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 5) {
 				return ACTION.Block;
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === JUMP_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
@@ -254,11 +281,15 @@ function AIManager2() {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 20) {
 				return ACTION.Crouch;
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === BLOCK_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 20) {
 				return ACTION.Block;
+			} else {
+				return ACTION.Release;
 			}
 		}
 
@@ -285,11 +316,15 @@ function AIManager2() {
 				return ACTION.Crouch;
 			} else if(continueAction <= 80) {
 				return ACTION.Kick;//This becomes a Sweep
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === BLOCK_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 10) {
 				return ACTION.Block;
+			} else {
+				return ACTION.Release;
 			}
 		}
 
@@ -316,11 +351,15 @@ function AIManager2() {
 				return ACTION.Crouch;
 			} else if(continueAction <= 80) {
 				return ACTION.Kick;//This becomes a Sweep
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === BLOCK_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 10) {
 				return ACTION.Block;
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === JUMP_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
@@ -352,11 +391,15 @@ function AIManager2() {
 				return ACTION.Crouch;
 			} else if(continueAction <= 80) {
 				return ACTION.Kick;//This becomes a Sweep
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === BLOCK_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 5) {
 				return ACTION.Block;
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === JUMP_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
@@ -393,11 +436,15 @@ function AIManager2() {
 				return ACTION.Crouch;
 			} else if(continueAction <= 80) {
 				return ACTION.Kick;//This becomes a Sweep
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === BLOCK_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 5) {
 				return ACTION.Block;
+			} else {
+				return ACTION.Release;
 			}
 		} else if(state === JUMP_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
@@ -446,10 +493,10 @@ function AIManager2() {
 			case BELT.Red: return 350;
 			case BELT.Black: return 300;
 			}
+		} else {
+			console.error(`Called cooldowndForBeltAndType with invalid AIType: ${type} or belt: ${belt}`);
+			return 500;//This exists to prevent crashes
 		}
-
-		let result = 500; // default value used below
-		return (Math.floor(2 * result * Math.random()) - result);
 	};
 
 	const attackVarianceForBeltAndType = function(belt, type) {
@@ -457,40 +504,34 @@ function AIManager2() {
 		if(type === AITYPE.Standard) {
 			switch(belt) {
 			case BELT.White:
-				result = 75;
-				break;
-			case BELT.Yellow:
-				result = 65;
-				break;
-			case BELT.Tan:
-				result = 55;
-				break;
-			case BELT.Brown:
-				result = 45;
-				break;
-			case BELT.Red:
-				result = 35;
-				break;
-			case BELT.Black:
-				result = 25;
-				break;
-			}
-		} else if(type === AITYPE.Boss) {
-			switch(belt) {
-			case BELT.White:
-				result = 25;
+				result = 24;
 				break;
 			case BELT.Yellow:
 				result = 20;
 				break;
 			case BELT.Tan:
-				result = 15;
+				result = 18;
+				break;
+			case BELT.Brown:
+				result = 16;
+				break;
+			case BELT.Red:
+				result = 12;
+				break;
+			}
+		} else if(type === AITYPE.Boss) {
+			switch(belt) {
+			case BELT.Yellow:
+				result = 18;
+				break;
+			case BELT.Tan:
+				result = 14;
 				break;
 			case BELT.Brown:
 				result = 10;
 				break;
 			case BELT.Red:
-				result = 5;
+				result = 4;
 				break;
 			case BELT.Black:
 				result = 0;
@@ -498,7 +539,7 @@ function AIManager2() {
 			}
 		}
 
-		return (Math.floor(2 * result * Math.random()) - result);
+		return (Math.floor(result * Math.random()) - (result/2));
 	};
 
 	const actionForWatcher = function(distance, time, variance) {

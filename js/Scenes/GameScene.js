@@ -151,7 +151,7 @@ function GameScene() {
 		floorMidHeight = 0;
 		timeTilSpawn = 0;
 		score = 0;
-		levelIntroText = null;
+		rivalImageDeltaX = null;
 		bossIntroText = null;
 
 		timer.updateEvent(EVENT.EnemySpawn);
@@ -539,7 +539,8 @@ function GameScene() {
 
 		let thisX = cameraX + rivalsWidth + 5;
 		if(rivalImageDeltaX === null) {
-			rivalImageDeltaX = ((cameraX + canvas.width / 2) - thisX - 15) / enemiesThisLevel;
+//			rivalImageDeltaX = ((cameraX + canvas.width / 2) - thisX - 15) / enemiesThisLevel;
+			rivalImageDeltaX = (canvas.width / 2 - rivalsWidth - 30) / enemiesThisLevel;
 		}
 		for(let i = 0; i < (enemiesThisLevel - defeatedEnemyCount); i++) {
 			canvasContext.drawImage(basicEnemyIdle, 0, 0, basicEnemyIdle.width / 2, basicEnemyIdle.height, thisX, 10, basicEnemyIdle.width / 4, basicEnemyIdle.height / 2);
