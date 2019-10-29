@@ -339,9 +339,10 @@ function GameScene() {
 				if(defeatedEntity.getBelt() === levelData.enemyBelt) {
 					defeatedEnemyCount++;
 				}
-				// TODO: spawn a "knocked out body" that falls to the floor and then fades out
-				// where's the sprite? hidden somewhere in defeatedEntity.animations
-				if (knockedOutBodies) knockedOutBodies.add(defeatedEntity.getPosition().x,defeatedEntity.getPosition().y,defeatedEntity.animations);
+
+                // spawn a "knocked out body" that falls to the floor and then fades out
+                if (knockedOutBodies) knockedOutBodies.add(defeatedEntity);
+                
 			}
 		}
 	};
