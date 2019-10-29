@@ -394,7 +394,7 @@ function Player(config) {
 		if (stateManager.getIsNewState()) {
 			// @SoundHook: playerKickSound.play();
 			sound.playSFX(Sounds.SFX_PlayerKick);
-			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
+			if (wooshFX) wooshFX.triggerJKick(position, stateManager.getIsFacingLeft());
 		}
 	};
 
@@ -402,7 +402,7 @@ function Player(config) {
 		console.log("Helicopter Kicking");
 		if (stateManager.getIsNewState()) {
 			// @SoundHook:TODO playerHelicopterKickSound.play();
-			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
+			if (wooshFX) wooshFX.triggerHKick(position, stateManager.getIsFacingLeft());
 		}
 	};
 
@@ -412,7 +412,7 @@ function Player(config) {
 			// @SoundHook: swish2Sound.play();
 			sound.playSFX(Sounds.SFX_Swish_02);
 			velocity.x = 0;
-			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
+			if (wooshFX) wooshFX.triggerSweep(position, stateManager.getIsFacingLeft(), wooshKickPic);
 		}
 	};
 
@@ -467,14 +467,21 @@ function Player(config) {
 				}
 			}
 			velocity.y = -KNOCK_BACK_SPEED / 2;
+
 			if(otherEntity.getPosition().x < position.x) {
+				//enemy is to the left
 				velocity.x = KNOCK_BACK_SPEED;
-			} else if(otherEntity.getPosition().x > position.x){
-				velocity.x = -KNOCK_BACK_SPEED;
-			} else if(stateManager.getIsFacingLeft()) {
-				velocity.x = KNOCK_BACK_SPEED;
+				if(!stateManager.getIsFacingLeft()) {
+					//TODO: Should we ensure we are facing the direction of the attack after getting hit?
+					//stateManager.shouldFaceLeft(true);
+				}
 			} else {
+				//enemy is to the right
 				velocity.x = -KNOCK_BACK_SPEED;
+				if(stateManager.getIsFacingLeft()) {
+					//TODO: Should we ensure we are facing the direction of the attack after getting hit?
+					//stateManager.shouldFaceLeft(false);
+				}
 			}
 
 			this.health -= otherEntity.getCurrentDamage();
@@ -547,11 +554,11 @@ function Player(config) {
 			lowY: this.collisionBody.points[0].y, 
 			highY:this.collisionBody.points[1].y
 		};
-    };
+	};
     
-    // used by knockedOutBodyManager since stateManager is private
-    this.facingLeft = function() { 
-        return stateManager.getIsFacingLeft();
-    };
+	// used by knockedOutBodyManager since stateManager is private
+	this.facingLeft = function() { 
+		return stateManager.getIsFacingLeft();
+	};
 
 }

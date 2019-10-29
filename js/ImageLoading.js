@@ -147,6 +147,12 @@ const playerKickTan = document.createElement("img");
 const playerKickBrown = document.createElement("img");
 const playerKickRed = document.createElement("img");
 const playerKickBlack = document.createElement("img");
+const playerKnockbackWhite = document.createElement("img");
+const playerKnockbackYellow = document.createElement("img");
+const playerKnockbackTan = document.createElement("img");
+const playerKnockbackBrown = document.createElement("img");
+const playerKnockbackRed = document.createElement("img");
+const playerKnockbackBlack = document.createElement("img");
 const wooshPunchPic = document.createElement("img");
 const wooshKickPic = document.createElement("img");
 const wooshKickPic2 = document.createElement("img");
@@ -283,6 +289,12 @@ function loadImages() {
 		{ imgName: playerKickBrown, theFile: "Player_Kick_Brown.png"},
 		{ imgName: playerKickRed, theFile: "Player_Kick_Red.png"},
 		{ imgName: playerKickBlack, theFile: "Player_Kick_Black.png"},
+		{ imgName: playerKnockbackWhite, theFile: "Player_Knockback_White.png"},
+		{ imgName: playerKnockbackYellow, theFile: "Player_Knockback_Yellow.png"},
+		{ imgName: playerKnockbackTan, theFile: "Player_Knockback_Tan.png"},
+		{ imgName: playerKnockbackBrown, theFile: "Player_Knockback_Brown.png"},
+		{ imgName: playerKnockbackRed, theFile: "Player_Knockback_Red.png"},
+		{ imgName: playerKnockbackBlack, theFile: "Player_Knockback_Black.png"},
 		{ imgName: wooshPunchPic, theFile: "wooshPunch.png"},
 		{ imgName: wooshKickPic, theFile: "wooshKick.png"},
 		{ imgName: wooshKickPic2, theFile: "wooshKick2.png"},

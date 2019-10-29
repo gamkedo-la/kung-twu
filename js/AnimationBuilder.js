@@ -555,7 +555,16 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:playerKnockbackWhite,
+			frames:[0, 1, 2, 3],
+			width:playerKnockbackWhite.width / 4,
+			height:playerKnockbackWhite.height,
+			frameTimes:[100],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const playerYellowBeltData = {
@@ -615,7 +624,16 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:playerKnockbackYellow,
+			frames:[0, 1, 2, 3],
+			width:playerKnockbackYellow.width / 4,
+			height:playerKnockbackYellow.height,
+			frameTimes:[60],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const playerTanBeltData = {
@@ -675,7 +693,16 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:playerKnockbackTan,
+			frames:[0, 1, 2, 3],
+			width:playerKnockbackTan.width / 4,
+			height:playerKnockbackTan.height,
+			frameTimes:[60],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const playerBrownBeltData = {
@@ -735,7 +762,16 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:playerKnockbackBrown,
+			frames:[0, 1, 2, 3],
+			width:playerKnockbackBrown.width / 4,
+			height:playerKnockbackBrown.height,
+			frameTimes:[60],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const playerRedBeltData = {
@@ -795,7 +831,16 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:playerKnockbackRed,
+			frames:[0, 1, 2, 3],
+			width:playerKnockbackRed.width / 4,
+			height:playerKnockbackRed.height,
+			frameTimes:[60],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const playerBlackBeltData = {
@@ -855,7 +900,16 @@ function AnimationBuilder() {
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:playerKnockbackBlack,
+			frames:[0, 1, 2, 3],
+			width:playerKnockbackBlack.width / 4,
+			height:playerKnockbackBlack.height,
+			frameTimes:[100],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const bossYellowBeltData = {
