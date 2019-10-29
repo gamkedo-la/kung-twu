@@ -521,7 +521,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		timeSinceAction = 0;
 	};
 
-	this.update = function(deltaTime, distToPlayer = 0, shouldAttack, variance = 50) {
+	this.update = function(deltaTime, distToPlayer = 0, shouldAttack, variance = 50, shouldJump = false) {
 		currentAnimation.update(deltaTime);
 		isNewState = false;
 		let newState;
@@ -531,7 +531,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		if(rivalType === AITYPE.Player) {
 			updateStateWithUserInput();
 		} else {
-			updateStateWithAI(deltaTime, distToPlayer, shouldAttack, variance);
+			updateStateWithAI(deltaTime, distToPlayer, shouldAttack, variance, shouldJump);
 		}
 
 		if(didGetHit) {
@@ -563,8 +563,8 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		}
 	};
 
-	const updateStateWithAI = function(deltaTime, distToPlayer, shouldAttack, variance) {
-		let action = aiManager.nextAction(belt, rivalType, timeSinceAction, currentState, distToPlayer, shouldAttack, variance);
+	const updateStateWithAI = function(deltaTime, distToPlayer, shouldAttack, variance, shouldJump) {
+		let action = aiManager.nextAction(belt, rivalType, timeSinceAction, currentState, distToPlayer, shouldAttack, variance, shouldJump);
 
 		let newState;
 		if(action === null) {

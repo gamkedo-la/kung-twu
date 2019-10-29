@@ -24,6 +24,7 @@ function BasicEnemy(config) {
 	let healthColor = Color.White;//Correct color set below
 	const HEALTH_BAR_WIDTH = 50;
 	this.score = 100;
+	this.shouldJump = false;
 	let watchVariance = Math.floor(100 * Math.random()) - 50;
 	
 	this.type = ENTITY_TYPE.Enemy;
@@ -130,7 +131,7 @@ function BasicEnemy(config) {
 		}
 
 		const distToPlayer = playerPos.x - position.x;
-		stateManager.update(deltaTime, distToPlayer, shouldAttack, watchVariance);
+		stateManager.update(deltaTime, distToPlayer, shouldAttack, watchVariance, this.shouldJump);
 		updateForState(stateManager.getCurrentState());
 
 		if(stateManager.getIsNewState()) {
@@ -348,7 +349,7 @@ function BasicEnemy(config) {
 		}
 
 		if(otherEntity.type === ENTITY_TYPE.Environment) {
-			resetPositionWithEdges(this.getColliderEdges(), otherEntity.getColliderEdges());
+			this.shouldJump = resetPositionWithEdges(this.getColliderEdges(), otherEntity.getColliderEdges());
 			this.collisionBody.setPosition(position); //keep collider in sync with sprite position
 			return;
 		}
@@ -406,6 +407,7 @@ function BasicEnemy(config) {
 	};
 
 	const resetPositionWithEdges = function(myEdges, otherEdges) {
+		let mightJump = false;
 		//velocity is known, edges of both colliders is known
 		if(!stateManager.getIsOnGround()) {
 			//land on top of the other object
@@ -414,21 +416,24 @@ function BasicEnemy(config) {
 			position.y -= (myEdges.highY - otherEdges.lowY);
 			velocity.y = 0;
 		} else {
+			mightJump = true;
 			if(velocity.x > 0) {
-				//Player is moving to the right
+				//Enemy is moving to the right
 				if(position.x < otherEdges.lowX) {
-					//Player is to the left of other object => move to left
+					//Enemy is to the left of other object => move to left
 					position.x -= (myEdges.highX - otherEdges.lowX);
 					velocity.x = 0;
 				}
 			} else if(velocity.x < 0) {
-				//Player is moving to the left
+				//Enemy is moving to the left
 				if((position.x > otherEdges.lowX) && (position.x < otherEdges.highX)) {
-					//Player is the right of other object => move to right
+					//Enemy is the right of other object => move to right
 					position.x -= (myEdges.lowX - otherEdges.highX);
 				}
 			}
 		}
+
+		return mightJump;
 	};
 
 	this.getColliderEdges = function() {
