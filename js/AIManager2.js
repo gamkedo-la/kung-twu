@@ -428,7 +428,6 @@ function AIManager2() {
 	};
 
 	const cooldownForBeltAndType = function(belt, type) {
-		let result;
 		if(type === AITYPE.Standard) {
 			switch(belt) {
 			case BELT.White: return 500;
@@ -449,6 +448,7 @@ function AIManager2() {
 			}
 		}
 
+		let result = 500; // default value used below
 		return (Math.floor(2 * result * Math.random()) - result);
 	};
 
