@@ -100,7 +100,7 @@ function AIManager2() {
 	const whiteEnemyAttackFor = function(state) {
 		if(state === CROUCH_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
-			if(continueAction <= 20) {
+			if(continueAction <= 30) {
 				return ACTION.Crouch;
 			} else {
 				return ACTION.Release;
@@ -115,16 +115,16 @@ function AIManager2() {
 		}
 
 		const newAction = Math.floor(100 * Math.random());
-		if(newAction < 20) {
-			return ACTION.Crouch;
-		} else if(newAction < 40) {
-			return ACTION.Jump;
-		} else if(newAction < 60) {
-			return ACTION.Punch;
-		} else if(newAction < 80) {
-			return ACTION.Kick;
+		if(newAction < 15) {
+			return ACTION.Crouch;//0-14
+		} else if(newAction < 30) {
+			return ACTION.Jump;//15-29
+		} else if(newAction < 58) {
+			return ACTION.Punch;//30-57
+		} else if(newAction < 85) {
+			return ACTION.Kick;//58-84
 		} else {
-			return ACTION.Block;
+			return ACTION.Block;//85-99
 		}
 	};
 
@@ -146,18 +146,18 @@ function AIManager2() {
 		}
 
 		const newAction = Math.floor(100 * Math.random());
-		if(newAction < 15) {
-			return ACTION.Crouch;
-		} else if(newAction < 30) {
-			return ACTION.Jump;
+		if(newAction < 10) {
+			return ACTION.Crouch;//0-9
+		} else if(newAction < 20) {
+			return ACTION.Jump;//10-19
 		} else if(newAction < 45) {
-			return ACTION.Punch;
-		} else if(newAction < 60) {
-			return ACTION.Kick;
-		} else if(newAction < 75){
-			return ACTION.Block;
+			return ACTION.Punch;//20-44
+		} else if(newAction < 70) {
+			return ACTION.Kick;//45-69
+		} else if(newAction < 80) {
+			return ACTION.Block;//70-79
 		} else {
-			return ACTION.Dash;
+			return ACTION.Dash;//80 - 99
 		}
 	};
 
@@ -181,18 +181,18 @@ function AIManager2() {
 		}
 
 		const newAction = Math.floor(100 * Math.random());
-		if(newAction < 25) {
-			return ACTION.Crouch;
-		} else if(newAction < 40) {
-			return ACTION.Jump;
+		if(newAction < 20) {
+			return ACTION.Crouch;//0-19
+		} else if(newAction < 30) {
+			return ACTION.Jump;//20-29
 		} else if(newAction < 55) {
-			return ACTION.Punch;
-		} else if(newAction < 70) {
-			return ACTION.Kick;
-		} else if(newAction < 85){
-			return ACTION.Block;
+			return ACTION.Punch;//30-54
+		} else if(newAction < 80) {
+			return ACTION.Kick;//55-79
+		} else if(newAction < 90) {
+			return ACTION.Block;//80-89
 		} else {
-			return ACTION.Dash;
+			return ACTION.Dash;//90 - 99
 		}
 	};
 
@@ -221,18 +221,18 @@ function AIManager2() {
 		}
 
 		const newAction = Math.floor(100 * Math.random());
-		if(newAction < 15) {
-			return ACTION.Crouch;
-		} else if(newAction < 40) {
-			return ACTION.Jump;
+		if(newAction < 10) {
+			return ACTION.Crouch;//0-9
+		} else if(newAction < 30) {
+			return ACTION.Jump;//10-29
 		} else if(newAction < 55) {
-			return ACTION.Punch;
-		} else if(newAction < 70) {
-			return ACTION.Kick;
-		} else if(newAction < 85){
-			return ACTION.Block;
+			return ACTION.Punch;//30-54
+		} else if(newAction < 80) {
+			return ACTION.Kick;//55-79
+		} else if(newAction < 90) {
+			return ACTION.Block;//80-89
 		} else {
-			return ACTION.Dash;
+			return ACTION.Dash;//90 - 99
 		}
 	};
 
@@ -266,18 +266,18 @@ function AIManager2() {
 		}
 
 		const newAction = Math.floor(100 * Math.random());
-		if(newAction < 15) {
-			return ACTION.Crouch;
-		} else if(newAction < 30) {
-			return ACTION.Jump;
+		if(newAction < 10) {
+			return ACTION.Crouch;//0-9
+		} else if(newAction < 20) {
+			return ACTION.Jump;//10-19
 		} else if(newAction < 45) {
-			return ACTION.Punch;
-		} else if(newAction < 60) {
-			return ACTION.Kick;
-		} else if(newAction < 75){
-			return ACTION.Block;
+			return ACTION.Punch;//20-44
+		} else if(newAction < 70) {
+			return ACTION.Kick;//45-69
+		} else if(newAction < 80) {
+			return ACTION.Block;//70-79
 		} else {
-			return ACTION.Dash;
+			return ACTION.Dash;//80 - 99
 		}
 	};
 
@@ -309,18 +309,18 @@ function AIManager2() {
 		}
 
 		const newAction = Math.floor(100 * Math.random());
-		if(newAction < 11) {
-			return ACTION.Crouch;
-		} else if(newAction < 22) {
-			return ACTION.Jump;
-		} else if(newAction < 33) {
-			return ACTION.Punch;
-		} else if(newAction < 44) {
-			return ACTION.Kick;
-		} else if(newAction < 66){
-			return ACTION.Block;
+		if(newAction < 10) {
+			return ACTION.Crouch;//0-9
+		} else if(newAction < 20) {
+			return ACTION.Jump;//10-19
+		} else if(newAction < 45) {
+			return ACTION.Punch;//20-44
+		} else if(newAction < 70) {
+			return ACTION.Kick;//45-69
+		} else if(newAction < 80) {
+			return ACTION.Block;//70-79
 		} else {
-			return ACTION.Dash;
+			return ACTION.Dash;//80 - 99
 		}
 	};
 
@@ -344,18 +344,18 @@ function AIManager2() {
 		}
 
 		const newAction = Math.floor(100 * Math.random());
-		if(newAction < 11) {
-			return ACTION.Dash;
-		} else if(newAction < 22) {
-			return ACTION.Jump;
-		} else if(newAction < 33) {
-			return ACTION.Punch;
-		} else if(newAction < 44) {
-			return ACTION.Kick;
-		} else if(newAction < 66){
-			return ACTION.Block;
+		if(newAction < 20) {
+			return ACTION.Crouch;//0-19
+		} else if(newAction < 30) {
+			return ACTION.Jump;//20-29
+		} else if(newAction < 55) {
+			return ACTION.Punch;//30-54
+		} else if(newAction < 80) {
+			return ACTION.Kick;//55-79
+		} else if(newAction < 90) {
+			return ACTION.Block;//80-89
 		} else {
-			return ACTION.Crouch;
+			return ACTION.Dash;//90 - 99
 		}
 	};
 
@@ -384,18 +384,18 @@ function AIManager2() {
 		}
 
 		const newAction = Math.floor(100 * Math.random());
-		if(newAction < 11) {
-			return ACTION.Crouch;
-		} else if(newAction < 22) {
-			return ACTION.Dash;
-		} else if(newAction < 33) {
-			return ACTION.Punch;
-		} else if(newAction < 44) {
-			return ACTION.Kick;
-		} else if(newAction < 66){
-			return ACTION.Block;
+		if(newAction < 10) {
+			return ACTION.Crouch;//0-9
+		} else if(newAction < 30) {
+			return ACTION.Jump;//10-29
+		} else if(newAction < 55) {
+			return ACTION.Punch;//30-54
+		} else if(newAction < 80) {
+			return ACTION.Kick;//55-79
+		} else if(newAction < 90) {
+			return ACTION.Block;//80-89
 		} else {
-			return ACTION.Jump;
+			return ACTION.Dash;//90 - 99
 		}
 	};
 
@@ -429,18 +429,18 @@ function AIManager2() {
 		}
 
 		const newAction = Math.floor(100 * Math.random());
-		if(newAction < 11) {
-			return ACTION.Crouch;
-		} else if(newAction < 22) {
-			return ACTION.Jump;
-		} else if(newAction < 33) {
-			return ACTION.Punch;
-		} else if(newAction < 44) {
-			return ACTION.Kick;
-		} else if(newAction < 66){
-			return ACTION.Block;
+		if(newAction < 10) {
+			return ACTION.Crouch;//0-9
+		} else if(newAction < 20) {
+			return ACTION.Jump;//10-19
+		} else if(newAction < 45) {
+			return ACTION.Punch;//20-44
+		} else if(newAction < 70) {
+			return ACTION.Kick;//45-69
+		} else if(newAction < 80) {
+			return ACTION.Block;//70-79
 		} else {
-			return ACTION.Dash;
+			return ACTION.Dash;//80 - 99
 		}
 	};
 
@@ -474,18 +474,18 @@ function AIManager2() {
 		}
 
 		const newAction = Math.floor(100 * Math.random());
-		if(newAction < 17) {
-			return ACTION.Crouch;
-		} else if(newAction < 34) {
-			return ACTION.Jump;
-		} else if(newAction < 51) {
-			return ACTION.Punch;
-		} else if(newAction < 68) {
-			return ACTION.Kick;
-		} else if(newAction < 85){
-			return ACTION.Block;
+		if(newAction < 10) {
+			return ACTION.Crouch;//0-9
+		} else if(newAction < 20) {
+			return ACTION.Jump;//10-19
+		} else if(newAction < 45) {
+			return ACTION.Punch;//20-44
+		} else if(newAction < 70) {
+			return ACTION.Kick;//45-69
+		} else if(newAction < 80) {
+			return ACTION.Block;//70-79
 		} else {
-			return ACTION.Dash;
+			return ACTION.Dash;//80 - 99
 		}
 	};
 

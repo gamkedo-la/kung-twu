@@ -170,7 +170,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:{
+			name:STATE.Crouch,
+			image:basicEnemyCrouch,
+			frames:[0],
+			width:basicEnemyCrouch.width,
+			height:basicEnemyCrouch.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:basicEnemyPunch,
@@ -230,7 +239,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:{
+			name:STATE.Crouch,
+			image:yellowEnemyCrouch,
+			frames:[0],
+			width:yellowEnemyCrouch.width,
+			height:yellowEnemyCrouch.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:yellowEnemyPunch,
@@ -290,7 +308,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:{
+			name:STATE.Crouch,
+			image:tanEnemyCrouch,
+			frames:[0],
+			width:tanEnemyCrouch.width,
+			height:tanEnemyCrouch.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:tanEnemyPunch,
@@ -350,7 +377,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:{
+			name:STATE.Crouch,
+			image:brownEnemyCrouch,
+			frames:[0],
+			width:brownEnemyCrouch.width,
+			height:brownEnemyCrouch.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:brownEnemyPunch,
@@ -410,7 +446,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:{
+			name:STATE.Crouch,
+			image:redEnemyCrouch,
+			frames:[0],
+			width:redEnemyCrouch.width,
+			height:redEnemyCrouch.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:redEnemyPunch,
@@ -470,7 +515,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:{
+			name:STATE.Crouch,
+			image:basicEnemyCrouch,
+			frames:[0],
+			width:basicEnemyCrouch.width,
+			height:basicEnemyCrouch.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:basicEnemyPunch,//blackEnemyPunch,

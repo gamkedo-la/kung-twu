@@ -99,22 +99,27 @@ const basicEnemyIdle = document.createElement("img");
 const basicEnemyWalk = document.createElement("img");
 const basicEnemyKick = document.createElement("img");
 const basicEnemyPunch = document.createElement("img");
+const basicEnemyCrouch = document.createElement("img");
 const yellowEnemyIdle = document.createElement("img");
 const yellowEnemyWalk = document.createElement("img");
 const yellowEnemyKick = document.createElement("img");
 const yellowEnemyPunch = document.createElement("img");
+const yellowEnemyCrouch = document.createElement("img");
 const tanEnemyIdle = document.createElement("img");
 const tanEnemyWalk = document.createElement("img");
 const tanEnemyKick = document.createElement("img");
 const tanEnemyPunch = document.createElement("img");
+const tanEnemyCrouch = document.createElement("img");
 const brownEnemyIdle = document.createElement("img");
 const brownEnemyWalk = document.createElement("img");
 const brownEnemyKick = document.createElement("img");
 const brownEnemyPunch = document.createElement("img");
+const brownEnemyCrouch = document.createElement("img");
 const redEnemyIdle = document.createElement("img");
 const redEnemyWalk = document.createElement("img");
 const redEnemyKick = document.createElement("img");
 const redEnemyPunch = document.createElement("img");
+const redEnemyCrouch = document.createElement("img");
 const yellowBossIdle = document.createElement("img");
 const yellowBossWalk = document.createElement("img");
 const yellowBossPunch = document.createElement("img");
@@ -194,22 +199,27 @@ function loadImages() {
 		{ imgName: basicEnemyWalk, theFile: "EnemyWalking.png" },
 		{ imgName: basicEnemyKick, theFile: "EnemyKicking.png" },
 		{ imgName: basicEnemyPunch, theFile: "EnemyPunching.png" },
+		{ imgName: basicEnemyCrouch, theFile: "EnemyCrouching.png" },
 		{ imgName: yellowEnemyIdle, theFile: "TempEnemy_Yellow.png" },
 		{ imgName: yellowEnemyWalk, theFile: "EnemyWalking_Yellow.png" },
 		{ imgName: yellowEnemyKick, theFile: "EnemyKicking_Yellow.png" },
 		{ imgName: yellowEnemyPunch, theFile: "EnemyPunching_Yellow.png" },
+		{ imgName: yellowEnemyCrouch, theFile: "EnemyCrouching_Yellow.png" },
 		{ imgName: tanEnemyIdle, theFile: "TempEnemy_Tan.png" },
 		{ imgName: tanEnemyWalk, theFile: "EnemyWalking_Tan.png" },
 		{ imgName: tanEnemyKick, theFile: "EnemyKicking_Tan.png" },
 		{ imgName: tanEnemyPunch, theFile: "EnemyPunching_Tan.png" },
+		{ imgName: tanEnemyCrouch, theFile: "EnemyCrouching_Tan.png" },
 		{ imgName: brownEnemyIdle, theFile: "TempEnemy_Brown.png" },
 		{ imgName: brownEnemyWalk, theFile: "EnemyWalking_Brown.png" },
 		{ imgName: brownEnemyKick, theFile: "EnemyKicking_Brown.png" },
 		{ imgName: brownEnemyPunch, theFile: "EnemyPunching_Brown.png" },
+		{ imgName: brownEnemyCrouch, theFile: "EnemyCrouching_Brown.png" },
 		{ imgName: redEnemyIdle, theFile: "TempEnemy_Red.png" },
 		{ imgName: redEnemyWalk, theFile: "EnemyWalking_Red.png" },
 		{ imgName: redEnemyKick, theFile: "EnemyKicking_Red.png" },
 		{ imgName: redEnemyPunch, theFile: "EnemyPunching_Red.png" },
+		{ imgName: redEnemyCrouch, theFile: "EnemyCrouching_Red.png" },
 
 		{ imgName: yellowBossIdle, theFile: "Boss_Idle_Yellow.png" },
 		{ imgName: yellowBossWalk, theFile: "BossWalking_Yellow.png" },
