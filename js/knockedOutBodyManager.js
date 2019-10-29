@@ -57,7 +57,7 @@ function knockedOutBodyManager() {
 			if (age[num]<MAX_AGE) {
 				canvasContext.save();
 				canvasContext.translate(xpos[num], ypos[num]);
-				canvasContext.rotate(SPINSPD*age[num]);
+				canvasContext.rotate((xspd[num]>0?-1:1)*SPINSPD*age[num]);
 				if (FADE_OUT) canvasContext.globalAlpha = 1-(age[num]/MAX_AGE);
 				// untranslated/unrotated version: canvasContext.drawImage(img[num],SPRX,0,SPRW,SPRH,xpos[num],ypos[num],BODYW,BODYH);
 				canvasContext.drawImage(img[num],SPRX,0,SPRW,SPRH,-BODYW/2,-BODYH/2,BODYW,BODYH);
