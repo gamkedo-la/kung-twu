@@ -1,32 +1,46 @@
 // an object that falls to the floor and fades out
 // used for the bodies of your defeated opponents
 
-const DEBUG_BODIES = true;
-const MAX_BODIES = 25; // ring buffer - oldest is overwritten
 
 function knockedOutBodyManager() {
     
-	if (DEBUG_BODIES) console.log("Creating the knockedOutBodyManager...");
+  
+    const DEBUG_BODIES = true; // console logs
+    const SPRX = 0; // sprite used is frame 2 of the kick animation
+    const SPRW = 40;
+    const SPRH = 69;
+    const BODYW = 40*1.5; // the sprites are stretched?!
+    const BODYH = 69*1.5;
+    const MAXY = 600; // the floor
+    const MAX_BODIES = 25; // oldest is overwritten
+    const MAX_AGE = 60; // frames till it disappears
+    
+    if (DEBUG_BODIES) console.log("Creating the knockedOutBodyManager...");
 
-    var anims = [];
-    var bodyX = [];
-    var bodyY = [];
-    var bodyAge = [];
-    var bodyNum = 0;
+    // experimenting with data-oriented style just for fun
+    // these are "ring buffers" that never grow in size after hitting max
+    var max = 0;
+    var img = [];
+    var xpos = [];
+    var ypos = [];
+    var age = [];
 
 	// called by processDefeatedEntities()
-	this.add = function (x,y,anim) {
-        if (DEBUG_BODIES) console.log("New knocked out body " + bodyNum);
-        anims[bodyNum] = anim;
-        bodyX[bodyNum] = x;
-        bodyY[bodyNum] = y;
-        bodyAge[bodyNum] = 0;
-        bodyNum++;
-        if (bodyNum>MAX_BODIES) bodyNum = 0;
+	this.add = function (enemy) {
+
+        if (DEBUG_BODIES) console.log("New knocked out body " + max);
+
+        img[max] = basicEnemyKick;
+        xpos[max] = enemy.getPosition().x;
+        ypos[max] = enemy.getPosition().y;
+        age[max] = 0;
+
+        max++;
+        if (max>MAX_BODIES) max = 0;
     };
 
 	this.draw = function () {
-		for (var num = 0; num < anims.length; num++) {
+		for (var num = 0; num < max; num++) {
             
             //canvasContext.save();
 			//canvasContext.translate(this.x, this.y);
@@ -35,13 +49,15 @@ function knockedOutBodyManager() {
 			//canvasContext.drawImage(this.img, Math.round(-this.img.width/2),Math.round(-this.img.height/2)); //	center,	draw
 			//canvasContext.restore();
             
-            // appears to work, but nothing visible
-            if (anims[num]) {
-                anims[num].drawAt(bodyX[num],bodyY[num]);
-                bodyAge[bodyNum]++;
-                bodyY -= 0.25; // fall
-            }
+            
 
+            if (age[num]<MAX_AGE) {
+                canvasContext.drawImage(img[num],SPRX,0,SPRW,SPRH,xpos[num],ypos[num],BODYW,BODYH);
+                age[num]++;
+                xpos[num] += 0.0; // knockback - fixme which dir?
+                ypos[num] += 0.5; // fall
+                if (ypos[num]>MAXY) ypos[num]=MAXY; // hit the floor
+            }
 		}
 	};
 }
