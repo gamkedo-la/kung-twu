@@ -547,5 +547,11 @@ function Player(config) {
 			lowY: this.collisionBody.points[0].y, 
 			highY:this.collisionBody.points[1].y
 		};
-	};
+    };
+    
+    // used by knockedOutBodyManager since stateManager is private
+    this.facingLeft = function() { 
+        return stateManager.getIsFacingLeft();
+    };
+
 }

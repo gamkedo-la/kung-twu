@@ -343,9 +343,9 @@ function GameScene() {
 					defeatedEnemyCount++;
 				}
 
-                // spawn a "knocked out body" that falls to the floor and then fades out
-                if (knockedOutBodies) knockedOutBodies.add(defeatedEntity);
-                
+				// spawn a "knocked out body" that falls to the floor and then fades out
+				if (knockedOutBodies) knockedOutBodies.add(defeatedEntity);
+				
 			}
 		}
 	};
@@ -393,7 +393,7 @@ function GameScene() {
 
 		drawBackground(cameraX, roofTop);
 		wall.draw();
-        
+		
 		subfloor.draw();
 		floor.draw();
 
@@ -437,7 +437,7 @@ function GameScene() {
 		}
 
 		if (knockedOutBodies) knockedOutBodies.draw();
-        
+		
 		player.draw();
 		if (wooshFX) wooshFX.draw();
 
