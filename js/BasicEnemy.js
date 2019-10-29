@@ -24,6 +24,7 @@ function BasicEnemy(config) {
 	let healthColor = Color.White;//Correct color set below
 	const HEALTH_BAR_WIDTH = 50;
 	this.score = 100;
+	let watchVariance = Math.floor(100 * Math.random()) - 50;
 	
 	this.type = ENTITY_TYPE.Enemy;
 	this.collisionBody;//initialized down below definition of buildBodyCollider() function
@@ -129,7 +130,7 @@ function BasicEnemy(config) {
 		}
 
 		const distToPlayer = playerPos.x - position.x;
-		stateManager.update(deltaTime, distToPlayer, shouldAttack);
+		stateManager.update(deltaTime, distToPlayer, shouldAttack, watchVariance);
 		updateForState(stateManager.getCurrentState());
 
 		if(stateManager.getIsNewState()) {

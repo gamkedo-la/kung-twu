@@ -26,7 +26,8 @@ const ACTION = {
 	Land:"land",
 	End:"end",
 	Block:"block",
-	Dash:"dash"
+	Dash:"dash",
+	NoChange:"noChange"
 };
 
 const WALK_LEFT_STATE = {
@@ -223,6 +224,8 @@ const IDLE_STATE = {
 			return STATE.Kick;
 		} else if(action === ACTION.Block) {
 			return STATE.Block;
+		} else if(action === ACTION.Release) {
+			return STATE.Idle;
 		} else {
 			return STATE.Idle;
 		}
@@ -505,7 +508,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		timeSinceAction = 0;
 	};
 
-	this.update = function(deltaTime, distToPlayer = 0, shouldAttack) {
+	this.update = function(deltaTime, distToPlayer = 0, shouldAttack, variance = 50) {
 		currentAnimation.update(deltaTime);
 		isNewState = false;
 		let newState;
@@ -515,7 +518,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		if(rivalType === AITYPE.Player) {
 			updateStateWithUserInput();
 		} else {
-			updateStateWithAI(deltaTime, distToPlayer, shouldAttack);
+			updateStateWithAI(deltaTime, distToPlayer, shouldAttack, variance);
 		}
 
 		if(didGetHit) {
@@ -547,8 +550,8 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		}
 	};
 
-	const updateStateWithAI = function(deltaTime, distToPlayer, shouldAttack) {
-		let action = aiManager.actionForTypeTimeStateAndPos(belt, rivalType, timeSinceAction, currentState, distToPlayer, shouldAttack);
+	const updateStateWithAI = function(deltaTime, distToPlayer, shouldAttack, variance) {
+		let action = aiManager.nextAction(belt, rivalType, timeSinceAction, currentState, distToPlayer, shouldAttack, variance);
 
 		let newState;
 		if(action === null) {
@@ -557,7 +560,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 			newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, action));
 		}
 
-		if(newState != currentState) {
+		if(newState !== currentState) {
 			timeSinceAction = 0;
 
 			if(action === ACTION.Left) {

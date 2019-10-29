@@ -99,6 +99,8 @@ function HitBoxManager(bodyData, attackData) {
 				theseData = bodyData.knockback.right;
 			}
 			break;
+		default:
+			break;
 		}
 
 		return pointsFor(position, scale, theseData);

@@ -52,7 +52,8 @@ function GameScene() {
 
 		if (aiManager === null) {
 			//if aiManager === null, we've never initialized a GameScene
-			aiManager = new AIManager();
+//			aiManager = new AIManager();
+			aiManager = new AIManager2();
 			animationManager = new AnimationBuilder();
 			timer.registerEvent(EVENT.EnemySpawn);
 			initializePlayerIfReqd();
@@ -306,6 +307,8 @@ function GameScene() {
 
 	const spawnNewEnemies = function(cameraXPos) {
 		if (enemies.length >= levelData.maxEnemies) return;
+
+//		if(enemies.length >= 1) return;//TODO: Remove after testing
 
 		const timeSince = timer.timeSinceUpdateForEvent(EVENT.EnemySpawn);
 		if (timeSince > timeTilSpawn) {
