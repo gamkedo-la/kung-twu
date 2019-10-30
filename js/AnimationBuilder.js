@@ -161,10 +161,10 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:playerWalkBack,
+			image:basicEnemyDash,
 			frames:[0, 1, 2],
-			width:playerWalkBack.width / 3,
-			height:playerWalkBack.height,
+			width:basicEnemyDash.width / 3,
+			height:basicEnemyDash.height,
 			frameTimes:[75],
 			reverses:false,
 			loops:false
@@ -230,10 +230,10 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:playerWalkBack,
+			image:yellowEnemyDash,
 			frames:[0, 1, 2],
-			width:playerWalkBack.width / 3,
-			height:playerWalkBack.height,
+			width:yellowEnemyDash.width / 3,
+			height:yellowEnemyDash.height,
 			frameTimes:[75],
 			reverses:false,
 			loops:false
@@ -299,10 +299,10 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:playerWalkBack,
+			image:tanEnemyDash,
 			frames:[0, 1, 2],
-			width:playerWalkBack.width / 3,
-			height:playerWalkBack.height,
+			width:tanEnemyDash.width / 3,
+			height:tanEnemyDash.height,
 			frameTimes:[75],
 			reverses:false,
 			loops:false
@@ -368,10 +368,10 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:playerWalkBack,
+			image:brownEnemyDash,
 			frames:[0, 1, 2],
-			width:playerWalkBack.width / 3,
-			height:playerWalkBack.height,
+			width:brownEnemyDash.width / 3,
+			height:brownEnemyDash.height,
 			frameTimes:[75],
 			reverses:false,
 			loops:false
@@ -437,10 +437,10 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:playerWalkBack,
+			image:redEnemyDash,
 			frames:[0, 1, 2],
-			width:playerWalkBack.width / 3,
-			height:playerWalkBack.height,
+			width:redEnemyDash.width / 3,
+			height:redEnemyDash.height,
 			frameTimes:[75],
 			reverses:false,
 			loops:false
@@ -506,10 +506,10 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:playerWalkBack,
+			image:basicEnemyDash,
 			frames:[0, 1, 2],
-			width:playerWalkBack.width / 3,
-			height:playerWalkBack.height,
+			width:basicEnemyDash.width / 3,
+			height:basicEnemyDash.height,
 			frameTimes:[75],
 			reverses:false,
 			loops:false
