@@ -95,7 +95,7 @@ function GameScene() {
 		if (sound.getCurrentBGMKey() !== Sounds.BGM_GamePlay) {
 			sound.playBGM(Sounds.BGM_GamePlay);
 		}
-		
+		console.log(`PLayer Belt color: ${player.getCurrentBelt()}`);
 	};
 
 	this.transitionOut = function() {
@@ -213,6 +213,7 @@ function GameScene() {
 						SceneState.setState(SCENE.ENDING);
 					} else {
 						currentLevel++;//Not sure if this is the right way to do this
+						player.incrementBelt();//playerBelt++;
 						SceneState.setState(SCENE.POWERUP);
 					}
 
@@ -648,17 +649,16 @@ function GameScene() {
 				localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, health);
 			}
 
-			let belt = localStorageHelper.getInt(localStorageKey.StartingBelt);
-			if((belt === undefined) || (belt === null) || (isNaN(belt))) {
-				belt = ASSIST_DEFAULT.StartBelt;
-				localStorageHelper.setInt(localStorageKey.StartingBelt, belt);
+			playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
+			if((playerBelt === undefined) || (playerBelt === null) || (isNaN(playerBelt))) {
+				playerBelt = ASSIST_DEFAULT.StartBelt;
+				localStorageHelper.setInt(localStorageKey.StartingBelt, playerBelt);
 			}
 
 			const config = {
 				x: (2 * canvas.width) / 3,
 				y: (3 * canvas.height) / 5,
-				health:health,
-				belt:belt
+				health:health
 			};
 
 			player = new Player(config);

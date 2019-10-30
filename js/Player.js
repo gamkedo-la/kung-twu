@@ -29,7 +29,6 @@ function Player(config) {
 	this.health = ASSIST_DEFAULT.MaxHealth;
 	this.pointsToShow = {points:null, position:{x:0, y:0}};
 
-	let startBelt = BELT.White;
 	if (config != undefined) {
 		if (config.x != undefined) {
 			position.x = config.x;
@@ -41,14 +40,10 @@ function Player(config) {
 		if (config.health != undefined) {
 			this.health = config.health;
 		}
-
-		if (config.belt != undefined) {
-			startBelt = config.belt;
-		}
 	}
 
-	const animations = animationManager.getAnimationsFor(RIVAL_TYPE.player, startBelt, SCALE);
-	stateManager = new StateManager(animations, startBelt, AITYPE.Player);
+	const animations = animationManager.getAnimationsFor(RIVAL_TYPE.player, playerBelt, SCALE);
+	stateManager = new StateManager(animations, playerBelt, AITYPE.Player);
 
 	this.collisionBody = hitBoxManager.bodyColliderForState(
 		stateManager.getCurrentState(),
@@ -120,11 +115,17 @@ function Player(config) {
 	};
 
 	this.setNewBelt = function(newBelt) {
+		playerBelt = newBelt;
 		stateManager.setNewBelt(newBelt);
 	};
 
 	this.incrementBelt = function() {
+		playerBelt++;
 		stateManager.incrementBelt();
+	};
+
+	this.getCurrentBelt = function() {
+		return stateManager.getCurrentBelt();
 	};
 
 	this.quit = function() {
@@ -140,28 +141,24 @@ function Player(config) {
 		}
 
 		this.reset(position);
+		stateManager.setNewBelt(playerBelt);
 	};
 
 	this.reset = function(startPos) {
 		velocity = { x: 0, y: 0 };
 
 		this.health = ASSIST_DEFAULT.MaxHealth;
-		let startBelt = ASSIST_DEFAULT.StartBelt;
+		playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
 		if(config != undefined) {
 			if (config.health != undefined) {
 				this.health = config.health;
 			} 
-	
-			if (config.belt != undefined) {
-				startBelt = config.belt;
-			}
 		}
 
 		position.x = startPos.x;
 		position.y = startPos.y;
 
 		stateManager.reset();
-		stateManager.setNewBelt(startBelt);
 
 		this.collisionBody = hitBoxManager.bodyColliderForState(
 			stateManager.getCurrentState(),
@@ -263,10 +260,12 @@ function Player(config) {
 	const updatePosition = function(deltaTime, gravity, floorHeight, levelMin, levelMax) {
 		const timeStep = deltaTime / 1000; //deltaTime is in milliseconds
 
-		if((velocity.x > 0) && (stateManager.getIsFacingLeft())) {
-			velocity.x = -velocity.x;
-		} else if((velocity.x < 0) && (!stateManager.getIsFacingLeft())) {
-			velocity.x = -velocity.x;
+		if(stateManager.getCurrentState() !== STATE.Dash) {
+			if((velocity.x > 0) && (stateManager.getIsFacingLeft())) {
+				velocity.x = -velocity.x;
+			} else if((velocity.x < 0) && (!stateManager.getIsFacingLeft())) {
+				velocity.x = -velocity.x;
+			}
 		}
 
 		position.x += velocity.x * timeStep;
@@ -347,9 +346,9 @@ function Player(config) {
 
 	const dash = function() {
 		if (stateManager.getIsNewState()) {
-			let speed = -4 * WALK_SPEED;
+			let speed = -2 * WALK_SPEED;
 			if (stateManager.getIsFacingLeft()) {
-				speed = 4 * WALK_SPEED;
+				speed = 2 * WALK_SPEED;
 			}
 
 			velocity.x = speed;

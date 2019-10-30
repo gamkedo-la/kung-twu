@@ -83,6 +83,13 @@ function PauseScene() {
 			return true;
 		case ALIAS.QUIT:
 			pauseManager.resumeGame(CAUSE.Keypress);
+			
+			playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
+			if((playerBelt === undefined) || (playerBelt === null) || (isNaN(playerBelt))) {
+				playerBelt = ASSIST_DEFAULT.StartBelt;
+				localStorageHelper.setInt(localStorageKey.StartingBelt, playerBelt);
+			}
+
 			SceneState.setState(SCENE.TITLE, {didQuit:true});
 			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);

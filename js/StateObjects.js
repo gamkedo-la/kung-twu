@@ -401,10 +401,11 @@ const KNOCK_BACK_STATE = {
 };
 
 //Character State
-function StateManager(theAnimations, beltColor, rivalType) {
+function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 	let currentState = IDLE_STATE;
 	let isNewState = true;
-	let currentAnimation = theAnimations.idle;
+	let currentAnimations = theAnimations;
+	let currentAnimation = currentAnimations.idle;
 	let belt = beltColor;
 
 	let landed = false;
@@ -416,6 +417,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 
 	this.setNewBelt = function(newBelt) {
 		belt = newBelt;
+		currentAnimations = animationManager.getAnimationsFor(rivalType, belt, scale);
 	};
 
 	this.incrementBelt = function() {
@@ -450,8 +452,8 @@ function StateManager(theAnimations, beltColor, rivalType) {
 
 	this.getCurrentAnimation = function() {
 		if((currentAnimation === null) || (currentAnimation === undefined)) {
-			currentAnimation = theAnimations.idle;
-			return theAnimations.idle;
+			currentAnimation = currentAnimations.idle;
+			return currentAnimations.idle;
 		}
 		return currentAnimation;
 	};
@@ -505,7 +507,6 @@ function StateManager(theAnimations, beltColor, rivalType) {
 
 	this.quit = function() {
 		this.reset();
-		belt = BELT.White;
 	};
 
 	this.reset = function() {
@@ -600,7 +601,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		let deltaXForFacing = 0;
 		let deltaY = currentAnimation.getHeight() - animationForState(IDLE_STATE).getHeight();
 		if(isFacingLeft) {
-			deltaXForFacing = (theAnimations.idle.getWidth() - currentAnimation.getWidth());
+			deltaXForFacing = (currentAnimations.idle.getWidth() - currentAnimation.getWidth());
 		}
 		currentAnimation.drawAt(x + deltaXForFacing, y + deltaY, isFacingLeft);
 	};
@@ -757,46 +758,46 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		let selectedAnimation;
 		switch(state) {
 		case IDLE_STATE:
-			selectedAnimation = theAnimations.idle;
+			selectedAnimation = currentAnimations.idle;
 			break;
 		case WALK_RIGHT_STATE:
 		case WALK_LEFT_STATE:
-			selectedAnimation = theAnimations.walk;
+			selectedAnimation = currentAnimations.walk;
 			break;
 		case JUMP_STATE:
-			selectedAnimation = theAnimations.jump;
+			selectedAnimation = currentAnimations.jump;
 			break;
 		case CROUCH_STATE:
-			selectedAnimation = theAnimations.crouch;
+			selectedAnimation = currentAnimations.crouch;
 			break;
 		case DASH_STATE:
-			selectedAnimation = theAnimations.dash;
+			selectedAnimation = currentAnimations.dash;
 			break;
 		case SWEEP_STATE:
-			selectedAnimation = theAnimations.sweep;
+			selectedAnimation = currentAnimations.sweep;
 			break;
 		case J_KICK_STATE:
-			selectedAnimation = theAnimations.j_kick;
+			selectedAnimation = currentAnimations.j_kick;
 			break;
 		case H_KICK_STATE:
-			selectedAnimation = theAnimations.h_kick;
+			selectedAnimation = currentAnimations.h_kick;
 			break;
 		case PUNCH_STATE:
-			selectedAnimation = theAnimations.punch;
+			selectedAnimation = currentAnimations.punch;
 			break;
 		case KICK_STATE:
-			selectedAnimation = theAnimations.kick;
+			selectedAnimation = currentAnimations.kick;
 			break;
 		case BLOCK_STATE:
-			selectedAnimation = theAnimations.block;
+			selectedAnimation = currentAnimations.block;
 			break;
 		case KNOCK_BACK_STATE:
-			selectedAnimation = theAnimations.knockback;
+			selectedAnimation = currentAnimations.knockback;
 			break;
 		}
 
 		if(selectedAnimation === undefined) {
-			return theAnimations.idle;
+			return currentAnimations.idle;
 		} else {
 			return selectedAnimation;
 		}
