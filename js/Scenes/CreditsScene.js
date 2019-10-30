@@ -231,12 +231,28 @@ function CreditsScene() {
 		}
 	};
 
+
 	const creditReel = function(deltaTime) {
 		creditPosY -= (0.025 * deltaTime);
+		canvas.addEventListener('wheel', creditScroll);
 	};
 
 	// function for user to control credits by scrolling with mouse wheel
-	const creditScroll = function() {
+	const creditScroll = function(e) {
 		//TODO: Add implementation here
+			 //console.log(e.deltaY);
+			 var lastScrollPosition = 100;
+			 var newScrollPosition = lastScrollPosition + e.deltaY;
+			 //console.log (newScrollPosition);
+
+			 if (newScrollPosition > lastScrollPosition) {
+			 	//upward scroll code
+			 	creditPosY -= 2.5;
+			 }
+			 if (newScrollPosition < lastScrollPosition)
+			 { //downward scroll code
+			 	creditPosY += 2.5;
+			 }
+	    
 	};
 }
