@@ -26,10 +26,12 @@ const ACTION = {
 	Land:"land",
 	End:"end",
 	Block:"block",
-	Dash:"dash"
+	Dash:"dash",
+	NoChange:"noChange"
 };
 
 const WALK_LEFT_STATE = {
+	name:"walk left",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Left) {
 			if((currentState === STATE.Idle) || (currentState === STATE.WalkRight)) {
@@ -66,6 +68,7 @@ const WALK_LEFT_STATE = {
 };
 
 const WALK_RIGHT_STATE = {
+	name:"walk right",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Right) {
 			if((currentState === STATE.Idle) || (currentState === STATE.WalkLeft)) {
@@ -102,6 +105,7 @@ const WALK_RIGHT_STATE = {
 };
 
 const JUMP_STATE = {
+	name:"jump",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Jump) {
 			if((currentState === STATE.WalkRight) || 
@@ -128,6 +132,7 @@ const JUMP_STATE = {
 };
 
 const CROUCH_STATE = {
+	name:"crouch",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if((currentState === STATE.Idle) && (action === ACTION.Crouch)) {
 			return true;
@@ -150,6 +155,7 @@ const CROUCH_STATE = {
 };
 
 const DASH_STATE = {
+	name:"dash",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(belt >= BELT.Yellow) {
 			if((currentState === STATE.WalkRight) || 
@@ -176,6 +182,7 @@ const DASH_STATE = {
 };
 
 const IDLE_STATE = {
+	name:"idle",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(currentState === STATE.Sweep) {
 			return false;
@@ -223,6 +230,8 @@ const IDLE_STATE = {
 			return STATE.Kick;
 		} else if(action === ACTION.Block) {
 			return STATE.Block;
+		} else if(action === ACTION.Release) {
+			return STATE.Idle;
 		} else {
 			return STATE.Idle;
 		}
@@ -230,6 +239,7 @@ const IDLE_STATE = {
 };
 
 const J_KICK_STATE = {
+	name:"jump kick",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(belt >= BELT.Brown) {
 			if((currentState === STATE.Jump) && (action === ACTION.Kick)) {
@@ -252,6 +262,7 @@ const J_KICK_STATE = {
 };
 
 const SWEEP_STATE = {
+	name:"sweep",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(belt >= BELT.Tan) {
 			if((currentState === STATE.Crouch) && (action === ACTION.Kick)) {
@@ -274,6 +285,7 @@ const SWEEP_STATE = {
 };
 
 const H_KICK_STATE = {
+	name:"helicopter kick",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(belt >= BELT.Red) {
 			if((currentState === STATE.Dash) && (action === ACTION.Kick)) {
@@ -294,6 +306,7 @@ const H_KICK_STATE = {
 };
 
 const PUNCH_STATE = {
+	name:"punch",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Punch) {
 			if((currentState === STATE.WalkRight) || 
@@ -318,6 +331,7 @@ const PUNCH_STATE = {
 };
 
 const KICK_STATE = {
+	name:"kick",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Kick) {
 			if((currentState === STATE.WalkRight) || 
@@ -342,6 +356,7 @@ const KICK_STATE = {
 };
 
 const BLOCK_STATE = {
+	name:"block",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if(action === ACTION.Block) {
 			if((currentState === STATE.WalkRight) ||
@@ -365,6 +380,7 @@ const BLOCK_STATE = {
 };
 
 const KNOCK_BACK_STATE = {
+	name:"knock back",
 	canEnterFromStateWithActionAndBelt:function(belt, action, currentState) {
 		if((currentState === STATE.Block) || (currentState === STATE.H_Kick)) {
 			return false;
@@ -385,10 +401,11 @@ const KNOCK_BACK_STATE = {
 };
 
 //Character State
-function StateManager(theAnimations, beltColor, rivalType) {
+function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 	let currentState = IDLE_STATE;
 	let isNewState = true;
-	let currentAnimation = theAnimations.idle;
+	let currentAnimations = theAnimations;
+	let currentAnimation = currentAnimations.idle;
 	let belt = beltColor;
 
 	let landed = false;
@@ -400,6 +417,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 
 	this.setNewBelt = function(newBelt) {
 		belt = newBelt;
+		currentAnimations = animationManager.getAnimationsFor(rivalType, belt, scale);
 	};
 
 	this.incrementBelt = function() {
@@ -434,8 +452,8 @@ function StateManager(theAnimations, beltColor, rivalType) {
 
 	this.getCurrentAnimation = function() {
 		if((currentAnimation === null) || (currentAnimation === undefined)) {
-			currentAnimation = theAnimations.idle;
-			return theAnimations.idle;
+			currentAnimation = currentAnimations.idle;
+			return currentAnimations.idle;
 		}
 		return currentAnimation;
 	};
@@ -489,7 +507,6 @@ function StateManager(theAnimations, beltColor, rivalType) {
 
 	this.quit = function() {
 		this.reset();
-		belt = BELT.White;
 	};
 
 	this.reset = function() {
@@ -505,7 +522,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		timeSinceAction = 0;
 	};
 
-	this.update = function(deltaTime, distToPlayer = 0, shouldAttack) {
+	this.update = function(deltaTime, distToPlayer = 0, shouldAttack, variance = 50, shouldJump = false) {
 		currentAnimation.update(deltaTime);
 		isNewState = false;
 		let newState;
@@ -515,7 +532,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		if(rivalType === AITYPE.Player) {
 			updateStateWithUserInput();
 		} else {
-			updateStateWithAI(deltaTime, distToPlayer, shouldAttack);
+			updateStateWithAI(deltaTime, distToPlayer, shouldAttack, variance, shouldJump);
 		}
 
 		if(didGetHit) {
@@ -547,8 +564,8 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		}
 	};
 
-	const updateStateWithAI = function(deltaTime, distToPlayer, shouldAttack) {
-		let action = aiManager.actionForTypeTimeStateAndPos(belt, rivalType, timeSinceAction, currentState, distToPlayer, shouldAttack);
+	const updateStateWithAI = function(deltaTime, distToPlayer, shouldAttack, variance, shouldJump) {
+		let action = aiManager.nextAction(belt, rivalType, timeSinceAction, currentState, distToPlayer, shouldAttack, variance, shouldJump);
 
 		let newState;
 		if(action === null) {
@@ -557,7 +574,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 			newState = stateTranslator(currentState.nextStateForActionWithBelt(belt, action));
 		}
 
-		if(newState != currentState) {
+		if(newState !== currentState) {
 			timeSinceAction = 0;
 
 			if(action === ACTION.Left) {
@@ -584,7 +601,7 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		let deltaXForFacing = 0;
 		let deltaY = currentAnimation.getHeight() - animationForState(IDLE_STATE).getHeight();
 		if(isFacingLeft) {
-			deltaXForFacing = (theAnimations.idle.getWidth() - currentAnimation.getWidth());
+			deltaXForFacing = (currentAnimations.idle.getWidth() - currentAnimation.getWidth());
 		}
 		currentAnimation.drawAt(x + deltaXForFacing, y + deltaY, isFacingLeft);
 	};
@@ -741,46 +758,46 @@ function StateManager(theAnimations, beltColor, rivalType) {
 		let selectedAnimation;
 		switch(state) {
 		case IDLE_STATE:
-			selectedAnimation = theAnimations.idle;
+			selectedAnimation = currentAnimations.idle;
 			break;
 		case WALK_RIGHT_STATE:
 		case WALK_LEFT_STATE:
-			selectedAnimation = theAnimations.walk;
+			selectedAnimation = currentAnimations.walk;
 			break;
 		case JUMP_STATE:
-			selectedAnimation = theAnimations.jump;
+			selectedAnimation = currentAnimations.jump;
 			break;
 		case CROUCH_STATE:
-			selectedAnimation = theAnimations.crouch;
+			selectedAnimation = currentAnimations.crouch;
 			break;
 		case DASH_STATE:
-			selectedAnimation = theAnimations.dash;
+			selectedAnimation = currentAnimations.dash;
 			break;
 		case SWEEP_STATE:
-			selectedAnimation = theAnimations.sweep;
+			selectedAnimation = currentAnimations.sweep;
 			break;
 		case J_KICK_STATE:
-			selectedAnimation = theAnimations.j_kick;
+			selectedAnimation = currentAnimations.j_kick;
 			break;
 		case H_KICK_STATE:
-			selectedAnimation = theAnimations.h_kick;
+			selectedAnimation = currentAnimations.h_kick;
 			break;
 		case PUNCH_STATE:
-			selectedAnimation = theAnimations.punch;
+			selectedAnimation = currentAnimations.punch;
 			break;
 		case KICK_STATE:
-			selectedAnimation = theAnimations.kick;
+			selectedAnimation = currentAnimations.kick;
 			break;
 		case BLOCK_STATE:
-			selectedAnimation = theAnimations.block;
+			selectedAnimation = currentAnimations.block;
 			break;
 		case KNOCK_BACK_STATE:
-			selectedAnimation = theAnimations.knockback;
+			selectedAnimation = currentAnimations.knockback;
 			break;
 		}
 
 		if(selectedAnimation === undefined) {
-			return theAnimations.idle;
+			return currentAnimations.idle;
 		} else {
 			return selectedAnimation;
 		}

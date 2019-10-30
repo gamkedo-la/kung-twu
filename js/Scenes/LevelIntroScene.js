@@ -95,6 +95,36 @@ function LevelIntroScene() {
 		}
 	};
 
+	const specialControlsForBelt = function(belt) {
+		let colorToUse = belt;
+		if(belt === undefined) {
+			playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
+			if((playerBelt === undefined) || (playerBelt === null) || (isNaN(playerBelt))) {
+				playerBelt = ASSIST_DEFAULT.StartBelt;
+				localStorageHelper.setInt(localStorageKey.StartingBelt, playerBelt);
+			}
+
+			colorToUse = playerBelt;
+		}
+		
+		let resultString = "";
+		switch(colorToUse) {
+		case BELT.Red:
+			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl5);
+		// eslint-disable-next-line no-fallthrough
+		case BELT.Brown:
+			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl4) + "\n" + resultString;
+		// eslint-disable-next-line no-fallthrough
+		case BELT.Tan:
+			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl3) + "\n" + resultString;
+		// eslint-disable-next-line no-fallthrough
+		case BELT.Yellow:
+			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl2) + "\n" + resultString;
+		}
+
+		return resultString;
+	};
+
 	const specialControlsForNewLevel = function() {
 		let resultString = "";
 		switch(currentLevel) {
@@ -127,7 +157,6 @@ function LevelIntroScene() {
 				case NAV_ACTION.SELECT:
 					SceneState.setState(SCENE.GAME, {restartLevel:shouldRestart});
 					shouldRestart = true;
-					// @SoundHook: menuSelectionSound.play();
 					sound.playSFX(Sounds.SFX_MenuSelect);
 					break;
 				}
@@ -161,7 +190,7 @@ function LevelIntroScene() {
 	};
 
 	const findSpecialsText = function() {
-		specialsText = specialControlsForNewLevel();
+		specialsText = specialControlsForBelt(playerBelt);
 		specialsTextArray = specialsText.split("\n");
 	};
 
@@ -188,7 +217,7 @@ function LevelIntroScene() {
 		titleBlockPos.x = canvas.width / 2 - titleBlockWidth / 2 + 4;
 		titleBlockPos.y = CONTROLS_Y_POS - 44;
 
-		if(specialsText !== "") {
+		if(playerBelt !== BELT.White) {
 			let maxWidth = 0;
 			for (let num=0; num<specialsTextArray.length; num++) {
 				const thisWidth = JPFont.getStringWidth(specialsTextArray[num], CONTROLS_SCALE);
@@ -206,7 +235,7 @@ function LevelIntroScene() {
 	};
 
 	const updateButtonPositions = function() {
-		for(button of buttons) {
+		for(let button of buttons) {
 			button.updateXPosition(canvas.width / 2);
 		}
 
@@ -243,7 +272,9 @@ function LevelIntroScene() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlockPos.x, titleBlockPos.y, titleBlockWidth, titleBlock.height);   
-		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlock2Pos.x, titleBlock2Pos.y, titleBlock2Width, titleBlock.height);   
+		if(playerBelt !== BELT.White) {
+			canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlock2Pos.x, titleBlock2Pos.y, titleBlock2Width, titleBlock.height);
+		}
 	};
 
 	const drawMessage = function() {
@@ -257,7 +288,7 @@ function LevelIntroScene() {
 			JPFont.printTextAt(controls[num], {x:controlsXPos, y:CONTROLS_Y_POS + ((num - 1)*MSG_LINE_HEIGHT)}, TextAlignment.Center, CONTROLS_SCALE);
 		}
 
-		if(specialsText !== "") {
+		if(playerBelt !== BELT.White) {
 			for (let num=0; num<specialsTextArray.length; num++) {
 				JPFont.printTextAt(specialsTextArray[num], {x:specialsXPos, y:CONTROLS_Y_POS + ((num - 1)*MSG_LINE_HEIGHT)}, TextAlignment.Center, CONTROLS_SCALE);
 			}

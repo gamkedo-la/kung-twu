@@ -99,22 +99,32 @@ const basicEnemyIdle = document.createElement("img");
 const basicEnemyWalk = document.createElement("img");
 const basicEnemyKick = document.createElement("img");
 const basicEnemyPunch = document.createElement("img");
+const basicEnemyCrouch = document.createElement("img");
+const basicEnemyDash = document.createElement("img");
 const yellowEnemyIdle = document.createElement("img");
 const yellowEnemyWalk = document.createElement("img");
 const yellowEnemyKick = document.createElement("img");
 const yellowEnemyPunch = document.createElement("img");
+const yellowEnemyCrouch = document.createElement("img");
+const yellowEnemyDash = document.createElement("img");
 const tanEnemyIdle = document.createElement("img");
 const tanEnemyWalk = document.createElement("img");
 const tanEnemyKick = document.createElement("img");
 const tanEnemyPunch = document.createElement("img");
+const tanEnemyCrouch = document.createElement("img");
+const tanEnemyDash = document.createElement("img");
 const brownEnemyIdle = document.createElement("img");
 const brownEnemyWalk = document.createElement("img");
 const brownEnemyKick = document.createElement("img");
 const brownEnemyPunch = document.createElement("img");
+const brownEnemyCrouch = document.createElement("img");
+const brownEnemyDash = document.createElement("img");
 const redEnemyIdle = document.createElement("img");
 const redEnemyWalk = document.createElement("img");
 const redEnemyKick = document.createElement("img");
 const redEnemyPunch = document.createElement("img");
+const redEnemyCrouch = document.createElement("img");
+const redEnemyDash = document.createElement("img");
 const yellowBossIdle = document.createElement("img");
 const yellowBossWalk = document.createElement("img");
 const yellowBossPunch = document.createElement("img");
@@ -147,6 +157,12 @@ const playerKickTan = document.createElement("img");
 const playerKickBrown = document.createElement("img");
 const playerKickRed = document.createElement("img");
 const playerKickBlack = document.createElement("img");
+const playerKnockbackWhite = document.createElement("img");
+const playerKnockbackYellow = document.createElement("img");
+const playerKnockbackTan = document.createElement("img");
+const playerKnockbackBrown = document.createElement("img");
+const playerKnockbackRed = document.createElement("img");
+const playerKnockbackBlack = document.createElement("img");
 const wooshPunchPic = document.createElement("img");
 const wooshKickPic = document.createElement("img");
 const wooshKickPic2 = document.createElement("img");
@@ -188,22 +204,32 @@ function loadImages() {
 		{ imgName: basicEnemyWalk, theFile: "EnemyWalking.png" },
 		{ imgName: basicEnemyKick, theFile: "EnemyKicking.png" },
 		{ imgName: basicEnemyPunch, theFile: "EnemyPunching.png" },
+		{ imgName: basicEnemyCrouch, theFile: "EnemyCrouching.png" },
+		{ imgName: basicEnemyDash, theFile: "EnemyDashing.png" },
 		{ imgName: yellowEnemyIdle, theFile: "TempEnemy_Yellow.png" },
 		{ imgName: yellowEnemyWalk, theFile: "EnemyWalking_Yellow.png" },
 		{ imgName: yellowEnemyKick, theFile: "EnemyKicking_Yellow.png" },
 		{ imgName: yellowEnemyPunch, theFile: "EnemyPunching_Yellow.png" },
+		{ imgName: yellowEnemyCrouch, theFile: "EnemyCrouching_Yellow.png" },
+		{ imgName: yellowEnemyDash, theFile: "EnemyDashing_Yellow.png" },
 		{ imgName: tanEnemyIdle, theFile: "TempEnemy_Tan.png" },
 		{ imgName: tanEnemyWalk, theFile: "EnemyWalking_Tan.png" },
 		{ imgName: tanEnemyKick, theFile: "EnemyKicking_Tan.png" },
 		{ imgName: tanEnemyPunch, theFile: "EnemyPunching_Tan.png" },
+		{ imgName: tanEnemyCrouch, theFile: "EnemyCrouching_Tan.png" },
+		{ imgName: tanEnemyDash, theFile: "EnemyDashing_Tan.png" },
 		{ imgName: brownEnemyIdle, theFile: "TempEnemy_Brown.png" },
 		{ imgName: brownEnemyWalk, theFile: "EnemyWalking_Brown.png" },
 		{ imgName: brownEnemyKick, theFile: "EnemyKicking_Brown.png" },
 		{ imgName: brownEnemyPunch, theFile: "EnemyPunching_Brown.png" },
+		{ imgName: brownEnemyCrouch, theFile: "EnemyCrouching_Brown.png" },
+		{ imgName: brownEnemyDash, theFile: "EnemyDashing_Brown.png" },
 		{ imgName: redEnemyIdle, theFile: "TempEnemy_Red.png" },
 		{ imgName: redEnemyWalk, theFile: "EnemyWalking_Red.png" },
 		{ imgName: redEnemyKick, theFile: "EnemyKicking_Red.png" },
 		{ imgName: redEnemyPunch, theFile: "EnemyPunching_Red.png" },
+		{ imgName: redEnemyCrouch, theFile: "EnemyCrouching_Red.png" },
+		{ imgName: redEnemyDash, theFile: "EnemyDashing_Red.png" },
 
 		{ imgName: yellowBossIdle, theFile: "Boss_Idle_Yellow.png" },
 		{ imgName: yellowBossWalk, theFile: "BossWalking_Yellow.png" },
@@ -283,6 +309,12 @@ function loadImages() {
 		{ imgName: playerKickBrown, theFile: "Player_Kick_Brown.png"},
 		{ imgName: playerKickRed, theFile: "Player_Kick_Red.png"},
 		{ imgName: playerKickBlack, theFile: "Player_Kick_Black.png"},
+		{ imgName: playerKnockbackWhite, theFile: "Player_Knockback_White.png"},
+		{ imgName: playerKnockbackYellow, theFile: "Player_Knockback_Yellow.png"},
+		{ imgName: playerKnockbackTan, theFile: "Player_Knockback_Tan.png"},
+		{ imgName: playerKnockbackBrown, theFile: "Player_Knockback_Brown.png"},
+		{ imgName: playerKnockbackRed, theFile: "Player_Knockback_Red.png"},
+		{ imgName: playerKnockbackBlack, theFile: "Player_Knockback_Black.png"},
 		{ imgName: wooshPunchPic, theFile: "wooshPunch.png"},
 		{ imgName: wooshKickPic, theFile: "wooshKick.png"},
 		{ imgName: wooshKickPic2, theFile: "wooshKick2.png"},

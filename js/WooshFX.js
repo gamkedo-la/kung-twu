@@ -25,6 +25,13 @@ function WooshFXManager(wooshImage) {
 		else
 			this.trigger(pos.x+40,pos.y+64,0,wooshKickPic2);
 	};
+	this.triggerSweep = function (pos,left) {
+		//TODO: Fix me, this is a copy of this.triggerJKick added to prevent errors
+		if (left)
+			this.trigger(pos.x+30,pos.y+64,0,wooshKickPic);
+		else
+			this.trigger(pos.x+40,pos.y+64,0,wooshKickPic2);
+	};
 	this.triggerJKick = function (pos,left) {
 		if (left)
 			this.trigger(pos.x+30,pos.y+64,0,wooshKickPic);

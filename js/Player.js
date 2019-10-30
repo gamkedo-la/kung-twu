@@ -29,7 +29,6 @@ function Player(config) {
 	this.health = ASSIST_DEFAULT.MaxHealth;
 	this.pointsToShow = {points:null, position:{x:0, y:0}};
 
-	let startBelt = BELT.White;
 	if (config != undefined) {
 		if (config.x != undefined) {
 			position.x = config.x;
@@ -41,14 +40,10 @@ function Player(config) {
 		if (config.health != undefined) {
 			this.health = config.health;
 		}
-
-		if (config.belt != undefined) {
-			startBelt = config.belt;
-		}
 	}
 
-	const animations = animationManager.getAnimationsFor(RIVAL_TYPE.player, startBelt, SCALE);
-	stateManager = new StateManager(animations, startBelt, AITYPE.Player);
+	const animations = animationManager.getAnimationsFor(RIVAL_TYPE.player, playerBelt, SCALE);
+	stateManager = new StateManager(animations, playerBelt, AITYPE.Player);
 
 	this.collisionBody = hitBoxManager.bodyColliderForState(
 		stateManager.getCurrentState(),
@@ -120,11 +115,17 @@ function Player(config) {
 	};
 
 	this.setNewBelt = function(newBelt) {
+		playerBelt = newBelt;
 		stateManager.setNewBelt(newBelt);
 	};
 
 	this.incrementBelt = function() {
+		playerBelt++;
 		stateManager.incrementBelt();
+	};
+
+	this.getCurrentBelt = function() {
+		return stateManager.getCurrentBelt();
 	};
 
 	this.quit = function() {
@@ -140,28 +141,24 @@ function Player(config) {
 		}
 
 		this.reset(position);
+		stateManager.setNewBelt(playerBelt);
 	};
 
 	this.reset = function(startPos) {
 		velocity = { x: 0, y: 0 };
 
 		this.health = ASSIST_DEFAULT.MaxHealth;
-		let startBelt = ASSIST_DEFAULT.StartBelt;
+		playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
 		if(config != undefined) {
 			if (config.health != undefined) {
 				this.health = config.health;
 			} 
-	
-			if (config.belt != undefined) {
-				startBelt = config.belt;
-			}
 		}
 
 		position.x = startPos.x;
 		position.y = startPos.y;
 
 		stateManager.reset();
-		stateManager.setNewBelt(startBelt);
 
 		this.collisionBody = hitBoxManager.bodyColliderForState(
 			stateManager.getCurrentState(),
@@ -263,10 +260,12 @@ function Player(config) {
 	const updatePosition = function(deltaTime, gravity, floorHeight, levelMin, levelMax) {
 		const timeStep = deltaTime / 1000; //deltaTime is in milliseconds
 
-		if((velocity.x > 0) && (stateManager.getIsFacingLeft())) {
-			velocity.x = -velocity.x;
-		} else if((velocity.x < 0) && (!stateManager.getIsFacingLeft())) {
-			velocity.x = -velocity.x;
+		if(stateManager.getCurrentState() !== STATE.Dash) {
+			if((velocity.x > 0) && (stateManager.getIsFacingLeft())) {
+				velocity.x = -velocity.x;
+			} else if((velocity.x < 0) && (!stateManager.getIsFacingLeft())) {
+				velocity.x = -velocity.x;
+			}
 		}
 
 		position.x += velocity.x * timeStep;
@@ -333,27 +332,24 @@ function Player(config) {
 	const jump = function() {
 		if (stateManager.getIsNewState()) {
 			velocity.y = JUMP_SPEED;
-			// @SoundHook: playerJumpSound.play();
 			sound.playSFX(Sounds.SFX_PlayerJump);
 		}
 	};
 
 	const crouch = function() {
-		console.log("I'm crouching now");
 		if (stateManager.getIsNewState()) {
-			// @SoundHook:TODO playerCrouchSound.play();
+			console.log("I'm crouching now");
 		}
 	};
 
 	const dash = function() {
 		if (stateManager.getIsNewState()) {
-			let speed = -4 * WALK_SPEED;
+			let speed = -2 * WALK_SPEED;
 			if (stateManager.getIsFacingLeft()) {
-				speed = 4 * WALK_SPEED;
+				speed = 2 * WALK_SPEED;
 			}
 
 			velocity.x = speed;
-			// @SoundHook swish1Sound.play();
 			sound.playSFX(Sounds.SFX_Swish_01);
 
 		}
@@ -366,7 +362,6 @@ function Player(config) {
 	const block = function() {
 		console.log("I'm blocking now");
 		if (stateManager.getIsNewState()) {
-			// @SoundHook: playerBlockSound.play();
 			sound.playSFX(Sounds.SFX_PlayerBlock);
 		}
 	};
@@ -374,7 +369,6 @@ function Player(config) {
 	const punch = function() {
 		if (stateManager.getIsNewState()) {
 			velocity.x = 0;
-			// @SoundHook: playerPunchSound.play();
 			sound.playSFX(Sounds.SFX_PlayerPunch);
 			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 		}
@@ -383,7 +377,6 @@ function Player(config) {
 	const kick = function() {
 		if (stateManager.getIsNewState()) {
 			velocity.x = 0;
-			// @SoundHook: playerKickSound.play();
 			sound.playSFX(Sounds.SFX_PlayerKick);
 			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
 		}
@@ -392,27 +385,24 @@ function Player(config) {
 	const j_Kick = function() {
 		console.log("Jump Kicking");
 		if (stateManager.getIsNewState()) {
-			// @SoundHook: playerKickSound.play();
 			sound.playSFX(Sounds.SFX_PlayerKick);
-			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
+			if (wooshFX) wooshFX.triggerJKick(position, stateManager.getIsFacingLeft());
 		}
 	};
 
 	const h_kick = function() {
 		console.log("Helicopter Kicking");
 		if (stateManager.getIsNewState()) {
-			// @SoundHook:TODO playerHelicopterKickSound.play();
-			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
+			if (wooshFX) wooshFX.triggerHKick(position, stateManager.getIsFacingLeft());
 		}
 	};
 
 	const sweep = function() {
 		console.log("Sweeping !!!");
 		if (stateManager.getIsNewState()) {
-			// @SoundHook: swish2Sound.play();
 			sound.playSFX(Sounds.SFX_Swish_02);
 			velocity.x = 0;
-			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
+			if (wooshFX) wooshFX.triggerSweep(position, stateManager.getIsFacingLeft(), wooshKickPic);
 		}
 	};
 
@@ -467,14 +457,21 @@ function Player(config) {
 				}
 			}
 			velocity.y = -KNOCK_BACK_SPEED / 2;
+
 			if(otherEntity.getPosition().x < position.x) {
+				//enemy is to the left
 				velocity.x = KNOCK_BACK_SPEED;
-			} else if(otherEntity.getPosition().x > position.x){
-				velocity.x = -KNOCK_BACK_SPEED;
-			} else if(stateManager.getIsFacingLeft()) {
-				velocity.x = KNOCK_BACK_SPEED;
+				if(!stateManager.getIsFacingLeft()) {
+					//TODO: Should we ensure we are facing the direction of the attack after getting hit?
+					//stateManager.shouldFaceLeft(true);
+				}
 			} else {
+				//enemy is to the right
 				velocity.x = -KNOCK_BACK_SPEED;
+				if(stateManager.getIsFacingLeft()) {
+					//TODO: Should we ensure we are facing the direction of the attack after getting hit?
+					//stateManager.shouldFaceLeft(false);
+				}
 			}
 
 			this.health -= otherEntity.getCurrentDamage();
@@ -482,10 +479,8 @@ function Player(config) {
 
 		if (this.health <= 0) {
 			this.health = 0;
-			// @SoundHook: playerFailedSound.play();
 			sound.playSFX(Sounds.SFX_PlayerFail);
 		} else if(otherEntity.type !== ENTITY_TYPE.Environment) {
-			// @SoundHook: playerHitSound.play();
 			sound.playSFX(Sounds.SFX_PlayerHit);
 		}
 	};
@@ -548,4 +543,10 @@ function Player(config) {
 			highY:this.collisionBody.points[1].y
 		};
 	};
+    
+	// used by knockedOutBodyManager since stateManager is private
+	this.facingLeft = function() { 
+		return stateManager.getIsFacingLeft();
+	};
+
 }

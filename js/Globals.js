@@ -32,6 +32,7 @@ let UIProgressBarDefaults;
 
 //--------------Player-----------------//
 let player = null;
+let playerBelt;
 let aiManager = null;
 /** @type KeyMapper */
 let keyMapper = null;

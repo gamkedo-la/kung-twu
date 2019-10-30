@@ -73,7 +73,6 @@ function TitleScene() {
 	this.control = function(newKeyEvent, pressed) {
 		if((!didInteract) && ((newKeyEvent == MouseButton.LEFT) || (newKeyEvent == MouseButton.RIGHT))) {
 			didInteract = true;
-			// @SoundHook: currentBackgroundMusic.loopSong(menuMusic);
 			sound.playBGM(Sounds.BGM_Title);
 		}
 
@@ -84,37 +83,30 @@ function TitleScene() {
 		switch (newKeyEvent) {
 		case ALIAS.SELECT2:
 			SceneState.setState(SCENE.LEVEL_INTRO);
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.HELP:
 			SceneState.setState(SCENE.HELP);
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.ASSIST:
 			SceneState.setState(SCENE.ASSIST);
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.CREDITS:
 			SceneState.setState(SCENE.CREDITS);
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.SETTINGS:
 			SceneState.setState(SCENE.SETTINGS);
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.CHEATS:
 			CHEATS_ACTIVE = !CHEATS_ACTIVE;
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.DEBUG:
 			DEBUG = !DEBUG;
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.POINTER:
@@ -283,7 +275,6 @@ function TitleScene() {
 						selectorPositionsIndex += selections.length;
 					}
 					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
-					// @SoundHook: menuNavigationSound.play();
 					sound.playSFX(Sounds.SFX_MenuNav);
 					break;			
 				case NAV_ACTION.DOWN:
@@ -293,11 +284,9 @@ function TitleScene() {
 						selectorPositionsIndex = 0;
 					}
 					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
-					// @SoundHook: menuNavigationSound.play();
 					sound.playSFX(Sounds.SFX_MenuNav);
 					break;
 				case NAV_ACTION.SELECT:
-					// @SoundHook: menuSelectionSound.play();
 					sound.playSFX(Sounds.SFX_MenuSelect);
 					SceneState.setState(selections[selectorPositionsIndex]);
 					break;

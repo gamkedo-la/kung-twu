@@ -24,6 +24,8 @@ function BasicEnemy(config) {
 	let healthColor = Color.White;//Correct color set below
 	const HEALTH_BAR_WIDTH = 50;
 	this.score = 100;
+	this.shouldJump = false;
+	let watchVariance = Math.floor(100 * Math.random()) - 50;
 	
 	this.type = ENTITY_TYPE.Enemy;
 	this.collisionBody;//initialized down below definition of buildBodyCollider() function
@@ -129,7 +131,7 @@ function BasicEnemy(config) {
 		}
 
 		const distToPlayer = playerPos.x - position.x;
-		stateManager.update(deltaTime, distToPlayer, shouldAttack);
+		stateManager.update(deltaTime, distToPlayer, shouldAttack, watchVariance, this.shouldJump);
 		updateForState(stateManager.getCurrentState());
 
 		if(stateManager.getIsNewState()) {
@@ -251,15 +253,12 @@ function BasicEnemy(config) {
 	const jump = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.y = JUMP_SPEED;
-			// @SoundHook:TODO: enemyJumpSound.play();//Is there going to be one of these?
 		}
 	};
 
 	const crouch = function() {
 		if(stateManager.getIsNewState()) {
-			console.log("Basic Enemy is Crouching now");
 			velocity.x = 0;
-			// @SoundHook:TODO enemyCrouchSound.play();//Is there going to be one of these?
 		}
 	};
 
@@ -267,14 +266,19 @@ function BasicEnemy(config) {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Blocking now");
 			velocity.x = 0;
-			// @SoundHook:TODO enemyBlockSound.play();//Is there going to be one of these?
 		}
 	};
 
 	const dash = function() {
-		if(stateManager.getIsNewState()) {
-			console.log("Basic Enemy is dashing now");
-			// @SoundHook:TODO enemyDashSound.play();//Is there going to be one of these?
+		if (stateManager.getIsNewState()) {
+			let speed = -2 * WALK_SPEED;
+			if (stateManager.getIsFacingLeft()) {
+				speed = 2 * WALK_SPEED;
+			}
+
+			velocity.x = speed;
+			sound.playSFX(Sounds.SFX_Swish_01);
+
 		}
 	};
 
@@ -285,7 +289,6 @@ function BasicEnemy(config) {
 	const punch = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.x = 0;
-			// @SoundHook:TODO enemyPunchSound.play();//Is there going to be one of these?
 			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -293,7 +296,6 @@ function BasicEnemy(config) {
 	const kick = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.x = 0;
-			// @SoundHook:TODO enemyKickSound.play();//Is there going to be one of these?
 			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -301,7 +303,6 @@ function BasicEnemy(config) {
 	const j_Kick = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Jump Kicking now");
-			// @SoundHook:TODO enemyKickSound.play();//Is there going to be one of these?
 			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -309,7 +310,6 @@ function BasicEnemy(config) {
 	const h_kick = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Helicopter Kicking now");
-			// @SoundHook:TODO enemyKickSound.play();//Is there going to be one of these?
 			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
 		}
 	};
@@ -317,7 +317,6 @@ function BasicEnemy(config) {
 	const sweep = function() {
 		if(stateManager.getIsNewState()) {
 			console.log("Basic Enemy is Sweeping now");
-			// @SoundHook:TODO enemySweepSound.play();//Is there going to be one of these?
 			velocity.x = 0;
 			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
@@ -347,7 +346,7 @@ function BasicEnemy(config) {
 		}
 
 		if(otherEntity.type === ENTITY_TYPE.Environment) {
-			resetPositionWithEdges(this.getColliderEdges(), otherEntity.getColliderEdges());
+			this.shouldJump = resetPositionWithEdges(this.getColliderEdges(), otherEntity.getColliderEdges());
 			this.collisionBody.setPosition(position); //keep collider in sync with sprite position
 			return;
 		}
@@ -370,10 +369,8 @@ function BasicEnemy(config) {
 		}
 
 		if(this.health <= 0) {
-			// @SoundHook basicEnemyDefeated.play();
 			sound.playSFX(Sounds.SFX_LowPain);
 		} else if(otherEntity.type !== ENTITY_TYPE.Environment) {
-			// @SoundHook basicEnemyHitSound.play();
 			sound.playSFX(Sounds.SFX_EnemyHit);
 		}
 	};
@@ -405,6 +402,7 @@ function BasicEnemy(config) {
 	};
 
 	const resetPositionWithEdges = function(myEdges, otherEdges) {
+		let mightJump = false;
 		//velocity is known, edges of both colliders is known
 		if(!stateManager.getIsOnGround()) {
 			//land on top of the other object
@@ -413,21 +411,24 @@ function BasicEnemy(config) {
 			position.y -= (myEdges.highY - otherEdges.lowY);
 			velocity.y = 0;
 		} else {
+			mightJump = true;
 			if(velocity.x > 0) {
-				//Player is moving to the right
+				//Enemy is moving to the right
 				if(position.x < otherEdges.lowX) {
-					//Player is to the left of other object => move to left
+					//Enemy is to the left of other object => move to left
 					position.x -= (myEdges.highX - otherEdges.lowX);
 					velocity.x = 0;
 				}
 			} else if(velocity.x < 0) {
-				//Player is moving to the left
+				//Enemy is moving to the left
 				if((position.x > otherEdges.lowX) && (position.x < otherEdges.highX)) {
-					//Player is the right of other object => move to right
+					//Enemy is the right of other object => move to right
 					position.x -= (myEdges.lowX - otherEdges.highX);
 				}
 			}
 		}
+
+		return mightJump;
 	};
 
 	this.getColliderEdges = function() {

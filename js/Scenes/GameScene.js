@@ -37,6 +37,7 @@ function GameScene() {
 	let enemyMaxX;
 	let knockedOutBodies = new knockedOutBodyManager();
 	let bossIntroText = null;
+	let rivalImageDeltaX = null;
 
 	// Game Timer Scene Settings
 	// For more detailed settings please go to "js/Timers/GameTimer.js"
@@ -51,7 +52,8 @@ function GameScene() {
 
 		if (aiManager === null) {
 			//if aiManager === null, we've never initialized a GameScene
-			aiManager = new AIManager();
+//			aiManager = new AIManager();
+			aiManager = new AIManager2();
 			animationManager = new AnimationBuilder();
 			timer.registerEvent(EVENT.EnemySpawn);
 			initializePlayerIfReqd();
@@ -86,14 +88,10 @@ function GameScene() {
 			initializeVases(frontY, backY);
 		}
 
-		// @SoundHook:
-		// if (currentBackgroundMusic.getCurrentTrack() !== gameMusic) {
-		// 	currentBackgroundMusic.loopSong(gameMusic);
-		// }
 		if (sound.getCurrentBGMKey() !== Sounds.BGM_GamePlay) {
 			sound.playBGM(Sounds.BGM_GamePlay);
 		}
-		
+		console.log(`PLayer Belt color: ${player.getCurrentBelt()}`);
 	};
 
 	this.transitionOut = function() {
@@ -149,7 +147,7 @@ function GameScene() {
 		floorMidHeight = 0;
 		timeTilSpawn = 0;
 		score = 0;
-		levelIntroText = null;
+		rivalImageDeltaX = null;
 		bossIntroText = null;
 
 		timer.updateEvent(EVENT.EnemySpawn);
@@ -211,6 +209,7 @@ function GameScene() {
 						SceneState.setState(SCENE.ENDING);
 					} else {
 						currentLevel++;//Not sure if this is the right way to do this
+						player.incrementBelt();//playerBelt++;
 						SceneState.setState(SCENE.POWERUP);
 					}
 
@@ -306,6 +305,8 @@ function GameScene() {
 	const spawnNewEnemies = function(cameraXPos) {
 		if (enemies.length >= levelData.maxEnemies) return;
 
+//		if(enemies.length >= 1) return;//TODO: Remove after testing
+
 		const timeSince = timer.timeSinceUpdateForEvent(EVENT.EnemySpawn);
 		if (timeSince > timeTilSpawn) {
 			timer.updateEvent(EVENT.EnemySpawn);
@@ -338,9 +339,10 @@ function GameScene() {
 				if(defeatedEntity.getBelt() === levelData.enemyBelt) {
 					defeatedEnemyCount++;
 				}
-				// TODO: spawn a "knocked out body" that falls to the floor and then fades out
-				// where's the sprite? hidden somewhere in defeatedEntity.animations
-				if (knockedOutBodies) knockedOutBodies.add(defeatedEntity.getPosition().x,defeatedEntity.getPosition().y,defeatedEntity.animations);
+
+				// spawn a "knocked out body" that falls to the floor and then fades out
+				if (knockedOutBodies) knockedOutBodies.add(defeatedEntity);
+				
 			}
 		}
 	};
@@ -388,7 +390,7 @@ function GameScene() {
 
 		drawBackground(cameraX, roofTop);
 		wall.draw();
-        
+		
 		subfloor.draw();
 		floor.draw();
 
@@ -432,7 +434,7 @@ function GameScene() {
 		}
 
 		if (knockedOutBodies) knockedOutBodies.draw();
-        
+		
 		player.draw();
 		if (wooshFX) wooshFX.draw();
 
@@ -533,10 +535,13 @@ function GameScene() {
 		const rivalsWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Rivals), UI_SCALE);
 
 		let thisX = cameraX + rivalsWidth + 5;
-		const deltaX = ((cameraX + canvas.width / 2) - thisX - 15) / enemiesThisLevel;
+		if(rivalImageDeltaX === null) {
+//			rivalImageDeltaX = ((cameraX + canvas.width / 2) - thisX - 15) / enemiesThisLevel;
+			rivalImageDeltaX = (canvas.width / 2 - rivalsWidth - 30) / enemiesThisLevel;
+		}
 		for(let i = 0; i < (enemiesThisLevel - defeatedEnemyCount); i++) {
 			canvasContext.drawImage(basicEnemyIdle, 0, 0, basicEnemyIdle.width / 2, basicEnemyIdle.height, thisX, 10, basicEnemyIdle.width / 4, basicEnemyIdle.height / 2);
-			thisX += deltaX;
+			thisX += rivalImageDeltaX;
 		}
 
 		//Boss Health
@@ -640,17 +645,16 @@ function GameScene() {
 				localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, health);
 			}
 
-			let belt = localStorageHelper.getInt(localStorageKey.StartingBelt);
-			if((belt === undefined) || (belt === null) || (isNaN(belt))) {
-				belt = ASSIST_DEFAULT.StartBelt;
-				localStorageHelper.setInt(localStorageKey.StartingBelt, belt);
+			playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
+			if((playerBelt === undefined) || (playerBelt === null) || (isNaN(playerBelt))) {
+				playerBelt = ASSIST_DEFAULT.StartBelt;
+				localStorageHelper.setInt(localStorageKey.StartingBelt, playerBelt);
 			}
 
 			const config = {
 				x: (2 * canvas.width) / 3,
 				y: (3 * canvas.height) / 5,
-				health:health,
-				belt:belt
+				health:health
 			};
 
 			player = new Player(config);
