@@ -157,7 +157,6 @@ function LevelIntroScene() {
 				case NAV_ACTION.SELECT:
 					SceneState.setState(SCENE.GAME, {restartLevel:shouldRestart});
 					shouldRestart = true;
-					// @SoundHook: menuSelectionSound.play();
 					sound.playSFX(Sounds.SFX_MenuSelect);
 					break;
 				}

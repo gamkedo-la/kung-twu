@@ -59,7 +59,6 @@ function AssistScene() {
 				pauseManager.resumeGame(CAUSE.Keypress);
 			}
 			SceneState.setState(SCENE.LEVEL_INTRO);
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.POINTER:
@@ -230,7 +229,6 @@ function AssistScene() {
 						selectorPositionsIndex += selections.length;
 					}
 					updateSelectorPosition();
-					// @SoundHook: menuNavigationSound.play();
 					sound.playSFX(Sounds.SFX_MenuNav);
 					break;			
 				case NAV_ACTION.DOWN:
@@ -240,7 +238,6 @@ function AssistScene() {
 						selectorPositionsIndex = 0;
 					}
 					updateSelectorPosition();
-					// @SoundHook: menuNavigationSound.play();
 					sound.playSFX(Sounds.SFX_MenuNav);
 					break;
 				case NAV_ACTION.SELECT:
@@ -250,7 +247,6 @@ function AssistScene() {
 						pauseManager.resumeGame(CAUSE.Keypress);
 						SceneState.setState(selections[selectorPositionsIndex]);
 					}
-					// @SoundHook: menuSelectionSound.play();
 					sound.playSFX(Sounds.SFX_MenuSelect);
 					break;
 				case NAV_ACTION.BACK:

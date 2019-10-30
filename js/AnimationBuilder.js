@@ -165,7 +165,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:playerWalkBack.width / 3,
 			height:playerWalkBack.height,
-			frameTimes:[200],
+			frameTimes:[75],
 			reverses:false,
 			loops:false
 		},
@@ -234,7 +234,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:playerWalkBack.width / 3,
 			height:playerWalkBack.height,
-			frameTimes:[200],
+			frameTimes:[75],
 			reverses:false,
 			loops:false
 		},
@@ -303,7 +303,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:playerWalkBack.width / 3,
 			height:playerWalkBack.height,
-			frameTimes:[200],
+			frameTimes:[75],
 			reverses:false,
 			loops:false
 		},
@@ -372,7 +372,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:playerWalkBack.width / 3,
 			height:playerWalkBack.height,
-			frameTimes:[200],
+			frameTimes:[75],
 			reverses:false,
 			loops:false
 		},
@@ -441,7 +441,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:playerWalkBack.width / 3,
 			height:playerWalkBack.height,
-			frameTimes:[200],
+			frameTimes:[75],
 			reverses:false,
 			loops:false
 		},
@@ -510,7 +510,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:playerWalkBack.width / 3,
 			height:playerWalkBack.height,
-			frameTimes:[200],
+			frameTimes:[75],
 			reverses:false,
 			loops:false
 		},

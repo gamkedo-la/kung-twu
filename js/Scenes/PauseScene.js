@@ -71,19 +71,16 @@ function PauseScene() {
 		case ALIAS.PAUSE:
 			pauseManager.resumeGame(CAUSE.Keypress);
 			SceneState.setState(SceneState.getPreviousState());
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.BACK:
 			pauseManager.resumeGame(CAUSE.Keypress);
 			SceneState.setState(SceneState.getPreviousState());
-			//SceneState.setState(SCENE.GAME);
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.QUIT:
 			pauseManager.resumeGame(CAUSE.Keypress);
-			
+
 			playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
 			if((playerBelt === undefined) || (playerBelt === null) || (isNaN(playerBelt))) {
 				playerBelt = ASSIST_DEFAULT.StartBelt;
@@ -91,19 +88,14 @@ function PauseScene() {
 			}
 
 			SceneState.setState(SCENE.TITLE, {didQuit:true});
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.CONTROLS:
 			console.log("Controls Scene doesn't exist yet");
-			//pauseManager.resumeGame(CAUSE.Keypress);
-			//SceneState.setState(SCENE.CONTROLS);
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.HELP:
 			SceneState.setState(SCENE.HELP);
-			// @SoundHook: menuSelectionSound.play();
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.POINTER:
@@ -135,7 +127,6 @@ function PauseScene() {
 						selectorPositionsIndex += selections.length;
 					}
 					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
-					// @SoundHook: menuNavigationSound.play();
 					sound.playSFX(Sounds.SFX_MenuNav);
 					break;			
 				case NAV_ACTION.DOWN:
@@ -145,7 +136,6 @@ function PauseScene() {
 						selectorPositionsIndex = 0;
 					}
 					selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
-					// @SoundHook: menuNavigationSound.play();
 					sound.playSFX(Sounds.SFX_MenuNav);
 					break;
 				case NAV_ACTION.SELECT:
@@ -158,7 +148,6 @@ function PauseScene() {
 					} else {
 						SceneState.setState(selections[selectorPositionsIndex]);
 					}
-					// @SoundHook: menuSelectionSound.play();
 					sound.playSFX(Sounds.SFX_MenuSelect);
 					break;
 				case NAV_ACTION.BACK:
