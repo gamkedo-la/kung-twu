@@ -361,6 +361,7 @@ function Player(config) {
 
 	const block = function() {
 		console.log("I'm blocking now");
+		velocity.x = 0;
 		if (stateManager.getIsNewState()) {
 			sound.playSFX(Sounds.SFX_PlayerBlock);
 		}
