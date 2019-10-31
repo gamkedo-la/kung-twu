@@ -344,9 +344,9 @@ function Player(config) {
 
 	const dash = function() {
 		if (stateManager.getIsNewState()) {
-			let speed = -2 * WALK_SPEED;
+			let speed = -1.5 * WALK_SPEED;
 			if (stateManager.getIsFacingLeft()) {
-				speed = 2 * WALK_SPEED;
+				speed = 1.5 * WALK_SPEED;
 			}
 
 			velocity.x = speed;

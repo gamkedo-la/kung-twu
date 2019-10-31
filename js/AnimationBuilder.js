@@ -234,7 +234,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:yellowEnemyDash.width / 3,
 			height:yellowEnemyDash.height,
-			frameTimes:[75],
+			frameTimes:[30, 300, 30],
 			reverses:false,
 			loops:false
 		},
@@ -303,7 +303,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:tanEnemyDash.width / 3,
 			height:tanEnemyDash.height,
-			frameTimes:[75],
+			frameTimes:[30, 300, 30],
 			reverses:false,
 			loops:false
 		},
@@ -372,7 +372,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:brownEnemyDash.width / 3,
 			height:brownEnemyDash.height,
-			frameTimes:[75],
+			frameTimes:[30, 300, 30],
 			reverses:false,
 			loops:false
 		},
@@ -441,7 +441,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:redEnemyDash.width / 3,
 			height:redEnemyDash.height,
-			frameTimes:[75],
+			frameTimes:[30, 300, 30],
 			reverses:false,
 			loops:false
 		},
@@ -510,7 +510,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:basicEnemyDash.width / 3,
 			height:basicEnemyDash.height,
-			frameTimes:[75],
+			frameTimes:[30, 300, 30],
 			reverses:false,
 			loops:false
 		},
@@ -648,7 +648,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:playerWalkBack.width / 3,
 			height:playerWalkBack.height,
-			frameTimes:[75],
+			frameTimes:[30, 300, 30],
 			reverses:false,
 			loops:false
 		},
@@ -717,7 +717,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:playerWalkBack.width / 3,
 			height:playerWalkBack.height,
-			frameTimes:[75],
+			frameTimes:[30, 300, 30],
 			reverses:false,
 			loops:false
 		},
@@ -786,7 +786,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:playerWalkBack.width / 3,
 			height:playerWalkBack.height,
-			frameTimes:[75],
+			frameTimes:[30, 300, 30],
 			reverses:false,
 			loops:false
 		},
@@ -855,7 +855,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:playerWalkBack.width / 3,
 			height:playerWalkBack.height,
-			frameTimes:[75],
+			frameTimes:[30, 300, 30],
 			reverses:false,
 			loops:false
 		},
@@ -924,7 +924,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2],
 			width:playerWalkBack.width / 3,
 			height:playerWalkBack.height,
-			frameTimes:[75],
+			frameTimes:[30, 300, 30],
 			reverses:false,
 			loops:false
 		},
@@ -993,7 +993,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3],
 			width:yellowBossWalk.width / 4,
 			height:yellowBossWalk.height,
-			frameTimes:[100],
+			frameTimes:[30, 300, 30],
 			reverses:false,
 			loops:false
 		},
