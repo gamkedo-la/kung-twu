@@ -293,6 +293,7 @@ function AssistScene() {
 			break;
 		case slider.startingBelt:
 			localStorageHelper.setInt(localStorageKey.StartingBelt, aSlider.getValue());
+			playerBelt = aSlider.getValue();
 			break;
 		case slider.startingLevel:
 			currentLevel = 1 + aSlider.getValue();//levels start at 1

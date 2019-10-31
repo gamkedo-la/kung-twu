@@ -186,7 +186,7 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Helicopter Kick"
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick"
 	},
     
 	Spanish: {
@@ -276,7 +276,7 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Helicopter Kick"
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick"
 	},
 
 	Japanese: {
@@ -367,7 +367,7 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Helicopter Kick"
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick"
 	},
 
 	French: {
@@ -457,7 +457,7 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Helicopter Kick"
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick"
 	},
 
 	Russian: {
@@ -547,7 +547,7 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Helicopter Kick"
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick"
 	},
 	
 	Polish: {
@@ -637,6 +637,6 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Helicopter Kick"
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick"
 	}
 };
