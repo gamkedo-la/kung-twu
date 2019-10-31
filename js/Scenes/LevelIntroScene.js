@@ -109,6 +109,7 @@ function LevelIntroScene() {
 		
 		let resultString = "";
 		switch(colorToUse) {
+		case BELT.Black:
 		case BELT.Red:
 			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl5);
 		// eslint-disable-next-line no-fallthrough

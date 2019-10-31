@@ -158,7 +158,9 @@ function Player(config) {
 		position.x = startPos.x;
 		position.y = startPos.y;
 
+		stateManager.setNewBelt(playerBelt);
 		stateManager.reset();
+
 
 		this.collisionBody = hitBoxManager.bodyColliderForState(
 			stateManager.getCurrentState(),

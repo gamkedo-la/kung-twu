@@ -512,7 +512,7 @@ function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 	this.reset = function() {
 		currentState = IDLE_STATE;
 		isNewState = true;
-		currentAnimation = theAnimations.idle;
+		currentAnimation = currentAnimations.idle;
 	
 		landed = false;
 		isOnGround = true;
