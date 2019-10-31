@@ -350,7 +350,8 @@ function Player(config) {
 			}
 
 			velocity.x = speed;
-			sound.playSFX(Sounds.SFX_Swish_01);
+            sound.playSFX(Sounds.SFX_Swish_01);
+            if (wooshFX) wooshFX.triggerDashPlayer(position,(velocity.x>0));
 
 		}
 	};

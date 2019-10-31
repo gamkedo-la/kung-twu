@@ -66,6 +66,20 @@ function WooshFXManager(wooshImage) {
 			this.trigger(pos.x+40,pos.y+64,0,wooshHurtPic);
 	};
 
+    this.triggerDashPlayer = function (pos,left) {
+		if (left)
+			this.trigger(pos.x+30,pos.y+64,0,wooshDashPlayerLPic);
+		else
+			this.trigger(pos.x+40,pos.y+64,0,wooshDashPlayerPic);
+	};
+
+    this.triggerDashEnemy = function (pos,left) {
+		if (left)
+			this.trigger(pos.x+30,pos.y+64,0,wooshDashEnemyLPic);
+		else
+			this.trigger(pos.x+40,pos.y+64,0,wooshDashEnemyPic);
+	};
+
 	// called by the custom fx above or on its own
 	this.trigger = function (x, y, r, img) {
 		var aWoosh = null;

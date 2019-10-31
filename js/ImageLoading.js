@@ -168,6 +168,10 @@ const wooshKickPic = document.createElement("img");
 const wooshKickPic2 = document.createElement("img");
 const wooshHurtPic = document.createElement("img");
 const wooshKnockoutPic = document.createElement("img");
+const wooshDashPlayerPic = document.createElement("img");
+const wooshDashEnemyPic = document.createElement("img");
+const wooshDashPlayerLPic = document.createElement("img");
+const wooshDashEnemyLPic = document.createElement("img");
 const decorationSpritesheet = document.createElement("img");
 const waterfallSheet = document.createElement("img");
 const lamp = document.createElement("img");
@@ -319,7 +323,12 @@ function loadImages() {
 		{ imgName: wooshKickPic, theFile: "wooshKick.png"},
 		{ imgName: wooshKickPic2, theFile: "wooshKick2.png"},
 		{ imgName: wooshHurtPic, theFile: "wooshHurt.png"},
-		{ imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
+        { imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
+        { imgName: wooshDashPlayerPic, theFile: "wooshDashPlayer.png"},
+        { imgName: wooshDashEnemyPic, theFile: "wooshDashEnemy.png"},
+        { imgName: wooshDashPlayerLPic, theFile: "wooshDashPlayerL.png"},
+        { imgName: wooshDashEnemyLPic, theFile: "wooshDashEnemyL.png"},
+        
 
 		// UI
 		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
