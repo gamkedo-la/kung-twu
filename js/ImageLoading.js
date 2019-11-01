@@ -101,6 +101,7 @@ const basicEnemyKick = document.createElement("img");
 const basicEnemyPunch = document.createElement("img");
 const basicEnemyCrouch = document.createElement("img");
 const basicEnemyDash = document.createElement("img");
+const basicEnemyJump = document.createElement("img");
 const yellowEnemyIdle = document.createElement("img");
 const yellowEnemyWalk = document.createElement("img");
 const yellowEnemyKick = document.createElement("img");
@@ -210,6 +211,7 @@ function loadImages() {
 		{ imgName: basicEnemyPunch, theFile: "EnemyPunching.png" },
 		{ imgName: basicEnemyCrouch, theFile: "EnemyCrouching.png" },
 		{ imgName: basicEnemyDash, theFile: "EnemyDashing.png" },
+		{ imgName: basicEnemyJump, theFile: "EnemyJumping.png" },
 		{ imgName: yellowEnemyIdle, theFile: "TempEnemy_Yellow.png" },
 		{ imgName: yellowEnemyWalk, theFile: "EnemyWalking_Yellow.png" },
 		{ imgName: yellowEnemyKick, theFile: "EnemyKicking_Yellow.png" },

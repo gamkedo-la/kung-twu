@@ -169,7 +169,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:basicEnemyJump,
+			frames:[0, 1, 2],
+			width:basicEnemyJump.width / 3,
+			height:basicEnemyJump.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:basicEnemyCrouch,

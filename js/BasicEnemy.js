@@ -277,8 +277,8 @@ function BasicEnemy(config) {
 			}
 
 			velocity.x = speed;
-            sound.playSFX(Sounds.SFX_Swish_01);
-            if (wooshFX) wooshFX.triggerDashEnemy(position,(velocity.x>0));
+			sound.playSFX(Sounds.SFX_Swish_01);
+			if (wooshFX) wooshFX.triggerDashEnemy(position,(velocity.x>0));
 
 		}
 	};
@@ -408,9 +408,11 @@ function BasicEnemy(config) {
 		if(!stateManager.getIsOnGround()) {
 			//land on top of the other object
 			position.y -= (myEdges.highY - otherEdges.lowY);
+			stateManager.didLand();
 		} else if((myEdges.highY - otherEdges.lowY > 0) && (myEdges.highY - otherEdges.lowY < 4)) {
 			position.y -= (myEdges.highY - otherEdges.lowY);
 			velocity.y = 0;
+			stateManager.didLand();
 		} else {
 			mightJump = true;
 			if(velocity.x > 0) {
