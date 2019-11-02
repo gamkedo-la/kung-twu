@@ -327,18 +327,18 @@ function loadImages() {
 		{ imgName: wooshKickPic, theFile: "wooshKick.png"},
 		{ imgName: wooshKickPic2, theFile: "wooshKick2.png"},
 		{ imgName: wooshHurtPic, theFile: "wooshHurt.png"},
-        { imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
-        { imgName: wooshDashPlayerPic, theFile: "wooshDashPlayer.png"},
-        { imgName: wooshDashEnemyPic, theFile: "wooshDashEnemy.png"},
-        { imgName: wooshDashPlayerLPic, theFile: "wooshDashPlayerL.png"},
-        { imgName: wooshDashEnemyLPic, theFile: "wooshDashEnemyL.png"},
+		{ imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
+		{ imgName: wooshDashPlayerPic, theFile: "wooshDashPlayer.png"},
+		{ imgName: wooshDashEnemyPic, theFile: "wooshDashEnemy.png"},
+		{ imgName: wooshDashPlayerLPic, theFile: "wooshDashPlayerL.png"},
+		{ imgName: wooshDashEnemyLPic, theFile: "wooshDashEnemyL.png"},
         
 
 		// UI
 		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
 		{ imgName: titleScreenBird, theFile: "bird_sprite-flap-sheet.png"},
 		{ imgName: selector, theFile: "title_screen_yinyang_selector.png"},
-		{ imgName: jpFontImg, theFile: "JPFont.png"},
+		{ imgName: jpFontImg, theFile: "JPFont_Light.png"},
 	];
 
 	picsToLoad = imageList.length;
