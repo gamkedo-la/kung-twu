@@ -155,7 +155,7 @@ const userStrings = {
 		[STRINGS_KEY.MaxHealth]:"Max Health",
 		[STRINGS_KEY.StartBelt]:"Start Belt",
 		[STRINGS_KEY.StartLevel]:"Start Level",
-		[STRINGS_KEY.HelpScreenContents]:"[ARROWS or WASD] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[B] Block\n[P] Pause\n[S] or [Down] Crouch",
+		[STRINGS_KEY.HelpScreenContents]:"[ARROWS or WASD] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[B] Block\n[S] or [Down] Crouch",
 		[STRINGS_KEY.HowToDash]:"[SPACE] to Dash\nback from rivals",
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching\nto Leg Sweep rivals",
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping\nto Jump Kick",
@@ -210,7 +210,7 @@ const userStrings = {
 		[STRINGS_KEY.HowToPlay]:"Cómo Jugar",
 		[STRINGS_KEY.Muted]:"Silenciado",
 		[STRINGS_KEY.Back]:"[ESC] Retroceder",
-		[STRINGS_KEY.HelpScreenTitle]:"[AYUDA]",
+		[STRINGS_KEY.HelpScreenTitle]:"AYUDA",
 		[STRINGS_KEY.SettingsScreenTitle]:"[CONFIGURACIONES]",
 		[STRINGS_KEY.CreditsScreenTitle]:"[CRÉDITOS]",
 		[STRINGS_KEY.Score]:"PUNTAJE:",
@@ -224,7 +224,7 @@ const userStrings = {
 		[STRINGS_KEY.Level5]:"Dragón",
 
 		//TODO: Retranslate the end of this next line
-		[STRINGS_KEY.HelpScreenContents]:"[FLECHAS] Mover\n[ARRIBA ó C] Brincar\n[G ó X] Puño\n[H ó X] Patada\n[B] Bloqueo\n[P] Pausa\n[S] or [Down] Crouch",
+		[STRINGS_KEY.HelpScreenContents]:"[FLECHAS] Mover\n[ARRIBA ó C] Brincar\n[G ó X] Puño\n[H ó X] Patada\n[B] Bloqueo\n[S] or [Down] Crouch", //\n[P] Pausa
 		
 		[STRINGS_KEY.Resume]:"[ESC] Resumir",
 		[STRINGS_KEY.Controls]:"[C] Controles",
@@ -315,7 +315,7 @@ const userStrings = {
 		[STRINGS_KEY.Level5]:"りゅう",
 
 		//TODO: Retranslate the end of this next line
-		[STRINGS_KEY.HelpScreenContents]:"[Arrows] うごく\n[UP or C] ジャンプ\n[G or X] パンチ\n[H or X] キック\n[B] ブロック\n[P] ポーズ\n[S] or [Down] Crouch",
+		[STRINGS_KEY.HelpScreenContents]:"[Arrows] うごく\n[UP or C] ジャンプ\n[G or X] パンチ\n[H or X] キック\n[B] ブロック\n[S] or [Down] Crouch", //\n[P] ポーズ
 
 		[STRINGS_KEY.Resume]:"[ESC] つづく",
 		[STRINGS_KEY.Controls]:"[C] コントロール",
@@ -406,7 +406,7 @@ const userStrings = {
 		[STRINGS_KEY.Level5]:"Dragon",
 
 		//TODO: Retranslate the end of this next line
-		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[B] Block\n[P] Pause\n[S] or [Down] Crouch",
+		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[B] Block\n[S] or [Down] Crouch", //\n[P] Pause
 
 		[STRINGS_KEY.Resume]:"[ESC] Resume",
 		[STRINGS_KEY.Controls]:"[C] Controls",
@@ -496,7 +496,7 @@ const userStrings = {
 		[STRINGS_KEY.Level5]:"Dragon",
 
 		//TODO: Retranslate the end of this next line
-		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[B] Block\n[P] Pause\n[S] or [Down] Crouch",
+		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[B] Block\n[S] or [Down] Crouch", //\n[P] Pause
 
 		[STRINGS_KEY.Resume]:"[ESC] Resume",
 		[STRINGS_KEY.Controls]:"[C] Controls",
@@ -592,7 +592,7 @@ const userStrings = {
 		[STRINGS_KEY.Level5]:"Smok",
 
 		//TODO: Retranslate the end of this next line
-		[STRINGS_KEY.HelpScreenContents]:"[STRZAŁKI lub WASD] Poruszanie\n[DO GÓRY lub C] Skok\n[G lub X] Cios\n[H lub X] Kopnięcie\n[V] Blok\n[P] Pauza\n[S] or [Down] Crouch",
+		[STRINGS_KEY.HelpScreenContents]:"[STRZAŁKI lub WASD] Poruszanie\n[DO GÓRY lub C] Skok\n[G lub X] Cios\n[H lub X] Kopnięcie\n[V] Blok\n[S] or [Down] Crouch", //\n[P] Pauza
 
 		[STRINGS_KEY.Done]:"Koniec",
 		[STRINGS_KEY.HowToDash]:"Naciśnij [SPACE] aby\nOdskoczyć od rywali",
