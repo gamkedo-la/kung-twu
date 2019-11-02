@@ -854,7 +854,7 @@ function GameScene() {
 
 	const buildBossIntroText = function() {
 		const text = getLocalizedStringForKey(levelData.bossIntroTextKey);
-		bossIntroText = new BossIntroText(text, {x:camera.getPosition().x, y:canvas.height / 2}, TextAlignment.Center, 0.45);
+		bossIntroText = new BossIntroText(text, {x:camera.getPosition().x, y:canvas.height / 2}, TextAlignment.Center, 0.55);
 	};
 }
 
