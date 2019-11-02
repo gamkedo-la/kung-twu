@@ -57,6 +57,9 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 					decorationIndex = 2;
 				} else if(decorationIndex === 2) {
 					decorationToUse = carpet2;
+					decorationIndex = 3;
+				}else if(decorationIndex === 3) {
+					decorationToUse = painting;
 					decorationIndex = 0;
 				}
 			} else {
@@ -111,6 +114,8 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 				} else if(decoration === carpet) {
 					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 175);
 				} else if(decoration === carpet2) {
+					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 150);
+				}else if(decoration === painting) {
 					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 150);
 				}
 			}

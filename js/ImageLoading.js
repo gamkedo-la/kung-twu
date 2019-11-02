@@ -187,6 +187,7 @@ const bambooLight = document.createElement("img");
 const tree = document.createElement("img");
 const carpet = document.createElement("img");
 const carpet2 = document.createElement("img");
+const painting = document.createElement("img");
 
 let picsToLoad = 0;
 
@@ -288,6 +289,7 @@ function loadImages() {
 		{ imgName: tree, theFile: "Tree.png"},
 		{ imgName: carpet, theFile: "carpet.png"},
 		{ imgName: carpet2, theFile: "carpet_2.png"},
+		{ imgName: painting, theFile: "painting.png"},
 
 		// player related
 		{ imgName: playerIdleWhite, theFile: "Player_Idle_White.png"},
