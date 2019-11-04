@@ -187,7 +187,7 @@ function PauseScene() {
 
 	const buildControlsButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			//SceneState.setState(SCENE.CONTROLS);
+			SceneState.setState(SCENE.CONTROLS);
 			console.log("Going to the Controls Screen now...");
 		};
 

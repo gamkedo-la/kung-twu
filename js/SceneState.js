@@ -17,7 +17,8 @@ const SceneState = {
 		[SCENE.PAUSE]: new PauseScene(),
 		[SCENE.GAMEOVER]: new GameOverScene(),
 		[SCENE.POWERUP]: new PowerUpScene(),
-		[SCENE.ENDING]: new EndingScene()
+		[SCENE.ENDING]: new EndingScene(),
+		[SCENE.CONTROLS]: new ControlsScene()
 	},
 	setState: function(newScene, properties) {
 		if(properties != undefined) {
