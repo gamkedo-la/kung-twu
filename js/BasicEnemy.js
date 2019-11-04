@@ -353,10 +353,18 @@ function BasicEnemy(config) {
 		}
 		
 		if(stateManager.getCurrentState() === STATE.Block) {
-			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10));
-		} else if(stateManager.getCurrentState() === STATE.KnockBack) {
-		//do nothing for now
-		} else {//just got hit
+
+            // minimum 1hp damage - never allow a block to register as 0 damage just in case
+            this.health -= Math.max(1,(Math.ceil(otherEntity.getCurrentDamage() / 10))); 
+
+        } 
+        else if(stateManager.getCurrentState() === STATE.KnockBack) {
+
+            //do nothing for now - invulnerable while being knocked back
+            console.log("Hit enemy is being knocked back - ignoring damage.");
+        
+        } else { //just got hit
+            
 			stateManager.wasHit();
 
 			velocity.y = -KNOCK_BACK_SPEED / 2;
