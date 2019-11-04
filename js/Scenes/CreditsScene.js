@@ -231,7 +231,9 @@ function CreditsScene() {
 	const creditReel = function(deltaTime) {
 		creditPosY -= (0.025 * deltaTime);
 		canvas.addEventListener('wheel', creditScroll);
-		canvas.addEventListener('mousemdown', creditMouseDrag);
+		canvas.addEventListener('keydown',creditsKeyPress);
+		canvas.addEventListener('mousedown', creditMouseDrag);
+		canvas.addEventListener('mouseup', noCreditMouseDrag);
 	};
 
 	var lastScrollPosition = 100;
@@ -254,32 +256,48 @@ function CreditsScene() {
 	    
 	};
 
-	function creditMouseDrag (evt) {
-			var mousePos = calculateMousePos(evt);
-			posX = mousePos.x;
-			posY = mousePos.y;
-			console.log(mousePos.y);
-			console.log("mouse dragging");
-			var newScrollPosition = lastScrollPosition + mousePos.y;
+	var mouseToDrag = false;
 
-			 if (newScrollPosition > lastScrollPosition) {
-			 	//upward scroll code
-			 	creditPosY -= 2.5;
-			 }
-			 if (newScrollPosition < lastScrollPosition)
-			 { //downward scroll code
-			 	creditPosY += 2.5;
-			 }
-	};
+	function creditsKeyPress(evt) {
+	switch (event.keyCode) {
+		case 38: creditPosY = creditPosY - 5; //moves up
+		break;
+		}
+	switch (event.keyCode) {
+		case 40: creditPosY = creditPosY + 5; //moves down
+		break;
+		}
+	}
+
+	function noCreditMouseDrag() {
+		mouseToDrag = false;
+		console.log("nodrag");
+	}
+
+	function creditMouseDrag(evt) {
+		mouseToDrag = true;
+		if (mouseToDrag == true) {
+		canvas.addEventListener('mousemove',
+		function(evt) {
+				var mousePos = calculateMousePos(evt);
+				posX = mousePos.x;
+				posY = mousePos.y;
+				console.log(mousePos);
+				console.log("dragging");
+			});
+		}
+			
+	}
 
 	function calculateMousePos(evt) {
-	var rect = canvas.getBoundingClientRect();
-	var root = document.documentElement;
-	var mouseX = evt.clientX - rect.left - root.scrollLeft;
-	var mouseY = evt.clientY - rect.top - root.scrollTop;
-	return {
-		x:mouseX,
-		y:mouseY
-	};
-}
+		var rect = canvas.getBoundingClientRect();
+		var root = document.documentElement;
+		var mouseX = evt.clientX - rect.left - root.scrollLeft;
+		var mouseY = evt.clientY - rect.top - root.scrollTop;
+		return {
+			x:mouseX,
+			y:mouseY
+		};
+	}
+
 }
