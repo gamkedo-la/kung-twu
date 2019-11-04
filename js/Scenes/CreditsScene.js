@@ -231,7 +231,7 @@ function CreditsScene() {
 	const creditReel = function(deltaTime) {
 		creditPosY -= (0.025 * deltaTime);
 		canvas.addEventListener('wheel', creditScroll);
-		canvas.addEventListener('mousemove', creditMouseDrag);
+		canvas.addEventListener('mousemdown', creditMouseDrag);
 	};
 
 	var lastScrollPosition = 100;
@@ -254,8 +254,6 @@ function CreditsScene() {
 	    
 	};
 
-
-
 	function creditMouseDrag (evt) {
 			var mousePos = calculateMousePos(evt);
 			posX = mousePos.x;
@@ -263,7 +261,7 @@ function CreditsScene() {
 			console.log(mousePos.y);
 			console.log("mouse dragging");
 			var newScrollPosition = lastScrollPosition + mousePos.y;
-			
+
 			 if (newScrollPosition > lastScrollPosition) {
 			 	//upward scroll code
 			 	creditPosY -= 2.5;
