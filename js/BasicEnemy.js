@@ -109,7 +109,7 @@ function BasicEnemy(config) {
 		case STATE.Idle:
 		case STATE.Block:
 		case STATE.KnockBack:
-			return 0;
+			return 0.1 * BASE_DAMAGE;// was 0;
 		case STATE.Punch:
 			return 1 * BASE_DAMAGE;
 		case STATE.Kick:
@@ -361,7 +361,9 @@ function BasicEnemy(config) {
         else if(stateManager.getCurrentState() === STATE.KnockBack) {
 
             //do nothing for now - invulnerable while being knocked back
-            console.log("Hit enemy is being knocked back - ignoring damage.");
+            console.log("Hit enemy is being knocked back - receiving 1 damage anyways.");
+            // bugfix to ensure enemies stuck in knockback forever can be destroyed
+            this.health -= Math.max(1,(Math.ceil(otherEntity.getCurrentDamage() / 20))); 
         
         } else { //just got hit
             
