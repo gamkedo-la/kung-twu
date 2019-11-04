@@ -158,7 +158,9 @@ function Player(config) {
 		position.x = startPos.x;
 		position.y = startPos.y;
 
+		stateManager.setNewBelt(playerBelt);
 		stateManager.reset();
+
 
 		this.collisionBody = hitBoxManager.bodyColliderForState(
 			stateManager.getCurrentState(),
@@ -344,13 +346,14 @@ function Player(config) {
 
 	const dash = function() {
 		if (stateManager.getIsNewState()) {
-			let speed = -2 * WALK_SPEED;
+			let speed = -1.5 * WALK_SPEED;
 			if (stateManager.getIsFacingLeft()) {
-				speed = 2 * WALK_SPEED;
+				speed = 1.5 * WALK_SPEED;
 			}
 
 			velocity.x = speed;
-			sound.playSFX(Sounds.SFX_Swish_01);
+            sound.playSFX(Sounds.SFX_Swish_01);
+            if (wooshFX) wooshFX.triggerDashPlayer(position,(velocity.x>0));
 
 		}
 	};
@@ -361,6 +364,7 @@ function Player(config) {
 
 	const block = function() {
 		console.log("I'm blocking now");
+		velocity.x = 0;
 		if (stateManager.getIsNewState()) {
 			sound.playSFX(Sounds.SFX_PlayerBlock);
 		}

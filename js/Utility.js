@@ -117,4 +117,19 @@ function Rectangle(x, y, width, height) {
 		this.anchor.y = this.top + (this.height * y);
 	};
 }
+
+function imageDataObject(image, clipX, clipY, clipWidth, clipHeight) {
+	return {
+		image:image,
+		clipX:clipX,
+		clipY:clipY,
+		clipWidth:clipWidth,
+		clipHeight:clipHeight
+	};
+}
+
+function drawFromAtlas(context, imageData, drawX, drawY, drawWidth, drawHeight) {
+	//		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlockPos.x, titleBlockPos.y, titleBlockWidth, titleBlockHeight);        
+	context.drawImage(imageData.image, imageData.clipX, imageData.clipY, imageData.clipWidth, imageData.clipHeight, drawX, drawY, drawWidth, drawHeight);
+}
 	

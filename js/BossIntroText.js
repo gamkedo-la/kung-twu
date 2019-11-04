@@ -1,8 +1,8 @@
 //Boss Intro Text
 function BossIntroText(text, position, alignment, scale) {
 	const VELOCITY = -50 / 1000;
-	const TOT_SHOW_TIME = 1000;
-	const TOT_FADE_TIME = 1500;
+	const TOT_SHOW_TIME = 2000;
+	const TOT_FADE_TIME = 3000;
 	const TEXT_ARRAY = text.split("\n");
 	const LINE_HEIGHT = JPFont.getCharacterHeight(scale);
 

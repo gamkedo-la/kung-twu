@@ -198,8 +198,8 @@ const Fonts = {
 /** @type fontSystem */
 let JPFont;
 const CHAR_SIZE = {
-	width:80,
-	height:80
+	width:82,
+	height:82
 };
 
 const fontOverhangRatio = 4 / 5; // Currently 4/5 is correct for "Tahoma" font. Change if font changes

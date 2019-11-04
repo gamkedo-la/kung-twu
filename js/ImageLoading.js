@@ -101,6 +101,7 @@ const basicEnemyKick = document.createElement("img");
 const basicEnemyPunch = document.createElement("img");
 const basicEnemyCrouch = document.createElement("img");
 const basicEnemyDash = document.createElement("img");
+const basicEnemyJump = document.createElement("img");
 const yellowEnemyIdle = document.createElement("img");
 const yellowEnemyWalk = document.createElement("img");
 const yellowEnemyKick = document.createElement("img");
@@ -168,6 +169,10 @@ const wooshKickPic = document.createElement("img");
 const wooshKickPic2 = document.createElement("img");
 const wooshHurtPic = document.createElement("img");
 const wooshKnockoutPic = document.createElement("img");
+const wooshDashPlayerPic = document.createElement("img");
+const wooshDashEnemyPic = document.createElement("img");
+const wooshDashPlayerLPic = document.createElement("img");
+const wooshDashEnemyLPic = document.createElement("img");
 const decorationSpritesheet = document.createElement("img");
 const waterfallSheet = document.createElement("img");
 const lamp = document.createElement("img");
@@ -182,6 +187,7 @@ const bambooLight = document.createElement("img");
 const tree = document.createElement("img");
 const carpet = document.createElement("img");
 const carpet2 = document.createElement("img");
+const painting = document.createElement("img");
 
 let picsToLoad = 0;
 
@@ -206,6 +212,7 @@ function loadImages() {
 		{ imgName: basicEnemyPunch, theFile: "EnemyPunching.png" },
 		{ imgName: basicEnemyCrouch, theFile: "EnemyCrouching.png" },
 		{ imgName: basicEnemyDash, theFile: "EnemyDashing.png" },
+		{ imgName: basicEnemyJump, theFile: "EnemyJumping.png" },
 		{ imgName: yellowEnemyIdle, theFile: "TempEnemy_Yellow.png" },
 		{ imgName: yellowEnemyWalk, theFile: "EnemyWalking_Yellow.png" },
 		{ imgName: yellowEnemyKick, theFile: "EnemyKicking_Yellow.png" },
@@ -282,6 +289,7 @@ function loadImages() {
 		{ imgName: tree, theFile: "Tree.png"},
 		{ imgName: carpet, theFile: "carpet.png"},
 		{ imgName: carpet2, theFile: "carpet_2.png"},
+		{ imgName: painting, theFile: "painting.png"},
 
 		// player related
 		{ imgName: playerIdleWhite, theFile: "Player_Idle_White.png"},
@@ -320,12 +328,17 @@ function loadImages() {
 		{ imgName: wooshKickPic2, theFile: "wooshKick2.png"},
 		{ imgName: wooshHurtPic, theFile: "wooshHurt.png"},
 		{ imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
+		{ imgName: wooshDashPlayerPic, theFile: "wooshDashPlayer.png"},
+		{ imgName: wooshDashEnemyPic, theFile: "wooshDashEnemy.png"},
+		{ imgName: wooshDashPlayerLPic, theFile: "wooshDashPlayerL.png"},
+		{ imgName: wooshDashEnemyLPic, theFile: "wooshDashEnemyL.png"},
+        
 
 		// UI
 		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
 		{ imgName: titleScreenBird, theFile: "bird_sprite-flap-sheet.png"},
 		{ imgName: selector, theFile: "title_screen_yinyang_selector.png"},
-		{ imgName: jpFontImg, theFile: "JPFont.png"},
+		{ imgName: jpFontImg, theFile: "JPFont_Light.png"},
 	];
 
 	picsToLoad = imageList.length;

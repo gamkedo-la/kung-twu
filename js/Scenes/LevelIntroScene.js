@@ -6,7 +6,7 @@ function LevelIntroScene() {
 	const buttonHeight = 25;
 	const buttonTitlePadding = 2;
 	const buttons = [];
-	const MSG_SCALE = 0.55;
+	const MSG_SCALE = 0.85;
 	const CONTROLS_SCALE = 0.3;
 
 	let titleBlockWidth = 0;
@@ -37,11 +37,11 @@ function LevelIntroScene() {
 		let mainMenuX = canvas.width / 2;
 		const mainMenuY = canvas.height - (9 * buttonHeight / 2);
 
-		MESSAGE_Y_POS = 125;
-		LINE_HEIGHT = 2.0 * JPFont.getCharacterHeight(MSG_SCALE);
+		MESSAGE_Y_POS = 175;
+		LINE_HEIGHT = 1.25 * JPFont.getCharacterHeight(MSG_SCALE);
 
 		CONTROLS_Y_POS = 50 + canvas.height / 2;
-		MSG_LINE_HEIGHT = JPFont.getCharacterHeight(CONTROLS_SCALE);
+		MSG_LINE_HEIGHT = 1.5 * JPFont.getCharacterHeight(CONTROLS_SCALE);
 		
 		if(buttons.length === 0) {
 			buttons.push(buildDoneButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
@@ -109,6 +109,7 @@ function LevelIntroScene() {
 		
 		let resultString = "";
 		switch(colorToUse) {
+		case BELT.Black:
 		case BELT.Red:
 			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl5);
 		// eslint-disable-next-line no-fallthrough
@@ -119,25 +120,6 @@ function LevelIntroScene() {
 			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl3) + "\n" + resultString;
 		// eslint-disable-next-line no-fallthrough
 		case BELT.Yellow:
-			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl2) + "\n" + resultString;
-		}
-
-		return resultString;
-	};
-
-	const specialControlsForNewLevel = function() {
-		let resultString = "";
-		switch(currentLevel) {
-		case 5:
-			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl5);
-		// eslint-disable-next-line no-fallthrough
-		case 4:
-			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl4) + "\n" + resultString;
-		// eslint-disable-next-line no-fallthrough
-		case 3:
-			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl3) + "\n" + resultString;
-		// eslint-disable-next-line no-fallthrough
-		case 2:
 			resultString = getLocalizedStringForKey(STRINGS_KEY.ControlsText_Lvl2) + "\n" + resultString;
 		}
 
@@ -215,7 +197,7 @@ function LevelIntroScene() {
 
 		titleBlockWidth = 30 + maxWidth;
 		titleBlockPos.x = canvas.width / 2 - titleBlockWidth / 2 + 4;
-		titleBlockPos.y = CONTROLS_Y_POS - 44;
+		titleBlockPos.y = CONTROLS_Y_POS - 54;
 
 		if(playerBelt !== BELT.White) {
 			let maxWidth = 0;
@@ -228,7 +210,7 @@ function LevelIntroScene() {
 	
 			titleBlock2Width = 30 + maxWidth;
 			titleBlock2Pos.x = 3 * canvas.width / 4 - titleBlock2Width / 2 + 4;
-			titleBlock2Pos.y = CONTROLS_Y_POS - 44;
+			titleBlock2Pos.y = CONTROLS_Y_POS - 54;
 
 			titleBlockPos.x = canvas.width / 4 - titleBlockWidth / 2 + 4;
 		}
@@ -271,9 +253,9 @@ function LevelIntroScene() {
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
-		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlockPos.x, titleBlockPos.y, titleBlockWidth, titleBlock.height);   
+		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlockPos.x, titleBlockPos.y, titleBlockWidth, MSG_LINE_HEIGHT * controls.length + 30);   
 		if(playerBelt !== BELT.White) {
-			canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlock2Pos.x, titleBlock2Pos.y, titleBlock2Width, titleBlock.height);
+			canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlock2Pos.x, titleBlock2Pos.y, titleBlock2Width, MSG_LINE_HEIGHT * controls.length + 30);
 		}
 	};
 

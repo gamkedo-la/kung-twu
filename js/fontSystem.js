@@ -94,13 +94,14 @@ function fontSystem(jpFont, charSize, context) {
 		}
 
 		if(character2 === "'") {
-			return 25;
+			return 55;
 		}
 
 		switch(character1) {
 		case " ": return 35;
 		case "W":
 		case "w": return 55;
+		case "'": return 25;
 		default: return 50;
 		}
 	};

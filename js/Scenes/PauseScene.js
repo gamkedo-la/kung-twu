@@ -91,7 +91,7 @@ function PauseScene() {
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.CONTROLS:
-			console.log("Controls Scene doesn't exist yet");
+			SceneState.setState(SCENE.CONTROLS);
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.HELP:
@@ -187,7 +187,7 @@ function PauseScene() {
 
 	const buildControlsButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			//SceneState.setState(SCENE.CONTROLS);
+			SceneState.setState(SCENE.CONTROLS);
 			console.log("Going to the Controls Screen now...");
 		};
 
