@@ -16,9 +16,6 @@ function showStartImage() {
 const HTGDLogoPic = document.createElement("img");
 function loadGamkedoLogo() {
 	HTGDLogoPic.onload = function() {
-		//Draw the Gamkedo Logo Image
-		canvasContext.drawImage(this, 0, 0);
-
 		//Begin loading the Start Image
 		loadStartImagePic();
 
