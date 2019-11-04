@@ -91,7 +91,7 @@ function PauseScene() {
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.CONTROLS:
-			console.log("Controls Scene doesn't exist yet");
+			SceneState.setState(SCENE.CONTROLS);
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.HELP:
