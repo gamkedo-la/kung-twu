@@ -172,7 +172,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:basicEnemyJump,
-			frames:[0, 1, 2],
+			frames:[0],
 			width:basicEnemyJump.width / 3,
 			height:basicEnemyJump.height,
 			frameTimes:[50],

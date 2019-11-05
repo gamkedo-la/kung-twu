@@ -92,13 +92,16 @@ const tanPresentation = document.createElement("img");
 const brownPresentation = document.createElement("img");
 const redPresentation = document.createElement("img");
 const blackPresentation = document.createElement("img");
-const basicEnemyIdle = document.createElement("img");
-const basicEnemyWalk = document.createElement("img");
-const basicEnemyKick = document.createElement("img");
-const basicEnemyPunch = document.createElement("img");
-const basicEnemyCrouch = document.createElement("img");
-const basicEnemyDash = document.createElement("img");
-const basicEnemyJump = document.createElement("img");
+const characterAtlas = document.createElement("img");
+
+const basicEnemyIdle = document.createElement("canvas");
+const basicEnemyWalk = document.createElement("canvas");
+const basicEnemyKick = document.createElement("canvas");
+const basicEnemyPunch = document.createElement("canvas");
+const basicEnemyCrouch = document.createElement("canvas");
+const basicEnemyDash = document.createElement("canvas");
+const basicEnemyJump = document.createElement("canvas");
+
 const yellowEnemyIdle = document.createElement("img");
 const yellowEnemyWalk = document.createElement("img");
 const yellowEnemyKick = document.createElement("img");
@@ -191,6 +194,14 @@ let picsToLoad = 0;
 function countLoadedImageAndLaunchIfReady() {
 	picsToLoad--;
 	if (picsToLoad == 0) { // last image loaded?
+		initializeCanvasFromAtlas(basicEnemyIdle, basicEnemyIdleData);
+		initializeCanvasFromAtlas(basicEnemyWalk, basicEnemyWalkData);
+		initializeCanvasFromAtlas(basicEnemyKick, basicEnemyKickData);
+		initializeCanvasFromAtlas(basicEnemyPunch, basicEnemyPunchData);
+		initializeCanvasFromAtlas(basicEnemyCrouch, basicEnemyCrouchData);
+		initializeCanvasFromAtlas(basicEnemyDash, basicEnemyDashData);
+		initializeCanvasFromAtlas(basicEnemyJump, basicEnemyJumpData);
+
 		loadingDoneSoStartGame();
 	}
 }
@@ -200,16 +211,24 @@ function beginLoadingImage(imgVar, fileName) {
 	imgVar.src = assetPath.Image + fileName;
 }
 
+function initializeCanvasFromAtlas(canvas, data) {
+	canvas.width = data.clipWidth;
+	canvas.height = data.clipHeight;
+	const context = canvas.getContext("2d");
+	context.drawImage(characterAtlas, data.clipX, data.clipY, data.clipWidth, data.clipHeight, 0, 0, data.clipWidth, data.clipHeight);
+}
+
 function loadImages() {
 	const imageList = [
 		// enemies
-		{ imgName: basicEnemyIdle, theFile: "TempEnemy.png" },
+		{ imgName: characterAtlas, theFile: "CharacterAtlas.png" },
+/*		{ imgName: basicEnemyIdle, theFile: "TempEnemy.png" },
 		{ imgName: basicEnemyWalk, theFile: "EnemyWalking.png" },
 		{ imgName: basicEnemyKick, theFile: "EnemyKicking.png" },
 		{ imgName: basicEnemyPunch, theFile: "EnemyPunching.png" },
 		{ imgName: basicEnemyCrouch, theFile: "EnemyCrouching.png" },
 		{ imgName: basicEnemyDash, theFile: "EnemyDashing.png" },
-		{ imgName: basicEnemyJump, theFile: "EnemyJumping.png" },
+		{ imgName: basicEnemyJump, theFile: "EnemyJumping.png" },*/
 		{ imgName: yellowEnemyIdle, theFile: "TempEnemy_Yellow.png" },
 		{ imgName: yellowEnemyWalk, theFile: "EnemyWalking_Yellow.png" },
 		{ imgName: yellowEnemyKick, theFile: "EnemyKicking_Yellow.png" },

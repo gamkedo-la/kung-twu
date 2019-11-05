@@ -102,6 +102,38 @@ const SCENE = {
 	ENDING: "ending"
 };
 
+const STATE = {
+	Idle:"idle",
+	WalkLeft:"walkLeft",
+	WalkRight:"walkRight",
+	Jump:"jump",
+	Crouch:"crouch",
+	Dash:"dash",
+	Sweep:"sweep",
+	J_Kick:"j-kick",
+	H_Kick:"h-kick",
+	Punch:"punch",
+	Kick:"kick",
+	Block:"block",
+	KnockBack:"knock-back"
+};
+
+const ACTION = {
+	Left:"left",
+	Right:"right",
+	Crouch:"crouch",
+	Hit:"hit",
+	Jump:"jump",
+	Release:"release",
+	Punch:"punch",
+	Kick:"kick",
+	Land:"land",
+	End:"end",
+	Block:"block",
+	Dash:"dash",
+	NoChange:"noChange"
+};
+
 /**
  * Tracks whether the user has yet interacted with the window.
  * Scope: Global
