@@ -141,6 +141,7 @@ function Player(config) {
 		}
 
 		this.reset(position);
+		playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
 		stateManager.setNewBelt(playerBelt);
 	};
 
@@ -148,7 +149,6 @@ function Player(config) {
 		velocity = { x: 0, y: 0 };
 
 		this.health = ASSIST_DEFAULT.MaxHealth;
-		playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
 		if(config != undefined) {
 			if (config.health != undefined) {
 				this.health = config.health;
@@ -158,7 +158,6 @@ function Player(config) {
 		position.x = startPos.x;
 		position.y = startPos.y;
 
-		stateManager.setNewBelt(playerBelt);
 		stateManager.reset();
 
 

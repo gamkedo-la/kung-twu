@@ -305,37 +305,6 @@ function loadImages() {
 	const imageList = [
 		// enemies
 		{ imgName: characterAtlas, theFile: "CharacterAtlas.png" },
-/*		{ imgName: basicEnemyIdle, theFile: "TempEnemy.png" },
-		{ imgName: basicEnemyWalk, theFile: "EnemyWalking.png" },
-		{ imgName: basicEnemyKick, theFile: "EnemyKicking.png" },
-		{ imgName: basicEnemyPunch, theFile: "EnemyPunching.png" },
-		{ imgName: basicEnemyCrouch, theFile: "EnemyCrouching.png" },
-		{ imgName: basicEnemyDash, theFile: "EnemyDashing.png" },
-		{ imgName: basicEnemyJump, theFile: "EnemyJumping.png" },
-		{ imgName: yellowEnemyIdle, theFile: "TempEnemy_Yellow.png" },
-		{ imgName: yellowEnemyWalk, theFile: "EnemyWalking_Yellow.png" },
-		{ imgName: yellowEnemyKick, theFile: "EnemyKicking_Yellow.png" },
-		{ imgName: yellowEnemyPunch, theFile: "EnemyPunching_Yellow.png" },
-		{ imgName: yellowEnemyCrouch, theFile: "EnemyCrouching_Yellow.png" },
-		{ imgName: yellowEnemyDash, theFile: "EnemyDashing_Yellow.png" },
-		{ imgName: tanEnemyIdle, theFile: "TempEnemy_Tan.png" },
-		{ imgName: tanEnemyWalk, theFile: "EnemyWalking_Tan.png" },
-		{ imgName: tanEnemyKick, theFile: "EnemyKicking_Tan.png" },
-		{ imgName: tanEnemyPunch, theFile: "EnemyPunching_Tan.png" },
-		{ imgName: tanEnemyCrouch, theFile: "EnemyCrouching_Tan.png" },
-		{ imgName: tanEnemyDash, theFile: "EnemyDashing_Tan.png" },
-		{ imgName: brownEnemyIdle, theFile: "TempEnemy_Brown.png" },
-		{ imgName: brownEnemyWalk, theFile: "EnemyWalking_Brown.png" },
-		{ imgName: brownEnemyKick, theFile: "EnemyKicking_Brown.png" },
-		{ imgName: brownEnemyPunch, theFile: "EnemyPunching_Brown.png" },
-		{ imgName: brownEnemyCrouch, theFile: "EnemyCrouching_Brown.png" },
-		{ imgName: brownEnemyDash, theFile: "EnemyDashing_Brown.png" },
-		{ imgName: redEnemyIdle, theFile: "TempEnemy_Red.png" },
-		{ imgName: redEnemyWalk, theFile: "EnemyWalking_Red.png" },
-		{ imgName: redEnemyKick, theFile: "EnemyKicking_Red.png" },
-		{ imgName: redEnemyPunch, theFile: "EnemyPunching_Red.png" },
-		{ imgName: redEnemyCrouch, theFile: "EnemyCrouching_Red.png" },
-		{ imgName: redEnemyDash, theFile: "EnemyDashing_Red.png" },*/
 
 		{ imgName: yellowBossIdle, theFile: "Boss_Idle_Yellow.png" },
 		{ imgName: yellowBossWalk, theFile: "BossWalking_Yellow.png" },
@@ -391,42 +360,7 @@ function loadImages() {
 		{ imgName: painting, theFile: "Painting.png"},
 
 		// player related
-/*		{ imgName: playerIdleWhite, theFile: "Player_Idle_White.png"},
-		{ imgName: playerIdleYellow, theFile: "Player_Idle_Yellow.png"},
-		{ imgName: playerIdleTan, theFile: "Player_Idle_Tan.png"},
-		{ imgName: playerIdleBrown, theFile: "Player_Idle_Brown.png"},
-		{ imgName: playerIdleRed, theFile: "Player_Idle_Red.png"},
-		{ imgName: playerIdleBlack, theFile: "Player_Idle_Black.png"},*/
-
-/*		{ imgName: playerWalkWhite, theFile: "player_Walk_White.png"},
-		{ imgName: playerWalkYellow, theFile: "player_Walk_Yellow.png"},
-		{ imgName: playerWalkTan, theFile: "player_Walk_Tan.png"},
-		{ imgName: playerWalkBrown, theFile: "player_Walk_Brown.png"},
-		{ imgName: playerWalkRed, theFile: "player_Walk_Red.png"},
-		{ imgName: playerWalkBlack, theFile: "player_Walk_Black.png"},*/
-
 		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
-
-/*		{ imgName: playerPunchWhite, theFile: "Player_Punch_White.png"},
-		{ imgName: playerPunchYellow, theFile: "Player_Punch_Yellow.png"},
-		{ imgName: playerPunchTan, theFile: "Player_Punch_Tan.png"},
-		{ imgName: playerPunchBrown, theFile: "Player_Punch_Brown.png"},
-		{ imgName: playerPunchRed, theFile: "Player_Punch_Red.png"},
-		{ imgName: playerPunchBlack, theFile: "Player_Punch_Black.png"},*/
-
-/*		{ imgName: playerKickWhite, theFile: "Player_Kick_White.png"},
-		{ imgName: playerKickYellow, theFile: "Player_Kick_Yellow.png"},
-		{ imgName: playerKickTan, theFile: "Player_Kick_Tan.png"},
-		{ imgName: playerKickBrown, theFile: "Player_Kick_Brown.png"},
-		{ imgName: playerKickRed, theFile: "Player_Kick_Red.png"},
-		{ imgName: playerKickBlack, theFile: "Player_Kick_Black.png"},*/
-
-/*		{ imgName: playerKnockbackWhite, theFile: "Player_Knockback_White.png"},
-		{ imgName: playerKnockbackYellow, theFile: "Player_Knockback_Yellow.png"},
-		{ imgName: playerKnockbackTan, theFile: "Player_Knockback_Tan.png"},
-		{ imgName: playerKnockbackBrown, theFile: "Player_Knockback_Brown.png"},
-		{ imgName: playerKnockbackRed, theFile: "Player_Knockback_Red.png"},
-		{ imgName: playerKnockbackBlack, theFile: "Player_Knockback_Black.png"},*/
 
 		{ imgName: wooshPunchPic, theFile: "wooshPunch.png"},
 		{ imgName: wooshKickPic, theFile: "wooshKick.png"},

@@ -386,6 +386,7 @@ function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 	this.setNewBelt = function(newBelt) {
 		belt = newBelt;
 		currentAnimations = animationManager.getAnimationsFor(rivalType, belt, scale);
+		currentAnimation = currentAnimations.idle;
 	};
 
 	this.incrementBelt = function() {
