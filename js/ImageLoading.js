@@ -172,12 +172,12 @@ const playerKickBrown = document.createElement("canvas");
 const playerKickRed = document.createElement("canvas");
 const playerKickBlack = document.createElement("canvas");
 
-const playerKnockbackWhite = document.createElement("img");
-const playerKnockbackYellow = document.createElement("img");
-const playerKnockbackTan = document.createElement("img");
-const playerKnockbackBrown = document.createElement("img");
-const playerKnockbackRed = document.createElement("img");
-const playerKnockbackBlack = document.createElement("img");
+const playerKnockbackWhite = document.createElement("canvas");
+const playerKnockbackYellow = document.createElement("canvas");
+const playerKnockbackTan = document.createElement("canvas");
+const playerKnockbackBrown = document.createElement("canvas");
+const playerKnockbackRed = document.createElement("canvas");
+const playerKnockbackBlack = document.createElement("canvas");
 
 const wooshPunchPic = document.createElement("img");
 const wooshKickPic = document.createElement("img");
@@ -213,31 +213,37 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(playerWalkWhite, playerWalkWhiteData);
 		initializeCanvasFromAtlas(playerKickWhite, playerKickWhiteData);
 		initializeCanvasFromAtlas(playerPunchWhite, playerPunchWhiteData);
+		initializeCanvasFromAtlas(playerKnockbackWhite, playerKnockbackWhiteData);
 
 		initializeCanvasFromAtlas(playerIdleYellow, playerIdleYellowData);
 		initializeCanvasFromAtlas(playerWalkYellow, playerWalkYellowData);
 		initializeCanvasFromAtlas(playerKickYellow, playerKickYellowData);
 		initializeCanvasFromAtlas(playerPunchYellow, playerPunchYellowData);
+		initializeCanvasFromAtlas(playerKnockbackYellow, playerKnockbackYellowData);
 
 		initializeCanvasFromAtlas(playerIdleTan, playerIdleTanData);
 		initializeCanvasFromAtlas(playerWalkTan, playerWalkTanData);
 		initializeCanvasFromAtlas(playerKickTan, playerKickTanData);
 		initializeCanvasFromAtlas(playerPunchTan, playerPunchTanData);
+		initializeCanvasFromAtlas(playerKnockbackTan, playerKnockbackTanData);
 
 		initializeCanvasFromAtlas(playerIdleBrown, playerIdleBrownData);
 		initializeCanvasFromAtlas(playerWalkBrown, playerWalkBrownData);
 		initializeCanvasFromAtlas(playerKickBrown, playerKickBrownData);
 		initializeCanvasFromAtlas(playerPunchBrown, playerPunchBrownData);
+		initializeCanvasFromAtlas(playerKnockbackBrown, playerKnockbackBrownData);
 
 		initializeCanvasFromAtlas(playerIdleRed, playerIdleRedData);
 		initializeCanvasFromAtlas(playerWalkRed, playerWalkRedData);
 		initializeCanvasFromAtlas(playerKickRed, playerKickRedData);
 		initializeCanvasFromAtlas(playerPunchRed, playerPunchRedData);
+		initializeCanvasFromAtlas(playerKnockbackRed, playerKnockbackRedData);
 
 		initializeCanvasFromAtlas(playerIdleBlack, playerIdleBlackData);
 		initializeCanvasFromAtlas(playerWalkBlack, playerWalkBlackData);
 		initializeCanvasFromAtlas(playerKickBlack, playerKickBlackData);
 		initializeCanvasFromAtlas(playerPunchBlack, playerPunchBlackData);
+		initializeCanvasFromAtlas(playerKnockbackBlack, playerKnockbackBlackData);
 
 		initializeCanvasFromAtlas(basicEnemyIdle, basicEnemyIdleData);
 		initializeCanvasFromAtlas(basicEnemyWalk, basicEnemyWalkData);
@@ -415,12 +421,12 @@ function loadImages() {
 		{ imgName: playerKickRed, theFile: "Player_Kick_Red.png"},
 		{ imgName: playerKickBlack, theFile: "Player_Kick_Black.png"},*/
 
-		{ imgName: playerKnockbackWhite, theFile: "Player_Knockback_White.png"},
+/*		{ imgName: playerKnockbackWhite, theFile: "Player_Knockback_White.png"},
 		{ imgName: playerKnockbackYellow, theFile: "Player_Knockback_Yellow.png"},
 		{ imgName: playerKnockbackTan, theFile: "Player_Knockback_Tan.png"},
 		{ imgName: playerKnockbackBrown, theFile: "Player_Knockback_Brown.png"},
 		{ imgName: playerKnockbackRed, theFile: "Player_Knockback_Red.png"},
-		{ imgName: playerKnockbackBlack, theFile: "Player_Knockback_Black.png"},
+		{ imgName: playerKnockbackBlack, theFile: "Player_Knockback_Black.png"},*/
 
 		{ imgName: wooshPunchPic, theFile: "wooshPunch.png"},
 		{ imgName: wooshKickPic, theFile: "wooshKick.png"},

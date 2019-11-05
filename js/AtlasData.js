@@ -93,6 +93,21 @@ const playerKickWhiteData = {
 	loops:false
 };
 
+const playerKnockbackWhiteData = {
+	name:STATE.KnockBack,
+	image:characterAtlas,
+	clipX:222,
+	clipY:ATLAS_ROW0,
+	clipWidth:312,
+	clipHeight:69,
+	frameWidth:78,
+	frameCount:4,
+	frames:[0, 1, 2, 3],
+	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Player Yellow Belt Atlas Data--------//
 
 const playerIdleYellowData = {
@@ -151,6 +166,21 @@ const playerKickYellowData = {
 	frameCount:3,
 	frames:[0, 1, 2, 1],
 	frameTimes:[50, 150, 225, 50],
+	reverses:false,
+	loops:false
+};
+
+const playerKnockbackYellowData = {
+	name:STATE.KnockBack,
+	image:characterAtlas,
+	clipX:222,
+	clipY:ATLAS_ROW1,
+	clipWidth:312,
+	clipHeight:69,
+	frameWidth:78,
+	frameCount:4,
+	frames:[0, 1, 2, 3],
+	frameTimes:[50],
 	reverses:false,
 	loops:false
 };
@@ -217,6 +247,21 @@ const playerKickTanData = {
 	loops:false
 };
 
+const playerKnockbackTanData = {
+	name:STATE.KnockBack,
+	image:characterAtlas,
+	clipX:222,
+	clipY:ATLAS_ROW2,
+	clipWidth:312,
+	clipHeight:69,
+	frameWidth:78,
+	frameCount:4,
+	frames:[0, 1, 2, 3],
+	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Player Brown Belt Atlas Data--------//
 
 const playerIdleBrownData = {
@@ -275,6 +320,21 @@ const playerKickBrownData = {
 	frameCount:3,
 	frames:[0, 1, 2, 1],
 	frameTimes:[50, 150, 225, 50],
+	reverses:false,
+	loops:false
+};
+
+const playerKnockbackBrownData = {
+	name:STATE.KnockBack,
+	image:characterAtlas,
+	clipX:222,
+	clipY:ATLAS_ROW3,
+	clipWidth:312,
+	clipHeight:69,
+	frameWidth:78,
+	frameCount:4,
+	frames:[0, 1, 2, 3],
+	frameTimes:[50],
 	reverses:false,
 	loops:false
 };
@@ -341,6 +401,21 @@ const playerKickRedData = {
 	loops:false
 };
 
+const playerKnockbackRedData = {
+	name:STATE.KnockBack,
+	image:characterAtlas,
+	clipX:222,
+	clipY:ATLAS_ROW4,
+	clipWidth:312,
+	clipHeight:69,
+	frameWidth:78,
+	frameCount:4,
+	frames:[0, 1, 2, 3],
+	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Player Black Belt Atlas Data--------//
 
 const playerIdleBlackData = {
@@ -399,6 +474,21 @@ const playerKickBlackData = {
 	frameCount:3,
 	frames:[0, 1, 2, 1],
 	frameTimes:[50, 150, 225, 50],
+	reverses:false,
+	loops:false
+};
+
+const playerKnockbackBlackData = {
+	name:STATE.KnockBack,
+	image:characterAtlas,
+	clipX:222,
+	clipY:ATLAS_ROW5,
+	clipWidth:312,
+	clipHeight:69,
+	frameWidth:78,
+	frameCount:4,
+	frames:[0, 1, 2, 3],
+	frameTimes:[50],
 	reverses:false,
 	loops:false
 };
