@@ -1,4 +1,4 @@
-//Settings Scene
+//*Settings Scene
 function ControlsScene() {
 	this.name = "controls";
 	const TITLE_Y_POS = 100;
@@ -17,7 +17,60 @@ function ControlsScene() {
 	/** @type UIProgressBar */
 	//let uiProgBarEffectsVolume;
 	this.transitionIn = function() {
-		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
+	canvasContext.setTransform(1, 0, 0, 1, 0, 0);
+//original keys
+	var keyLookup = [
+		"left",
+		"right",
+		"jump",
+		"punch",
+		"kick",
+		"crouch",
+		"dash"
+	];
+
+	keyLookup["left"] = KEY_LEFT;
+	keyLookup["right"] = KEY_RIGHT;
+	keyLookup["jump"] = KEY_JUMP;
+	keyLookup["punch"] = KEY_PUNCH;
+	keyLookup["kick"] = KEY_KICK;
+	keyLookup["crouch"] = KEY_CROUCH;
+	keyLookup["dash"] = KEY_DASH;
+//changing keys
+
+//Input keydown code
+if(changingKeyFor != null) {
+	keyLookup[changingKeyFor] = evt.keyCode; // will overwrite "left" as next key pressed
+   }
+	this.keyLookup[changingKeyFor] = function(){
+		var changingKeyFor = null;
+		if("Left sprite"){ //...left movement sprite...
+			changingKeyFor = "left";
+		}
+		if("Left sprite"){
+			changingKeyFor = "right";
+		}
+		if("Left sprite" ){
+			changingKeyFor = "jump";
+		}
+		if("Left sprite" ){
+			changingKeyFor = "punch";
+		}
+		if("Left sprite" ){
+			changingKeyFor = "kick";
+		}
+		if("Left sprite"){
+			changingKeyFor = "crouch";
+		}
+		if("Left sprite"){
+			changingKeyFor = "dash";
+		}
+
+	}
+
+
+
+
 
 /*		// Testing new UIProgressBar
 		uiProgBarMusicVolume = new UIProgressBar({
