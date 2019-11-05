@@ -388,7 +388,7 @@ function loadImages() {
 		{ imgName: tree, theFile: "Tree.png"},
 		{ imgName: carpet, theFile: "carpet.png"},
 		{ imgName: carpet2, theFile: "carpet_2.png"},
-		{ imgName: painting, theFile: "painting.png"},
+		{ imgName: painting, theFile: "Painting.png"},
 
 		// player related
 /*		{ imgName: playerIdleWhite, theFile: "Player_Idle_White.png"},
