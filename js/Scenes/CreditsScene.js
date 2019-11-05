@@ -230,6 +230,9 @@ function CreditsScene() {
 	var mouseToDrag = false;
 	var creditRun = true;
 	var lastScrollPosition = 100;
+	var previousMousePosY;
+	var mousePos = {x:0, y:0};
+
 	const creditReel = function(deltaTime) {
 		if(creditRun) {
 		creditPosY -= (0.025 * deltaTime);
@@ -238,6 +241,7 @@ function CreditsScene() {
 		canvas.addEventListener('keydown',creditsKeyPress);
 		canvas.addEventListener('mousedown', creditStop);
 		canvas.addEventListener('mouseup', noCreditMouseDrag);
+		canvas.addEventListener('mousemove',creditMouseDrag);
 	};
 
 
@@ -274,6 +278,8 @@ function CreditsScene() {
 
 	function creditStop () {
 		creditRun = false;
+		mouseToDrag = true;
+		
 	}
 
 	function noCreditMouseDrag() {
@@ -284,19 +290,21 @@ function CreditsScene() {
 
 
 	function creditMouseDrag(evt) {
-		mouseToDrag = true;
+		previousMousePosY = mousePos.y;
 		if (mouseToDrag) {
-		canvas.addEventListener('mousemove',
-		function(evt) {
-				var mousePos = calculateMousePos(evt);
+				mousePos = calculateMousePos(evt);
 				posX = mousePos.x;
 				posY = mousePos.y;
 				console.log(mousePos);
 				console.log("drag");
-				creditPosY = lastScrollPosition;
-			});	
-		}	
-	}
+			if (posY > previousMousePosY) {
+				creditPosY +=2.5;
+			} else if (posY < previousMousePosY) {
+				creditPosY -=2.5;
+			}
+		}
+	}	
+	
 
 	function calculateMousePos(evt) {
 		var rect = canvas.getBoundingClientRect();
