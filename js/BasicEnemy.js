@@ -109,7 +109,7 @@ function BasicEnemy(config) {
 		case STATE.Idle:
 		case STATE.Block:
 		case STATE.KnockBack:
-			return 0;
+			return 0.1 * BASE_DAMAGE;// was 0;
 		case STATE.Punch:
 			return 1 * BASE_DAMAGE;
 		case STATE.Kick:
@@ -353,10 +353,21 @@ function BasicEnemy(config) {
 		}
 		
 		if(stateManager.getCurrentState() === STATE.Block) {
-			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10));
-		} else if(stateManager.getCurrentState() === STATE.KnockBack) {
-		//do nothing for now
-		} else {//just got hit
+
+			// minimum 1hp damage - never allow a block to register as 0 damage just in case
+			// any positive (non-zero) value divided by ten and rounded up is at least 1
+			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10)); 
+
+		} 
+		else if(stateManager.getCurrentState() === STATE.KnockBack) {
+
+			//do nothing for now - invulnerable while being knocked back
+			console.log("Hit enemy is being knocked back - receiving 1 damage anyways.");
+			// bugfix to ensure enemies stuck in knockback forever can be destroyed
+			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 20)); 
+        
+		} else { //just got hit
+            
 			stateManager.wasHit();
 
 			velocity.y = -KNOCK_BACK_SPEED / 2;
@@ -420,7 +431,6 @@ function BasicEnemy(config) {
 				if(position.x < otherEdges.lowX) {
 					//Enemy is to the left of other object => move to left
 					position.x -= (myEdges.highX - otherEdges.lowX);
-					velocity.x = 0;
 				}
 			} else if(velocity.x < 0) {
 				//Enemy is moving to the left

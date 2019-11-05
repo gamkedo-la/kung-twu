@@ -172,7 +172,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:basicEnemyJump,
-			frames:[0, 1, 2],
+			frames:[0],
 			width:basicEnemyJump.width / 3,
 			height:basicEnemyJump.height,
 			frameTimes:[50],
@@ -624,7 +624,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3],
 			width:playerKnockbackWhite.width / 4,
 			height:playerKnockbackWhite.height,
-			frameTimes:[100],
+			frameTimes:[100,100,100,100],
 			reverses:false,
 			loops:false
 		}
@@ -693,7 +693,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3],
 			width:playerKnockbackYellow.width / 4,
 			height:playerKnockbackYellow.height,
-			frameTimes:[60],
+			frameTimes:[60,60,60,60],
 			reverses:false,
 			loops:false
 		}
@@ -762,7 +762,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3],
 			width:playerKnockbackTan.width / 4,
 			height:playerKnockbackTan.height,
-			frameTimes:[60],
+			frameTimes:[60,60,60,60],
 			reverses:false,
 			loops:false
 		}
@@ -831,7 +831,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3],
 			width:playerKnockbackBrown.width / 4,
 			height:playerKnockbackBrown.height,
-			frameTimes:[60],
+			frameTimes:[60,60,60,60],
 			reverses:false,
 			loops:false
 		}
@@ -900,7 +900,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3],
 			width:playerKnockbackRed.width / 4,
 			height:playerKnockbackRed.height,
-			frameTimes:[60],
+			frameTimes:[60,60,60,60],
 			reverses:false,
 			loops:false
 		}
@@ -969,7 +969,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3],
 			width:playerKnockbackBlack.width / 4,
 			height:playerKnockbackBlack.height,
-			frameTimes:[100],
+			frameTimes:[60,60,60,60],
 			reverses:false,
 			loops:false
 		}
