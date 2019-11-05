@@ -227,16 +227,20 @@ function CreditsScene() {
 		}
 	};
 
-
+	var mouseToDrag = false;
+	var creditRun = true;
+	var lastScrollPosition = 100;
 	const creditReel = function(deltaTime) {
+		if(creditRun) {
 		creditPosY -= (0.025 * deltaTime);
+			}
 		canvas.addEventListener('wheel', creditScroll);
 		canvas.addEventListener('keydown',creditsKeyPress);
-		canvas.addEventListener('mousedown', creditMouseDrag);
+		canvas.addEventListener('mousedown', creditStop);
 		canvas.addEventListener('mouseup', noCreditMouseDrag);
 	};
 
-	var lastScrollPosition = 100;
+
 	// function for user to control credits by scrolling with mouse wheel
 	const creditScroll = function(e) {
 		//TODO: Add implementation here
@@ -256,7 +260,6 @@ function CreditsScene() {
 	    
 	};
 
-	var mouseToDrag = false;
 
 	function creditsKeyPress(evt) {
 	switch (event.keyCode) {
@@ -269,24 +272,30 @@ function CreditsScene() {
 		}
 	}
 
+	function creditStop () {
+		creditRun = false;
+	}
+
 	function noCreditMouseDrag() {
 		mouseToDrag = false;
+		creditRun = true;
 		console.log("nodrag");
 	}
 
+
 	function creditMouseDrag(evt) {
 		mouseToDrag = true;
-		if (mouseToDrag == true) {
+		if (mouseToDrag) {
 		canvas.addEventListener('mousemove',
 		function(evt) {
 				var mousePos = calculateMousePos(evt);
 				posX = mousePos.x;
 				posY = mousePos.y;
 				console.log(mousePos);
-				console.log("dragging");
-			});
-		}
-			
+				console.log("drag");
+				creditPosY = lastScrollPosition;
+			});	
+		}	
 	}
 
 	function calculateMousePos(evt) {
