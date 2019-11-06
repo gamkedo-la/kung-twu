@@ -102,6 +102,9 @@ function CreditsScene() {
 			if(newNavAction != null) {
 				switch(newNavAction) {
 				case NAV_ACTION.UP://this falls through and moves the selector, make it change credits instead
+					console.log ("keyup");
+					creditPosY = creditPosY - 20;
+					break;
 				case NAV_ACTION.LEFT:
 					selectorPositionsIndex--;
 					if (selectorPositionsIndex < 0) {
@@ -111,6 +114,9 @@ function CreditsScene() {
 					sound.playSFX(Sounds.SFX_MenuNav);
 					break;			
 				case NAV_ACTION.DOWN://this falls through and moves the selector, make it change credits instead
+				console.log ("keydown");
+				creditPosY = creditPosY + 20;
+					break;
 				case NAV_ACTION.RIGHT:
 					selectorPositionsIndex++;
 					if (selectorPositionsIndex >= selections.length) {
@@ -239,6 +245,7 @@ function CreditsScene() {
 		}
 		canvas.addEventListener("wheel", creditScroll);
 		canvas.addEventListener("keydown",creditsKeyPress);
+		canvas.addEventListener("keyup",noCreditKeyPress);
 		canvas.addEventListener("mousedown", creditStop);
 		canvas.addEventListener("mouseup", noCreditMouseDrag);
 		canvas.addEventListener("mousemove",creditMouseDrag);
@@ -263,22 +270,29 @@ function CreditsScene() {
 		}
 	};
 
+	function noCreditKeyPress() {
+		//console.log ("keyup");
+		creditArrows = false;
+	}
 
 	function creditsKeyPress(evt) {
-		switch (evt.keyCode) {
-		case 38: creditPosY = creditPosY - 5; //moves up
-			break;
-		}
-		switch (evt.keyCode) {
-		case 40: creditPosY = creditPosY + 5; //moves down
-			break;
+		console.log ("keydown");
+		creditArrows = true;
+		if(creditArrows){
+			switch (evt.keyCode) {
+			case NAV_ACTION.UP: creditPosY = creditPosY - 5; //moves up
+				break;
+			}
+			switch (evt.keyCode) {
+			case 40: creditPosY = creditPosY + 5; //moves down
+				break;
+			}
 		}
 	}
 
 	function creditStop () {
 		creditRun = false;
-		mouseToDrag = true;
-		
+		mouseToDrag = true;	
 	}
 
 	function noCreditMouseDrag() {
@@ -286,7 +300,6 @@ function CreditsScene() {
 		creditRun = true;
 		console.log("nodrag");
 	}
-
 
 	function creditMouseDrag(evt) {
 		previousMousePosY = mousePos.y;
@@ -302,8 +315,7 @@ function CreditsScene() {
 				creditPosY -=2.5;
 			}
 		}
-	}	
-	
+	}		
 
 	function calculateMousePos(evt) {
 		var rect = canvas.getBoundingClientRect();
