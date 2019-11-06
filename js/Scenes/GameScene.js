@@ -50,6 +50,10 @@ function GameScene() {
 
 		didTransitionOut = false;
 
+		if((player !== null) && (player.getCurrentBelt() !== playerBelt)) {
+			player.setNewBelt(playerBelt);
+		}
+
 		if (aiManager === null) {
 			//if aiManager === null, we've never initialized a GameScene
 //			aiManager = new AIManager();

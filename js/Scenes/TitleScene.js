@@ -30,6 +30,15 @@ function TitleScene() {
 		
 		const mainMenuY = BUTTON_PADDING + (canvas.height / 2);
 		const deltaY = 2 * BUTTON_PADDING;
+
+		if((this.properties != undefined) && (this.properties.didQuit)) {
+			playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
+			if((playerBelt === undefined) || (playerBelt === null) || (isNaN(playerBelt))) {
+				playerBelt = ASSIST_DEFAULT.StartBelt;
+				localStorageHelper.setInt(localStorageKey.StartingBelt, playerBelt);
+			}
+			player.setNewBelt(playerBelt);
+		}
         
 		if(buttons.length === 0) {
 			buttons.push(buildPlayButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
