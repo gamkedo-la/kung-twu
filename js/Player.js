@@ -183,6 +183,7 @@ function Player(config) {
 			}
 		}
 
+		const stateNow = stateManager.getCurrentState();
 		stateManager.update(deltaTime);
 		updateForState(stateManager.getCurrentState());
 
@@ -198,6 +199,14 @@ function Player(config) {
 				position,
 				SCALE,
 				stateManager.getIsFacingLeft());
+
+			if(stateNow === STATE.KnockBack) {
+				if(stateManager.getIsFacingLeft()) {
+					position.x -= playerKnockbackWhiteData.frameWidth / 2;
+				} else {
+					position.x += playerKnockbackWhiteData.frameWidth / 2;
+				}
+			}
 		}
 
 		if(this.attackBody != null) {
