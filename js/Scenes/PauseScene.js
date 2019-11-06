@@ -26,7 +26,7 @@ function PauseScene() {
 		const mainMenuY = BUTTON_PADDING + (canvas.height / 2);
 		const deltaY = 2 * BUTTON_PADDING;
         
-		if(buttons.length === 0) {
+		if((buttons.length === 0) && (JPFont != undefined)) {
 			buttons.push(buildResumeButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
 
 			mainMenuX = (canvas.width / 2) - (buttons[0].getBounds().width / 2);
@@ -248,6 +248,8 @@ function PauseScene() {
 	};
 
 	const draw = function() {
+		if(JPFont === undefined) return;
+
 		// render the menu background
 		drawBG();
 		
