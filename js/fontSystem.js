@@ -67,7 +67,7 @@ function fontSystem(jpFont, charSize, context) {
 		let drawPos = startPos;
 		
 		// set alpha
-		const oldAlpha = context.globalAlpha;
+		context.save();
 		context.globalAlpha = alpha;
 
 		for(let i = 0; i < text.length; i++) {	//Go through all characters
@@ -79,7 +79,7 @@ function fontSystem(jpFont, charSize, context) {
 		}
 
 		// restore alpha value
-		context.globalAlpha = oldAlpha;
+		context.restore();
 	};
 
 	const advancementForLanguageAndCharacter = function(language, character1, character2) {
