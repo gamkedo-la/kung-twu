@@ -145,6 +145,10 @@ function BasicEnemy(config) {
 			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame);
 		}
 
+		if(this.shouldJump && !stateManager.getIsOnGround() && velocity.y > 0) {
+			this.shouldJump = false;
+		}
+
 		updatePosition(deltaTime, minX, maxX, gravity, floorHeight);
 
 		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
