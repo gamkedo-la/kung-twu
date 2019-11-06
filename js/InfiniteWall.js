@@ -17,6 +17,25 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 		for(let tile of TILES) {
 			tile.update(DELTA_PER_SHIFT * shifts);
 		}
+
+		let didShiftLeft = false;
+		while(SHADOWS[0].getXPos() < cameraXPos - canvas.width / 2 - SHADOW_WIDTH) {
+			const rightMostShadowX = SHADOWS[SHADOWS.length - 1].getXPos();
+			const leftMostShadow = SHADOWS.shift();
+			leftMostShadow.setXPos(rightMostShadowX + SHADOW_WIDTH);
+			SHADOWS.push(leftMostShadow);
+			didShiftLeft = true;
+		}
+
+		if(!didShiftLeft) {
+			while(SHADOWS[SHADOWS.length - 1].getXPos() > cameraXPos + canvas.width / 2 + SHADOW_WIDTH) {
+				const leftMostShadowX = SHADOWS[0].getXPos();
+				const rightMostShadow = SHADOWS.pop();
+				rightMostShadow.setXPos(cameraXPos - (canvas.width / 2) - SHADOW_WIDTH);
+				rightMostShadow.setXPos(leftMostShadowX - SHADOW_WIDTH);
+				SHADOWS.unshift(rightMostShadow);
+			}
+		}
 	};
 
 	this.draw = function() {
