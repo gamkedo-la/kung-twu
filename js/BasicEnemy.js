@@ -142,7 +142,7 @@ function BasicEnemy(config) {
 		if(this.attackBody != null) {
 			const thisState = stateManager.getCurrentState();
 			const currentFrame = stateManager.getCurrentAnimationFrame();
-			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame);
+			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame, this.getAIType());
 		}
 
 		if(this.shouldJump && !stateManager.getIsOnGround() && velocity.y > 0) {

@@ -212,7 +212,7 @@ function Player(config) {
 		if(this.attackBody != null) {
 			const thisState = stateManager.getCurrentState();
 			const currentFrame = stateManager.getCurrentAnimationFrame();
-			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame);
+			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame, AITYPE.Player);
 		}
 
 		updatePosition(deltaTime, gravity, floorHeight, levelMin, levelMax);
