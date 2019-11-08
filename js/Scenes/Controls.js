@@ -19,8 +19,8 @@ function ControlsScene() {
 
 //original keys
 	var keyLookup = [
-		"left",
-		"right",
+		"walkLeft",
+		"walkRight",
 		"jump",
 		"punch",
 		"kick",
@@ -54,7 +54,7 @@ this.showControls = function(){
 	canvasContext.drawImage(punchSprite, 40, 120);
 	canvasContext.drawImage(kickSprite, 40, 150);
 	canvasContext.drawImage(crouchSprite, 40, 180);
-	canvasContext.drawImage(crouchSprite, 40, 210);
+	canvasContext.drawImage(dashSprite, 40, 210);
 	for(var i=0; i<keyLookup.length; i++) {
 		iY = 20;
 		colorText(
@@ -70,19 +70,19 @@ this.changeControls = function(){
 	if(changingKeyFor != null) {
 	keyLookup[changingKeyFor] = evt.keyCode; // will overwrite "left" as next key pressed
 		switch(changingKeyFor) {
-			case "leftMoveSprite": changingKeyFor = "left";
-			case "rightMoveSprite": changingKeyFor = "right";
+			case "leftMoveSprite": changingKeyFor = "walkLeft";
+			case "rightMoveSprite": changingKeyFor = "walkRight";
 			case "jumpSprite":  changingKeyFor = "jump";
 			case "punchSprite": changingKeyFor = "punch";
 			case "kickSprite": changingKeyFor = "kick";
 			case "crouchSprite": changingKeyFor = "crouch";
 			case "dashSprite": changingKeyFor = "dash";
-			return true;	
+			return true;
 		}
 	}
 }
 
-
+console.log(keyLookup);
 
 this.transitionIn = function() {
 	canvasContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -266,6 +266,8 @@ this.transitionIn = function() {
 
 		// render menu
 		printButtons();
+
+		showControls();
 
 /*		uiProgBarMusicVolume.draw();
 		uiProgBarEffectsVolume.draw();*/
