@@ -308,10 +308,10 @@ KeyName[KeyCode.TAB] = "Tab";
 KeyName[KeyCode.ENTER] = "Enter";
 KeyName[KeyCode.ESCAPE] = "Esc";
 KeyName[KeyCode.SPACE] = "Space";
-KeyName[KeyCode.LEFT] = "Left";
-KeyName[KeyCode.UP] = "Up";
-KeyName[KeyCode.RIGHT] = "Right";
-KeyName[KeyCode.DOWN] = "Down";
+KeyName[KeyCode.LEFT] = "LeftArrow";
+KeyName[KeyCode.UP] = "UpArrow";
+KeyName[KeyCode.RIGHT] = "RightArrow";
+KeyName[KeyCode.DOWN] = "DownArrow";
 KeyName[KeyCode.DIGIT_0] = "0";
 KeyName[KeyCode.DIGIT_1] = "1";
 KeyName[KeyCode.DIGIT_2] = "2";
@@ -351,6 +351,15 @@ KeyName[KeyCode.Z] = "Z";
 KeyName[KeyCode.PLUS] = "+";
 KeyName[KeyCode.MINUS] = "-";
 KeyName[KeyCode.TILDE] = "~";
+// can add non-keycode strings here to prettify phrasing in key remapper of inputs
+KeyName["leftStickLeft"] = "Stick_1_Left";
+function lookupKeyName(withCode) { // print nice name, if one is defined above
+	var returnCode = KeyName[withCode];
+	if(returnCode) {
+		return returnCode;
+	}
+	return withCode; // no keyName available, use string
+}
 
 /**
  * Input Codes representing Mouse buttons. Used when querying input

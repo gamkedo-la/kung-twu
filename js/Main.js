@@ -43,6 +43,14 @@ window.onload = function() {
 	sound = new SoundManager(); // create sound manager, variable declared in SoundGlobals.js
 	sound.addSounds(soundSpriteConfigs); // adds previously declared soundSpriteConfigs from SoundGlobals.js
 
+	////////////////////////////////////
+	console.log("Testing logging key mapper names for a single action, this code can be safely removed");
+	var leftInputs = keyMapper.getInputCodes(ACTION_KEYS.WALK_LEFT);
+	for(var i=0;i<leftInputs.length;i++) {
+		console.log( lookupKeyName(leftInputs[i]) );
+	}
+	////////////////////////////////////
+
 	// Set the UIProgressBar configuration defaults for use with creating a new UIProgressBar.
 	UIProgressBarDefaults = new IProgressBarConfigDefaults();
 	
