@@ -124,16 +124,24 @@ function Woosh(wooshImage) { // a single woosh, reused often
 	this.x = 0;
 	this.y = 0;
 	this.frame = 0;
+    this.vx = 0;
+    this.vy = 0;
+    this.friction = 0.9; // slowdown per frame
+    this.gravity = 0;
 
 	// you can change images
-	this.trigger = function (x, y, r, img) {
+	this.trigger = function (x, y, r, img, vx=0, vy=0, gravity=0, friction=1) {
 		if (DEBUG_WOOSHES) console.log("Woosh pos:" + x + "," +  y + " ang:" + r);
 		this.active = true;
 		this.frame = 0;
 		this.frameCount = WOOSH_FRAMECOUNT;
 		this.x = x;
 		this.y = y;
-		this.r = r;
+        this.r = r;
+        this.vx = vx;
+        this.vy = vy;
+        this.grav = gravity;
+        this.friction = friction;
 		if (img) this.img = img; // switching allowed
 	};
     
@@ -141,17 +149,26 @@ function Woosh(wooshImage) { // a single woosh, reused often
 
 		if (this.active) {
 
-			// animate
+			// step
 			this.frame++;
             
-			canvasContext.save();
+            // move
+            this.vx *= this.friction;
+            this.vy *= this.friction;
+            this.vy += this.gravity;
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // draw
+            canvasContext.save();
 			canvasContext.translate(this.x, this.y);
 			canvasContext.rotate(this.r);
 			canvasContext.globalAlpha = MAX_ALPHA * (1 - (this.frame / this.frameCount)); // fade out
 			canvasContext.drawImage(this.img, Math.round(-this.img.width/2),Math.round(-this.img.height/2)); //	center,	draw
 			canvasContext.restore();
 
-			this.active = this.frame < this.frameCount; // keep going?
+            // reuse
+            this.active = this.frame < this.frameCount;
 
 		}
 
