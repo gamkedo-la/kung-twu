@@ -92,7 +92,9 @@ const tanPresentation = document.createElement("img");
 const brownPresentation = document.createElement("img");
 const redPresentation = document.createElement("img");
 const blackPresentation = document.createElement("img");
+
 const characterAtlas = document.createElement("img");
+const bossAtlas = document.createElement("img");
 
 const basicEnemyIdle = document.createElement("canvas");
 const basicEnemyWalk = document.createElement("canvas");
@@ -134,45 +136,45 @@ const redEnemyCrouch = document.createElement("canvas");
 const redEnemyDash = document.createElement("canvas");
 const redEnemyJump = document.createElement("canvas");
 
-const yellowBossIdle = document.createElement("img");
-const yellowBossWalk = document.createElement("img");
-const yellowBossPunch = document.createElement("img");
-const yellowBossKick = document.createElement("img");
-const yellowBossCrouch = document.createElement("img");
-const yellowBossCrouchPunch = document.createElement("img");
-const yellowBossSweep = document.createElement("img");
+const yellowBossIdle = document.createElement("canvas");
+const yellowBossWalk = document.createElement("canvas");
+const yellowBossPunch = document.createElement("canvas");
+const yellowBossKick = document.createElement("canvas");
+const yellowBossCrouch = document.createElement("canvas");
+const yellowBossCrouchPunch = document.createElement("canvas");
+const yellowBossSweep = document.createElement("canvas");
 
-const tanBossIdle = document.createElement("img");
-const tanBossWalk = document.createElement("img");
-const tanBossPunch = document.createElement("img");
-const tanBossKick = document.createElement("img");
-const tanBossCrouch = document.createElement("img");
-const tanBossCrouchPunch = document.createElement("img");
-const tanBossSweep = document.createElement("img");
+const tanBossIdle = document.createElement("canvas");
+const tanBossWalk = document.createElement("canvas");
+const tanBossPunch = document.createElement("canvas");
+const tanBossKick = document.createElement("canvas");
+const tanBossCrouch = document.createElement("canvas");
+const tanBossCrouchPunch = document.createElement("canvas");
+const tanBossSweep = document.createElement("canvas");
 
-const brownBossIdle = document.createElement("img");
-const brownBossWalk = document.createElement("img");
-const brownBossPunch = document.createElement("img");
-const brownBossKick = document.createElement("img");
-const brownBossCrouch = document.createElement("img");
-const brownBossCrouchPunch = document.createElement("img");
-const brownBossSweep = document.createElement("img");
+const brownBossIdle = document.createElement("canvas");
+const brownBossWalk = document.createElement("canvas");
+const brownBossPunch = document.createElement("canvas");
+const brownBossKick = document.createElement("canvas");
+const brownBossCrouch = document.createElement("canvas");
+const brownBossCrouchPunch = document.createElement("canvas");
+const brownBossSweep = document.createElement("canvas");
 
-const redBossIdle = document.createElement("img");
-const redBossWalk = document.createElement("img");
-const redBossPunch = document.createElement("img");
-const redBossKick = document.createElement("img");
-const redBossCrouch = document.createElement("img");
-const redBossCrouchPunch = document.createElement("img");
-const redBossSweep = document.createElement("img");
+const redBossIdle = document.createElement("canvas");
+const redBossWalk = document.createElement("canvas");
+const redBossPunch = document.createElement("canvas");
+const redBossKick = document.createElement("canvas");
+const redBossCrouch = document.createElement("canvas");
+const redBossCrouchPunch = document.createElement("canvas");
+const redBossSweep = document.createElement("canvas");
 
-const blackBossIdle = document.createElement("img");
-const blackBossWalk = document.createElement("img");
-const blackBossPunch = document.createElement("img");
-const blackBossKick = document.createElement("img");
-const blackBossCrouch = document.createElement("img");
-const blackBossCrouchPunch = document.createElement("img");
-const blackBossSweep = document.createElement("img");
+const blackBossIdle = document.createElement("canvas");
+const blackBossWalk = document.createElement("canvas");
+const blackBossPunch = document.createElement("canvas");
+const blackBossKick = document.createElement("canvas");
+const blackBossCrouch = document.createElement("canvas");
+const blackBossCrouchPunch = document.createElement("canvas");
+const blackBossSweep = document.createElement("canvas");
 
 const playerIdleWhite = document.createElement("canvas");
 const playerIdleYellow = document.createElement("canvas");
@@ -249,81 +251,116 @@ let picsToLoad = 0;
 function countLoadedImageAndLaunchIfReady() {
 	picsToLoad--;
 	if (picsToLoad == 0) { // last image loaded?
-		initializeCanvasFromAtlas(playerIdleWhite, playerIdleWhiteData);
-		initializeCanvasFromAtlas(playerWalkWhite, playerWalkWhiteData);
-		initializeCanvasFromAtlas(playerKickWhite, playerKickWhiteData);
-		initializeCanvasFromAtlas(playerPunchWhite, playerPunchWhiteData);
-		initializeCanvasFromAtlas(playerKnockbackWhite, playerKnockbackWhiteData);
+		initializeCanvasFromAtlas(playerIdleWhite, playerIdleWhiteData, characterAtlas);
+		initializeCanvasFromAtlas(playerWalkWhite, playerWalkWhiteData, characterAtlas);
+		initializeCanvasFromAtlas(playerKickWhite, playerKickWhiteData, characterAtlas);
+		initializeCanvasFromAtlas(playerPunchWhite, playerPunchWhiteData, characterAtlas);
+		initializeCanvasFromAtlas(playerKnockbackWhite, playerKnockbackWhiteData, characterAtlas);
 
-		initializeCanvasFromAtlas(playerIdleYellow, playerIdleYellowData);
-		initializeCanvasFromAtlas(playerWalkYellow, playerWalkYellowData);
-		initializeCanvasFromAtlas(playerKickYellow, playerKickYellowData);
-		initializeCanvasFromAtlas(playerPunchYellow, playerPunchYellowData);
-		initializeCanvasFromAtlas(playerKnockbackYellow, playerKnockbackYellowData);
+		initializeCanvasFromAtlas(playerIdleYellow, playerIdleYellowData, characterAtlas);
+		initializeCanvasFromAtlas(playerWalkYellow, playerWalkYellowData, characterAtlas);
+		initializeCanvasFromAtlas(playerKickYellow, playerKickYellowData, characterAtlas);
+		initializeCanvasFromAtlas(playerPunchYellow, playerPunchYellowData, characterAtlas);
+		initializeCanvasFromAtlas(playerKnockbackYellow, playerKnockbackYellowData, characterAtlas);
 
-		initializeCanvasFromAtlas(playerIdleTan, playerIdleTanData);
-		initializeCanvasFromAtlas(playerWalkTan, playerWalkTanData);
-		initializeCanvasFromAtlas(playerKickTan, playerKickTanData);
-		initializeCanvasFromAtlas(playerPunchTan, playerPunchTanData);
-		initializeCanvasFromAtlas(playerKnockbackTan, playerKnockbackTanData);
+		initializeCanvasFromAtlas(playerIdleTan, playerIdleTanData, characterAtlas);
+		initializeCanvasFromAtlas(playerWalkTan, playerWalkTanData, characterAtlas);
+		initializeCanvasFromAtlas(playerKickTan, playerKickTanData, characterAtlas);
+		initializeCanvasFromAtlas(playerPunchTan, playerPunchTanData, characterAtlas);
+		initializeCanvasFromAtlas(playerKnockbackTan, playerKnockbackTanData, characterAtlas);
 
-		initializeCanvasFromAtlas(playerIdleBrown, playerIdleBrownData);
-		initializeCanvasFromAtlas(playerWalkBrown, playerWalkBrownData);
-		initializeCanvasFromAtlas(playerKickBrown, playerKickBrownData);
-		initializeCanvasFromAtlas(playerPunchBrown, playerPunchBrownData);
-		initializeCanvasFromAtlas(playerKnockbackBrown, playerKnockbackBrownData);
+		initializeCanvasFromAtlas(playerIdleBrown, playerIdleBrownData, characterAtlas);
+		initializeCanvasFromAtlas(playerWalkBrown, playerWalkBrownData, characterAtlas);
+		initializeCanvasFromAtlas(playerKickBrown, playerKickBrownData, characterAtlas);
+		initializeCanvasFromAtlas(playerPunchBrown, playerPunchBrownData, characterAtlas);
+		initializeCanvasFromAtlas(playerKnockbackBrown, playerKnockbackBrownData, characterAtlas);
 
-		initializeCanvasFromAtlas(playerIdleRed, playerIdleRedData);
-		initializeCanvasFromAtlas(playerWalkRed, playerWalkRedData);
-		initializeCanvasFromAtlas(playerKickRed, playerKickRedData);
-		initializeCanvasFromAtlas(playerPunchRed, playerPunchRedData);
-		initializeCanvasFromAtlas(playerKnockbackRed, playerKnockbackRedData);
+		initializeCanvasFromAtlas(playerIdleRed, playerIdleRedData, characterAtlas);
+		initializeCanvasFromAtlas(playerWalkRed, playerWalkRedData, characterAtlas);
+		initializeCanvasFromAtlas(playerKickRed, playerKickRedData, characterAtlas);
+		initializeCanvasFromAtlas(playerPunchRed, playerPunchRedData, characterAtlas);
+		initializeCanvasFromAtlas(playerKnockbackRed, playerKnockbackRedData, characterAtlas);
 
-		initializeCanvasFromAtlas(playerIdleBlack, playerIdleBlackData);
-		initializeCanvasFromAtlas(playerWalkBlack, playerWalkBlackData);
-		initializeCanvasFromAtlas(playerKickBlack, playerKickBlackData);
-		initializeCanvasFromAtlas(playerPunchBlack, playerPunchBlackData);
-		initializeCanvasFromAtlas(playerKnockbackBlack, playerKnockbackBlackData);
+		initializeCanvasFromAtlas(playerIdleBlack, playerIdleBlackData, characterAtlas);
+		initializeCanvasFromAtlas(playerWalkBlack, playerWalkBlackData, characterAtlas);
+		initializeCanvasFromAtlas(playerKickBlack, playerKickBlackData, characterAtlas);
+		initializeCanvasFromAtlas(playerPunchBlack, playerPunchBlackData, characterAtlas);
+		initializeCanvasFromAtlas(playerKnockbackBlack, playerKnockbackBlackData, characterAtlas);
 
-		initializeCanvasFromAtlas(basicEnemyIdle, basicEnemyIdleData);
-		initializeCanvasFromAtlas(basicEnemyWalk, basicEnemyWalkData);
-		initializeCanvasFromAtlas(basicEnemyKick, basicEnemyKickData);
-		initializeCanvasFromAtlas(basicEnemyPunch, basicEnemyPunchData);
-		initializeCanvasFromAtlas(basicEnemyCrouch, basicEnemyCrouchData);
-		initializeCanvasFromAtlas(basicEnemyDash, basicEnemyDashData);
-		initializeCanvasFromAtlas(basicEnemyJump, basicEnemyJumpData);
+		initializeCanvasFromAtlas(basicEnemyIdle, basicEnemyIdleData, characterAtlas);
+		initializeCanvasFromAtlas(basicEnemyWalk, basicEnemyWalkData, characterAtlas);
+		initializeCanvasFromAtlas(basicEnemyKick, basicEnemyKickData, characterAtlas);
+		initializeCanvasFromAtlas(basicEnemyPunch, basicEnemyPunchData, characterAtlas);
+		initializeCanvasFromAtlas(basicEnemyCrouch, basicEnemyCrouchData, characterAtlas);
+		initializeCanvasFromAtlas(basicEnemyDash, basicEnemyDashData, characterAtlas);
+		initializeCanvasFromAtlas(basicEnemyJump, basicEnemyJumpData, characterAtlas);
 
-		initializeCanvasFromAtlas(yellowEnemyIdle, yellowEnemyIdleData);
-		initializeCanvasFromAtlas(yellowEnemyWalk, yellowEnemyWalkData);
-		initializeCanvasFromAtlas(yellowEnemyKick, yellowEnemyKickData);
-		initializeCanvasFromAtlas(yellowEnemyPunch, yellowEnemyPunchData);
-		initializeCanvasFromAtlas(yellowEnemyCrouch, yellowEnemyCrouchData);
-		initializeCanvasFromAtlas(yellowEnemyDash, yellowEnemyDashData);
-		initializeCanvasFromAtlas(yellowEnemyJump, yellowEnemyJumpData);
+		initializeCanvasFromAtlas(yellowEnemyIdle, yellowEnemyIdleData, characterAtlas);
+		initializeCanvasFromAtlas(yellowEnemyWalk, yellowEnemyWalkData, characterAtlas);
+		initializeCanvasFromAtlas(yellowEnemyKick, yellowEnemyKickData, characterAtlas);
+		initializeCanvasFromAtlas(yellowEnemyPunch, yellowEnemyPunchData, characterAtlas);
+		initializeCanvasFromAtlas(yellowEnemyCrouch, yellowEnemyCrouchData, characterAtlas);
+		initializeCanvasFromAtlas(yellowEnemyDash, yellowEnemyDashData, characterAtlas);
+		initializeCanvasFromAtlas(yellowEnemyJump, yellowEnemyJumpData, characterAtlas);
 
-		initializeCanvasFromAtlas(tanEnemyIdle, tanEnemyIdleData);
-		initializeCanvasFromAtlas(tanEnemyWalk, tanEnemyWalkData);
-		initializeCanvasFromAtlas(tanEnemyKick, tanEnemyKickData);
-		initializeCanvasFromAtlas(tanEnemyPunch, tanEnemyPunchData);
-		initializeCanvasFromAtlas(tanEnemyCrouch, tanEnemyCrouchData);
-		initializeCanvasFromAtlas(tanEnemyDash, tanEnemyDashData);
-		initializeCanvasFromAtlas(tanEnemyJump, tanEnemyJumpData);
+		initializeCanvasFromAtlas(tanEnemyIdle, tanEnemyIdleData, characterAtlas);
+		initializeCanvasFromAtlas(tanEnemyWalk, tanEnemyWalkData, characterAtlas);
+		initializeCanvasFromAtlas(tanEnemyKick, tanEnemyKickData, characterAtlas);
+		initializeCanvasFromAtlas(tanEnemyPunch, tanEnemyPunchData, characterAtlas);
+		initializeCanvasFromAtlas(tanEnemyCrouch, tanEnemyCrouchData, characterAtlas);
+		initializeCanvasFromAtlas(tanEnemyDash, tanEnemyDashData, characterAtlas);
+		initializeCanvasFromAtlas(tanEnemyJump, tanEnemyJumpData, characterAtlas);
 
-		initializeCanvasFromAtlas(brownEnemyIdle, brownEnemyIdleData);
-		initializeCanvasFromAtlas(brownEnemyWalk, brownEnemyWalkData);
-		initializeCanvasFromAtlas(brownEnemyKick, brownEnemyKickData);
-		initializeCanvasFromAtlas(brownEnemyPunch, brownEnemyPunchData);
-		initializeCanvasFromAtlas(brownEnemyCrouch, brownEnemyCrouchData);
-		initializeCanvasFromAtlas(brownEnemyDash, brownEnemyDashData);
-		initializeCanvasFromAtlas(brownEnemyJump, brownEnemyJumpData);
+		initializeCanvasFromAtlas(brownEnemyIdle, brownEnemyIdleData, characterAtlas);
+		initializeCanvasFromAtlas(brownEnemyWalk, brownEnemyWalkData, characterAtlas);
+		initializeCanvasFromAtlas(brownEnemyKick, brownEnemyKickData, characterAtlas);
+		initializeCanvasFromAtlas(brownEnemyPunch, brownEnemyPunchData, characterAtlas);
+		initializeCanvasFromAtlas(brownEnemyCrouch, brownEnemyCrouchData, characterAtlas);
+		initializeCanvasFromAtlas(brownEnemyDash, brownEnemyDashData, characterAtlas);
+		initializeCanvasFromAtlas(brownEnemyJump, brownEnemyJumpData, characterAtlas);
 
-		initializeCanvasFromAtlas(redEnemyIdle, redEnemyIdleData);
-		initializeCanvasFromAtlas(redEnemyWalk, redEnemyWalkData);
-		initializeCanvasFromAtlas(redEnemyKick, redEnemyKickData);
-		initializeCanvasFromAtlas(redEnemyPunch, redEnemyPunchData);
-		initializeCanvasFromAtlas(redEnemyCrouch, redEnemyCrouchData);
-		initializeCanvasFromAtlas(redEnemyDash, redEnemyDashData);
-		initializeCanvasFromAtlas(redEnemyJump, redEnemyJumpData);
+		initializeCanvasFromAtlas(redEnemyIdle, redEnemyIdleData, characterAtlas);
+		initializeCanvasFromAtlas(redEnemyWalk, redEnemyWalkData, characterAtlas);
+		initializeCanvasFromAtlas(redEnemyKick, redEnemyKickData, characterAtlas);
+		initializeCanvasFromAtlas(redEnemyPunch, redEnemyPunchData, characterAtlas);
+		initializeCanvasFromAtlas(redEnemyCrouch, redEnemyCrouchData, characterAtlas);
+		initializeCanvasFromAtlas(redEnemyDash, redEnemyDashData, characterAtlas);
+		initializeCanvasFromAtlas(redEnemyJump, redEnemyJumpData, characterAtlas);
+
+		initializeCanvasFromAtlas(yellowBossIdle, yellowBossIdleData, bossAtlas);
+		initializeCanvasFromAtlas(yellowBossWalk, yellowBossWalkData, bossAtlas);
+		initializeCanvasFromAtlas(yellowBossKick, yellowBossKickData, bossAtlas);
+		initializeCanvasFromAtlas(yellowBossPunch, yellowBossPunchData, bossAtlas);
+		initializeCanvasFromAtlas(yellowBossCrouch, yellowBossCrouchData, bossAtlas);
+		initializeCanvasFromAtlas(yellowBossSweep, yellowBossSweepData, bossAtlas);
+
+		initializeCanvasFromAtlas(tanBossIdle, tanBossIdleData, bossAtlas);
+		initializeCanvasFromAtlas(tanBossWalk, tanBossWalkData, bossAtlas);
+		initializeCanvasFromAtlas(tanBossKick, tanBossKickData, bossAtlas);
+		initializeCanvasFromAtlas(tanBossPunch, tanBossPunchData, bossAtlas);
+		initializeCanvasFromAtlas(tanBossCrouch, tanBossCrouchData, bossAtlas);
+		initializeCanvasFromAtlas(tanBossSweep, tanBossSweepData, bossAtlas);
+
+		initializeCanvasFromAtlas(brownBossIdle, brownBossIdleData, bossAtlas);
+		initializeCanvasFromAtlas(brownBossWalk, brownBossWalkData, bossAtlas);
+		initializeCanvasFromAtlas(brownBossKick, brownBossKickData, bossAtlas);
+		initializeCanvasFromAtlas(brownBossPunch, brownBossPunchData, bossAtlas);
+		initializeCanvasFromAtlas(brownBossCrouch, brownBossCrouchData, bossAtlas);
+		initializeCanvasFromAtlas(brownBossSweep, brownBossSweepData, bossAtlas);
+
+		initializeCanvasFromAtlas(redBossIdle, redBossIdleData, bossAtlas);
+		initializeCanvasFromAtlas(redBossWalk, redBossWalkData, bossAtlas);
+		initializeCanvasFromAtlas(redBossKick, redBossKickData, bossAtlas);
+		initializeCanvasFromAtlas(redBossPunch, redBossPunchData, bossAtlas);
+		initializeCanvasFromAtlas(redBossCrouch, redBossCrouchData, bossAtlas);
+		initializeCanvasFromAtlas(redBossSweep, redBossSweepData, bossAtlas);
+
+		initializeCanvasFromAtlas(blackBossIdle, blackBossIdleData, bossAtlas);
+		initializeCanvasFromAtlas(blackBossWalk, blackBossWalkData, bossAtlas);
+		initializeCanvasFromAtlas(blackBossKick, blackBossKickData, bossAtlas);
+		initializeCanvasFromAtlas(blackBossPunch, blackBossPunchData, bossAtlas);
+		initializeCanvasFromAtlas(blackBossCrouch, blackBossCrouchData, bossAtlas);
+		initializeCanvasFromAtlas(blackBossSweep, blackBossSweepData, bossAtlas);
 
 		loadingDoneSoStartGame();
 	}
@@ -334,57 +371,18 @@ function beginLoadingImage(imgVar, fileName) {
 	imgVar.src = assetPath.Image + fileName;
 }
 
-function initializeCanvasFromAtlas(canvas, data) {
+function initializeCanvasFromAtlas(canvas, data, atlas) {
 	canvas.width = data.clipWidth;
 	canvas.height = data.clipHeight;
 	const context = canvas.getContext("2d");
-	context.drawImage(characterAtlas, data.clipX, data.clipY, data.clipWidth, data.clipHeight, 0, 0, data.clipWidth, data.clipHeight);
+	context.drawImage(atlas, data.clipX, data.clipY, data.clipWidth, data.clipHeight, 0, 0, data.clipWidth, data.clipHeight);
 }
 
 function loadImages() {
 	const imageList = [
 		// enemies
 		{ imgName: characterAtlas, theFile: "CharacterAtlas.png" },
-
-		{ imgName: yellowBossIdle, theFile: "Boss_Idle_Yellow.png" },
-		{ imgName: yellowBossWalk, theFile: "BossWalking_Yellow.png" },
-		{ imgName: yellowBossPunch, theFile: "BossPunching_Yellow.png" },
-		{ imgName: yellowBossKick, theFile: "BossKicking_Yellow.png" },
-		{ imgName: yellowBossCrouch, theFile: "BossCrouching_Yellow.png" },
-		{ imgName: yellowBossCrouchPunch, theFile: "BossCrouching_Yellow.png" },
-		{ imgName: yellowBossSweep, theFile: "BossCrouchPunch_Yellow.png" },
-
-		{ imgName: tanBossIdle, theFile: "Boss_Idle_Tan.png" },
-		{ imgName: tanBossWalk, theFile: "BossWalking_Tan.png" },
-		{ imgName: tanBossPunch, theFile: "BossPunching_Tan.png" },
-		{ imgName: tanBossKick, theFile: "BossKicking_Tan.png" },
-		{ imgName: tanBossCrouch, theFile: "BossCrouching_Tan.png" },
-		{ imgName: tanBossCrouchPunch, theFile: "BossCrouching_Tan.png" },
-		{ imgName: tanBossSweep, theFile: "BossCrouchPunch_Tan.png" },
-
-		{ imgName: brownBossIdle, theFile: "Boss_Idle_Brown.png" },
-		{ imgName: brownBossWalk, theFile: "BossWalking_Brown.png" },
-		{ imgName: brownBossPunch, theFile: "BossPunching_Brown.png" },
-		{ imgName: brownBossKick, theFile: "BossKicking_Brown.png" },
-		{ imgName: brownBossCrouch, theFile: "BossCrouching_Brown.png" },
-		{ imgName: brownBossCrouchPunch, theFile: "BossCrouching_Brown.png" },
-		{ imgName: brownBossSweep, theFile: "BossCrouchPunch_Brown.png" },
-
-		{ imgName: redBossIdle, theFile: "Boss_Idle_Red.png" },
-		{ imgName: redBossWalk, theFile: "BossWalking_Red.png" },
-		{ imgName: redBossPunch, theFile: "BossPunching_Red.png" },
-		{ imgName: redBossKick, theFile: "BossKicking_Red.png" },
-		{ imgName: redBossCrouch, theFile: "BossCrouching_Red.png" },
-		{ imgName: redBossCrouchPunch, theFile: "BossCrouching_Red.png" },
-		{ imgName: redBossSweep, theFile: "BossCrouchPunch_Red.png" },
-
-		{ imgName: blackBossIdle, theFile: "Boss_Idle_Black.png" },
-		{ imgName: blackBossWalk, theFile: "BossWalking_Black.png" },
-		{ imgName: blackBossPunch, theFile: "BossPunching_Black.png" },
-		{ imgName: blackBossKick, theFile: "BossKicking_Black.png" },
-		{ imgName: blackBossCrouch, theFile: "BossCrouching_Black.png" },
-		{ imgName: blackBossCrouchPunch, theFile: "BossCrouching_Black.png" },
-		{ imgName: blackBossSweep, theFile: "BossCrouchPunch_Black.png" },
+		{ imgName: bossAtlas, theFile: "BossAtlas.png" },
 
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
