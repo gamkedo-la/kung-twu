@@ -28,7 +28,7 @@ function ControlsScene() {
 		"crouch",
 		"dash"
 	];
-
+//changing keys
 	keyLookup["left"] = KEY_LEFT;
 	keyLookup["right"] = KEY_RIGHT;
 	keyLookup["jump"] = KEY_JUMP;
@@ -36,33 +36,45 @@ function ControlsScene() {
 	keyLookup["kick"] = KEY_KICK;
 	keyLookup["crouch"] = KEY_CROUCH;
 	keyLookup["dash"] = KEY_DASH;
-//changing keys
 
-//Input keydown code
-if(changingKeyFor != null) {
+//fetch recorded keys
+keyWordLookup[ keyLookup["left"] ];
+keyWordLookup[ keyLookup["right"] ];
+keyWordLookup[ keyLookup["jump"] ];
+keyWordLookup[ keyLookup["punch"] ];
+keyWordLookup[ keyLookup["kick"] ];
+keyWordLookup[ keyLookup["crouch"] ];
+keyWordLookup[ keyLookup["dash"] ];
+
+var changingKeyFor = null;
+this.showControls = function(){
+	colorText();
+}
+
+	this.changeControls = function(){
+		//Input keydown code
+	if(changingKeyFor != null) {
 	keyLookup[changingKeyFor] = evt.keyCode; // will overwrite "left" as next key pressed
    }
-	this.keyLookup[changingKeyFor] = function(){
-		var changingKeyFor = null;
-		if("Left sprite"){ //...left movement sprite...
+		if("leftMoveSprite"){ //...left movement sprite...
 			changingKeyFor = "left";
 		}
-		if("Left sprite"){
+		if("rightMoveSprite"){
 			changingKeyFor = "right";
 		}
-		if("Left sprite" ){
+		if("jumpSprite" ){
 			changingKeyFor = "jump";
 		}
-		if("Left sprite" ){
+		if("punchSprite" ){
 			changingKeyFor = "punch";
 		}
-		if("Left sprite" ){
+		if("kickSprite" ){
 			changingKeyFor = "kick";
 		}
-		if("Left sprite"){
+		if("crouchSprite"){
 			changingKeyFor = "crouch";
 		}
-		if("Left sprite"){
+		if("DashSprite"){
 			changingKeyFor = "dash";
 		}
 
