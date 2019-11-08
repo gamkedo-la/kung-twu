@@ -47,7 +47,7 @@ keyWordLookup[ keyLookup["kick"] ];
 keyWordLookup[ keyLookup["crouch"] ];
 keyWordLookup[ keyLookup["dash"] ]; */
 
-this.showControls = function(){
+const showControls = function(){
 	canvasContext.drawImage(leftMoveSprite, 40, 20);
 	canvasContext.drawImage(rightMoveSprite, 40, 50);
 	canvasContext.drawImage(jumpSprite, 40, 80);
@@ -59,10 +59,10 @@ this.showControls = function(){
 		iY = 20;
 		colorText(
 			keyLookup[i],
-			canvas.width/2, iY+30,
-			Color.White, keyWordlookUp[keyLookup], TextAlignment.Center);
-		}
+			canvas.width/2, iY+30*i,
+			Color.White, Fonts.CreditsText);
 	}
+}
 
 
 this.changeControls = function(){
