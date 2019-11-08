@@ -150,6 +150,30 @@ const tanBossCrouch = document.createElement("img");
 const tanBossCrouchPunch = document.createElement("img");
 const tanBossSweep = document.createElement("img");
 
+const brownBossIdle = document.createElement("img");
+const brownBossWalk = document.createElement("img");
+const brownBossPunch = document.createElement("img");
+const brownBossKick = document.createElement("img");
+const brownBossCrouch = document.createElement("img");
+const brownBossCrouchPunch = document.createElement("img");
+const brownBossSweep = document.createElement("img");
+
+const redBossIdle = document.createElement("img");
+const redBossWalk = document.createElement("img");
+const redBossPunch = document.createElement("img");
+const redBossKick = document.createElement("img");
+const redBossCrouch = document.createElement("img");
+const redBossCrouchPunch = document.createElement("img");
+const redBossSweep = document.createElement("img");
+
+const blackBossIdle = document.createElement("img");
+const blackBossWalk = document.createElement("img");
+const blackBossPunch = document.createElement("img");
+const blackBossKick = document.createElement("img");
+const blackBossCrouch = document.createElement("img");
+const blackBossCrouchPunch = document.createElement("img");
+const blackBossSweep = document.createElement("img");
+
 const playerIdleWhite = document.createElement("canvas");
 const playerIdleYellow = document.createElement("canvas");
 const playerIdleTan = document.createElement("canvas");
@@ -337,6 +361,30 @@ function loadImages() {
 		{ imgName: tanBossCrouch, theFile: "BossCrouching_Tan.png" },
 		{ imgName: tanBossCrouchPunch, theFile: "BossCrouching_Tan.png" },
 		{ imgName: tanBossSweep, theFile: "BossCrouchPunch_Tan.png" },
+
+		{ imgName: brownBossIdle, theFile: "Boss_Idle_Brown.png" },
+		{ imgName: brownBossWalk, theFile: "BossWalking_Brown.png" },
+		{ imgName: brownBossPunch, theFile: "BossPunching_Brown.png" },
+		{ imgName: brownBossKick, theFile: "BossKicking_Brown.png" },
+		{ imgName: brownBossCrouch, theFile: "BossCrouching_Brown.png" },
+		{ imgName: brownBossCrouchPunch, theFile: "BossCrouching_Brown.png" },
+		{ imgName: brownBossSweep, theFile: "BossCrouchPunch_Brown.png" },
+
+		{ imgName: redBossIdle, theFile: "Boss_Idle_Red.png" },
+		{ imgName: redBossWalk, theFile: "BossWalking_Red.png" },
+		{ imgName: redBossPunch, theFile: "BossPunching_Red.png" },
+		{ imgName: redBossKick, theFile: "BossKicking_Red.png" },
+		{ imgName: redBossCrouch, theFile: "BossCrouching_Red.png" },
+		{ imgName: redBossCrouchPunch, theFile: "BossCrouching_Red.png" },
+		{ imgName: redBossSweep, theFile: "BossCrouchPunch_Red.png" },
+
+		{ imgName: blackBossIdle, theFile: "Boss_Idle_Black.png" },
+		{ imgName: blackBossWalk, theFile: "BossWalking_Black.png" },
+		{ imgName: blackBossPunch, theFile: "BossPunching_Black.png" },
+		{ imgName: blackBossKick, theFile: "BossKicking_Black.png" },
+		{ imgName: blackBossCrouch, theFile: "BossCrouching_Black.png" },
+		{ imgName: blackBossCrouchPunch, theFile: "BossCrouching_Black.png" },
+		{ imgName: blackBossSweep, theFile: "BossCrouchPunch_Black.png" },
 
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},

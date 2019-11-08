@@ -51,10 +51,9 @@ function AnimationBuilder() {
 			case BELT.White: return getAnimationsWithData(basicWhiteBeltData, scale);
 			case BELT.Yellow: return getAnimationsWithData(bossYellowBeltData, scale);
 			case BELT.Tan: return getAnimationsWithData(bossTanBeltData, scale);
-			case BELT.Brown: return getAnimationsWithData(basicBrownBeltData, scale);
-			case BELT.Red: return getAnimationsWithData(basicRedBeltData, scale);
-				//TODO: basic black belt enemy spritesheet doesn't exist
-			case BELT.Black: return getAnimationsWithData(basicBlackBeltData, scale);
+			case BELT.Brown: return getAnimationsWithData(bossBrownBeltData, scale);
+			case BELT.Red: return getAnimationsWithData(bossRedBeltData, scale);
+			case BELT.Black: return getAnimationsWithData(bossBlackBeltData, scale);
 			}
 		}
 	};
@@ -1120,6 +1119,237 @@ function AnimationBuilder() {
 			frames:[0, 1, 0],
 			width:tanBossSweep.width / 2,
 			height:tanBossSweep.height,
+			frameTimes:[50, 150, 50],
+			reverses:false,
+			loops:false
+		},
+		j_kick:{},
+		h_kick:{},
+		knockback:{}
+	};
+
+	const bossBrownBeltData = {
+		idle:{
+			name:STATE.Idle,
+			image:brownBossIdle,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7],
+			width:brownBossIdle.width / 8,
+			height:brownBossIdle.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:true
+		},
+		walk:{
+			name:STATE.WalkRight,
+			image:brownBossWalk,
+			frames:[0, 1, 2, 3],
+			width:brownBossWalk.width / 4,
+			height:brownBossWalk.height,
+			frameTimes:[150],
+			reverses:false,
+			loops:true
+		},
+		dash:{
+			name:STATE.Dash,
+			image:brownBossWalk,
+			frames:[0, 1, 2, 3],
+			width:brownBossWalk.width / 4,
+			height:brownBossWalk.height,
+			frameTimes:[30, 300, 30],
+			reverses:false,
+			loops:false
+		},
+		jump:{},
+		crouch:
+		{name:STATE.Crouch,
+			image:brownBossCrouch,
+			frames:[0],
+			width:brownBossCrouch.width,
+			height:brownBossCrouch.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false},
+		punch:{
+			name:STATE.Punch,
+			image:brownBossPunch,
+			frames:[0, 1, 2, 1],
+			width:brownBossPunch.width / 3,
+			height:brownBossPunch.height,
+			frameTimes:[50, 150, 225, 50],
+			reverses:false,
+			loops:false
+		},
+		kick:{
+			name:STATE.Kick,
+			image:brownBossKick,
+			frames:[0, 1, 2, 3, 2, 1],
+			width:brownBossKick.width / 4,
+			height:brownBossKick.height,
+			frameTimes:[50, 50, 150, 225, 50, 50],
+			reverses:false,
+			loops:false
+		},
+		block:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:brownBossSweep,
+			frames:[0, 1, 0],
+			width:brownBossSweep.width / 2,
+			height:brownBossSweep.height,
+			frameTimes:[50, 150, 50],
+			reverses:false,
+			loops:false
+		},
+		j_kick:{},
+		h_kick:{},
+		knockback:{}
+	};
+
+	const bossRedBeltData = {
+		idle:{
+			name:STATE.Idle,
+			image:redBossIdle,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7],
+			width:redBossIdle.width / 8,
+			height:redBossIdle.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:true
+		},
+		walk:{
+			name:STATE.WalkRight,
+			image:redBossWalk,
+			frames:[0, 1, 2, 3],
+			width:redBossWalk.width / 4,
+			height:redBossWalk.height,
+			frameTimes:[150],
+			reverses:false,
+			loops:true
+		},
+		dash:{
+			name:STATE.Dash,
+			image:redBossWalk,
+			frames:[0, 1, 2, 3],
+			width:redBossWalk.width / 4,
+			height:redBossWalk.height,
+			frameTimes:[30, 300, 30],
+			reverses:false,
+			loops:false
+		},
+		jump:{},
+		crouch:
+		{name:STATE.Crouch,
+			image:redBossCrouch,
+			frames:[0],
+			width:redBossCrouch.width,
+			height:redBossCrouch.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false},
+		punch:{
+			name:STATE.Punch,
+			image:redBossPunch,
+			frames:[0, 1, 2, 1],
+			width:redBossPunch.width / 3,
+			height:redBossPunch.height,
+			frameTimes:[50, 150, 225, 50],
+			reverses:false,
+			loops:false
+		},
+		kick:{
+			name:STATE.Kick,
+			image:redBossKick,
+			frames:[0, 1, 2, 3, 2, 1],
+			width:redBossKick.width / 4,
+			height:redBossKick.height,
+			frameTimes:[50, 50, 150, 225, 50, 50],
+			reverses:false,
+			loops:false
+		},
+		block:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:redBossSweep,
+			frames:[0, 1, 0],
+			width:redBossSweep.width / 2,
+			height:redBossSweep.height,
+			frameTimes:[50, 150, 50],
+			reverses:false,
+			loops:false
+		},
+		j_kick:{},
+		h_kick:{},
+		knockback:{}
+	};
+
+	const bossBlackBeltData = {
+		idle:{
+			name:STATE.Idle,
+			image:blackBossIdle,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7],
+			width:blackBossIdle.width / 8,
+			height:blackBossIdle.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:true
+		},
+		walk:{
+			name:STATE.WalkRight,
+			image:blackBossWalk,
+			frames:[0, 1, 2, 3],
+			width:blackBossWalk.width / 4,
+			height:blackBossWalk.height,
+			frameTimes:[150],
+			reverses:false,
+			loops:true
+		},
+		dash:{
+			name:STATE.Dash,
+			image:blackBossWalk,
+			frames:[0, 1, 2, 3],
+			width:blackBossWalk.width / 4,
+			height:blackBossWalk.height,
+			frameTimes:[30, 300, 30],
+			reverses:false,
+			loops:false
+		},
+		jump:{},
+		crouch:
+		{name:STATE.Crouch,
+			image:blackBossCrouch,
+			frames:[0],
+			width:blackBossCrouch.width,
+			height:blackBossCrouch.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false},
+		punch:{
+			name:STATE.Punch,
+			image:blackBossPunch,
+			frames:[0, 1, 2, 1],
+			width:blackBossPunch.width / 3,
+			height:blackBossPunch.height,
+			frameTimes:[50, 150, 225, 50],
+			reverses:false,
+			loops:false
+		},
+		kick:{
+			name:STATE.Kick,
+			image:blackBossKick,
+			frames:[0, 1, 2, 3, 2, 1],
+			width:blackBossKick.width / 4,
+			height:blackBossKick.height,
+			frameTimes:[50, 50, 150, 225, 50, 50],
+			reverses:false,
+			loops:false
+		},
+		block:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:blackBossSweep,
+			frames:[0, 1, 0],
+			width:blackBossSweep.width / 2,
+			height:blackBossSweep.height,
 			frameTimes:[50, 150, 50],
 			reverses:false,
 			loops:false
