@@ -361,7 +361,7 @@ function BasicEnemy(config) {
 			// minimum 1hp damage - never allow a block to register as 0 damage just in case
 			// any positive (non-zero) value divided by ten and rounded up is at least 1
             this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10)); 
-            if (wooshFX) wooshFX.explode(position.x,position.y);
+            if (wooshFX) wooshFX.smokePuff(position.x,position.y);
 
 		} 
 		else if(stateManager.getCurrentState() === STATE.KnockBack) {
@@ -370,13 +370,13 @@ function BasicEnemy(config) {
 			console.log("Hit enemy is being knocked back - receiving 1 damage anyways.");
 			// bugfix to ensure enemies stuck in knockback forever can be destroyed
             this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 20)); 
-            if (wooshFX) wooshFX.explode(position.x,position.y);
+            if (wooshFX) wooshFX.smokePuff(position.x,position.y);
 
         
 		} else { //just got hit
             
             stateManager.wasHit();
-            if (wooshFX) wooshFX.explode(position.x,position.y);
+            if (wooshFX) wooshFX.smokePuff(position.x,position.y);
 
 
 			velocity.y = -KNOCK_BACK_SPEED / 2;
@@ -391,10 +391,9 @@ function BasicEnemy(config) {
 
 		if(this.health <= 0) {
             sound.playSFX(Sounds.SFX_LowPain);
-            if (wooshFX) wooshFX.explode(position.x,position.y);
+            if (wooshFX) wooshFX.starPuff(position.x,position.y);
 		} else if(otherEntity.type !== ENTITY_TYPE.Environment) {
             sound.playSFX(Sounds.SFX_EnemyHit);
-            if (wooshFX) wooshFX.explode(position.x,position.y);
 		}
 	};
 

@@ -13,21 +13,26 @@ function WooshFXManager(wooshImage) {
 
 	if (DEBUG_WOOSHES) console.log("Creating the WooshFXManager...");
 
-	// game-specific effects
-	this.explode = function (x,y) {
+	this.puff = function (x,y,img) {
 		var num = irandomRange(5,12);
 		for (var i=0; i<num; i++) {
 			this.trigger(
 				x + irandomRange(-2,2),
 				y + irandomRange(-2,2),
 				0,//Math.random()*360*DEG_TO_RAD, // sprite rot
-				smokeSprite,
+				img,
 				randomRange(-6,6),
 				randomRange(-6,6),
 				-1, // gravity
 				0.9, // friction
 				60); // frame lifespan
 		}
+	}
+	this.smokePuff = function (x,y) {
+		this.puff(x,y,smokeSprite);
+	};
+	this.starPuff = function (x,y) {
+		this.puff(x,y,starSprite);
 	};
 	this.triggerPunch = function (pos,left) {
 		if (left)
