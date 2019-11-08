@@ -213,6 +213,9 @@ const playerKnockbackBrown = document.createElement("canvas");
 const playerKnockbackRed = document.createElement("canvas");
 const playerKnockbackBlack = document.createElement("canvas");
 
+
+const smokeSprite = document.createElement("img");
+const starSprite = document.createElement("img");
 const wooshPunchPic = document.createElement("img");
 const wooshKickPic = document.createElement("img");
 const wooshKickPic2 = document.createElement("img");
@@ -440,7 +443,10 @@ function loadImages() {
 		{ imgName: wooshDashPlayerPic, theFile: "wooshDashPlayer.png"},
 		{ imgName: wooshDashEnemyPic, theFile: "wooshDashEnemy.png"},
 		{ imgName: wooshDashPlayerLPic, theFile: "wooshDashPlayerL.png"},
-		{ imgName: wooshDashEnemyLPic, theFile: "wooshDashEnemyL.png"},
+        { imgName: wooshDashEnemyLPic, theFile: "wooshDashEnemyL.png"},
+        { imgName: smokeSprite, theFile: "smoke.png"},
+        { imgName: starSprite, theFile: "star.png"},
+        
         
 
 		// UI
