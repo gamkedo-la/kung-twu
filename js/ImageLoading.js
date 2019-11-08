@@ -204,6 +204,14 @@ const carpet = document.createElement("img");
 const carpet2 = document.createElement("img");
 const painting = document.createElement("img");
 
+const leftMoveSprite = document.createElement("img");
+const rightMoveSprite = document.createElement("img");
+const jumpSprite = document.createElement("img");
+const punchSprite = document.createElement("img");
+const kickSprite = document.createElement("img");
+const crouchSprite = document.createElement("img");
+const dashSprite = document.createElement("img");
+
 let picsToLoad = 0;
 
 function countLoadedImageAndLaunchIfReady() {
@@ -378,6 +386,13 @@ function loadImages() {
 		{ imgName: titleScreenBird, theFile: "bird_sprite-flap-sheet.png"},
 		{ imgName: selector, theFile: "title_screen_yinyang_selector.png"},
 		{ imgName: jpFontImg, theFile: "JPFont_Light.png"},
+		{ imgName: leftMoveSprite, theFile: "left.png"},
+		{ imgName: rightMoveSprite, theFile: "right.png"},
+		{ imgName: jumpSprite, theFile: "jump.png"},
+		{ imgName: punchSprite, theFile: "punch.png"},
+		{ imgName: kickSprite, theFile: "kick.png"},
+		{ imgName: crouchSprite, theFile: "crouch.png"},
+		{ imgName: dashSprite, theFile: "dash.png"},
 	];
 
 	picsToLoad = imageList.length;
