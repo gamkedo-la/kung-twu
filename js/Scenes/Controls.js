@@ -48,19 +48,24 @@ keyWordLookup[ keyLookup["crouch"] ];
 keyWordLookup[ keyLookup["dash"] ]; */
 
 const showControls = function(){
-	canvasContext.drawImage(leftMoveSprite, 40, 20);
-	canvasContext.drawImage(rightMoveSprite, 40, 50);
-	canvasContext.drawImage(jumpSprite, 40, 80);
-	canvasContext.drawImage(punchSprite, 40, 120);
-	canvasContext.drawImage(kickSprite, 40, 150);
-	canvasContext.drawImage(crouchSprite, 40, 180);
-	canvasContext.drawImage(dashSprite, 40, 210);
+	var buttonList = [leftMoveSprite, rightMoveSprite, jumpSprite, punchSprite, kickSprite, crouchSprite, dashSprite];
+
+	var topElementY = 5;
+	var spacingElementY = 95;
+	for(var i=0;i<buttonList.length;i++) {
+		canvasContext.drawImage(buttonList[i], 40, topElementY + i * spacingElementY);
+	}
+
 	for(var i=0; i<keyLookup.length; i++) {
-		iY = 20;
-		colorText(
-			keyLookup[i],
-			canvas.width/2, iY+30*i,
-			Color.White, Fonts.CreditsText);
+		iY = topElementY+spacingElementY*i;
+
+		var inputNames = keyMapper.getInputCodes(keyLookup[i]);
+		for(var ii=0;ii<inputNames.length;ii++) {
+			var horizontalSpace = 100;
+			colorText(lookupKeyName(inputNames[ii]),
+				canvas.width/2+ii*horizontalSpace, iY+spacingElementY/2,
+				Color.White, Fonts.CreditsText);
+		}
 	}
 }
 
