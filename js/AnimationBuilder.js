@@ -50,7 +50,7 @@ function AnimationBuilder() {
 			switch(belt) {
 			case BELT.White: return getAnimationsWithData(basicWhiteBeltData, scale);
 			case BELT.Yellow: return getAnimationsWithData(bossYellowBeltData, scale);
-			case BELT.Tan: return getAnimationsWithData(basicTanBeltData, scale);
+			case BELT.Tan: return getAnimationsWithData(bossTanBeltData, scale);
 			case BELT.Brown: return getAnimationsWithData(basicBrownBeltData, scale);
 			case BELT.Red: return getAnimationsWithData(basicRedBeltData, scale);
 				//TODO: basic black belt enemy spritesheet doesn't exist
@@ -1043,6 +1043,83 @@ function AnimationBuilder() {
 			frames:[0, 1, 0],
 			width:yellowBossSweep.width / 2,
 			height:yellowBossSweep.height,
+			frameTimes:[50, 150, 50],
+			reverses:false,
+			loops:false
+		},
+		j_kick:{},
+		h_kick:{},
+		knockback:{}
+	};
+
+	const bossTanBeltData = {
+		idle:{
+			name:STATE.Idle,
+			image:tanBossIdle,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7],
+			width:tanBossIdle.width / 8,
+			height:tanBossIdle.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:true
+		},
+		walk:{
+			name:STATE.WalkRight,
+			image:tanBossWalk,
+			frames:[0, 1, 2, 3],
+			width:tanBossWalk.width / 4,
+			height:tanBossWalk.height,
+			frameTimes:[150],
+			reverses:false,
+			loops:true
+		},
+		dash:{
+			name:STATE.Dash,
+			image:tanBossWalk,
+			frames:[0, 1, 2, 3],
+			width:tanBossWalk.width / 4,
+			height:tanBossWalk.height,
+			frameTimes:[30, 300, 30],
+			reverses:false,
+			loops:false
+		},
+		jump:{},
+		crouch:
+		{name:STATE.Crouch,
+			image:tanBossCrouch,
+			frames:[0],
+			width:tanBossCrouch.width,
+			height:tanBossCrouch.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false},
+		punch:{
+			name:STATE.Punch,
+			image:tanBossPunch,
+			frames:[0, 1, 2, 1],
+			width:tanBossPunch.width / 3,
+			height:tanBossPunch.height,
+			frameTimes:[50, 150, 225, 50],
+			reverses:false,
+			loops:false
+		},
+		kick:{
+			name:STATE.Kick,
+			image:tanBossKick,
+			frames:[0, 1, 2, 3, 2, 1],
+			width:tanBossKick.width / 4,
+			height:tanBossKick.height,
+			frameTimes:[50, 50, 150, 225, 50, 50],
+			reverses:false,
+			loops:false
+		},
+		block:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:tanBossSweep,
+			frames:[0, 1, 0],
+			width:tanBossSweep.width / 2,
+			height:tanBossSweep.height,
 			frameTimes:[50, 150, 50],
 			reverses:false,
 			loops:false

@@ -142,6 +142,14 @@ const yellowBossCrouch = document.createElement("img");
 const yellowBossCrouchPunch = document.createElement("img");
 const yellowBossSweep = document.createElement("img");
 
+const tanBossIdle = document.createElement("img");
+const tanBossWalk = document.createElement("img");
+const tanBossPunch = document.createElement("img");
+const tanBossKick = document.createElement("img");
+const tanBossCrouch = document.createElement("img");
+const tanBossCrouchPunch = document.createElement("img");
+const tanBossSweep = document.createElement("img");
+
 const playerIdleWhite = document.createElement("canvas");
 const playerIdleYellow = document.createElement("canvas");
 const playerIdleTan = document.createElement("canvas");
@@ -321,6 +329,14 @@ function loadImages() {
 		{ imgName: yellowBossCrouch, theFile: "BossCrouching_Yellow.png" },
 		{ imgName: yellowBossCrouchPunch, theFile: "BossCrouching_Yellow.png" },
 		{ imgName: yellowBossSweep, theFile: "BossCrouchPunch_Yellow.png" },
+
+		{ imgName: tanBossIdle, theFile: "Boss_Idle_Tan.png" },
+		{ imgName: tanBossWalk, theFile: "BossWalking_Tan.png" },
+		{ imgName: tanBossPunch, theFile: "BossPunching_Tan.png" },
+		{ imgName: tanBossKick, theFile: "BossKicking_Tan.png" },
+		{ imgName: tanBossCrouch, theFile: "BossCrouching_Tan.png" },
+		{ imgName: tanBossCrouchPunch, theFile: "BossCrouching_Tan.png" },
+		{ imgName: tanBossSweep, theFile: "BossCrouchPunch_Tan.png" },
 
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
