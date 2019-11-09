@@ -174,7 +174,7 @@ function AnimationBuilder() {
 			frames:[0],
 			width:basicEnemyJump.width / 3,
 			height:basicEnemyJump.height,
-			frameTimes:[50],
+			frameTimes:[250],
 			reverses:false,
 			loops:false
 		},
@@ -208,7 +208,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:basicEnemyBlock,
+			frames:[0],
+			width:basicEnemyBlock.width,
+			height:basicEnemyBlock.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
@@ -246,7 +255,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:yellowEnemyJump,
+			frames:[0],
+			width:yellowEnemyJump.width / 3,
+			height:yellowEnemyJump.height,
+			frameTimes:[250],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:yellowEnemyCrouch,
@@ -277,7 +295,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:yellowEnemyBlock,
+			frames:[0],
+			width:yellowEnemyBlock.width,
+			height:yellowEnemyBlock.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
@@ -315,7 +342,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:tanEnemyJump,
+			frames:[0],
+			width:tanEnemyJump.width / 3,
+			height:tanEnemyJump.height,
+			frameTimes:[250],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:tanEnemyCrouch,
@@ -346,7 +382,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:tanEnemyBlock,
+			frames:[0],
+			width:tanEnemyBlock.width,
+			height:tanEnemyBlock.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
@@ -384,7 +429,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:brownEnemyJump,
+			frames:[0],
+			width:brownEnemyJump.width / 3,
+			height:brownEnemyJump.height,
+			frameTimes:[250],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:brownEnemyCrouch,
@@ -415,7 +469,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:brownEnemyBlock,
+			frames:[0],
+			width:brownEnemyBlock.width,
+			height:brownEnemyBlock.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
@@ -453,7 +516,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:redEnemyJump,
+			frames:[0],
+			width:redEnemyJump.width / 3,
+			height:redEnemyJump.height,
+			frameTimes:[250],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:redEnemyCrouch,
@@ -484,7 +556,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:redEnemyBlock,
+			frames:[0],
+			width:redEnemyBlock.width,
+			height:redEnemyBlock.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
@@ -522,7 +603,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:basicEnemyJump,
+			frames:[0],
+			width:basicEnemyJump.width / 3,
+			height:basicEnemyJump.height,
+			frameTimes:[250],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:basicEnemyCrouch,
@@ -553,7 +643,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:basicEnemyBlock,
+			frames:[0],
+			width:basicEnemyBlock.width,
+			height:basicEnemyBlock.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
@@ -1005,9 +1104,18 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
-		crouch:
-		{name:STATE.Crouch,
+		jump:{
+			name:STATE.Jump,
+			image:yellowBossJump,
+			frames:[0, 1, 2, 1],
+			width:yellowBossJump.width / 3,
+			height:yellowBossJump.height,
+			frameTimes:[32, 32, 380, 32],
+			reverses:false,
+			loops:false
+		},
+		crouch:{
+			name:STATE.Crouch,
 			image:yellowBossCrouch,
 			frames:[0],
 			width:yellowBossCrouch.width,
@@ -1082,9 +1190,18 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
-		crouch:
-		{name:STATE.Crouch,
+		jump:{
+			name:STATE.Jump,
+			image:tanBossJump,
+			frames:[0, 1, 2, 1],
+			width:tanBossJump.width / 3,
+			height:tanBossJump.height,
+			frameTimes:[32, 32, 180, 32],
+			reverses:false,
+			loops:false
+		},
+		crouch:{
+			name:STATE.Crouch,
 			image:tanBossCrouch,
 			frames:[0],
 			width:tanBossCrouch.width,
@@ -1159,9 +1276,18 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
-		crouch:
-		{name:STATE.Crouch,
+		jump:{
+			name:STATE.Jump,
+			image:brownBossJump,
+			frames:[0, 1, 2, 1],
+			width:brownBossJump.width / 3,
+			height:brownBossJump.height,
+			frameTimes:[32, 32, 180, 32],
+			reverses:false,
+			loops:false
+		},
+		crouch:{
+			name:STATE.Crouch,
 			image:brownBossCrouch,
 			frames:[0],
 			width:brownBossCrouch.width,
@@ -1236,9 +1362,18 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
-		crouch:
-		{name:STATE.Crouch,
+		jump:{
+			name:STATE.Jump,
+			image:redBossJump,
+			frames:[0, 1, 2, 1],
+			width:redBossJump.width / 3,
+			height:redBossJump.height,
+			frameTimes:[32, 32, 180, 32],
+			reverses:false,
+			loops:false
+		},
+		crouch:{
+			name:STATE.Crouch,
 			image:redBossCrouch,
 			frames:[0],
 			width:redBossCrouch.width,
@@ -1313,9 +1448,18 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
-		crouch:
-		{name:STATE.Crouch,
+		jump:{
+			name:STATE.Jump,
+			image:blackBossJump,
+			frames:[0, 1, 2, 1],
+			width:blackBossJump.width / 3,
+			height:blackBossJump.height,
+			frameTimes:[32, 32, 180, 32],
+			reverses:false,
+			loops:false
+		},
+		crouch:{
+			name:STATE.Crouch,
 			image:blackBossCrouch,
 			frames:[0],
 			width:blackBossCrouch.width,

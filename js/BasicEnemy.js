@@ -99,6 +99,8 @@ function BasicEnemy(config) {
 	};
 
 	const damageForState = function() {
+		//Used to find out how much damage you do depending on what state you're in
+		//i.e. when you kick, you deal more damage than when you punch.
 		const aState = stateManager.getCurrentState();
 		switch(aState) {
 		case STATE.WalkRight:
@@ -429,11 +431,15 @@ function BasicEnemy(config) {
 		if(!stateManager.getIsOnGround()) {
 			//land on top of the other object
 			position.y -= (myEdges.highY - otherEdges.lowY);
-			stateManager.didLand();
+			if(velocity.y >= 0) {
+				stateManager.didLand();
+			}
 		} else if((myEdges.highY - otherEdges.lowY > 0) && (myEdges.highY - otherEdges.lowY < 4)) {
 			position.y -= (myEdges.highY - otherEdges.lowY);
-			velocity.y = 0;
-			stateManager.didLand();
+			if(velocity.y >= 0) {
+				velocity.y = 0;
+				stateManager.didLand();	
+			}
 		} else {
 			mightJump = true;
 			if(velocity.x > 0) {

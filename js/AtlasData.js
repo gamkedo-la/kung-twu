@@ -603,6 +603,21 @@ const basicEnemyKickData = {
 	loops:false
 };
 
+const basicEnemyBlockData = {
+	name:STATE.Block,
+	image:characterAtlas,
+	clipX:922,
+	clipY:ATLAS_ROW0,
+	clipWidth:39,
+	clipHeight:69,
+	frameWidth:39,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[200],
+	reverses:false,
+	loops:false 
+};
+
 //---------Start Yellow Enemy Atlas Data--------//
 
 const yellowEnemyIdleData = {
@@ -708,6 +723,21 @@ const yellowEnemyKickData = {
 	frameTimes:[50, 150, 225, 50],
 	reverses:false,
 	loops:false
+};
+
+const yellowEnemyBlockData = {
+	name:STATE.Block,
+	image:characterAtlas,
+	clipX:922,
+	clipY:ATLAS_ROW1,
+	clipWidth:39,
+	clipHeight:69,
+	frameWidth:39,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[200],
+	reverses:false,
+	loops:false 
 };
 
 //---------Start Tan Enemy Atlas Data--------//
@@ -817,6 +847,21 @@ const tanEnemyKickData = {
 	loops:false
 };
 
+const tanEnemyBlockData = {
+	name:STATE.Block,
+	image:characterAtlas,
+	clipX:922,
+	clipY:ATLAS_ROW2,
+	clipWidth:39,
+	clipHeight:69,
+	frameWidth:39,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[200],
+	reverses:false,
+	loops:false 
+};
+
 //---------Start Brown Enemy Atlas Data--------//
 
 const brownEnemyIdleData = {
@@ -922,6 +967,21 @@ const brownEnemyKickData = {
 	frameTimes:[50, 150, 225, 50],
 	reverses:false,
 	loops:false
+};
+
+const brownEnemyBlockData = {
+	name:STATE.Block,
+	image:characterAtlas,
+	clipX:922,
+	clipY:ATLAS_ROW3,
+	clipWidth:39,
+	clipHeight:69,
+	frameWidth:39,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[200],
+	reverses:false,
+	loops:false 
 };
 
 //---------Start Red Enemy Atlas Data--------//
@@ -1031,6 +1091,21 @@ const redEnemyKickData = {
 	loops:false
 };
 
+const redEnemyBlockData = {
+	name:STATE.Block,
+	image:characterAtlas,
+	clipX:922,
+	clipY:ATLAS_ROW4,
+	clipWidth:39,
+	clipHeight:69,
+	frameWidth:39,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[200],
+	reverses:false,
+	loops:false 
+};
+
 //---------Start Boss Atlas Data--------//
 
 //---------Start Boss Yellow Belt Atlas Data--------//
@@ -1121,6 +1196,21 @@ const yellowBossSweepData = {
 	frameCount:2,
 	frames:[0, 1],
 	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
+const yellowBossJumpData = {
+	name:STATE.Jump,
+	image:bossAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW6 + 2,
+	clipWidth:108,
+	clipHeight:67,
+	frameWidth:36,
+	frameCount:3,
+	frames:[0, 1, 2, 1],
+	frameTimes:[50],
 	reverses:false,
 	loops:false
 };
@@ -1217,6 +1307,21 @@ const tanBossSweepData = {
 	loops:false
 };
 
+const tanBossJumpData = {
+	name:STATE.Jump,
+	image:bossAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW7 + 2,
+	clipWidth:108,
+	clipHeight:67,
+	frameWidth:36,
+	frameCount:3,
+	frames:[0, 1, 2, 1],
+	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Boss Brown Belt Atlas Data--------//
 
 const brownBossIdleData = {
@@ -1305,6 +1410,21 @@ const brownBossSweepData = {
 	frameCount:2,
 	frames:[0, 1],
 	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
+const brownBossJumpData = {
+	name:STATE.Jump,
+	image:bossAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW8 + 2,
+	clipWidth:108,
+	clipHeight:67,
+	frameWidth:36,
+	frameCount:3,
+	frames:[0, 1, 2, 1],
+	frameTimes:[50],
 	reverses:false,
 	loops:false
 };
@@ -1401,6 +1521,21 @@ const redBossSweepData = {
 	loops:false
 };
 
+const redBossJumpData = {
+	name:STATE.Jump,
+	image:bossAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW9 + 2,
+	clipWidth:108,
+	clipHeight:67,
+	frameWidth:36,
+	frameCount:3,
+	frames:[0, 1, 2, 1],
+	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Boss Black Belt Atlas Data--------//
 
 const blackBossIdleData = {
@@ -1489,6 +1624,21 @@ const blackBossSweepData = {
 	frameCount:2,
 	frames:[0, 1],
 	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
+const blackBossJumpData = {
+	name:STATE.Jump,
+	image:bossAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW10 + 2,
+	clipWidth:108,
+	clipHeight:67,
+	frameWidth:36,
+	frameCount:3,
+	frames:[0, 1, 2, 1],
+	frameTimes:[50],
 	reverses:false,
 	loops:false
 };
