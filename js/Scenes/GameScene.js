@@ -544,7 +544,16 @@ function GameScene() {
 		// GameTimer text rendering
 		const timeWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Time), UI_SCALE);
 		gameTimer.setPosition(screenLeft + 40 + timeWidth, 96);
-		gameTimer.draw();
+        gameTimer.draw();
+        
+        // hourglass sand
+        //console.log("time left: " + gameTimer.getTime() + " of " + gameTimer.getStartTime());
+        var maxsize = 78;
+        var barsize = maxsize *  (gameTimer.getTime() / gameTimer.getStartTime());
+        //console.log("sand size: " + barsize);
+        drawRect(screenLeft + 304 + 24, 48 + 24, 56, barsize, Color.Orange);
+        // hourglass overlay
+        canvasContext.drawImage(hourglassSprite, screenLeft + 304, 48);
 
 		//Level Name
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Level),
