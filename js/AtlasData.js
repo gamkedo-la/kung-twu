@@ -618,6 +618,21 @@ const basicEnemyBlockData = {
 	loops:false 
 };
 
+const basicEnemyKnockbackData = {
+	name:STATE.KnockBack,
+	image:characterAtlas,
+	clipX:875,
+	clipY:ATLAS_ROW5,
+	clipWidth:32,
+	clipHeight:69,
+	frameWidth:32,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[625],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Yellow Enemy Atlas Data--------//
 
 const yellowEnemyIdleData = {
@@ -738,6 +753,21 @@ const yellowEnemyBlockData = {
 	frameTimes:[200],
 	reverses:false,
 	loops:false 
+};
+
+const yellowEnemyKnockbackData = {
+	name:STATE.KnockBack,
+	image:characterAtlas,
+	clipX:875,
+	clipY:ATLAS_ROW6,
+	clipWidth:32,
+	clipHeight:69,
+	frameWidth:32,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[625],
+	reverses:false,
+	loops:false
 };
 
 //---------Start Tan Enemy Atlas Data--------//
@@ -862,6 +892,21 @@ const tanEnemyBlockData = {
 	loops:false 
 };
 
+const tanEnemyKnockbackData = {
+	name:STATE.KnockBack,
+	image:characterAtlas,
+	clipX:875,
+	clipY:ATLAS_ROW7,
+	clipWidth:32,
+	clipHeight:69,
+	frameWidth:32,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[625],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Brown Enemy Atlas Data--------//
 
 const brownEnemyIdleData = {
@@ -984,6 +1029,21 @@ const brownEnemyBlockData = {
 	loops:false 
 };
 
+const brownEnemyKnockbackData = {
+	name:STATE.KnockBack,
+	image:characterAtlas,
+	clipX:875,
+	clipY:ATLAS_ROW8,
+	clipWidth:32,
+	clipHeight:69,
+	frameWidth:32,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[625],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Red Enemy Atlas Data--------//
 
 const redEnemyIdleData = {
@@ -1095,7 +1155,7 @@ const redEnemyBlockData = {
 	name:STATE.Block,
 	image:characterAtlas,
 	clipX:922,
-	clipY:ATLAS_ROW4,
+	clipY:ATLAS_ROW9,
 	clipWidth:39,
 	clipHeight:69,
 	frameWidth:39,
@@ -1104,6 +1164,21 @@ const redEnemyBlockData = {
 	frameTimes:[200],
 	reverses:false,
 	loops:false 
+};
+
+const redEnemyKnockbackData = {
+	name:STATE.KnockBack,
+	image:characterAtlas,
+	clipX:875,
+	clipY:ATLAS_ROW4,
+	clipWidth:32,
+	clipHeight:69,
+	frameWidth:32,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[625],
+	reverses:false,
+	loops:false
 };
 
 //---------Start Boss Atlas Data--------//

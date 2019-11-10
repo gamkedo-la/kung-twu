@@ -111,7 +111,7 @@ function BasicEnemy(config) {
 		case STATE.Idle:
 		case STATE.Block:
 		case STATE.KnockBack:
-			return 0.1 * BASE_DAMAGE;// was 0;
+			return 0;
 		case STATE.Punch:
 			return 1 * BASE_DAMAGE;
 		case STATE.Kick:
@@ -227,16 +227,15 @@ function BasicEnemy(config) {
 	};
 
 	const respondToKnockBack = function() {
-
 		if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
         
 		if(stateManager.getIsFacingLeft()) {
-			velocity.x -= KNOCK_BACK_SPEED / 25;
+			velocity.x -= KNOCK_BACK_SPEED / 35;
 			if(velocity.x <= 0) {
 				velocity.x = 0;
 			}
 		} else {
-			velocity.x += KNOCK_BACK_SPEED / 25;
+			velocity.x += KNOCK_BACK_SPEED / 35;
 			if(velocity.x >= 0) {
 				velocity.x = 0;
 			}
@@ -359,27 +358,16 @@ function BasicEnemy(config) {
 		}
 		
 		if(stateManager.getCurrentState() === STATE.Block) {
-
 			// minimum 1hp damage - never allow a block to register as 0 damage just in case
 			// any positive (non-zero) value divided by ten and rounded up is at least 1
 			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10)); 
 			if (wooshFX) wooshFX.smokePuff(position.x,position.y);
-
 		} 
 		else if(stateManager.getCurrentState() === STATE.KnockBack) {
-
-			//do nothing for now - invulnerable while being knocked back
-			console.log("Hit enemy is being knocked back - receiving 1 damage anyways.");
-			// bugfix to ensure enemies stuck in knockback forever can be destroyed
-			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 20)); 
 			if (wooshFX) wooshFX.smokePuff(position.x,position.y);
-
-        
 		} else { //just got hit
-            
 			stateManager.wasHit();
 			if (wooshFX) wooshFX.smokePuff(position.x,position.y);
-
 
 			velocity.y = -KNOCK_BACK_SPEED / 2;
 			if(stateManager.getIsFacingLeft()) {

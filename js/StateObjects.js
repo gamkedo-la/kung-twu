@@ -400,9 +400,9 @@ function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 	this.didLand = function() {
 		landed = true;
 		isOnGround = true;
-		if(currentState === KNOCK_BACK_STATE) {
-			knockBackDidEnd = true;
-		}
+//		if(currentState === KNOCK_BACK_STATE) {
+//			knockBackDidEnd = true;
+//		}
 	};
 
 	this.isFalling = function() {
