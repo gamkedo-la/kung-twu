@@ -6,9 +6,8 @@ function RivalUIImage(image, x, y, cameraXPos) {
 	const offscreenCtx = offscreen.getContext("2d");
 	offscreenCtx.translate(offscreen.width / 2, offscreen.height / 2);
 	let rotation = 0;
-	let position = {x:x - offscreen.width / 4, y:y - offscreen.height / 4};
+	let position = {x:x - offscreen.width / 4 - cameraXPos, y:y - offscreen.height / 4};
 	let velocity = {x:0, y:0};
-	let oldCameraX = cameraXPos;
 	const DELTA_THETA = -1.0;
 	let alpha = 1;
 	let animatedTime = 0;
@@ -29,7 +28,7 @@ function RivalUIImage(image, x, y, cameraXPos) {
 		return isDefeated;
 	};
 
-	this.update = function(deltaTime, gravity, cameraX) {
+	this.update = function(deltaTime) {
 		if(isDefeated) {
 			animatedTime += deltaTime;
 
@@ -49,15 +48,14 @@ function RivalUIImage(image, x, y, cameraXPos) {
 			rotation = DELTA_THETA * deltaTime / 1000;
 		}
 
-		position.x += (cameraX - oldCameraX) + velocity.x * deltaTime;
-		oldCameraX = cameraX;
+		position.x += velocity.x * deltaTime;
 	};
 
-	this.draw = function() {
+	this.draw = function(cameraX) {
 		offscreenCtx.clearRect(-offscreen.width / 2, -offscreen.height / 2, offscreen.width, offscreen.height);
 		offscreenCtx.rotate(rotation);
 		offscreenCtx.drawImage(image, 0, 0, image.width / 2, image.height, -offscreen.width / 4, -offscreen.height / 4, image.width / 4, image.height / 2);
 
-		canvasContext.drawImage(offscreen, position.x, position.y);
+		canvasContext.drawImage(offscreen, cameraX + position.x, position.y);
 	};
 }

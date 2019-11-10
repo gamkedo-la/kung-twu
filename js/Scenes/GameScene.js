@@ -247,12 +247,11 @@ function GameScene() {
 			const aRival = UIRivals[i];
 			if(i === UIRivals.length - 1) {
 				if(aRival.isComplete) {
-					console.log(`Popping the last one off`);
 					UIRivals.pop();
 				}
 			}
 
-			aRival.update(deltaTime, GRAVITY, newCameraX);
+			aRival.update(deltaTime);
 		}
 
 		processUserInput();
@@ -544,16 +543,16 @@ function GameScene() {
 		// GameTimer text rendering
 		const timeWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Time), UI_SCALE);
 		gameTimer.setPosition(screenLeft + 40 + timeWidth, 96);
-        gameTimer.draw();
+		gameTimer.draw();
         
-        // hourglass sand
-        //console.log("time left: " + gameTimer.getTime() + " of " + gameTimer.getStartTime());
-        var maxsize = 78;
-        var barsize = maxsize *  (gameTimer.getTime() / gameTimer.getStartTime());
-        //console.log("sand size: " + barsize);
-        drawRect(screenLeft + 304 + 24, 48 + 24, 56, barsize, Color.Orange);
-        // hourglass overlay
-        canvasContext.drawImage(hourglassSprite, screenLeft + 304, 48);
+		// hourglass sand
+		//console.log("time left: " + gameTimer.getTime() + " of " + gameTimer.getStartTime());
+		var maxsize = 78;
+		var barsize = maxsize *  (gameTimer.getTime() / gameTimer.getStartTime());
+		//console.log("sand size: " + barsize);
+		drawRect(screenLeft + 304 + 24, 48 + 24, 56, barsize, Color.Orange);
+		// hourglass overlay
+		canvasContext.drawImage(hourglassSprite, screenLeft + 304, 48);
 
 		//Level Name
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Level),
@@ -584,7 +583,7 @@ function GameScene() {
 			{x:cameraX, y:10}, TextAlignment.Left, UI_SCALE);
 
 		for(let aRival of UIRivals) {
-			aRival.draw();
+			aRival.draw(cameraX);
 		}
 	};
 
