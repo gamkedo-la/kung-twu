@@ -269,7 +269,6 @@ function BasicEnemy(config) {
 
 	const block = function() {
 		if(stateManager.getIsNewState()) {
-			console.log("Basic Enemy is Blocking now");
 			velocity.x = 0;
 		}
 	};
@@ -322,7 +321,6 @@ function BasicEnemy(config) {
 
 	const sweep = function() {
 		if(stateManager.getIsNewState()) {
-			console.log("Basic Enemy is Sweeping now");
 			velocity.x = 0;
 			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}

@@ -633,6 +633,21 @@ const basicEnemyKnockbackData = {
 	loops:false
 };
 
+const basicEnemySweepData = {
+	name:STATE.Sweep,
+	image:characterAtlas,
+	clipX:923,
+	clipY:ATLAS_ROW5,
+	clipWidth:55,
+	clipHeight:69,
+	frameWidth:55,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[225],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Yellow Enemy Atlas Data--------//
 
 const yellowEnemyIdleData = {
@@ -766,6 +781,21 @@ const yellowEnemyKnockbackData = {
 	frameCount:1,
 	frames:[0],
 	frameTimes:[625],
+	reverses:false,
+	loops:false
+};
+
+const yellowEnemySweepData = {
+	name:STATE.Sweep,
+	image:characterAtlas,
+	clipX:923,
+	clipY:ATLAS_ROW6,
+	clipWidth:55,
+	clipHeight:69,
+	frameWidth:55,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[225],
 	reverses:false,
 	loops:false
 };
@@ -907,6 +937,21 @@ const tanEnemyKnockbackData = {
 	loops:false
 };
 
+const tanEnemySweepData = {
+	name:STATE.Sweep,
+	image:characterAtlas,
+	clipX:923,
+	clipY:ATLAS_ROW7,
+	clipWidth:55,
+	clipHeight:69,
+	frameWidth:55,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[225],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Brown Enemy Atlas Data--------//
 
 const brownEnemyIdleData = {
@@ -1044,6 +1089,21 @@ const brownEnemyKnockbackData = {
 	loops:false
 };
 
+const brownEnemySweepData = {
+	name:STATE.Sweep,
+	image:characterAtlas,
+	clipX:923,
+	clipY:ATLAS_ROW8,
+	clipWidth:55,
+	clipHeight:69,
+	frameWidth:55,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[225],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Red Enemy Atlas Data--------//
 
 const redEnemyIdleData = {
@@ -1177,6 +1237,21 @@ const redEnemyKnockbackData = {
 	frameCount:1,
 	frames:[0],
 	frameTimes:[625],
+	reverses:false,
+	loops:false
+};
+
+const redEnemySweepData = {
+	name:STATE.Sweep,
+	image:characterAtlas,
+	clipX:923,
+	clipY:ATLAS_ROW9,
+	clipWidth:55,
+	clipHeight:69,
+	frameWidth:55,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[225],
 	reverses:false,
 	loops:false
 };

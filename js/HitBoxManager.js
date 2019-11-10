@@ -145,6 +145,7 @@ function HitBoxManager(bodyData, attackData) {
 		case STATE.KnockBack:
 			return false;
 		case STATE.Sweep:
+			return true;
 		case STATE.J_Kick:
 		case STATE.H_Kick:
 			//These animations don't exist yet, so returning false for now

@@ -218,7 +218,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:basicEnemySweep,
+			frames:[0],
+			width:basicEnemySweep.width,
+			height:basicEnemySweep.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
 		knockback:{
@@ -314,7 +323,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:yellowEnemySweep,
+			frames:[0],
+			width:yellowEnemySweep.width,
+			height:yellowEnemySweep.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
 		knockback:{
@@ -410,7 +428,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:tanEnemySweep,
+			frames:[0],
+			width:tanEnemySweep.width,
+			height:tanEnemySweep.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
 		knockback:{
@@ -506,7 +533,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:brownEnemySweep,
+			frames:[0],
+			width:brownEnemySweep.width,
+			height:brownEnemySweep.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
 		knockback:{
@@ -602,7 +638,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:redEnemySweep,
+			frames:[0],
+			width:redEnemySweep.width,
+			height:redEnemySweep.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
 		knockback:{
@@ -698,10 +743,28 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:basicEnemySweep,
+			frames:[0],
+			width:basicEnemySweep.width,
+			height:basicEnemySweep.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:basicEnemyKnockback,
+			frames:[0],
+			width:basicEnemyKnockback.width,
+			height:basicEnemyKnockback.height,
+			frameTimes:[625],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const playerWhiteBeltData = {

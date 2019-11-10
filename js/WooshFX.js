@@ -27,7 +27,8 @@ function WooshFXManager(wooshImage) {
 				0.9, // friction
 				60); // frame lifespan
 		}
-	}
+	};
+	
 	this.smokePuff = function (x,y) {
 		this.puff(x,y,smokeSprite);
 	};
@@ -49,9 +50,9 @@ function WooshFXManager(wooshImage) {
 	this.triggerSweep = function (pos,left) {
 		//TODO: Fix me, this is a copy of this.triggerJKick added to prevent errors
 		if (left)
-			this.trigger(pos.x+30,pos.y+64,0,wooshKickPic);
+			this.trigger(pos.x+30,pos.y+94,0,wooshKickPic);
 		else
-			this.trigger(pos.x+40,pos.y+64,0,wooshKickPic2);
+			this.trigger(pos.x+50,pos.y+94,0,wooshKickPic2);
 	};
 	this.triggerJKick = function (pos,left) {
 		if (left)

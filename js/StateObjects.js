@@ -625,10 +625,6 @@ function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 				currentAnimation.reset(); 
 			}
 
-			if(newState === JUMP_STATE) {
-				console.log("Just pausing");
-			}
-
 			currentState = newState;
 			currentAnimation = animationForState(currentState);
 			isNewState = true;
