@@ -526,6 +526,37 @@ const playerKnockbackBlackData = {
 
 //---------Start Basic Enemy Atlas Data--------//
 
+const wooshDashEnemyPicData = {
+	name:STATE.Dash,
+	image:characterAtlas,
+	clipX:213,
+	clipY:ATLAS_ROW12,
+	clipWidth:142,
+	clipHeight:142,
+	frameWidth:142,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[225],
+	reverses:false,
+	loops:false
+};
+
+const wooshDashEnemyLPicData = {
+	name:STATE.Dash,
+	image:characterAtlas,
+	clipX:284,
+	clipY:ATLAS_ROW12,
+	clipWidth:142,
+	clipHeight:142,
+	frameWidth:142,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[225],
+	reverses:false,
+	loops:false
+};
+
+
 //---------Start White Enemy Atlas Data--------//
 
 const basicEnemyIdleData = {

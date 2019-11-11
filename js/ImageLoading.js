@@ -245,9 +245,9 @@ const wooshKnockoutPic = document.createElement("img");
 const wooshDashPlayerPic = document.createElement("canvas");
 const wooshDashPlayerLPic = document.createElement("canvas");
 
-const wooshDashEnemyPic = document.createElement("img");
+const wooshDashEnemyPic = document.createElement("canvas");
+const wooshDashEnemyLPic = document.createElement("canvas");
 
-const wooshDashEnemyLPic = document.createElement("img");
 const decorationSpritesheet = document.createElement("img");
 const waterfallSheet = document.createElement("img");
 const lamp = document.createElement("img");
@@ -411,6 +411,10 @@ function countLoadedImageAndLaunchIfReady() {
 
 		initializeCanvasFromAtlas(wooshDashPlayerPic, wooshDashPlayerPicData, characterAtlas);
 		initializeCanvasFromAtlas(wooshDashPlayerLPic, wooshDashPlayerLPicData, characterAtlas);
+		initializeCanvasFromAtlas(wooshDashEnemyPic, wooshDashPlayerPicData, characterAtlas);
+		initializeCanvasFromAtlas(wooshDashEnemyLPic, wooshDashPlayerPicData, characterAtlas);
+
+
 
 
 		loadingDoneSoStartGame();
@@ -489,9 +493,9 @@ function loadImages() {
 		{ imgName: wooshHurtPic, theFile: "wooshHurt.png"},
 		{ imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
 //		{ imgName: wooshDashPlayerPic, theFile: "wooshDashPlayer.png"},
-		{ imgName: wooshDashEnemyPic, theFile: "wooshDashEnemy.png"},
+//		{ imgName: wooshDashEnemyPic, theFile: "wooshDashEnemy.png"},
 //    { imgName: wooshDashPlayerLPic, theFile: "wooshDashPlayerL.png"},
-		{ imgName: wooshDashEnemyLPic, theFile: "wooshDashEnemyL.png"},
+//		{ imgName: wooshDashEnemyLPic, theFile: "wooshDashEnemyL.png"},
 		{ imgName: smokeSprite, theFile: "smoke.png"},
 		{ imgName: starSprite, theFile: "star.png"},
 
