@@ -27,7 +27,7 @@ const ATLAS_ROW14 = 995;
 	frames:[0, 1],
 	frameTimes:[200],
 	reverses:false,
-	loops:true 
+	loops:true
 */
 
 //---------Start Player Atlas Data--------//
@@ -36,6 +36,21 @@ const wooshDashPlayerPicData = {
 	name:STATE.Dash,
 	image:characterAtlas,
 	clipX:0,
+	clipY:ATLAS_ROW12,
+	clipWidth:142,
+	clipHeight:142,
+	frameWidth:142,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[225],
+	reverses:false,
+	loops:false
+};
+
+const wooshDashPlayerLPicData = {
+	name:STATE.Dash,
+	image:characterAtlas,
+	clipX:142,
 	clipY:ATLAS_ROW12,
 	clipWidth:142,
 	clipHeight:142,
@@ -585,7 +600,7 @@ const basicEnemyCrouchData = {
 	frames:[0],
 	frameTimes:[200],
 	reverses:false,
-	loops:false 
+	loops:false
 };
 
 const basicEnemyPunchData = {
@@ -630,7 +645,7 @@ const basicEnemyBlockData = {
 	frames:[0],
 	frameTimes:[200],
 	reverses:false,
-	loops:false 
+	loops:false
 };
 
 const basicEnemyKnockbackData = {
@@ -737,7 +752,7 @@ const yellowEnemyCrouchData = {
 	frames:[0],
 	frameTimes:[200],
 	reverses:false,
-	loops:false 
+	loops:false
 };
 
 const yellowEnemyPunchData = {
@@ -782,7 +797,7 @@ const yellowEnemyBlockData = {
 	frames:[0],
 	frameTimes:[200],
 	reverses:false,
-	loops:false 
+	loops:false
 };
 
 const yellowEnemyKnockbackData = {
@@ -889,7 +904,7 @@ const tanEnemyCrouchData = {
 	frames:[0],
 	frameTimes:[200],
 	reverses:false,
-	loops:false 
+	loops:false
 };
 
 const tanEnemyPunchData = {
@@ -934,7 +949,7 @@ const tanEnemyBlockData = {
 	frames:[0],
 	frameTimes:[200],
 	reverses:false,
-	loops:false 
+	loops:false
 };
 
 const tanEnemyKnockbackData = {
@@ -1041,7 +1056,7 @@ const brownEnemyCrouchData = {
 	frames:[0],
 	frameTimes:[200],
 	reverses:false,
-	loops:false 
+	loops:false
 };
 
 const brownEnemyPunchData = {
@@ -1086,7 +1101,7 @@ const brownEnemyBlockData = {
 	frames:[0],
 	frameTimes:[200],
 	reverses:false,
-	loops:false 
+	loops:false
 };
 
 const brownEnemyKnockbackData = {
@@ -1193,7 +1208,7 @@ const redEnemyCrouchData = {
 	frames:[0],
 	frameTimes:[200],
 	reverses:false,
-	loops:false 
+	loops:false
 };
 
 const redEnemyPunchData = {
@@ -1238,7 +1253,7 @@ const redEnemyBlockData = {
 	frames:[0],
 	frameTimes:[200],
 	reverses:false,
-	loops:false 
+	loops:false
 };
 
 const redEnemyKnockbackData = {

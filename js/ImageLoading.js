@@ -9,7 +9,7 @@ function showStartImage() {
 	} else {
 		shouldShowStartImage = true;
 	}
-    
+
 }
 
 //-----Load the Gamkedo Logo-----//
@@ -24,7 +24,7 @@ function loadGamkedoLogo() {
 			kenBurnsAffect();
 		}, 25);
 	};
-    
+
 	HTGDLogoPic.src = assetPath.Image + "HTGDLogo.png";
 }
 
@@ -35,8 +35,8 @@ function kenBurnsAffect() {
 		setTimeout(function() {
 			kenBurnsAffect();
 		}, 25);
-		canvasContext.drawImage(HTGDLogoPic, 
-			0, 0, HTGDLogoPic.width, HTGDLogoPic.height, 
+		canvasContext.drawImage(HTGDLogoPic,
+			0, 0, HTGDLogoPic.width, HTGDLogoPic.height,
 			-kenBurns, -kenBurns, HTGDLogoPic.width + (2 * kenBurns), HTGDLogoPic.height + (2 * kenBurns));
 	} else {
 		setTimeout(function() {
@@ -55,7 +55,7 @@ function loadStartImagePic() {
 		//Begin Loading remaining images
 		loadImages();
 	};
-    
+
 	startImagePic.src = assetPath.Image + "title_screen_bg.png";
 }
 
@@ -243,9 +243,10 @@ const wooshHurtPic = document.createElement("img");
 const wooshKnockoutPic = document.createElement("img");
 
 const wooshDashPlayerPic = document.createElement("canvas");
+const wooshDashPlayerLPic = document.createElement("canvas");
 
 const wooshDashEnemyPic = document.createElement("img");
-const wooshDashPlayerLPic = document.createElement("img");
+
 const wooshDashEnemyLPic = document.createElement("img");
 const decorationSpritesheet = document.createElement("img");
 const waterfallSheet = document.createElement("img");
@@ -409,6 +410,8 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(blackBossJump, blackBossJumpData, bossAtlas);
 
 		initializeCanvasFromAtlas(wooshDashPlayerPic, wooshDashPlayerPicData, characterAtlas);
+		initializeCanvasFromAtlas(wooshDashPlayerLPic, wooshDashPlayerLPicData, characterAtlas);
+
 
 		loadingDoneSoStartGame();
 	}
@@ -487,11 +490,11 @@ function loadImages() {
 		{ imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
 //		{ imgName: wooshDashPlayerPic, theFile: "wooshDashPlayer.png"},
 		{ imgName: wooshDashEnemyPic, theFile: "wooshDashEnemy.png"},
-		{ imgName: wooshDashPlayerLPic, theFile: "wooshDashPlayerL.png"},
+//    { imgName: wooshDashPlayerLPic, theFile: "wooshDashPlayerL.png"},
 		{ imgName: wooshDashEnemyLPic, theFile: "wooshDashEnemyL.png"},
 		{ imgName: smokeSprite, theFile: "smoke.png"},
 		{ imgName: starSprite, theFile: "star.png"},
-        
+
 		// UI
 		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
 		{ imgName: titleScreenBird, theFile: "bird_sprite-flap-sheet.png"},
@@ -504,7 +507,7 @@ function loadImages() {
 		{ imgName: kickSprite, theFile: "kick.png"},
 		{ imgName: crouchSprite, theFile: "crouch.png"},
 		{ imgName: dashSprite, theFile: "dash.png"},
-		{ imgName: hourglassSprite, theFile: "hourglass.png"},        
+		{ imgName: hourglassSprite, theFile: "hourglass.png"},
 	];
 
 	picsToLoad = imageList.length;
