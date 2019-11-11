@@ -32,6 +32,21 @@ const ATLAS_ROW14 = 995;
 
 //---------Start Player Atlas Data--------//
 
+const wooshDashPlayerPicData = {
+	name:STATE.Dash,
+	image:characterAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW12,
+	clipWidth:142,
+	clipHeight:142,
+	frameWidth:142,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[225],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Player White Belt Atlas Data--------//
 
 const playerIdleWhiteData = {

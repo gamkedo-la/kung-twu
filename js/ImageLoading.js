@@ -241,7 +241,9 @@ const wooshKickPic = document.createElement("img");
 const wooshKickPic2 = document.createElement("img");
 const wooshHurtPic = document.createElement("img");
 const wooshKnockoutPic = document.createElement("img");
-const wooshDashPlayerPic = document.createElement("img");
+
+const wooshDashPlayerPic = document.createElement("canvas");
+
 const wooshDashEnemyPic = document.createElement("img");
 const wooshDashPlayerLPic = document.createElement("img");
 const wooshDashEnemyLPic = document.createElement("img");
@@ -406,6 +408,8 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(blackBossSweep, blackBossSweepData, bossAtlas);
 		initializeCanvasFromAtlas(blackBossJump, blackBossJumpData, bossAtlas);
 
+		initializeCanvasFromAtlas(wooshDashPlayerPic, wooshDashPlayerPicData, characterAtlas);
+
 		loadingDoneSoStartGame();
 	}
 }
@@ -481,7 +485,7 @@ function loadImages() {
 		{ imgName: wooshKickPic2, theFile: "wooshKick2.png"},
 		{ imgName: wooshHurtPic, theFile: "wooshHurt.png"},
 		{ imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
-		{ imgName: wooshDashPlayerPic, theFile: "wooshDashPlayer.png"},
+//		{ imgName: wooshDashPlayerPic, theFile: "wooshDashPlayer.png"},
 		{ imgName: wooshDashEnemyPic, theFile: "wooshDashEnemy.png"},
 		{ imgName: wooshDashPlayerLPic, theFile: "wooshDashPlayerL.png"},
 		{ imgName: wooshDashEnemyLPic, theFile: "wooshDashEnemyL.png"},
