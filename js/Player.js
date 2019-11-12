@@ -270,7 +270,7 @@ function Player(config) {
 	const updatePosition = function(deltaTime, gravity, floorHeight, levelMin, levelMax) {
 		const timeStep = deltaTime / 1000; //deltaTime is in milliseconds
 
-		if(stateManager.getCurrentState() !== STATE.Dash) {
+		if((stateManager.getCurrentState() !== STATE.Dash) && (stateManager.getCurrentState() !== STATE.Block)) {
 			if((velocity.x > 0) && (stateManager.getIsFacingLeft())) {
 				velocity.x = -velocity.x;
 			} else if((velocity.x < 0) && (!stateManager.getIsFacingLeft())) {
@@ -309,7 +309,6 @@ function Player(config) {
 	};
 
 	const respondToKnockBack = function() {
-
 		if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
 
 		if(velocity.x < 0) {
@@ -323,7 +322,6 @@ function Player(config) {
 				velocity.x = 0;
 			}
 		}
-
 	};
 
 	const fallDueToGravity = function(timeStep, gravity) {
@@ -348,7 +346,6 @@ function Player(config) {
 
 	const crouch = function() {
 		if (stateManager.getIsNewState()) {
-			console.log("I'm crouching now");
 		}
 	};
 
@@ -371,8 +368,18 @@ function Player(config) {
 	};
 
 	const block = function() {
-		console.log("I'm blocking now");
-		velocity.x = 0;
+		if(velocity.x < 0) {
+			velocity.x += KNOCK_BACK_SPEED / 35;
+			if (velocity.x >= 0) {
+				velocity.x = 0;
+			}
+		} else if(velocity.x > 0) {
+			velocity.x -= KNOCK_BACK_SPEED / 35;
+			if (velocity.x <= 0) {
+				velocity.x = 0;
+			}
+		}
+
 		if (stateManager.getIsNewState()) {
 			sound.playSFX(Sounds.SFX_PlayerBlock);
 		}
@@ -422,11 +429,7 @@ function Player(config) {
 		if((isInvincible) && (invincibleTime % 200 < 50)) {
 			//do nothing for now
 		} else{
-			if (stateManager.getCurrentState() == STATE.Crouch) {
-				stateManager.drawAt(position.x, position.y + 40);
-			} else {
-				stateManager.drawAt(position.x, position.y);
-			}
+			stateManager.drawAt(position.x, position.y);
 		}
 
 		this.collisionBody.draw(); //colliders know to draw only when DRAW_COLLIDERS = true;
@@ -442,10 +445,21 @@ function Player(config) {
 			return;
 		}
 
+		initializeInvincibleTime();
+		initializeKnockbackSpeed();
+
 		if(isInvincible) {return;}
 
 		if (stateManager.getCurrentState() === STATE.Block) {
 			this.health -= Math.ceil(otherEntity.getCurrentDamage() / 10);
+			if(otherEntity.getPosition().x < position.x) {
+				//enemy is to the left
+				velocity.x = KNOCK_BACK_SPEED / 10;
+				console.log(`OtherEntityPos: ${otherEntity.getPosition().x}, MyPos: ${position.x}, MyVel:${velocity.x}`);
+			} else {
+				//enemy is to the right
+				velocity.x = -KNOCK_BACK_SPEED / 10;
+			}
 		} else if (stateManager.getCurrentState() === STATE.KnockBack) {
 			//do nothing for now
 		} else {
@@ -453,21 +467,6 @@ function Player(config) {
 			stateManager.wasHit();
 			isInvincible = true;
 
-			if(INVINCIBLE_DURATION === null) {
-				INVINCIBLE_DURATION = localStorageHelper.getInt(localStorageKey.InvincibleDuration);
-				if((INVINCIBLE_DURATION === undefined) || (INVINCIBLE_DURATION === null) || (isNaN(INVINCIBLE_DURATION))) {
-					INVINCIBLE_DURATION = ASSIST_DEFAULT.InvincibleDuration;
-					localStorageHelper.setInt(localStorageKey.InvincibleDuration, INVINCIBLE_DURATION);
-				}
-			}
-
-			if(KNOCK_BACK_SPEED === null) {
-				KNOCK_BACK_SPEED = localStorageHelper.getInt(localStorageKey.KnockbackSpeed);
-				if((KNOCK_BACK_SPEED === undefined) || (KNOCK_BACK_SPEED === null) || (isNaN(KNOCK_BACK_SPEED))) {
-					KNOCK_BACK_SPEED = ASSIST_DEFAULT.KnockbackSpeed;
-					localStorageHelper.setInt(localStorageKey.KnockbackSpeed, KNOCK_BACK_SPEED);
-				}
-			}
 			velocity.y = -KNOCK_BACK_SPEED / 2;
 
 			if(otherEntity.getPosition().x < position.x) {
@@ -507,6 +506,26 @@ function Player(config) {
 		
 		const otherPos = otherEntity.getPosition();
 		this.pointsToShow.position = {x:otherPos.x, y:otherPos.y - 10};
+	};
+
+	const initializeKnockbackSpeed = function() {
+		if(KNOCK_BACK_SPEED === null) {
+			KNOCK_BACK_SPEED = localStorageHelper.getInt(localStorageKey.KnockbackSpeed);
+			if((KNOCK_BACK_SPEED === undefined) || (KNOCK_BACK_SPEED === null) || (isNaN(KNOCK_BACK_SPEED))) {
+				KNOCK_BACK_SPEED = ASSIST_DEFAULT.KnockbackSpeed;
+				localStorageHelper.setInt(localStorageKey.KnockbackSpeed, KNOCK_BACK_SPEED);
+			}
+		}
+	};
+
+	const initializeInvincibleTime = function() {
+		if(INVINCIBLE_DURATION === null) {
+			INVINCIBLE_DURATION = localStorageHelper.getInt(localStorageKey.InvincibleDuration);
+			if((INVINCIBLE_DURATION === undefined) || (INVINCIBLE_DURATION === null) || (isNaN(INVINCIBLE_DURATION))) {
+				INVINCIBLE_DURATION = ASSIST_DEFAULT.InvincibleDuration;
+				localStorageHelper.setInt(localStorageKey.InvincibleDuration, INVINCIBLE_DURATION);
+			}
+		}
 	};
 
 	const pointsToShowForState = function(state) {

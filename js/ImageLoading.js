@@ -211,6 +211,9 @@ const playerWalkRed = document.createElement("canvas");
 const playerWalkBlack = document.createElement("canvas");
 
 const playerWalkBack = document.createElement("img");
+//TODO: Make all belt colors and incorporate into CharacterAtlas
+const playerBlock = document.createElement("img");
+const playerCrouch = document.createElement("img");
 
 const playerPunchWhite = document.createElement("canvas");
 const playerPunchYellow = document.createElement("canvas");
@@ -486,16 +489,14 @@ function loadImages() {
 
 		// player related
 		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
+		{ imgName: playerBlock, theFile: "Player_Block.png"},
+		{ imgName: playerCrouch, theFile: "Player_Crouch.png"},
 
 		{ imgName: wooshPunchPic, theFile: "wooshPunch.png"},
 		{ imgName: wooshKickPic, theFile: "wooshKick.png"},
 		{ imgName: wooshKickPic2, theFile: "wooshKick2.png"},
 		{ imgName: wooshHurtPic, theFile: "wooshHurt.png"},
 		{ imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
-//		{ imgName: wooshDashPlayerPic, theFile: "wooshDashPlayer.png"},
-//		{ imgName: wooshDashEnemyPic, theFile: "wooshDashEnemy.png"},
-//    { imgName: wooshDashPlayerLPic, theFile: "wooshDashPlayerL.png"},
-//		{ imgName: wooshDashEnemyLPic, theFile: "wooshDashEnemyL.png"},
 		{ imgName: smokeSprite, theFile: "smoke.png"},
 		{ imgName: starSprite, theFile: "star.png"},
 

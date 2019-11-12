@@ -799,7 +799,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:{
+			name:STATE.Crouch,
+			image:playerCrouch,
+			frames:[0],
+			width:playerCrouch.width,
+			height:playerCrouch.height,
+			frameTimes:[275],
+			reverses:false,
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:playerPunchWhite,
@@ -820,7 +829,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:playerBlock,
+			frames:[0],
+			width:playerBlock.width,
+			height:playerBlock.height,
+			frameTimes:[275],
+			reverses:false,
+			loops:false
+		},
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
@@ -868,7 +886,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:{
+			name:STATE.Crouch,
+			image:playerCrouch,
+			frames:[0],
+			width:playerCrouch.width,
+			height:playerCrouch.height,
+			frameTimes:[275],
+			reverses:false,
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:playerPunchYellow,
@@ -889,7 +916,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:playerBlock,
+			frames:[0],
+			width:playerBlock.width,
+			height:playerBlock.height,
+			frameTimes:[275],
+			reverses:false,
+			loops:false
+		},
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
@@ -937,7 +973,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:{
+			name:STATE.Crouch,
+			image:playerCrouch,
+			frames:[0],
+			width:playerCrouch.width,
+			height:playerCrouch.height,
+			frameTimes:[275],
+			reverses:false,
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:playerPunchTan,
@@ -958,7 +1003,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:playerBlock,
+			frames:[0],
+			width:playerBlock.width,
+			height:playerBlock.height,
+			frameTimes:[275],
+			reverses:false,
+			loops:false
+		},
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
@@ -1006,7 +1060,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:{
+			name:STATE.Crouch,
+			image:playerCrouch,
+			frames:[0],
+			width:playerCrouch.width,
+			height:playerCrouch.height,
+			frameTimes:[275],
+			reverses:false,
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:playerPunchBrown,
@@ -1027,7 +1090,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:playerBlock,
+			frames:[0],
+			width:playerBlock.width,
+			height:playerBlock.height,
+			frameTimes:[275],
+			reverses:false,
+			loops:false
+		},
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
@@ -1075,7 +1147,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:{
+			name:STATE.Crouch,
+			image:playerCrouch,
+			frames:[0],
+			width:playerCrouch.width,
+			height:playerCrouch.height,
+			frameTimes:[275],
+			reverses:false,
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:playerPunchRed,
@@ -1096,7 +1177,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:playerBlock,
+			frames:[0],
+			width:playerBlock.width,
+			height:playerBlock.height,
+			frameTimes:[275],
+			reverses:false,
+			loops:false
+		},
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
@@ -1144,7 +1234,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		jump:{},
-		crouch:{},
+		crouch:{
+			name:STATE.Crouch,
+			image:playerCrouch,
+			frames:[0],
+			width:playerCrouch.width,
+			height:playerCrouch.height,
+			frameTimes:[275],
+			reverses:false,
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:playerPunchBlack,
@@ -1165,7 +1264,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:playerBlock,
+			frames:[0],
+			width:playerBlock.width,
+			height:playerBlock.height,
+			frameTimes:[275],
+			reverses:false,
+			loops:false
+		},
 		sweep:{},
 		j_kick:{},
 		h_kick:{},
@@ -1230,7 +1338,8 @@ function AnimationBuilder() {
 			height:yellowBossCrouch.height,
 			frameTimes:[50],
 			reverses:false,
-			loops:false},
+			loops:false
+		},
 		punch:{
 			name:STATE.Punch,
 			image:yellowBossPunch,
