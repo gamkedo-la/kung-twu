@@ -91,6 +91,7 @@ function CreditsScene() {
 
 	const update = function(deltaTime) {
 		processUserInput();
+		processUserPressedInput();
 
 		creditReel(deltaTime);
 	};
@@ -135,7 +136,7 @@ function CreditsScene() {
 		}
 	};
 
-		const processUserPressedInput = function() {
+	const processUserPressedInput = function() {
 		const navKeys = inputProcessor.getCurrentlyActiveKeys();
 		for(let key of navKeys) {
 			const newNavAction = keyMapper.getNavAction(key);
