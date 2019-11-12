@@ -96,15 +96,11 @@ function CreditsScene() {
 	};
 
 	const processUserInput = function() {
-		//const navKeys = inputProcessor.getNewlyReleasedKeys();
-		const navKeys = inputProcessor.getCurrentlyActiveKeys();
+		const navKeys = inputProcessor.getNewlyReleasedKeys();
 		for(let key of navKeys) {
 			const newNavAction = keyMapper.getNavAction(key);
 			if(newNavAction != null) {
 				switch(newNavAction) {
-				case NAV_ACTION.UP://this falls through and moves the selector, make it change credits instead
-					creditPosY = creditPosY - 5;
-					break;
 				case NAV_ACTION.LEFT:
 					selectorPositionsIndex--;
 					if (selectorPositionsIndex < 0) {
@@ -113,9 +109,6 @@ function CreditsScene() {
 					updateSelectorPosition();
 					sound.playSFX(Sounds.SFX_MenuNav);
 					break;			
-				case NAV_ACTION.DOWN://this falls through and moves the selector, make it change credits instead
-					creditPosY = creditPosY + 5;
-					break;
 				case NAV_ACTION.RIGHT:
 					selectorPositionsIndex++;
 					if (selectorPositionsIndex >= selections.length) {
@@ -137,6 +130,23 @@ function CreditsScene() {
 					break;//nowhere to go 'back' to
 				case NAV_ACTION.PAUSE:
 
+				}
+			}
+		}
+	};
+
+		const processUserPressedInput = function() {
+		const navKeys = inputProcessor.getCurrentlyActiveKeys();
+		for(let key of navKeys) {
+			const newNavAction = keyMapper.getNavAction(key);
+			if(newNavAction != null) {
+				switch(newNavAction) {
+				case NAV_ACTION.UP://this falls through and moves the selector, make it change credits instead
+					creditPosY = creditPosY - 5;
+					break;
+				case NAV_ACTION.DOWN://this falls through and moves the selector, make it change credits instead
+					creditPosY = creditPosY + 5;
+					break;
 				}
 			}
 		}
