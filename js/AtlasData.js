@@ -697,14 +697,29 @@ const basicEnemyKnockbackData = {
 const basicEnemySweepData = {
 	name:STATE.Sweep,
 	image:characterAtlas,
-	clipX:923,
-	clipY:ATLAS_ROW5,
+	clipX:969,
+	clipY:ATLAS_ROW0,
 	clipWidth:55,
 	clipHeight:69,
 	frameWidth:55,
 	frameCount:1,
 	frames:[0],
 	frameTimes:[225],
+	reverses:false,
+	loops:false
+};
+
+const basicEnemyJumpKickData = {
+	name:STATE.J_Kick,
+	image:characterAtlas,
+	clipX:922,
+	clipY:ATLAS_ROW5,
+	clipWidth:102,
+	clipHeight:69,
+	frameWidth:51,
+	frameCount:2,
+	frames:[0, 1],
+	frameTimes:[75, 125],
 	reverses:false,
 	loops:false
 };
@@ -849,14 +864,29 @@ const yellowEnemyKnockbackData = {
 const yellowEnemySweepData = {
 	name:STATE.Sweep,
 	image:characterAtlas,
-	clipX:923,
-	clipY:ATLAS_ROW6,
+	clipX:969,
+	clipY:ATLAS_ROW1,
 	clipWidth:55,
 	clipHeight:69,
 	frameWidth:55,
 	frameCount:1,
 	frames:[0],
 	frameTimes:[225],
+	reverses:false,
+	loops:false
+};
+
+const yellowEnemyJumpKickData = {
+	name:STATE.J_Kick,
+	image:characterAtlas,
+	clipX:922,
+	clipY:ATLAS_ROW6,
+	clipWidth:102,
+	clipHeight:69,
+	frameWidth:51,
+	frameCount:2,
+	frames:[0, 1],
+	frameTimes:[75, 125],
 	reverses:false,
 	loops:false
 };
@@ -1001,14 +1031,29 @@ const tanEnemyKnockbackData = {
 const tanEnemySweepData = {
 	name:STATE.Sweep,
 	image:characterAtlas,
-	clipX:923,
-	clipY:ATLAS_ROW7,
+	clipX:969,
+	clipY:ATLAS_ROW2,
 	clipWidth:55,
 	clipHeight:69,
 	frameWidth:55,
 	frameCount:1,
 	frames:[0],
 	frameTimes:[225],
+	reverses:false,
+	loops:false
+};
+
+const tanEnemyJumpKickData = {
+	name:STATE.J_Kick,
+	image:characterAtlas,
+	clipX:922,
+	clipY:ATLAS_ROW7,
+	clipWidth:102,
+	clipHeight:69,
+	frameWidth:51,
+	frameCount:2,
+	frames:[0, 1],
+	frameTimes:[75, 125],
 	reverses:false,
 	loops:false
 };
@@ -1153,14 +1198,29 @@ const brownEnemyKnockbackData = {
 const brownEnemySweepData = {
 	name:STATE.Sweep,
 	image:characterAtlas,
-	clipX:923,
-	clipY:ATLAS_ROW8,
+	clipX:969,
+	clipY:ATLAS_ROW3,
 	clipWidth:55,
 	clipHeight:69,
 	frameWidth:55,
 	frameCount:1,
 	frames:[0],
 	frameTimes:[225],
+	reverses:false,
+	loops:false
+};
+
+const brownEnemyJumpKickData = {
+	name:STATE.J_Kick,
+	image:characterAtlas,
+	clipX:922,
+	clipY:ATLAS_ROW8,
+	clipWidth:102,
+	clipHeight:69,
+	frameWidth:51,
+	frameCount:2,
+	frames:[0, 1],
+	frameTimes:[75, 125],
 	reverses:false,
 	loops:false
 };
@@ -1305,14 +1365,29 @@ const redEnemyKnockbackData = {
 const redEnemySweepData = {
 	name:STATE.Sweep,
 	image:characterAtlas,
-	clipX:923,
-	clipY:ATLAS_ROW9,
+	clipX:969,
+	clipY:ATLAS_ROW4,
 	clipWidth:55,
 	clipHeight:69,
 	frameWidth:55,
 	frameCount:1,
 	frames:[0],
 	frameTimes:[225],
+	reverses:false,
+	loops:false
+};
+
+const redEnemyJumpKickData = {
+	name:STATE.J_Kick,
+	image:characterAtlas,
+	clipX:922,
+	clipY:ATLAS_ROW9,
+	clipWidth:102,
+	clipHeight:69,
+	frameWidth:51,
+	frameCount:2,
+	frames:[0, 1],
+	frameTimes:[75, 125],
 	reverses:false,
 	loops:false
 };
