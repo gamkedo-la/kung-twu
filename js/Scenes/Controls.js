@@ -16,61 +16,81 @@ function ControlsScene() {
 	//let uiProgBarMusicVolume;
 	/** @type UIProgressBar */
 	//let uiProgBarEffectsVolume;
-	this.transitionIn = function() {
-	canvasContext.setTransform(1, 0, 0, 1, 0, 0);
+
 //original keys
 	var keyLookup = [
-		"left",
-		"right",
+		"walkLeft",
+		"walkRight",
 		"jump",
 		"punch",
 		"kick",
 		"crouch",
 		"dash"
 	];
-
-	keyLookup["left"] = KEY_LEFT;
-	keyLookup["right"] = KEY_RIGHT;
-	keyLookup["jump"] = KEY_JUMP;
-	keyLookup["punch"] = KEY_PUNCH;
-	keyLookup["kick"] = KEY_KICK;
-	keyLookup["crouch"] = KEY_CROUCH;
-	keyLookup["dash"] = KEY_DASH;
 //changing keys
+	keyLookup["left"] = ACTION_KEYS.WALK_LEFT;
+	keyLookup["right"] = ACTION_KEYS.WALK_RIGHT;
+	keyLookup["jump"] = ACTION_KEYS.JUMP;
+	keyLookup["punch"] = ACTION_KEYS.PUNCH;
+	keyLookup["kick"] = ACTION_KEYS.KICK;
+	keyLookup["crouch"] = ACTION_KEYS.CROUCH;
+	keyLookup["dash"] = ACTION_KEYS.DASH;
+	keyLookup["dash"] = ACTION_KEYS.BLOCK
 
-//Input keydown code
-if(changingKeyFor != null) {
-	keyLookup[changingKeyFor] = evt.keyCode; // will overwrite "left" as next key pressed
-   }
-	this.keyLookup[changingKeyFor] = function(){
-		var changingKeyFor = null;
-		if("Left sprite"){ //...left movement sprite...
-			changingKeyFor = "left";
-		}
-		if("Left sprite"){
-			changingKeyFor = "right";
-		}
-		if("Left sprite" ){
-			changingKeyFor = "jump";
-		}
-		if("Left sprite" ){
-			changingKeyFor = "punch";
-		}
-		if("Left sprite" ){
-			changingKeyFor = "kick";
-		}
-		if("Left sprite"){
-			changingKeyFor = "crouch";
-		}
-		if("Left sprite"){
-			changingKeyFor = "dash";
-		}
+//fetch recorded keys 
+/*
+keyWordLookup[ keyLookup["left"] ];
+keyWordLookup[ keyLookup["right"] ];
+keyWordLookup[ keyLookup["jump"] ];
+keyWordLookup[ keyLookup["punch"] ];
+keyWordLookup[ keyLookup["kick"] ];
+keyWordLookup[ keyLookup["crouch"] ];
+keyWordLookup[ keyLookup["dash"] ]; */
 
+const showControls = function(){
+	var buttonList = [leftMoveSprite, rightMoveSprite, jumpSprite, punchSprite, kickSprite, crouchSprite, dashSprite];
+
+	var topElementY = 5;
+	var spacingElementY = 95;
+	for(var i=0;i<buttonList.length;i++) {
+		canvasContext.drawImage(buttonList[i], 40, topElementY + i * spacingElementY);
 	}
 
+	for(var i=0; i<keyLookup.length; i++) {
+		iY = topElementY+spacingElementY*i;
+
+		var inputNames = keyMapper.getInputCodes(keyLookup[i]);
+		for(var ii=0;ii<inputNames.length;ii++) {
+			var horizontalSpace = 100;
+			colorText(lookupKeyName(inputNames[ii]),
+				canvas.width/2+ii*horizontalSpace, iY+spacingElementY/2,
+				Color.White, Fonts.CreditsText);
+		}
+	}
+}
 
 
+this.changeControls = function(){
+		//Input keydown code
+	if(changingKeyFor != null) {
+	keyLookup[changingKeyFor] = evt.keyCode; // will overwrite "left" as next key pressed
+		switch(changingKeyFor) {
+			case "leftMoveSprite": changingKeyFor = "walkLeft";
+			case "rightMoveSprite": changingKeyFor = "walkRight";
+			case "jumpSprite":  changingKeyFor = "jump";
+			case "punchSprite": changingKeyFor = "punch";
+			case "kickSprite": changingKeyFor = "kick";
+			case "crouchSprite": changingKeyFor = "crouch";
+			case "dashSprite": changingKeyFor = "dash";
+			return true;
+		}
+	}
+}
 
+console.log(keyLookup);
+
+this.transitionIn = function() {
+	canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 
 /*		// Testing new UIProgressBar
 		uiProgBarMusicVolume = new UIProgressBar({
@@ -251,6 +271,8 @@ if(changingKeyFor != null) {
 
 		// render menu
 		printButtons();
+
+		showControls();
 
 /*		uiProgBarMusicVolume.draw();
 		uiProgBarEffectsVolume.draw();*/

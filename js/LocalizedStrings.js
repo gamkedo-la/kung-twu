@@ -115,7 +115,7 @@ const userStrings = {
 		[STRINGS_KEY.Paused]:"- P A U S E D -",
 		[STRINGS_KEY.Controls]:"[C] Controls",
 		[STRINGS_KEY.Quit]:"[Q] Quit",
-		[STRINGS_KEY.Continue]:"[C] Continue",		
+		[STRINGS_KEY.Continue]:"[C] Continue",
 		[STRINGS_KEY.End]:"[E] End",
 		[STRINGS_KEY.Done]:"Done",
 		[STRINGS_KEY.Title]:"Kung Twu",
@@ -155,7 +155,7 @@ const userStrings = {
 		[STRINGS_KEY.MaxHealth]:"Max Health",
 		[STRINGS_KEY.StartBelt]:"Start Belt",
 		[STRINGS_KEY.StartLevel]:"Start Level",
-		[STRINGS_KEY.HelpScreenContents]:"[ARROWS or WASD] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[B] Block\n[S] or [Down] Crouch",
+		[STRINGS_KEY.HelpScreenContents]:"[ARROWS or WASD] Move\n[UP or C] Jump\n[F or Z] Punch\n[G or X] Kick\n[B] Block\n[S] or [Down] Crouch",
 		[STRINGS_KEY.HowToDash]:"[SPACE] to Dash\nback from rivals",
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching\nto Leg Sweep rivals",
 		[STRINGS_KEY.HowToJ_Kick]:"Kick while Jumping\nto Jump Kick",
@@ -188,7 +188,7 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick"
 	},
-    
+
 	Spanish: {
 		[STRINGS_KEY.Help]:"[H] Ayuda",
 		[STRINGS_KEY.Credits]:"[C] Créditos",
@@ -225,11 +225,11 @@ const userStrings = {
 
 		//TODO: Retranslate the end of this next line
 		[STRINGS_KEY.HelpScreenContents]:"[FLECHAS] Mover\n[ARRIBA ó C] Brincar\n[G ó X] Puño\n[H ó X] Patada\n[B] Bloqueo\n[S] or [Down] Crouch", //\n[P] Pausa
-		
+
 		[STRINGS_KEY.Resume]:"[ESC] Resumir",
 		[STRINGS_KEY.Controls]:"[C] Controles",
 		[STRINGS_KEY.Quit]:"[Q] Renunciar",
-		[STRINGS_KEY.Continue]:"[C] Continuar",		
+		[STRINGS_KEY.Continue]:"[C] Continuar",
 		[STRINGS_KEY.End]:"[E] Fin",
 		[STRINGS_KEY.GameOverTitle]:"JUEGO TERMINADO",
 		[STRINGS_KEY.HighScore]:"PUNTAJE ALTO:",
@@ -320,7 +320,7 @@ const userStrings = {
 		[STRINGS_KEY.Resume]:"[ESC] つづく",
 		[STRINGS_KEY.Controls]:"[C] コントロール",
 		[STRINGS_KEY.Quit]:"[Q] ゲームをやめる",
-		[STRINGS_KEY.Continue]:"[C] やりなおす",		
+		[STRINGS_KEY.Continue]:"[C] やりなおす",
 		[STRINGS_KEY.End]:"[E] おわり",
 		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
 		[STRINGS_KEY.HighScore]:"HIGH SCORE:",
@@ -406,12 +406,12 @@ const userStrings = {
 		[STRINGS_KEY.Level5]:"Dragon",
 
 		//TODO: Retranslate the end of this next line
-		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[B] Block\n[S] or [Down] Crouch", //\n[P] Pause
+		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[F or Z] Punch\n[G or X] Kick\n[B] Block\n[S] or [Down] Crouch", //\n[P] Pause
 
 		[STRINGS_KEY.Resume]:"[ESC] Resume",
 		[STRINGS_KEY.Controls]:"[C] Controls",
 		[STRINGS_KEY.Quit]:"[Q] Quit",
-		[STRINGS_KEY.Continue]:"[C] Continue",		
+		[STRINGS_KEY.Continue]:"[C] Continue",
 		[STRINGS_KEY.End]:"[E] End",
 		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
 		[STRINGS_KEY.HighScore]:"HIGH SCORE:",
@@ -496,12 +496,12 @@ const userStrings = {
 		[STRINGS_KEY.Level5]:"Dragon",
 
 		//TODO: Retranslate the end of this next line
-		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[G or X] Punch\n[H or X] Kick\n[B] Block\n[S] or [Down] Crouch", //\n[P] Pause
+		[STRINGS_KEY.HelpScreenContents]:"[ARROWS] Move\n[UP or C] Jump\n[F or Z] Punch\n[G or X] Kick\n[B] Block\n[S] or [Down] Crouch", //\n[P] Pause
 
 		[STRINGS_KEY.Resume]:"[ESC] Resume",
 		[STRINGS_KEY.Controls]:"[C] Controls",
 		[STRINGS_KEY.Quit]:"[Q] Quit",
-		[STRINGS_KEY.Continue]:"[C] Continue",		
+		[STRINGS_KEY.Continue]:"[C] Continue",
 		[STRINGS_KEY.End]:"[E] End",
 		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
 		[STRINGS_KEY.HighScore]:"HIGH SCORE:",
@@ -549,7 +549,7 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick"
 	},
-	
+
 	Polish: {
 		[STRINGS_KEY.Help]:"[H] Pomoc",
 		[STRINGS_KEY.Credits]:"[C] O autorach",
@@ -561,7 +561,7 @@ const userStrings = {
 		[STRINGS_KEY.Paused]:"- P A U Z A -",
 		[STRINGS_KEY.Controls]:"[C] Sterowanie",
 		[STRINGS_KEY.Quit]:"[Q] Wyjdź",
-		[STRINGS_KEY.Continue]:"[C] Kontynuuj",		
+		[STRINGS_KEY.Continue]:"[C] Kontynuuj",
 		[STRINGS_KEY.End]:"[E] Koniec",
 		[STRINGS_KEY.Title]:"Kung Twu",
 		[STRINGS_KEY.Subtitle]:"Opowieść o Sztukach Walki",
@@ -622,7 +622,7 @@ const userStrings = {
 		[STRINGS_KEY.BossHealth]:"Życie Shīfù",
 		[STRINGS_KEY.TimesUp]:"Koniec czasu!",
 		[STRINGS_KEY.RivalsToBeat]:"Rywale Do Pokonania",
-		
+
 		[STRINGS_KEY.LevelTime]:"Time Limit",
 		[STRINGS_KEY.LevelIntroText_Lvl1]:"Prepare to learn\nShīfù Tigero's\nback dash.",
 		[STRINGS_KEY.LevelIntroText_Lvl2]:"Prepare to learn\nShīfù Whitebird's\nleg sweep.",

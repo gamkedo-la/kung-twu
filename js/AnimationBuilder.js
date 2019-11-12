@@ -50,11 +50,10 @@ function AnimationBuilder() {
 			switch(belt) {
 			case BELT.White: return getAnimationsWithData(basicWhiteBeltData, scale);
 			case BELT.Yellow: return getAnimationsWithData(bossYellowBeltData, scale);
-			case BELT.Tan: return getAnimationsWithData(basicTanBeltData, scale);
-			case BELT.Brown: return getAnimationsWithData(basicBrownBeltData, scale);
-			case BELT.Red: return getAnimationsWithData(basicRedBeltData, scale);
-				//TODO: basic black belt enemy spritesheet doesn't exist
-			case BELT.Black: return getAnimationsWithData(basicBlackBeltData, scale);
+			case BELT.Tan: return getAnimationsWithData(bossTanBeltData, scale);
+			case BELT.Brown: return getAnimationsWithData(bossBrownBeltData, scale);
+			case BELT.Red: return getAnimationsWithData(bossRedBeltData, scale);
+			case BELT.Black: return getAnimationsWithData(bossBlackBeltData, scale);
 			}
 		}
 	};
@@ -175,7 +174,7 @@ function AnimationBuilder() {
 			frames:[0],
 			width:basicEnemyJump.width / 3,
 			height:basicEnemyJump.height,
-			frameTimes:[50],
+			frameTimes:[250],
 			reverses:false,
 			loops:false
 		},
@@ -209,11 +208,38 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
-		sweep:{},
+		block:{
+			name:STATE.Block,
+			image:basicEnemyBlock,
+			frames:[0],
+			width:basicEnemyBlock.width,
+			height:basicEnemyBlock.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
+		sweep:{
+			name:STATE.Sweep,
+			image:basicEnemySweep,
+			frames:[0],
+			width:basicEnemySweep.width,
+			height:basicEnemySweep.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:basicEnemyKnockback,
+			frames:[0],
+			width:basicEnemyKnockback.width,
+			height:basicEnemyKnockback.height,
+			frameTimes:[625],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const basicYellowBeltData = {
@@ -247,7 +273,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:yellowEnemyJump,
+			frames:[0],
+			width:yellowEnemyJump.width / 3,
+			height:yellowEnemyJump.height,
+			frameTimes:[250],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:yellowEnemyCrouch,
@@ -278,11 +313,38 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
-		sweep:{},
+		block:{
+			name:STATE.Block,
+			image:yellowEnemyBlock,
+			frames:[0],
+			width:yellowEnemyBlock.width,
+			height:yellowEnemyBlock.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
+		sweep:{
+			name:STATE.Sweep,
+			image:yellowEnemySweep,
+			frames:[0],
+			width:yellowEnemySweep.width,
+			height:yellowEnemySweep.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:yellowEnemyKnockback,
+			frames:[0],
+			width:yellowEnemyKnockback.width,
+			height:yellowEnemyKnockback.height,
+			frameTimes:[625],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const basicTanBeltData = {
@@ -316,7 +378,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:tanEnemyJump,
+			frames:[0],
+			width:tanEnemyJump.width / 3,
+			height:tanEnemyJump.height,
+			frameTimes:[250],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:tanEnemyCrouch,
@@ -347,11 +418,38 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
-		sweep:{},
+		block:{
+			name:STATE.Block,
+			image:tanEnemyBlock,
+			frames:[0],
+			width:tanEnemyBlock.width,
+			height:tanEnemyBlock.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
+		sweep:{
+			name:STATE.Sweep,
+			image:tanEnemySweep,
+			frames:[0],
+			width:tanEnemySweep.width,
+			height:tanEnemySweep.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:tanEnemyKnockback,
+			frames:[0],
+			width:tanEnemyKnockback.width,
+			height:tanEnemyKnockback.height,
+			frameTimes:[625],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const basicBrownBeltData = {
@@ -385,7 +483,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:brownEnemyJump,
+			frames:[0],
+			width:brownEnemyJump.width / 3,
+			height:brownEnemyJump.height,
+			frameTimes:[250],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:brownEnemyCrouch,
@@ -416,11 +523,38 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
-		sweep:{},
+		block:{
+			name:STATE.Block,
+			image:brownEnemyBlock,
+			frames:[0],
+			width:brownEnemyBlock.width,
+			height:brownEnemyBlock.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
+		sweep:{
+			name:STATE.Sweep,
+			image:brownEnemySweep,
+			frames:[0],
+			width:brownEnemySweep.width,
+			height:brownEnemySweep.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:brownEnemyKnockback,
+			frames:[0],
+			width:brownEnemyKnockback.width,
+			height:brownEnemyKnockback.height,
+			frameTimes:[625],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const basicRedBeltData = {
@@ -454,7 +588,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:redEnemyJump,
+			frames:[0],
+			width:redEnemyJump.width / 3,
+			height:redEnemyJump.height,
+			frameTimes:[250],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:redEnemyCrouch,
@@ -485,11 +628,38 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
-		sweep:{},
+		block:{
+			name:STATE.Block,
+			image:redEnemyBlock,
+			frames:[0],
+			width:redEnemyBlock.width,
+			height:redEnemyBlock.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
+		sweep:{
+			name:STATE.Sweep,
+			image:redEnemySweep,
+			frames:[0],
+			width:redEnemySweep.width,
+			height:redEnemySweep.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:redEnemyKnockback,
+			frames:[0],
+			width:redEnemyKnockback.width,
+			height:redEnemyKnockback.height,
+			frameTimes:[625],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const basicBlackBeltData = {
@@ -523,7 +693,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:basicEnemyJump,
+			frames:[0],
+			width:basicEnemyJump.width / 3,
+			height:basicEnemyJump.height,
+			frameTimes:[250],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:basicEnemyCrouch,
@@ -554,11 +733,38 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
-		sweep:{},
+		block:{
+			name:STATE.Block,
+			image:basicEnemyBlock,
+			frames:[0],
+			width:basicEnemyBlock.width,
+			height:basicEnemyBlock.height,
+			frameTimes:[200],
+			reverses:false,
+			loops:false
+		},
+		sweep:{
+			name:STATE.Sweep,
+			image:basicEnemySweep,
+			frames:[0],
+			width:basicEnemySweep.width,
+			height:basicEnemySweep.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:basicEnemyKnockback,
+			frames:[0],
+			width:basicEnemyKnockback.width,
+			height:basicEnemyKnockback.height,
+			frameTimes:[625],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const playerWhiteBeltData = {
@@ -1006,9 +1212,18 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
-		crouch:
-		{name:STATE.Crouch,
+		jump:{
+			name:STATE.Jump,
+			image:yellowBossJump,
+			frames:[0, 1, 2, 1],
+			width:yellowBossJump.width / 3,
+			height:yellowBossJump.height,
+			frameTimes:[32, 32, 380, 32],
+			reverses:false,
+			loops:false
+		},
+		crouch:{
+			name:STATE.Crouch,
 			image:yellowBossCrouch,
 			frames:[0],
 			width:yellowBossCrouch.width,
@@ -1043,6 +1258,350 @@ function AnimationBuilder() {
 			frames:[0, 1, 0],
 			width:yellowBossSweep.width / 2,
 			height:yellowBossSweep.height,
+			frameTimes:[50, 150, 50],
+			reverses:false,
+			loops:false
+		},
+		j_kick:{},
+		h_kick:{},
+		knockback:{}
+	};
+
+	const bossTanBeltData = {
+		idle:{
+			name:STATE.Idle,
+			image:tanBossIdle,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7],
+			width:tanBossIdle.width / 8,
+			height:tanBossIdle.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:true
+		},
+		walk:{
+			name:STATE.WalkRight,
+			image:tanBossWalk,
+			frames:[0, 1, 2, 3],
+			width:tanBossWalk.width / 4,
+			height:tanBossWalk.height,
+			frameTimes:[150],
+			reverses:false,
+			loops:true
+		},
+		dash:{
+			name:STATE.Dash,
+			image:tanBossWalk,
+			frames:[0, 1, 2, 3],
+			width:tanBossWalk.width / 4,
+			height:tanBossWalk.height,
+			frameTimes:[30, 300, 30],
+			reverses:false,
+			loops:false
+		},
+		jump:{
+			name:STATE.Jump,
+			image:tanBossJump,
+			frames:[0, 1, 2, 1],
+			width:tanBossJump.width / 3,
+			height:tanBossJump.height,
+			frameTimes:[32, 32, 180, 32],
+			reverses:false,
+			loops:false
+		},
+		crouch:{
+			name:STATE.Crouch,
+			image:tanBossCrouch,
+			frames:[0],
+			width:tanBossCrouch.width,
+			height:tanBossCrouch.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false},
+		punch:{
+			name:STATE.Punch,
+			image:tanBossPunch,
+			frames:[0, 1, 2, 1],
+			width:tanBossPunch.width / 3,
+			height:tanBossPunch.height,
+			frameTimes:[50, 150, 225, 50],
+			reverses:false,
+			loops:false
+		},
+		kick:{
+			name:STATE.Kick,
+			image:tanBossKick,
+			frames:[0, 1, 2, 3, 2, 1],
+			width:tanBossKick.width / 4,
+			height:tanBossKick.height,
+			frameTimes:[50, 50, 150, 225, 50, 50],
+			reverses:false,
+			loops:false
+		},
+		block:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:tanBossSweep,
+			frames:[0, 1, 0],
+			width:tanBossSweep.width / 2,
+			height:tanBossSweep.height,
+			frameTimes:[50, 150, 50],
+			reverses:false,
+			loops:false
+		},
+		j_kick:{},
+		h_kick:{},
+		knockback:{}
+	};
+
+	const bossBrownBeltData = {
+		idle:{
+			name:STATE.Idle,
+			image:brownBossIdle,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7],
+			width:brownBossIdle.width / 8,
+			height:brownBossIdle.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:true
+		},
+		walk:{
+			name:STATE.WalkRight,
+			image:brownBossWalk,
+			frames:[0, 1, 2, 3],
+			width:brownBossWalk.width / 4,
+			height:brownBossWalk.height,
+			frameTimes:[150],
+			reverses:false,
+			loops:true
+		},
+		dash:{
+			name:STATE.Dash,
+			image:brownBossWalk,
+			frames:[0, 1, 2, 3],
+			width:brownBossWalk.width / 4,
+			height:brownBossWalk.height,
+			frameTimes:[30, 300, 30],
+			reverses:false,
+			loops:false
+		},
+		jump:{
+			name:STATE.Jump,
+			image:brownBossJump,
+			frames:[0, 1, 2, 1],
+			width:brownBossJump.width / 3,
+			height:brownBossJump.height,
+			frameTimes:[32, 32, 180, 32],
+			reverses:false,
+			loops:false
+		},
+		crouch:{
+			name:STATE.Crouch,
+			image:brownBossCrouch,
+			frames:[0],
+			width:brownBossCrouch.width,
+			height:brownBossCrouch.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false},
+		punch:{
+			name:STATE.Punch,
+			image:brownBossPunch,
+			frames:[0, 1, 2, 1],
+			width:brownBossPunch.width / 3,
+			height:brownBossPunch.height,
+			frameTimes:[50, 150, 225, 50],
+			reverses:false,
+			loops:false
+		},
+		kick:{
+			name:STATE.Kick,
+			image:brownBossKick,
+			frames:[0, 1, 2, 3, 2, 1],
+			width:brownBossKick.width / 4,
+			height:brownBossKick.height,
+			frameTimes:[50, 50, 150, 225, 50, 50],
+			reverses:false,
+			loops:false
+		},
+		block:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:brownBossSweep,
+			frames:[0, 1, 0],
+			width:brownBossSweep.width / 2,
+			height:brownBossSweep.height,
+			frameTimes:[50, 150, 50],
+			reverses:false,
+			loops:false
+		},
+		j_kick:{},
+		h_kick:{},
+		knockback:{}
+	};
+
+	const bossRedBeltData = {
+		idle:{
+			name:STATE.Idle,
+			image:redBossIdle,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7],
+			width:redBossIdle.width / 8,
+			height:redBossIdle.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:true
+		},
+		walk:{
+			name:STATE.WalkRight,
+			image:redBossWalk,
+			frames:[0, 1, 2, 3],
+			width:redBossWalk.width / 4,
+			height:redBossWalk.height,
+			frameTimes:[150],
+			reverses:false,
+			loops:true
+		},
+		dash:{
+			name:STATE.Dash,
+			image:redBossWalk,
+			frames:[0, 1, 2, 3],
+			width:redBossWalk.width / 4,
+			height:redBossWalk.height,
+			frameTimes:[30, 300, 30],
+			reverses:false,
+			loops:false
+		},
+		jump:{
+			name:STATE.Jump,
+			image:redBossJump,
+			frames:[0, 1, 2, 1],
+			width:redBossJump.width / 3,
+			height:redBossJump.height,
+			frameTimes:[32, 32, 180, 32],
+			reverses:false,
+			loops:false
+		},
+		crouch:{
+			name:STATE.Crouch,
+			image:redBossCrouch,
+			frames:[0],
+			width:redBossCrouch.width,
+			height:redBossCrouch.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false},
+		punch:{
+			name:STATE.Punch,
+			image:redBossPunch,
+			frames:[0, 1, 2, 1],
+			width:redBossPunch.width / 3,
+			height:redBossPunch.height,
+			frameTimes:[50, 150, 225, 50],
+			reverses:false,
+			loops:false
+		},
+		kick:{
+			name:STATE.Kick,
+			image:redBossKick,
+			frames:[0, 1, 2, 3, 2, 1],
+			width:redBossKick.width / 4,
+			height:redBossKick.height,
+			frameTimes:[50, 50, 150, 225, 50, 50],
+			reverses:false,
+			loops:false
+		},
+		block:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:redBossSweep,
+			frames:[0, 1, 0],
+			width:redBossSweep.width / 2,
+			height:redBossSweep.height,
+			frameTimes:[50, 150, 50],
+			reverses:false,
+			loops:false
+		},
+		j_kick:{},
+		h_kick:{},
+		knockback:{}
+	};
+
+	const bossBlackBeltData = {
+		idle:{
+			name:STATE.Idle,
+			image:blackBossIdle,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7],
+			width:blackBossIdle.width / 8,
+			height:blackBossIdle.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:true
+		},
+		walk:{
+			name:STATE.WalkRight,
+			image:blackBossWalk,
+			frames:[0, 1, 2, 3],
+			width:blackBossWalk.width / 4,
+			height:blackBossWalk.height,
+			frameTimes:[150],
+			reverses:false,
+			loops:true
+		},
+		dash:{
+			name:STATE.Dash,
+			image:blackBossWalk,
+			frames:[0, 1, 2, 3],
+			width:blackBossWalk.width / 4,
+			height:blackBossWalk.height,
+			frameTimes:[30, 300, 30],
+			reverses:false,
+			loops:false
+		},
+		jump:{
+			name:STATE.Jump,
+			image:blackBossJump,
+			frames:[0, 1, 2, 1],
+			width:blackBossJump.width / 3,
+			height:blackBossJump.height,
+			frameTimes:[32, 32, 180, 32],
+			reverses:false,
+			loops:false
+		},
+		crouch:{
+			name:STATE.Crouch,
+			image:blackBossCrouch,
+			frames:[0],
+			width:blackBossCrouch.width,
+			height:blackBossCrouch.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false},
+		punch:{
+			name:STATE.Punch,
+			image:blackBossPunch,
+			frames:[0, 1, 2, 1],
+			width:blackBossPunch.width / 3,
+			height:blackBossPunch.height,
+			frameTimes:[50, 150, 225, 50],
+			reverses:false,
+			loops:false
+		},
+		kick:{
+			name:STATE.Kick,
+			image:blackBossKick,
+			frames:[0, 1, 2, 3, 2, 1],
+			width:blackBossKick.width / 4,
+			height:blackBossKick.height,
+			frameTimes:[50, 50, 150, 225, 50, 50],
+			reverses:false,
+			loops:false
+		},
+		block:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:blackBossSweep,
+			frames:[0, 1, 0],
+			width:blackBossSweep.width / 2,
+			height:blackBossSweep.height,
 			frameTimes:[50, 150, 50],
 			reverses:false,
 			loops:false

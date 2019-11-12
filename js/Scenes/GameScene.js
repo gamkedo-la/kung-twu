@@ -4,6 +4,7 @@ function GameScene() {
 	const GRAVITY = 1500;
 	const VERTICAL_OFFSET = 50;
 	const displayPoints = [];
+	const UI_SCALE = 0.4;
 
 	let camera = null;
 	let enemies = [];
@@ -38,6 +39,7 @@ function GameScene() {
 	let knockedOutBodies = new knockedOutBodyManager();
 	let bossIntroText = null;
 	let rivalImageDeltaX = null;
+	const UIRivals = [];
 
 	// Game Timer Scene Settings
 	// For more detailed settings please go to "js/Timers/GameTimer.js"
@@ -56,7 +58,7 @@ function GameScene() {
 
 		if (aiManager === null) {
 			//if aiManager === null, we've never initialized a GameScene
-//			aiManager = new AIManager();
+			//			aiManager = new AIManager();
 			aiManager = new AIManager2();
 			animationManager = new AnimationBuilder();
 			timer.registerEvent(EVENT.EnemySpawn);
@@ -75,8 +77,9 @@ function GameScene() {
 		if (floor === null || currentLevel != levelData.level) {
 			levelData = dataForCurrentLevel();
 			initializeGameTimer();
-			enemiesThisLevel = getEnemiesThisLevel();
 			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
+			enemiesThisLevel = getEnemiesThisLevel();
+			initializeRivalUI(camera.getPosition().x);
 			enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
 			enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
 			initializeFloor(levelData.columnImage, VERTICAL_OFFSET);
@@ -122,6 +125,7 @@ function GameScene() {
 		camera = new Camera();
 
 		enemies = [];
+		displayPoints.length = 0;
 		defeatedEnemyCount = 0;
 		bossHasBeenSpawned = false;
 		columnManager = null;
@@ -153,6 +157,7 @@ function GameScene() {
 		score = 0;
 		rivalImageDeltaX = null;
 		bossIntroText = null;
+		UIRivals.length = 0;
 
 		timer.updateEvent(EVENT.EnemySpawn);
 	};
@@ -238,6 +243,17 @@ function GameScene() {
 
 		processAndUpdatePointsToDisplay(deltaTime, camera.getPosition().x);
 
+		for(let i = 0; i < UIRivals.length; i++) {
+			const aRival = UIRivals[i];
+			if(i === UIRivals.length - 1) {
+				if(aRival.isComplete) {
+					UIRivals.pop();
+				}
+			}
+
+			aRival.update(deltaTime);
+		}
+
 		processUserInput();
 
 		if(currentLevel === 1) waterfall.update(deltaTime);
@@ -309,7 +325,7 @@ function GameScene() {
 	const spawnNewEnemies = function(cameraXPos) {
 		if (enemies.length >= levelData.maxEnemies) return;
 
-//		if(enemies.length >= 1) return;//TODO: Remove after testing
+		//		if(enemies.length >= 1) return;//TODO: Remove after testing
 
 		const timeSince = timer.timeSinceUpdateForEvent(EVENT.EnemySpawn);
 		if (timeSince > timeTilSpawn) {
@@ -342,11 +358,18 @@ function GameScene() {
 				collisionManager.removeEntity(defeatedEntity);
 				if(defeatedEntity.getBelt() === levelData.enemyBelt) {
 					defeatedEnemyCount++;
+					for(let i = UIRivals.length - 1; i >= 0; i--) {
+						const aRival = UIRivals[i];
+						if(aRival.getWasDefeated()) continue;
+						aRival.wasDefeated();
+						break;
+					}
 				}
 
 				// spawn a "knocked out body" that falls to the floor and then fades out
-				if (knockedOutBodies) knockedOutBodies.add(defeatedEntity);
-				
+				if(defeatedEntity.getAIType() !== AITYPE.Boss) {
+					if (knockedOutBodies) knockedOutBodies.add(defeatedEntity);
+				}
 			}
 		}
 	};
@@ -467,7 +490,6 @@ function GameScene() {
 	};
 
 	const drawUI = function(cameraX) {
-		const UI_SCALE = 0.4;
 		const screenLeft = cameraX - canvas.width / 2;
 
 		//Background and Border
@@ -522,6 +544,15 @@ function GameScene() {
 		const timeWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Time), UI_SCALE);
 		gameTimer.setPosition(screenLeft + 40 + timeWidth, 96);
 		gameTimer.draw();
+        
+		// hourglass sand
+		//console.log("time left: " + gameTimer.getTime() + " of " + gameTimer.getStartTime());
+		var maxsize = 78;
+		var barsize = maxsize *  (gameTimer.getTime() / gameTimer.getStartTime());
+		//console.log("sand size: " + barsize);
+		drawRect(screenLeft + 304 + 24, 48 + 24, 56, barsize, Color.Orange);
+		// hourglass overlay
+		canvasContext.drawImage(hourglassSprite, screenLeft + 304, 48);
 
 		//Level Name
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Level),
@@ -532,21 +563,6 @@ function GameScene() {
 
 		JPFont.printTextAt(getLocalizedStringForKey(keyForThisLevelName),
 			{x:screenLeft + levelStringWidth + 50, y:135}, TextAlignment.Left, UI_SCALE);
-
-		//Rivals Remaining
-		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Rivals),
-			{x:cameraX, y:10}, TextAlignment.Left, UI_SCALE);
-		const rivalsWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Rivals), UI_SCALE);
-
-		let thisX = cameraX + rivalsWidth + 5;
-		if(rivalImageDeltaX === null) {
-//			rivalImageDeltaX = ((cameraX + canvas.width / 2) - thisX - 15) / enemiesThisLevel;
-			rivalImageDeltaX = (canvas.width / 2 - rivalsWidth - 30) / enemiesThisLevel;
-		}
-		for(let i = 0; i < (enemiesThisLevel - defeatedEnemyCount); i++) {
-			canvasContext.drawImage(basicEnemyIdle, 0, 0, basicEnemyIdle.width / 2, basicEnemyIdle.height, thisX, 10, basicEnemyIdle.width / 4, basicEnemyIdle.height / 2);
-			thisX += rivalImageDeltaX;
-		}
 
 		//Boss Health
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Boss),
@@ -559,7 +575,16 @@ function GameScene() {
 		} else {
 			drawRect(cameraX + bossStringWidth + 10, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / bossMaxHealth), 22, levelData.bossMeterColor);
 		}
+
 		drawBorder(cameraX + bossStringWidth + 10, 60, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
+		
+		//Rivals Remaining
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Rivals),
+			{x:cameraX, y:10}, TextAlignment.Left, UI_SCALE);
+
+		for(let aRival of UIRivals) {
+			aRival.draw(cameraX);
+		}
 	};
 
 	const stringsKeyForLevel = function(level) {
@@ -732,6 +757,18 @@ function GameScene() {
 
 	const initializeLevel = function() {
 		camera.attach(player);
+	};
+
+	const initializeRivalUI = function(cameraX) {
+		const rivalsWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Rivals), UI_SCALE);
+		let thisX = cameraX + rivalsWidth + 5;
+		if(rivalImageDeltaX === null) {
+			rivalImageDeltaX = (canvas.width / 2 - rivalsWidth - 30) / enemiesThisLevel;
+		}
+		for(let i = 0; i < enemiesThisLevel; i++) {
+			UIRivals.push(new RivalUIImage(basicEnemyIdle, thisX, 10, cameraX));
+			thisX += rivalImageDeltaX;
+		}
 	};
 
 	const drawBackground = function(cameraX, roofTop) {

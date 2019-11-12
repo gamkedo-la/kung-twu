@@ -5,14 +5,36 @@
 const DEBUG_WOOSHES = false;
 const DEG_TO_RAD = Math.PI/180;
 const MAX_ALPHA = 0.6; // 1.0 = starts at full opaque
-const WOOSH_FRAMECOUNT = 16; // how long they fade out for
+const WOOSH_FRAMECOUNT = 20; // how long they fade out for
 
 function WooshFXManager(wooshImage) {
+
 	var wooshPool = [];
 
 	if (DEBUG_WOOSHES) console.log("Creating the WooshFXManager...");
 
-	// game-specific effects
+	this.puff = function (x,y,img) {
+		var num = irandomRange(5,12);
+		for (var i=0; i<num; i++) {
+			this.trigger(
+				x + irandomRange(-2,2),
+				y + irandomRange(-2,2),
+				0,//Math.random()*360*DEG_TO_RAD, // sprite rot
+				img,
+				randomRange(-6,6),
+				randomRange(-6,6),
+				-1, // gravity
+				0.9, // friction
+				60); // frame lifespan
+		}
+	};
+	
+	this.smokePuff = function (x,y) {
+		this.puff(x,y,smokeSprite);
+	};
+	this.starPuff = function (x,y) {
+		this.puff(x,y,starSprite);
+	};
 	this.triggerPunch = function (pos,left) {
 		if (left)
 			this.trigger(pos.x+30,pos.y+48,0,wooshPunchPic);
@@ -28,9 +50,9 @@ function WooshFXManager(wooshImage) {
 	this.triggerSweep = function (pos,left) {
 		//TODO: Fix me, this is a copy of this.triggerJKick added to prevent errors
 		if (left)
-			this.trigger(pos.x+30,pos.y+64,0,wooshKickPic);
+			this.trigger(pos.x+30,pos.y+94,0,wooshKickPic);
 		else
-			this.trigger(pos.x+40,pos.y+64,0,wooshKickPic2);
+			this.trigger(pos.x+50,pos.y+94,0,wooshKickPic2);
 	};
 	this.triggerJKick = function (pos,left) {
 		if (left)
@@ -66,14 +88,14 @@ function WooshFXManager(wooshImage) {
 			this.trigger(pos.x+40,pos.y+64,0,wooshHurtPic);
 	};
 
-    this.triggerDashPlayer = function (pos,left) {
+	this.triggerDashPlayer = function (pos,left) {
 		if (left)
 			this.trigger(pos.x+30,pos.y+64,0,wooshDashPlayerLPic);
 		else
 			this.trigger(pos.x+40,pos.y+64,0,wooshDashPlayerPic);
 	};
 
-    this.triggerDashEnemy = function (pos,left) {
+	this.triggerDashEnemy = function (pos,left) {
 		if (left)
 			this.trigger(pos.x+30,pos.y+64,0,wooshDashEnemyLPic);
 		else
@@ -81,7 +103,7 @@ function WooshFXManager(wooshImage) {
 	};
 
 	// called by the custom fx above or on its own
-	this.trigger = function (x, y, r, img) {
+	this.trigger = function (x, y, r, img, vx=0, vy=0, gravity=0, friction=1, frames=WOOSH_FRAMECOUNT) {
 		var aWoosh = null;
 		// look for a woosh
 		for (var num = 0; num < wooshPool.length; num++) {
@@ -97,7 +119,7 @@ function WooshFXManager(wooshImage) {
 			if (DEBUG_WOOSHES) console.log("Creating new woosh " + (wooshPool.length-1));
 		}
 		// make it happen
-		aWoosh.trigger(x, y, r, img);
+		aWoosh.trigger(x, y, r, img, vx, vy, gravity, friction, frames);
 	};
 
 	this.draw = function () {
@@ -124,16 +146,24 @@ function Woosh(wooshImage) { // a single woosh, reused often
 	this.x = 0;
 	this.y = 0;
 	this.frame = 0;
+	this.vx = 0;
+	this.vy = 0;
+	this.friction = 0.9; // slowdown per frame
+	this.gravity = 0;
 
 	// you can change images
-	this.trigger = function (x, y, r, img) {
+	this.trigger = function (x, y, r, img, vx=0, vy=0, gravity=0, friction=1, frames=WOOSH_FRAMECOUNT) {
 		if (DEBUG_WOOSHES) console.log("Woosh pos:" + x + "," +  y + " ang:" + r);
 		this.active = true;
 		this.frame = 0;
-		this.frameCount = WOOSH_FRAMECOUNT;
+		this.frameCount = frames;
 		this.x = x;
 		this.y = y;
 		this.r = r;
+		this.vx = vx;
+		this.vy = vy;
+		this.grav = gravity;
+		this.friction = friction;
 		if (img) this.img = img; // switching allowed
 	};
     
@@ -141,9 +171,17 @@ function Woosh(wooshImage) { // a single woosh, reused often
 
 		if (this.active) {
 
-			// animate
+			// step
 			this.frame++;
             
+			// move
+			this.vx *= this.friction;
+			this.vy *= this.friction;
+			this.vy += this.gravity;
+			this.x += this.vx;
+			this.y += this.vy;
+
+			// draw
 			canvasContext.save();
 			canvasContext.translate(this.x, this.y);
 			canvasContext.rotate(this.r);
@@ -151,7 +189,8 @@ function Woosh(wooshImage) { // a single woosh, reused often
 			canvasContext.drawImage(this.img, Math.round(-this.img.width/2),Math.round(-this.img.height/2)); //	center,	draw
 			canvasContext.restore();
 
-			this.active = this.frame < this.frameCount; // keep going?
+			// reuse
+			this.active = this.frame < this.frameCount;
 
 		}
 

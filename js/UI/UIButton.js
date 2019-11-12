@@ -82,12 +82,12 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 		if((DEBUG) || wasHit) { // draw bounds for buttons in semi-transparent colors
 			const BGColor = Color.Aqua;
             
-			const tempAlpha = canvasContext.globalAlpha;
+			canvasContext.save();
 			canvasContext.globalAlpha = 0.2;
             
 			drawRect(bounds.x, bounds.y, bounds.width, bounds.height, BGColor);
             
-			canvasContext.globalAlpha = tempAlpha;
+			canvasContext.restore();
 		}
 
 		if(wasHit && !isHovering) {

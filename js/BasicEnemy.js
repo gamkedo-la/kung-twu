@@ -99,6 +99,8 @@ function BasicEnemy(config) {
 	};
 
 	const damageForState = function() {
+		//Used to find out how much damage you do depending on what state you're in
+		//i.e. when you kick, you deal more damage than when you punch.
 		const aState = stateManager.getCurrentState();
 		switch(aState) {
 		case STATE.WalkRight:
@@ -109,7 +111,7 @@ function BasicEnemy(config) {
 		case STATE.Idle:
 		case STATE.Block:
 		case STATE.KnockBack:
-			return 0.1 * BASE_DAMAGE;// was 0;
+			return 0;
 		case STATE.Punch:
 			return 1 * BASE_DAMAGE;
 		case STATE.Kick:
@@ -142,7 +144,7 @@ function BasicEnemy(config) {
 		if(this.attackBody != null) {
 			const thisState = stateManager.getCurrentState();
 			const currentFrame = stateManager.getCurrentAnimationFrame();
-			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame);
+			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame, this.getAIType());
 		}
 
 		if(this.shouldJump && !stateManager.getIsOnGround() && velocity.y > 0) {
@@ -225,16 +227,15 @@ function BasicEnemy(config) {
 	};
 
 	const respondToKnockBack = function() {
-
 		if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
-
+        
 		if(stateManager.getIsFacingLeft()) {
-			velocity.x -= KNOCK_BACK_SPEED / 25;
+			velocity.x -= KNOCK_BACK_SPEED / 35;
 			if(velocity.x <= 0) {
 				velocity.x = 0;
 			}
 		} else {
-			velocity.x += KNOCK_BACK_SPEED / 25;
+			velocity.x += KNOCK_BACK_SPEED / 35;
 			if(velocity.x >= 0) {
 				velocity.x = 0;
 			}
@@ -268,7 +269,6 @@ function BasicEnemy(config) {
 
 	const block = function() {
 		if(stateManager.getIsNewState()) {
-			console.log("Basic Enemy is Blocking now");
 			velocity.x = 0;
 		}
 	};
@@ -321,7 +321,6 @@ function BasicEnemy(config) {
 
 	const sweep = function() {
 		if(stateManager.getIsNewState()) {
-			console.log("Basic Enemy is Sweeping now");
 			velocity.x = 0;
 			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
@@ -357,22 +356,16 @@ function BasicEnemy(config) {
 		}
 		
 		if(stateManager.getCurrentState() === STATE.Block) {
-
 			// minimum 1hp damage - never allow a block to register as 0 damage just in case
 			// any positive (non-zero) value divided by ten and rounded up is at least 1
 			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10)); 
-
+			if (wooshFX) wooshFX.smokePuff(position.x,position.y);
 		} 
 		else if(stateManager.getCurrentState() === STATE.KnockBack) {
-
-			//do nothing for now - invulnerable while being knocked back
-			console.log("Hit enemy is being knocked back - receiving 1 damage anyways.");
-			// bugfix to ensure enemies stuck in knockback forever can be destroyed
-			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 20)); 
-        
+			if (wooshFX) wooshFX.smokePuff(position.x,position.y);
 		} else { //just got hit
-            
 			stateManager.wasHit();
+			if (wooshFX) wooshFX.smokePuff(position.x,position.y);
 
 			velocity.y = -KNOCK_BACK_SPEED / 2;
 			if(stateManager.getIsFacingLeft()) {
@@ -386,6 +379,7 @@ function BasicEnemy(config) {
 
 		if(this.health <= 0) {
 			sound.playSFX(Sounds.SFX_LowPain);
+			if (wooshFX) wooshFX.starPuff(position.x,position.y);
 		} else if(otherEntity.type !== ENTITY_TYPE.Environment) {
 			sound.playSFX(Sounds.SFX_EnemyHit);
 		}
@@ -423,11 +417,15 @@ function BasicEnemy(config) {
 		if(!stateManager.getIsOnGround()) {
 			//land on top of the other object
 			position.y -= (myEdges.highY - otherEdges.lowY);
-			stateManager.didLand();
+			if(velocity.y >= 0) {
+				stateManager.didLand();
+			}
 		} else if((myEdges.highY - otherEdges.lowY > 0) && (myEdges.highY - otherEdges.lowY < 4)) {
 			position.y -= (myEdges.highY - otherEdges.lowY);
-			velocity.y = 0;
-			stateManager.didLand();
+			if(velocity.y >= 0) {
+				velocity.y = 0;
+				stateManager.didLand();	
+			}
 		} else {
 			mightJump = true;
 			if(velocity.x > 0) {
@@ -445,7 +443,7 @@ function BasicEnemy(config) {
 			}
 		}
 
-		return mightJump;
+		return (mightJump && stateManager.getIsOnGround());
 	};
 
 	this.getColliderEdges = function() {

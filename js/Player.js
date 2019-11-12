@@ -212,7 +212,7 @@ function Player(config) {
 		if(this.attackBody != null) {
 			const thisState = stateManager.getCurrentState();
 			const currentFrame = stateManager.getCurrentAnimationFrame();
-			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame);
+			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame, AITYPE.Player);
 		}
 
 		updatePosition(deltaTime, gravity, floorHeight, levelMin, levelMax);
@@ -360,8 +360,8 @@ function Player(config) {
 			}
 
 			velocity.x = speed;
-            sound.playSFX(Sounds.SFX_Swish_01);
-            if (wooshFX) wooshFX.triggerDashPlayer(position,(velocity.x>0));
+			sound.playSFX(Sounds.SFX_Swish_01);
+			if (wooshFX) wooshFX.triggerDashPlayer(position,(velocity.x>0));
 
 		}
 	};
@@ -524,18 +524,21 @@ function Player(config) {
 		if(!stateManager.getIsOnGround()) {
 			//land on top of the other object
 			position.y -= (myEdges.highY - otherEdges.lowY);
-			respondToLanding();
+			if(velocity.y >= 0) {
+				respondToLanding();
+			}
 			canFall = true;
 		} else if((myEdges.highY - otherEdges.lowY > 0) && (myEdges.highY - otherEdges.lowY < 4)) {
 			position.y -= (myEdges.highY - otherEdges.lowY);
-			velocity.y = 0;
+			if(velocity.y >= 0) {
+				respondToLanding();
+			}
 		} else {
 			if(velocity.x > 0) {
 				//Player is moving to the right
 				if(position.x < otherEdges.lowX) {
 					//Player is to the left of other object => move to left
 					position.x -= (myEdges.highX - otherEdges.lowX);
-					velocity.x = 0;
 				}
 			} else if(velocity.x < 0) {
 				//Player is moving to the left

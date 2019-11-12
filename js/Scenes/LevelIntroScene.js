@@ -131,18 +131,11 @@ function LevelIntroScene() {
 	};
 
 	const processUserInput = function() {
-		const navKeys = inputProcessor.getNewlyReleasedKeys();
-		for(let key of navKeys) {
-			const newNavAction = keyMapper.getNavAction(key);
-			if(newNavAction != null) {
-				switch(newNavAction) {
-				case NAV_ACTION.SELECT:
-					SceneState.setState(SCENE.GAME, {restartLevel:shouldRestart});
-					shouldRestart = true;
-					sound.playSFX(Sounds.SFX_MenuSelect);
-					break;
-				}
-			}
+		const navKeys = inputProcessor.getNewlyActiveKeys();
+		if(navKeys.length > 0) {
+			SceneState.setState(SCENE.GAME, {restartLevel:shouldRestart});
+			shouldRestart = true;
+			sound.playSFX(Sounds.SFX_MenuSelect);
 		}
 	};
 

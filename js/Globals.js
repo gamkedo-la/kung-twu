@@ -300,6 +300,68 @@ const KeyCode = {
 }; Object.freeze(KeyCode);
 
 /**
+ * Way to translate from an index into KeyCode to get a printable word, used for key remapping
+ */
+const KeyName = [];
+KeyName[KeyCode.BACKSPACE] = "Backspace";
+KeyName[KeyCode.TAB] = "Tab";
+KeyName[KeyCode.ENTER] = "Enter";
+KeyName[KeyCode.ESCAPE] = "Esc";
+KeyName[KeyCode.SPACE] = "Space";
+KeyName[KeyCode.LEFT] = "LeftArrow";
+KeyName[KeyCode.UP] = "UpArrow";
+KeyName[KeyCode.RIGHT] = "RightArrow";
+KeyName[KeyCode.DOWN] = "DownArrow";
+KeyName[KeyCode.DIGIT_0] = "0";
+KeyName[KeyCode.DIGIT_1] = "1";
+KeyName[KeyCode.DIGIT_2] = "2";
+KeyName[KeyCode.DIGIT_3] = "3";
+KeyName[KeyCode.DIGIT_4] = "4";
+KeyName[KeyCode.DIGIT_5] = "5";
+KeyName[KeyCode.DIGIT_6] = "6";
+KeyName[KeyCode.DIGIT_7] = "7";
+KeyName[KeyCode.DIGIT_8] = "8";
+KeyName[KeyCode.DIGIT_9] = "9";
+KeyName[KeyCode.A] = "A";
+KeyName[KeyCode.B] = "B";
+KeyName[KeyCode.C] = "C";
+KeyName[KeyCode.D] = "D";
+KeyName[KeyCode.E] = "E";
+KeyName[KeyCode.F] = "F";
+KeyName[KeyCode.G] = "G";
+KeyName[KeyCode.H] = "H";
+KeyName[KeyCode.I] = "I";
+KeyName[KeyCode.J] = "J";
+KeyName[KeyCode.K] = "K";
+KeyName[KeyCode.L] = "L";
+KeyName[KeyCode.M] = "M";
+KeyName[KeyCode.N] = "N";
+KeyName[KeyCode.O] = "O";
+KeyName[KeyCode.P] = "P";
+KeyName[KeyCode.Q] = "Q";
+KeyName[KeyCode.R] = "R";
+KeyName[KeyCode.S] = "S";
+KeyName[KeyCode.T] = "T";
+KeyName[KeyCode.U] = "U";
+KeyName[KeyCode.V] = "V";
+KeyName[KeyCode.W] = "W";
+KeyName[KeyCode.X] = "X";
+KeyName[KeyCode.Y] = "Y";
+KeyName[KeyCode.Z] = "Z";
+KeyName[KeyCode.PLUS] = "+";
+KeyName[KeyCode.MINUS] = "-";
+KeyName[KeyCode.TILDE] = "~";
+// can add non-keycode strings here to prettify phrasing in key remapper of inputs
+KeyName["leftStickLeft"] = "Stick_1_Left";
+function lookupKeyName(withCode) { // print nice name, if one is defined above
+	var returnCode = KeyName[withCode];
+	if(returnCode) {
+		return returnCode;
+	}
+	return withCode; // no keyName available, use string
+}
+
+/**
  * Input Codes representing Mouse buttons. Used when querying input
  */
 const MouseButton = {
