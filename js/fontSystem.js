@@ -51,7 +51,9 @@ function fontSystem(jpFont, charSize, context) {
 
 		for(let i = 0; i < text.length; i++) {	//Go through all characters
 			const thisFrame = this.findLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
-			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, drawPos, position.y, charSize.width * scale, charSize.height * scale);
+			const vertAdjust = verticalAdjustmentForChar(text.charAt(i), scale);
+			
+			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, drawPos, position.y + vertAdjust, charSize.width * scale, charSize.height * scale);
 			
 			const advance = scale * advancementForLanguageAndCharacter(language, text[i], text[i+1]);
 			drawPos += advance;
@@ -72,7 +74,8 @@ function fontSystem(jpFont, charSize, context) {
 
 		for(let i = 0; i < text.length; i++) {	//Go through all characters
 			const thisFrame = this.findRedLetterCorner(text.charAt(i));	// look up each character of our text in address sheet
-			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, drawPos, position.y, charSize.width * scale, charSize.height * scale);
+			const vertAdjust = verticalAdjustmentForChar(text.charAt(i), scale);
+			context.drawImage(jpFont, thisFrame.x, thisFrame.y, charSize.width, charSize.height, drawPos, position.y + vertAdjust, charSize.width * scale, charSize.height * scale);
 			
 			const advance = scale * advancementForLanguageAndCharacter(language, text[i], text[i+1]);
 			drawPos += advance;
@@ -103,6 +106,15 @@ function fontSystem(jpFont, charSize, context) {
 		case "w": return 55;
 		case "'": return 25;
 		default: return 50;
+		}
+	};
+
+	const verticalAdjustmentForChar = function(char, scale) {
+		switch(char) {
+		case "é":
+		case "É":
+			return (-10 * scale);
+		default: return 0;
 		}
 	};
 
