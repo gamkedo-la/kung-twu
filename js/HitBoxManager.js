@@ -147,10 +147,13 @@ function HitBoxManager(bodyData, attackData) {
 		case STATE.Sweep:
 			return true;
 		case STATE.J_Kick:
+			if(frame === 2) return true;
+			return false;
 		case STATE.H_Kick:
 			//These animations don't exist yet, so returning false for now
 			return false;//TODO: change to true based on correct frame once animation exist
-		case STATE.Punch: if(frame === 2) return true;
+		case STATE.Punch: 
+			if(frame === 2) return true;
 			return false;
 		case STATE.Kick: 
 			if(aiType === AITYPE.Boss) {

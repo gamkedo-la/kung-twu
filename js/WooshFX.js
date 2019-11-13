@@ -56,9 +56,9 @@ function WooshFXManager(wooshImage) {
 	};
 	this.triggerJKick = function (pos,left) {
 		if (left)
-			this.trigger(pos.x+30,pos.y+64,0,wooshKickPic);
+			this.trigger(pos.x+30,pos.y+94,0,wooshKickPic);
 		else
-			this.trigger(pos.x+40,pos.y+64,0,wooshKickPic2);
+			this.trigger(pos.x+40,pos.y+84,0,wooshKickPic2);
 	};
 	this.triggerHKick = function (pos,left) {
 		if (left)

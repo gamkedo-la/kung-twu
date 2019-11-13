@@ -228,7 +228,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:basicEnemyJumpKick,
+			frames:[0, 1, 2, 1],
+			width:basicEnemyJumpKick.width / 2,
+			height:basicEnemyJumpKick.height,
+			frameTimes:[100, 250],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
@@ -333,7 +342,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:yellowEnemyJumpKick,
+			frames:[0, 1, 2, 1],
+			width:yellowEnemyJumpKick.width / 2,
+			height:yellowEnemyJumpKick.height,
+			frameTimes:[100, 250],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
@@ -438,7 +456,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:tanEnemyJumpKick,
+			frames:[0, 1, 2, 1],
+			width:tanEnemyJumpKick.width / 2,
+			height:tanEnemyJumpKick.height,
+			frameTimes:[100, 250],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
@@ -543,7 +570,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:brownEnemyJumpKick,
+			frames:[0, 1, 2, 1],
+			width:brownEnemyJumpKick.width / 2,
+			height:brownEnemyJumpKick.height,
+			frameTimes:[100, 250],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
@@ -648,7 +684,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:redEnemyJumpKick,
+			frames:[0, 1, 2, 1],
+			width:redEnemyJumpKick.width / 2,
+			height:redEnemyJumpKick.height,
+			frameTimes:[100, 250],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
@@ -753,7 +798,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:basicEnemyJumpKick,
+			frames:[0, 1, 2, 1],
+			width:basicEnemyJumpKick.width / 2,
+			height:basicEnemyJumpKick.height,
+			frameTimes:[100, 250],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
