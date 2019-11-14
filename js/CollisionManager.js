@@ -76,30 +76,33 @@ function Collider(type, data) {
 		return {x:position.x, y:position.y};
 	};
 	
-	this.draw = function() {
+	this.draw = function(color = COLLIDER_COLOR) {
 		if(DRAW_COLLIDERS) {
+			canvasContext.save();
 			switch(this.type) {
 			case ColliderType.Polygon:
 				// fix: some kick frames have no this.points defined
 				if (this.points && this.points.length) { // does data exist?
 					canvasContext.beginPath();
-					canvasContext.strokeStyle = COLLIDER_COLOR;
+					canvasContext.strokeStyle = color;
 					canvasContext.moveTo(this.points[0].x, this.points[0].y);
 					for(let i = 0; i < this.points.length; i++) {
 						canvasContext.lineTo(this.points[i].x, this.points[i].y);
 					}
+					canvasContext.lineWidth = 3;
 					canvasContext.lineTo(this.points[0].x, this.points[0].y);
 					canvasContext.stroke();
 				}
 				break;
 			case ColliderType.Circle:
 				canvasContext.beginPath();
-				canvasContext.strokeStyle = COLLIDER_COLOR;
+				canvasContext.strokeStyle = color;
 				canvasContext.lineWidth = 2;
 				canvasContext.arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI);
 				canvasContext.stroke();
 				break;
 			}
+			canvasContext.restore();
 		}
 	};
 }

@@ -340,7 +340,7 @@ function BasicEnemy(config) {
 
 		this.collisionBody.draw();//colliders know to draw only when DRAW_COLLIDERS = true;
 		if(this.attackBody != null) {
-			this.attackBody.draw();
+			this.attackBody.draw(Color.Red);
 		}
 	};
 
@@ -386,7 +386,9 @@ function BasicEnemy(config) {
 	};
 
 	this.didHit = function() {
-		this.attackBody = null;
+		if(stateManager.getCurrentState() != STATE.H_Kick) {
+			this.attackBody = null;
+		}
 	};
 
 	const healthForBelt = function(belt) {
