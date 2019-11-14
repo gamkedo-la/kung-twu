@@ -724,6 +724,21 @@ const basicEnemyJumpKickData = {
 	loops:false
 };
 
+const basicEnemyHKickData = {
+	name:STATE.H_Kick,
+	image:characterAtlas,
+	clipX:660,
+	clipY:ATLAS_ROW10,
+	clipWidth:102,
+	clipHeight:69,
+	frameWidth:51,
+	frameCount:2,
+	frames:[0, 1],
+	frameTimes:[125, 125],
+	reverses:false,
+	loops:true
+};
+
 //---------Start Yellow Enemy Atlas Data--------//
 
 const yellowEnemyIdleData = {
@@ -889,6 +904,21 @@ const yellowEnemyJumpKickData = {
 	frameTimes:[75, 125],
 	reverses:false,
 	loops:false
+};
+
+const yellowEnemyHKickData = {
+	name:STATE.H_Kick,
+	image:characterAtlas,
+	clipX:660,
+	clipY:ATLAS_ROW11,
+	clipWidth:102,
+	clipHeight:69,
+	frameWidth:51,
+	frameCount:2,
+	frames:[0, 1],
+	frameTimes:[125, 125],
+	reverses:false,
+	loops:true
 };
 
 //---------Start Tan Enemy Atlas Data--------//
@@ -1058,6 +1088,21 @@ const tanEnemyJumpKickData = {
 	loops:false
 };
 
+const tanEnemyHKickData = {
+	name:STATE.H_Kick,
+	image:characterAtlas,
+	clipX:660,
+	clipY:ATLAS_ROW12,
+	clipWidth:102,
+	clipHeight:69,
+	frameWidth:51,
+	frameCount:2,
+	frames:[0, 1],
+	frameTimes:[125, 125],
+	reverses:false,
+	loops:true
+};
+
 //---------Start Brown Enemy Atlas Data--------//
 
 const brownEnemyIdleData = {
@@ -1225,6 +1270,21 @@ const brownEnemyJumpKickData = {
 	loops:false
 };
 
+const brownEnemyHKickData = {
+	name:STATE.H_Kick,
+	image:characterAtlas,
+	clipX:660,
+	clipY:ATLAS_ROW13,
+	clipWidth:102,
+	clipHeight:69,
+	frameWidth:51,
+	frameCount:2,
+	frames:[0, 1],
+	frameTimes:[125, 125],
+	reverses:false,
+	loops:true
+};
+
 //---------Start Red Enemy Atlas Data--------//
 
 const redEnemyIdleData = {
@@ -1390,6 +1450,21 @@ const redEnemyJumpKickData = {
 	frameTimes:[75, 125],
 	reverses:false,
 	loops:false
+};
+
+const redEnemyHKickData = {
+	name:STATE.H_Kick,
+	image:characterAtlas,
+	clipX:762,
+	clipY:ATLAS_ROW10,
+	clipWidth:102,
+	clipHeight:69,
+	frameWidth:51,
+	frameCount:2,
+	frames:[0, 1],
+	frameTimes:[125, 125],
+	reverses:false,
+	loops:true
 };
 
 //---------Start Boss Atlas Data--------//

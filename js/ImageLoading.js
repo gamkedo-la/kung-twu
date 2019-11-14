@@ -107,6 +107,7 @@ const basicEnemyBlock = document.createElement("canvas");
 const basicEnemyKnockback = document.createElement("canvas");
 const basicEnemySweep = document.createElement("canvas");
 const basicEnemyJumpKick = document.createElement("canvas");
+const basicEnemyHKick = document.createElement("canvas");
 
 const yellowEnemyIdle = document.createElement("canvas");
 const yellowEnemyWalk = document.createElement("canvas");
@@ -119,6 +120,7 @@ const yellowEnemyBlock = document.createElement("canvas");
 const yellowEnemyKnockback = document.createElement("canvas");
 const yellowEnemySweep = document.createElement("canvas");
 const yellowEnemyJumpKick = document.createElement("canvas");
+const yellowEnemyHKick = document.createElement("canvas");
 
 const tanEnemyIdle = document.createElement("canvas");
 const tanEnemyWalk = document.createElement("canvas");
@@ -131,6 +133,7 @@ const tanEnemyBlock = document.createElement("canvas");
 const tanEnemyKnockback = document.createElement("canvas");
 const tanEnemySweep = document.createElement("canvas");
 const tanEnemyJumpKick = document.createElement("canvas");
+const tanEnemyHKick = document.createElement("canvas");
 
 const brownEnemyIdle = document.createElement("canvas");
 const brownEnemyWalk = document.createElement("canvas");
@@ -143,6 +146,7 @@ const brownEnemyBlock = document.createElement("canvas");
 const brownEnemyKnockback = document.createElement("canvas");
 const brownEnemySweep = document.createElement("canvas");
 const brownEnemyJumpKick = document.createElement("canvas");
+const brownEnemyHKick = document.createElement("canvas");
 
 const redEnemyIdle = document.createElement("canvas");
 const redEnemyWalk = document.createElement("canvas");
@@ -155,6 +159,7 @@ const redEnemyBlock = document.createElement("canvas");
 const redEnemyKnockback = document.createElement("canvas");
 const redEnemySweep = document.createElement("canvas");
 const redEnemyJumpKick = document.createElement("canvas");
+const redEnemyHKick = document.createElement("canvas");
 
 const yellowBossIdle = document.createElement("canvas");
 const yellowBossWalk = document.createElement("canvas");
@@ -333,6 +338,7 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(basicEnemyKnockback, basicEnemyKnockbackData, characterAtlas);
 		initializeCanvasFromAtlas(basicEnemySweep, basicEnemySweepData, characterAtlas);
 		initializeCanvasFromAtlas(basicEnemyJumpKick, basicEnemyJumpKickData, characterAtlas);
+		initializeCanvasFromAtlas(basicEnemyHKick, basicEnemyHKickData, characterAtlas);
 
 		initializeCanvasFromAtlas(yellowEnemyIdle, yellowEnemyIdleData, characterAtlas);
 		initializeCanvasFromAtlas(yellowEnemyWalk, yellowEnemyWalkData, characterAtlas);
@@ -345,6 +351,7 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(yellowEnemyKnockback, yellowEnemyKnockbackData, characterAtlas);
 		initializeCanvasFromAtlas(yellowEnemySweep, yellowEnemySweepData, characterAtlas);
 		initializeCanvasFromAtlas(yellowEnemyJumpKick, yellowEnemyJumpKickData, characterAtlas);
+		initializeCanvasFromAtlas(yellowEnemyHKick, yellowEnemyHKickData, characterAtlas);
 
 		initializeCanvasFromAtlas(tanEnemyIdle, tanEnemyIdleData, characterAtlas);
 		initializeCanvasFromAtlas(tanEnemyWalk, tanEnemyWalkData, characterAtlas);
@@ -357,6 +364,7 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(tanEnemyKnockback, tanEnemyKnockbackData, characterAtlas);
 		initializeCanvasFromAtlas(tanEnemySweep, tanEnemySweepData, characterAtlas);
 		initializeCanvasFromAtlas(tanEnemyJumpKick, tanEnemyJumpKickData, characterAtlas);
+		initializeCanvasFromAtlas(tanEnemyHKick, tanEnemyHKickData, characterAtlas);
 
 		initializeCanvasFromAtlas(brownEnemyIdle, brownEnemyIdleData, characterAtlas);
 		initializeCanvasFromAtlas(brownEnemyWalk, brownEnemyWalkData, characterAtlas);
@@ -369,6 +377,7 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(brownEnemyKnockback, brownEnemyKnockbackData, characterAtlas);
 		initializeCanvasFromAtlas(brownEnemySweep, brownEnemySweepData, characterAtlas);
 		initializeCanvasFromAtlas(brownEnemyJumpKick, brownEnemyJumpKickData, characterAtlas);
+		initializeCanvasFromAtlas(brownEnemyHKick, brownEnemyHKickData, characterAtlas);
 
 		initializeCanvasFromAtlas(redEnemyIdle, redEnemyIdleData, characterAtlas);
 		initializeCanvasFromAtlas(redEnemyWalk, redEnemyWalkData, characterAtlas);
@@ -381,6 +390,7 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(redEnemyKnockback, redEnemyKnockbackData, characterAtlas);
 		initializeCanvasFromAtlas(redEnemySweep, redEnemySweepData, characterAtlas);
 		initializeCanvasFromAtlas(redEnemyJumpKick, redEnemyJumpKickData, characterAtlas);
+		initializeCanvasFromAtlas(redEnemyHKick, redEnemyHKickData, characterAtlas);
 
 		initializeCanvasFromAtlas(yellowBossIdle, yellowBossIdleData, bossAtlas);
 		initializeCanvasFromAtlas(yellowBossWalk, yellowBossWalkData, bossAtlas);

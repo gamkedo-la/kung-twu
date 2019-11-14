@@ -150,8 +150,7 @@ function HitBoxManager(bodyData, attackData) {
 			if(frame === 2) return true;
 			return false;
 		case STATE.H_Kick:
-			//These animations don't exist yet, so returning false for now
-			return false;//TODO: change to true based on correct frame once animation exist
+			return true;
 		case STATE.Punch: 
 			if(frame === 2) return true;
 			return false;
