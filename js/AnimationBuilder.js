@@ -246,7 +246,7 @@ function AnimationBuilder() {
 			height:basicEnemyHKick.height,
 			frameTimes:[250, 250],
 			reverses:false,
-			loops:true
+			loops:false
 		},
 		knockback:{
 			name:STATE.KnockBack,
@@ -369,7 +369,7 @@ function AnimationBuilder() {
 			height:yellowEnemyHKick.height,
 			frameTimes:[250, 250],
 			reverses:false,
-			loops:true
+			loops:false
 		},
 		knockback:{
 			name:STATE.KnockBack,
@@ -492,7 +492,7 @@ function AnimationBuilder() {
 			height:tanEnemyHKick.height,
 			frameTimes:[250, 250],
 			reverses:false,
-			loops:true
+			loops:false
 		},
 		knockback:{
 			name:STATE.KnockBack,
@@ -615,7 +615,7 @@ function AnimationBuilder() {
 			height:brownEnemyHKick.height,
 			frameTimes:[250, 250],
 			reverses:false,
-			loops:true
+			loops:false
 		},
 		knockback:{
 			name:STATE.KnockBack,
@@ -733,12 +733,12 @@ function AnimationBuilder() {
 		h_kick:{
 			name:STATE.H_Kick,
 			image:redEnemyHKick,
-			frames:[0, 1],
+			frames:[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
 			width:redEnemyHKick.width / 2,
 			height:redEnemyHKick.height,
-			frameTimes:[250, 250],
+			frameTimes:[75],
 			reverses:false,
-			loops:true
+			loops:false
 		},
 		knockback:{
 			name:STATE.KnockBack,
@@ -861,7 +861,7 @@ function AnimationBuilder() {
 			height:basicEnemyHKick.height,
 			frameTimes:[250, 250],
 			reverses:false,
-			loops:true
+			loops:false
 		},
 		knockback:{
 			name:STATE.KnockBack,

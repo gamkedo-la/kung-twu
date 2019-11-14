@@ -736,7 +736,7 @@ const basicEnemyHKickData = {
 	frames:[0, 1],
 	frameTimes:[125, 125],
 	reverses:false,
-	loops:true
+	loops:false
 };
 
 //---------Start Yellow Enemy Atlas Data--------//
@@ -918,7 +918,7 @@ const yellowEnemyHKickData = {
 	frames:[0, 1],
 	frameTimes:[125, 125],
 	reverses:false,
-	loops:true
+	loops:false
 };
 
 //---------Start Tan Enemy Atlas Data--------//
@@ -1100,7 +1100,7 @@ const tanEnemyHKickData = {
 	frames:[0, 1],
 	frameTimes:[125, 125],
 	reverses:false,
-	loops:true
+	loops:false
 };
 
 //---------Start Brown Enemy Atlas Data--------//
@@ -1282,7 +1282,7 @@ const brownEnemyHKickData = {
 	frames:[0, 1],
 	frameTimes:[125, 125],
 	reverses:false,
-	loops:true
+	loops:false
 };
 
 //---------Start Red Enemy Atlas Data--------//
@@ -1464,7 +1464,7 @@ const redEnemyHKickData = {
 	frames:[0, 1],
 	frameTimes:[125, 125],
 	reverses:false,
-	loops:true
+	loops:false
 };
 
 //---------Start Boss Atlas Data--------//

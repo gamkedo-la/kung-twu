@@ -71,6 +71,9 @@ function AIManager2() {
 	};
 
 	const attackForAttacker = function(belt, type, time, state) {
+		if((belt === BELT.Red) && (state === DASH_STATE)) {
+			return ACTION.Kick;
+		}
 		const cooldown = cooldownForBeltAndType(belt, type);
 		if(time >= cooldown) {
 			return attackActionFor(belt, type, state);

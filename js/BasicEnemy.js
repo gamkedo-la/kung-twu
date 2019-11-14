@@ -307,14 +307,14 @@ function BasicEnemy(config) {
 
 	const j_Kick = function() {
 		if(stateManager.getIsNewState()) {
-			console.log("Basic Enemy is Jump Kicking now");
 			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
 		}
 	};
 
 	const h_kick = function() {
 		if(stateManager.getIsNewState()) {
-			console.log("Basic Enemy is Helicopter Kicking now");
+			velocity.x = 0;
+			jump();
 			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
 		}
 	};

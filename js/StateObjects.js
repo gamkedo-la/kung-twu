@@ -265,7 +265,8 @@ const H_KICK_STATE = {
 	},
 
 	nextStateForActionWithBelt:function(belt, action) {
-		if(action === ACTION.Land) {
+		if((action === ACTION.Land) ||
+		(action === ACTION.End)) {
 			return STATE.Idle;
 		} else {
 			return STATE.H_Kick;
