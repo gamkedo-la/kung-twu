@@ -100,7 +100,11 @@ function AIManager2() {
 				}
 			} else if(belt === BELT.Tan) {
 				if(state === CROUCH_STATE) {
-					return ACTION.Kick;
+					if(aRand < 300) {
+						return ACTION.Release;
+					} else {
+						return ACTION.Kick;
+					}
 				} else if(aRand < 10) {
 					return ACTION.Crouch;
 				}

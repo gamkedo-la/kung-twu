@@ -300,7 +300,6 @@ function BasicEnemy(config) {
 
 	const kick = function() {
 		if(stateManager.getIsNewState()) {
-			console.log("Kicking");
 			velocity.x = 0;
 			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
 		}
@@ -308,7 +307,6 @@ function BasicEnemy(config) {
 
 	const j_Kick = function(distToPlayer) {
 		if(stateManager.getIsNewState()) {
-			console.log("Jump Kicking");
 			if(distToPlayer > 0) {
 				velocity.x = Math.abs(velocity.x);
 			} else if(distToPlayer < 0) {
@@ -317,8 +315,7 @@ function BasicEnemy(config) {
 				velocity.x = 0;
 			}
 			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
-		} else {
-		}
+		} 
 	};
 
 	const h_kick = function(distToPlayer) {
