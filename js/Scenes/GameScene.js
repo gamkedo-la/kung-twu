@@ -564,8 +564,8 @@ function GameScene() {
 
 		const bossStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Boss), UI_SCALE);
 	
-		drawRect(screenLeft + healthStringWidth + 50, 100, playerHealthWidth * bossHealth / bossMaxHealth, 22, levelData.bossMeterColor);
-		drawBorder(screenLeft + healthStringWidth + 50, 100, playerHealthWidth, 22, levelData.bossMeterColor);
+		drawRect(screenLeft + healthStringWidth + 50, 100, ASSIST_DEFAULT.MaxHealth * bossHealth / bossMaxHealth, 22, levelData.bossMeterColor);
+		drawBorder(screenLeft + healthStringWidth + 50, 100, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
 		
 		//Rivals Remaining
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Rivals),
