@@ -497,6 +497,15 @@ function GameScene() {
 		canvasContext.drawImage(uiScreenBg, screenLeft, 0);
 		canvasContext.drawImage(uiBorder, 0, 0, uiBorder.width, uiBorder.height, screenLeft, 0, uiBorder.width / 2, uiBorder.height / 2);
 
+		drawUIScore(screenLeft);
+		const healthStringWidth = drawUIPlayerHealth(screenLeft);
+		drawUIBossHealth(screenLeft, healthStringWidth);
+		drawUITimeCounter(screenLeft);
+		drawUILevelName(screenLeft);
+		drawUIRivals(cameraX);
+	};
+
+	const drawUIScore = function(screenLeft) {
 		//Score
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Score),
 			{x: screenLeft + 40, y: 10}, 
@@ -527,8 +536,9 @@ function GameScene() {
 		} else {
 			JPFont.printRedTextAt(stringScore, {x:screenLeft + scoreStringWidth + 50, y:10}, TextAlignment.Left, UI_SCALE);
 		}
+	};
 
-		//Player Health
+	const drawUIPlayerHealth = function(screenLeft) {
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Health),
 			{x:screenLeft + 40, y: 55}, TextAlignment.Left, UI_SCALE);
 
@@ -537,6 +547,10 @@ function GameScene() {
 		drawRect(screenLeft + healthStringWidth + 50, 60, playerHealthWidth, 22, Color.Orange);
 		drawBorder(screenLeft + healthStringWidth + 50, 60, ASSIST_DEFAULT.MaxHealth, 22, Color.Orange);
 
+		return healthStringWidth;
+	};
+
+	const drawUITimeCounter = function(screenLeft) {
 		//Time Counter
 		// hourglass sand
 		//console.log("time left: " + gameTimer.getTime() + " of " + gameTimer.getStartTime());
@@ -546,8 +560,9 @@ function GameScene() {
 		drawRect(screenLeft + 304 + 24, 48 + 24, 56, barsize, Color.Orange);
 		// hourglass overlay
 		canvasContext.drawImage(hourglassSprite, screenLeft + 304, 48);
+	};
 
-		//Level Name
+	const drawUILevelName = function(screenLeft) {
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Level),
 			{x:screenLeft + 40, y: 135}, TextAlignment.Left, UI_SCALE);
 
@@ -556,18 +571,18 @@ function GameScene() {
 
 		JPFont.printTextAt(getLocalizedStringForKey(keyForThisLevelName),
 			{x:screenLeft + levelStringWidth + 50, y:135}, TextAlignment.Left, UI_SCALE);
+	};
 
-		//Boss Health
+	const drawUIBossHealth = function(screenLeft, healthStringWidth) {
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Boss),
 			{x:screenLeft + 40, y:95},
 			TextAlignment.Left, UI_SCALE);
 
-		const bossStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Boss), UI_SCALE);
-	
 		drawRect(screenLeft + healthStringWidth + 50, 100, ASSIST_DEFAULT.MaxHealth * bossHealth / bossMaxHealth, 22, levelData.bossMeterColor);
 		drawBorder(screenLeft + healthStringWidth + 50, 100, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
-		
-		//Rivals Remaining
+	};
+
+	const drawUIRivals = function(cameraX) {
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Rivals),
 			{x:cameraX, y:10}, TextAlignment.Left, UI_SCALE);
 
