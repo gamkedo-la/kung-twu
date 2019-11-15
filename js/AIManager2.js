@@ -55,7 +55,11 @@ function AIManager2() {
 			if((state === BLOCK_STATE) || (state === CROUCH_STATE)) {
 				return ACTION.Release;
 			} else {
-				return ACTION.Right;
+				if(distance > (2 * ATTACK_DIST) + variance) {
+					return ACTION.Right;
+				} else {
+					return ACTION.Release;
+				}
 			}
 		} else {
 			return attackForAttacker(belt, type, time, state);
