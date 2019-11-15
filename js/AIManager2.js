@@ -7,7 +7,7 @@ const AITYPE = {
 
 //AI Manager 2
 function AIManager2() {
-	const WATCH_DIST = 250;
+	const WATCH_DIST = 325;
 	const WATCH_COOLDOWN = 250;
 	const WATCH_ANTI_HUNT = 75;
 	const ATTACK_DIST = 75;
