@@ -590,17 +590,14 @@ const userStrings = {
 		[STRINGS_KEY.Level3]:"Leopard",
 		[STRINGS_KEY.Level4]:"Wąż",
 		[STRINGS_KEY.Level5]:"Smok",
-
-		//TODO: Retranslate the end of this next line
-		[STRINGS_KEY.HelpScreenContents]:"[STRZAŁKI lub WASD] Poruszanie\n[DO GÓRY lub C] Skok\n[G lub X] Cios\n[H lub X] Kopnięcie\n[V] Blok\n[S] or [Down] Crouch", //\n[P] Pauza
-
+		[STRINGS_KEY.HelpScreenContents]:"[STRZAŁKI lub WASD] Poruszanie\n[DO GÓRY lub C] Skok\n[G lub X] Cios\n[H lub X] Kopnięcie\n[V] Blok\n[S] or [Down] Kucnięcie", //\n[P] Pauza
 		[STRINGS_KEY.Done]:"Koniec",
 		[STRINGS_KEY.HowToDash]:"Naciśnij [SPACE] aby\nOdskoczyć od rywali",
 		[STRINGS_KEY.HowToSweep]:"Użyj Kopnięcia w trakcie\nKucnięcia aby Podciąć rywali",
 		[STRINGS_KEY.HowToJ_Kick]:"Użyj Kopnięcia w trakcie\nSkoku aby wykonać Kopnięcie z Wyskoku",
 		[STRINGS_KEY.HowToH_Kick]:"Użyj Kopnięcia w trakcie\nOdskoku aby wykonać Obrotowe Kopnięcie",
 		[STRINGS_KEY.EndGameMessage]:"Gratulacje!\nOsiągnąłeś oświecenie\nidź teraz i nauczaj\nco sam się\nwłaśnie nauczyłeś.",
-		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
+		[STRINGS_KEY.Boss]:"Shīfù:", //This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.AssistSceneTitle]:"TRYB ASYSTY",
 		[STRINGS_KEY.Assist]:"[Z] Tryb Asysty",
 		[STRINGS_KEY.BeltWhite]:"Biały",
@@ -622,21 +619,20 @@ const userStrings = {
 		[STRINGS_KEY.BossHealth]:"Życie Shīfù",
 		[STRINGS_KEY.TimesUp]:"Koniec czasu!",
 		[STRINGS_KEY.RivalsToBeat]:"Rywale Do Pokonania",
-
-		[STRINGS_KEY.LevelTime]:"Time Limit",
-		[STRINGS_KEY.LevelIntroText_Lvl1]:"Prepare to learn\nShīfù Tigero's\nback dash.",
-		[STRINGS_KEY.LevelIntroText_Lvl2]:"Prepare to learn\nShīfù Whitebird's\nleg sweep.",
-		[STRINGS_KEY.LevelIntroText_Lvl3]:"Prepare to learn\nShīfù Striker's\njump kick.",
-		[STRINGS_KEY.LevelIntroText_Lvl4]:"Prepare to learn\nShīfù Leopald's\nspin kick.",
-		[STRINGS_KEY.LevelIntroText_Lvl5]:"Prepare to receive\nShīfù Dorago's enlightenment.",
-		[STRINGS_KEY.BossIntroText_Lvl1]:"Shīfù Tigero approaches.",
-		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird approaches.",
-		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker approaches.",
-		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald approaches.",
-		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago approaches.",
-		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
-		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
-		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick"
+		[STRINGS_KEY.LevelTime]:"Limit Czasu",
+		[STRINGS_KEY.LevelIntroText_Lvl1]:"Przygotuj się na naukę\nZrywu\nod Shīfù Tigero.",
+		[STRINGS_KEY.LevelIntroText_Lvl2]:"Przygotuj się na naukę\nPodcięcia\nod Shīfù Whitebird.",
+		[STRINGS_KEY.LevelIntroText_Lvl3]:"Przygotuj się na naukę\nKopnięcia z Wyskoku\nod Shīfù Striker.",
+		[STRINGS_KEY.LevelIntroText_Lvl4]:"Przygotuj się na naukę\nKopnięcia z Obrotu\nod Shīfù Leopald.",
+		[STRINGS_KEY.LevelIntroText_Lvl5]:"Przygotuj się na otrzymanie\noświecenia od Shīfù Dorago.",
+		[STRINGS_KEY.BossIntroText_Lvl1]:"Shīfù Tigero nadchodzi.",
+		[STRINGS_KEY.BossIntroText_Lvl2]:"Shīfù Whitebird nadchodzi.",
+		[STRINGS_KEY.BossIntroText_Lvl3]:"Shīfù Striker nadchodzi.",
+		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù Leopald nadchodzi.",
+		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù Dorago nadchodzi.",
+		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Zryw",
+		[STRINGS_KEY.ControlsText_Lvl3]:"[Kucnięcie + Kopnięcie] Podcięcie",
+		[STRINGS_KEY.ControlsText_Lvl4]:"[Skok + Kopnięcie] Kopnięcie z Wyskoku",
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Zryw + Kopnięcie] Kopnięcie z Obrotu"
 	}
 };
