@@ -20,8 +20,8 @@ function Vase(posX, posY, index, frontY, backY) {
 
 	const colliderData = {};
 	const colliderPoints = [
-		{x:posX + 25, y:posY - 4},
-		{x:posX + width - 25, y:posY - 4},
+		{x:posX + 25, y:posY + 24},
+		{x:posX + width - 25, y:posY + 24},
 		{x:posX + width - 25, y:posY + height},
 		{x:posX + 25, y:posY + height}
 	];

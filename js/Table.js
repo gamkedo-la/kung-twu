@@ -8,8 +8,8 @@ function Table(posX, posY, frontY, backY) {
 
 	const colliderData = {};
 	const colliderPoints = [
-		{x:posX, y:posY},
-		{x:posX + table.width, y:posY},
+		{x:posX, y:posY + 24},
+		{x:posX + table.width, y:posY + 24},
 		{x:posX + table.width, y:posY + table.height},
 		{x:posX, y:posY + table.height}
 	];
