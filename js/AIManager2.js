@@ -46,6 +46,11 @@ function AIManager2() {
 	const actionForLeftAttacker = function(belt, type, time, state, distance, variance) {
 		//Distance has been adjusted to be positive or zero
 		if(distance > ATTACK_DIST + variance) {
+			const approachAttack = approachAttackForAttacker(distance, variance, belt, state);
+			if(approachAttack != null) {
+				return approachAttack;
+			}
+
 			//Too far left to attack, so move right instead
 			if((state === BLOCK_STATE) || (state === CROUCH_STATE)) {
 				return ACTION.Release;
@@ -59,6 +64,11 @@ function AIManager2() {
 
 	const actionForRightAttacker = function(belt, type, time, state, distance, variance) {
 		if(distance > ATTACK_DIST + variance) {
+			const approachAttack = approachAttackForAttacker(distance, variance, belt, state);
+			if(approachAttack != null) {
+				return approachAttack;
+			}
+			
 			//Too far right to attack, so move left instead
 			if((state === BLOCK_STATE) || (state === CROUCH_STATE)) {
 				return ACTION.Release;
@@ -68,6 +78,36 @@ function AIManager2() {
 		} else {
 			return attackForAttacker(belt, type, time, state);
 		}
+	};
+
+	const approachAttackForAttacker = function(distance, variance, belt, state) {
+		if(distance < (3 * ATTACK_DIST + variance)) {
+			const aRand = Math.floor(1000 * Math.random());
+
+			if(belt >= BELT.Red) {
+				//Red and Black belts Helicopter Kick as they approach
+				if(state === DASH_STATE) {
+					return ACTION.Kick;
+				} else if(aRand < 10) {
+					return ACTION.Dash;	
+				}
+			} else if(belt === BELT.Brown) {
+				//Brown belts Jump Kick as they approach
+				if(state === JUMP_STATE) {
+					return ACTION.Kick;
+				} else if(aRand < 10) {
+					return ACTION.Jump;
+				}
+			} else if(belt === BELT.Tan) {
+				if(state === CROUCH_STATE) {
+					return ACTION.Kick;
+				} else if(aRand < 10) {
+					return ACTION.Crouch;
+				}
+			}
+		}
+
+		return null;
 	};
 
 	const attackForAttacker = function(belt, type, time, state) {

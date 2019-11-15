@@ -134,7 +134,7 @@ function BasicEnemy(config) {
 
 		const distToPlayer = playerPos.x - position.x;
 		stateManager.update(deltaTime, distToPlayer, shouldAttack, watchVariance, this.shouldJump);
-		updateForState(stateManager.getCurrentState());
+		updateForState(stateManager.getCurrentState(), distToPlayer);
 
 		if(stateManager.getIsNewState()) {
 			this.collisionBody.points = hitBoxManager.bodyPointsForState(stateManager.getCurrentState(), position, scale, stateManager.getIsFacingLeft());
@@ -159,7 +159,7 @@ function BasicEnemy(config) {
 		}
 	};
 
-	const updateForState = function(currentState) {
+	const updateForState = function(currentState, distToPlayer) {
 		switch(currentState) {
 		case STATE.WalkRight:
 			walkRight();
@@ -180,13 +180,13 @@ function BasicEnemy(config) {
 			idle();
 			break;
 		case STATE.J_Kick:
-			j_Kick();
+			j_Kick(distToPlayer);
 			break;
 		case STATE.Sweep:
 			sweep();
 			break;
 		case STATE.H_Kick:
-			h_kick();
+			h_kick(distToPlayer);
 			break;
 		case STATE.Punch:
 			punch();
@@ -300,22 +300,39 @@ function BasicEnemy(config) {
 
 	const kick = function() {
 		if(stateManager.getIsNewState()) {
+			console.log("Kicking");
 			velocity.x = 0;
 			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
 		}
 	};
 
-	const j_Kick = function() {
+	const j_Kick = function(distToPlayer) {
 		if(stateManager.getIsNewState()) {
+			console.log("Jump Kicking");
+			if(distToPlayer > 0) {
+				velocity.x = Math.abs(velocity.x);
+			} else if(distToPlayer < 0) {
+				velocity.x = -Math.abs(velocity.x);
+			} else {
+				velocity.x = 0;
+			}
 			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
+		} else {
 		}
 	};
 
-	const h_kick = function() {
+	const h_kick = function(distToPlayer) {
 		if(stateManager.getIsNewState()) {
-			velocity.x = 0;
 			jump();
 			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
+		} else {
+			if(distToPlayer > 0) {
+				velocity.x = Math.abs(velocity.x);
+			} else if(distToPlayer < 0) {
+				velocity.x = -Math.abs(velocity.x);
+			} else {
+				velocity.x = 0;
+			}
 		}
 	};
 
