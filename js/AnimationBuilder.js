@@ -1483,6 +1483,7 @@ function AnimationBuilder() {
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
+			//Placeholder until we have the actual boss knockback animation
 			image:yellowEnemyKnockback,
 			frames:[0],
 			width:yellowEnemyKnockback.width,
@@ -1578,6 +1579,7 @@ function AnimationBuilder() {
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
+			//Placeholder until we have the actual boss knockback animation
 			image:tanEnemyKnockback,
 			frames:[0],
 			width:tanEnemyKnockback.width,
@@ -1673,6 +1675,7 @@ function AnimationBuilder() {
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
+			//Placeholder until we have the actual boss knockback animation
 			image:brownEnemyKnockback,
 			frames:[0],
 			width:brownEnemyKnockback.width,
@@ -1768,6 +1771,7 @@ function AnimationBuilder() {
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
+			//Placeholder until we have the actual boss knockback animation
 			image:redEnemyKnockback,
 			frames:[0],
 			width:redEnemyKnockback.width,
@@ -1863,6 +1867,7 @@ function AnimationBuilder() {
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
+			//Placeholder until we have the actual boss knockback animation
 			image:basicEnemyKnockback,
 			frames:[0],
 			width:basicEnemyKnockback.width,
