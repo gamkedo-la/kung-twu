@@ -1481,7 +1481,16 @@ function AnimationBuilder() {
 		},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:yellowEnemyKnockback,
+			frames:[0],
+			width:yellowEnemyKnockback.width,
+			height:yellowEnemyKnockback.height,
+			frameTimes:[625],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const bossTanBeltData = {
@@ -1567,7 +1576,16 @@ function AnimationBuilder() {
 		},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:tanEnemyKnockback,
+			frames:[0],
+			width:tanEnemyKnockback.width,
+			height:tanEnemyKnockback.height,
+			frameTimes:[625],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const bossBrownBeltData = {
@@ -1653,7 +1671,16 @@ function AnimationBuilder() {
 		},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:brownEnemyKnockback,
+			frames:[0],
+			width:brownEnemyKnockback.width,
+			height:brownEnemyKnockback.height,
+			frameTimes:[625],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const bossRedBeltData = {
@@ -1739,7 +1766,16 @@ function AnimationBuilder() {
 		},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:redEnemyKnockback,
+			frames:[0],
+			width:redEnemyKnockback.width,
+			height:redEnemyKnockback.height,
+			frameTimes:[625],
+			reverses:false,
+			loops:false
+		}
 	};
 
 	const bossBlackBeltData = {
@@ -1825,6 +1861,15 @@ function AnimationBuilder() {
 		},
 		j_kick:{},
 		h_kick:{},
-		knockback:{}
+		knockback:{
+			name:STATE.KnockBack,
+			image:basicEnemyKnockback,
+			frames:[0],
+			width:basicEnemyKnockback.width,
+			height:basicEnemyKnockback.height,
+			frameTimes:[625],
+			reverses:false,
+			loops:false
+		}
 	};
 }

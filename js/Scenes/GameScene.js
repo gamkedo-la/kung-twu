@@ -93,6 +93,7 @@ function GameScene() {
 			initializeBackgroundManager();
 			initializeTables(frontY, backY);
 			initializeVases(frontY, backY);
+			setBossHealth();
 		}
 
 		if (sound.getCurrentBGMKey() !== Sounds.BGM_GamePlay) {
@@ -537,14 +538,6 @@ function GameScene() {
 		drawBorder(screenLeft + healthStringWidth + 50, 60, ASSIST_DEFAULT.MaxHealth, 22, Color.Orange);
 
 		//Time Counter
-		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Time),
-			{x:screenLeft + 40, y:95}, TextAlignment.Left, UI_SCALE);
-		
-		// GameTimer text rendering
-		const timeWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Time), UI_SCALE);
-		gameTimer.setPosition(screenLeft + 40 + timeWidth, 96);
-		gameTimer.draw();
-        
 		// hourglass sand
 		//console.log("time left: " + gameTimer.getTime() + " of " + gameTimer.getStartTime());
 		var maxsize = 78;
@@ -566,17 +559,13 @@ function GameScene() {
 
 		//Boss Health
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Boss),
-			{x:cameraX, y:55}, TextAlignment.Left, UI_SCALE);
+			{x:screenLeft + 40, y:95},
+			TextAlignment.Left, UI_SCALE);
 
 		const bossStringWidth = JPFont.getStringWidth(getLocalizedStringForKey(STRINGS_KEY.Boss), UI_SCALE);
 	
-		if(bossMaxHealth === null) {
-			drawRect(cameraX + bossStringWidth + 10, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / levelData.bossHealth), 22, levelData.bossMeterColor);
-		} else {
-			drawRect(cameraX + bossStringWidth + 10, 60, bossHealth * (ASSIST_DEFAULT.MaxHealth / bossMaxHealth), 22, levelData.bossMeterColor);
-		}
-
-		drawBorder(cameraX + bossStringWidth + 10, 60, ASSIST_DEFAULT.MaxHealth, 22, levelData.bossMeterColor);
+		drawRect(screenLeft + healthStringWidth + 50, 100, playerHealthWidth * bossHealth / bossMaxHealth, 22, levelData.bossMeterColor);
+		drawBorder(screenLeft + healthStringWidth + 50, 100, playerHealthWidth, 22, levelData.bossMeterColor);
 		
 		//Rivals Remaining
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Rivals),
@@ -749,6 +738,17 @@ function GameScene() {
 			const thisVase = new Vase(vaseData.x, vaseData.y, vaseData.index, frontY, backY);
 			frontVases.push(thisVase);
 		}
+	};
+
+	const setBossHealth = function() {
+		let baseHealth = localStorageHelper.getInt(localStorageKey.BossHealth);
+		if((baseHealth === undefined) || (baseHealth === null) || (isNaN(baseHealth))) {
+			baseHealth = ASSIST_DEFAULT.BossBaseHealth;
+			localStorageHelper.setInt(localStorageKey.BossHealth,  baseHealth);
+		}
+
+		bossMaxHealth = baseHealth + levelData.bossHealth;
+		bossHealth = bossMaxHealth;
 	};
 
 	const initializeCollisionManager = function(player) {
