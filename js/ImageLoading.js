@@ -262,6 +262,7 @@ const wooshDashEnemyPic = document.createElement("canvas");
 const wooshDashEnemyLPic = document.createElement("canvas");
 
 const decorationSpritesheet = document.createElement("img");
+const blueVaseStrip = document.createElement("img");
 const waterfallSheet = document.createElement("img");
 const lamp = document.createElement("img");
 const temple = document.createElement("img");
@@ -492,6 +493,7 @@ function loadImages() {
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
 		{ imgName: wallGradient, theFile: "wall-gradient.png"},
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
+		{ imgName: blueVaseStrip, theFile: "BrokenBlueVaseStrip.png"},
 		{ imgName: waterfallSheet, theFile: "waterfallSheet.png"},
 		{ imgName: lamp, theFile: "Lamp.png"},
 		{ imgName: temple, theFile: "Temple.png"},

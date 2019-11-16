@@ -10,6 +10,8 @@ let CHEATS_ACTIVE = false;
 
 const canvasClearColor = "black";
 
+const VASE_PIECES = [];
+
 const Color = {
 	Red: "red",
 	Blue: "blue",

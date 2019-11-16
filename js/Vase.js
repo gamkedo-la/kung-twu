@@ -63,6 +63,8 @@ function Vase(posX, posY, index, frontY, backY) {
 	};
 
 	this.update = function(deltaTime, gravity, cameraXPos, shifts) {
+		//if(VASE_PIECES.length === 0) populateVasePieces(); //TODO: make vases crumble
+
 		if(isBroken) {
 			timeSinceBroke += deltaTime;
 		}
@@ -156,5 +158,9 @@ function Vase(posX, posY, index, frontY, backY) {
 
 	this.didHit = function(otherEntity) {
 		return;
+	};
+
+	const populateVasePieces = function() {
+
 	};
 }

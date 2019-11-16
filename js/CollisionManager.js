@@ -219,7 +219,9 @@ function CollisionManager(player) {
 			}
 		}	
 		
-		for(let enviro of environment) {
+		for(let i = 0; i < environment.size; i++) {
+			const environmentArray = Array.from(environment);
+			const enviro = environmentArray[i];
 			if(isNotOnScreen(enviro)) continue;//entity is not on screen => bail out early
 
 			if(colliderCheck(player.collisionBody, enviro.collisionBody)) {
@@ -230,6 +232,15 @@ function CollisionManager(player) {
 			if(checkEntityAttack(player, enviro)) {
 				enviro.wasAttackedBy(player);
 				player.didHit(enviro);
+			}
+
+			for(let j = i + 1; j < environmentArray.length; j++) {
+				if(isNotOnScreen(environmentArray[j])) continue;
+
+				if(colliderCheck(enviro.collisionBody, environmentArray[j].collisionBody)) {
+					enviro.wasHitBy(environmentArray[j]);
+					environmentArray[j].wasHitBy(enviro);
+				}
 			}
 		}
 	};
