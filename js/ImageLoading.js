@@ -25,7 +25,7 @@ function loadGamkedoLogo() {
 		}, 25);
 	};
 
-	HTGDLogoPic.src = assetPath.Image + "HTGDLogo.png";
+	HTGDLogoPic.src = assetPath.Image + "HTGD_Zen_Logo.png";
 }
 
 let kenBurns = 0;
