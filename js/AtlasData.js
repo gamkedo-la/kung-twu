@@ -2003,3 +2003,17 @@ const blackBossJumpData = {
 	reverses:false,
 	loops:false
 };
+
+const vaseData = {
+	name:"vase1",
+	clipX:0,
+	clipY:0,
+	clipWidth: 35,
+	clipHeight: 35,
+	frameWidth:35,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[200],
+	reverses:false,
+	loops:true
+};
