@@ -79,11 +79,14 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 					decorationIndex = 3;
 				}else if(decorationIndex === 3) {
 					decorationToUse = painting;
-					decorationIndex = 0;
-				}
-			} else {
+					decorationIndex = 4;
+                }else if(decorationIndex === 4) {
+                    decorationToUse = HTGDpainting;
+                    decorationIndex = 0;
+                }
+            } else {
 				//5, 7, 9, 11, 13, 15
-				imageToUse = windowedWall;
+                imageToUse = windowedWall;
 			}
 
 			const thisTile = new WallTile(imageToUse, currentXPos + (i * TILE_WIDTH), posY);
@@ -136,8 +139,10 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 150);
 				}else if(decoration === painting) {
 					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 150);
-				}
-			}
+                }else if(decoration === HTGDpainting) {
+                    canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 150);
+                }
+        }
 		};
 	}
 
