@@ -94,6 +94,10 @@ function fontSystem(jpFont, charSize, context) {
 			} else {
 				return 72;
 			}
+		} else if(language === Language.Russian) {
+			if((character1 === "ж") || (character2 === "ж")) {
+				return 62;
+			}
 		}
 
 		if(character2 === "'") {
@@ -113,6 +117,7 @@ function fontSystem(jpFont, charSize, context) {
 		switch(char) {
 		case "é":
 		case "É":
+		case "ё":
 			return (-10 * scale);
 		default: return 0;
 		}
