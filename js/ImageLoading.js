@@ -277,6 +277,7 @@ const tree = document.createElement("img");
 const carpet = document.createElement("img");
 const carpet2 = document.createElement("img");
 const painting = document.createElement("img");
+const HTGDpainting = document.createElement("img");
 
 const leftMoveSprite = document.createElement("img");
 const rightMoveSprite = document.createElement("img");
@@ -508,6 +509,7 @@ function loadImages() {
 		{ imgName: carpet, theFile: "carpet.png"},
 		{ imgName: carpet2, theFile: "carpet_2.png"},
 		{ imgName: painting, theFile: "Painting.png"},
+		{ imgName: HTGDpainting, theFile: "HTGDpainting.png"},
 
 		// player related
 		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
