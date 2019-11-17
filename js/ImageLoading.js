@@ -75,6 +75,7 @@ const wallScrollCrane = document.createElement("img");
 const wallScrollSnake = document.createElement("img");
 const wallScrollLeopard = document.createElement("img");
 const wallScrollDragon = document.createElement("img");
+const wallArtCrane = document.createElement("img");
 const tiledWall = document.createElement("img");
 const tempRightWall = document.createElement("img");
 const wallGradient = document.createElement("img");
@@ -483,6 +484,7 @@ function loadImages() {
 		{ imgName: wallScrollSnake, theFile: "TiledBackgroundScroll-Snake.png" },
 		{ imgName: wallScrollLeopard, theFile: "TiledBackgroundScroll-Leopard.png" },
 		{ imgName: wallScrollDragon, theFile: "TiledBackgroundScroll-Dragon.png" },
+		{ imgName: wallArtCrane, theFile: "Crane.png"},
 		{ imgName: tiledWall, theFile: "TiledBackgroundWall.png" },
 		{ imgName: tempRightWall, theFile: "TempRightWall.png" },
 		{ imgName: roofTileTop, theFile: "RoofBricks.png" },
