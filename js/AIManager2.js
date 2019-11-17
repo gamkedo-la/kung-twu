@@ -10,7 +10,7 @@ function AIManager2() {
 	const WATCH_DIST = 325;
 	const WATCH_COOLDOWN = 250;
 	const WATCH_ANTI_HUNT = 75;
-	const ATTACK_DIST = 75;
+	const ATTACK_DIST = 100;
 
 	this.nextAction = function (belt, type, timeSinceAction, currentState, distToPlayer, shouldAttack, watchVariance, shouldJump) {
 		if(shouldJump) {
@@ -45,7 +45,7 @@ function AIManager2() {
 
 	const actionForLeftAttacker = function(belt, type, time, state, distance, variance) {
 		//Distance has been adjusted to be positive or zero
-		if(distance > ATTACK_DIST + variance) {
+		if(distance > (1 * ATTACK_DIST) + variance) {
 			const approachAttack = approachAttackForAttacker(distance, variance, belt, state);
 			if(approachAttack != null) {
 				return approachAttack;
@@ -55,10 +55,12 @@ function AIManager2() {
 			if((state === BLOCK_STATE) || (state === CROUCH_STATE)) {
 				return ACTION.Release;
 			} else {
-				if(distance > (2 * ATTACK_DIST) + variance) {
+				if(distance > (3 * ATTACK_DIST) + variance) {
 					return ACTION.Right;
-				} else {
+				} else if(distance < (2 * ATTACK_DIST) + variance) {
 					return ACTION.Release;
+				} else {
+					ACTION.NoChange;
 				}
 			}
 		} else {
@@ -360,10 +362,6 @@ function AIManager2() {
 		}
 
 		const newAction = Math.floor(100 * Math.random());
-		if (newAction)
-		{
-			return ACTION.SpinKick;//debug
-		}
 		if(newAction < 10) {
 			return ACTION.Crouch;//0-9
 		} else if(newAction < 20) {
