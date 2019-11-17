@@ -1576,6 +1576,21 @@ const yellowBossJumpData = {
 	loops:false
 };
 
+const yellowBossSpinKickData = {
+	name:STATE.SpinKick,
+	image:bossAtlas,
+	clipX:140,
+	clipY:ATLAS_ROW6 + 2,
+	clipWidth:66,
+	clipHeight:67,
+	frameWidth:36,
+	frameCount:6,
+	frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Boss Tan Belt Atlas Data--------//
 
 const tanBossIdleData = {
@@ -1678,6 +1693,21 @@ const tanBossJumpData = {
 	frameWidth:36,
 	frameCount:3,
 	frames:[0, 1, 2, 1],
+	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
+const tanBossSpinKickData = {
+	name:STATE.SpinKick,
+	image:bossAtlas,
+	clipX:140,
+	clipY:ATLAS_ROW6 + 2,
+	clipWidth:66,
+	clipHeight:67,
+	frameWidth:36,
+	frameCount:6,
+	frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
 	frameTimes:[50],
 	reverses:false,
 	loops:false
@@ -1790,6 +1820,21 @@ const brownBossJumpData = {
 	loops:false
 };
 
+const brownBossSpinKickData = {
+	name:STATE.SpinKick,
+	image:bossAtlas,
+	clipX:140,
+	clipY:ATLAS_ROW6 + 2,
+	clipWidth:66,
+	clipHeight:67,
+	frameWidth:36,
+	frameCount:6,
+	frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Boss Red Belt Atlas Data--------//
 
 const redBossIdleData = {
@@ -1892,6 +1937,21 @@ const redBossJumpData = {
 	frameWidth:36,
 	frameCount:3,
 	frames:[0, 1, 2, 1],
+	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
+const redBossSpinKickData = {
+	name:STATE.SpinKick,
+	image:bossAtlas,
+	clipX:140,
+	clipY:ATLAS_ROW6 + 2,
+	clipWidth:66,
+	clipHeight:67,
+	frameWidth:36,
+	frameCount:6,
+	frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
 	frameTimes:[50],
 	reverses:false,
 	loops:false
@@ -2003,6 +2063,23 @@ const blackBossJumpData = {
 	reverses:false,
 	loops:false
 };
+
+const blackBossSpinKickData = {
+	name:STATE.SpinKick,
+	image:bossAtlas,
+	clipX:140,
+	clipY:ATLAS_ROW6 + 2,
+	clipWidth:66,
+	clipHeight:67,
+	frameWidth:36,
+	frameCount:6,
+	frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
+//end of boss data
 
 const vaseData = {
 	name:"vase1",

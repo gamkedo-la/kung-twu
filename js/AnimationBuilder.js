@@ -83,8 +83,8 @@ function AnimationBuilder() {
 		result.crouch = getAnimationWithData(data.crouch);
 		if(result.crouch === null) {
 			result.crouch = getAnimationWithData(data.idle);
-		}		
-		
+		}
+
 		result.punch = getAnimationWithData(data.punch);
 		if(result.punch === null) {
 			result.punch = getAnimationWithData(data.idle);
@@ -93,7 +93,7 @@ function AnimationBuilder() {
 		result.kick = getAnimationWithData(data.kick);
 		if(result.kick === null) {
 			result.kick = getAnimationWithData(data.idle);
-		}		
+		}
 
 		result.block = getAnimationWithData(data.block);
 		if(result.block === null) {
@@ -105,7 +105,6 @@ function AnimationBuilder() {
 		if(result.sweep === null) {
 			result.sweep = getAnimationWithData(data.idle);
 		}
-
 
 		result.j_kick = getAnimationWithData(data.j_kick);
 		if(result.j_kick === null) {
@@ -1438,6 +1437,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
+		spin_kick:{
+			name:STATE.Jump,
+			image:yellowBossSpinKick,
+			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+			width:yellowBossSpinKick.width / 6,
+			height:yellowBossSpinKick.height,
+			frameTimes:[50, 50, 25, 25, 50, 50],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:yellowBossCrouch,
@@ -1532,6 +1541,16 @@ function AnimationBuilder() {
 			width:tanBossJump.width / 3,
 			height:tanBossJump.height,
 			frameTimes:[32, 32, 180, 32],
+			reverses:false,
+			loops:false
+		},
+		spin_kick:{
+			name:STATE.Jump,
+			image:tanBossSpinKick,
+			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+			width:tanBossSpinKick.width / 6,
+			height:tanBossSpinKick.height,
+			frameTimes:[50, 50, 25, 25, 50, 50],
 			reverses:false,
 			loops:false
 		},
@@ -1631,6 +1650,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
+		spin_kick:{
+			name:STATE.Jump,
+			image:brownBossSpinKick,
+			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+			width:brownBossSpinKick.width / 6,
+			height:brownBossSpinKick.height,
+			frameTimes:[50, 50, 25, 25, 50, 50],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:brownBossCrouch,
@@ -1727,6 +1756,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
+		spin_kick:{
+			name:STATE.Jump,
+			image:redBossSpinKick,
+			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+			width:redBossSpinKick.width / 6,
+			height:redBossSpinKick.height,
+			frameTimes:[50, 50, 25, 25, 50, 50],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:redBossCrouch,
@@ -1820,6 +1859,16 @@ function AnimationBuilder() {
 			width:blackBossJump.width / 3,
 			height:blackBossJump.height,
 			frameTimes:[32, 32, 180, 32],
+			reverses:false,
+			loops:false
+		},
+		spin_kick:{
+			name:STATE.Jump,
+			image:blackBossSpinKick,
+			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+			width:blackBossSpinKick.width / 6,
+			height:blackBossSpinKick.height,
+			frameTimes:[50, 50, 25, 25, 50, 50],
 			reverses:false,
 			loops:false
 		},

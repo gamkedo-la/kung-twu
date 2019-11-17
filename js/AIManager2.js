@@ -19,7 +19,7 @@ function AIManager2() {
 				return ACTION.Jump;
 			}
 		}
-		
+
 		if(shouldAttack) {
 			return actionForAttacker(belt, type, timeSinceAction, currentState, distToPlayer);
 		} else {
@@ -72,7 +72,7 @@ function AIManager2() {
 			if(approachAttack != null) {
 				return approachAttack;
 			}
-			
+
 			//Too far right to attack, so move left instead
 			if((state === BLOCK_STATE) || (state === CROUCH_STATE)) {
 				return ACTION.Release;
@@ -93,7 +93,7 @@ function AIManager2() {
 				if(state === DASH_STATE) {
 					return ACTION.Kick;
 				} else if(aRand < 10) {
-					return ACTION.Dash;	
+					return ACTION.Dash;
 				}
 			} else if(belt === BELT.Brown) {
 				//Brown belts Jump Kick as they approach
@@ -360,14 +360,20 @@ function AIManager2() {
 		}
 
 		const newAction = Math.floor(100 * Math.random());
+		if (newAction)
+		{
+			return ACTION.SpinKick;//debug
+		}
 		if(newAction < 10) {
 			return ACTION.Crouch;//0-9
 		} else if(newAction < 20) {
-			return ACTION.Jump;//10-19
+	  	return ACTION.Jump;//10-19
 		} else if(newAction < 45) {
 			return ACTION.Punch;//20-44
+		} else if(newAction < 60) {
+			return ACTION.Kick;//45-59
 		} else if(newAction < 70) {
-			return ACTION.Kick;//45-69
+			return ACTION.SpinKick;//60-69
 		} else if(newAction < 80) {
 			return ACTION.Block;//70-79
 		} else {
@@ -401,8 +407,10 @@ function AIManager2() {
 			return ACTION.Jump;//20-29
 		} else if(newAction < 55) {
 			return ACTION.Punch;//30-54
+		}  else if(newAction < 70) {
+			return ACTION.Kick;//55-70
 		} else if(newAction < 80) {
-			return ACTION.Kick;//55-79
+			return ACTION.SpinKick;//70-89
 		} else if(newAction < 90) {
 			return ACTION.Block;//80-89
 		} else {
@@ -441,9 +449,11 @@ function AIManager2() {
 			return ACTION.Jump;//10-29
 		} else if(newAction < 55) {
 			return ACTION.Punch;//30-54
+		}  else if(newAction < 70) {
+			return ACTION.Kick;//55-69
 		} else if(newAction < 80) {
-			return ACTION.Kick;//55-79
-		} else if(newAction < 90) {
+			return ACTION.SpinKick;//70-79
+		}  else if(newAction < 90) {
 			return ACTION.Block;//80-89
 		} else {
 			return ACTION.Dash;//90 - 99
@@ -486,8 +496,10 @@ function AIManager2() {
 			return ACTION.Jump;//10-19
 		} else if(newAction < 45) {
 			return ACTION.Punch;//20-44
+		} else if(newAction < 60) {
+			return ACTION.Kick;//45-59
 		} else if(newAction < 70) {
-			return ACTION.Kick;//45-69
+			return ACTION.SpinKick;//60-69
 		} else if(newAction < 80) {
 			return ACTION.Block;//70-79
 		} else {
@@ -531,8 +543,10 @@ function AIManager2() {
 			return ACTION.Jump;//10-19
 		} else if(newAction < 45) {
 			return ACTION.Punch;//20-44
+		}  else if(newAction < 60) {
+			return ACTION.Kick;//45-59
 		} else if(newAction < 70) {
-			return ACTION.Kick;//45-69
+			return ACTION.SpinKick;//60-69
 		} else if(newAction < 80) {
 			return ACTION.Block;//70-79
 		} else {
