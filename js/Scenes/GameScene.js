@@ -667,7 +667,7 @@ function GameScene() {
 	};
 
 	const InitializeBackWall = function() {
-		wall = new InfiniteWall(canvas.height - tiledWall.height, levelData.wallScroll, levelData.cameraMin, levelData.cameraMax);
+		wall = new InfiniteWall(canvas.height - tiledWall.height, levelData.wallScroll, levelData.wallArt, levelData.cameraMin, levelData.cameraMax);
 	};
 
 	const initializePlayerIfReqd = function() {
@@ -926,7 +926,7 @@ const Level1Data = {
 	scrollsLeft: true,
 	allowedTime: 100,
 	wallScroll:wallScrollTiger,
-	wallArt:wallArtCrane,
+	wallArt:wallArtTiger,
 	enemyBelt: BELT.White,
 	bossBelt: BELT.Yellow,
 	bossHealth:100,
@@ -1090,7 +1090,7 @@ const Level3Data = {
 	scrollsLeft: true,
 	allowedTime: 80,
 	wallScroll:wallScrollSnake,
-	wallArt:wallArtCrane,
+	wallArt:wallArtSnake,
 	enemyBelt: BELT.Tan,
 	bossBelt: BELT.Brown,
 	bossHealth:140,

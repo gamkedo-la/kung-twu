@@ -1,5 +1,5 @@
 //Infinite Back Wall
-function InfiniteWall(posY, scroll, minPos, maxPos) {
+function InfiniteWall(posY, scroll, silhouette, minPos, maxPos) {
 	const TILE_WIDTH = 352;
 	const SHADOW_WIDTH = 200;
 	const TILES = [];
@@ -11,7 +11,7 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 		lastCameraPos = cameraXPos;
 
 		if(TILES.length === 0) {
-			initializeTiles(scroll);
+			initializeTiles(scroll, silhouette);
 		}
 
 		for(let tile of TILES) {
@@ -48,7 +48,7 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 		}
 	};
 
-	const initializeTiles = function(scroll) {
+	const initializeTiles = function(scroll, silhouette) {
 		const tileCount = 2 + Math.ceil((maxPos - minPos + canvas.width) / TILE_WIDTH);
 
 		let imageToUse;
@@ -84,7 +84,7 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 					decorationToUse = HTGDpainting;
 					decorationIndex = 5;
 				} else if(decorationIndex === 5) {
-					decorationToUse = wallArtCrane;
+					decorationToUse = silhouette;
 					decorationIndex = 0;
 				}
 			} else {
@@ -144,7 +144,7 @@ function InfiniteWall(posY, scroll, minPos, maxPos) {
 					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 150);
 				} else if(decoration === HTGDpainting) {
 					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 150);
-				} else if(decoration === wallArtCrane) {
+				} else if(decoration === silhouette) {
 					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 175);
 				}
 			}
