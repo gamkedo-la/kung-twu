@@ -1146,7 +1146,7 @@ const Level3Data = {
 const Level4Data = {
 	level: 4,
 	maxEnemies: 5,
-	totalEnemies:8,
+	totalEnemies:1,//8, TODO: Restore this after testing boss spin kick
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1175 * Math.random());
 		const rnd2 = Math.ceil(1175 * Math.random());
