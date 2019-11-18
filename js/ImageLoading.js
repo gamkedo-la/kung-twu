@@ -92,6 +92,7 @@ const lvl1Column = document.createElement("img");
 const lvl2Column = document.createElement("img");
 const lvl3Column = document.createElement("img");
 const lvl4Column = document.createElement("img");
+const lvl5Column = document.createElement("img");
 const yellowPresentation = document.createElement("img");
 const tanPresentation = document.createElement("img");
 const brownPresentation = document.createElement("img");
@@ -503,6 +504,7 @@ function loadImages() {
 		{ imgName: lvl2Column, theFile: "column_02.png" },
 		{ imgName: lvl3Column, theFile: "column_03.png" },
 		{ imgName: lvl4Column, theFile: "column_04.png" },
+		{ imgName: lvl5Column, theFile: "column_05.png" },
 		{ imgName: yellowPresentation, theFile: "YellowBeltPresentation.png" },
 		{ imgName: tanPresentation, theFile: "TanBeltPresentation.png" },
 		{ imgName: brownPresentation, theFile: "BrownBeltPresentation.png" },
