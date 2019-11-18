@@ -1158,7 +1158,7 @@ const Level4Data = {
 	scrollsLeft: false,
 	allowedTime: 60,
 	wallScroll:wallScrollLeopard,
-	wallArt:wallArtCrane,
+	wallArt:wallArtLeopard,
 	enemyBelt: BELT.Brown,
 	bossBelt: BELT.Red,
 	bossHealth:160,
