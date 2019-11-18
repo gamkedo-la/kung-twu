@@ -145,7 +145,11 @@ function InfiniteWall(posY, scroll, silhouette, minPos, maxPos) {
 				} else if(decoration === HTGDpainting) {
 					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 150);
 				} else if(decoration === silhouette) {
-					canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 175);
+					if(decoration === wallArtDragon) {
+						canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 225);
+					} else {
+						canvasContext.drawImage(decoration, xPos + (image.width - decoration.width)/2, yPos + 175);
+					}
 				}
 			}
 		};

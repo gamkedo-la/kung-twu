@@ -1198,7 +1198,7 @@ const Level5Data = {
 	scrollsLeft: true,
 	allowedTime: 40,
 	wallScroll:wallScrollDragon,
-	wallArt:wallArtCrane,
+	wallArt:wallArtDragon,
 	enemyBelt: BELT.Red,
 	bossBelt: BELT.Black,
 	bossHealth:400,//this is the final boss, so BUFF!!
