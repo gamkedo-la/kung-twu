@@ -60,7 +60,11 @@ function BasicEnemy(config) {
 
 	this.getPosition = function() {
 		return {x:position.x, y:position.y};
-	};
+    };
+    
+    this.distanceFrom = function(x,y) {
+        return Math.hypot(position.x-x, position.y-y);
+    }
 
 	this.getWidth = function() {
 		return stateManager.getCurrentAnimation().getWidth();
