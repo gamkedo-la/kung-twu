@@ -5,7 +5,8 @@
 function knockedOutBodyManager() {
 	
   
-	const DEBUG_BODIES = false; // console logs
+    const DEBUG_BODIES = false; // console logs
+    const DOMINO_KNOCKBACKS = true; // knockback other enemies, matrix-style
 	const SPRX = 0; // sprite used is frame 2 of the kick animation
 	const SPRW = 40;
 	const SPRH = 69;
@@ -72,7 +73,17 @@ function knockedOutBodyManager() {
 				ypos[num] += yspd[num];
 				// gravity
 				yspd[num] += BODYGRAV;
-				//if (ypos[num]>MAXY) ypos[num]=MAXY; // hit the floor? nah keep falling
+                //if (ypos[num]>MAXY) ypos[num]=MAXY; // hit the floor? nah keep falling
+                
+                if (DOMINO_KNOCKBACKS) { // just for fun
+                    // FIXME: how to obtain enemies[] array FIXME???
+                    // maybe hidden deep inside SceneState? a GameScene() somewhere??
+                    //for (let i = 0; i < enemies.length; i++) {
+                        //var pos = enemies[i].getPosition(); // FIXME new obj spam, bad for perf
+                        //var dist = enemies[i].distanceFrom(xpos[num],ypos[num]);
+                    //}                    
+                }
+
 			}
 		}
 	};
