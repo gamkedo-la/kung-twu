@@ -28,12 +28,15 @@ const ROOF_CONFIG = {
 };
 
 //Infinite Surface (works for roof and floor)
-function InfiniteSurface(config, verticalOffset) {
+function InfiniteSurface(config, verticalOffset, surfaceImage = null) {
 	const CENTER_INDEX = config.centerIndex;
 	const TILE_WIDTH = config.tileWidth;
 	const TILE_HEIGHT = config.tileHeight;
 	const FIRST_INDEX = config.firstIndex;
 	const LAST_INDEX = config.lastIndex;
+	if(surfaceImage != null) {
+		config.spriteSheet = surfaceImage;
+	}
 
 	const VERTICAL_OFFSET = verticalOffset;
 

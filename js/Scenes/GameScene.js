@@ -663,7 +663,7 @@ function GameScene() {
 	};
 
 	const InitializeRoof = function() {
-		roof = new InfiniteRoof(canvas.height - tiledWall.height);
+		roof = new InfiniteRoof(canvas.height - tiledWall.height, levelData.roofTiles);
 	};
 
 	const InitializeBackWall = function() {
@@ -927,6 +927,7 @@ const Level1Data = {
 	allowedTime: 100,
 	wallScroll:wallScrollTiger,
 	wallArt:wallArtTiger,
+	roofTiles:roofboardSheet,
 	enemyBelt: BELT.White,
 	bossBelt: BELT.Yellow,
 	bossHealth:100,
@@ -1009,6 +1010,7 @@ const Level2Data = {
 	allowedTime: 100,
 	wallScroll:wallScrollCrane,
 	wallArt:wallArtCrane,
+	roofTiles:roofboardSheetWhite,
 	enemyBelt: BELT.Yellow,
 	bossBelt: BELT.Tan,
 	bossHealth:120,
@@ -1091,6 +1093,7 @@ const Level3Data = {
 	allowedTime: 80,
 	wallScroll:wallScrollSnake,
 	wallArt:wallArtSnake,
+	roofTiles:roofboardSheetGreen,
 	enemyBelt: BELT.Tan,
 	bossBelt: BELT.Brown,
 	bossHealth:140,
@@ -1159,6 +1162,7 @@ const Level4Data = {
 	allowedTime: 60,
 	wallScroll:wallScrollLeopard,
 	wallArt:wallArtLeopard,
+	roofTiles:roofboardSheetBlue,
 	enemyBelt: BELT.Brown,
 	bossBelt: BELT.Red,
 	bossHealth:160,
@@ -1199,6 +1203,7 @@ const Level5Data = {
 	allowedTime: 40,
 	wallScroll:wallScrollDragon,
 	wallArt:wallArtDragon,
+	roofTiles:roofboardSheetRed,
 	enemyBelt: BELT.Red,
 	bossBelt: BELT.Black,
 	bossHealth:400,//this is the final boss, so BUFF!!

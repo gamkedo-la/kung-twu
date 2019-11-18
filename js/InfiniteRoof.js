@@ -1,5 +1,5 @@
 //Infinite Roof
-function InfiniteRoof(posY) {
+function InfiniteRoof(posY, surfaceImage) {
 	const TILE_WIDTH = 72;
 	const TOP_HEIGHT = 88;
 	const TILE_TOPS = [];
@@ -79,7 +79,7 @@ function InfiniteRoof(posY) {
 		}
 
 		const verticalOffset = canvas.height - TILE_BOTS[0].getYPos() - 0.75 * TOP_HEIGHT;
-		boards = new InfiniteSurface(ROOF_CONFIG, verticalOffset);
+		boards = new InfiniteSurface(ROOF_CONFIG, verticalOffset, surfaceImage);
 	};
 }
 

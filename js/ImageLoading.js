@@ -85,8 +85,12 @@ const tempRightWall = document.createElement("img");
 const wallGradient = document.createElement("img");
 const jpFontImg = document.createElement("img");
 const roofTileTop = document.createElement("img");
-const roofboardSheet = document.createElement("img");
 const roofTileBottom = document.createElement("img");
+const roofboardSheet = document.createElement("img");
+const roofboardSheetWhite = document.createElement("img");
+const roofboardSheetGreen = document.createElement("img");
+const roofboardSheetBlue = document.createElement("img");
+const roofboardSheetRed = document.createElement("img");
 const floorboardSheet = document.createElement("img");
 const lvl1Column = document.createElement("img");
 const lvl2Column = document.createElement("img");
@@ -499,6 +503,10 @@ function loadImages() {
 		{ imgName: roofTileTop, theFile: "RoofBricks.png" },
 		{ imgName: roofTileBottom, theFile: "roof-tile-bottom.png" },
 		{ imgName: roofboardSheet, theFile: "Roof-Frames.png" },
+		{ imgName: roofboardSheetWhite, theFile: "Roof-Frames_White.png" },
+		{ imgName: roofboardSheetGreen, theFile: "Roof-Frames_Green.png" },
+		{ imgName: roofboardSheetBlue, theFile: "Roof-Frames_Blue.png" },
+		{ imgName: roofboardSheetRed, theFile: "Roof-Frames_Red.png" },
 		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },
 		{ imgName: lvl1Column, theFile: "column_01.png" },
 		{ imgName: lvl2Column, theFile: "column_02.png" },
