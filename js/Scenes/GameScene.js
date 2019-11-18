@@ -191,6 +191,10 @@ function GameScene() {
 		return false;
 	};
 
+	this.getCurrentEnemyList = function() {
+		return enemies;
+	};
+
 	const update = function(deltaTime) {
 		if (DEBUG) {
 			levelData = dataForCurrentLevel();
