@@ -7,6 +7,7 @@ function knockedOutBodyManager() {
   
     const DEBUG_BODIES = false; // console logs
     const DOMINO_KNOCKBACKS = true; // knockback other enemies, matrix-style
+    const DOMINO_RANGE = 64; // pixels from spinning body to a conscious enemy
 	const SPRX = 0; // sprite used is frame 2 of the kick animation
 	const SPRW = 40;
 	const SPRH = 69;
@@ -75,13 +76,18 @@ function knockedOutBodyManager() {
 				yspd[num] += BODYGRAV;
                 //if (ypos[num]>MAXY) ypos[num]=MAXY; // hit the floor? nah keep falling
                 
+                // spawn particles as we fly?
+                //if (wooshFX) wooshFX.trigger //x,y,starSprite
+
                 if (DOMINO_KNOCKBACKS) { // just for fun
-                    // FIXME: how to obtain enemies[] array FIXME???
-                    // maybe hidden deep inside SceneState? a GameScene() somewhere??
-                    //for (let i = 0; i < enemies.length; i++) {
-                        //var pos = enemies[i].getPosition(); // FIXME new obj spam, bad for perf
-                        //var dist = enemies[i].distanceFrom(xpos[num],ypos[num]);
-                    //}                    
+                    var enemies = SceneState.scenes[SCENE.GAME].getCurrentEnemyList();
+                    for (let i = 0; i < enemies.length; i++) {
+                        var dist = enemies[i].distanceFrom(xpos[num],ypos[num]);
+                        if (dist <= DOMINO_RANGE) {
+                            if (DEBUG_BODIES) console.log('domino distance: ' + dist.toFixed(1));
+                            if (enemies[i].getBumped) enemies[i].getBumped();
+                        }
+                    }                    
                 }
 
 			}

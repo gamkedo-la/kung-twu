@@ -120,10 +120,6 @@ function WooshFXManager(wooshImage) {
 		}
 		// make it happen
 		aWoosh.trigger(x, y, r, img, vx, vy, gravity, friction, frames);
-
-		//TODO: Remove after understanding, provided to simplify getting the list
-		const anEnemyList = SceneState.scenes[SCENE.GAME].getCurrentEnemyList();
-		console.log(anEnemyList);
 	};
 
 	this.draw = function () {

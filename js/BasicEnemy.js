@@ -246,6 +246,15 @@ function BasicEnemy(config) {
 		}
 	};
 
+    // used by knockedOutBodyManager for DOMINO_KNOCKBACKS fx
+    this.getBumped = function() {
+        if (Math.random()<0.25) { // make it less spammy
+            sound.playSFX(Sounds.SFX_EnemyHit);
+            if (wooshFX) wooshFX.puff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite);
+        }
+        updateForState(STATE.KnockBack,0); //will call respondToKnockBack();
+    }
+
 	const fallDueToGravity = function(timeStep, gravity) {
 		velocity.y += gravity * timeStep;
 		position.y += velocity.y * timeStep;
