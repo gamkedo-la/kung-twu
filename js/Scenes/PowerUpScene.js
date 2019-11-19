@@ -75,16 +75,9 @@ function PowerUpScene() {
 
 	const processUserInput = function() {
 		const navKeys = inputProcessor.getNewlyReleasedKeys();
-		for(let key of navKeys) {
-			const newNavAction = keyMapper.getNavAction(key);
-			if(newNavAction != null) {
-				switch(newNavAction) {
-				case NAV_ACTION.SELECT:
-					SceneState.setState(SCENE.LEVEL_INTRO);
-					sound.playSFX(Sounds.SFX_MenuSelect);
-					break;
-				}
-			}
+		if(navKeys.length > 0) {
+			SceneState.setState(SCENE.LEVEL_INTRO);
+			sound.playSFX(Sounds.SFX_MenuSelect);
 		}
 	};
 
