@@ -172,7 +172,7 @@ function AssistScene() {
 
 		//Variable Time Per Level
 		const minTime = 0;
-		const maxTime = 899;
+		const maxTime = 199;
 		let initialTime = localStorageHelper.getInt(localStorageKey.LevelTime);
 		if((initialTime === undefined) || (initialTime === null) || (isNaN(initialTime))) {
 			initialTime = ASSIST_DEFAULT.LevelTime;

@@ -305,7 +305,7 @@ const punchSprite = document.createElement("img");
 const kickSprite = document.createElement("img");
 const crouchSprite = document.createElement("img");
 const dashSprite = document.createElement("img");
-const hourglassSprite = document.createElement("img");
+const hourglassAnimation = document.createElement("img");
 
 let picsToLoad = 0;
 
@@ -565,7 +565,7 @@ function loadImages() {
 		{ imgName: kickSprite, theFile: "kick.png"},
 		{ imgName: crouchSprite, theFile: "crouch.png"},
 		{ imgName: dashSprite, theFile: "dash.png"},
-		{ imgName: hourglassSprite, theFile: "hourglass.png"},
+		{ imgName: hourglassAnimation, theFile: "hourglassStrip.png"},
 	];
 
 	picsToLoad = imageList.length;

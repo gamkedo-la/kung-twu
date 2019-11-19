@@ -6,7 +6,8 @@ function SpriteAnimation(name, //string identifier for this animation
 	frameHeight = 32, //height of each frame
 	frameTimes = [64],//array of milliseconds to show each frame
 	reverses = false, //boolean indicates if animation reverses (true)
-	loops = false) { //boolean indicates if animation loops (true) 
+	loops = false,
+	context = canvasContext) { //boolean indicates if animation loops (true) 
 
 	this.name = name;
 	this.scale = 1;
@@ -46,22 +47,22 @@ function SpriteAnimation(name, //string identifier for this animation
 	this.drawAt = function(x = 0, y = 0, flipped = false) {
 		const thisFrameRect = getCurrentFrameRect();
 		
-		canvasContext.save();
+		context.save();
 		
 		let drawPosX = x;
 		let drawPosY = y;
 		if(flipped) {
-			canvasContext.translate(x + (this.scale * thisFrameRect.width), y);
-			canvasContext.scale(-1, 1);
+			context.translate(x + (this.scale * thisFrameRect.width), y);
+			context.scale(-1, 1);
 			drawPosX = 0;
 			drawPosY = 0;
 		}
 
-		canvasContext.drawImage(image, 
+		context.drawImage(image, 
 			thisFrameRect.x, thisFrameRect.y, thisFrameRect.width, thisFrameRect.height,
 			drawPosX, drawPosY, thisFrameRect.width * this.scale, thisFrameRect.height * this.scale);
 
-		canvasContext.restore();
+		context.restore();
 	};
 
 	this.getWidth = function() {

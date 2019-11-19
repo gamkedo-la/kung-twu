@@ -46,7 +46,7 @@ let animationManager = null;
 const deadZoneHalfWidth = 25;
 
 //---------------Persistence-----------//
-const version = 0.26;
+const version = 0.27;
 /** @type LocalStorageHelper */
 let localStorageHelper;
 /** Contains keys of data to store in the browser's local storage */

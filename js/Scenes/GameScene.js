@@ -10,6 +10,7 @@ function GameScene() {
 	let enemies = [];
 	let columnManager = null;
 	let lampManager = null;
+	let hourglassManager = null;
 	let levelData = null;
 	let collisionManager = null;
 	let subfloor = null;
@@ -76,10 +77,10 @@ function GameScene() {
 		//Don't reinitialize if we're just coming back from the pause screen
 		if (floor === null || currentLevel != levelData.level) {
 			levelData = dataForCurrentLevel();
-			initializeGameTimer();
 			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
 			enemiesThisLevel = getEnemiesThisLevel();
 			initializeRivalUI(camera.getPosition().x);
+			initializeGameTimer(camera.getPosition().x);
 			enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
 			enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
 			initializeFloor(levelData.columnImage, VERTICAL_OFFSET);
@@ -99,7 +100,6 @@ function GameScene() {
 		if (sound.getCurrentBGMKey() !== Sounds.BGM_GamePlay) {
 			sound.playBGM(Sounds.BGM_GamePlay);
 		}
-		console.log(`PLayer Belt color: ${player.getCurrentBelt()}`);
 	};
 
 	this.transitionOut = function() {
@@ -131,6 +131,7 @@ function GameScene() {
 		bossHasBeenSpawned = false;
 		columnManager = null;
 		lampManager = null;
+		hourglassManager = null;
 		levelData = dataForCurrentLevel();
 		enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
 		enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
@@ -208,6 +209,13 @@ function GameScene() {
 
 		// Timer countdown update
 		gameTimer.update(deltaTime);
+		hourglassManager.update(deltaTime);
+		if(hourglassManager.timeIsUp) {
+			SceneState.setState(SCENE.GAMEOVER, {score:score});
+
+			sound.playEcho(Sounds.SFX_PlayerFail, [.4, 1], [1, .3], 5, 200);
+			sound.playEcho(Sounds.SFX_PlayerKick, [1, .4], [.4, 1], 5, 150);
+		}
 
 		player.update(
 			deltaTime,
@@ -504,7 +512,7 @@ function GameScene() {
 		drawUIScore(screenLeft);
 		const healthStringWidth = drawUIPlayerHealth(screenLeft);
 		drawUIBossHealth(screenLeft, healthStringWidth);
-		drawUITimeCounter(screenLeft);
+		drawUITimeCounter(screenLeft, cameraX);
 		drawUILevelName(screenLeft);
 		drawUIRivals(cameraX);
 	};
@@ -554,8 +562,9 @@ function GameScene() {
 		return healthStringWidth;
 	};
 
-	const drawUITimeCounter = function(screenLeft) {
-		//Time Counter
+	const drawUITimeCounter = function(screenLeft, cameraX) {
+		hourglassManager.draw(cameraX);
+/*		//Time Counter
 		// hourglass sand
 		//console.log("time left: " + gameTimer.getTime() + " of " + gameTimer.getStartTime());
 		var maxsize = 78;
@@ -563,7 +572,7 @@ function GameScene() {
 		//console.log("sand size: " + barsize);
 		drawRect(screenLeft + 304 + 24, 48 + 24, 56, barsize, Color.Orange);
 		// hourglass overlay
-		canvasContext.drawImage(hourglassSprite, screenLeft + 304, 48);
+		canvasContext.drawImage(hourglassSprite, screenLeft + 304, 48);*/
 	};
 
 	const drawUILevelName = function(screenLeft) {
@@ -616,7 +625,7 @@ function GameScene() {
 		GAME_FIELD.midX = newCameraX;
 	};
 
-	const initializeGameTimer = function() {
+	const initializeGameTimer = function(cameraX) {
 		let initialTime = localStorageHelper.getInt(localStorageKey.LevelTime);
 		if((initialTime === undefined) || (initialTime === null) || (isNaN(initialTime))) {
 			initialTime = ASSIST_DEFAULT.LevelTime;
@@ -625,8 +634,13 @@ function GameScene() {
 
 		initialTime += levelData.allowedTime;
 
+		const screenLeft = cameraX - canvas.width / 2;
+		const hourglassPos = {x:screenLeft, y: 100};
+		
+		hourglassManager = new HourglassManager(initialTime, hourglassPos, screenLeft, (canvas.width / 2) - 50);
+
 		gameTimer = new GameTimer({
-			startTime: initialTime, // in seconds
+			startTime: hourglassManager.time, // in seconds
 			decimalPlaces: 3, // 3 digits zero-padded
 			timeWarningThreshold: 10, // in seconds	
 			onZeroText: getLocalizedStringForKey(STRINGS_KEY.TimesUp), // use "" if you just want to see zeroes
@@ -928,7 +942,7 @@ const Level1Data = {
 		return (1250 + rnd1 + rnd2);
 	},
 	scrollsLeft: true,
-	allowedTime: 100,
+	allowedTime: 30,
 	wallScroll:wallScrollTiger,
 	wallArt:wallArtTiger,
 	roofTiles:roofboardSheet,

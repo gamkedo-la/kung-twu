@@ -119,9 +119,9 @@ function GameTimer(config) {
 		return _onZeroText;
 	};
 
-    this.getStartTime = function() {
-        return config.startTime;
-    }
+	this.getStartTime = function() {
+		return config.startTime;
+	};
 
 	/** @type EventHandle<number> */
 	const _onWarningCount = new EventHandle();
