@@ -252,7 +252,12 @@ function BasicEnemy(config) {
             sound.playSFX(Sounds.SFX_EnemyHit);
             if (wooshFX) wooshFX.puff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite);
         }
-        updateForState(STATE.KnockBack,0); //will call respondToKnockBack();
+        // FIXME this seems to do nothing:
+        // updateForState(STATE.KnockBack,0); 
+        // hmm does nothing either:
+        // respondToKnockBack(); 
+        // FIXME how to call stateManager.setState(), that func is private
+        // gah too embarrassed to keep asking questions
     }
 
 	const fallDueToGravity = function(timeStep, gravity) {
