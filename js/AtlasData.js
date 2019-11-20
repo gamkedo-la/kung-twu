@@ -2118,4 +2118,60 @@ const waterfallSheetData = {
 	clipY:0,
 	clipWidth:800,
 	clipHeight:133
-}
+};
+
+const spearData = {
+	name:"spear",
+	clipX:947,
+	clipY:0,
+	clipWidth:77,
+	clipHeight:77
+};
+
+const statueData = {
+	name:"statue",
+	clipX:960,
+	clipY:77,
+	clipWidth:64,
+	clipHeight:93
+};
+
+const carpetData = {
+	name:"carpet",
+	clipX:142,
+	clipY:133,
+	clipWidth:162,
+	clipHeight:162
+};
+
+const carpet2Data = {
+	name:"carpet2",
+	clipX:241,
+	clipY:298,
+	clipWidth:162,
+	clipHeight:242
+};
+
+const wallArtSnakeData = {
+	name:"snakeArt",
+	clipX:304,
+	clipY:133,
+	clipWidth:125,
+	clipHeight:165
+};
+
+const wallArtLeopardData = {
+	name:"leopardArt",
+	clipX:429,
+	clipY:133,
+	clipWidth:108,
+	clipHeight:173
+};
+
+const wallArtCraneData = {
+	name:"leopardArt",
+	clipX:537,
+	clipY:133,
+	clipWidth:154,
+	clipHeight:119
+};

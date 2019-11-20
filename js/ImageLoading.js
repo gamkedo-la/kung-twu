@@ -76,9 +76,6 @@ const wallScrollSnake = document.createElement("img");
 const wallScrollLeopard = document.createElement("img");
 const wallScrollDragon = document.createElement("img");
 const wallArtTiger = document.createElement("img");
-const wallArtCrane = document.createElement("img");
-const wallArtSnake = document.createElement("img");
-const wallArtLeopard = document.createElement("img");
 const wallArtDragon = document.createElement("img");
 const tiledWall = document.createElement("img");
 const tempRightWall = document.createElement("img");
@@ -284,6 +281,13 @@ const wooshDashEnemyLPic = document.createElement("canvas");
 const bambooDark = document.createElement("canvas");
 const bambooLight = document.createElement("canvas");
 const waterfallSheet = document.createElement("canvas");
+const spear = document.createElement("canvas");
+const statue = document.createElement("canvas");
+const carpet = document.createElement("canvas");
+const carpet2 = document.createElement("canvas");
+const wallArtSnake = document.createElement("canvas");
+const wallArtLeopard = document.createElement("canvas");
+const wallArtCrane = document.createElement("canvas");
 
 const decorationSpritesheet = document.createElement("img");
 const blueVaseStrip = document.createElement("img");
@@ -292,11 +296,7 @@ const temple = document.createElement("img");
 const templeDark = document.createElement("img");
 const table = document.createElement("img");
 const rock = document.createElement("img");
-const statue = document.createElement("img");
-const spear = document.createElement("img");
 const tree = document.createElement("img");
-const carpet = document.createElement("img");
-const carpet2 = document.createElement("img");
 const painting = document.createElement("img");
 const HTGDpainting = document.createElement("img");
 
@@ -462,7 +462,13 @@ function countLoadedImageAndLaunchIfReady() {
 
 		initializeCanvasFromAtlas(bambooLight, bambooLightData, environmentAtlas);
 		initializeCanvasFromAtlas(waterfallSheet, waterfallSheetData, environmentAtlas);
-
+		initializeCanvasFromAtlas(spear, spearData, environmentAtlas);
+		initializeCanvasFromAtlas(statue, statueData, environmentAtlas);
+		initializeCanvasFromAtlas(carpet, carpetData, environmentAtlas);
+		initializeCanvasFromAtlas(carpet2, carpet2Data, environmentAtlas);
+		initializeCanvasFromAtlas(wallArtSnake, wallArtSnakeData, environmentAtlas);
+		initializeCanvasFromAtlas(wallArtLeopard, wallArtLeopardData, environmentAtlas);
+		initializeCanvasFromAtlas(wallArtCrane, wallArtCraneData, environmentAtlas);
 
 		loadingDoneSoStartGame();
 	}
@@ -498,9 +504,9 @@ function loadImages() {
 		{ imgName: wallScrollLeopard, theFile: "TiledBackgroundScroll-Leopard.png" },
 		{ imgName: wallScrollDragon, theFile: "TiledBackgroundScroll-Dragon.png" },
 		{ imgName: wallArtTiger, theFile: "Tiger.png"},
-		{ imgName: wallArtCrane, theFile: "Crane.png"},
-		{ imgName: wallArtSnake, theFile: "Snake.png"},
-		{ imgName: wallArtLeopard, theFile: "Leopard.png"},
+//		{ imgName: wallArtCrane, theFile: "Crane.png"},
+//		{ imgName: wallArtSnake, theFile: "Snake.png"},
+//		{ imgName: wallArtLeopard, theFile: "Leopard.png"},
 		{ imgName: wallArtDragon, theFile: "Dragon.png"},
 		{ imgName: tiledWall, theFile: "TiledBackgroundWall.png" },
 		{ imgName: tempRightWall, theFile: "TempRightWall.png" },
@@ -533,11 +539,7 @@ function loadImages() {
 		{ imgName: templeDark, theFile: "TempleTweaked.png"},
 		{ imgName: table, theFile: "table.png"},
 		{ imgName: rock, theFile: "rock.png"},
-		{ imgName: statue, theFile: "Statue.png"},
-		{ imgName: spear, theFile: "spear2.png"},
 		{ imgName: tree, theFile: "Tree.png"},
-		{ imgName: carpet, theFile: "carpet.png"},
-		{ imgName: carpet2, theFile: "carpet_2.png"},
 		{ imgName: painting, theFile: "Painting.png"},
 		{ imgName: HTGDpainting, theFile: "HTGDpainting.png"},
 
