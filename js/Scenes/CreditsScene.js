@@ -97,7 +97,7 @@ function CreditsScene() {
 	};
 
 	const processUserInput = function() {
-		const navKeys = inputProcessor.getNewlyReleasedKeys();
+		const navKeys = inputProcessor.getNewlyActiveKeys();
 		for(let key of navKeys) {
 			const newNavAction = keyMapper.getNavAction(key);
 			if(newNavAction != null) {

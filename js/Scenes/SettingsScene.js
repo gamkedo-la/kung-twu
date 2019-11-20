@@ -91,14 +91,10 @@ function SettingsScene() {
 
 	const update = function() {
 		processUserInput();
-
-/*		uiProgBarMusicVolume.setValueByScreenPos(mouseX, mouseY);
-		// @SoundParam: Music Volume Bus
-		sound.setBGMVolume(uiProgBarMusicVolume.getValue());*/
 	};
 
 	const processUserInput = function() {
-		const navKeys = inputProcessor.getNewlyReleasedKeys();
+		const navKeys = inputProcessor.getNewlyActiveKeys();
 		for(let key of navKeys) {
 			const newNavAction = keyMapper.getNavAction(key);
 			if(newNavAction != null) {
