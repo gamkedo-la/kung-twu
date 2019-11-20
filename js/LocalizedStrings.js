@@ -96,6 +96,7 @@ const STRINGS_KEY = {
 	ControlsText_Lvl3:"level3ControlsText",
 	ControlsText_Lvl4:"level4ControlsText",
 	ControlsText_Lvl5:"level5ControlsText",
+	GangCount:"gangCount"
 };
 
 function getLocalizedStringForKey(key) {
@@ -186,7 +187,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick"
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick",
+		[STRINGS_KEY.GangCount]:"Active Rivals"
 	},
 
 	Spanish: {
@@ -276,7 +278,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick"
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick",
+		[STRINGS_KEY.GangCount]:"Active Rivals"
 	},
 
 	Japanese: {
@@ -367,7 +370,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Dash",
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick"
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick",
+		[STRINGS_KEY.GangCount]:"Active Rivals"
 	},
 
 	French: {
@@ -394,7 +398,6 @@ const userStrings = {
 		[STRINGS_KEY.HelpScreenTitle]:"AIDE",
 		[STRINGS_KEY.SettingsScreenTitle]:"OPTIONS",
 		[STRINGS_KEY.CreditsScreenTitle]:"CRÉDITS",
-
 		[STRINGS_KEY.Score]:"SCORE:",
 		[STRINGS_KEY.Health]:"SANTÉ:",
 		[STRINGS_KEY.Time]:"TEMPS:",
@@ -404,10 +407,7 @@ const userStrings = {
 		[STRINGS_KEY.Level3]:"Léopard",
 		[STRINGS_KEY.Level4]:"Serpent",
 		[STRINGS_KEY.Level5]:"Dragon",
-
-		//TODO: Retranslate the end of this next line
 		[STRINGS_KEY.HelpScreenContents]:"[FLECHES] Déplacement\n[HAUT ou C] Sauter\n[G ou X] Coup de Poing\n[H ou X] Coup de Pied\n[B] Bloquer\n[S] ou [BAS] S'acroupir", //\n[P] Pause
-
 		[STRINGS_KEY.Resume]:"[ECHAPPE] Reprendre",
 		[STRINGS_KEY.Controls]:"[C] Contrôles",
 		[STRINGS_KEY.Quit]:"[Q] Quitter",
@@ -457,7 +457,9 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Esquive",
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Balayage",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Coup de Pied Sauté",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Coup de Pied Rotatif"
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Coup de Pied Rotatif",
+
+		[STRINGS_KEY.GangCount]:"Active Rivals"
 	},
 
 	Russian: {
@@ -545,7 +547,9 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl2]:"[пробел] изворачиваться",
 		[STRINGS_KEY.ControlsText_Lvl3]:"[пресмыкаться + удар] подметание ног",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + удар] прыжок",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[изворачиваться + удар] спиновой удар"
+		[STRINGS_KEY.ControlsText_Lvl5]:"[изворачиваться + удар] спиновой удар",
+
+		[STRINGS_KEY.GangCount]:"Active Rivals"
 	},
 
 	Polish: {
@@ -631,6 +635,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl2]:"[SPACE] Zryw",
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Kucnięcie + Kopnięcie] Podcięcie",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Skok + Kopnięcie] Kopnięcie z Wyskoku",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[Zryw + Kopnięcie] Kopnięcie z Obrotu"
+		[STRINGS_KEY.ControlsText_Lvl5]:"[Zryw + Kopnięcie] Kopnięcie z Obrotu",
+		
+		[STRINGS_KEY.GangCount]:"Active Rivals"
 	}
 };

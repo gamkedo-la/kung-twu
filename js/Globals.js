@@ -76,7 +76,8 @@ const localStorageKey = {
 	BossStrength:"kungTwu-BossStrength",
 	BossHealth:"kungTwu-BossHealth",
 	EnemiesPerLevel:"kungTwu-EnemiesPerLevel",
-	LevelTime:"kungTwu-LevelTime"
+	LevelTime:"kungTwu-LevelTime",
+	GangCount:"kungTwu-GangCount",
 };
 
 //----------State Management----------//
@@ -175,6 +176,7 @@ const ASSIST_DEFAULT = {
 	KnockbackSpeed:800,
 	EnemiesPerLevel:10,
 	LevelTime:600,
+	GangCount:1
 };
 
 //------------Asset Management----------//

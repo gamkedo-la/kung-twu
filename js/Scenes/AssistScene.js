@@ -188,6 +188,7 @@ function AssistScene() {
 		}
 		slider.invincibleDuration = new UISlider(COL1_X, ROW4_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.Invicibility), invDurationMin, invDurationMin.toString(), invDurationMax, invDurationMax.toString(), baseInvDuration, 50, true, Color.White);
 
+		//Boss Strength
 		const bStrengthMin = 1;
 		const bStrengthMax = 100;
 		let baseBStrength = localStorageHelper.getInt(localStorageKey.BossStrength);
@@ -196,6 +197,16 @@ function AssistScene() {
 			localStorageHelper.setInt(localStorageKey.BossStrength, baseBStrength);
 		}
 		slider.bossStrength = new UISlider(COL2_X, ROW4_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.BossStrength), bStrengthMin, bStrengthMin.toString(), bStrengthMax, bStrengthMax.toString(), baseBStrength, 20, true, Color.Red);
+
+		//Active Rival Count
+		const gangMin = 0;
+		const gangMax = 5;
+		let gangBase = localStorageHelper.getInt(localStorageKey.GangCount);
+		if((gangBase === undefined) || (gangBase === null) || (isNaN(gangBase))) {
+			gangBase = ASSIST_DEFAULT.GangCount;
+			localStorageHelper.setInt(localStorageKey.GangCount, gangBase);
+		}
+		slider.gangCount = new UISlider(COL3_X, ROW4_Y, SLIDER_W, SLIDER_H, getLocalizedStringForKey(STRINGS_KEY.GangCount), gangMin, (gangMin + 1).toString(), gangMax, (gangMax + 1).toString(), gangBase, 5, true, Color.Red);
 
 		/*Fifth Row of Sliders*/
 		//Player Knockback
@@ -323,6 +334,9 @@ function AssistScene() {
 			break;
 		case slider.timeLimit:
 			localStorageHelper.setInt(localStorageKey.LevelTime, aSlider.getValue());
+			break;
+		case slider.gangCount:
+			localStorageHelper.setInt(localStorageKey.GangCount, aSlider.getValue());
 			break;
 		}
 	};

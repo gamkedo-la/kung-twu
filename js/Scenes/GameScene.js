@@ -41,6 +41,7 @@ function GameScene() {
 	let bossIntroText = null;
 	let rivalImageDeltaX = null;
 	const UIRivals = [];
+	let activeRivals = ASSIST_DEFAULT.GangCount;
 
 	// Game Timer Scene Settings
 	// For more detailed settings please go to "js/Timers/GameTimer.js"
@@ -95,6 +96,11 @@ function GameScene() {
 			initializeTables(frontY, backY);
 			initializeVases(frontY, backY);
 			setBossHealth();
+			activeRivals = localStorageHelper.getInt(localStorageKey.GangCount);
+			if((activeRivals === undefined) || (activeRivals === null) || (isNaN(activeRivals))) {
+				activeRivals = ASSIST_DEFAULT.GangCount;
+				localStorageHelper.setInt(localStorageKey.GangCount, activeRivals);
+			}
 		}
 
 		if (sound.getCurrentBGMKey() !== Sounds.BGM_GamePlay) {
@@ -160,6 +166,7 @@ function GameScene() {
 		rivalImageDeltaX = null;
 		bossIntroText = null;
 		UIRivals.length = 0;
+		activeRivals = ASSIST_DEFAULT.GangCount;
 
 		timer.updateEvent(EVENT.EnemySpawn);
 	};
@@ -323,7 +330,7 @@ function GameScene() {
 	const updateEnemies = function(deltaTime) {
 		const playerPos = player.getPosition();
 		for (let i = 0; i < enemies.length; i++) {
-			enemies[i].update(deltaTime, GRAVITY, playerPos, enemyMinX, enemyMaxX, floorMidHeight, i === 0);
+			enemies[i].update(deltaTime, GRAVITY, playerPos, enemyMinX, enemyMaxX, floorMidHeight, i <= activeRivals);
 		}
 
 		if(bossHasBeenSpawned) {
