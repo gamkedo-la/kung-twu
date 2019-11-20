@@ -2094,3 +2094,28 @@ const vaseData = {
 	reverses:false,
 	loops:true
 };
+
+//Environment Data
+const bambooLightData = {
+	name:"bambooLight",
+	clipX:0,
+	clipY:0,
+	clipWidth:80,
+	clipHeight:371
+};
+
+const bambooDarkData = {
+	name:"bambooDark",
+	clipX:80,
+	clipY:0,
+	clipWidth:62,
+	clipHeight:370
+};
+
+const waterfallSheetData = {
+	name:"waterfallSheet",
+	clipX:142,
+	clipY:0,
+	clipWidth:800,
+	clipHeight:133
+}

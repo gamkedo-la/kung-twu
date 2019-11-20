@@ -105,6 +105,7 @@ const blackPresentation = document.createElement("img");
 
 const characterAtlas = document.createElement("img");
 const bossAtlas = document.createElement("img");
+const environmentAtlas = document.createElement("img");
 
 const basicEnemyIdle = document.createElement("canvas");
 const basicEnemyWalk = document.createElement("canvas");
@@ -280,9 +281,12 @@ const wooshDashPlayerLPic = document.createElement("canvas");
 const wooshDashEnemyPic = document.createElement("canvas");
 const wooshDashEnemyLPic = document.createElement("canvas");
 
+const bambooDark = document.createElement("canvas");
+const bambooLight = document.createElement("canvas");
+const waterfallSheet = document.createElement("canvas");
+
 const decorationSpritesheet = document.createElement("img");
 const blueVaseStrip = document.createElement("img");
-const waterfallSheet = document.createElement("img");
 const lamp = document.createElement("img");
 const temple = document.createElement("img");
 const templeDark = document.createElement("img");
@@ -290,8 +294,6 @@ const table = document.createElement("img");
 const rock = document.createElement("img");
 const statue = document.createElement("img");
 const spear = document.createElement("img");
-const bambooDark = document.createElement("img");
-const bambooLight = document.createElement("img");
 const tree = document.createElement("img");
 const carpet = document.createElement("img");
 const carpet2 = document.createElement("img");
@@ -458,7 +460,8 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(wooshDashEnemyPic, wooshDashPlayerPicData, characterAtlas);
 		initializeCanvasFromAtlas(wooshDashEnemyLPic, wooshDashPlayerPicData, characterAtlas);
 
-
+		initializeCanvasFromAtlas(bambooLight, bambooLightData, environmentAtlas);
+		initializeCanvasFromAtlas(waterfallSheet, waterfallSheetData, environmentAtlas);
 
 
 		loadingDoneSoStartGame();
@@ -482,7 +485,8 @@ function loadImages() {
 		// enemies
 		{ imgName: characterAtlas, theFile: "CharacterAtlas.png" },
 		{ imgName: bossAtlas, theFile: "BossAtlas.png" },
-
+		{ imgName: environmentAtlas, theFile: "EnvironmentAtlas.png" },
+		
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
 		{ imgName: uiBorder, theFile: "UI_Border.png"},
@@ -524,7 +528,6 @@ function loadImages() {
 		{ imgName: wallGradient, theFile: "wall-gradient.png"},
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 		{ imgName: blueVaseStrip, theFile: "BrokenBlueVaseStrip.png"},
-		{ imgName: waterfallSheet, theFile: "waterfallSheet.png"},
 		{ imgName: lamp, theFile: "Lamp.png"},
 		{ imgName: temple, theFile: "Temple.png"},
 		{ imgName: templeDark, theFile: "TempleTweaked.png"},
@@ -532,8 +535,6 @@ function loadImages() {
 		{ imgName: rock, theFile: "rock.png"},
 		{ imgName: statue, theFile: "Statue.png"},
 		{ imgName: spear, theFile: "spear2.png"},
-		{ imgName: bambooDark, theFile: "BambooTall.png"},
-		{ imgName: bambooLight, theFile: "BambooBrightTall.png"},
 		{ imgName: tree, theFile: "Tree.png"},
 		{ imgName: carpet, theFile: "carpet.png"},
 		{ imgName: carpet2, theFile: "carpet_2.png"},
