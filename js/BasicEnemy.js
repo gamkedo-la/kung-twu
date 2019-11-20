@@ -138,7 +138,7 @@ function BasicEnemy(config) {
 
 		const distToPlayer = playerPos.x - position.x;
 		stateManager.update(deltaTime, distToPlayer, shouldAttack, watchVariance, this.shouldJump);
-		updateForState(stateManager.getCurrentState(), distToPlayer, this.attackBody);
+		updateForState(stateManager.getCurrentState(), distToPlayer);
 
 		if(stateManager.getIsNewState()) {
 			this.collisionBody.points = hitBoxManager.bodyPointsForState(stateManager.getCurrentState(), position, scale, stateManager.getIsFacingLeft());
@@ -148,7 +148,7 @@ function BasicEnemy(config) {
 		if(this.attackBody != null) {
 			const thisState = stateManager.getCurrentState();
 			const currentFrame = stateManager.getCurrentAnimationFrame();
-			const attackBodyStatus = (this.attackBody.isActive === true)
+			const attackBodyStatus = (this.attackBody.isActive === true);
 			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame, this.getAIType());
 			if((!attackBodyStatus) && (this.attackBody.isActive)) {
 				whooshForState(thisState);
@@ -167,7 +167,7 @@ function BasicEnemy(config) {
 		}
 	};
 
-	const updateForState = function(currentState, distToPlayer, attackBody) {
+	const updateForState = function(currentState, distToPlayer) {
 		switch(currentState) {
 		case STATE.WalkRight:
 			walkRight();
@@ -197,7 +197,7 @@ function BasicEnemy(config) {
 			h_kick(distToPlayer);
 			break;
 		case STATE.Punch:
-			punch(attackBody);
+			punch();
 			break;
 		case STATE.Kick:
 			kick();

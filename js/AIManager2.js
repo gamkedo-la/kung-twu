@@ -562,21 +562,19 @@ function AIManager2() {
 	const cooldownForBeltAndType = function(belt, type) {
 		if(type === AITYPE.Standard) {
 			switch(belt) {
-			case BELT.White: return 500;
-			case BELT.Yellow: return 475;
-			case BELT.Tan: return 450;
-			case BELT.Brown: return 425;
-			case BELT.Red: return 400;
-			case BELT.Black: return 300;
+			case BELT.White: return 225;//500;
+			case BELT.Yellow: return 200;//475;
+			case BELT.Tan: return 175;//450;
+			case BELT.Brown: return 160;//425;
+			case BELT.Red: return 140;//400;
 			}
 		} else if(type === AITYPE.Boss) {
 			switch(belt) {
-			case BELT.White: return 450;
-			case BELT.Yellow: return 425;
-			case BELT.Tan: return 400;
-			case BELT.Brown: return 375;
-			case BELT.Red: return 350;
-			case BELT.Black: return 300;
+			case BELT.Yellow: return 175;//425;
+			case BELT.Tan: return 150;//400;
+			case BELT.Brown: return 125;//375;
+			case BELT.Red: return 100;//350;
+			case BELT.Black: return 75;//300;
 			}
 		} else {
 			console.error(`Called cooldowndForBeltAndType with invalid AIType: ${type} or belt: ${belt}`);

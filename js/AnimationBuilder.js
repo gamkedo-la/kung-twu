@@ -922,7 +922,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchWhite.width / 3,
 			height:playerPunchWhite.height,
-			frameTimes:[30, 80, 100, 30],
+			frameTimes:[30, 200, 150, 30],
 			reverses:false,
 			loops:false
 		},
@@ -932,7 +932,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickWhite.width / 3,
 			height:playerKickWhite.height,
-			frameTimes:[60, 120, 150, 60],
+			frameTimes:[60, 250, 150, 60],
 			reverses:false,
 			loops:false
 		},
@@ -1009,7 +1009,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchYellow.width / 3,
 			height:playerPunchYellow.height,
-			frameTimes:[30, 80, 100, 30],
+			frameTimes:[30, 180, 130, 30],
 			reverses:false,
 			loops:false
 		},
@@ -1019,7 +1019,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickYellow.width / 3,
 			height:playerKickYellow.height,
-			frameTimes:[60, 120, 150, 60],
+			frameTimes:[60, 220, 140, 60],
 			reverses:false,
 			loops:false
 		},
@@ -1096,7 +1096,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchTan.width / 3,
 			height:playerPunchTan.height,
-			frameTimes:[30, 80, 100, 30],
+			frameTimes:[30, 160, 110, 30],
 			reverses:false,
 			loops:false
 		},
@@ -1106,7 +1106,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickTan.width / 3,
 			height:playerKickTan.height,
-			frameTimes:[60, 120, 150, 60],
+			frameTimes:[60, 200, 130, 60],
 			reverses:false,
 			loops:false
 		},
@@ -1183,7 +1183,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchBrown.width / 3,
 			height:playerPunchBrown.height,
-			frameTimes:[30, 80, 100, 30],
+			frameTimes:[30, 140, 100, 30],
 			reverses:false,
 			loops:false
 		},
@@ -1193,7 +1193,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickBrown.width / 3,
 			height:playerKickBrown.height,
-			frameTimes:[60, 120, 150, 60],
+			frameTimes:[60, 170, 120, 60],
 			reverses:false,
 			loops:false
 		},
@@ -1270,7 +1270,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchRed.width / 3,
 			height:playerPunchRed.height,
-			frameTimes:[30, 80, 100, 30],
+			frameTimes:[30, 120, 90, 30],
 			reverses:false,
 			loops:false
 		},
@@ -1280,7 +1280,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickRed.width / 3,
 			height:playerKickRed.height,
-			frameTimes:[60, 120, 150, 60],
+			frameTimes:[60, 150, 110, 60],
 			reverses:false,
 			loops:false
 		},
@@ -1357,7 +1357,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchBlack.width / 3,
 			height:playerPunchBlack.height,
-			frameTimes:[30, 80, 100, 30],
+			frameTimes:[30, 80, 80, 30],
 			reverses:false,
 			loops:false
 		},
@@ -1367,7 +1367,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickBlack.width / 3,
 			height:playerKickBlack.height,
-			frameTimes:[60, 120, 150, 60],
+			frameTimes:[60, 120, 90, 60],
 			reverses:false,
 			loops:false
 		},

@@ -244,6 +244,8 @@ function GameScene() {
 
 					return;//don't continue processing this frame
 				}
+
+				spawnNewEnemies(newCameraX);
 			} else {
 				spawnBoss(newCameraX);
 				bossHasBeenSpawned = true;
@@ -846,12 +848,12 @@ function GameScene() {
 	const spawnEnemy = function(cameraXPos) {
 		//Position the new enemy at one side of the screen or the other
 		//depending on whether the level scrolls left or right
-		let xPos;
-		if (levelData.scrollsLeft) {
+		let xPos = cameraXPos - (1.5 * canvas.width) / 2;
+		/*if (levelData.scrollsLeft) {
 			xPos = cameraXPos - (1.5 * canvas.width) / 2;
 		} else {
 			xPos = cameraXPos + (1.5 * canvas.width) / 2;
-		}
+		}*/
 
 		//If player is at one edge of the level, spawn enemy from
 		//other side so enemy doesn't pop into existence on screen
@@ -897,15 +899,23 @@ function GameScene() {
 			buildBossIntroText();
 		}
 
-		let atLeft = levelData.scrollsLeft;
-		if(levelData.scrollsLeft) {
+		let atLeft = true;//levelData.scrollsLeft;
+		/*if(levelData.scrollsLeft) {
 			atLeft = false;
 		} else if(!levelData.scrollsLeft) {
 			atLeft = true;
-		}
+		}*/
 
 		let xPos = cameraXPos + (1.5 * canvas.width) / 2;
 		if (atLeft) {
+			xPos = cameraXPos - (1.5 * canvas.width) / 2;
+		}
+
+		//If player is at one edge of the level, spawn boss from
+		//other side so boss doesn't pop into existence on screen
+		if(xPos < enemyMinX + canvas.width / 2) {
+			xPos = cameraXPos + (1.5 * canvas.width) / 2;
+		} else if(xPos > enemyMaxX - canvas.width / 2) {
 			xPos = cameraXPos - (1.5 * canvas.width) / 2;
 		}
 
