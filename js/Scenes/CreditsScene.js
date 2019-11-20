@@ -291,12 +291,9 @@ function CreditsScene() {
 		previousMousePosY = mousePos.y;
 		if (mouseToDrag) {
 			mousePos = calculateMousePos(evt);
-			posX = mousePos.x;
-			posY = mousePos.y;
-			//console.log(mousePos);
-			if (posY > previousMousePosY) {
+			if (mousePos.y > previousMousePosY) {
 				creditPosY +=2.5;
-			} else if (posY < previousMousePosY) {
+			} else if (mousePos.y < previousMousePosY) {
 				creditPosY -=2.5;
 			}
 		}

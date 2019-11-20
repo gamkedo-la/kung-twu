@@ -47,8 +47,8 @@ function HelpScene() {
 		this.properties = null;
 	};
 
-	this.run = function(deltaTime) {
-		update(deltaTime);
+	this.run = function() {
+		update();
 
 		draw();
 	};

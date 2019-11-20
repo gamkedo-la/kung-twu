@@ -13,10 +13,7 @@ function AssistScene() {
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
-	const slider = {
-		maxPlayerHealth:null,
-		startingBelt:null
-	};
+	const slider = {};
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -42,8 +39,8 @@ function AssistScene() {
 		this.properties = null;
 	};
 
-	this.run = function(deltaTime) {
-		update(deltaTime);
+	this.run = function() {
+		update();
 
 		draw();
 	};
@@ -276,6 +273,7 @@ function AssistScene() {
 			if(wasClicked) {break;}
 		}
 
+		// @ts-ignore
 		const sliders = Object.values(slider);
 		for(let aSlider of sliders) {
 			if(aSlider.wasClicked(mouseX, mouseY)) {
@@ -374,7 +372,7 @@ function AssistScene() {
         
 		drawTitle();
         
-		//		drawHelpScreenContents();
+		// @ts-ignore
 		const sliders = Object.values(slider);
 		for(let aSlider of sliders) {
 			aSlider.draw();
