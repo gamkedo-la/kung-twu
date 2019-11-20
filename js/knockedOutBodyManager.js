@@ -5,9 +5,9 @@
 function knockedOutBodyManager() {
 	
   
-    const DEBUG_BODIES = false; // console logs
-    const DOMINO_KNOCKBACKS = true; // knockback other enemies, matrix-style
-    const DOMINO_RANGE = 64; // pixels from spinning body to a conscious enemy
+	const DEBUG_BODIES = false; // console logs
+	const DOMINO_KNOCKBACKS = true; // knockback other enemies, matrix-style
+	const DOMINO_RANGE = 64; // pixels from spinning body to a conscious enemy
 	const SPRX = 0; // sprite used is frame 2 of the kick animation
 	const SPRW = 40;
 	const SPRH = 69;
@@ -15,13 +15,13 @@ function knockedOutBodyManager() {
 	const BODYH = 69*2;
 	const MAX_BODIES = 25; // oldest is overwritten
 	const MAX_AGE = 100; // frames till it disappears
-    const SPINSPD = -6*DEG_TO_RAD; // degrees per frame
-    const SPIN_RANDOMNESS = 15*DEG_TO_RAD;
+	const SPINSPD = -6*DEG_TO_RAD; // degrees per frame
+	const SPIN_RANDOMNESS = 15*DEG_TO_RAD;
 	const FADE_OUT = true;
 	const X_KICKBACK = -3; // starting velocities in px/frame
 	const X_KICKBACK_RANDOMNESS = 2;
-    const Y_KICKBACK = -5; // starts flying upward
-    const Y_KICKBACK_RANDOMNESS = 3; 
+	const Y_KICKBACK = -5; // starts flying upward
+	const Y_KICKBACK_RANDOMNESS = 3; 
 	const BODYGRAV = 1; // accell downward per frame
 	
 	if (DEBUG_BODIES) console.log("Creating the knockedOutBodyManager...");
@@ -46,8 +46,8 @@ function knockedOutBodyManager() {
 		xpos[max] = enemy.getPosition().x;
 		ypos[max] = enemy.getPosition().y;
 		xspd[max] = X_KICKBACK + (Math.random()*(X_KICKBACK*2)-X_KICKBACK_RANDOMNESS);
-        yspd[max] = Y_KICKBACK + (Math.random()*(Y_KICKBACK*2)-Y_KICKBACK_RANDOMNESS);
-        rotspd[max] = SPINSPD + (Math.random()*(SPIN_RANDOMNESS*2)-SPIN_RANDOMNESS);
+		yspd[max] = Y_KICKBACK + (Math.random()*(Y_KICKBACK*2)-Y_KICKBACK_RANDOMNESS);
+		rotspd[max] = SPINSPD + (Math.random()*(SPIN_RANDOMNESS*2)-SPIN_RANDOMNESS);
 		age[max] = 0;
 
 		if (!player.facingLeft()) xspd[max] *= -1;
@@ -63,8 +63,8 @@ function knockedOutBodyManager() {
 			if (age[num]<MAX_AGE) {
 				canvasContext.save();
 				canvasContext.translate(xpos[num], ypos[num]);
-                //canvasContext.rotate((xspd[num]>0?-1:1)*SPINSPD*age[num]);
-                canvasContext.rotate((xspd[num]>0?-1:1)*rotspd[num]*age[num]);
+				//canvasContext.rotate((xspd[num]>0?-1:1)*SPINSPD*age[num]);
+				canvasContext.rotate((xspd[num]>0?-1:1)*rotspd[num]*age[num]);
 				if (FADE_OUT) canvasContext.globalAlpha = 1-(age[num]/MAX_AGE);
 				// untranslated/unrotated version: canvasContext.drawImage(img[num],SPRX,0,SPRW,SPRH,xpos[num],ypos[num],BODYW,BODYH);
 				canvasContext.drawImage(img[num],SPRX,0,SPRW,SPRH,-BODYW/2,-BODYH/2,BODYW,BODYH);
@@ -74,21 +74,21 @@ function knockedOutBodyManager() {
 				ypos[num] += yspd[num];
 				// gravity
 				yspd[num] += BODYGRAV;
-                //if (ypos[num]>MAXY) ypos[num]=MAXY; // hit the floor? nah keep falling
+				//if (ypos[num]>MAXY) ypos[num]=MAXY; // hit the floor? nah keep falling
                 
-                // spawn particles as we fly?
-                //if (wooshFX) wooshFX.trigger //x,y,starSprite
+				// spawn particles as we fly?
+				//if (wooshFX) wooshFX.trigger //x,y,starSprite
 
-                if (DOMINO_KNOCKBACKS) { // just for fun
-                    var enemies = SceneState.scenes[SCENE.GAME].getCurrentEnemyList();
-                    for (let i = 0; i < enemies.length; i++) {
-                        var dist = enemies[i].distanceFrom(xpos[num],ypos[num]);
-                        if (dist <= DOMINO_RANGE) {
-                            if (DEBUG_BODIES) console.log('domino distance: ' + dist.toFixed(1));
-                            if (enemies[i].getBumped) enemies[i].getBumped();
-                        }
-                    }                    
-                }
+				if (DOMINO_KNOCKBACKS) { // just for fun
+					var enemies = SceneState.scenes[SCENE.GAME].getCurrentEnemyList();
+					for (let i = 0; i < enemies.length; i++) {
+						var dist = enemies[i].distanceFrom(xpos[num],ypos[num]);
+						if (dist <= DOMINO_RANGE) {
+							if (DEBUG_BODIES) console.log('domino distance: ' + dist.toFixed(1));
+							if (enemies[i].getBumped) enemies[i].getBumped({type:ENTITY_TYPE.Enemy});
+						}
+					}                    
+				}
 
 			}
 		}

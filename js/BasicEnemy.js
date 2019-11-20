@@ -271,17 +271,13 @@ function BasicEnemy(config) {
 	};
 
 	// used by knockedOutBodyManager for DOMINO_KNOCKBACKS fx
-	this.getBumped = function() {
-		if (Math.random()<0.25) { // make it less spammy
+	this.getBumped = function(otherEntity) {
+		if (Math.random()<0.05) { // make it less spammy
 			sound.playSFX(Sounds.SFX_EnemyHit);
-			if (wooshFX) wooshFX.puff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite);
 		}
-		// FIXME this seems to do nothing:
-		// updateForState(STATE.KnockBack,0); 
-		// hmm does nothing either:
-		// respondToKnockBack(); 
-		// FIXME how to call stateManager.setState(), that func is private
-		// gah too embarrassed to keep asking questions
+
+		this.wasHitBy(otherEntity);
+		if (wooshFX) wooshFX.puff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite);
 	};
 
 	const fallDueToGravity = function(timeStep, gravity) {
@@ -409,10 +405,11 @@ function BasicEnemy(config) {
 		if(stateManager.getCurrentState() === STATE.Block) {
 			// minimum 1hp damage - never allow a block to register as 0 damage just in case
 			// any positive (non-zero) value divided by ten and rounded up is at least 1
-			this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10)); 
-			if (wooshFX) wooshFX.smokePuff(position.x,position.y);
-		} 
-		else if(stateManager.getCurrentState() === STATE.KnockBack) {
+			if(otherEntity.type === ENTITY_TYPE.Player) {
+				this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10)); 
+				if (wooshFX) wooshFX.smokePuff(position.x,position.y);	
+			}
+		} else if(stateManager.getCurrentState() === STATE.KnockBack) {
 			if (wooshFX) wooshFX.smokePuff(position.x,position.y);
 		} else { //just got hit
 			stateManager.wasHit();
@@ -425,7 +422,9 @@ function BasicEnemy(config) {
 				velocity.x -= KNOCK_BACK_SPEED;
 			}
 
-			this.health -= otherEntity.getCurrentDamage();
+			if(otherEntity.type === ENTITY_TYPE.Player) {
+				this.health -= otherEntity.getCurrentDamage();
+			}
 		}
 
 		if(this.health <= 0) {
