@@ -60,11 +60,11 @@ function BasicEnemy(config) {
 
 	this.getPosition = function() {
 		return {x:position.x, y:position.y};
-    };
+	};
     
-    this.distanceFrom = function(x,y) {
-        return Math.hypot(position.x-x, position.y-y);
-    }
+	this.distanceFrom = function(x,y) {
+		return Math.hypot(position.x-x, position.y-y);
+	};
 
 	this.getWidth = function() {
 		return stateManager.getCurrentAnimation().getWidth();
@@ -138,7 +138,7 @@ function BasicEnemy(config) {
 
 		const distToPlayer = playerPos.x - position.x;
 		stateManager.update(deltaTime, distToPlayer, shouldAttack, watchVariance, this.shouldJump);
-		updateForState(stateManager.getCurrentState(), distToPlayer);
+		updateForState(stateManager.getCurrentState(), distToPlayer, this.attackBody);
 
 		if(stateManager.getIsNewState()) {
 			this.collisionBody.points = hitBoxManager.bodyPointsForState(stateManager.getCurrentState(), position, scale, stateManager.getIsFacingLeft());
@@ -148,7 +148,11 @@ function BasicEnemy(config) {
 		if(this.attackBody != null) {
 			const thisState = stateManager.getCurrentState();
 			const currentFrame = stateManager.getCurrentAnimationFrame();
+			const attackBodyStatus = (this.attackBody.isActive === true)
 			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame, this.getAIType());
+			if((!attackBodyStatus) && (this.attackBody.isActive)) {
+				whooshForState(thisState);
+			}
 		}
 
 		if(this.shouldJump && !stateManager.getIsOnGround() && velocity.y > 0) {
@@ -163,7 +167,7 @@ function BasicEnemy(config) {
 		}
 	};
 
-	const updateForState = function(currentState, distToPlayer) {
+	const updateForState = function(currentState, distToPlayer, attackBody) {
 		switch(currentState) {
 		case STATE.WalkRight:
 			walkRight();
@@ -193,7 +197,7 @@ function BasicEnemy(config) {
 			h_kick(distToPlayer);
 			break;
 		case STATE.Punch:
-			punch();
+			punch(attackBody);
 			break;
 		case STATE.Kick:
 			kick();
@@ -230,6 +234,26 @@ function BasicEnemy(config) {
 		}
 	};
 
+	const whooshForState = function(state) {
+		switch(state) {
+		case STATE.J_Kick:
+			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
+			break;
+		case STATE.Sweep:
+			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
+			break;
+		case STATE.H_Kick:
+			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
+			break;
+		case STATE.Punch:
+			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
+			break;
+		case STATE.Kick:
+			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
+			break;
+		}
+	};
+
 	const respondToKnockBack = function() {
 		if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
         
@@ -246,19 +270,19 @@ function BasicEnemy(config) {
 		}
 	};
 
-    // used by knockedOutBodyManager for DOMINO_KNOCKBACKS fx
-    this.getBumped = function() {
-        if (Math.random()<0.25) { // make it less spammy
-            sound.playSFX(Sounds.SFX_EnemyHit);
-            if (wooshFX) wooshFX.puff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite);
-        }
-        // FIXME this seems to do nothing:
-        // updateForState(STATE.KnockBack,0); 
-        // hmm does nothing either:
-        // respondToKnockBack(); 
-        // FIXME how to call stateManager.setState(), that func is private
-        // gah too embarrassed to keep asking questions
-    }
+	// used by knockedOutBodyManager for DOMINO_KNOCKBACKS fx
+	this.getBumped = function() {
+		if (Math.random()<0.25) { // make it less spammy
+			sound.playSFX(Sounds.SFX_EnemyHit);
+			if (wooshFX) wooshFX.puff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite);
+		}
+		// FIXME this seems to do nothing:
+		// updateForState(STATE.KnockBack,0); 
+		// hmm does nothing either:
+		// respondToKnockBack(); 
+		// FIXME how to call stateManager.setState(), that func is private
+		// gah too embarrassed to keep asking questions
+	};
 
 	const fallDueToGravity = function(timeStep, gravity) {
 		velocity.y += gravity * timeStep;
@@ -312,14 +336,12 @@ function BasicEnemy(config) {
 	const punch = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.x = 0;
-			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 		}
 	};
 
 	const kick = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.x = 0;
-			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
 		}
 	};
 
@@ -332,14 +354,12 @@ function BasicEnemy(config) {
 			} else {
 				velocity.x = 0;
 			}
-			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
 		} 
 	};
 
 	const h_kick = function(distToPlayer) {
 		if(stateManager.getIsNewState()) {
 			jump();
-			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
 		} else {
 			if(distToPlayer > 0) {
 				velocity.x = Math.abs(velocity.x);
@@ -354,7 +374,6 @@ function BasicEnemy(config) {
 	const sweep = function() {
 		if(stateManager.getIsNewState()) {
 			velocity.x = 0;
-			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 		}
 	};
 

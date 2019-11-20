@@ -193,7 +193,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:basicEnemyPunch.width / 3,
 			height:basicEnemyPunch.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 350, 225, 50],
 			reverses:false,
 			loops:false
 		},
@@ -203,7 +203,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:basicEnemyKick.width / 3,
 			height:basicEnemyKick.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 350, 225, 50],
 			reverses:false,
 			loops:false
 		},
@@ -230,17 +230,17 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.J_Kick,
 			image:basicEnemyJumpKick,
-			frames:[0, 1, 2, 1],
+			frames:[0, 1, 0],
 			width:basicEnemyJumpKick.width / 2,
 			height:basicEnemyJumpKick.height,
-			frameTimes:[100, 250],
+			frameTimes:[250, 150, 100],
 			reverses:false,
 			loops:false
 		},
 		h_kick:{
 			name:STATE.H_Kick,
 			image:basicEnemyHKick,
-			frames:[0, 1],
+			frames:[0, 1, 0, 1],
 			width:basicEnemyHKick.width / 2,
 			height:basicEnemyHKick.height,
 			frameTimes:[250, 250],
@@ -316,7 +316,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:yellowEnemyPunch.width / 3,
 			height:yellowEnemyPunch.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 300, 225, 50],
 			reverses:false,
 			loops:false
 		},
@@ -326,7 +326,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:yellowEnemyKick.width / 3,
 			height:yellowEnemyKick.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 300, 225, 50],
 			reverses:false,
 			loops:false
 		},
@@ -353,17 +353,17 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.J_Kick,
 			image:yellowEnemyJumpKick,
-			frames:[0, 1, 2, 1],
+			frames:[0, 1, 0],
 			width:yellowEnemyJumpKick.width / 2,
 			height:yellowEnemyJumpKick.height,
-			frameTimes:[100, 250],
+			frameTimes:[250, 150, 100],
 			reverses:false,
 			loops:false
 		},
 		h_kick:{
 			name:STATE.H_Kick,
 			image:yellowEnemyHKick,
-			frames:[0, 1],
+			frames:[0, 1, 0, 1],
 			width:yellowEnemyHKick.width / 2,
 			height:yellowEnemyHKick.height,
 			frameTimes:[250, 250],
@@ -439,7 +439,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:tanEnemyPunch.width / 3,
 			height:tanEnemyPunch.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 250, 225, 50],
 			reverses:false,
 			loops:false
 		},
@@ -449,7 +449,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:tanEnemyKick.width / 3,
 			height:tanEnemyKick.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 250, 225, 50],
 			reverses:false,
 			loops:false
 		},
@@ -476,17 +476,17 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.J_Kick,
 			image:tanEnemyJumpKick,
-			frames:[0, 1, 2, 1],
+			frames:[0, 1, 0],
 			width:tanEnemyJumpKick.width / 2,
 			height:tanEnemyJumpKick.height,
-			frameTimes:[100, 250],
+			frameTimes:[250, 150, 100],
 			reverses:false,
 			loops:false
 		},
 		h_kick:{
 			name:STATE.H_Kick,
 			image:tanEnemyHKick,
-			frames:[0, 1],
+			frames:[0, 1, 0, 1],
 			width:tanEnemyHKick.width / 2,
 			height:tanEnemyHKick.height,
 			frameTimes:[250, 250],
@@ -562,7 +562,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:brownEnemyPunch.width / 3,
 			height:brownEnemyPunch.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 200, 225, 50],
 			reverses:false,
 			loops:false
 		},
@@ -572,7 +572,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:brownEnemyKick.width / 3,
 			height:brownEnemyKick.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 200, 225, 50],
 			reverses:false,
 			loops:false
 		},
@@ -599,17 +599,17 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.J_Kick,
 			image:brownEnemyJumpKick,
-			frames:[0, 1, 2, 1],
+			frames:[0, 1, 0],
 			width:brownEnemyJumpKick.width / 2,
 			height:brownEnemyJumpKick.height,
-			frameTimes:[100, 250],
+			frameTimes:[300, 150, 100],
 			reverses:false,
 			loops:false
 		},
 		h_kick:{
 			name:STATE.H_Kick,
 			image:brownEnemyHKick,
-			frames:[0, 1],
+			frames:[0, 1, 0, 1],
 			width:brownEnemyHKick.width / 2,
 			height:brownEnemyHKick.height,
 			frameTimes:[250, 250],
@@ -685,7 +685,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:redEnemyPunch.width / 3,
 			height:redEnemyPunch.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 175, 225, 50],
 			reverses:false,
 			loops:false
 		},
@@ -695,7 +695,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:redEnemyKick.width / 3,
 			height:redEnemyKick.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 175, 225, 50],
 			reverses:false,
 			loops:false
 		},
@@ -722,10 +722,10 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.J_Kick,
 			image:redEnemyJumpKick,
-			frames:[0, 1, 2, 1],
+			frames:[0, 1, 0],
 			width:redEnemyJumpKick.width / 2,
 			height:redEnemyJumpKick.height,
-			frameTimes:[100, 250],
+			frameTimes:[250, 150, 100],
 			reverses:false,
 			loops:false
 		},
@@ -735,7 +735,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
 			width:redEnemyHKick.width / 2,
 			height:redEnemyHKick.height,
-			frameTimes:[75],
+			frameTimes:[125, 125, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75],
 			reverses:false,
 			loops:false
 		},
@@ -845,20 +845,20 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.J_Kick,
 			image:basicEnemyJumpKick,
-			frames:[0, 1, 2, 1],
+			frames:[0, 1, 0],
 			width:basicEnemyJumpKick.width / 2,
 			height:basicEnemyJumpKick.height,
-			frameTimes:[100, 250],
+			frameTimes:[200, 150, 100],
 			reverses:false,
 			loops:false
 		},
 		h_kick:{
 			name:STATE.H_Kick,
 			image:basicEnemyHKick,
-			frames:[0, 1],
+			frames:[0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
 			width:basicEnemyHKick.width / 2,
 			height:basicEnemyHKick.height,
-			frameTimes:[250, 250],
+			frameTimes:[125, 125, 75, 75, 75, 75, 75, 75, 75, 75, 75, 75],
 			reverses:false,
 			loops:false
 		},
