@@ -75,14 +75,10 @@ const wallScrollCrane = document.createElement("img");
 const wallScrollSnake = document.createElement("img");
 const wallScrollLeopard = document.createElement("img");
 const wallScrollDragon = document.createElement("img");
-const wallArtTiger = document.createElement("img");
-const wallArtDragon = document.createElement("img");
 const tiledWall = document.createElement("img");
 const tempRightWall = document.createElement("img");
-const wallGradient = document.createElement("img");
 const jpFontImg = document.createElement("img");
 const roofTileTop = document.createElement("img");
-const roofTileBottom = document.createElement("img");
 const roofboardSheet = document.createElement("img");
 const roofboardSheetWhite = document.createElement("img");
 const roofboardSheetGreen = document.createElement("img");
@@ -288,16 +284,20 @@ const carpet2 = document.createElement("canvas");
 const wallArtSnake = document.createElement("canvas");
 const wallArtLeopard = document.createElement("canvas");
 const wallArtCrane = document.createElement("canvas");
+const wallArtTiger = document.createElement("canvas");
+const wallArtDragon = document.createElement("canvas");
+const painting = document.createElement("canvas");
+const roofTileBottom = document.createElement("canvas");
+const wallGradient = document.createElement("canvas");
+const table = document.createElement("canvas");
 
 const decorationSpritesheet = document.createElement("img");
 const blueVaseStrip = document.createElement("img");
 const lamp = document.createElement("img");
 const temple = document.createElement("img");
 const templeDark = document.createElement("img");
-const table = document.createElement("img");
 const rock = document.createElement("img");
 const tree = document.createElement("img");
-const painting = document.createElement("img");
 const HTGDpainting = document.createElement("img");
 
 const leftMoveSprite = document.createElement("img");
@@ -469,6 +469,12 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(wallArtSnake, wallArtSnakeData, environmentAtlas);
 		initializeCanvasFromAtlas(wallArtLeopard, wallArtLeopardData, environmentAtlas);
 		initializeCanvasFromAtlas(wallArtCrane, wallArtCraneData, environmentAtlas);
+		initializeCanvasFromAtlas(wallArtTiger, wallArtTigerData, environmentAtlas);
+		initializeCanvasFromAtlas(wallArtDragon, wallArtDragonData, environmentAtlas);
+		initializeCanvasFromAtlas(painting, paintingData, environmentAtlas);
+		initializeCanvasFromAtlas(roofTileBottom, roofTileBottomData, environmentAtlas);
+		initializeCanvasFromAtlas(wallGradient, wallGradientData, environmentAtlas);
+		initializeCanvasFromAtlas(table, tableData, environmentAtlas);
 
 		loadingDoneSoStartGame();
 	}
@@ -503,15 +509,9 @@ function loadImages() {
 		{ imgName: wallScrollSnake, theFile: "TiledBackgroundScroll-Snake.png" },
 		{ imgName: wallScrollLeopard, theFile: "TiledBackgroundScroll-Leopard.png" },
 		{ imgName: wallScrollDragon, theFile: "TiledBackgroundScroll-Dragon.png" },
-		{ imgName: wallArtTiger, theFile: "Tiger.png"},
-//		{ imgName: wallArtCrane, theFile: "Crane.png"},
-//		{ imgName: wallArtSnake, theFile: "Snake.png"},
-//		{ imgName: wallArtLeopard, theFile: "Leopard.png"},
-		{ imgName: wallArtDragon, theFile: "Dragon.png"},
 		{ imgName: tiledWall, theFile: "TiledBackgroundWall.png" },
 		{ imgName: tempRightWall, theFile: "TempRightWall.png" },
 		{ imgName: roofTileTop, theFile: "RoofBricks.png" },
-		{ imgName: roofTileBottom, theFile: "roof-tile-bottom.png" },
 		{ imgName: roofboardSheet, theFile: "Roof-Frames.png" },
 		{ imgName: roofboardSheetWhite, theFile: "Roof-Frames_White.png" },
 		{ imgName: roofboardSheetGreen, theFile: "Roof-Frames_Green.png" },
@@ -531,16 +531,14 @@ function loadImages() {
 		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
 		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
-		{ imgName: wallGradient, theFile: "wall-gradient.png"},
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 		{ imgName: blueVaseStrip, theFile: "BrokenBlueVaseStrip.png"},
 		{ imgName: lamp, theFile: "Lamp.png"},
 		{ imgName: temple, theFile: "Temple.png"},
 		{ imgName: templeDark, theFile: "TempleTweaked.png"},
-		{ imgName: table, theFile: "table.png"},
+//		{ imgName: table, theFile: "table.png"},
 		{ imgName: rock, theFile: "rock.png"},
 		{ imgName: tree, theFile: "Tree.png"},
-		{ imgName: painting, theFile: "Painting.png"},
 		{ imgName: HTGDpainting, theFile: "HTGDpainting.png"},
 
 		// player related

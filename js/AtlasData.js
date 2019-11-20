@@ -2169,9 +2169,57 @@ const wallArtLeopardData = {
 };
 
 const wallArtCraneData = {
-	name:"leopardArt",
+	name:"craneArt",
 	clipX:537,
 	clipY:133,
 	clipWidth:154,
 	clipHeight:119
+};
+
+const wallArtTigerData = {
+	name:"tigerArt",
+	clipX:691,
+	clipY:133,
+	clipWidth:116,
+	clipHeight:152
+};
+
+const wallArtDragonData = {
+	name:"dragonArt",
+	clipX:334,
+	clipY:583,
+	clipWidth:330,
+	clipHeight:171
+};
+
+const paintingData = {
+	name:"painting",
+	clipX:842,
+	clipY:170,
+	clipWidth:182,
+	clipHeight:268
+};
+
+const roofTileBottomData = {
+	name:"roofTileBottom",
+	clipX:143,
+	clipY:295,
+	clipWidth:74,
+	clipHeight:72
+};
+
+const wallGradientData = {
+	name:"wallGradient",
+	clipX:403,
+	clipY:316,
+	clipWidth:202,
+	clipHeight:212
+};
+
+const tableData = {
+	name:"table",
+	clipX:538,
+	clipY:252,
+	clipWidth:72,
+	clipHeight:64
 };
