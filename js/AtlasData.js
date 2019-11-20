@@ -1411,7 +1411,7 @@ const redEnemyKnockbackData = {
 	name:STATE.KnockBack,
 	image:characterAtlas,
 	clipX:875,
-	clipY:ATLAS_ROW4,
+	clipY:ATLAS_ROW9,
 	clipWidth:32,
 	clipHeight:69,
 	frameWidth:32,
