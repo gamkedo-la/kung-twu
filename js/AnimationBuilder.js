@@ -1437,16 +1437,6 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		spin_kick:{
-			name:STATE.Jump,
-			image:yellowBossSpinKick,
-			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:yellowBossSpinKick.width / 6,
-			height:yellowBossSpinKick.height,
-			frameTimes:[50, 50, 25, 25, 50, 50],
-			reverses:false,
-			loops:false
-		},
 		crouch:{
 			name:STATE.Crouch,
 			image:yellowBossCrouch,
@@ -1463,7 +1453,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:yellowBossPunch.width / 3,
 			height:yellowBossPunch.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 250, 125, 50],
 			reverses:false,
 			loops:false
 		},
@@ -1473,7 +1463,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 2, 1],
 			width:yellowBossKick.width / 4,
 			height:yellowBossKick.height,
-			frameTimes:[50, 50, 150, 225, 50, 50],
+			frameTimes:[50, 175, 175, 125, 50, 50],
 			reverses:false,
 			loops:false
 		},
@@ -1489,7 +1479,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		j_kick:{},
-		h_kick:{},
+		h_kick:{
+			name:STATE.H_Kick,
+			image:yellowBossSpinKick,
+			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+			width:yellowBossSpinKick.width / 6,
+			height:yellowBossSpinKick.height,
+			frameTimes:[100, 100, 75, 75, 75, 75, 75, 75, 50, 50],
+			reverses:false,
+			loops:false
+		},
 		knockback:{
 			name:STATE.KnockBack,
 			//Placeholder until we have the actual boss knockback animation
@@ -1544,16 +1543,6 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		spin_kick:{
-			name:STATE.Jump,
-			image:tanBossSpinKick,
-			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:tanBossSpinKick.width / 6,
-			height:tanBossSpinKick.height,
-			frameTimes:[50, 50, 25, 25, 50, 50],
-			reverses:false,
-			loops:false
-		},
 		crouch:{
 			name:STATE.Crouch,
 			image:tanBossCrouch,
@@ -1569,7 +1558,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:tanBossPunch.width / 3,
 			height:tanBossPunch.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 225, 125, 50],
 			reverses:false,
 			loops:false
 		},
@@ -1579,7 +1568,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 2, 1],
 			width:tanBossKick.width / 4,
 			height:tanBossKick.height,
-			frameTimes:[50, 50, 150, 225, 50, 50],
+			frameTimes:[50, 150, 150, 125, 50, 50],
 			reverses:false,
 			loops:false
 		},
@@ -1595,7 +1584,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		j_kick:{},
-		h_kick:{},
+		h_kick:{
+			name:STATE.H_Kick,
+			image:tanBossSpinKick,
+			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+			width:tanBossSpinKick.width / 6,
+			height:tanBossSpinKick.height,
+			frameTimes:[100, 100, 75, 75, 75, 75, 75, 75, 50, 50],
+			reverses:false,
+			loops:false
+		},
 		knockback:{
 			name:STATE.KnockBack,
 			//Placeholder until we have the actual boss knockback animation
@@ -1650,16 +1648,6 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		spin_kick:{
-			name:STATE.Jump,
-			image:brownBossSpinKick,
-			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:brownBossSpinKick.width / 6,
-			height:brownBossSpinKick.height,
-			frameTimes:[50, 50, 25, 25, 50, 50],
-			reverses:false,
-			loops:false
-		},
 		crouch:{
 			name:STATE.Crouch,
 			image:brownBossCrouch,
@@ -1675,7 +1663,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:brownBossPunch.width / 3,
 			height:brownBossPunch.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 200, 125, 50],
 			reverses:false,
 			loops:false
 		},
@@ -1685,7 +1673,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 2, 1],
 			width:brownBossKick.width / 4,
 			height:brownBossKick.height,
-			frameTimes:[50, 50, 150, 225, 50, 50],
+			frameTimes:[50, 125, 125, 125, 50, 50],
 			reverses:false,
 			loops:false
 		},
@@ -1701,7 +1689,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		j_kick:{},
-		h_kick:{},
+		h_kick:{
+			name:STATE.H_Kick,
+			image:brownBossSpinKick,
+			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+			width:brownBossSpinKick.width / 6,
+			height:brownBossSpinKick.height,
+			frameTimes:[100, 100, 75, 75, 75, 75, 75, 75, 50, 50],
+			reverses:false,
+			loops:false
+		},
 		knockback:{
 			name:STATE.KnockBack,
 			//Placeholder until we have the actual boss knockback animation
@@ -1756,16 +1753,6 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		spin_kick:{
-			name:STATE.Jump,
-			image:redBossSpinKick,
-			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:redBossSpinKick.width / 6,
-			height:redBossSpinKick.height,
-			frameTimes:[50, 50, 25, 25, 50, 50],
-			reverses:false,
-			loops:false
-		},
 		crouch:{
 			name:STATE.Crouch,
 			image:redBossCrouch,
@@ -1781,7 +1768,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:redBossPunch.width / 3,
 			height:redBossPunch.height,
-			frameTimes:[50, 150, 225, 50],
+			frameTimes:[50, 175, 125, 50],
 			reverses:false,
 			loops:false
 		},
@@ -1791,7 +1778,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 2, 1],
 			width:redBossKick.width / 4,
 			height:redBossKick.height,
-			frameTimes:[50, 50, 150, 225, 50, 50],
+			frameTimes:[50, 100, 100, 125, 50, 50],
 			reverses:false,
 			loops:false
 		},
@@ -1807,7 +1794,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		j_kick:{},
-		h_kick:{},
+		h_kick:{
+			name:STATE.H_Kick,
+			image:redBossSpinKick,
+			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+			width:redBossSpinKick.width / 6,
+			height:redBossSpinKick.height,
+			frameTimes:[100, 100, 75, 75, 75, 75, 75, 75, 50, 50],
+			reverses:false,
+			loops:false
+		},
 		knockback:{
 			name:STATE.KnockBack,
 			//Placeholder until we have the actual boss knockback animation
@@ -1862,16 +1858,6 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		spin_kick:{
-			name:STATE.Jump,
-			image:blackBossSpinKick,
-			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:blackBossSpinKick.width / 6,
-			height:blackBossSpinKick.height,
-			frameTimes:[50, 50, 25, 25, 50, 50],
-			reverses:false,
-			loops:false
-		},
 		crouch:{
 			name:STATE.Crouch,
 			image:blackBossCrouch,
@@ -1897,7 +1883,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 2, 1],
 			width:blackBossKick.width / 4,
 			height:blackBossKick.height,
-			frameTimes:[50, 50, 150, 225, 50, 50],
+			frameTimes:[50, 75, 75, 125, 50, 50],
 			reverses:false,
 			loops:false
 		},
@@ -1913,7 +1899,16 @@ function AnimationBuilder() {
 			loops:false
 		},
 		j_kick:{},
-		h_kick:{},
+		h_kick:{
+			name:STATE.H_Kick,
+			image:blackBossSpinKick,
+			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
+			width:blackBossSpinKick.width / 6,
+			height:blackBossSpinKick.height,
+			frameTimes:[50, 50, 75, 75, 75, 75, 75, 75, 50, 50],
+			reverses:false,
+			loops:false
+		},
 		knockback:{
 			name:STATE.KnockBack,
 			//Placeholder until we have the actual boss knockback animation
