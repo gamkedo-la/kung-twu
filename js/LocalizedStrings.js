@@ -144,8 +144,8 @@ const userStrings = {
 		[STRINGS_KEY.Level]:"LEVEL:",
 		[STRINGS_KEY.Level1]:"Tiger",
 		[STRINGS_KEY.Level2]:"Crane",
-		[STRINGS_KEY.Level3]:"Leopard",
-		[STRINGS_KEY.Level4]:"Snake",
+		[STRINGS_KEY.Level3]:"Snake",
+		[STRINGS_KEY.Level4]:"Leopard",
 		[STRINGS_KEY.Level5]:"Dragon",
 		[STRINGS_KEY.BeltWhite]:"White",
 		[STRINGS_KEY.BeltYellow]:"Yellow",
@@ -221,8 +221,8 @@ const userStrings = {
 		[STRINGS_KEY.Level]:"NIVEL:",
 		[STRINGS_KEY.Level1]:"Tigre",
 		[STRINGS_KEY.Level2]:"Grulla",
-		[STRINGS_KEY.Level3]:"Leopardo",
-		[STRINGS_KEY.Level4]:"Serpiente",
+		[STRINGS_KEY.Level3]:"Serpiente",
+		[STRINGS_KEY.Level4]:"Leopardo",
 		[STRINGS_KEY.Level5]:"Dragón",
 
 		//TODO: Retranslate the end of this next line
@@ -313,8 +313,8 @@ const userStrings = {
 		[STRINGS_KEY.Level]:"レーベル:",
 		[STRINGS_KEY.Level1]:"トラ",
 		[STRINGS_KEY.Level2]:"つる",
-		[STRINGS_KEY.Level3]:"ヒョウ",
-		[STRINGS_KEY.Level4]:"ヘビ",
+		[STRINGS_KEY.Level3]:"ヘビ",
+		[STRINGS_KEY.Level4]:"ヒョウ",
 		[STRINGS_KEY.Level5]:"りゅう",
 
 		//TODO: Retranslate the end of this next line
@@ -404,8 +404,8 @@ const userStrings = {
 		[STRINGS_KEY.Level]:"NIVEAU:",
 		[STRINGS_KEY.Level1]:"Tigre",
 		[STRINGS_KEY.Level2]:"Grue",
-		[STRINGS_KEY.Level3]:"Léopard",
-		[STRINGS_KEY.Level4]:"Serpent",
+		[STRINGS_KEY.Level3]:"Serpent",
+		[STRINGS_KEY.Level4]:"Léopard",
 		[STRINGS_KEY.Level5]:"Dragon",
 		[STRINGS_KEY.HelpScreenContents]:"[FLECHES] Déplacement\n[HAUT ou C] Sauter\n[G ou X] Coup de Poing\n[H ou X] Coup de Pied\n[B] Bloquer\n[S] ou [BAS] S'acroupir", //\n[P] Pause
 		[STRINGS_KEY.Resume]:"[ECHAPPE] Reprendre",
@@ -494,8 +494,8 @@ const userStrings = {
 		[STRINGS_KEY.Level]:"уровень:",
 		[STRINGS_KEY.Level1]:"тигр",
 		[STRINGS_KEY.Level2]:"кран",
-		[STRINGS_KEY.Level3]:"леопард",
-		[STRINGS_KEY.Level4]:"змея",
+		[STRINGS_KEY.Level3]:"змея",
+		[STRINGS_KEY.Level4]:"леопард",
 		[STRINGS_KEY.Level5]:"дракон",
 		[STRINGS_KEY.HelpScreenContents]:"[стрелки] движение\n[Кер Вы г C] скачок\n[F Вы г Z] перфоратор\n[G Вы г X] удар\n[B] блок\n[S Вы г вниз] пресмыкаться", //\n[P] Pause
 		[STRINGS_KEY.Resume]:"[ESC] возобновить",
@@ -589,8 +589,8 @@ const userStrings = {
 		[STRINGS_KEY.Level]:"POZIOM:",
 		[STRINGS_KEY.Level1]:"Tygrys",
 		[STRINGS_KEY.Level2]:"Żuraw",
-		[STRINGS_KEY.Level3]:"Leopard",
-		[STRINGS_KEY.Level4]:"Wąż",
+		[STRINGS_KEY.Level3]:"Wąż",
+		[STRINGS_KEY.Level4]:"Leopard",
 		[STRINGS_KEY.Level5]:"Smok",
 		[STRINGS_KEY.HelpScreenContents]:"[STRZAŁKI lub WASD] Poruszanie\n[DO GÓRY lub C] Skok\n[G lub X] Cios\n[H lub X] Kopnięcie\n[V] Blok\n[S] or [Down] Kucnięcie", //\n[P] Pauza
 		[STRINGS_KEY.Done]:"Koniec",

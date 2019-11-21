@@ -74,20 +74,13 @@ const wallScrollSnake = document.createElement("img");
 const wallScrollLeopard = document.createElement("img");
 const wallScrollDragon = document.createElement("img");
 const tiledWall = document.createElement("img");
-const tempRightWall = document.createElement("img");
 const jpFontImg = document.createElement("img");
-const roofTileTop = document.createElement("img");
 const roofboardSheet = document.createElement("img");
 const roofboardSheetWhite = document.createElement("img");
 const roofboardSheetGreen = document.createElement("img");
 const roofboardSheetBlue = document.createElement("img");
 const roofboardSheetRed = document.createElement("img");
 const floorboardSheet = document.createElement("img");
-const lvl1Column = document.createElement("img");
-const lvl2Column = document.createElement("img");
-const lvl3Column = document.createElement("img");
-const lvl4Column = document.createElement("img");
-const lvl5Column = document.createElement("img");
 const yellowPresentation = document.createElement("img");
 const tanPresentation = document.createElement("img");
 const brownPresentation = document.createElement("img");
@@ -291,6 +284,14 @@ const wooshHurtPic = document.createElement("canvas");
 const wooshKnockoutPic = document.createElement("canvas");
 const smokeSprite = document.createElement("canvas");
 const starSprite = document.createElement("canvas");
+const lvl1Column = document.createElement("canvas");
+const lvl2Column = document.createElement("canvas");
+const lvl3Column = document.createElement("canvas");
+const lvl4Column = document.createElement("canvas");
+const lvl5Column = document.createElement("canvas");
+const roofTileTop = document.createElement("canvas");
+const tempLeftWall = document.createElement("canvas");
+const tempRightWall = document.createElement("canvas");
 
 const decorationSpritesheet = document.createElement("img");
 const blueVaseStrip = document.createElement("img");
@@ -482,6 +483,14 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(wooshKnockoutPic, wooshKnockoutPicData, environmentAtlas);
 		initializeCanvasFromAtlas(smokeSprite, smokeSpriteData, environmentAtlas);
 		initializeCanvasFromAtlas(starSprite, starSpriteData, environmentAtlas);
+		initializeCanvasFromAtlas(lvl1Column, lvl1ColumnData, environmentAtlas);
+		initializeCanvasFromAtlas(lvl2Column, lvl2ColumnData, environmentAtlas);
+		initializeCanvasFromAtlas(lvl3Column, lvl3ColumnData, environmentAtlas);
+		initializeCanvasFromAtlas(lvl4Column, lvl4ColumnData, environmentAtlas);
+		initializeCanvasFromAtlas(lvl5Column, lvl5ColumnData, environmentAtlas);
+		initializeCanvasFromAtlas(roofTileTop, roofTileTopData, environmentAtlas);
+		initializeCanvasFromAtlas(tempLeftWall, tempLeftWallData, environmentAtlas);
+		initializeCanvasFromAtlas(tempRightWall, tempRightWallData, environmentAtlas);
 
 		loadingDoneSoStartGame();
 	}
@@ -517,19 +526,13 @@ function loadImages() {
 		{ imgName: wallScrollLeopard, theFile: "TiledBackgroundScroll-Leopard.png" },
 		{ imgName: wallScrollDragon, theFile: "TiledBackgroundScroll-Dragon.png" },
 		{ imgName: tiledWall, theFile: "TiledBackgroundWall.png" },
-		{ imgName: tempRightWall, theFile: "TempRightWall.png" },
-		{ imgName: roofTileTop, theFile: "RoofBricks.png" },
+//		{ imgName: tempRightWall, theFile: "TempRightWall.png" },
 		{ imgName: roofboardSheet, theFile: "Roof-Frames.png" },
 		{ imgName: roofboardSheetWhite, theFile: "Roof-Frames_White.png" },
 		{ imgName: roofboardSheetGreen, theFile: "Roof-Frames_Green.png" },
 		{ imgName: roofboardSheetBlue, theFile: "Roof-Frames_Blue.png" },
 		{ imgName: roofboardSheetRed, theFile: "Roof-Frames_Red.png" },
 		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },
-		{ imgName: lvl1Column, theFile: "column_01.png" },
-		{ imgName: lvl2Column, theFile: "column_02.png" },
-		{ imgName: lvl3Column, theFile: "column_03.png" },
-		{ imgName: lvl4Column, theFile: "column_04.png" },
-		{ imgName: lvl5Column, theFile: "column_05.png" },
 		{ imgName: yellowPresentation, theFile: "YellowBeltPresentation.png" },
 		{ imgName: tanPresentation, theFile: "TanBeltPresentation.png" },
 		{ imgName: brownPresentation, theFile: "BrownBeltPresentation.png" },

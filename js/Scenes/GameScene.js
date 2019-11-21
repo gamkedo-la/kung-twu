@@ -450,6 +450,13 @@ function GameScene() {
 			tempRightWall.width, tempRightWall.height);
 		canvasContext.drawImage(wallGradient, levelData.cameraMax - tempRightWall.width + canvas.width / 2, canvas.height - tiledWall.height);
 
+		canvasContext.drawImage(tempLeftWall, 
+			0, 0, 
+			tempLeftWall.width, tempLeftWall.height, 
+			levelData.cameraMin - canvas.width / 2 - tempLeftWall.width / 2, floor.getFrontHeight() - tempLeftWall.height - 5, 
+			tempLeftWall.width, tempLeftWall.height);
+		canvasContext.drawImage(wallGradient, levelData.cameraMin - canvas.width / 2 + tempLeftWall.width / 2 - wallGradient.width, canvas.height - tiledWall.height);
+
 		for(let aTable of backTables) {
 			aTable.draw();
 		}

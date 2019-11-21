@@ -2287,3 +2287,67 @@ const starSpriteData = {
 	clipWidth:22,
 	clipHeight:22
 };
+
+const lvl1ColumnData = {
+	name:"lvl1Column",
+	clipX:0,
+	clipY:371,
+	clipWidth:47,
+	clipHeight:475
+};
+
+const lvl2ColumnData = {
+	name:"lvl2Column",
+	clipX:47,
+	clipY:371,
+	clipWidth:47,
+	clipHeight:475
+};
+
+const lvl3ColumnData = {
+	name:"lvl3Column",
+	clipX:94,
+	clipY:371,
+	clipWidth:47,
+	clipHeight:475
+};
+
+const lvl4ColumnData = {
+	name:"lvl4Column",
+	clipX:141,
+	clipY:371,
+	clipWidth:47,
+	clipHeight:475
+};
+
+const lvl5ColumnData = {
+	name:"lvl5Column",
+	clipX:188,
+	clipY:371,
+	clipWidth:47,
+	clipHeight:475
+};
+
+const roofTileTopData = {
+	name:"roofTileBricks",
+	clipX:666,
+	clipY:583,
+	clipWidth:74,
+	clipHeight:90
+};
+
+const tempLeftWallData = {
+	name:"roofTileBricks",
+	clipX:908,
+	clipY:550,
+	clipWidth:58,
+	clipHeight:474
+};
+
+const tempRightWallData = {
+	name:"roofTileBricks",
+	clipX:966,
+	clipY:550,
+	clipWidth:58,
+	clipHeight:474
+};
