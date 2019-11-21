@@ -63,7 +63,6 @@ function loadStartImagePic() {
 const titleScreenBG = document.createElement("img");
 const titleImage = document.createElement("img");
 const titleScreenDecore = document.createElement("img");
-const titleBlock = document.createElement("img");
 const uiScreenBg = document.createElement("img");
 const uiBorder = document.createElement("img");
 const windowedWall = document.createElement("img");
@@ -251,10 +250,6 @@ const playerKnockbackRed = document.createElement("canvas");
 const playerKnockbackBlack = document.createElement("canvas");
 
 
-const wooshPunchPic = document.createElement("img");
-const wooshKickPic = document.createElement("img");
-const wooshKickPic2 = document.createElement("img");
-
 const wooshDashPlayerPic = document.createElement("canvas");
 const wooshDashPlayerLPic = document.createElement("canvas");
 const wooshDashEnemyPic = document.createElement("canvas");
@@ -292,11 +287,15 @@ const lvl5Column = document.createElement("canvas");
 const roofTileTop = document.createElement("canvas");
 const tempLeftWall = document.createElement("canvas");
 const tempRightWall = document.createElement("canvas");
+const wooshKickPic = document.createElement("canvas");
+const wooshKickPic2 = document.createElement("canvas");
+const wooshPunchPic = document.createElement("canvas");
+const titleBlock = document.createElement("canvas");
+const temple = document.createElement("canvas");
+const templeDark = document.createElement("canvas");
 
 const decorationSpritesheet = document.createElement("img");
 const blueVaseStrip = document.createElement("img");
-const temple = document.createElement("img");
-const templeDark = document.createElement("img");
 const rock = document.createElement("img");
 const tree = document.createElement("img");
 
@@ -491,6 +490,12 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(roofTileTop, roofTileTopData, environmentAtlas);
 		initializeCanvasFromAtlas(tempLeftWall, tempLeftWallData, environmentAtlas);
 		initializeCanvasFromAtlas(tempRightWall, tempRightWallData, environmentAtlas);
+		initializeCanvasFromAtlas(wooshKickPic, wooshKickPicData, environmentAtlas);
+		initializeCanvasFromAtlas(wooshKickPic2, wooshKickPic2Data, environmentAtlas);
+		initializeCanvasFromAtlas(wooshPunchPic, wooshPunchPicData, environmentAtlas);
+		initializeCanvasFromAtlas(titleBlock, titleBlockData, environmentAtlas);
+		initializeCanvasFromAtlas(temple, templeData, environmentAtlas);
+		initializeCanvasFromAtlas(templeDark, templeDarkData, environmentAtlas);
 
 		loadingDoneSoStartGame();
 	}
@@ -526,7 +531,6 @@ function loadImages() {
 		{ imgName: wallScrollLeopard, theFile: "TiledBackgroundScroll-Leopard.png" },
 		{ imgName: wallScrollDragon, theFile: "TiledBackgroundScroll-Dragon.png" },
 		{ imgName: tiledWall, theFile: "TiledBackgroundWall.png" },
-//		{ imgName: tempRightWall, theFile: "TempRightWall.png" },
 		{ imgName: roofboardSheet, theFile: "Roof-Frames.png" },
 		{ imgName: roofboardSheetWhite, theFile: "Roof-Frames_White.png" },
 		{ imgName: roofboardSheetGreen, theFile: "Roof-Frames_Green.png" },
@@ -543,8 +547,6 @@ function loadImages() {
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 		{ imgName: blueVaseStrip, theFile: "BrokenBlueVaseStrip.png"},
-		{ imgName: temple, theFile: "Temple.png"},
-		{ imgName: templeDark, theFile: "TempleTweaked.png"},
 		{ imgName: rock, theFile: "rock.png"},
 		{ imgName: tree, theFile: "Tree.png"},
 
@@ -553,14 +555,10 @@ function loadImages() {
 		{ imgName: playerBlock, theFile: "Player_Block.png"},
 		{ imgName: playerCrouch, theFile: "Player_Crouch.png"},
 
-		{ imgName: wooshPunchPic, theFile: "wooshPunch.png"},
-		{ imgName: wooshKickPic, theFile: "wooshKick.png"},
-		{ imgName: wooshKickPic2, theFile: "wooshKick2.png"},
-//		{ imgName: starSprite, theFile: "star.png"},
-
 		// UI
-		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
 		{ imgName: jpFontImg, theFile: "JPFont_Light.png"},
+		{ imgName: hourglassAnimation, theFile: "hourglassStrip.png"},
+
 		{ imgName: leftMoveSprite, theFile: "left.png"},
 		{ imgName: rightMoveSprite, theFile: "right.png"},
 		{ imgName: jumpSprite, theFile: "jump.png"},
@@ -568,7 +566,6 @@ function loadImages() {
 		{ imgName: kickSprite, theFile: "kick.png"},
 		{ imgName: crouchSprite, theFile: "crouch.png"},
 		{ imgName: dashSprite, theFile: "dash.png"},
-		{ imgName: hourglassAnimation, theFile: "hourglassStrip.png"},
 	];
 
 	picsToLoad = imageList.length;

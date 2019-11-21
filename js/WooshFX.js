@@ -37,9 +37,9 @@ function WooshFXManager(wooshImage) {
 	};
 	this.triggerPunch = function (pos,left) {
 		if (left)
-			this.trigger(pos.x+30,pos.y+48,0,wooshPunchPic);
+			this.trigger(pos.x-18,pos.y+67,0,wooshPunchPic);
 		else
-			this.trigger(pos.x+40,pos.y+48,180*DEG_TO_RAD,wooshPunchPic);
+			this.trigger(pos.x+88,pos.y+67,180*DEG_TO_RAD,wooshPunchPic);
 	};
 	this.triggerKick = function (pos,left) {
 		if (left)

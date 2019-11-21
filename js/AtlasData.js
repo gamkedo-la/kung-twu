@@ -2351,3 +2351,51 @@ const tempRightWallData = {
 	clipWidth:58,
 	clipHeight:474
 };
+
+const wooshKickPicData = {
+	name:"wooshKick1",
+	clipX:0,
+	clipY:846,
+	clipWidth:123,
+	clipHeight:89
+};
+
+const wooshKickPic2Data = {
+	name:"wooshKick2",
+	clipX:0,
+	clipY:935,
+	clipWidth:123,
+	clipHeight:89
+};
+
+const wooshPunchPicData = {
+	name:"wooshPunch",
+	clipX:123,
+	clipY:935,
+	clipWidth:65,
+	clipHeight:54
+};
+
+const titleBlockData = {
+	name:"titleBlock",
+	clipX:241,
+	clipY:797,
+	clipWidth:313,
+	clipHeight:213
+};
+
+const templeData = {
+	name:"temple",
+	clipX:723,
+	clipY:713,
+	clipWidth:185,
+	clipHeight:311
+};
+
+const templeDarkData = {
+	name:"templeDark",
+	clipX:599,
+	clipY:817,
+	clipWidth:124,
+	clipHeight:207
+};
