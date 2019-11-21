@@ -2308,13 +2308,13 @@ const lvl3ColumnData = {
 	name:"lvl3Column",
 	clipX:94,
 	clipY:371,
-	clipWidth:47,
+	clipWidth:53,
 	clipHeight:475
 };
 
 const lvl4ColumnData = {
 	name:"lvl4Column",
-	clipX:141,
+	clipX:147,
 	clipY:371,
 	clipWidth:47,
 	clipHeight:475
@@ -2322,7 +2322,7 @@ const lvl4ColumnData = {
 
 const lvl5ColumnData = {
 	name:"lvl5Column",
-	clipX:188,
+	clipX:194,
 	clipY:371,
 	clipWidth:47,
 	clipHeight:475
@@ -2398,4 +2398,52 @@ const templeDarkData = {
 	clipY:817,
 	clipWidth:124,
 	clipHeight:207
+};
+
+const roofboardSheetData = {
+	name:"roofboardsOrange",
+	clipX:1,
+	clipY:323,
+	clipWidth:4366,
+	clipHeight:52
+};
+
+const roofboardSheetWhiteData = {
+	name:"roofboardsWhite",
+	clipX:1,
+	clipY:269,
+	clipWidth:4366,
+	clipHeight:52
+};
+
+const roofboardSheetGreenData = {
+	name:"roofboardsGreen",
+	clipX:1,
+	clipY:215,
+	clipWidth:4366,
+	clipHeight:52
+};
+
+const roofboardSheetBlueData = {
+	name:"roofboardsBlue",
+	clipX:1,
+	clipY:161,
+	clipWidth:4366,
+	clipHeight:52
+};
+
+const roofboardSheetRedData = {
+	name:"roofboardsRed",
+	clipX:1,
+	clipY:107,
+	clipWidth:4366,
+	clipHeight:52
+};
+
+const floorboardSheetData = {
+	name:"floorboards",
+	clipX:1,
+	clipY:1,
+	clipWidth:4366,
+	clipHeight:104
 };
