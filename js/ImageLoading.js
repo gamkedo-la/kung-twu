@@ -64,8 +64,6 @@ const titleScreenBG = document.createElement("img");
 const titleImage = document.createElement("img");
 const titleScreenDecore = document.createElement("img");
 const titleBlock = document.createElement("img");
-const titleScreenBird = document.createElement("img");
-const selector = document.createElement("img");
 const uiScreenBg = document.createElement("img");
 const uiBorder = document.createElement("img");
 const windowedWall = document.createElement("img");
@@ -260,17 +258,12 @@ const playerKnockbackRed = document.createElement("canvas");
 const playerKnockbackBlack = document.createElement("canvas");
 
 
-const smokeSprite = document.createElement("img");
-const starSprite = document.createElement("img");
 const wooshPunchPic = document.createElement("img");
 const wooshKickPic = document.createElement("img");
 const wooshKickPic2 = document.createElement("img");
-const wooshHurtPic = document.createElement("img");
-const wooshKnockoutPic = document.createElement("img");
 
 const wooshDashPlayerPic = document.createElement("canvas");
 const wooshDashPlayerLPic = document.createElement("canvas");
-
 const wooshDashEnemyPic = document.createElement("canvas");
 const wooshDashEnemyLPic = document.createElement("canvas");
 
@@ -290,15 +283,21 @@ const painting = document.createElement("canvas");
 const roofTileBottom = document.createElement("canvas");
 const wallGradient = document.createElement("canvas");
 const table = document.createElement("canvas");
+const lamp = document.createElement("canvas");
+const titleScreenBird = document.createElement("canvas");
+const HTGDpainting = document.createElement("canvas");
+const selector = document.createElement("canvas");
+const wooshHurtPic = document.createElement("canvas");
+const wooshKnockoutPic = document.createElement("canvas");
+const smokeSprite = document.createElement("canvas");
+const starSprite = document.createElement("canvas");
 
 const decorationSpritesheet = document.createElement("img");
 const blueVaseStrip = document.createElement("img");
-const lamp = document.createElement("img");
 const temple = document.createElement("img");
 const templeDark = document.createElement("img");
 const rock = document.createElement("img");
 const tree = document.createElement("img");
-const HTGDpainting = document.createElement("img");
 
 const leftMoveSprite = document.createElement("img");
 const rightMoveSprite = document.createElement("img");
@@ -475,6 +474,14 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(roofTileBottom, roofTileBottomData, environmentAtlas);
 		initializeCanvasFromAtlas(wallGradient, wallGradientData, environmentAtlas);
 		initializeCanvasFromAtlas(table, tableData, environmentAtlas);
+		initializeCanvasFromAtlas(lamp, lampData, environmentAtlas);
+		initializeCanvasFromAtlas(titleScreenBird, titleScreenBirdData, environmentAtlas);
+		initializeCanvasFromAtlas(HTGDpainting, HTGDpaintingData, environmentAtlas);
+		initializeCanvasFromAtlas(selector, selectorData, environmentAtlas);
+		initializeCanvasFromAtlas(wooshHurtPic, wooshHurtPicData, environmentAtlas);
+		initializeCanvasFromAtlas(wooshKnockoutPic, wooshKnockoutPicData, environmentAtlas);
+		initializeCanvasFromAtlas(smokeSprite, smokeSpriteData, environmentAtlas);
+		initializeCanvasFromAtlas(starSprite, starSpriteData, environmentAtlas);
 
 		loadingDoneSoStartGame();
 	}
@@ -533,13 +540,10 @@ function loadImages() {
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 		{ imgName: blueVaseStrip, theFile: "BrokenBlueVaseStrip.png"},
-		{ imgName: lamp, theFile: "Lamp.png"},
 		{ imgName: temple, theFile: "Temple.png"},
 		{ imgName: templeDark, theFile: "TempleTweaked.png"},
-//		{ imgName: table, theFile: "table.png"},
 		{ imgName: rock, theFile: "rock.png"},
 		{ imgName: tree, theFile: "Tree.png"},
-		{ imgName: HTGDpainting, theFile: "HTGDpainting.png"},
 
 		// player related
 		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
@@ -549,15 +553,10 @@ function loadImages() {
 		{ imgName: wooshPunchPic, theFile: "wooshPunch.png"},
 		{ imgName: wooshKickPic, theFile: "wooshKick.png"},
 		{ imgName: wooshKickPic2, theFile: "wooshKick2.png"},
-		{ imgName: wooshHurtPic, theFile: "wooshHurt.png"},
-		{ imgName: wooshKnockoutPic, theFile: "wooshKnockout.png"},
-		{ imgName: smokeSprite, theFile: "smoke.png"},
-		{ imgName: starSprite, theFile: "star.png"},
+//		{ imgName: starSprite, theFile: "star.png"},
 
 		// UI
 		{ imgName: titleBlock, theFile: "title_screen_menu_block.png"},
-		{ imgName: titleScreenBird, theFile: "bird_sprite-flap-sheet.png"},
-		{ imgName: selector, theFile: "title_screen_yinyang_selector.png"},
 		{ imgName: jpFontImg, theFile: "JPFont_Light.png"},
 		{ imgName: leftMoveSprite, theFile: "left.png"},
 		{ imgName: rightMoveSprite, theFile: "right.png"},

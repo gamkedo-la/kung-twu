@@ -2223,3 +2223,67 @@ const tableData = {
 	clipWidth:72,
 	clipHeight:64
 };
+
+const lampData = {
+	name:"lamp",
+	clipX:610,
+	clipY:252,
+	clipWidth:46,
+	clipHeight:74
+};
+
+const titleScreenBirdData = {
+	name:"birdAnimation",
+	clipX:656,
+	clipY:286,
+	clipWidth:164,
+	clipHeight:24
+};
+
+const HTGDpaintingData = {
+	name:"HTGDLogoScroll",
+	clipX:605,
+	clipY:326,
+	clipWidth:178,
+	clipHeight:257
+};
+
+const selectorData = {
+	name:"selector",
+	clipX:784,
+	clipY:326,
+	clipWidth:40,
+	clipHeight:40
+};
+
+const wooshHurtPicData = {
+	name:"wooshHurt",
+	clipX:783,
+	clipY:366,
+	clipWidth:58,
+	clipHeight:58
+};
+
+const wooshKnockoutPicData = {
+	name:"wooshKnockout",
+	clipX:783,
+	clipY:424,
+	clipWidth:58,
+	clipHeight:58
+};
+
+const smokeSpriteData = {
+	name:"smoke",
+	clipX:786,
+	clipY:482,
+	clipWidth:41,
+	clipHeight:42
+};
+
+const starSpriteData = {
+	name:"star",
+	clipX:793,
+	clipY:524,
+	clipWidth:22,
+	clipHeight:22
+};
