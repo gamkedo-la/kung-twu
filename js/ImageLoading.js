@@ -207,7 +207,7 @@ const playerWalkBrown = document.createElement("canvas");
 const playerWalkRed = document.createElement("canvas");
 const playerWalkBlack = document.createElement("canvas");
 
-const playerWalkBack = document.createElement("img");
+//const playerWalkBack = document.createElement("img");
 //TODO: Make all belt colors and incorporate into CharacterAtlas
 const playerBlock = document.createElement("img");
 const playerCrouch = document.createElement("img");
@@ -561,7 +561,7 @@ function loadImages() {
 		{ imgName: blueVaseStrip, theFile: "BrokenBlueVaseStrip.png"},
 
 		// player related
-		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
+//		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
 		{ imgName: playerBlock, theFile: "Player_Block.png"},
 		{ imgName: playerCrouch, theFile: "Player_Crouch.png"},
 

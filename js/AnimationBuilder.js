@@ -897,10 +897,10 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:playerWalkBack,
+			image:playerWalkWhite,
 			frames:[0, 1, 2],
-			width:playerWalkBack.width / 3,
-			height:playerWalkBack.height,
+			width:playerWalkWhite.width / 3,
+			height:playerWalkWhite.height,
 			frameTimes:[75],
 			reverses:false,
 			loops:false
@@ -984,11 +984,11 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:playerWalkBack,
+			image:playerWalkYellow,
 			frames:[0, 1, 2],
-			width:playerWalkBack.width / 3,
-			height:playerWalkBack.height,
-			frameTimes:[30, 300, 30],
+			width:playerWalkYellow.width / 3,
+			height:playerWalkYellow.height,
+			frameTimes:[75],
 			reverses:false,
 			loops:false
 		},
@@ -1071,11 +1071,11 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:playerWalkBack,
+			image:playerWalkTan,
 			frames:[0, 1, 2],
-			width:playerWalkBack.width / 3,
-			height:playerWalkBack.height,
-			frameTimes:[30, 300, 30],
+			width:playerWalkTan.width / 3,
+			height:playerWalkTan.height,
+			frameTimes:[75],
 			reverses:false,
 			loops:false
 		},
@@ -1158,11 +1158,11 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:playerWalkBack,
+			image:playerWalkBrown,
 			frames:[0, 1, 2],
-			width:playerWalkBack.width / 3,
-			height:playerWalkBack.height,
-			frameTimes:[30, 300, 30],
+			width:playerWalkBrown.width / 3,
+			height:playerWalkBrown.height,
+			frameTimes:[75],
 			reverses:false,
 			loops:false
 		},
@@ -1245,11 +1245,11 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:playerWalkBack,
+			image:playerWalkRed,
 			frames:[0, 1, 2],
-			width:playerWalkBack.width / 3,
-			height:playerWalkBack.height,
-			frameTimes:[30, 300, 30],
+			width:playerWalkRed.width / 3,
+			height:playerWalkRed.height,
+			frameTimes:[75],
 			reverses:false,
 			loops:false
 		},
@@ -1332,11 +1332,11 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:playerWalkBack,
+			image:playerWalkBlack,
 			frames:[0, 1, 2],
-			width:playerWalkBack.width / 3,
-			height:playerWalkBack.height,
-			frameTimes:[30, 300, 30],
+			width:playerWalkBlack.width / 3,
+			height:playerWalkBlack.height,
+			frameTimes:[75],
 			reverses:false,
 			loops:false
 		},

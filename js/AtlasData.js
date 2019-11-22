@@ -94,6 +94,21 @@ const playerWalkWhiteData = {
 	loops:true
 };
 
+const playerDashWhiteData = {
+	name:STATE.Dash,
+	image:characterAtlas,
+	clipX:310,
+	clipY:ATLAS_ROW6,
+	clipWidth:109,
+	clipHeight:69,
+	frameWidth:36,
+	frameCount:3,
+	frames:[0, 1, 2],
+	frameTimes:[200],
+	reverses:false,
+	loops:true
+};
+
 const playerPunchWhiteData = {
 	name:STATE.Punch,
 	image:characterAtlas,
@@ -158,6 +173,21 @@ const playerIdleYellowData = {
 
 const playerWalkYellowData = {
 	name:STATE.WalkRight,
+	image:characterAtlas,
+	clipX:310,
+	clipY:ATLAS_ROW7,
+	clipWidth:109,
+	clipHeight:69,
+	frameWidth:36,
+	frameCount:3,
+	frames:[0, 1, 2],
+	frameTimes:[200],
+	reverses:false,
+	loops:true
+};
+
+const playerDashYellowData = {
+	name:STATE.Dash,
 	image:characterAtlas,
 	clipX:310,
 	clipY:ATLAS_ROW7,
@@ -248,6 +278,21 @@ const playerWalkTanData = {
 	loops:true
 };
 
+const playerDashTanData = {
+	name:STATE.Dash,
+	image:characterAtlas,
+	clipX:310,
+	clipY:ATLAS_ROW8,
+	clipWidth:109,
+	clipHeight:69,
+	frameWidth:36,
+	frameCount:3,
+	frames:[0, 1, 2],
+	frameTimes:[200],
+	reverses:false,
+	loops:true
+};
+
 const playerPunchTanData = {
 	name:STATE.Punch,
 	image:characterAtlas,
@@ -312,6 +357,21 @@ const playerIdleBrownData = {
 
 const playerWalkBrownData = {
 	name:STATE.WalkRight,
+	image:characterAtlas,
+	clipX:310,
+	clipY:ATLAS_ROW9,
+	clipWidth:109,
+	clipHeight:69,
+	frameWidth:36,
+	frameCount:3,
+	frames:[0, 1, 2],
+	frameTimes:[200],
+	reverses:false,
+	loops:true
+};
+
+const playerDashBrownData = {
+	name:STATE.Dash,
 	image:characterAtlas,
 	clipX:310,
 	clipY:ATLAS_ROW9,
@@ -402,6 +462,21 @@ const playerWalkRedData = {
 	loops:true
 };
 
+const playerDashRedData = {
+	name:STATE.Dash,
+	image:characterAtlas,
+	clipX:310,
+	clipY:ATLAS_ROW10,
+	clipWidth:109,
+	clipHeight:69,
+	frameWidth:36,
+	frameCount:3,
+	frames:[0, 1, 2],
+	frameTimes:[200],
+	reverses:false,
+	loops:true
+};
+
 const playerPunchRedData = {
 	name:STATE.Punch,
 	image:characterAtlas,
@@ -466,6 +541,21 @@ const playerIdleBlackData = {
 
 const playerWalkBlackData = {
 	name:STATE.WalkRight,
+	image:characterAtlas,
+	clipX:310,
+	clipY:ATLAS_ROW11,
+	clipWidth:109,
+	clipHeight:69,
+	frameWidth:36,
+	frameCount:3,
+	frames:[0, 1, 2],
+	frameTimes:[200],
+	reverses:false,
+	loops:true
+};
+
+const playerDashBlackData = {
+	name:STATE.Dash,
 	image:characterAtlas,
 	clipX:310,
 	clipY:ATLAS_ROW11,
