@@ -65,14 +65,6 @@ const titleImage = document.createElement("img");
 const titleScreenDecore = document.createElement("img");
 const uiScreenBg = document.createElement("img");
 const uiBorder = document.createElement("img");
-const windowedWall = document.createElement("img");
-const tiledWallScroll = document.createElement("img");
-const wallScrollTiger = document.createElement("img");
-const wallScrollCrane = document.createElement("img");
-const wallScrollSnake = document.createElement("img");
-const wallScrollLeopard = document.createElement("img");
-const wallScrollDragon = document.createElement("img");
-const tiledWall = document.createElement("img");
 const jpFontImg = document.createElement("img");
 const yellowPresentation = document.createElement("img");
 const tanPresentation = document.createElement("img");
@@ -84,6 +76,7 @@ const characterAtlas = document.createElement("img");
 const bossAtlas = document.createElement("img");
 const environmentAtlas = document.createElement("img");
 const planksAtlas = document.createElement("img");
+const backWallAtlas = document.createElement("img");
 
 const basicEnemyIdle = document.createElement("canvas");
 const basicEnemyWalk = document.createElement("canvas");
@@ -296,6 +289,15 @@ const roofboardSheetBlue = document.createElement("canvas");
 const roofboardSheetRed = document.createElement("canvas");
 const floorboardSheet = document.createElement("canvas");
 
+const windowedWall = document.createElement("canvas");
+const tiledWallScroll = document.createElement("canvas");
+const wallScrollTiger = document.createElement("canvas");
+const wallScrollCrane = document.createElement("canvas");
+const wallScrollSnake = document.createElement("canvas");
+const wallScrollLeopard = document.createElement("canvas");
+const wallScrollDragon = document.createElement("canvas");
+const tiledWall = document.createElement("canvas");
+
 const decorationSpritesheet = document.createElement("img");
 const blueVaseStrip = document.createElement("img");
 const rock = document.createElement("img");
@@ -506,6 +508,15 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(roofboardSheetRed, roofboardSheetRedData, planksAtlas);
 		initializeCanvasFromAtlas(floorboardSheet, floorboardSheetData, planksAtlas);
 
+		initializeCanvasFromAtlas(wallScrollTiger, wallScrollTigerData, backWallAtlas);
+		initializeCanvasFromAtlas(wallScrollCrane, wallScrollCraneData, backWallAtlas);
+		initializeCanvasFromAtlas(wallScrollSnake, wallScrollSnakeData, backWallAtlas);
+		initializeCanvasFromAtlas(wallScrollLeopard, wallScrollLeopardData, backWallAtlas);
+		initializeCanvasFromAtlas(wallScrollDragon, wallScrollDragonData, backWallAtlas);
+		initializeCanvasFromAtlas(tiledWallScroll, tiledWallScrollData, backWallAtlas);
+		initializeCanvasFromAtlas(tiledWall, tiledWallData, backWallAtlas);
+		initializeCanvasFromAtlas(windowedWall, windowedWallData, backWallAtlas);
+
 		loadingDoneSoStartGame();
 	}
 }
@@ -529,24 +540,11 @@ function loadImages() {
 		{ imgName: bossAtlas, theFile: "BossAtlas.png" },
 		{ imgName: environmentAtlas, theFile: "EnvironmentAtlas.png" },
 		{ imgName: planksAtlas, theFile: "PlanksAtlas.png" },
+		{ imgName: backWallAtlas, theFile: "BackWallAtlas.png" },
 		
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
 		{ imgName: uiBorder, theFile: "UI_Border.png"},
-		{ imgName: windowedWall, theFile: "TiledBackgroundWindow.png" },
-		{ imgName: tiledWallScroll, theFile: "TiledBackgroundScroll.png" },
-		{ imgName: wallScrollTiger, theFile: "TiledBackgroundScroll-Tiger.png" },
-		{ imgName: wallScrollCrane, theFile: "TiledBackgroundScroll-Crane.png" },
-		{ imgName: wallScrollSnake, theFile: "TiledBackgroundScroll-Snake.png" },
-		{ imgName: wallScrollLeopard, theFile: "TiledBackgroundScroll-Leopard.png" },
-		{ imgName: wallScrollDragon, theFile: "TiledBackgroundScroll-Dragon.png" },
-		{ imgName: tiledWall, theFile: "TiledBackgroundWall.png" },
-//		{ imgName: roofboardSheet, theFile: "Roof-Frames.png" },
-//		{ imgName: roofboardSheetWhite, theFile: "Roof-Frames_White.png" },
-//		{ imgName: roofboardSheetGreen, theFile: "Roof-Frames_Green.png" },
-//		{ imgName: roofboardSheetBlue, theFile: "Roof-Frames_Blue.png" },
-//		{ imgName: roofboardSheetRed, theFile: "Roof-Frames_Red.png" },
-//		{ imgName: floorboardSheet, theFile: "Floor-Frames.png" },
 		{ imgName: yellowPresentation, theFile: "YellowBeltPresentation.png" },
 		{ imgName: tanPresentation, theFile: "TanBeltPresentation.png" },
 		{ imgName: brownPresentation, theFile: "BrownBeltPresentation.png" },

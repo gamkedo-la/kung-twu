@@ -2447,3 +2447,67 @@ const floorboardSheetData = {
 	clipWidth:4366,
 	clipHeight:104
 };
+
+const wallScrollCraneData = {
+	name:"craneScroll",
+	clipX:1,
+	clipY:1,
+	clipWidth:354,
+	clipHeight:600
+};
+
+const wallScrollDragonData = {
+	name:"dragonScroll",
+	clipX:356,
+	clipY:1,
+	clipWidth:354,
+	clipHeight:600
+};
+
+const wallScrollLeopardData = {
+	name:"leopardcroll",
+	clipX:711,
+	clipY:1,
+	clipWidth:354,
+	clipHeight:600
+};
+
+const wallScrollSnakeData = {
+	name:"snakeScroll",
+	clipX:1066,
+	clipY:1,
+	clipWidth:354,
+	clipHeight:600
+};
+
+const wallScrollTigerData = {
+	name:"tigerScroll",
+	clipX:1,
+	clipY:603,
+	clipWidth:354,
+	clipHeight:600
+};
+
+const tiledWallScrollData = {
+	name:"kungFuScroll",
+	clipX:356,
+	clipY:603,
+	clipWidth:354,
+	clipHeight:600
+};
+
+const tiledWallData = {
+	name:"blamkWall",
+	clipX:711,
+	clipY:603,
+	clipWidth:354,
+	clipHeight:600
+};
+
+const windowedWallData = {
+	name:"windowedWall",
+	clipX:1066,
+	clipY:603,
+	clipWidth:354,
+	clipHeight:600
+};
