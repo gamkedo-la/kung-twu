@@ -66,17 +66,13 @@ const titleScreenDecore = document.createElement("img");
 const uiScreenBg = document.createElement("img");
 const uiBorder = document.createElement("img");
 const jpFontImg = document.createElement("img");
-const yellowPresentation = document.createElement("img");
-const tanPresentation = document.createElement("img");
-const brownPresentation = document.createElement("img");
-const redPresentation = document.createElement("img");
-const blackPresentation = document.createElement("img");
 
 const characterAtlas = document.createElement("img");
 const bossAtlas = document.createElement("img");
 const environmentAtlas = document.createElement("img");
 const planksAtlas = document.createElement("img");
 const backWallAtlas = document.createElement("img");
+const upgradeAtlas = document.createElement("img");
 
 const basicEnemyIdle = document.createElement("canvas");
 const basicEnemyWalk = document.createElement("canvas");
@@ -298,6 +294,12 @@ const wallScrollLeopard = document.createElement("canvas");
 const wallScrollDragon = document.createElement("canvas");
 const tiledWall = document.createElement("canvas");
 
+const yellowPresentation = document.createElement("canvas");
+const tanPresentation = document.createElement("canvas");
+const brownPresentation = document.createElement("canvas");
+const redPresentation = document.createElement("canvas");
+const blackPresentation = document.createElement("canvas");
+
 const decorationSpritesheet = document.createElement("img");
 const blueVaseStrip = document.createElement("img");
 const rock = document.createElement("img");
@@ -517,6 +519,12 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(tiledWall, tiledWallData, backWallAtlas);
 		initializeCanvasFromAtlas(windowedWall, windowedWallData, backWallAtlas);
 
+		initializeCanvasFromAtlas(yellowPresentation, yellowPresentationData, upgradeAtlas);
+		initializeCanvasFromAtlas(tanPresentation, tanPresentationData, upgradeAtlas);
+		initializeCanvasFromAtlas(brownPresentation, brownPresentationData, upgradeAtlas);
+		initializeCanvasFromAtlas(redPresentation, redPresentationData, upgradeAtlas);
+		initializeCanvasFromAtlas(blackPresentation, blackPresentationData, upgradeAtlas);
+
 		loadingDoneSoStartGame();
 	}
 }
@@ -535,21 +543,22 @@ function initializeCanvasFromAtlas(canvas, data, atlas) {
 
 function loadImages() {
 	const imageList = [
-		// enemies
+		// atlases
 		{ imgName: characterAtlas, theFile: "CharacterAtlas.png" },
 		{ imgName: bossAtlas, theFile: "BossAtlas.png" },
 		{ imgName: environmentAtlas, theFile: "EnvironmentAtlas.png" },
 		{ imgName: planksAtlas, theFile: "PlanksAtlas.png" },
 		{ imgName: backWallAtlas, theFile: "BackWallAtlas.png" },
+		{ imgName: upgradeAtlas, theFile: "UpgradeAtlas.png" },
 		
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
 		{ imgName: uiBorder, theFile: "UI_Border.png"},
-		{ imgName: yellowPresentation, theFile: "YellowBeltPresentation.png" },
-		{ imgName: tanPresentation, theFile: "TanBeltPresentation.png" },
-		{ imgName: brownPresentation, theFile: "BrownBeltPresentation.png" },
-		{ imgName: redPresentation, theFile: "RedBeltPresentation.png" },
-		{ imgName: blackPresentation, theFile: "BlackBeltPresentation.png" },
+//		{ imgName: yellowPresentation, theFile: "YellowBeltPresentation.png" },
+//		{ imgName: tanPresentation, theFile: "TanBeltPresentation.png" },
+//		{ imgName: brownPresentation, theFile: "BrownBeltPresentation.png" },
+//		{ imgName: redPresentation, theFile: "RedBeltPresentation.png" },
+//		{ imgName: blackPresentation, theFile: "BlackBeltPresentation.png" },
 		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
 		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},

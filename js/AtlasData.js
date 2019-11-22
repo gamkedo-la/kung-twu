@@ -2511,3 +2511,43 @@ const windowedWallData = {
 	clipWidth:354,
 	clipHeight:600
 };
+
+const yellowPresentationData = {
+	name:"yellowPresentation",
+	clipX:1,
+	clipY:1,
+	clipWidth:436,
+	clipHeight:451
+};
+
+const tanPresentationData = {
+	name:"tanPresentation",
+	clipX:439,
+	clipY:1,
+	clipWidth:436,
+	clipHeight:451
+};
+
+const brownPresentationData = {
+	name:"brownPresentation",
+	clipX:877,
+	clipY:1,
+	clipWidth:436,
+	clipHeight:451
+};
+
+const redPresentationData = {
+	name:"redPresentation",
+	clipX:1,
+	clipY:454,
+	clipWidth:436,
+	clipHeight:451
+};
+
+const blackPresentationData = {
+	name:"blackPresentation",
+	clipX:439,
+	clipY:454,
+	clipWidth:436,
+	clipHeight:451
+};
