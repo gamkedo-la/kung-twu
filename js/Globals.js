@@ -97,6 +97,7 @@ const SCENE = {
 	CREDITS: "credits",
 	HELP: "help",
 	ASSIST: "assist",
+	SLIDER: "slider",
 	PAUSE: "pause",
 	CONTROLS: "controls",
 	LEVEL_INTRO:"levelIntro",

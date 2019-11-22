@@ -4,6 +4,7 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 	const TITLE_SCALE = 0.3;
 	let isHovering = false;
 	this.title = getLocalizedStringForKey(stringsKey);
+	let titleArray = [];
     
 	this.onClick = onClick;
 
@@ -12,13 +13,39 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 			console.error(`JPFont undefined. Button Title:${title}`);
 			return;
 		}
-		if(language === null) {
-			bounds.width = JPFont.getStringWidth(title, TITLE_SCALE) + padding * 2;
+
+		titleArray = title.split("\n");
+		if(titleArray.length > 1) {
+			if(language === null) {
+				let maxLineWidth = 0;
+				for(let aLine of titleArray) {
+					const thisWidth = JPFont.getStringWidth(aLine, TITLE_SCALE) + padding * 2;
+					if(thisWidth > maxLineWidth) {
+						maxLineWidth = thisWidth;
+					}
+				}
+				bounds.width = maxLineWidth;
+			} else {
+				let maxLineWidth = 0;
+				for(let aLine of titleArray) {
+					const thisWidth = JPFont.getStringWidth(aLine, TITLE_SCALE, language) + padding * 2;
+					if(thisWidth > maxLineWidth) {
+						maxLineWidth = thisWidth;
+					}
+				}
+				bounds.width = maxLineWidth;
+			}
+
+			bounds.height = (titleArray.length * JPFont.getCharacterHeight(TITLE_SCALE)) + ((titleArray.length - 1) * padding);
 		} else {
-			bounds.width = JPFont.getStringWidth(title, TITLE_SCALE, language) + padding * 2;
+			if(language === null) {
+				bounds.width = JPFont.getStringWidth(title, TITLE_SCALE) + padding * 2;
+			} else {
+				bounds.width = JPFont.getStringWidth(title, TITLE_SCALE, language) + padding * 2;
+			}
+			
+			bounds.height = JPFont.getCharacterHeight(TITLE_SCALE);
 		}
-		
-		bounds.height = JPFont.getCharacterHeight(TITLE_SCALE);
         
 		bounds.x = x;
 		bounds.y = y;
@@ -72,10 +99,21 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 		const posX = bounds.x + padding;
 		const posY = bounds.y;// + padding + fontOverhangAdjustment;
 		
-		if(language === null) {
-			JPFont.printTextAt(this.title, {x:posX,y:posY}, TextAlignment.Left, TITLE_SCALE);
+		if(titleArray.length > 1) {
+			for(let i = 0; i < titleArray.length; i++) {
+				const thisLine = titleArray[i];
+				if(language === null) {
+					JPFont.printTextAt(thisLine, {x:posX,y:posY + i * (bounds.height/2)}, TextAlignment.Left, TITLE_SCALE);
+				} else {
+					JPFont.printTextAt(thisLine, {x:posX,y:posY+ i * (bounds.height/2)}, TextAlignment.Left, TITLE_SCALE, language);
+				}	
+			}			
 		} else {
-			JPFont.printTextAt(this.title, {x:posX,y:posY}, TextAlignment.Left, TITLE_SCALE, language);
+			if(language === null) {
+				JPFont.printTextAt(this.title, {x:posX,y:posY}, TextAlignment.Left, TITLE_SCALE);
+			} else {
+				JPFont.printTextAt(this.title, {x:posX,y:posY}, TextAlignment.Left, TITLE_SCALE, language);
+			}	
 		}
 
 		const wasHit = didHit(mouseX, mouseY);

@@ -92,6 +92,10 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 		return height;
 	};
 
+	this.getTitle = function() {
+		return label;
+	};
+
 	this.setValue = function(newValue) {
 		if(newValue === currentValue) {return;}
 

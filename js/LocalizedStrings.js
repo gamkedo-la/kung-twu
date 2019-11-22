@@ -96,7 +96,8 @@ const STRINGS_KEY = {
 	ControlsText_Lvl3:"level3ControlsText",
 	ControlsText_Lvl4:"level4ControlsText",
 	ControlsText_Lvl5:"level5ControlsText",
-	GangCount:"gangCount"
+	GangCount:"gangCount",
+	Default:"default"
 };
 
 function getLocalizedStringForKey(key) {
@@ -153,9 +154,9 @@ const userStrings = {
 		[STRINGS_KEY.BeltBrown]:"Brown",
 		[STRINGS_KEY.BeltRed]:"Red",
 		[STRINGS_KEY.BeltBlack]:"Black",
-		[STRINGS_KEY.MaxHealth]:"Max Health",
-		[STRINGS_KEY.StartBelt]:"Start Belt",
-		[STRINGS_KEY.StartLevel]:"Start Level",
+		[STRINGS_KEY.MaxHealth]:"Max\nHealth",
+		[STRINGS_KEY.StartBelt]:"Start\nBelt",
+		[STRINGS_KEY.StartLevel]:"Start\nLevel",
 		[STRINGS_KEY.HelpScreenContents]:"[ARROWS or WASD] Move\n[UP or C] Jump\n[F or Z] Punch\n[G or X] Kick\n[B] Block\n[S] or [Down] Crouch",
 		[STRINGS_KEY.HowToDash]:"[SPACE] to Dash\nback from rivals",
 		[STRINGS_KEY.HowToSweep]:"Kick while Crouching\nto Leg Sweep rivals",
@@ -164,15 +165,15 @@ const userStrings = {
 		[STRINGS_KEY.EndGameMessage]:"Congratulations!\nYou have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.Rivals]:"Rivals:",
-		[STRINGS_KEY.RivalHealth]:"Rival Health",
-		[STRINGS_KEY.PlayerDamage]:"Hit Strength",
-		[STRINGS_KEY.Invicibility]:"Invincible Time",
+		[STRINGS_KEY.RivalHealth]:"Rival\nHealth",
+		[STRINGS_KEY.PlayerDamage]:"Hit\nStrength",
+		[STRINGS_KEY.Invicibility]:"Invincible\nTime",
 		[STRINGS_KEY.Knockback]:"Knockback",
-		[STRINGS_KEY.EnemyStrength]:"Rival Strength",
-		[STRINGS_KEY.BossStrength]:"Shīfù Strength",
-		[STRINGS_KEY.BossHealth]:"Shīfù Health",
+		[STRINGS_KEY.EnemyStrength]:"Rival\nStrength",
+		[STRINGS_KEY.BossStrength]:"Shīfù\nStrength",
+		[STRINGS_KEY.BossHealth]:"Shīfù\nHealth",
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
-		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
+		[STRINGS_KEY.RivalsToBeat]:"Rivals\nTo Beat",
 		[STRINGS_KEY.LevelTime]:"Time Limit",
 		[STRINGS_KEY.LevelIntroText_Lvl1]:"Prepare to learn\nShīfù Tigero's\nback dash.",
 		[STRINGS_KEY.LevelIntroText_Lvl2]:"Prepare to learn\nShīfù Whitebird's\nleg sweep.",
@@ -188,7 +189,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick",
-		[STRINGS_KEY.GangCount]:"Active Rivals"
+		[STRINGS_KEY.GangCount]:"Active\nRivals",
+		[STRINGS_KEY.Default]:"Restore Default"
 	},
 
 	Spanish: {
@@ -250,21 +252,21 @@ const userStrings = {
 		[STRINGS_KEY.BeltBrown]:"Marrón",
 		[STRINGS_KEY.BeltRed]:"Rojo",
 		[STRINGS_KEY.BeltBlack]:"Negro",
-		[STRINGS_KEY.MaxHealth]:"Salud Máxima",
-		[STRINGS_KEY.StartBelt]:"Correa de Inicio",
-		[STRINGS_KEY.StartLevel]:"Nível de Inicio",
+		[STRINGS_KEY.MaxHealth]:"Salud\nMáxima",
+		[STRINGS_KEY.StartBelt]:"Correa\nde Inicio",
+		[STRINGS_KEY.StartLevel]:"Nível\nde Inicio",
 		[STRINGS_KEY.Rivals]:"Rivales:",
-		[STRINGS_KEY.RivalHealth]:"Salud de Rival",
-		[STRINGS_KEY.PlayerDamage]:"Fuerza de Golpe",
-		[STRINGS_KEY.Invicibility]:"Tiempo Invencible",
+		[STRINGS_KEY.RivalHealth]:"Salud\nde Rival",
+		[STRINGS_KEY.PlayerDamage]:"Fuerza\nde Golpe",
+		[STRINGS_KEY.Invicibility]:"Tiempo\nInvencible",
 		[STRINGS_KEY.Knockback]:"Retroceso",
-		[STRINGS_KEY.EnemyStrength]:"Fuerza de Rival",
-		[STRINGS_KEY.BossStrength]:"Fuerza de Shīfù",
-		[STRINGS_KEY.BossHealth]:"Salud de Shīfù",
+		[STRINGS_KEY.EnemyStrength]:"Fuerza\nde Rival",
+		[STRINGS_KEY.BossStrength]:"Fuerza\nde Shīfù",
+		[STRINGS_KEY.BossHealth]:"Salud\nde Shīfù",
 
 		[STRINGS_KEY.TimesUp]:"Time's Up!",
-		[STRINGS_KEY.RivalsToBeat]:"Rivals To Beat",
-		[STRINGS_KEY.LevelTime]:"Time Limit",
+		[STRINGS_KEY.RivalsToBeat]:"Rivals To\nBeat",
+		[STRINGS_KEY.LevelTime]:"Time\nLimit",
 		[STRINGS_KEY.LevelIntroText_Lvl1]:"Prepare to learn\nShīfù Tigero's\nback dash.",
 		[STRINGS_KEY.LevelIntroText_Lvl2]:"Prepare to learn\nShīfù Whitebird's\nleg sweep.",
 		[STRINGS_KEY.LevelIntroText_Lvl3]:"Prepare to learn\nShīfù Striker's\njump kick.",
@@ -279,7 +281,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick",
-		[STRINGS_KEY.GangCount]:"Active Rivals"
+		[STRINGS_KEY.GangCount]:"Active\nRivals",
+		[STRINGS_KEY.Default]:"Restore\nDefault"
 	},
 
 	Japanese: {
@@ -371,7 +374,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Crouch + Kick] Sweep",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick",
-		[STRINGS_KEY.GangCount]:"Active Rivals"
+		[STRINGS_KEY.GangCount]:"Active Rivals",
+		[STRINGS_KEY.Default]:"Restore Default"
 	},
 
 	French: {
@@ -430,20 +434,20 @@ const userStrings = {
 		[STRINGS_KEY.BeltBrown]:"Marron",
 		[STRINGS_KEY.BeltRed]:"Rouge",
 		[STRINGS_KEY.BeltBlack]:"Noir",
-		[STRINGS_KEY.MaxHealth]:"Santé Max",
-		[STRINGS_KEY.StartBelt]:"Ceinture de départ",
-		[STRINGS_KEY.StartLevel]:"Niveau de départ",
+		[STRINGS_KEY.MaxHealth]:"Santé\nMax",
+		[STRINGS_KEY.StartBelt]:"Ceinture\nde départ",
+		[STRINGS_KEY.StartLevel]:"Niveau\nde départ",
 		[STRINGS_KEY.Rivals]:"Rivals:",
-		[STRINGS_KEY.RivalHealth]:"Santé du Rival",
-		[STRINGS_KEY.PlayerDamage]:"Force des coups",
-		[STRINGS_KEY.Invicibility]:"Temps d'Invincibilité",
+		[STRINGS_KEY.RivalHealth]:"Santé\ndu Rival",
+		[STRINGS_KEY.PlayerDamage]:"Force\ndes coups",
+		[STRINGS_KEY.Invicibility]:"Temps\nd'Invincibilité",
 		[STRINGS_KEY.Knockback]:"Recul",
-		[STRINGS_KEY.EnemyStrength]:"Force du Rival",
-		[STRINGS_KEY.BossStrength]:"Force de Shīfù",
-		[STRINGS_KEY.BossHealth]:"Santé de Shīfù",
+		[STRINGS_KEY.EnemyStrength]:"Force\ndu Rival",
+		[STRINGS_KEY.BossStrength]:"Force\nde Shīfù",
+		[STRINGS_KEY.BossHealth]:"Santé\nde Shīfù",
 		[STRINGS_KEY.TimesUp]:"Temps Écoulé!",
-		[STRINGS_KEY.RivalsToBeat]:"Rivals À Battre",
-		[STRINGS_KEY.LevelTime]:"Limite de Temps",
+		[STRINGS_KEY.RivalsToBeat]:"Rivals\nÀ Battre",
+		[STRINGS_KEY.LevelTime]:"Limite\nde Temps",
 		[STRINGS_KEY.LevelIntroText_Lvl1]:"Préparez vous à apprendre\nL'esquive du\nShīfù Tigero.",
 		[STRINGS_KEY.LevelIntroText_Lvl2]:"Préparez vous à apprendre\nLe balayage des jambes du\nShīfù Oiseau Blanc.",
 		[STRINGS_KEY.LevelIntroText_Lvl3]:"Préparez vous à apprendre\nLe coup de pied sauté\n du Shīfù Frappeur.",
@@ -459,7 +463,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Coup de Pied Sauté",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Coup de Pied Rotatif",
 
-		[STRINGS_KEY.GangCount]:"Active Rivals"
+		[STRINGS_KEY.GangCount]:"Active Rivals",
+		[STRINGS_KEY.Default]:"Restore Default"
 	},
 
 	Russian: {
@@ -520,20 +525,20 @@ const userStrings = {
 		[STRINGS_KEY.BeltBrown]:"коричневый",
 		[STRINGS_KEY.BeltRed]:"красный",
 		[STRINGS_KEY.BeltBlack]:"черный",
-		[STRINGS_KEY.MaxHealth]:"максимум здоровья",
-		[STRINGS_KEY.StartBelt]:"начать ремень",
-		[STRINGS_KEY.StartLevel]:"начальный уровень",
+		[STRINGS_KEY.MaxHealth]:"максимум\nздоровья",
+		[STRINGS_KEY.StartBelt]:"начать\nремень",
+		[STRINGS_KEY.StartLevel]:"начальный\nуровень",
 		[STRINGS_KEY.Rivals]:"конкуренты:",
-		[STRINGS_KEY.RivalHealth]:"соперник здоровья",
-		[STRINGS_KEY.PlayerDamage]:"сила удара",
-		[STRINGS_KEY.Invicibility]:"непобедимое время",
+		[STRINGS_KEY.RivalHealth]:"соперник\nздоровья",
+		[STRINGS_KEY.PlayerDamage]:"сила\nудара",
+		[STRINGS_KEY.Invicibility]:"непобедимое\nвремя",
 		[STRINGS_KEY.Knockback]:"отбрасывание",
-		[STRINGS_KEY.EnemyStrength]:"сила соперника",
-		[STRINGS_KEY.BossStrength]:"сила Shīfù",
-		[STRINGS_KEY.BossHealth]:"Shīfù здоровья",
+		[STRINGS_KEY.EnemyStrength]:"сила\nсоперника",
+		[STRINGS_KEY.BossStrength]:"сила\nShīfù",
+		[STRINGS_KEY.BossHealth]:"Shīfù\nздоровья",
 		[STRINGS_KEY.TimesUp]:"время истекло!",
-		[STRINGS_KEY.RivalsToBeat]:"соперники бить",
-		[STRINGS_KEY.LevelTime]:"ограничение по времени",
+		[STRINGS_KEY.RivalsToBeat]:"соперники\nбить",
+		[STRINGS_KEY.LevelTime]:"ограничение\nпо времени",
 		[STRINGS_KEY.LevelIntroText_Lvl1]:"подготовиться к обучению\nShīfù тигра\nизворачиваться.",
 		[STRINGS_KEY.LevelIntroText_Lvl2]:"подготовиться к обучению\nShīfù журавля\nподметание ног.",
 		[STRINGS_KEY.LevelIntroText_Lvl3]:"подготовиться к обучению\nShīfù змеи\nпрыжок.",
@@ -549,7 +554,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + удар] прыжок",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[изворачиваться + удар] спиновой удар",
 
-		[STRINGS_KEY.GangCount]:"Active Rivals"
+		[STRINGS_KEY.GangCount]:"Active\nRivals",
+		[STRINGS_KEY.Default]:"Restore\nDefault"
 	},
 
 	Polish: {
@@ -608,20 +614,20 @@ const userStrings = {
 		[STRINGS_KEY.BeltBrown]:"Brązowy",
 		[STRINGS_KEY.BeltRed]:"Czerwony",
 		[STRINGS_KEY.BeltBlack]:"Czarny",
-		[STRINGS_KEY.MaxHealth]:"Maksymalne Życie",
-		[STRINGS_KEY.StartBelt]:"Początkowy Pas",
-		[STRINGS_KEY.StartLevel]:"Początkowy Poziom",
+		[STRINGS_KEY.MaxHealth]:"Maksymalne\nŻycie",
+		[STRINGS_KEY.StartBelt]:"Początkowy\nPas",
+		[STRINGS_KEY.StartLevel]:"Początkowy\nPoziom",
 		[STRINGS_KEY.Rivals]:"Rywale:",
-		[STRINGS_KEY.RivalHealth]:"Życie Rywala",
-		[STRINGS_KEY.PlayerDamage]:"Siła Uderzenia",
-		[STRINGS_KEY.Invicibility]:"Czas Nietykalności",
+		[STRINGS_KEY.RivalHealth]:"Życie\nRywala",
+		[STRINGS_KEY.PlayerDamage]:"Siła\nUderzenia",
+		[STRINGS_KEY.Invicibility]:"Czas\nNietykalności",
 		[STRINGS_KEY.Knockback]:"Odrzucenie",
-		[STRINGS_KEY.EnemyStrength]:"Siła Rywala",
-		[STRINGS_KEY.BossStrength]:"Siła Shīfù",
-		[STRINGS_KEY.BossHealth]:"Życie Shīfù",
+		[STRINGS_KEY.EnemyStrength]:"Siła\nRywala",
+		[STRINGS_KEY.BossStrength]:"Siła\nShīfù",
+		[STRINGS_KEY.BossHealth]:"Życie\nShīfù",
 		[STRINGS_KEY.TimesUp]:"Koniec czasu!",
-		[STRINGS_KEY.RivalsToBeat]:"Rywale Do Pokonania",
-		[STRINGS_KEY.LevelTime]:"Limit Czasu",
+		[STRINGS_KEY.RivalsToBeat]:"Rywale Do\nPokonania",
+		[STRINGS_KEY.LevelTime]:"Limit\nCzasu",
 		[STRINGS_KEY.LevelIntroText_Lvl1]:"Przygotuj się na naukę\nZrywu\nod Shīfù Tigero.",
 		[STRINGS_KEY.LevelIntroText_Lvl2]:"Przygotuj się na naukę\nPodcięcia\nod Shīfù Whitebird.",
 		[STRINGS_KEY.LevelIntroText_Lvl3]:"Przygotuj się na naukę\nKopnięcia z Wyskoku\nod Shīfù Striker.",
@@ -637,6 +643,7 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Skok + Kopnięcie] Kopnięcie z Wyskoku",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Zryw + Kopnięcie] Kopnięcie z Obrotu",
 		
-		[STRINGS_KEY.GangCount]:"Active Rivals"
+		[STRINGS_KEY.GangCount]:"Active\nRivals",
+		[STRINGS_KEY.Default]:"Restore Default"
 	}
 };
