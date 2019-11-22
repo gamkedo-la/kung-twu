@@ -444,7 +444,11 @@ function Player(config) {
 	};
 
 	this.draw = function() {
-		if((isInvincible) && (invincibleTime % 200 < 50)) {
+        
+        // stupid debug
+        if (Math.random()<0.01) console.log("Player x:" + position.x)
+        
+        if((isInvincible) && (invincibleTime % 200 < 50)) {
 			//do nothing for now
 		} else{
 			stateManager.drawAt(position.x, position.y);

@@ -3,7 +3,9 @@ function GameScene() {
 	this.name = "Game Play";
 	const GRAVITY = 1500;
 	const VERTICAL_OFFSET = 50;
-	const displayPoints = [];
+    const FIRST_PLAYERSTART_OFFSET = -100; // on 1st load, levelData.playerStart not used - could be used to tweak start pos
+    const COLUMN_OFFSET = 200; // columns start from player start, so we need a small offset so the player doesn't spawn behind a column
+    const displayPoints = [];
 	const UI_SCALE = 0.4;
 
 	let camera = null;
@@ -100,7 +102,8 @@ function GameScene() {
 			if((activeRivals === undefined) || (activeRivals === null) || (isNaN(activeRivals))) {
 				activeRivals = ASSIST_DEFAULT.GangCount;
 				localStorageHelper.setInt(localStorageKey.GangCount, activeRivals);
-			}
+            }
+            // FIXME: should we player.reset() here so it moves to levelData.playerstart x/y?
 		}
 
 		if (sound.getCurrentBGMKey() !== Sounds.BGM_GamePlay) {
@@ -686,11 +689,11 @@ function GameScene() {
 		return theseLevelEnemies + levelData.totalEnemies;
 	};
 
-	const initializeFloor = function(subfloorColumnImage, verticalOffset) {
+    const initializeFloor = function(subfloorColumnImage, verticalOffset) {
 		subfloor = new InfiniteSubFloor(subfloorColumnImage);
 		subfloor.initializeForLevel(currentLevel);
 		const colPos = 100 + camera.getPosition().x + (2 * canvas.width) / 3;
-		subfloor.positionFirstColumn(colPos);
+		subfloor.positionFirstColumn(colPos + COLUMN_OFFSET); // FIXME no effect?
 
 		floor = new InfiniteSurface(FLOOR_CONFIG, verticalOffset);
 		floorMidHeight = floor.getMidHeight();
@@ -718,10 +721,19 @@ function GameScene() {
 				localStorageHelper.setInt(localStorageKey.StartingBelt, playerBelt);
 			}
 
-			const config = {
-				x: (2 * canvas.width) / 3,
+            const config = {
+                
+                // FIXME should this respect levelData.playerStart here? 
+                // is that data even populated at this point? (NO)
+                // it does use levelData.playerStart during player.reset()
+                // level data has not loaded yet:
+                // x:levelData.playerStart.x, 
+                // y:levelData.playerStart.y,
+
+                // because the above doesn't work, let's just nudge
+                x: (2 * canvas.width) / 3 + FIRST_PLAYERSTART_OFFSET, // FIXME no effect because columns follow the player
 				y: (3 * canvas.height) / 5,
-				health:health
+                health:health
 			};
 
 			player = new Player(config);
@@ -729,9 +741,9 @@ function GameScene() {
 	};
 
 	const initializeColumns = function(image, offset) {
-		columnManager = new InfiniteColumn(image, offset);
+        columnManager = new InfiniteColumn(image, offset);
 		const colPos = 100 + camera.getPosition().x + (2 * canvas.width) / 3;
-		columnManager.positionFirstColumn(colPos);
+		columnManager.positionFirstColumn(colPos + COLUMN_OFFSET);
 	};
 
 	const initializeLamps = function(offset) {
@@ -985,7 +997,7 @@ const Level1Data = {
 		if(cameraPos <= Level1Data.cameraMin) return true;
 		return false;
 	},
-	playerStart:{x:350, y:500}, //x = cameraMax
+	playerStart:{x:300, y:500}, //x = cameraMax
 	backTables:[{x:-500, y: 590}],
 	tables:[],//[{x:-600, y: 635}],
 	frontTables:[{x:-700, y: 680}],
