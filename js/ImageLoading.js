@@ -554,18 +554,11 @@ function loadImages() {
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
 		{ imgName: uiBorder, theFile: "UI_Border.png"},
-//		{ imgName: yellowPresentation, theFile: "YellowBeltPresentation.png" },
-//		{ imgName: tanPresentation, theFile: "TanBeltPresentation.png" },
-//		{ imgName: brownPresentation, theFile: "BrownBeltPresentation.png" },
-//		{ imgName: redPresentation, theFile: "RedBeltPresentation.png" },
-//		{ imgName: blackPresentation, theFile: "BlackBeltPresentation.png" },
 		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
 		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 		{ imgName: blueVaseStrip, theFile: "BrokenBlueVaseStrip.png"},
-		{ imgName: rock, theFile: "rock.png"},
-		{ imgName: tree, theFile: "Tree.png"},
 
 		// player related
 		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
