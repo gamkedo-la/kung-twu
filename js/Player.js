@@ -4,7 +4,8 @@ function Player(config) {
 	const SCREEN_MARGIN = 10;
 	const WALK_SPEED = 200;
     const JUMP_SPEED = -600;
-    const DIZZY_STARS_LOW_HP = 26; // below this health, we spawn particles
+    const DIZZY_STARS_LOW_HP = 25; // at or below this health, we spawn particles
+    const FLICKER_LOW_HP = 25; // at or below this health, we flicker
 	let KNOCK_BACK_SPEED = null;
 	let INVINCIBLE_DURATION = null;
 	let invincibleTime = 0;
@@ -223,7 +224,7 @@ function Player(config) {
         updatePosition(deltaTime, gravity, floorHeight, levelMin, levelMax);
         
         // visual feedback if the player is about to die
-        if (this.health < DIZZY_STARS_LOW_HP) {
+        if (this.health <= DIZZY_STARS_LOW_HP) {
             //console.log("DANGER! HP is " + this.health);
             if (Math.random()<0.1) { // occasionally
                 if (wooshFX) wooshFX.trigger( // spawn a star near our head
@@ -233,7 +234,6 @@ function Player(config) {
                     randomRange(-0.5,0.5), // vel
                     randomRange(-0.25,-0.75),
                     0,0.99,60);
-
             }
         }
 
@@ -471,7 +471,18 @@ function Player(config) {
         if((isInvincible) && (invincibleTime % 200 < 50)) {
 			//do nothing for now
 		} else{
-			stateManager.drawAt(position.x, position.y);
+            
+            if (this.health <= FLICKER_LOW_HP) {
+                if (Date.now() % 500 < 250) { // on/off twice per second
+                    canvasContext.globalAlpha = 0.25;
+                }
+            }
+
+            stateManager.drawAt(position.x, position.y);
+
+            if (this.health <= FLICKER_LOW_HP) {
+                canvasContext.globalAlpha = 1;
+            }
 		}
 
         this.collisionBody.draw(); //colliders know to draw only when DRAW_COLLIDERS = true;
