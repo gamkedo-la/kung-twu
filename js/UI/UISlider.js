@@ -62,18 +62,23 @@ function UITextureButton(image, x, y) {
  */
 function UISlider(x, y, width = 150, height = 10, label = "", 
 	lowVal = 0, lowLabel = "", highVal = 100, highLabel = "", intialValue = 50, 
-	steps = 10, isHorizontal = true, color = Color.Aqua) {
+	steps = 10, isHorizontal = true, aColor = Color.Aqua, valueLabels = null) {
 
-	const LABEL_SCALE = 0.3;
+	const LABEL_SCALE = height / 40;//0.3;
 	const LABEL_HEIGHT = JPFont.getCharacterHeight(LABEL_SCALE);
 	const RADIUS = (isHorizontal? height : width);
 	/**
    * The difference between high and low values
    */
 	const SPAN = highVal - lowVal;
-	const INCREMENT = SPAN / steps;
-	const LABEL_PADDING = 10;
+	const INCREMENT = Math.floor(SPAN / (steps - 1));
+	const ALLOWED_VALUES = [];
+	for(let i = lowVal; i <= highVal; i+=INCREMENT) {
+		ALLOWED_VALUES.push(i);
+	}
+	const LABEL_PADDING = height;
 
+	let color = aColor;
 	let path = null;
 	let indicatorPath = null;
 	//	let shadowPath = null;
@@ -81,6 +86,8 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 	let negativePath = null;
 
 	let currentValue;
+	let currentValX;
+	let valueIndex;
 	let hasNewValue = true;
 	this.hasFocus = false;
 
@@ -104,32 +111,29 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 		} else if(newValue > highVal) {
 			currentValue = highVal;
 		} else {
-			let lowerValue = lowVal;
-			let higherValue = lowVal + INCREMENT;
+			let lowerValue;
+			let higherValue;
 
-			while(higherValue < newValue) {
-				lowerValue = higherValue;
-				higherValue += INCREMENT;
+			let i = 0;
+			for(; i < ALLOWED_VALUES.length; i++) {
+				const aValue = ALLOWED_VALUES[i];
+				if(aValue >= newValue) {
+					lowerValue = ALLOWED_VALUES[i - 1];
+					higherValue = ALLOWED_VALUES[i];
+					break;
+				}
 			}
 
-			const lowerDelta = newValue - lowerValue;
-			const higherDelta = higherValue - newValue;
-
-			let valueToUse;
-			if(lowerDelta <= higherDelta) {
-				valueToUse = lowerValue;
+			if(currentValue === higherValue) {
+				currentValue = lowerValue;
+				valueIndex = i - 1;
 			} else {
-				valueToUse = higherValue;
-			}
-
-			if(valueToUse < lowVal) {
-				currentValue = lowVal;
-			} else if(valueToUse > highVal) {
-				currentValue = highVal;
-			} else {
-				currentValue = valueToUse;
+				currentValue = higherValue;
+				valueIndex = i;
 			}
 		}
+
+		currentValX = x + width * (currentValue - lowVal) / SPAN;
 
 		hasNewValue = true;
 	};
@@ -176,6 +180,11 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 		}
 	};
 
+	this.drawWithColor = function(newColor) {
+		color = newColor;
+		this.draw();
+	};
+
 	this.draw = function() {
 		if(hasNewValue) {
 			buildPath();
@@ -202,9 +211,14 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 		canvasContext.stroke(indicatorPath);
 
 		if(isHorizontal) {
-			JPFont.printTextAt(label, {x:x + width / 2, y:y - LABEL_PADDING - LABEL_HEIGHT}, TextAlignment.Center, LABEL_SCALE);
-			JPFont.printTextAt(lowLabel, {x:x, y:y + LABEL_PADDING}, TextAlignment.Left, LABEL_SCALE);
-			JPFont.printTextAt(highLabel, {x:x + width, y:y + LABEL_PADDING}, TextAlignment.Right, LABEL_SCALE);
+			JPFont.printTextAt(label, {x:x + width / 2, y:y - LABEL_PADDING - 2 * LABEL_HEIGHT}, TextAlignment.Center, 2 * LABEL_SCALE);
+			JPFont.printTextAt(lowLabel, {x:x, y:y + 2 * LABEL_PADDING}, TextAlignment.Center, LABEL_SCALE);
+			JPFont.printTextAt(highLabel, {x:x + width, y:y + 2 * LABEL_PADDING}, TextAlignment.Center, LABEL_SCALE);
+			if(valueLabels === null) {
+				JPFont.printTextAt(currentValue.toString(), {x:x + width / 2, y:y + 3 * LABEL_PADDING}, TextAlignment.Center, 1.5 * LABEL_SCALE);
+			} else {
+				JPFont.printTextAt(valueLabels[valueIndex], {x:x + width / 2, y:y + 3 * LABEL_PADDING}, TextAlignment.Center, 1.5 * LABEL_SCALE);
+			}
 		} else {
 			JPFont.printTextAt(label, {x:x + width / 2, y:y - 4 * LABEL_PADDING}, TextAlignment.Center, LABEL_SCALE);
 			JPFont.printTextAt(lowLabel, {x:x + width / 2, y:y + height}, TextAlignment.Center, LABEL_SCALE);

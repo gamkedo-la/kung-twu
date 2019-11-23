@@ -506,6 +506,14 @@ function AssistScene2() {
 				minTitle:getLocalizedStringForKey(STRINGS_KEY.BeltWhite),
 				storageKey:localStorageKey.StartingBelt,
 				default:ASSIST_DEFAULT.StartBelt,
+				valueLabels:[
+					getLocalizedStringForKey(STRINGS_KEY.BeltWhite),
+					getLocalizedStringForKey(STRINGS_KEY.BeltYellow),
+					getLocalizedStringForKey(STRINGS_KEY.BeltTan),
+					getLocalizedStringForKey(STRINGS_KEY.BeltBrown),
+					getLocalizedStringForKey(STRINGS_KEY.BeltRed),
+					getLocalizedStringForKey(STRINGS_KEY.BeltBlack),
+				],
 				maxValue:5,
 				maxTitle:getLocalizedStringForKey(STRINGS_KEY.BeltBlack),
 				steps:5,
@@ -517,6 +525,13 @@ function AssistScene2() {
 				minTitle:getLocalizedStringForKey(STRINGS_KEY.Level1),
 				storageKey:localStorageKey.StartingLevel,
 				default:ASSIST_DEFAULT.StartLevel,
+				valueLabels:[
+					getLocalizedStringForKey(STRINGS_KEY.Level1),
+					getLocalizedStringForKey(STRINGS_KEY.Level2),
+					getLocalizedStringForKey(STRINGS_KEY.Level3),
+					getLocalizedStringForKey(STRINGS_KEY.Level4),
+					getLocalizedStringForKey(STRINGS_KEY.Level5)
+				],
 				maxValue:4,
 				maxTitle:getLocalizedStringForKey(STRINGS_KEY.Level5),
 				steps:4,

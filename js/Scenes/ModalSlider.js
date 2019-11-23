@@ -64,14 +64,14 @@ function ModalSlider() {
 			localStorageHelper.setInt(config.storageKey, initialValue);
 		}
 		const thisColor =  colorForValue(initialValue);
-		slider = new UISlider(50, 400, 700, 30, getLocalizedStringForKey(config.titleKey), config.minValue, config.minTitle, config.maxValue, config.maxTitle, initialValue, 40, true, thisColor);
+		slider = new UISlider(100, 400, 600, 20, getLocalizedStringForKey(config.titleKey), config.minValue, config.minTitle, config.maxValue, config.maxTitle, initialValue, config.steps, true, thisColor, config.valueLabels);
 	};
 
 	const colorForValue = function(value) {
 		let result = Color.White;
 		if(config.colors.length > 0) {
 			const lerp = (value - config.minValue) / (config.maxValue - config.minValue);
-			const indexProportion = config.colors.length * lerp;
+			const indexProportion = (config.colors.length - 1) * lerp;
 			const index = Math.floor(indexProportion);
 			result = config.colors[index];
 		} else {
@@ -140,6 +140,11 @@ function ModalSlider() {
 			wasClicked = button.respondIfClicked(mouseX, mouseY);
 			if(wasClicked) {break;}
 		}
+
+		if(slider.wasClicked(mouseX, mouseY)) {
+			slider.setValueForClick(mouseX, mouseY);
+			localStorageHelper.setInt(config.storageKey, slider.getValue());
+		}
 	};
 
 	const buildDefaultButton = function(x, y, height, padding) {
@@ -187,12 +192,12 @@ function ModalSlider() {
 		// render the menu background
 		drawBG();
 		
-		drawTitle();
+//		drawTitle();
 
 		// render menu
 		printButtons();
 
-		slider.draw();
+		slider.drawWithColor(colorForValue(slider.getValue()));
 	};
 	
 	const drawBG = function() {
