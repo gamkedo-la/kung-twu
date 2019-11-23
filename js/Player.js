@@ -321,6 +321,9 @@ function Player(config) {
 		case STATE.Kick:
 			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
 			break;
+        case STATE.SpinKick: // dual woosh woo hoo
+            if (wooshFX) wooshFX.triggerSpinKick(position,stateManager.getIsFacingLeft());
+            break;
 		}
 	};
 

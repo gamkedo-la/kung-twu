@@ -250,7 +250,10 @@ function BasicEnemy(config) {
 			break;
 		case STATE.Kick:
 			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
-			break;
+            break;
+        case STATE.SpinKick: // dual woosh woo hoo
+            if (wooshFX) wooshFX.triggerSpinKick(position,stateManager.getIsFacingLeft());
+            break;
 		}
 	};
 

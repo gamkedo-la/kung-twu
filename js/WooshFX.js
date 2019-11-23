@@ -100,7 +100,13 @@ function WooshFXManager(wooshImage) {
 			this.trigger(pos.x+30,pos.y+64,0,wooshDashEnemyLPic);
 		else
 			this.trigger(pos.x+40,pos.y+64,0,wooshDashEnemyPic);
+    };
+    
+	this.triggerSpinKick = function (pos,left) { // dual woosh!
+        this.trigger(pos.x+30,pos.y+94,0,wooshKickPic);
+        this.trigger(pos.x+40,pos.y+84,0,wooshKickPic2);
 	};
+
 
 	// called by the custom fx above or on its own
 	this.trigger = function (x, y, r, img, vx=0, vy=0, gravity=0, friction=1, frames=WOOSH_FRAMECOUNT) {
