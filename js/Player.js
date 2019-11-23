@@ -3,7 +3,8 @@ function Player(config) {
 	const SCALE = 2;
 	const SCREEN_MARGIN = 10;
 	const WALK_SPEED = 200;
-	const JUMP_SPEED = -600;
+    const JUMP_SPEED = -600;
+    const DIZZY_STARS_LOW_HP = 26; // below this health, we spawn particles
 	let KNOCK_BACK_SPEED = null;
 	let INVINCIBLE_DURATION = null;
 	let invincibleTime = 0;
@@ -216,9 +217,25 @@ function Player(config) {
 			this.attackBody.isActive = hitBoxManager.attackColliderIsActiveFor(thisState, currentFrame, AITYPE.Player);
 			if((!attackBodyStatus) && (this.attackBody.isActive)) {
 				whooshForState(thisState);
-			}		}
+            }		
+        }
 
-		updatePosition(deltaTime, gravity, floorHeight, levelMin, levelMax);
+        updatePosition(deltaTime, gravity, floorHeight, levelMin, levelMax);
+        
+        // visual feedback if the player is about to die
+        if (this.health < DIZZY_STARS_LOW_HP) {
+            //console.log("DANGER! HP is " + this.health);
+            if (Math.random()<0.1) { // occasionally
+                if (wooshFX) wooshFX.trigger( // spawn a star near our head
+                    position.x+50+randomRange(-20,20),
+                    position.y+10+randomRange(-4,4),
+                    0,starSprite,
+                    randomRange(-0.5,0.5), // vel
+                    randomRange(-0.25,-0.75),
+                    0,0.99,60);
+
+            }
+        }
 
 		this.collisionBody.setPosition(position); //keep collider in sync with sprite position
 		if (this.attackBody != null) {
@@ -448,8 +465,8 @@ function Player(config) {
 
 	this.draw = function() {
         
-        // stupid debug
-        if (Math.random()<0.01) console.log("Player x:" + position.x)
+        // very spammy debug information to help locate the player if needed
+        //if (Math.random()<0.01) console.log("Player x:" + position.x);
         
         if((isInvincible) && (invincibleTime % 200 < 50)) {
 			//do nothing for now
@@ -457,7 +474,8 @@ function Player(config) {
 			stateManager.drawAt(position.x, position.y);
 		}
 
-		this.collisionBody.draw(); //colliders know to draw only when DRAW_COLLIDERS = true;
+        this.collisionBody.draw(); //colliders know to draw only when DRAW_COLLIDERS = true;
+        
 		if (this.attackBody != null) {
 			this.attackBody.draw();
 		}
