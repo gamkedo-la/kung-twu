@@ -12,7 +12,15 @@ function ModalSlider() {
 	let slider = null;
 
 	this.transitionIn = function() {
-		config = this.properties;
+		if(this.properties != undefined) {
+			config = this.properties;
+		} else {
+			const previousState = SceneState.getPreviousState();
+			if(previousState === SCENE.PAUSE) {
+				const logIndex = SceneState.log.length - 2;
+				SceneState.log.splice(logIndex, 2);
+			}
+		}
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 
 		buttonPadding = canvas.width / 40;
@@ -34,7 +42,6 @@ function ModalSlider() {
 	};
 
 	this.transitionOut = function() {
-		this.properties = null;
 	};
 
 	this.run = function() {
@@ -162,7 +169,9 @@ function ModalSlider() {
 
 	const buildDoneButton = function(x, y, height, padding) {
 		const thisClick = function() {
+			const currentLogIndex = SceneState.log.length - 1;
 			SceneState.setState(SceneState.getPreviousState());
+			SceneState.log.splice(currentLogIndex, 2);
 		};
 
 		return new UIButton(STRINGS_KEY.Done, x, y, height, padding, thisClick, Color.Purple);
