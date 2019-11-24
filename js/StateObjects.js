@@ -567,13 +567,13 @@ function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 		}
 	};
 
-	this.drawAt = function(x = 0, y = 0) {
+	this.drawAt = function(x = 0, y = 0, red = false) {
 		let deltaXForFacing = 0;
 		let deltaY = currentAnimation.getHeight() - animationForState(IDLE_STATE).getHeight();
 		if(isFacingLeft) {
 			deltaXForFacing = (currentAnimations.idle.getWidth() - currentAnimation.getWidth());
 		}
-		currentAnimation.drawAt(x + deltaXForFacing, y + deltaY, isFacingLeft);
+		currentAnimation.drawAt(x + deltaXForFacing, y + deltaY, isFacingLeft, red);
 	};
 
 	const updateStateWithUserInput = function() {

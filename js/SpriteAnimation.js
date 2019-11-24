@@ -7,6 +7,7 @@ function SpriteAnimation(name, //string identifier for this animation
 	frameTimes = [64],//array of milliseconds to show each frame
 	reverses = false, //boolean indicates if animation reverses (true)
 	loops = false,
+	isPlayer = false,
 	context = canvasContext) { //boolean indicates if animation loops (true) 
 
 	this.name = name;
@@ -20,11 +21,24 @@ function SpriteAnimation(name, //string identifier for this animation
 	let isInReverse = false;
 	let currentFrameIndex = frames[0];
 	const framesPerRow = Math.round(image.width / frameWidth);
+	let redImage;
     
 	let remainderTime = 0;
 
 	this.getCurrentFrame = function() {
 		return currentFrameIndex;//TODO: this may be too simplistic
+	};
+
+	this.getContext = function() {
+		if(image.getContext("2d") != undefined) {
+			return image.getContext("2d");
+		} else {
+			return context;
+		}
+	};
+
+	this.getSize = function() {
+		return {width:this.scale * image.width, height:this.scale * image.height};
 	};
 
 	this.reset = function() {
@@ -44,7 +58,7 @@ function SpriteAnimation(name, //string identifier for this animation
 		}
 	};
 
-	this.drawAt = function(x = 0, y = 0, flipped = false) {
+	this.drawAt = function(x = 0, y = 0, flipped = false, red = false) {
 		const thisFrameRect = getCurrentFrameRect();
 		
 		context.save();
@@ -58,9 +72,15 @@ function SpriteAnimation(name, //string identifier for this animation
 			drawPosY = 0;
 		}
 
-		context.drawImage(image, 
-			thisFrameRect.x, thisFrameRect.y, thisFrameRect.width, thisFrameRect.height,
-			drawPosX, drawPosY, thisFrameRect.width * this.scale, thisFrameRect.height * this.scale);
+		if((red) && (redImage !== null)) {
+			context.drawImage(redImage, 
+				thisFrameRect.x, thisFrameRect.y, thisFrameRect.width, thisFrameRect.height,
+				drawPosX, drawPosY, thisFrameRect.width * this.scale, thisFrameRect.height * this.scale);	
+		} else {
+			context.drawImage(image, 
+				thisFrameRect.x, thisFrameRect.y, thisFrameRect.width, thisFrameRect.height,
+				drawPosX, drawPosY, thisFrameRect.width * this.scale, thisFrameRect.height * this.scale);
+		}
 
 		context.restore();
 	};
@@ -72,6 +92,42 @@ function SpriteAnimation(name, //string identifier for this animation
 	this.getHeight = function() {
 		return (frameHeight * this.scale);
 	};
+
+	const makeRedImage = function() {
+		if(image.getContext != undefined) {
+			const normalContext = image.getContext("2d");
+			const redContext = redImage.getContext("2d");
+			try {
+				const imageData = normalContext.getImageData(0, 0, redImage.width, redImage.height);
+				const data = imageData.data;
+				for(let i = 0; i < data.length; i += 4) {
+					data[i] += 75;
+					if(data[i] > 255) {
+						data[i] = 255;
+					}
+					data[i + 1] -= 50;
+					if(data[i + 1] < 0) {
+						data[i + 1] = 0;
+					}
+					data[i + 2] -= 50;
+					if(data[i + 2] < 0) {
+						data[i + 2] = 0;
+					}
+				}
+
+				redContext.putImageData(imageData, 0, 0);
+			} catch(error) {
+				console.log("Need to run on a server");
+				return;
+			}
+		}
+	};
+	if(isPlayer) {
+		redImage = document.createElement("canvas");
+		redImage.width = image.width;
+		redImage.height = image.height;
+		makeRedImage();
+	} 
 
 	const getCurrentFrameRect = function() {
 		const nowFrameIndex = frames[currentFrameIndex];

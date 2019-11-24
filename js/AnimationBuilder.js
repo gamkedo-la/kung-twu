@@ -39,12 +39,12 @@ function AnimationBuilder() {
 			}
 		} else if(rivalType === RIVAL_TYPE.player) {
 			switch(belt) {
-			case BELT.White: return getAnimationsWithData(playerWhiteBeltData, scale);
-			case BELT.Yellow: return getAnimationsWithData(playerYellowBeltData, scale);
-			case BELT.Tan: return getAnimationsWithData(playerTanBeltData, scale);
-			case BELT.Brown: return getAnimationsWithData(playerBrownBeltData, scale);
-			case BELT.Red: return getAnimationsWithData(playerRedBeltData, scale);
-			case BELT.Black: return getAnimationsWithData(playerBlackBeltData, scale);
+			case BELT.White: return getAnimationsWithData(playerWhiteBeltData, scale, true);
+			case BELT.Yellow: return getAnimationsWithData(playerYellowBeltData, scale, true);
+			case BELT.Tan: return getAnimationsWithData(playerTanBeltData, scale, true);
+			case BELT.Brown: return getAnimationsWithData(playerBrownBeltData, scale, true);
+			case BELT.Red: return getAnimationsWithData(playerRedBeltData, scale, true);
+			case BELT.Black: return getAnimationsWithData(playerBlackBeltData, scale, true);
 			}
 		} else if(rivalType === RIVAL_TYPE.boss) {
 			switch(belt) {
@@ -58,67 +58,66 @@ function AnimationBuilder() {
 		}
 	};
 
-	const getAnimationsWithData = function(data, scale) {
+	const getAnimationsWithData = function(data, scale, isPlayer = false) {
 		const result = {};
-		result.idle = getAnimationWithData(data.idle);
+		result.idle = getAnimationWithData(data.idle, isPlayer);
 		if(result.idle === null) {
 			console.error("Idle animations are required for all characters");
 		}
 
-		result.walk = getAnimationWithData(data.walk);
+		result.walk = getAnimationWithData(data.walk, isPlayer);
 		if(result.walk === null) {
-			result.walk = getAnimationWithData(data.idle);
+			result.walk = getAnimationWithData(data.idle, isPlayer);
 		}
 
-		result.dash = getAnimationWithData(data.dash);
+		result.dash = getAnimationWithData(data.dash, isPlayer);
 		if(result.dash === null) {
-			result.dash = getAnimationWithData(data.idle);
+			result.dash = getAnimationWithData(data.idle, isPlayer);
 		}
 
-		result.jump = getAnimationWithData(data.jump);
+		result.jump = getAnimationWithData(data.jump, isPlayer);
 		if(result.jump === null) {
-			result.jump = getAnimationWithData(data.idle);
+			result.jump = getAnimationWithData(data.idle, isPlayer);
 		}
 
-		result.crouch = getAnimationWithData(data.crouch);
+		result.crouch = getAnimationWithData(data.crouch, isPlayer);
 		if(result.crouch === null) {
-			result.crouch = getAnimationWithData(data.idle);
+			result.crouch = getAnimationWithData(data.idle, isPlayer);
 		}
 
-		result.punch = getAnimationWithData(data.punch);
+		result.punch = getAnimationWithData(data.punch, isPlayer);
 		if(result.punch === null) {
-			result.punch = getAnimationWithData(data.idle);
+			result.punch = getAnimationWithData(data.idle, isPlayer);
 		}
 
-		result.kick = getAnimationWithData(data.kick);
+		result.kick = getAnimationWithData(data.kick, isPlayer);
 		if(result.kick === null) {
-			result.kick = getAnimationWithData(data.idle);
+			result.kick = getAnimationWithData(data.idle, isPlayer);
 		}
 
-		result.block = getAnimationWithData(data.block);
+		result.block = getAnimationWithData(data.block, isPlayer);
 		if(result.block === null) {
-			result.block = getAnimationWithData(data.idle);
+			result.block = getAnimationWithData(data.idle, isPlayer);
 		}
 
-
-		result.sweep = getAnimationWithData(data.sweep);
+		result.sweep = getAnimationWithData(data.sweep, isPlayer);
 		if(result.sweep === null) {
-			result.sweep = getAnimationWithData(data.idle);
+			result.sweep = getAnimationWithData(data.idle, isPlayer);
 		}
 
-		result.j_kick = getAnimationWithData(data.j_kick);
+		result.j_kick = getAnimationWithData(data.j_kick, isPlayer);
 		if(result.j_kick === null) {
-			result.j_kick = getAnimationWithData(data.idle);
+			result.j_kick = getAnimationWithData(data.idle, isPlayer);
 		}
 
-		result.h_kick = getAnimationWithData(data.h_kick);
+		result.h_kick = getAnimationWithData(data.h_kick, isPlayer);
 		if(result.h_kick === null) {
-			result.h_kick = getAnimationWithData(data.idle);
+			result.h_kick = getAnimationWithData(data.idle, isPlayer);
 		}
 
-		result.knockback = getAnimationWithData(data.knockback);
+		result.knockback = getAnimationWithData(data.knockback, isPlayer);
 		if(result.knockback === null) {
-			result.knockback = getAnimationWithData(data.idle);
+			result.knockback = getAnimationWithData(data.idle, isPlayer);
 		}
 
 		const animationKeys = Object.keys(result);
@@ -131,9 +130,9 @@ function AnimationBuilder() {
 		return result;
 	};
 
-	const getAnimationWithData = function(data) {
+	const getAnimationWithData = function(data, isPlayer = false) {
 		if((data.name === undefined) || (data.name === null)) return null;
-		return new SpriteAnimation(data.name, data.image, data.frames, data.width, data.height, data.frameTimes, data.reverses, data.loops);
+		return new SpriteAnimation(data.name, data.image, data.frames, data.width, data.height, data.frameTimes, data.reverses, data.loops, isPlayer);
 	};
 
 	const basicWhiteBeltData = {
