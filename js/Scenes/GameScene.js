@@ -248,14 +248,14 @@ function GameScene() {
 					return;//don't continue processing this frame
 				}
 
-				spawnNewEnemies(newCameraX);
+//				spawnNewEnemies(newCameraX);
 			} else {
 				spawnBoss(newCameraX);
 				bossHasBeenSpawned = true;
 			}
 		} else {
 			//Didn't get to the boss yet, keep spawning new enemies
-			spawnNewEnemies(newCameraX);
+//			spawnNewEnemies(newCameraX);
 		}
 	
 		updateEnemies(deltaTime);

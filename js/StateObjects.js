@@ -604,9 +604,10 @@ function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 		const activeKeys = inputProcessor.getCurrentlyActiveKeys();
 		for(let activeKey of activeKeys) {
 			const activeAction = keyMapper.getAction(activeKey);
-			if((activeAction === ACTION.Left) || (activeAction === ACTION.Right)) {//something I care about is pressed
+			if(isContinuousAction(activeAction)) {//something I care about is pressed
 				const thisState = stateTranslator(currentState.nextStateForActionWithBelt(belt, activeAction));
 				setNewState(thisState, activeAction);
+				if((thisState === BLOCK_STATE) || (thisState === CROUCH_STATE)) {break;}
 			}
 		}
 
@@ -614,6 +615,29 @@ function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 			isFacingLeft = !isFacingLeft;
 		}
 	};
+
+	const isContinuousAction = function(action) {
+		return (
+			(action === ACTION.Left) ||
+			(action === ACTION.Right) ||
+			(action === ACTION.Crouch) ||
+			(action === ACTION.Block) 
+		);
+	};
+
+/*Left:"left",
+	Right:"right",
+	Crouch:"crouch",
+	Hit:"hit",
+	Jump:"jump",
+	Release:"release",
+	Punch:"punch",
+	Kick:"kick",
+	Land:"land",
+	End:"end",
+	Block:"block",
+	Dash:"dash",
+	NoChange:"noChange" */
 
 	const setNewState = function(newState, action) {
 		if(newState != currentState) {

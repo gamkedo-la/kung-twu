@@ -396,6 +396,22 @@ function Player(config) {
 	};
 
 	const crouch = function() {
+		if(KNOCK_BACK_SPEED !== null) {
+			if(velocity.x < 0) {
+				velocity.x += KNOCK_BACK_SPEED / 35;
+				if (velocity.x >= 0) {
+					velocity.x = 0;
+				}
+			} else if(velocity.x > 0) {
+				velocity.x -= KNOCK_BACK_SPEED / 35;
+				if (velocity.x <= 0) {
+					velocity.x = 0;
+				}
+			}	
+		} else {
+			velocity.x = 0;
+		}
+
 		if (stateManager.getIsNewState()) {
 		}
 	};
@@ -419,16 +435,20 @@ function Player(config) {
 	};
 
 	const block = function() {
-		if(velocity.x < 0) {
-			velocity.x += KNOCK_BACK_SPEED / 35;
-			if (velocity.x >= 0) {
-				velocity.x = 0;
-			}
-		} else if(velocity.x > 0) {
-			velocity.x -= KNOCK_BACK_SPEED / 35;
-			if (velocity.x <= 0) {
-				velocity.x = 0;
-			}
+		if(KNOCK_BACK_SPEED !== null) {
+			if(velocity.x < 0) {
+				velocity.x += KNOCK_BACK_SPEED / 35;
+				if (velocity.x >= 0) {
+					velocity.x = 0;
+				}
+			} else if(velocity.x > 0) {
+				velocity.x -= KNOCK_BACK_SPEED / 35;
+				if (velocity.x <= 0) {
+					velocity.x = 0;
+				}
+			}	
+		} else {
+			velocity.x = 0;
 		}
 
 		if (stateManager.getIsNewState()) {
