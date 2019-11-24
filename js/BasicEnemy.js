@@ -290,12 +290,13 @@ function BasicEnemy(config) {
 
 	// used by knockedOutBodyManager for DOMINO_KNOCKBACKS fx
 	this.getBumped = function(otherEntity) {
-		if (Math.random()<0.05) { // make it less spammy
+
+        if (Math.random()<0.05) { // make it less spammy
 			sound.playSFX(Sounds.SFX_EnemyHit);
+            if (wooshFX) wooshFX.smallPuff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite);
 		}
 
 		this.wasHitBy(otherEntity);
-		if (wooshFX) wooshFX.puff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite);
 	};
 
 	const fallDueToGravity = function(timeStep, gravity) {

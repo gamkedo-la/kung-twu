@@ -6,6 +6,8 @@ const DEBUG_WOOSHES = false;
 const DEG_TO_RAD = Math.PI/180;
 const MAX_ALPHA = 0.6; // 1.0 = starts at full opaque
 const WOOSH_FRAMECOUNT = 20; // how long they fade out for
+const MIN_PUFFS = 3; // for puff an smallPuff explosions, how many to use
+const MAX_PUFFS = 8;
 
 function WooshFXManager(wooshImage) {
 
@@ -14,7 +16,7 @@ function WooshFXManager(wooshImage) {
 	if (DEBUG_WOOSHES) console.log("Creating the WooshFXManager...");
 
 	this.puff = function (x,y,img) {
-		var num = irandomRange(5,12);
+		var num = irandomRange(MIN_PUFFS,MAX_PUFFS);
 		for (var i=0; i<num; i++) {
 			this.trigger(
 				x + irandomRange(-2,2),
@@ -30,7 +32,7 @@ function WooshFXManager(wooshImage) {
 	};
     
 	this.smallPuff = function (x,y,img) {
-		var num = irandomRange(5,12);
+		var num = irandomRange(MIN_PUFFS,MAX_PUFFS);
 		for (var i=0; i<num; i++) {
 			this.trigger(
 				x + irandomRange(-22,22),
