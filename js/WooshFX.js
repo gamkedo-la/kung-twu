@@ -28,7 +28,27 @@ function WooshFXManager(wooshImage) {
 				60); // frame lifespan
 		}
 	};
-	
+    
+	this.smallPuff = function (x,y,img) {
+		var num = irandomRange(5,12);
+		for (var i=0; i<num; i++) {
+			this.trigger(
+				x + irandomRange(-22,22),
+				y + irandomRange(-2,2),
+				0,//Math.random()*360*DEG_TO_RAD, // sprite rot
+				img,
+				randomRange(-6,6),
+				randomRange(-4,0),
+				-2, // gravity
+				0.8, // friction
+				30); // frame lifespan
+		}
+	};
+
+    this.triggerLanding = function (x,y) {
+		this.smallPuff(x+40,y+132,smokeSprite);
+	};
+
 	this.smokePuff = function (x,y) {
 		this.puff(x,y,smokeSprite);
 	};

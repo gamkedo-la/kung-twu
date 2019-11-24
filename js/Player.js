@@ -223,6 +223,14 @@ function Player(config) {
 
         updatePosition(deltaTime, gravity, floorHeight, levelMin, levelMax);
         
+        // puff of dust on the floor if we just landed
+        var onGround = stateManager.getIsOnGround();
+        if (onGround && !this.onGroundlastFrame) {
+            //console.log("just landed: DUST PUFF");
+            if (wooshFX) wooshFX.triggerLanding(position.x,position.y);
+        }
+        this.onGroundlastFrame = onGround;
+
         // visual feedback if the player is about to die
         if (this.health <= DIZZY_STARS_LOW_HP) {
             //console.log("DANGER! HP is " + this.health);
