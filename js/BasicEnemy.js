@@ -3,6 +3,7 @@ function BasicEnemy(config) {
 	const WALK_SPEED = 250; 
 	const JUMP_SPEED = -600;
 	const KNOCK_BACK_SPEED = 800;
+    const DIZZY_STARS_LOW_HP = 25; // at or below this health, we spawn particles
 
 	let BASE_DAMAGE = null;
 	const DELTA_DAMAGE = 5;
@@ -160,6 +161,20 @@ function BasicEnemy(config) {
 		}
 
 		updatePosition(deltaTime, minX, maxX, gravity, floorHeight);
+
+        // visual feedback if the player is about to die
+        if (this.health <= DIZZY_STARS_LOW_HP) {
+            //console.log("DANGER! HP is " + this.health);
+            if (Math.random()<0.1) { // occasionally
+                if (wooshFX) wooshFX.trigger( // spawn a star near our head
+                    position.x+50+randomRange(-20,20),
+                    position.y+10+randomRange(-4,4),
+                    0,starSprite,
+                    randomRange(-0.5,0.5), // vel
+                    randomRange(-0.25,-0.75),
+                    0,0.99,60);
+            }
+        }
 
 		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
 		if(this.attackBody != null) {
