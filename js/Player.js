@@ -227,7 +227,7 @@ function Player(config) {
         var onGround = stateManager.getIsOnGround();
         if (onGround && !this.onGroundlastFrame) {
             //console.log("just landed: DUST PUFF");
-            if (wooshFX) wooshFX.triggerLanding(position.x,position.y);
+            wooshFX.triggerLanding(position.x,position.y);
         }
         this.onGroundlastFrame = onGround;
 
@@ -235,7 +235,7 @@ function Player(config) {
         if (this.health <= DIZZY_STARS_LOW_HP) {
             //console.log("DANGER! HP is " + this.health);
             if (Math.random()<0.1) { // occasionally
-                if (wooshFX) wooshFX.trigger( // spawn a star near our head
+                wooshFX.trigger( // spawn a star near our head
                     position.x+50+randomRange(-20,20),
                     position.y+10+randomRange(-4,4),
                     0,starSprite,
@@ -332,22 +332,22 @@ function Player(config) {
 	const whooshForState = function(state) {
 		switch(state) {
 		case STATE.J_Kick:
-			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
+			wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
 			break;
 		case STATE.Sweep:
-			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
+			wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 			break;
 		case STATE.H_Kick:
-			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
+			wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
 			break;
 		case STATE.Punch:
-			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
+			wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 			break;
 		case STATE.Kick:
-			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
+			wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
 			break;
         case STATE.SpinKick: // dual woosh woo hoo
-            if (wooshFX) wooshFX.triggerSpinKick(position,stateManager.getIsFacingLeft());
+            wooshFX.triggerSpinKick(position,stateManager.getIsFacingLeft());
             break;
 		}
 	};
@@ -360,7 +360,7 @@ function Player(config) {
 	};
 
 	const respondToKnockBack = function() {
-		if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
+		wooshFX.triggerKnockback(position,(velocity.x>0));
 
 		if(velocity.x < 0) {
 			velocity.x += ASSIST_DEFAULT.KnockbackSpeed / 10;
@@ -409,7 +409,7 @@ function Player(config) {
 
 			velocity.x = speed;
 			sound.playSFX(Sounds.SFX_Swish_01);
-			if (wooshFX) wooshFX.triggerDashPlayer(position,(velocity.x>0));
+			wooshFX.triggerDashPlayer(position,(velocity.x>0));
 
 		}
 	};

@@ -495,7 +495,7 @@ function GameScene() {
 		if (knockedOutBodies) knockedOutBodies.draw();
 		
 		player.draw();
-		if (wooshFX) wooshFX.draw();
+		wooshFX.draw();
 
 		lampManager.draw();
 

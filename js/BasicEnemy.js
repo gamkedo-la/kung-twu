@@ -166,7 +166,7 @@ function BasicEnemy(config) {
         if (this.health <= DIZZY_STARS_LOW_HP) {
             //console.log("DANGER! HP is " + this.health);
             if (Math.random()<0.1) { // occasionally
-                if (wooshFX) wooshFX.trigger( // spawn a star near our head
+                wooshFX.trigger( // spawn a star near our head
                     position.x+50+randomRange(-20,20),
                     position.y+10+randomRange(-4,4),
                     0,starSprite,
@@ -252,28 +252,28 @@ function BasicEnemy(config) {
 	const whooshForState = function(state) {
 		switch(state) {
 		case STATE.J_Kick:
-			if (wooshFX) wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
+			wooshFX.triggerJKick(position,stateManager.getIsFacingLeft());
 			break;
 		case STATE.Sweep:
-			if (wooshFX) wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
+			wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 			break;
 		case STATE.H_Kick:
-			if (wooshFX) wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
+			wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
 			break;
 		case STATE.Punch:
-			if (wooshFX) wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
+			wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 			break;
 		case STATE.Kick:
-			if (wooshFX) wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
+			wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
             break;
         case STATE.SpinKick: // dual woosh woo hoo
-            if (wooshFX) wooshFX.triggerSpinKick(position,stateManager.getIsFacingLeft());
+            wooshFX.triggerSpinKick(position,stateManager.getIsFacingLeft());
             break;
 		}
 	};
 
 	const respondToKnockBack = function() {
-		if (wooshFX) wooshFX.triggerKnockback(position,(velocity.x>0));
+		wooshFX.triggerKnockback(position,(velocity.x>0));
         
 		if(stateManager.getIsFacingLeft()) {
 			velocity.x -= KNOCK_BACK_SPEED / 35;
@@ -293,7 +293,7 @@ function BasicEnemy(config) {
 
         if (Math.random()<0.05) { // make it less spammy
 			sound.playSFX(Sounds.SFX_EnemyHit);
-            if (wooshFX) wooshFX.smallPuff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite);
+            wooshFX.smallPuff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite);
 		}
 
 		this.wasHitBy(otherEntity);
@@ -339,7 +339,7 @@ function BasicEnemy(config) {
 
 			velocity.x = speed;
 			sound.playSFX(Sounds.SFX_Swish_01);
-			if (wooshFX) wooshFX.triggerDashEnemy(position,(velocity.x>0));
+			wooshFX.triggerDashEnemy(position,(velocity.x>0));
 
 		}
 	};
@@ -426,13 +426,13 @@ function BasicEnemy(config) {
 			// any positive (non-zero) value divided by ten and rounded up is at least 1
 			if(otherEntity.type === ENTITY_TYPE.Player) {
 				this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10)); 
-				if (wooshFX) wooshFX.smokePuff(position.x,position.y);	
+				wooshFX.smokePuff(position.x,position.y);	
 			}
 		} else if(stateManager.getCurrentState() === STATE.KnockBack) {
-			if (wooshFX) wooshFX.smokePuff(position.x,position.y);
+			wooshFX.smokePuff(position.x,position.y);
 		} else { //just got hit
 			stateManager.wasHit();
-			if (wooshFX) wooshFX.smokePuff(position.x,position.y);
+			wooshFX.smokePuff(position.x,position.y);
 
 			velocity.y = -KNOCK_BACK_SPEED / 2;
 			if(stateManager.getIsFacingLeft()) {
@@ -448,7 +448,7 @@ function BasicEnemy(config) {
 
 		if(this.health <= 0) {
 			sound.playSFX(Sounds.SFX_LowPain);
-			if (wooshFX) wooshFX.starPuff(position.x,position.y);
+			wooshFX.starPuff(position.x,position.y);
 		} else if(otherEntity.type !== ENTITY_TYPE.Environment) {
 			sound.playSFX(Sounds.SFX_EnemyHit);
 		}

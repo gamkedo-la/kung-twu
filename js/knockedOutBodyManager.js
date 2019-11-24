@@ -77,7 +77,7 @@ function knockedOutBodyManager() {
 				//if (ypos[num]>MAXY) ypos[num]=MAXY; // hit the floor? nah keep falling
                 
 				// spawn particles as we fly?
-				//if (wooshFX) wooshFX.trigger //x,y,starSprite
+				//wooshFX.trigger //x,y,starSprite
 
 				if (DOMINO_KNOCKBACKS) { // just for fun
 					var enemies = SceneState.scenes[SCENE.GAME].getCurrentEnemyList();
