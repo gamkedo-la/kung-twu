@@ -239,7 +239,7 @@ function Player(config) {
 		// visual feedback if the player is about to die
 		if (this.health <= DIZZY_STARS_LOW_HP) {
 			//console.log("DANGER! HP is " + this.health);
-			if (Math.random()<0.1) { // occasionally
+			if (Math.random()<0.1) { // occasionally unless dead
 				wooshFX.trigger( // spawn a star near our head
 					position.x+50+randomRange(-20,20),
 					position.y+10+randomRange(-4,4),
@@ -247,7 +247,13 @@ function Player(config) {
 					randomRange(-0.5,0.5), // vel
 					randomRange(-0.25,-0.75),
 					0,0.99,60);
-			}
+            }
+            // if we are actually "dead" and just falling back for a moment,
+            // SPAM the particles, it is game over fireworks
+            if (this.health<=0) {
+                wooshFX.smokePuff(position.x+randomRange(-50,50),position.y+randomRange(-20,80));
+                wooshFX.starPuff(position.x+randomRange(-50,50),position.y+randomRange(-20,80));
+            }
 		}
 
 		this.collisionBody.setPosition(position); //keep collider in sync with sprite position

@@ -8,6 +8,11 @@ function GameScene() {
     const displayPoints = [];
 	const UI_SCALE = 0.4;
 
+    // how long we wait after death to change game states to game over
+    // note: the game keeps running, which may cause unknown issues
+    const GAMEOVER_TRANSITION_MS = 3000; 
+    let gameOverPending = false;
+
 	let camera = null;
 	let enemies = [];
 	let columnManager = null;
@@ -50,6 +55,9 @@ function GameScene() {
 	let gameTimer;
 
 	this.transitionIn = function() {
+
+        gameOverPending = false;
+
 		if((this.properties != undefined) && (this.properties.restartLevel)) {
 			this.reset();
 		}
@@ -130,7 +138,10 @@ function GameScene() {
 	};
 
 	this.reset = function() {
-		didReset = true;
+        
+        gameOverPending = false;
+
+        didReset = true;
 
 		camera = new Camera();
 
@@ -206,6 +217,20 @@ function GameScene() {
 		return enemies;
 	};
 
+    const triggerPendingGameOver = function() {
+        console.log("Delay complete! Switching to GAME OVER state now.");
+        gameOverPending = false;
+        SceneState.setState(SCENE.GAMEOVER, {score:score});
+    }
+
+    // player just died: animate for a moment
+    const delayedTransitionToGameOver = function() { 
+        if (gameOverPending) return; // don't overlap
+        gameOverPending = true;
+        console.log("Delaying the transition to GAME OVER for " + GAMEOVER_TRANSITION_MS + "ms");
+        setTimeout(triggerPendingGameOver,GAMEOVER_TRANSITION_MS);
+    }
+
 	const update = function(deltaTime) {
 		if (DEBUG) {
 			levelData = dataForCurrentLevel();
@@ -221,7 +246,8 @@ function GameScene() {
 		gameTimer.update(deltaTime);
 		hourglassManager.update(deltaTime);
 		if(hourglassManager.timeIsUp) {
-			SceneState.setState(SCENE.GAMEOVER, {score:score});
+            //SceneState.setState(SCENE.GAMEOVER, {score:score});
+            delayedTransitionToGameOver();
 
 			sound.playEcho(Sounds.SFX_PlayerFail, [.4, 1], [1, .3], 5, 200);
 			sound.playEcho(Sounds.SFX_PlayerKick, [1, .4], [.4, 1], 5, 150);
@@ -372,7 +398,8 @@ function GameScene() {
 					}
 					localStorageHelper.setObject(localStorageKey.HighScore, scoreString);
 				}
-				SceneState.setState(SCENE.GAMEOVER, {score:score});
+                //SceneState.setState(SCENE.GAMEOVER, {score:score});
+                delayedTransitionToGameOver();
 			} else {
 				const enemyIndex = enemies.findIndex(function(element) {
 					return element === defeatedEntity;
@@ -667,7 +694,8 @@ function GameScene() {
 		});
 	
 		gameTimer.onZero.subscribe(() => {
-			SceneState.setState(SCENE.GAMEOVER, {score:score});
+            //SceneState.setState(SCENE.GAMEOVER, {score:score});
+            delayedTransitionToGameOver();
 
 			sound.playEcho(Sounds.SFX_PlayerFail, [.4, 1], [1, .3], 5, 200);
 			sound.playEcho(Sounds.SFX_PlayerKick, [1, .4], [.4, 1], 5, 150);
