@@ -85,7 +85,7 @@ function knockedOutBodyManager() {
 						var dist = enemies[i].distanceFrom(xpos[num],ypos[num]);
 						if (dist <= DOMINO_RANGE) {
 							if (DEBUG_BODIES) console.log('domino distance: ' + dist.toFixed(1));
-							if (enemies[i].getBumped) enemies[i].getBumped({type:ENTITY_TYPE.Enemy});
+							if (enemies[i].getBumped) enemies[i].getBumped({type:ENTITY_TYPE.Enemy},xspd[num],yspd[num]);
 						}
 					}                    
 				}

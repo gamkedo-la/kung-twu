@@ -3,7 +3,8 @@ function BasicEnemy(config) {
 	const WALK_SPEED = 250; 
 	const JUMP_SPEED = -600;
 	const KNOCK_BACK_SPEED = 800;
-    const DIZZY_STARS_LOW_HP = 25; // at or below this health, we spawn particles
+    const DIZZY_STARS_LOW_HP = 0.25; // % health
+    const FLICKER_LOW_HP = 0.25; // % health
 
 	let BASE_DAMAGE = null;
 	const DELTA_DAMAGE = 5;
@@ -163,7 +164,7 @@ function BasicEnemy(config) {
 		updatePosition(deltaTime, minX, maxX, gravity, floorHeight);
 
         // visual feedback if the player is about to die
-        if (this.health <= DIZZY_STARS_LOW_HP) {
+        if (this.health/maxHealth <= DIZZY_STARS_LOW_HP) {
             //console.log("DANGER! HP is " + this.health);
             if (Math.random()<0.1) { // occasionally
                 wooshFX.trigger( // spawn a star near our head
@@ -289,11 +290,11 @@ function BasicEnemy(config) {
 	};
 
 	// used by knockedOutBodyManager for DOMINO_KNOCKBACKS fx
-	this.getBumped = function(otherEntity) {
+	this.getBumped = function(otherEntity,xspeed=0,yspeed=0) {
 
         if (Math.random()<0.05) { // make it less spammy
 			sound.playSFX(Sounds.SFX_EnemyHit);
-            wooshFX.smallPuff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite);
+            wooshFX.smallPuff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite,xspeed,yspeed);
 		}
 
 		this.wasHitBy(otherEntity);
@@ -393,7 +394,15 @@ function BasicEnemy(config) {
 	};
 
 	this.draw = function() {
-		stateManager.drawAt(position.x, position.y);
+        
+        let red = false;
+        if (this.health/maxHealth <= FLICKER_LOW_HP) {
+            if (Date.now() % 500 < 250) { // on/off twice per second
+                red = true;
+            }
+        }        
+        
+        stateManager.drawAt(position.x, position.y, red);
 
 		if(this.getAIType() !== AITYPE.Boss) {
 			let healthPos = 5;

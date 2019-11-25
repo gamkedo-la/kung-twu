@@ -31,7 +31,7 @@ function WooshFXManager(wooshImage) {
 		}
 	};
     
-	this.smallPuff = function (x,y,img) {
+	this.smallPuff = function (x,y,img,xspeed=0,yspeed=0) {
 		var num = irandomRange(MIN_PUFFS,MAX_PUFFS);
 		for (var i=0; i<num; i++) {
 			this.trigger(
@@ -166,7 +166,7 @@ function WooshFXManager(wooshImage) {
 		if (!aWoosh) { // need to create a new one?
 			aWoosh = new Woosh(wooshImage);
 			wooshPool.push(aWoosh); // pool gets bigger
-			if (DEBUG_WOOSHES) console.log("Creating new woosh " + (wooshPool.length-1));
+            if (DEBUG_WOOSHES) console.log("Creating new woosh " + (wooshPool.length-1));
 		}
 		// make it happen
 		aWoosh.trigger(x, y, r, img, vx, vy, gravity, friction, frames, maxalpha);

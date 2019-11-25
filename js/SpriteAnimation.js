@@ -122,12 +122,17 @@ function SpriteAnimation(name, //string identifier for this animation
 			}
 		}
 	};
-	if(isPlayer) {
+    
+    // FIXME we now make a red image for every enemy,
+    // but this may be bad for performance. 
+    // Can we share a single one for all enemies of the same belt?
+    // ie cache using a hash based on img name
+    //if(isPlayer) {
 		redImage = document.createElement("canvas");
 		redImage.width = image.width;
 		redImage.height = image.height;
 		makeRedImage();
-	} 
+	//} 
 
 	const getCurrentFrameRect = function() {
 		const nowFrameIndex = frames[currentFrameIndex];
