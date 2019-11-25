@@ -381,17 +381,20 @@ function Player(config) {
 	};
 
 	const walkRight = function() {
-		velocity.x = WALK_SPEED;
+        velocity.x = WALK_SPEED;
+        if (Math.random()<0.1) { wooshFX.subtleFootstep(position.x,position.y); }
 	};
 
 	const walkLeft = function() {
-		velocity.x = -WALK_SPEED;
+        velocity.x = -WALK_SPEED;
+        if (Math.random()<0.1) { wooshFX.subtleFootstep(position.x,position.y); }
 	};
 
 	const jump = function() {
 		if (stateManager.getIsNewState()) {
 			velocity.y = JUMP_SPEED;
-			sound.playSFX(Sounds.SFX_PlayerJump);
+            sound.playSFX(Sounds.SFX_PlayerJump);
+            wooshFX.subtleFootstep(position.x,position.y);
 		}
 	};
 
