@@ -38,11 +38,11 @@ function knockedOutBodyManager() {
 	var rotspd = [];
 
 	// called by processDefeatedEntities()
-	this.add = function (enemy) {
+	this.add = function (enemy,img=basicEnemyKick) {
 
 		if (DEBUG_BODIES) console.log("New knocked out body " + max);
 
-		img[max] = basicEnemyKick;
+		img[max] = img;
 		xpos[max] = enemy.getPosition().x;
 		ypos[max] = enemy.getPosition().y;
 		xspd[max] = X_KICKBACK + (Math.random()*(X_KICKBACK*2)-X_KICKBACK_RANDOMNESS);
