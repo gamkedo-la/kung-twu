@@ -2378,6 +2378,30 @@ const starSpriteData = {
 	clipHeight:22
 };
 
+const shadowSpriteData = {
+	name:"shadow",
+	clipX:864,
+	clipY:440,
+	clipWidth:100,
+	clipHeight:40
+};
+
+const dustSpriteData = {
+	name:"dust",
+	clipX:860,
+	clipY:484,
+	clipWidth:30,
+	clipHeight:30
+};
+
+const sparkSpriteData = {
+	name:"spark",
+	clipX:874,
+	clipY:537,
+	clipWidth:8,
+	clipHeight:8
+};
+
 const lvl1ColumnData = {
 	name:"lvl1Column",
 	clipX:0,

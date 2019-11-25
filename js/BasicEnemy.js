@@ -14,7 +14,9 @@ function BasicEnemy(config) {
 	let hitBoxManager = new HitBoxManager(BasicEnemyCollisionBodyData, PlayerAttackBodyData);
 
 	let position = {x:0, y:0};
-	let velocity = {x:0, y:0};
+    let velocity = {x:0, y:0};
+    let shadowx = 0;
+    let shadowy = 0;
 
 	let baseHealth = localStorageHelper.getInt(localStorageKey.BaseEnemyHealth);
 	if((baseHealth === undefined) || (baseHealth === null) || (isNaN(baseHealth))) {
@@ -162,6 +164,8 @@ function BasicEnemy(config) {
 		}
 
 		updatePosition(deltaTime, minX, maxX, gravity, floorHeight);
+        shadowx = position.x - 10;
+        shadowy = floorHeight - 24;
 
         // visual feedback if the player is about to die
         if (this.health/maxHealth <= DIZZY_STARS_LOW_HP) {
@@ -403,6 +407,7 @@ function BasicEnemy(config) {
         }        
         
         stateManager.drawAt(position.x, position.y, red);
+        canvasContext.drawImage(shadowSprite,shadowx,shadowy);
 
 		if(this.getAIType() !== AITYPE.Boss) {
 			let healthPos = 5;

@@ -10,7 +10,9 @@ function Player(config) {
 	let INVINCIBLE_DURATION = null;
 	let invincibleTime = 0;
 	let isInvincible = false;
-	let canFall = false;
+    let canFall = false;
+    let shadowx = 0;
+    let shadowy = 0;
 
 	let baseDamage = localStorageHelper.getInt(localStorageKey.PlayerBaseDamage);
 	if((baseDamage === undefined) || (baseDamage === null) || (isNaN(baseDamage))) {
@@ -223,6 +225,9 @@ function Player(config) {
 
 		updatePosition(deltaTime, gravity, floorHeight, levelMin, levelMax);
         
+        shadowx = position.x - 10;
+        shadowy = floorHeight - 24;
+
 		// puff of dust on the floor if we just landed
 		var onGround = stateManager.getIsOnGround();
 		if (onGround && !this.onGroundlastFrame) {
@@ -512,6 +517,8 @@ function Player(config) {
 			
 			stateManager.drawAt(position.x, position.y, red);
 		}
+
+        canvasContext.drawImage(shadowSprite,shadowx,shadowy);
 
 		this.collisionBody.draw(); //colliders know to draw only when DRAW_COLLIDERS = true;
         

@@ -60,13 +60,13 @@ function WooshFXManager(wooshImage) {
 				-4, // gravity
 				0.7, // friction
                 50, // frame lifespan
-                0.1 // maxalpha
+                0.333 // maxalpha
                 ); 
 		}
     };
     
     this.subtleFootstep = function (x,y) {
-		this.tinyPuff(x+40,y+132,smokeSprite);
+		this.tinyPuff(x+40,y+132,dustSprite);
 	};
     
     this.triggerLanding = function (x,y) {
