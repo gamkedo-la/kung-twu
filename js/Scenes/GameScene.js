@@ -10,7 +10,7 @@ function GameScene() {
 
     // how long we wait after death to change game states to game over
     // note: the game keeps running, which may cause unknown issues
-    const GAMEOVER_TRANSITION_MS = 3000; 
+    const GAMEOVER_TRANSITION_MS = 2000; 
     let gameOverPending = false;
 
 	let camera = null;
@@ -227,6 +227,7 @@ function GameScene() {
     const delayedTransitionToGameOver = function() { 
         if (gameOverPending) return; // don't overlap
         gameOverPending = true;
+        //knockedOutBodies.add(player); // this works, but it uses the enemy sprite
         console.log("Delaying the transition to GAME OVER for " + GAMEOVER_TRANSITION_MS + "ms");
         setTimeout(triggerPendingGameOver,GAMEOVER_TRANSITION_MS);
     }

@@ -236,7 +236,12 @@ function Player(config) {
 		}
 		this.onGroundlastFrame = onGround;
 
-		// visual feedback if the player is about to die
+		this.collisionBody.setPosition(position); //keep collider in sync with sprite position
+		if (this.attackBody != null) {
+			this.attackBody.setPosition(position);
+		}
+
+        // visual feedback if the player is about to die
 		if (this.health <= DIZZY_STARS_LOW_HP) {
 			//console.log("DANGER! HP is " + this.health);
 			if (Math.random()<0.1) { // occasionally unless dead
@@ -251,15 +256,22 @@ function Player(config) {
             // if we are actually "dead" and just falling back for a moment,
             // SPAM the particles, it is game over fireworks
             if (this.health<=0) {
-                wooshFX.smokePuff(position.x+randomRange(-50,50),position.y+randomRange(-20,80));
+                wooshFX.smokePuff(position.x+randomRange(-20,20),position.y+randomRange(-20,60));
                 wooshFX.starPuff(position.x+randomRange(-50,50),position.y+randomRange(-20,80));
+                wooshFX.starPuff(position.x+randomRange(-20,20),position.y+randomRange(-20,20));
+                
+                // fly back
+                position.x += (velocity.x>0?25:-25); // fake slide
+                position.x += 5; // no effect: collides w floor
+                
+                // turn off collisions so we fall through the floor
+                //this.collisionBody.setPosition({x:0,y:9999999999}); // no effect
+                //no effect if I change it to circle and radius 0 either
+                this.collisionBody.isActive = false; // no effect either
+
             }
 		}
 
-		this.collisionBody.setPosition(position); //keep collider in sync with sprite position
-		if (this.attackBody != null) {
-			this.attackBody.setPosition(position);
-		}
 	};
 
 	const updateForState = function(currentState) {
@@ -664,8 +676,17 @@ function Player(config) {
 		}
 	};
 
+    const nocollision = { // no effect either
+        lowX: -99999, 
+        highX:-99999, 
+        lowY: -99999, 
+        highY:-99999
+    }
+
 	this.getColliderEdges = function() {
-		return {
+        if (this.health<=0) 
+            return nocollision; // no effect
+        else return {
 			lowX: this.collisionBody.points[0].x, 
 			highX:this.collisionBody.points[2].x, 
 			lowY: this.collisionBody.points[0].y, 
