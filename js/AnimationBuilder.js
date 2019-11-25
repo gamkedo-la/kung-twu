@@ -1402,7 +1402,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 4, 5, 6, 7],
 			width:yellowBossIdle.width / 8,
 			height:yellowBossIdle.height,
-			frameTimes:[50],
+			frameTimes:[150],
 			reverses:false,
 			loops:true
 		},
@@ -1508,7 +1508,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 4, 5, 6, 7],
 			width:tanBossIdle.width / 8,
 			height:tanBossIdle.height,
-			frameTimes:[50],
+			frameTimes:[150],
 			reverses:false,
 			loops:true
 		},
@@ -1613,7 +1613,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 4, 5, 6, 7],
 			width:brownBossIdle.width / 8,
 			height:brownBossIdle.height,
-			frameTimes:[50],
+			frameTimes:[150],
 			reverses:false,
 			loops:true
 		},
@@ -1718,7 +1718,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 4, 5, 6, 7],
 			width:redBossIdle.width / 8,
 			height:redBossIdle.height,
-			frameTimes:[50],
+			frameTimes:[150],
 			reverses:false,
 			loops:true
 		},
@@ -1823,7 +1823,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 4, 5, 6, 7],
 			width:blackBossIdle.width / 8,
 			height:blackBossIdle.height,
-			frameTimes:[50],
+			frameTimes:[150],
 			reverses:false,
 			loops:true
 		},

@@ -642,8 +642,7 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl3]:"[Kucnięcie + Kopnięcie] Podcięcie",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Skok + Kopnięcie] Kopnięcie z Wyskoku",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Zryw + Kopnięcie] Kopnięcie z Obrotu",
-		
-		[STRINGS_KEY.GangCount]:"Active\nRivals",
-		[STRINGS_KEY.Default]:"Restore Default"
+		[STRINGS_KEY.GangCount]:"Aktywni\nRywale",
+		[STRINGS_KEY.Default]:"Przywróć Domyślą Wartość"
 	}
 };
