@@ -480,13 +480,13 @@ function AssistScene2() {
 		sliderData = {
 			playerHealth: {
 				titleKey:STRINGS_KEY.MaxHealth,
-				minValue:1,
-				minTitle:"1",
+				minValue:10,
+				minTitle:"10",
 				storageKey:localStorageKey.PlayerMaxHealth,
 				default:ASSIST_DEFAULT.MaxHealth,
-				maxValue:200,
-				maxTitle:"200",
-				steps:20,
+				maxValue:400,
+				maxTitle:"400",
+				steps:39,
 				colors:[Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue]
 			},
 			playerStrength: {
@@ -556,7 +556,7 @@ function AssistScene2() {
 				default:ASSIST_DEFAULT.KnockbackSpeed,
 				maxValue:2000,
 				maxTitle:"2000",
-				steps:40,
+				steps:20,
 				colors:[Color.White]
 			},
 			enemyHealth: {
@@ -578,29 +578,29 @@ function AssistScene2() {
 				default:ASSIST_DEFAULT.EnemyBaseStrength,
 				maxValue:50,
 				maxTitle:"50",
-				steps:10,
+				steps:49,
 				colors:[Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red]
 			},
 			bossHealth: {
 				titleKey:STRINGS_KEY.BossHealth,
-				minValue:1,
-				minTitle:"1",
+				minValue:10,
+				minTitle:"10",
 				storageKey:localStorageKey.BossHealth,
 				default:ASSIST_DEFAULT.BossBaseHealth,
 				maxValue:400,
 				maxTitle:"400",
-				steps:40,
+				steps:39,
 				colors:[Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red]
 			},
 			bossStrength: {
 				titleKey:STRINGS_KEY.BossStrength,
-				minValue:1,
-				minTitle:"1",
+				minValue:10,
+				minTitle:"10",
 				storageKey:localStorageKey.BossStrength,
 				default:ASSIST_DEFAULT.BossBaseStrength,
-				maxValue:100,
-				maxTitle:"100",
-				steps:20,
+				maxValue:200,
+				maxTitle:"200",
+				steps:19,
 				colors:[Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red]
 			},
 			enemiesPerLevel: {
@@ -611,7 +611,7 @@ function AssistScene2() {
 				default:ASSIST_DEFAULT.EnemiesPerLevel,
 				maxValue:20,
 				maxTitle:"20",
-				steps:20,
+				steps:19,
 				colors:[Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red]
 			},
 			timeLimit: {

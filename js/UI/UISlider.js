@@ -71,10 +71,11 @@ function UISlider(x, y, width = 150, height = 10, label = "",
    * The difference between high and low values
    */
 	const SPAN = highVal - lowVal;
-	const INCREMENT = Math.floor(SPAN / (steps - 1));
+	const INCREMENT = Math.floor(SPAN / (steps));
 	const ALLOWED_VALUES = [];
 	for(let i = lowVal; i <= highVal; i+=INCREMENT) {
 		ALLOWED_VALUES.push(i);
+		console.log(label + ": " + i);
 	}
 	const LABEL_PADDING = height;
 
@@ -141,9 +142,9 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 
 	this.setValueForClick = function(pointerX, pointerY) {
 		if(isHorizontal) {
-			this.setValue(SPAN * (pointerX - x) / width);
+			this.setValue((lowVal + SPAN) * (pointerX - x) / width);
 		} else {
-			this.setValue(SPAN * (pointerY - y) / height);
+			this.setValue((lowVal + SPAN) * (pointerY - y) / height);
 		}
 
 		sound.playSFX(Sounds.SFX_MenuSelect);
