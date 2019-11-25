@@ -21,11 +21,11 @@ function WooshFXManager(wooshImage) {
 			this.trigger(
 				x + irandomRange(-2,2),
 				y + irandomRange(-2,2),
-				0,//Math.random()*360*DEG_TO_RAD, // sprite rot
+				Math.random()*360*DEG_TO_RAD, // rot
 				img,
 				randomRange(-6,6),
 				randomRange(-6,6),
-				-1, // gravity
+				-2, // gravity
 				0.9, // friction
 				60); // frame lifespan
 		}
@@ -37,7 +37,7 @@ function WooshFXManager(wooshImage) {
 			this.trigger(
 				x + irandomRange(-22,22),
 				y + irandomRange(-2,2),
-				0,//Math.random()*360*DEG_TO_RAD, // sprite rot
+				Math.random()*360*DEG_TO_RAD, // rot
 				img,
 				randomRange(-6,6),
 				randomRange(-4,0),
@@ -46,7 +46,29 @@ function WooshFXManager(wooshImage) {
 				30); // frame lifespan
 		}
 	};
-
+    
+    this.tinyPuff = function (x,y,img) {
+		var num = irandomRange(1,3);
+		for (var i=0; i<num; i++) {
+			this.trigger(
+				x + irandomRange(-22,22),
+				y + irandomRange(-2,2),
+				Math.random()*360*DEG_TO_RAD, // rot
+				img,
+				randomRange(-2,2),
+				randomRange(-4,0),
+				-4, // gravity
+				0.7, // friction
+                50, // frame lifespan
+                0.1 // maxalpha
+                ); 
+		}
+    };
+    
+    this.subtleFootstep = function (x,y) {
+		this.tinyPuff(x+40,y+132,smokeSprite);
+	};
+    
     this.triggerLanding = function (x,y) {
 		this.smallPuff(x+40,y+132,smokeSprite);
 	};
@@ -131,7 +153,7 @@ function WooshFXManager(wooshImage) {
 
 
 	// called by the custom fx above or on its own
-	this.trigger = function (x, y, r, img, vx=0, vy=0, gravity=0, friction=1, frames=WOOSH_FRAMECOUNT) {
+	this.trigger = function (x, y, r, img, vx=0, vy=0, gravity=0, friction=1, frames=WOOSH_FRAMECOUNT, maxalpha=MAX_ALPHA) {
 		var aWoosh = null;
 		// look for a woosh
 		for (var num = 0; num < wooshPool.length; num++) {
@@ -147,7 +169,7 @@ function WooshFXManager(wooshImage) {
 			if (DEBUG_WOOSHES) console.log("Creating new woosh " + (wooshPool.length-1));
 		}
 		// make it happen
-		aWoosh.trigger(x, y, r, img, vx, vy, gravity, friction, frames);
+		aWoosh.trigger(x, y, r, img, vx, vy, gravity, friction, frames, maxalpha);
 	};
 
 	this.draw = function () {
@@ -177,10 +199,11 @@ function Woosh(wooshImage) { // a single woosh, reused often
 	this.vx = 0;
 	this.vy = 0;
 	this.friction = 0.9; // slowdown per frame
-	this.gravity = 0;
+    this.gravity = 0;
+    this.maxalpha = MAX_ALPHA;
 
 	// you can change images
-	this.trigger = function (x, y, r, img, vx=0, vy=0, gravity=0, friction=1, frames=WOOSH_FRAMECOUNT) {
+	this.trigger = function (x, y, r, img, vx=0, vy=0, gravity=0, friction=1, frames=WOOSH_FRAMECOUNT, maxalpha=MAX_ALPHA) {
 		if (DEBUG_WOOSHES) console.log("Woosh pos:" + x + "," +  y + " ang:" + r);
 		this.active = true;
 		this.frame = 0;
@@ -191,7 +214,8 @@ function Woosh(wooshImage) { // a single woosh, reused often
 		this.vx = vx;
 		this.vy = vy;
 		this.grav = gravity;
-		this.friction = friction;
+        this.friction = friction;
+        this.maxalpha = maxalpha;
 		if (img) this.img = img; // switching allowed
 	};
     
@@ -213,7 +237,7 @@ function Woosh(wooshImage) { // a single woosh, reused often
 			canvasContext.save();
 			canvasContext.translate(this.x, this.y);
 			canvasContext.rotate(this.r);
-			canvasContext.globalAlpha = MAX_ALPHA * (1 - (this.frame / this.frameCount)); // fade out
+			canvasContext.globalAlpha = this.maxalpha * (1 - (this.frame / this.frameCount)); // fade out
 			canvasContext.drawImage(this.img, Math.round(-this.img.width/2),Math.round(-this.img.height/2)); //	center,	draw
 			canvasContext.restore();
 
