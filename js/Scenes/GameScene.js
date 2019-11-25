@@ -227,7 +227,7 @@ function GameScene() {
     const delayedTransitionToGameOver = function() { 
         if (gameOverPending) return; // don't overlap
         gameOverPending = true;
-        //knockedOutBodies.add(player); // this works, but it uses the enemy sprite
+        knockedOutBodies.add(player,playerKickWhite);  // the PLAYER'S BODY! spinning 
         console.log("Delaying the transition to GAME OVER for " + GAMEOVER_TRANSITION_MS + "ms");
         setTimeout(triggerPendingGameOver,GAMEOVER_TRANSITION_MS);
     }

@@ -38,11 +38,11 @@ function knockedOutBodyManager() {
 	var rotspd = [];
 
 	// called by processDefeatedEntities()
-	this.add = function (enemy,img=basicEnemyKick) {
+	this.add = function (enemy,thisSprite=basicEnemyKick) {
 
 		if (DEBUG_BODIES) console.log("New knocked out body " + max);
 
-		img[max] = img;
+		img[max] = thisSprite;
 		xpos[max] = enemy.getPosition().x;
 		ypos[max] = enemy.getPosition().y;
 		xspd[max] = X_KICKBACK + (Math.random()*(X_KICKBACK*2)-X_KICKBACK_RANDOMNESS);
@@ -88,7 +88,13 @@ function knockedOutBodyManager() {
 							if (enemies[i].getBumped) enemies[i].getBumped({type:ENTITY_TYPE.Enemy},xspd[num],yspd[num]);
 						}
 					}                    
-				}
+                }
+                
+                // little extra game over juice: if this is the player, spam particles
+                if (img[num]==playerKickWhite) { 
+                    wooshFX.smallPuff(xpos[num], ypos[num]);
+                    wooshFX.starPuff(xpos[num], ypos[num]);
+                }
 
 			}
 		}

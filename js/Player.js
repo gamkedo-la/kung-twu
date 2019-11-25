@@ -253,23 +253,27 @@ function Player(config) {
 					randomRange(-0.25,-0.75),
 					0,0.99,60);
             }
+            /*
             // if we are actually "dead" and just falling back for a moment,
             // SPAM the particles, it is game over fireworks
             if (this.health<=0) {
-                wooshFX.smokePuff(position.x+randomRange(-20,20),position.y+randomRange(-20,60));
+                if (Math.random()<0.2) wooshFX.smokePuff(position.x+randomRange(-20,20),position.y+randomRange(-20,60));
                 wooshFX.starPuff(position.x+randomRange(-50,50),position.y+randomRange(-20,80));
                 wooshFX.starPuff(position.x+randomRange(-20,20),position.y+randomRange(-20,20));
                 
                 // fly back
-                position.x += (velocity.x>0?25:-25); // fake slide
-                position.x += 5; // no effect: collides w floor
-                
+                //position.x += (velocity.x>0?25:-25); // fake slide
+                //position.x += 5; // no effect: collides w floor
+
                 // turn off collisions so we fall through the floor
                 //this.collisionBody.setPosition({x:0,y:9999999999}); // no effect
                 //no effect if I change it to circle and radius 0 either
-                this.collisionBody.isActive = false; // no effect either
+                //this.collisionBody.isActive = false; // no effect either
+
+                // we now knockedOutBodies.add in delayedTransitionToGameOver
 
             }
+            */
 		}
 
 	};
@@ -533,7 +537,9 @@ function Player(config) {
 				}
 			}
 			
-			stateManager.drawAt(position.x, position.y, red);
+            if (this.health>0) { // if dead, don't draw since we have become a knockedOutBody particle
+                stateManager.drawAt(position.x, position.y, red);
+            }
 		}
 
         canvasContext.drawImage(shadowSprite,shadowx,shadowy);
