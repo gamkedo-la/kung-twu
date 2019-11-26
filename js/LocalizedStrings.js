@@ -321,7 +321,7 @@ const userStrings = {
 		[STRINGS_KEY.Level5]:"りゅう",
 
 		//TODO: Retranslate the end of this next line
-		[STRINGS_KEY.HelpScreenContents]:"[Arrows] うごく\n[UP or C] ジャンプ\n[G or X] パンチ\n[H or X] キック\n[B] ブロック\n[S] or [Down] Crouch", //\n[P] ポーズ
+		[STRINGS_KEY.HelpScreenContents]:"[Arrows] うごく\n[UP or C] ジャンプ\n[G or X] パンチ\n[H or X] あしげ\n[B] ブロック\n[S] or [Down] しゃがむ", //\n[P] ポーズ
 
 		[STRINGS_KEY.Resume]:"[ESC] つづく",
 		[STRINGS_KEY.Controls]:"[C] コントロール",
