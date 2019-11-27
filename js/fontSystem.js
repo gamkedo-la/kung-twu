@@ -439,6 +439,7 @@ function fontSystem(jpFont, charSize, context) {
 		case "メ": return {x:2 * charSize.width, y:13 * charSize.height};
 		case "モ": return {x:3 * charSize.width, y:13 * charSize.height};
 		case "ﾔ" : return {x:4 * charSize.width, y:13 * charSize.height};
+		case "ャ" : return {x:4 * charSize.width, y:13 * charSize.height};
 		case "ヤ": return {x:5 * charSize.width, y:13 * charSize.height};
 		case "ﾕ" : return {x:6 * charSize.width, y:13 * charSize.height};
 		case "ユ": return {x:7 * charSize.width, y:13 * charSize.height};
