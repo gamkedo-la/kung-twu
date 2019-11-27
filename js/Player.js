@@ -228,14 +228,6 @@ function Player(config) {
 		shadowx = position.x - 10;
 		shadowy = floorHeight - 24;
 
-		// puff of dust on the floor if we just landed
-		var onGround = stateManager.getIsOnGround();
-		if (onGround && !this.onGroundlastFrame) {
-			//console.log("just landed: DUST PUFF");
-			wooshFX.triggerLanding(position.x,position.y);
-		}
-		this.onGroundlastFrame = onGround;
-
 		this.collisionBody.setPosition(position); //keep collider in sync with sprite position
 		if (this.attackBody != null) {
 			this.attackBody.setPosition(position);
@@ -244,36 +236,15 @@ function Player(config) {
 		// visual feedback if the player is about to die
 		if (this.health <= DIZZY_STARS_LOW_HP) {
 			//console.log("DANGER! HP is " + this.health);
-			if (Math.random()<0.1) { // occasionally unless dead
+			if (Math.random() < 0.1) { // occasionally unless dead
 				wooshFX.trigger( // spawn a star near our head
-					position.x+50+randomRange(-20,20),
-					position.y+10+randomRange(-4,4),
+					position.x + 50 + randomRange(-20, 20),
+					position.y + 10 + randomRange(-4, 4),
 					0,starSprite,
-					randomRange(-0.5,0.5), // vel
-					randomRange(-0.25,-0.75),
-					0,0.99,60);
+					randomRange(-0.5, 0.5), // vel
+					randomRange(-0.25, -0.75),
+					0, 0.99, 60);
 			}
-			/*
-            // if we are actually "dead" and just falling back for a moment,
-            // SPAM the particles, it is game over fireworks
-            if (this.health<=0) {
-                if (Math.random()<0.2) wooshFX.smokePuff(position.x+randomRange(-20,20),position.y+randomRange(-20,60));
-                wooshFX.starPuff(position.x+randomRange(-50,50),position.y+randomRange(-20,80));
-                wooshFX.starPuff(position.x+randomRange(-20,20),position.y+randomRange(-20,20));
-                
-                // fly back
-                //position.x += (velocity.x>0?25:-25); // fake slide
-                //position.x += 5; // no effect: collides w floor
-
-                // turn off collisions so we fall through the floor
-                //this.collisionBody.setPosition({x:0,y:9999999999}); // no effect
-                //no effect if I change it to circle and radius 0 either
-                //this.collisionBody.isActive = false; // no effect either
-
-                // we now knockedOutBodies.add in delayedTransitionToGameOver
-
-            }
-            */
 		}
 
 	};
@@ -325,7 +296,10 @@ function Player(config) {
 	const updatePosition = function(deltaTime, gravity, floorHeight, levelMin, levelMax) {
 		const timeStep = deltaTime / 1000; //deltaTime is in milliseconds
 
-		if((stateManager.getCurrentState() !== STATE.Dash) && (stateManager.getCurrentState() !== STATE.Block)) {
+		if(
+			(stateManager.getCurrentState() !== STATE.Dash) && 
+			(stateManager.getCurrentState() !== STATE.Block) &&
+			(stateManager.getCurrentState() !== STATE.KnockBack)) {
 			if((velocity.x > 0) && (stateManager.getIsFacingLeft())) {
 				velocity.x = -velocity.x;
 			} else if((velocity.x < 0) && (!stateManager.getIsFacingLeft())) {
@@ -383,6 +357,7 @@ function Player(config) {
 		velocity.y = 0;
 		if (!stateManager.getIsOnGround()) {
 			stateManager.didLand();
+			wooshFX.triggerLanding(position.x,position.y);
 		}
 	};
 
@@ -585,17 +560,9 @@ function Player(config) {
 			if(otherEntity.getPosition().x < position.x) {
 				//enemy is to the left
 				velocity.x = KNOCK_BACK_SPEED;
-				if(!stateManager.getIsFacingLeft()) {
-					//TODO: Should we ensure we are facing the direction of the attack after getting hit?
-					//stateManager.shouldFaceLeft(true);
-				}
 			} else {
 				//enemy is to the right
 				velocity.x = -KNOCK_BACK_SPEED;
-				if(stateManager.getIsFacingLeft()) {
-					//TODO: Should we ensure we are facing the direction of the attack after getting hit?
-					//stateManager.shouldFaceLeft(false);
-				}
 			}
 
 			this.health -= otherEntity.getCurrentDamage();
