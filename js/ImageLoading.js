@@ -65,6 +65,7 @@ const titleImage = document.createElement("img");
 const titleScreenDecore = document.createElement("img");
 const uiScreenBg = document.createElement("img");
 const uiBorder = document.createElement("img");
+const assistBorder = document.createElement("img");
 const jpFontImg = document.createElement("img");
 
 const characterAtlas = document.createElement("img");
@@ -560,6 +561,7 @@ function loadImages() {
 		// backgrounds
 		{ imgName: uiScreenBg, theFile: "UI_BG.png"},
 		{ imgName: uiBorder, theFile: "UI_Border.png"},
+		{ imgName: assistBorder, theFile: "Vert_Menu_Block.png"},
 		{ imgName: titleScreenBG, theFile: "title_screen_bg.png"},
 		{ imgName: titleImage, theFile: "title_screen_ktname.png"},
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},

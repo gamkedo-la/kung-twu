@@ -1,9 +1,24 @@
 //Assist Scene 2
 //Assist Mode Scene
 function AssistScene2() {
-	this.name = "Assist";
 	const TITLE_Y_POS = 100;
 	const TITLE_SCALE = 1;
+
+	const SLIDER_W = 200;
+
+	const COL_DELTA = 50;
+	const COL1_X = 75;
+	const COL2_X = COL1_X + SLIDER_W + COL_DELTA;
+	const COL3_X = COL2_X + SLIDER_W + COL_DELTA;
+
+	const ROW_DELTA = 80;
+	const ROW1_Y = TITLE_Y_POS + 90 + ROW_DELTA;
+	const ROW2_Y = ROW1_Y + ROW_DELTA;
+	const ROW3_Y = ROW2_Y + ROW_DELTA;
+	const ROW4_Y = ROW3_Y + ROW_DELTA;
+	const ROW5_Y = ROW4_Y + ROW_DELTA;
+
+	this.name = "Assist";
 	let selectorPositionsIndex = 0;
 	const selectorPosition = {x:0, y:0};
 	const buttonHeight = 25;
@@ -71,21 +86,6 @@ function AssistScene2() {
 	};
 
 	const buildSliderButtons = function() {
-		const SLIDER_W = 200;
-		const SLIDER_H = 10;
-
-		const COL_DELTA = 50;
-		const COL1_X = 75;
-		const COL2_X = COL1_X + SLIDER_W + COL_DELTA;
-		const COL3_X = COL2_X + SLIDER_W + COL_DELTA;
-
-		const ROW_DELTA = 80;
-		const ROW1_Y = TITLE_Y_POS + JPFont.getCharacterHeight(TITLE_SCALE) + ROW_DELTA + 10;
-		const ROW2_Y = ROW1_Y + ROW_DELTA;
-		const ROW3_Y = ROW2_Y + ROW_DELTA;
-		const ROW4_Y = ROW3_Y + ROW_DELTA;
-		const ROW5_Y = ROW4_Y + ROW_DELTA;
-
 		/*First Column of Sliders */
 		//Player Max Health
 		buttons.push(buildPlayerHealthButton(COL1_X, ROW1_Y, buttonHeight, buttonTitlePadding));
@@ -400,8 +400,10 @@ function AssistScene2() {
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(titleScreenDecore, 0, 0);
-		//		canvasContext.drawImage(titleBlock, canvas.width / 2 - titleBlock.width / 2, canvas.height / 2 - 38);        
-		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);     
+		canvasContext.drawImage(assistBorder, 10, 260);
+		canvasContext.drawImage(assistBorder, 10 + SLIDER_W + COL_DELTA, 260);
+		canvasContext.drawImage(assistBorder, 10 + 2 * (SLIDER_W + COL_DELTA), 260);
+		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 	};
 	
 	const drawTitle = function() {
