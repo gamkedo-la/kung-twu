@@ -80,13 +80,24 @@ function GameOverScene() {
 		}
 		
 		switch (newKeyEvent) {
-		case ALIAS.DEBUG:
-			DEBUG = !DEBUG;
+		case ALIAS.SELECT2:
+			SceneState.setState(SCENE.LEVEL_INTRO);
+			sound.playSFX(Sounds.SFX_MenuSelect);
+			return true;
+		case ALIAS.ASSIST:
+			SceneState.setState(SCENE.ASSIST);
+			sound.playSFX(Sounds.SFX_MenuSelect);
+			return true;
+		case ALIAS.CREDITS:
+			SceneState.setState(SCENE.CREDITS);
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.POINTER:
 			checkButtons();
 			return true;
+		case ALIAS.QUIT:
+			SceneState.setState(SCENE.TITLE, {didQuit:true});
+			sound.playSFX(Sounds.SFX_MenuSelect);
 		}
 		
 		return false;
@@ -105,7 +116,7 @@ function GameOverScene() {
 			SceneState.setState(SCENE.TITLE, {didQuit:true});
 		};
 
-		return new UIButton(STRINGS_KEY.End, x, y, height, padding, thisClick, Color.Green);
+		return new UIButton(STRINGS_KEY.Quit, x, y, height, padding, thisClick, Color.Green);
 	};
 
 	const buildSettingsButton = function(x, y, height, padding) {
@@ -113,7 +124,7 @@ function GameOverScene() {
 			SceneState.setState(SCENE.SETTINGS);
 		};
 
-		return new UIButton(STRINGS_KEY.Settings, x, y, height, padding, thisClick, Color.Aqua);
+		return new UIButton(STRINGS_KEY.Assist, x, y, height, padding, thisClick, Color.Aqua);
 	};
 
 	const buildCreditsButton = function(x, y, height, padding) {
@@ -186,7 +197,7 @@ function GameOverScene() {
 	};
 
 	const processUserInput = function() {
-		const navKeys = inputProcessor.getNewlyReleasedKeys();
+		const navKeys = inputProcessor.getNewlyActiveKeys();
 		let properties = null;
 		for(let key of navKeys) {
 			const newNavAction = keyMapper.getNavAction(key);
