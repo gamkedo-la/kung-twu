@@ -57,9 +57,6 @@ function UITextureButton(image, x, y) {
 
 }
 
-/**
- * Creates a slider, useful for menu UI
- */
 function UISlider(x, y, width = 150, height = 10, label = "", 
 	lowVal = 0, lowLabel = "", highVal = 100, highLabel = "", intialValue = 50, 
 	steps = 10, isHorizontal = true, aColor = Color.Aqua, valueLabels = null) {
@@ -67,27 +64,22 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 	const LABEL_SCALE = height / 40;//0.3;
 	const LABEL_HEIGHT = JPFont.getCharacterHeight(LABEL_SCALE);
 	const RADIUS = (isHorizontal? height : width);
-	/**
-   * The difference between high and low values
-   */
 	const SPAN = highVal - lowVal;
 	const INCREMENT = Math.floor(SPAN / (steps));
 	const ALLOWED_VALUES = [];
 	for(let i = lowVal; i <= highVal; i+=INCREMENT) {
 		ALLOWED_VALUES.push(i);
-		console.log(label + ": " + i);
 	}
+
 	const LABEL_PADDING = height;
 
 	let color = aColor;
 	let path = null;
 	let indicatorPath = null;
-	//	let shadowPath = null;
 	let positivePath = null;
 	let negativePath = null;
 
 	let currentValue;
-	let currentValX;
 	let valueIndex;
 	let hasNewValue = true;
 	this.hasFocus = false;
@@ -107,10 +99,14 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 	this.setValue = function(newValue) {
 		if(newValue === currentValue) {return;}
 
-		if(newValue < lowVal) {
+		if(newValue <= lowVal) {
 			currentValue = lowVal;
-		} else if(newValue > highVal) {
+			valueIndex = 0;
+		} else if(newValue >= highVal) {
 			currentValue = highVal;
+			if(valueLabels !==null) {
+				valueIndex = valueLabels.length - 1;
+			}
 		} else {
 			let lowerValue;
 			let higherValue;
@@ -134,7 +130,6 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 			}
 		}
 
-		currentValX = x + width * (currentValue - lowVal) / SPAN;
 
 		hasNewValue = true;
 	};
@@ -142,9 +137,9 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 
 	this.setValueForClick = function(pointerX, pointerY) {
 		if(isHorizontal) {
-			this.setValue((lowVal + SPAN) * (pointerX - x) / width);
+			this.setValue(lowVal + (SPAN * (pointerX - x)) / width);
 		} else {
-			this.setValue((lowVal + SPAN) * (pointerY - y) / height);
+			this.setValue(lowVal + (SPAN * (pointerY - y)) / height);
 		}
 
 		sound.playSFX(Sounds.SFX_MenuSelect);
@@ -160,10 +155,6 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 
 	this.decrement = function() {
 		this.setValue(currentValue - INCREMENT);
-	};
-
-	this.update = function(deltaTime) {
-
 	};
 
 	this.wasClicked = function(pointerX, pointerY) {
@@ -203,8 +194,6 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 		canvasContext.fillStyle = Color.Grey;
 		canvasContext.fill(negativePath);
 
-		//		canvasContext.fillStyle = Color.Black;
-		//		canvasContext.fill(shadowPath);
 		canvasContext.fillStyle = color;
 		canvasContext.fill(indicatorPath);
 		canvasContext.strokeStyle = Color.Black;
@@ -245,8 +234,6 @@ function UISlider(x, y, width = 150, height = 10, label = "",
 		}
 
 		indicatorPath = buildIndicatorPath(indicatorCenter);
-		//		indicatorCenter.x += 2;
-		//		shadowPath = buildIndicatorPath(indicatorCenter);
 	};
 
 	const buildHorizontalOutline = function() {

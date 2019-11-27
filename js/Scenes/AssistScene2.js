@@ -335,74 +335,7 @@ function AssistScene2() {
 			wasClicked = button.respondIfClicked(mouseX, mouseY);
 			if(wasClicked) {break;}
 		}
-
-		// @ts-ignore
-		const sliders = Object.values(slider);
-		for(let aSlider of sliders) {
-			if(aSlider.wasClicked(mouseX, mouseY)) {
-				aSlider.setValueForClick(mouseX, mouseY);
-				updatePlayerPrefs(aSlider);
-				break;
-			}
-		}
 	};
-
-	const updatePlayerPrefs = function(aSlider) {
-		switch(aSlider) {
-		case slider.maxPlayerHealth:
-			localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, aSlider.getValue());
-			break;
-		case slider.startingBelt:
-			localStorageHelper.setInt(localStorageKey.StartingBelt, aSlider.getValue());
-			playerBelt = aSlider.getValue();
-			break;
-		case slider.startingLevel:
-			currentLevel = 1 + aSlider.getValue();//levels start at 1
-			localStorageHelper.setInt(localStorageKey.StartingLevel, aSlider.getValue() + 1);
-			break;
-		case slider.enemyHealth:
-			localStorageHelper.setInt(localStorageKey.BaseEnemyHealth, aSlider.getValue());
-			break;
-		case slider.playerDamage:
-			localStorageHelper.setInt(localStorageKey.PlayerBaseDamage, aSlider.getValue());
-			break;
-		case slider.invincibleDuration:
-			localStorageHelper.setInt(localStorageKey.InvincibleDuration, aSlider.getValue());
-			break;
-		case slider.knockback:
-			localStorageHelper.setInt(localStorageKey.KnockbackSpeed, aSlider.getValue());
-			break;
-		case slider.enemyStrength:
-			localStorageHelper.setInt(localStorageKey.EnemyStrength, aSlider.getValue());
-			break;
-		case slider.bossHealth:
-			localStorageHelper.setInt(localStorageKey.BossHealth, aSlider.getValue());
-			break;
-		case slider.bossStrength:
-			localStorageHelper.setInt(localStorageKey.BossStrength, aSlider.getValue());
-			break;
-		case slider.enemiesPerLevel:
-			localStorageHelper.setInt(localStorageKey.EnemiesPerLevel, aSlider.getValue());
-			break;
-		case slider.timeLimit:
-			localStorageHelper.setInt(localStorageKey.LevelTime, aSlider.getValue());
-			break;
-		case slider.gangCount:
-			localStorageHelper.setInt(localStorageKey.GangCount, aSlider.getValue());
-			break;
-		}
-	};
-
-	/*	const buildSliderButtons = function() {
-		const thisClick = function() {
-			if(pauseManager.getIsPaused()) {
-				pauseManager.resumeGame(CAUSE.Keypress);
-			}
-			SceneState.setState(SCENE.LEVEL_INTRO);
-		};
-
-		return new UIButton(STRINGS_KEY.Play, x, y, height, padding, thisClick, Color.Aqua);
-	};*/
 
 	const buildPlayButton = function(x, y, height, padding) {
 		const thisClick = function() {
@@ -479,6 +412,7 @@ function AssistScene2() {
 	const buildSliderData = function() {
 		sliderData = {
 			playerHealth: {
+				name:SLIDER_NAMES.MaxHealth,
 				titleKey:STRINGS_KEY.MaxHealth,
 				minValue:10,
 				minTitle:"10",
@@ -490,6 +424,7 @@ function AssistScene2() {
 				colors:[Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue]
 			},
 			playerStrength: {
+				name:SLIDER_NAMES.PlayerBaseDamage,
 				titleKey:STRINGS_KEY.PlayerDamage,
 				minValue:1,
 				minTitle:"1",
@@ -501,6 +436,7 @@ function AssistScene2() {
 				colors:[Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue]
 			},
 			startingBelt: {
+				name:SLIDER_NAMES.StartBelt,
 				titleKey:STRINGS_KEY.StartBelt,
 				minValue:0,
 				minTitle:getLocalizedStringForKey(STRINGS_KEY.BeltWhite),
@@ -520,8 +456,9 @@ function AssistScene2() {
 				colors:[Color.White, Color.Yellow, Color.Tan, Color.Brown, Color.Red, Color.Black]
 			},
 			startingLevel: {
+				name:SLIDER_NAMES.StartLevel,
 				titleKey:STRINGS_KEY.StartLevel,
-				minValue:0,
+				minValue:1,
 				minTitle:getLocalizedStringForKey(STRINGS_KEY.Level1),
 				storageKey:localStorageKey.StartingLevel,
 				default:ASSIST_DEFAULT.StartLevel,
@@ -532,12 +469,13 @@ function AssistScene2() {
 					getLocalizedStringForKey(STRINGS_KEY.Level4),
 					getLocalizedStringForKey(STRINGS_KEY.Level5)
 				],
-				maxValue:4,
+				maxValue:5,
 				maxTitle:getLocalizedStringForKey(STRINGS_KEY.Level5),
 				steps:4,
 				colors:[Color.Orange, Color.White, Color.Green, Color.Blue, Color.Red]
 			},
 			invincibility: {
+				name:SLIDER_NAMES.InvincibleDuration,
 				titleKey:STRINGS_KEY.Invicibility,
 				minValue:0,
 				minTitle:"0",
@@ -549,6 +487,7 @@ function AssistScene2() {
 				colors:[Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue]
 			},
 			knockback: {
+				name:SLIDER_NAMES.KnockbackSpeed,
 				titleKey:STRINGS_KEY.Knockback,
 				minValue:0,
 				minTitle:"0",
@@ -560,6 +499,7 @@ function AssistScene2() {
 				colors:[Color.White]
 			},
 			enemyHealth: {
+				name:SLIDER_NAMES.BaseEnemyHealth,
 				titleKey:STRINGS_KEY.RivalHealth,
 				minValue:1,
 				minTitle:"1",
@@ -571,6 +511,7 @@ function AssistScene2() {
 				colors:[Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red]
 			},
 			enemyStrength: {
+				name:SLIDER_NAMES.EnemyBaseStrength,
 				titleKey:STRINGS_KEY.EnemyStrength,
 				minValue:1,
 				minTitle:"1",
@@ -582,6 +523,7 @@ function AssistScene2() {
 				colors:[Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red]
 			},
 			bossHealth: {
+				name:SLIDER_NAMES.BossBaseHealth,
 				titleKey:STRINGS_KEY.BossHealth,
 				minValue:10,
 				minTitle:"10",
@@ -593,6 +535,7 @@ function AssistScene2() {
 				colors:[Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red]
 			},
 			bossStrength: {
+				name:SLIDER_NAMES.BossBaseStrength,
 				titleKey:STRINGS_KEY.BossStrength,
 				minValue:10,
 				minTitle:"10",
@@ -604,6 +547,7 @@ function AssistScene2() {
 				colors:[Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red]
 			},
 			enemiesPerLevel: {
+				name:SLIDER_NAMES.EnemiesPerLevel,
 				titleKey:STRINGS_KEY.RivalsToBeat,
 				minValue:1,
 				minTitle:"1",
@@ -615,6 +559,7 @@ function AssistScene2() {
 				colors:[Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red]
 			},
 			timeLimit: {
+				name:SLIDER_NAMES.LevelTime,
 				titleKey:STRINGS_KEY.LevelTime,
 				minValue:0,
 				minTitle:"0",
@@ -626,6 +571,7 @@ function AssistScene2() {
 				colors:[Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue]
 			},
 			simultaneousEnemies: {
+				name:SLIDER_NAMES.GangCount,
 				titleKey:STRINGS_KEY.GangCount,
 				minValue:0,
 				minTitle:"1",

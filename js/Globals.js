@@ -180,6 +180,22 @@ const ASSIST_DEFAULT = {
 	GangCount:1
 };
 
+const SLIDER_NAMES = {
+	MaxHealth:"maxHealth",
+	StartBelt:"startBelt",
+	StartLevel:"startLevel",
+	BaseEnemyHealth:"baseEnemyHealth",
+	EnemyBaseStrength:"enemyBaseStrength",
+	BossBaseHealth:"bossBaseHealth",
+	BossBaseStrength:"bossBaseStrength",
+	PlayerBaseDamage:"playerBaseDamage",
+	InvincibleDuration:"invincibleDuration",
+	KnockbackSpeed:"knockbackSpeed",
+	EnemiesPerLevel:"enemiesPerLevel",
+	LevelTime:"levelTime",
+	GangCount:"gangCount"
+};
+
 //------------Asset Management----------//
 const assetPath = {
 	Audio: "./audio/",

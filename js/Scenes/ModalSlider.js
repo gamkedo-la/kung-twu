@@ -119,10 +119,8 @@ function ModalSlider() {
 				case NAV_ACTION.SELECT:
 					if(selectorPositionsIndex === 0) {
 						SceneState.setState(SceneState.getPreviousState());
-					} else {
-//						pauseManager.resumeGame(CAUSE.Keypress);
-//						SceneState.setState(selections[selectorPositionsIndex]);
-					}
+					} 
+
 					sound.playSFX(Sounds.SFX_MenuSelect);
 					break;
 				}
@@ -151,6 +149,11 @@ function ModalSlider() {
 		if(slider.wasClicked(mouseX, mouseY)) {
 			slider.setValueForClick(mouseX, mouseY);
 			localStorageHelper.setInt(config.storageKey, slider.getValue());
+			if(config.name === SLIDER_NAMES.StartBelt) {
+				playerBelt = slider.getValue();
+			} else if(config.name === SLIDER_NAMES.StartLevel) {
+				currentLevel = slider.getValue();
+			}
 		}
 	};
 
@@ -201,8 +204,6 @@ function ModalSlider() {
 		// render the menu background
 		drawBG();
 		
-//		drawTitle();
-
 		// render menu
 		printButtons();
 
@@ -213,9 +214,5 @@ function ModalSlider() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(titleScreenDecore, 0, 0);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);     
-	};
-	
-	const drawTitle = function() {
-		JPFont.printTextAt(getLocalizedStringForKey(config.titleKey), {x:canvas.width / 2, y:TITLE_Y_POS}, TextAlignment.Center, 1);
 	};
 }
