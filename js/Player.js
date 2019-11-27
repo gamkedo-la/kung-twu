@@ -10,9 +10,9 @@ function Player(config) {
 	let INVINCIBLE_DURATION = null;
 	let invincibleTime = 0;
 	let isInvincible = false;
-    let canFall = false;
-    let shadowx = 0;
-    let shadowy = 0;
+	let canFall = false;
+	let shadowx = 0;
+	let shadowy = 0;
 
 	let baseDamage = localStorageHelper.getInt(localStorageKey.PlayerBaseDamage);
 	if((baseDamage === undefined) || (baseDamage === null) || (isNaN(baseDamage))) {
@@ -225,8 +225,8 @@ function Player(config) {
 
 		updatePosition(deltaTime, gravity, floorHeight, levelMin, levelMax);
         
-        shadowx = position.x - 10;
-        shadowy = floorHeight - 24;
+		shadowx = position.x - 10;
+		shadowy = floorHeight - 24;
 
 		// puff of dust on the floor if we just landed
 		var onGround = stateManager.getIsOnGround();
@@ -241,7 +241,7 @@ function Player(config) {
 			this.attackBody.setPosition(position);
 		}
 
-        // visual feedback if the player is about to die
+		// visual feedback if the player is about to die
 		if (this.health <= DIZZY_STARS_LOW_HP) {
 			//console.log("DANGER! HP is " + this.health);
 			if (Math.random()<0.1) { // occasionally unless dead
@@ -252,8 +252,8 @@ function Player(config) {
 					randomRange(-0.5,0.5), // vel
 					randomRange(-0.25,-0.75),
 					0,0.99,60);
-            }
-            /*
+			}
+			/*
             // if we are actually "dead" and just falling back for a moment,
             // SPAM the particles, it is game over fireworks
             if (this.health<=0) {
@@ -408,20 +408,20 @@ function Player(config) {
 	};
 
 	const walkRight = function() {
-        velocity.x = WALK_SPEED;
-        if (Math.random()<0.1) { wooshFX.subtleFootstep(position.x,position.y); }
+		velocity.x = WALK_SPEED;
+		if (Math.random()<0.1) { wooshFX.subtleFootstep(position.x,position.y); }
 	};
 
 	const walkLeft = function() {
-        velocity.x = -WALK_SPEED;
-        if (Math.random()<0.1) { wooshFX.subtleFootstep(position.x,position.y); }
+		velocity.x = -WALK_SPEED;
+		if (Math.random()<0.1) { wooshFX.subtleFootstep(position.x,position.y); }
 	};
 
 	const jump = function() {
 		if (stateManager.getIsNewState()) {
 			velocity.y = JUMP_SPEED;
-            sound.playSFX(Sounds.SFX_PlayerJump);
-            wooshFX.subtleFootstep(position.x,position.y);
+			sound.playSFX(Sounds.SFX_PlayerJump);
+			wooshFX.subtleFootstep(position.x,position.y);
 		}
 	};
 
@@ -537,12 +537,12 @@ function Player(config) {
 				}
 			}
 			
-            if (this.health>0) { // if dead, don't draw since we have become a knockedOutBody particle
-                stateManager.drawAt(position.x, position.y, red);
-            }
+			if (this.health>0) { // if dead, don't draw since we have become a knockedOutBody particle
+				stateManager.drawAt(position.x, position.y, red);
+			}
 		}
 
-        canvasContext.drawImage(shadowSprite,shadowx,shadowy);
+		canvasContext.drawImage(shadowSprite,shadowx,shadowy);
 
 		this.collisionBody.draw(); //colliders know to draw only when DRAW_COLLIDERS = true;
         
@@ -682,17 +682,17 @@ function Player(config) {
 		}
 	};
 
-    const nocollision = { // no effect either
-        lowX: -99999, 
-        highX:-99999, 
-        lowY: -99999, 
-        highY:-99999
-    }
+	const nocollision = { // no effect either
+		lowX: -99999, 
+		highX:-99999, 
+		lowY: -99999, 
+		highY:-99999
+	}
 
 	this.getColliderEdges = function() {
-        if (this.health<=0) 
-            return nocollision; // no effect
-        else return {
+		if (this.health<=0) 
+			return nocollision; // no effect
+		else return {
 			lowX: this.collisionBody.points[0].x, 
 			highX:this.collisionBody.points[2].x, 
 			lowY: this.collisionBody.points[0].y, 

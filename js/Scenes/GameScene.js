@@ -3,15 +3,15 @@ function GameScene() {
 	this.name = "Game Play";
 	const GRAVITY = 1500;
 	const VERTICAL_OFFSET = 50;
-    const FIRST_PLAYERSTART_OFFSET = -100; // on 1st load, levelData.playerStart not used - could be used to tweak start pos
-    const COLUMN_OFFSET = 200; // columns start from player start, so we need a small offset so the player doesn't spawn behind a column
-    const displayPoints = [];
+	const FIRST_PLAYERSTART_OFFSET = -100; // on 1st load, levelData.playerStart not used - could be used to tweak start pos
+	const COLUMN_OFFSET = 200; // columns start from player start, so we need a small offset so the player doesn't spawn behind a column
+	const displayPoints = [];
 	const UI_SCALE = 0.4;
 
-    // how long we wait after death to change game states to game over
-    // note: the game keeps running, which may cause unknown issues
-    const GAMEOVER_TRANSITION_MS = 2000; 
-    let gameOverPending = false;
+	// how long we wait after death to change game states to game over
+	// note: the game keeps running, which may cause unknown issues
+	const GAMEOVER_TRANSITION_MS = 2000; 
+	let gameOverPending = false;
 
 	let camera = null;
 	let enemies = [];
@@ -56,7 +56,7 @@ function GameScene() {
 
 	this.transitionIn = function() {
 
-        gameOverPending = false;
+		gameOverPending = false;
 
 		if((this.properties != undefined) && (this.properties.restartLevel)) {
 			this.reset();
@@ -110,8 +110,8 @@ function GameScene() {
 			if((activeRivals === undefined) || (activeRivals === null) || (isNaN(activeRivals))) {
 				activeRivals = ASSIST_DEFAULT.GangCount;
 				localStorageHelper.setInt(localStorageKey.GangCount, activeRivals);
-            }
-            // FIXME: should we player.reset() here so it moves to levelData.playerstart x/y?
+			}
+			// FIXME: should we player.reset() here so it moves to levelData.playerstart x/y?
 		}
 
 		if (sound.getCurrentBGMKey() !== Sounds.BGM_GamePlay) {
@@ -139,9 +139,9 @@ function GameScene() {
 
 	this.reset = function() {
         
-        gameOverPending = false;
+		gameOverPending = false;
 
-        didReset = true;
+		didReset = true;
 
 		camera = new Camera();
 
@@ -217,45 +217,43 @@ function GameScene() {
 		return enemies;
 	};
 
-    const triggerPendingGameOver = function() {
-        console.log("Delay complete! Switching to GAME OVER state now.");
-        gameOverPending = false;
-        SceneState.setState(SCENE.GAMEOVER, {score:score});
-    }
+	const triggerPendingGameOver = function() {
+		console.log("Delay complete! Switching to GAME OVER state now.");
+		gameOverPending = false;
+		SceneState.setState(SCENE.GAMEOVER, {score:score});
+	};
 
-    // player just died: animate for a moment
-    const delayedTransitionToGameOver = function() { 
-        if (gameOverPending) return; // don't overlap
-        gameOverPending = true;
-        knockedOutBodies.add(player,playerKickWhite);  // the PLAYER'S BODY! spinning 
-        console.log("Delaying the transition to GAME OVER for " + GAMEOVER_TRANSITION_MS + "ms");
-        setTimeout(triggerPendingGameOver,GAMEOVER_TRANSITION_MS);
-    }
+	// player just died: animate for a moment
+	const delayedTransitionToGameOver = function() { 
+		if (gameOverPending) return; // don't overlap
+		gameOverPending = true;
+		knockedOutBodies.add(player,playerKickWhite);  // the PLAYER'S BODY! spinning 
+		console.log("Delaying the transition to GAME OVER for " + GAMEOVER_TRANSITION_MS + "ms");
+		setTimeout(triggerPendingGameOver,GAMEOVER_TRANSITION_MS);
+	};
 
 	const update = function(deltaTime) {
-		if (DEBUG) {
-			levelData = dataForCurrentLevel();
-			camera.setMinMaxPos(levelData.cameraMin, levelData.cameraMax);
-			enemyMinX = levelData.cameraMin - 0.35 * canvas.width;
-			enemyMaxX = levelData.cameraMax + 0.35 * canvas.width;
+		let time = deltaTime;
+		if(gameOverPending) {
+			time /= 10;
 		}
 
 		const newCameraX = camera.getPosition().x;
-		updateEnvironment(deltaTime, newCameraX);
+		updateEnvironment(time, newCameraX);
 
 		// Timer countdown update
-		gameTimer.update(deltaTime);
-		hourglassManager.update(deltaTime);
+		gameTimer.update(time);
+		hourglassManager.update(time);
 		if(hourglassManager.timeIsUp) {
-            //SceneState.setState(SCENE.GAMEOVER, {score:score});
-            delayedTransitionToGameOver();
+			//SceneState.setState(SCENE.GAMEOVER, {score:score});
+			delayedTransitionToGameOver();
 
-			sound.playEcho(Sounds.SFX_PlayerFail, [.4, 1], [1, .3], 5, 200);
-			sound.playEcho(Sounds.SFX_PlayerKick, [1, .4], [.4, 1], 5, 150);
+			sound.playEcho(Sounds.SFX_PlayerFail, [0.4, 1], [1, 0.3], 5, 200);
+			sound.playEcho(Sounds.SFX_PlayerKick, [1, 0.4], [0.4, 1], 5, 150);
 		}
 
 		player.update(
-			deltaTime,
+			time,
 			GRAVITY,
 			floorMidHeight,
 			levelData.cameraMin - canvas.width / 2,
@@ -285,15 +283,15 @@ function GameScene() {
 			spawnNewEnemies(newCameraX);
 		}
 	
-		updateEnemies(deltaTime);
+		updateEnemies(time);
 
-		camera.update(deltaTime);
+		camera.update(time);
 
 		collisionManager.doCollisionChecks();
 
 		processDefeatedEntities(collisionManager.defeatedEntities);
 
-		processAndUpdatePointsToDisplay(deltaTime, camera.getPosition().x);
+		processAndUpdatePointsToDisplay(time, camera.getPosition().x);
 
 		for(let i = 0; i < UIRivals.length; i++) {
 			const aRival = UIRivals[i];
@@ -303,15 +301,17 @@ function GameScene() {
 				}
 			}
 
-			aRival.update(deltaTime);
+			aRival.update(time);
 		}
+
+		knockedOutBodies.update(time);
 
 		processUserInput();
 
-		if(currentLevel === 1) waterfall.update(deltaTime);
+		if(currentLevel === 1) waterfall.update(time);
 
 		if(bossIntroText !== null) {
-			bossIntroText.update(deltaTime, newCameraX);
+			bossIntroText.update(time, newCameraX);
 			if(bossIntroText.isComplete) {
 				bossIntroText = null;
 			}
@@ -399,8 +399,8 @@ function GameScene() {
 					}
 					localStorageHelper.setObject(localStorageKey.HighScore, scoreString);
 				}
-                //SceneState.setState(SCENE.GAMEOVER, {score:score});
-                delayedTransitionToGameOver();
+				//SceneState.setState(SCENE.GAMEOVER, {score:score});
+				delayedTransitionToGameOver();
 			} else {
 				const enemyIndex = enemies.findIndex(function(element) {
 					return element === defeatedEntity;
@@ -611,7 +611,7 @@ function GameScene() {
 
 	const drawUITimeCounter = function(screenLeft, cameraX) {
 		hourglassManager.draw(cameraX);
-/*		//Time Counter
+		/*		//Time Counter
 		// hourglass sand
 		//console.log("time left: " + gameTimer.getTime() + " of " + gameTimer.getStartTime());
 		var maxsize = 78;
@@ -695,8 +695,8 @@ function GameScene() {
 		});
 	
 		gameTimer.onZero.subscribe(() => {
-            //SceneState.setState(SCENE.GAMEOVER, {score:score});
-            delayedTransitionToGameOver();
+			//SceneState.setState(SCENE.GAMEOVER, {score:score});
+			delayedTransitionToGameOver();
 
 			sound.playEcho(Sounds.SFX_PlayerFail, [.4, 1], [1, .3], 5, 200);
 			sound.playEcho(Sounds.SFX_PlayerKick, [1, .4], [.4, 1], 5, 150);
@@ -718,7 +718,7 @@ function GameScene() {
 		return theseLevelEnemies + levelData.totalEnemies;
 	};
 
-    const initializeFloor = function(subfloorColumnImage, verticalOffset) {
+	const initializeFloor = function(subfloorColumnImage, verticalOffset) {
 		subfloor = new InfiniteSubFloor(subfloorColumnImage);
 		subfloor.initializeForLevel(currentLevel);
 		const colPos = 100 + camera.getPosition().x + (2 * canvas.width) / 3;
@@ -750,19 +750,19 @@ function GameScene() {
 				localStorageHelper.setInt(localStorageKey.StartingBelt, playerBelt);
 			}
 
-            const config = {
+			const config = {
                 
-                // FIXME should this respect levelData.playerStart here? 
-                // is that data even populated at this point? (NO)
-                // it does use levelData.playerStart during player.reset()
-                // level data has not loaded yet:
-                // x:levelData.playerStart.x, 
-                // y:levelData.playerStart.y,
+				// FIXME should this respect levelData.playerStart here? 
+				// is that data even populated at this point? (NO)
+				// it does use levelData.playerStart during player.reset()
+				// level data has not loaded yet:
+				// x:levelData.playerStart.x, 
+				// y:levelData.playerStart.y,
 
-                // because the above doesn't work, let's just nudge
-                x: (2 * canvas.width) / 3 + FIRST_PLAYERSTART_OFFSET, // FIXME no effect because columns follow the player
+				// because the above doesn't work, let's just nudge
+				x: (2 * canvas.width) / 3 + FIRST_PLAYERSTART_OFFSET, // FIXME no effect because columns follow the player
 				y: (3 * canvas.height) / 5,
-                health:health
+				health:health
 			};
 
 			player = new Player(config);
@@ -770,7 +770,7 @@ function GameScene() {
 	};
 
 	const initializeColumns = function(image, offset) {
-        columnManager = new InfiniteColumn(image, offset);
+		columnManager = new InfiniteColumn(image, offset);
 		const colPos = 100 + camera.getPosition().x + (2 * canvas.width) / 3;
 		columnManager.positionFirstColumn(colPos + COLUMN_OFFSET);
 	};
