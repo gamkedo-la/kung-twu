@@ -51,6 +51,7 @@ const STRINGS_KEY = {
 	Health:"Health",
 	Time:"Time",
 	Level:"Level",
+	Level_:"Level_Assist",
 	Level1:"Level1",
 	Level2:"Level2",
 	Level3:"Level3",
@@ -72,6 +73,7 @@ const STRINGS_KEY = {
 	StartBelt:"startBelt",
 	StartLevel:"startLevel",
 	Rivals:"rivals",
+	Rivals_:"rivals_Assist",
 	RivalHealth:"rivalHealth",
 	PlayerDamage:"playerDamage",
 	Invicibility:"invincibility",
@@ -143,6 +145,7 @@ const userStrings = {
 		[STRINGS_KEY.Health]:"HEALTH:",
 		[STRINGS_KEY.Time]:"TIME:",
 		[STRINGS_KEY.Level]:"LEVEL:",
+		[STRINGS_KEY.Level_]:"Level",
 		[STRINGS_KEY.Level1]:"Tiger",
 		[STRINGS_KEY.Level2]:"Crane",
 		[STRINGS_KEY.Level3]:"Snake",
@@ -165,6 +168,7 @@ const userStrings = {
 		[STRINGS_KEY.EndGameMessage]:"Congratulations!\nYou have achieved\nenlightenment go forth\nand teach what you\nhave learned.",
 		[STRINGS_KEY.Boss]:"Shīfù:",//This refers to a Kung Fu Teacher or Master
 		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.Rivals_]:"Rivals",
 		[STRINGS_KEY.RivalHealth]:"Rival\nHealth",
 		[STRINGS_KEY.PlayerDamage]:"Hit\nStrength",
 		[STRINGS_KEY.Invicibility]:"Invincible\nTime",
@@ -190,7 +194,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick",
 		[STRINGS_KEY.GangCount]:"Active\nRivals",
-		[STRINGS_KEY.Default]:"Restore Default"
+		[STRINGS_KEY.Default]:"Restore Default",
+		[STRINGS_KEY.Player]:"Player"
 	},
 
 	Spanish: {
@@ -221,6 +226,7 @@ const userStrings = {
 		[STRINGS_KEY.Health]:"SALUD:",
 		[STRINGS_KEY.Time]:"TIEMPO:",
 		[STRINGS_KEY.Level]:"NIVEL:",
+		[STRINGS_KEY.Level_]:"NIVEL",
 		[STRINGS_KEY.Level1]:"Tigre",
 		[STRINGS_KEY.Level2]:"Grulla",
 		[STRINGS_KEY.Level3]:"Serpiente",
@@ -256,6 +262,7 @@ const userStrings = {
 		[STRINGS_KEY.StartBelt]:"Correa\nde Inicio",
 		[STRINGS_KEY.StartLevel]:"Nível\nde Inicio",
 		[STRINGS_KEY.Rivals]:"Rivales:",
+		[STRINGS_KEY.Rivals_]:"Rivales",
 		[STRINGS_KEY.RivalHealth]:"Salud\nde Rival",
 		[STRINGS_KEY.PlayerDamage]:"Fuerza\nde Golpe",
 		[STRINGS_KEY.Invicibility]:"Tiempo\nInvencible",
@@ -282,7 +289,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick",
 		[STRINGS_KEY.GangCount]:"Active\nRivals",
-		[STRINGS_KEY.Default]:"Restore\nDefault"
+		[STRINGS_KEY.Default]:"Restore\nDefault",
+		[STRINGS_KEY.Player]:"Player"
 	},
 
 	Japanese: {
@@ -314,6 +322,7 @@ const userStrings = {
 		[STRINGS_KEY.Health]:"けんこ:",
 		[STRINGS_KEY.Time]:"じかん:",
 		[STRINGS_KEY.Level]:"レーベル:",
+		[STRINGS_KEY.Level_]:"レーベル",
 		[STRINGS_KEY.Level1]:"トラ",
 		[STRINGS_KEY.Level2]:"つる",
 		[STRINGS_KEY.Level3]:"ヘビ",
@@ -349,6 +358,7 @@ const userStrings = {
 		[STRINGS_KEY.StartBelt]:"かいしベルト",
 		[STRINGS_KEY.StartLevel]:"かいしかいし",
 		[STRINGS_KEY.Rivals]:"ライバル:",
+		[STRINGS_KEY.Rivals_]:"ライバル",
 		[STRINGS_KEY.RivalHealth]:"ライバルのけんこ",
 		[STRINGS_KEY.PlayerDamage]:"だげききょうど",
 		[STRINGS_KEY.Invicibility]:"むてきのじかん",
@@ -356,7 +366,6 @@ const userStrings = {
 		[STRINGS_KEY.EnemyStrength]:"ライバルのちから",
 		[STRINGS_KEY.BossStrength]:"シフウのちから",
 		[STRINGS_KEY.BossHealth]:"シフウのけんこ",
-
 		[STRINGS_KEY.TimesUp]:"じかんぎれ!",
 		[STRINGS_KEY.RivalsToBeat]:"ライバルをたおす",
 		[STRINGS_KEY.LevelTime]:"せいげんじかん",
@@ -375,7 +384,9 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + Kick] Jump Kick",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick",
 		[STRINGS_KEY.GangCount]:"のうどうてきのライバル",
-		[STRINGS_KEY.Default]:"せっていをきていちにもどす"
+		[STRINGS_KEY.Default]:"せっていをきていちにもどす",
+
+		[STRINGS_KEY.Player]:"Player"
 	},
 
 	French: {
@@ -406,6 +417,7 @@ const userStrings = {
 		[STRINGS_KEY.Health]:"SANTÉ:",
 		[STRINGS_KEY.Time]:"TEMPS:",
 		[STRINGS_KEY.Level]:"NIVEAU:",
+		[STRINGS_KEY.Level_]:"NIVEAU",
 		[STRINGS_KEY.Level1]:"Tigre",
 		[STRINGS_KEY.Level2]:"Grue",
 		[STRINGS_KEY.Level3]:"Serpent",
@@ -438,6 +450,7 @@ const userStrings = {
 		[STRINGS_KEY.StartBelt]:"Ceinture\nde départ",
 		[STRINGS_KEY.StartLevel]:"Niveau\nde départ",
 		[STRINGS_KEY.Rivals]:"Rivals:",
+		[STRINGS_KEY.Rivals_]:"Rivals",
 		[STRINGS_KEY.RivalHealth]:"Santé\ndu Rival",
 		[STRINGS_KEY.PlayerDamage]:"Force\ndes coups",
 		[STRINGS_KEY.Invicibility]:"Temps\nd'Invincibilité",
@@ -464,7 +477,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Coup de Pied Rotatif",
 
 		[STRINGS_KEY.GangCount]:"Active Rivals",
-		[STRINGS_KEY.Default]:"Restore Default"
+		[STRINGS_KEY.Default]:"Restore Default",
+		[STRINGS_KEY.Player]:"Player"
 	},
 
 	Russian: {
@@ -497,6 +511,7 @@ const userStrings = {
 		[STRINGS_KEY.Health]:"здоровье:",
 		[STRINGS_KEY.Time]:"время:",
 		[STRINGS_KEY.Level]:"уровень:",
+		[STRINGS_KEY.Level_]:"уровень",
 		[STRINGS_KEY.Level1]:"тигр",
 		[STRINGS_KEY.Level2]:"кран",
 		[STRINGS_KEY.Level3]:"змея",
@@ -529,6 +544,7 @@ const userStrings = {
 		[STRINGS_KEY.StartBelt]:"начать\nремень",
 		[STRINGS_KEY.StartLevel]:"начальный\nуровень",
 		[STRINGS_KEY.Rivals]:"конкуренты:",
+		[STRINGS_KEY.Rivals_]:"конкуренты",
 		[STRINGS_KEY.RivalHealth]:"соперник\nздоровья",
 		[STRINGS_KEY.PlayerDamage]:"сила\nудара",
 		[STRINGS_KEY.Invicibility]:"непобедимое\nвремя",
@@ -555,7 +571,8 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl5]:"[изворачиваться + удар] спиновой удар",
 
 		[STRINGS_KEY.GangCount]:"Active\nRivals",
-		[STRINGS_KEY.Default]:"Restore\nDefault"
+		[STRINGS_KEY.Default]:"Restore\nDefault",
+		[STRINGS_KEY.Player]:"Player"
 	},
 
 	Polish: {
@@ -593,6 +610,7 @@ const userStrings = {
 		[STRINGS_KEY.Health]:"ŻYCIE:",
 		[STRINGS_KEY.Time]:"CZAS:",
 		[STRINGS_KEY.Level]:"POZIOM:",
+		[STRINGS_KEY.Level_]:"POZIOM",
 		[STRINGS_KEY.Level1]:"Tygrys",
 		[STRINGS_KEY.Level2]:"Żuraw",
 		[STRINGS_KEY.Level3]:"Wąż",
@@ -618,6 +636,7 @@ const userStrings = {
 		[STRINGS_KEY.StartBelt]:"Początkowy\nPas",
 		[STRINGS_KEY.StartLevel]:"Początkowy\nPoziom",
 		[STRINGS_KEY.Rivals]:"Rywale:",
+		[STRINGS_KEY.Rivals_]:"Rywale",
 		[STRINGS_KEY.RivalHealth]:"Życie\nRywala",
 		[STRINGS_KEY.PlayerDamage]:"Siła\nUderzenia",
 		[STRINGS_KEY.Invicibility]:"Czas\nNietykalności",
@@ -643,6 +662,7 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Skok + Kopnięcie] Kopnięcie z Wyskoku",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Zryw + Kopnięcie] Kopnięcie z Obrotu",
 		[STRINGS_KEY.GangCount]:"Aktywni\nRywale",
-		[STRINGS_KEY.Default]:"Przywróć Domyślą Wartość"
+		[STRINGS_KEY.Default]:"Przywróć Domyślą Wartość",
+		[STRINGS_KEY.Player]:"Player"
 	}
 };

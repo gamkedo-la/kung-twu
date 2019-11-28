@@ -1,7 +1,7 @@
 //UIButton
-function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.Blue, language = null) {
+function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.Blue, language = null, scale = 0.3) {
 	const bounds = {};
-	const TITLE_SCALE = 0.3;
+	let TITLE_SCALE = scale;
 	let isHovering = false;
 	this.title = getLocalizedStringForKey(stringsKey);
 	let titleArray = [];
@@ -55,6 +55,11 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 
 	this.getBounds = function() {
 		return bounds;
+	};
+
+	this.setScale = function(newScale) {
+		TITLE_SCALE = newScale;
+		setBounds(this.title, x, y, height, padding);
 	};
 
 	this.updateTitle = function() {

@@ -3,11 +3,12 @@
 function AssistScene2() {
 	const TITLE_Y_POS = 100;
 	const TITLE_SCALE = 1;
+	const HEADER_SCALE = 0.7;
 
 	const SLIDER_W = 200;
 
-	const COL_DELTA = 50;
-	const COL1_X = 75;
+	const COL_DELTA = 63;
+	const COL1_X = 60;
 	const COL2_X = COL1_X + SLIDER_W + COL_DELTA;
 	const COL3_X = COL2_X + SLIDER_W + COL_DELTA;
 
@@ -206,8 +207,11 @@ function AssistScene2() {
 		const thisClick = function() {
 			SceneState.setState(SCENE.SLIDER, sliderData.invincibility);
 		};
-
-		return new UIButton(sliderData.invincibility.titleKey, x, y, height, padding, thisClick, Color.Aqua);
+		const invincibleButton = new UIButton(sliderData.invincibility.titleKey, x, y, height, padding, thisClick, Color.Aqua);
+		if(invincibleButton.getBounds().width > 200) {
+			invincibleButton.setScale(0.27);
+		}
+		return invincibleButton;
 	};
 
 	const buildBossStrengthButton = function(x, y, height, padding) {
@@ -320,7 +324,7 @@ function AssistScene2() {
 	const updateSelectorPosition = function() {
 		const theButton = buttons[selectorPositionsIndex];
 		const theBounds = theButton.getBounds();
-		let widthToUse = -(selector.width + (buttonHeight / 2));
+		let widthToUse = -(selector.width);// + (buttonHeight / 2));
 		if(theButton.title === getLocalizedStringForKey(STRINGS_KEY.Back)) {
 			widthToUse = theBounds.width + (buttonHeight / 2);
 		}
@@ -386,6 +390,8 @@ function AssistScene2() {
 		drawBG();
 		
 		drawTitle();
+
+		drawHeaders();
 		
 		// @ts-ignore
 		const sliders = Object.values(slider);
@@ -400,15 +406,28 @@ function AssistScene2() {
 	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(titleScreenDecore, 0, 0);
-		canvasContext.drawImage(assistBorder, 10, 260);
-		canvasContext.drawImage(assistBorder, 10 + SLIDER_W + COL_DELTA, 260);
-		canvasContext.drawImage(assistBorder, 10 + 2 * (SLIDER_W + COL_DELTA), 260);
+		canvasContext.drawImage(assistBorder, 10, 250);
+		canvasContext.drawImage(assistBorder, 10 + SLIDER_W + COL_DELTA, 250);
+		canvasContext.drawImage(assistBorder, 10 + 2 * (SLIDER_W + COL_DELTA), 250);
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 	};
 	
 	const drawTitle = function() {
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.AssistSceneTitle),
 			{x:canvas.width / 2, y:TITLE_Y_POS}, TextAlignment.Center, TITLE_SCALE);
+	};
+
+	const drawHeaders = function() {
+		let scaleToUse = HEADER_SCALE;
+		if(currentLanguage === Language.Russian) {
+			scaleToUse = HEADER_SCALE - 0.15;
+		}
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Player),
+			{x:(COL2_X - COL1_X) / 2, y:ROW1_Y - 75}, TextAlignment.Center, scaleToUse);
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Rivals_),
+			{x:(COL2_X - COL1_X) / 2 + (SLIDER_W + COL_DELTA), y:ROW1_Y - 75}, TextAlignment.Center, scaleToUse);
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.Level_),
+			{x:(COL2_X - COL1_X) / 2 + 2 * (SLIDER_W + COL_DELTA), y:ROW1_Y - 75}, TextAlignment.Center, scaleToUse);
 	};
 
 	const buildSliderData = function() {
