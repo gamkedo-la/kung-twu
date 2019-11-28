@@ -1119,7 +1119,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:playerSweepTan,
+			frames:[0],
+			width:playerSweepTan.width,
+			height:playerSweepTan.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
 		knockback:{
@@ -1206,7 +1215,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:playerSweepBrown,
+			frames:[0],
+			width:playerSweepBrown.width,
+			height:playerSweepBrown.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
 		knockback:{
@@ -1293,7 +1311,17 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:playerSweepRed,
+			frames:[0],
+			width:playerSweepRed.width,
+			height:playerSweepRed.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+
+		},
 		j_kick:{},
 		h_kick:{},
 		knockback:{
@@ -1380,7 +1408,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:playerSweepBlack,
+			frames:[0],
+			width:playerSweepBlack.width,
+			height:playerSweepBlack.height,
+			frameTimes:[225],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
 		knockback:{

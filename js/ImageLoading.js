@@ -227,6 +227,11 @@ const playerKickBrown = document.createElement("canvas");
 const playerKickRed = document.createElement("canvas");
 const playerKickBlack = document.createElement("canvas");
 
+const playerSweepTan = document.createElement("canvas");
+const playerSweepBrown = document.createElement("canvas");
+const playerSweepRed = document.createElement("canvas");
+const playerSweepBlack = document.createElement("canvas");
+
 const playerKnockbackWhite = document.createElement("canvas");
 const playerKnockbackYellow = document.createElement("canvas");
 const playerKnockbackTan = document.createElement("canvas");
@@ -339,24 +344,28 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(playerWalkTan, playerWalkTanData, characterAtlas);
 		initializeCanvasFromAtlas(playerKickTan, playerKickTanData, characterAtlas);
 		initializeCanvasFromAtlas(playerPunchTan, playerPunchTanData, characterAtlas);
+		initializeCanvasFromAtlas(playerSweepTan, basicEnemySweepData, characterAtlas); //temp enemy sprite data
 		initializeCanvasFromAtlas(playerKnockbackTan, playerKnockbackTanData, characterAtlas);
 
 		initializeCanvasFromAtlas(playerIdleBrown, playerIdleBrownData, characterAtlas);
 		initializeCanvasFromAtlas(playerWalkBrown, playerWalkBrownData, characterAtlas);
 		initializeCanvasFromAtlas(playerKickBrown, playerKickBrownData, characterAtlas);
 		initializeCanvasFromAtlas(playerPunchBrown, playerPunchBrownData, characterAtlas);
+		initializeCanvasFromAtlas(playerSweepBrown, basicEnemySweepData, characterAtlas); //temp enemy sprite data
 		initializeCanvasFromAtlas(playerKnockbackBrown, playerKnockbackBrownData, characterAtlas);
 
 		initializeCanvasFromAtlas(playerIdleRed, playerIdleRedData, characterAtlas);
 		initializeCanvasFromAtlas(playerWalkRed, playerWalkRedData, characterAtlas);
 		initializeCanvasFromAtlas(playerKickRed, playerKickRedData, characterAtlas);
 		initializeCanvasFromAtlas(playerPunchRed, playerPunchRedData, characterAtlas);
+		initializeCanvasFromAtlas(playerSweepRed, basicEnemySweepData, characterAtlas); //temp enemy sprite data
 		initializeCanvasFromAtlas(playerKnockbackRed, playerKnockbackRedData, characterAtlas);
 
 		initializeCanvasFromAtlas(playerIdleBlack, playerIdleBlackData, characterAtlas);
 		initializeCanvasFromAtlas(playerWalkBlack, playerWalkBlackData, characterAtlas);
 		initializeCanvasFromAtlas(playerKickBlack, playerKickBlackData, characterAtlas);
 		initializeCanvasFromAtlas(playerPunchBlack, playerPunchBlackData, characterAtlas);
+		initializeCanvasFromAtlas(playerSweepBlack, basicEnemySweepData, characterAtlas); //temp enemy sprite data
 		initializeCanvasFromAtlas(playerKnockbackBlack, playerKnockbackBlackData, characterAtlas);
 
 		initializeCanvasFromAtlas(basicEnemyIdle, basicEnemyIdleData, characterAtlas);
