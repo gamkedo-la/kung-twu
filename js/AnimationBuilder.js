@@ -1429,10 +1429,10 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:yellowBossJump,
-			frames:[0, 1, 2, 1],
-			width:yellowBossJump.width / 3,
+			frames:[0, 1, 4],
+			width:yellowBossJump.width / 5,
 			height:yellowBossJump.height,
-			frameTimes:[32, 32, 380, 32],
+			frameTimes:[32, 380, 32],
 			reverses:false,
 			loops:false
 		},
