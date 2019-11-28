@@ -37,7 +37,7 @@ function LevelIntroScene() {
 		let mainMenuX = canvas.width / 2;
 		const mainMenuY = canvas.height - (9 * buttonHeight / 2);
 
-		MESSAGE_Y_POS = 175;
+		MESSAGE_Y_POS = 125;
 		LINE_HEIGHT = 1.25 * JPFont.getCharacterHeight(MSG_SCALE);
 
 		CONTROLS_Y_POS = 50 + canvas.height / 2;
