@@ -921,7 +921,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchWhite.width / 3,
 			height:playerPunchWhite.height,
-			frameTimes:[30, 200, 150, 30],
+			frameTimes:[30, 150, 150, 30],
 			reverses:false,
 			loops:false
 		},
@@ -931,7 +931,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickWhite.width / 3,
 			height:playerKickWhite.height,
-			frameTimes:[60, 250, 150, 60],
+			frameTimes:[60, 200, 150, 60],
 			reverses:false,
 			loops:false
 		},
@@ -1008,7 +1008,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchYellow.width / 3,
 			height:playerPunchYellow.height,
-			frameTimes:[30, 180, 130, 30],
+			frameTimes:[30, 130, 130, 30],
 			reverses:false,
 			loops:false
 		},
@@ -1018,7 +1018,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickYellow.width / 3,
 			height:playerKickYellow.height,
-			frameTimes:[60, 220, 140, 60],
+			frameTimes:[60, 170, 140, 60],
 			reverses:false,
 			loops:false
 		},
@@ -1095,7 +1095,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchTan.width / 3,
 			height:playerPunchTan.height,
-			frameTimes:[30, 160, 110, 30],
+			frameTimes:[30, 110, 110, 30],
 			reverses:false,
 			loops:false
 		},
@@ -1105,7 +1105,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickTan.width / 3,
 			height:playerKickTan.height,
-			frameTimes:[60, 200, 130, 60],
+			frameTimes:[60, 150, 130, 60],
 			reverses:false,
 			loops:false
 		},
@@ -1191,7 +1191,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchBrown.width / 3,
 			height:playerPunchBrown.height,
-			frameTimes:[30, 140, 100, 30],
+			frameTimes:[30, 90, 100, 30],
 			reverses:false,
 			loops:false
 		},
@@ -1201,7 +1201,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickBrown.width / 3,
 			height:playerKickBrown.height,
-			frameTimes:[60, 170, 120, 60],
+			frameTimes:[60, 120, 120, 60],
 			reverses:false,
 			loops:false
 		},
@@ -1287,7 +1287,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchRed.width / 3,
 			height:playerPunchRed.height,
-			frameTimes:[30, 120, 90, 30],
+			frameTimes:[30, 70, 90, 30],
 			reverses:false,
 			loops:false
 		},
@@ -1297,7 +1297,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickRed.width / 3,
 			height:playerKickRed.height,
-			frameTimes:[60, 150, 110, 60],
+			frameTimes:[60, 100, 110, 60],
 			reverses:false,
 			loops:false
 		},
@@ -1384,7 +1384,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchBlack.width / 3,
 			height:playerPunchBlack.height,
-			frameTimes:[30, 80, 80, 30],
+			frameTimes:[30, 50, 80, 30],
 			reverses:false,
 			loops:false
 		},
@@ -1394,7 +1394,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickBlack.width / 3,
 			height:playerKickBlack.height,
-			frameTimes:[60, 120, 90, 60],
+			frameTimes:[60, 90, 90, 60],
 			reverses:false,
 			loops:false
 		},
@@ -1517,10 +1517,10 @@ function AnimationBuilder() {
 		j_kick:{},
 		h_kick:{
 			name:STATE.H_Kick,
-			image:yellowBossSpinKick,
+			image:yellowBossH_Kick,
 			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:yellowBossSpinKick.width / 6,
-			height:yellowBossSpinKick.height,
+			width:yellowBossH_Kick.width / 6,
+			height:yellowBossH_Kick.height,
 			frameTimes:[100, 100, 75, 75, 75, 75, 75, 75, 50, 50],
 			reverses:false,
 			loops:false
@@ -1572,10 +1572,10 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:tanBossJump,
-			frames:[0, 1, 2, 1],
-			width:tanBossJump.width / 3,
+			frames:[0, 1, 4],
+			width:tanBossJump.width / 5,
 			height:tanBossJump.height,
-			frameTimes:[32, 32, 180, 32],
+			frameTimes:[32, 380, 32],
 			reverses:false,
 			loops:false
 		},
@@ -1622,10 +1622,10 @@ function AnimationBuilder() {
 		j_kick:{},
 		h_kick:{
 			name:STATE.H_Kick,
-			image:tanBossSpinKick,
+			image:tanBossH_Kick,
 			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:tanBossSpinKick.width / 6,
-			height:tanBossSpinKick.height,
+			width:tanBossH_Kick.width / 6,
+			height:tanBossH_Kick.height,
 			frameTimes:[100, 100, 75, 75, 75, 75, 75, 75, 50, 50],
 			reverses:false,
 			loops:false
@@ -1677,10 +1677,10 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:brownBossJump,
-			frames:[0, 1, 2, 1],
-			width:brownBossJump.width / 3,
+			frames:[0, 1, 4],
+			width:brownBossJump.width / 5,
 			height:brownBossJump.height,
-			frameTimes:[32, 32, 180, 32],
+			frameTimes:[32, 380, 32],
 			reverses:false,
 			loops:false
 		},
@@ -1724,13 +1724,22 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.Jump,
+			image:brownBossJump,
+			frames:[0, 1, 3, 4],
+			width:brownBossJump.width / 5,
+			height:brownBossJump.height,
+			frameTimes:[32, 150, 150, 32],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{
 			name:STATE.H_Kick,
-			image:brownBossSpinKick,
+			image:brownBossH_Kick,
 			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:brownBossSpinKick.width / 6,
-			height:brownBossSpinKick.height,
+			width:brownBossH_Kick.width / 6,
+			height:brownBossH_Kick.height,
 			frameTimes:[100, 100, 75, 75, 75, 75, 75, 75, 50, 50],
 			reverses:false,
 			loops:false
@@ -1782,10 +1791,10 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:redBossJump,
-			frames:[0, 1, 2, 1],
-			width:redBossJump.width / 3,
+			frames:[0, 1, 4],
+			width:redBossJump.width / 5,
 			height:redBossJump.height,
-			frameTimes:[32, 32, 180, 32],
+			frameTimes:[32, 380, 32],
 			reverses:false,
 			loops:false
 		},
@@ -1829,14 +1838,23 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.Jump,
+			image:redBossJump,
+			frames:[0, 1, 3, 4],
+			width:redBossJump.width / 5,
+			height:redBossJump.height,
+			frameTimes:[32, 150, 150, 32],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{
 			name:STATE.H_Kick,
-			image:redBossSpinKick,
+			image:redBossH_Kick,
 			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:redBossSpinKick.width / 6,
-			height:redBossSpinKick.height,
-			frameTimes:[100, 100, 75, 75, 75, 75, 75, 75, 50, 50],
+			width:redBossH_Kick.width / 6,
+			height:redBossH_Kick.height,
+			frameTimes:[110],
 			reverses:false,
 			loops:false
 		},
@@ -1887,10 +1905,10 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:blackBossJump,
-			frames:[0, 1, 2, 1],
-			width:blackBossJump.width / 3,
+			frames:[0, 1, 4],
+			width:blackBossJump.width / 5,
 			height:blackBossJump.height,
-			frameTimes:[32, 32, 180, 32],
+			frameTimes:[32, 380, 32],
 			reverses:false,
 			loops:false
 		},
@@ -1934,14 +1952,23 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.Jump,
+			image:blackBossJump,
+			frames:[0, 1, 3, 4],
+			width:blackBossJump.width / 5,
+			height:blackBossJump.height,
+			frameTimes:[32, 150, 150, 32],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{
 			name:STATE.H_Kick,
-			image:blackBossSpinKick,
+			image:blackBossH_Kick,
 			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:blackBossSpinKick.width / 6,
-			height:blackBossSpinKick.height,
-			frameTimes:[50, 50, 75, 75, 75, 75, 75, 75, 50, 50],
+			width:blackBossH_Kick.width / 6,
+			height:blackBossH_Kick.height,
+			frameTimes:[110],
 			reverses:false,
 			loops:false
 		},

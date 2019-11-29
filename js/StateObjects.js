@@ -265,8 +265,7 @@ const H_KICK_STATE = {
 	},
 
 	nextStateForActionWithBelt:function(belt, action) {
-		if((action === ACTION.Land) ||
-		(action === ACTION.End)) {
+		if((action === ACTION.Land) || (action === ACTION.End)) {
 			return STATE.Idle;
 		} else {
 			return STATE.H_Kick;
@@ -552,6 +551,8 @@ function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 			} else if(action === ACTION.Right) {
 				isFacingLeft = false;
 			} else if(action === ACTION.Jump) {
+				isOnGround = false;	
+			} else if(newState === H_KICK_STATE) {
 				isOnGround = false;	
 			} 
 		} else {

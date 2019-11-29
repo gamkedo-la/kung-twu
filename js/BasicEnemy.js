@@ -3,8 +3,8 @@ function BasicEnemy(config) {
 	const WALK_SPEED = 250; 
 	const JUMP_SPEED = -600;
 	const KNOCK_BACK_SPEED = 800;
-    const DIZZY_STARS_LOW_HP = 0.25; // % health
-    const FLICKER_LOW_HP = 0.25; // % health
+	const DIZZY_STARS_LOW_HP = 0.25; // % health
+	const FLICKER_LOW_HP = 0.25; // % health
 
 	let BASE_DAMAGE = null;
 	const DELTA_DAMAGE = 5;
@@ -14,9 +14,9 @@ function BasicEnemy(config) {
 	let hitBoxManager = new HitBoxManager(BasicEnemyCollisionBodyData, PlayerAttackBodyData);
 
 	let position = {x:0, y:0};
-    let velocity = {x:0, y:0};
-    let shadowx = 0;
-    let shadowy = 0;
+	let velocity = {x:0, y:0};
+	let shadowx = 0;
+	let shadowy = 0;
 
 	let baseHealth = localStorageHelper.getInt(localStorageKey.BaseEnemyHealth);
 	if((baseHealth === undefined) || (baseHealth === null) || (isNaN(baseHealth))) {
@@ -66,8 +66,8 @@ function BasicEnemy(config) {
 		return {x:position.x, y:position.y};
 	};
     
-	this.distanceFrom = function(x,y) {
-		return Math.hypot(position.x-x, position.y-y);
+	this.distanceFrom = function(x, y) {
+		return Math.hypot(position.x - x, position.y - y);
 	};
 
 	this.getWidth = function() {
@@ -164,22 +164,22 @@ function BasicEnemy(config) {
 		}
 
 		updatePosition(deltaTime, minX, maxX, gravity, floorHeight);
-        shadowx = position.x - 10;
-        shadowy = floorHeight - 24;
+		shadowx = position.x - 10;
+		shadowy = floorHeight - 24;
 
-        // visual feedback if the player is about to die
-        if (this.health/maxHealth <= DIZZY_STARS_LOW_HP) {
-            //console.log("DANGER! HP is " + this.health);
-            if (Math.random()<0.1) { // occasionally
-                wooshFX.trigger( // spawn a star near our head
-                    position.x+50+randomRange(-20,20),
-                    position.y+10+randomRange(-4,4),
-                    0,starSprite,
-                    randomRange(-0.5,0.5), // vel
-                    randomRange(-0.25,-0.75),
-                    0,0.99,60);
-            }
-        }
+		// visual feedback if the player is about to die
+		if (this.health/maxHealth <= DIZZY_STARS_LOW_HP) {
+			//console.log("DANGER! HP is " + this.health);
+			if (Math.random() < 0.1) { // occasionally
+				wooshFX.trigger( // spawn a star near our head
+					position.x + 50 + randomRange(-20, 20),
+					position.y + 10 + randomRange(-4, 4),
+					0, starSprite,
+					randomRange(-0.5, 0.5), // vel
+					randomRange(-0.25, -0.75),
+					0, 0.99, 60);
+			}
+		}
 
 		this.collisionBody.setPosition(position);//keep collider in sync with sprite position
 		if(this.attackBody != null) {
@@ -270,10 +270,10 @@ function BasicEnemy(config) {
 			break;
 		case STATE.Kick:
 			wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
-            break;
-        case STATE.SpinKick: // dual woosh woo hoo
-            wooshFX.triggerSpinKick(position,stateManager.getIsFacingLeft());
-            break;
+			break;
+		case STATE.SpinKick: // dual woosh woo hoo
+			wooshFX.triggerSpinKick(position,stateManager.getIsFacingLeft());
+			break;
 		}
 	};
 
@@ -296,9 +296,9 @@ function BasicEnemy(config) {
 	// used by knockedOutBodyManager for DOMINO_KNOCKBACKS fx
 	this.getBumped = function(otherEntity,xspeed=0,yspeed=0) {
 
-        if (Math.random()<0.05) { // make it less spammy
+		if (Math.random()<0.05) { // make it less spammy
 			sound.playSFX(Sounds.SFX_EnemyHit);
-            wooshFX.smallPuff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite,xspeed,yspeed);
+			wooshFX.smallPuff(position.x+Math.random()*30-15,position.y+Math.random()*30-30,smokeSprite,xspeed,yspeed);
 		}
 
 		this.wasHitBy(otherEntity);
@@ -368,9 +368,9 @@ function BasicEnemy(config) {
 	const j_Kick = function(distToPlayer) {
 		if(stateManager.getIsNewState()) {
 			if(distToPlayer > 0) {
-				velocity.x = Math.abs(velocity.x);
+				velocity.x = WALK_SPEED / 1.5;
 			} else if(distToPlayer < 0) {
-				velocity.x = -Math.abs(velocity.x);
+				velocity.x = -WALK_SPEED / 1.5;
 			} else {
 				velocity.x = 0;
 			}
@@ -382,9 +382,9 @@ function BasicEnemy(config) {
 			jump();
 		} else {
 			if(distToPlayer > 0) {
-				velocity.x = Math.abs(velocity.x);
+				velocity.x = WALK_SPEED / 2;
 			} else if(distToPlayer < 0) {
-				velocity.x = -Math.abs(velocity.x);
+				velocity.x = -WALK_SPEED / 2;
 			} else {
 				velocity.x = 0;
 			}
@@ -399,15 +399,15 @@ function BasicEnemy(config) {
 
 	this.draw = function() {
         
-        let red = false;
-        if (this.health/maxHealth <= FLICKER_LOW_HP) {
-            if (Date.now() % 500 < 250) { // on/off twice per second
-                red = true;
-            }
-        }        
+		let red = false;
+		if (this.health/maxHealth <= FLICKER_LOW_HP) {
+			if (Date.now() % 500 < 250) { // on/off twice per second
+				red = true;
+			}
+		}        
         
-        stateManager.drawAt(position.x, position.y, red);
-        canvasContext.drawImage(shadowSprite,shadowx,shadowy);
+		stateManager.drawAt(position.x, position.y, red);
+		canvasContext.drawImage(shadowSprite,shadowx,shadowy);
 
 		if(this.getAIType() !== AITYPE.Boss) {
 			let healthPos = 5;
@@ -436,8 +436,6 @@ function BasicEnemy(config) {
 		}
 		
 		if(stateManager.getCurrentState() === STATE.Block) {
-			// minimum 1hp damage - never allow a block to register as 0 damage just in case
-			// any positive (non-zero) value divided by ten and rounded up is at least 1
 			if(otherEntity.type === ENTITY_TYPE.Player) {
 				this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10)); 
 				wooshFX.smokePuff(position.x,position.y);	
@@ -487,12 +485,12 @@ function BasicEnemy(config) {
 
 	const healthColorForBelt = function(belt) {
 		switch(belt) {
-		case BELT.White: return (Color.White);//This is 1+ White belt kick from player
-		case BELT.Yellow: return (Color.Yellow);//this is 1+ Yellow belt kick from player
-		case BELT.Tan: return (Color.Tan);//this is 1+ ten belt kick from player
-		case BELT.Brown: return (Color.Brown);//this is 1+ Brown belt kick from player
-		case BELT.Red: return (Color.Red);//this is 1+ Red belt kick from player
-		case BELT.Black: return (Color.Black);//this is 1+ Black belt kick from player
+		case BELT.White: return (Color.White);
+		case BELT.Yellow: return (Color.Yellow);
+		case BELT.Tan: return (Color.Tan);
+		case BELT.Brown: return (Color.Brown);
+		case BELT.Red: return (Color.Red);
+		case BELT.Black: return (Color.Black);
 		}
 	};
 

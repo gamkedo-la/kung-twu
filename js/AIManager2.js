@@ -459,13 +459,6 @@ function AIManager2() {
 	};
 
 	const redBossAttackFor = function(state) {
-		//TODO: Remove this after testing the boss spin kick animation
-		if(state === DASH_STATE) {
-			return ACTION.Kick;
-		} else {
-			return ACTION.Dash;
-		}
-
 		if(state === CROUCH_STATE) {
 			const continueAction = Math.floor(100 * Math.random());
 			if(continueAction <= 5) {

@@ -148,7 +148,7 @@ const yellowBossCrouch = document.createElement("canvas");
 const yellowBossCrouchPunch = document.createElement("canvas");
 const yellowBossSweep = document.createElement("canvas");
 const yellowBossJump = document.createElement("canvas");
-const yellowBossSpinKick = document.createElement("canvas");
+const yellowBossH_Kick = document.createElement("canvas");
 
 const tanBossIdle = document.createElement("canvas");
 const tanBossWalk = document.createElement("canvas");
@@ -158,8 +158,7 @@ const tanBossCrouch = document.createElement("canvas");
 const tanBossCrouchPunch = document.createElement("canvas");
 const tanBossSweep = document.createElement("canvas");
 const tanBossJump = document.createElement("canvas");
-const tanBossSpinKick = document.createElement("canvas");
-
+const tanBossH_Kick = document.createElement("canvas");
 
 const brownBossIdle = document.createElement("canvas");
 const brownBossWalk = document.createElement("canvas");
@@ -169,8 +168,7 @@ const brownBossCrouch = document.createElement("canvas");
 const brownBossCrouchPunch = document.createElement("canvas");
 const brownBossSweep = document.createElement("canvas");
 const brownBossJump = document.createElement("canvas");
-const brownBossSpinKick = document.createElement("canvas");
-
+const brownBossH_Kick = document.createElement("canvas");
 
 const redBossIdle = document.createElement("canvas");
 const redBossWalk = document.createElement("canvas");
@@ -180,8 +178,7 @@ const redBossCrouch = document.createElement("canvas");
 const redBossCrouchPunch = document.createElement("canvas");
 const redBossSweep = document.createElement("canvas");
 const redBossJump = document.createElement("canvas");
-const redBossSpinKick = document.createElement("canvas");
-
+const redBossH_Kick = document.createElement("canvas");
 
 const blackBossIdle = document.createElement("canvas");
 const blackBossWalk = document.createElement("canvas");
@@ -191,8 +188,7 @@ const blackBossCrouch = document.createElement("canvas");
 const blackBossCrouchPunch = document.createElement("canvas");
 const blackBossSweep = document.createElement("canvas");
 const blackBossJump = document.createElement("canvas");
-const blackBossSpinKick = document.createElement("canvas");
-
+const blackBossH_Kick = document.createElement("canvas");
 
 const playerIdleWhite = document.createElement("canvas");
 const playerIdleYellow = document.createElement("canvas");
@@ -440,6 +436,7 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(yellowBossCrouch, yellowBossCrouchData, bossAtlas);
 		initializeCanvasFromAtlas(yellowBossSweep, yellowBossSweepData, bossAtlas);
 		initializeCanvasFromAtlas(yellowBossJump, yellowBossJumpData, bossAtlas);
+		initializeCanvasFromAtlas(yellowBossH_Kick, yellowBossH_KickData, bossAtlas);
 
 		initializeCanvasFromAtlas(tanBossIdle, tanBossIdleData, bossAtlas);
 		initializeCanvasFromAtlas(tanBossWalk, tanBossWalkData, bossAtlas);
@@ -448,6 +445,7 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(tanBossCrouch, tanBossCrouchData, bossAtlas);
 		initializeCanvasFromAtlas(tanBossSweep, tanBossSweepData, bossAtlas);
 		initializeCanvasFromAtlas(tanBossJump, tanBossJumpData, bossAtlas);
+		initializeCanvasFromAtlas(tanBossH_Kick, tanBossH_KickData, bossAtlas);
 
 		initializeCanvasFromAtlas(brownBossIdle, brownBossIdleData, bossAtlas);
 		initializeCanvasFromAtlas(brownBossWalk, brownBossWalkData, bossAtlas);
@@ -456,6 +454,7 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(brownBossCrouch, brownBossCrouchData, bossAtlas);
 		initializeCanvasFromAtlas(brownBossSweep, brownBossSweepData, bossAtlas);
 		initializeCanvasFromAtlas(brownBossJump, brownBossJumpData, bossAtlas);
+		initializeCanvasFromAtlas(brownBossH_Kick, brownBossH_KickData, bossAtlas);
 
 		initializeCanvasFromAtlas(redBossIdle, redBossIdleData, bossAtlas);
 		initializeCanvasFromAtlas(redBossWalk, redBossWalkData, bossAtlas);
@@ -464,6 +463,7 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(redBossCrouch, redBossCrouchData, bossAtlas);
 		initializeCanvasFromAtlas(redBossSweep, redBossSweepData, bossAtlas);
 		initializeCanvasFromAtlas(redBossJump, redBossJumpData, bossAtlas);
+		initializeCanvasFromAtlas(redBossH_Kick, redBossH_KickData, bossAtlas);
 
 		initializeCanvasFromAtlas(blackBossIdle, blackBossIdleData, bossAtlas);
 		initializeCanvasFromAtlas(blackBossWalk, blackBossWalkData, bossAtlas);
@@ -472,6 +472,7 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(blackBossCrouch, blackBossCrouchData, bossAtlas);
 		initializeCanvasFromAtlas(blackBossSweep, blackBossSweepData, bossAtlas);
 		initializeCanvasFromAtlas(blackBossJump, blackBossJumpData, bossAtlas);
+		initializeCanvasFromAtlas(blackBossH_Kick, blackBossH_KickData, bossAtlas);
 
 		initializeCanvasFromAtlas(wooshDashPlayerPic, wooshDashPlayerPicData, characterAtlas);
 		initializeCanvasFromAtlas(wooshDashPlayerLPic, wooshDashPlayerLPicData, characterAtlas);

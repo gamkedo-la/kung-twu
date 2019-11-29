@@ -1659,24 +1659,24 @@ const yellowBossJumpData = {
 	clipWidth:235,
 	clipHeight:67,
 	frameWidth:47,
-	frameCount:3,
+	frameCount:5,
 	frames:[0, 1, 4],
 	frameTimes:[50],
 	reverses:false,
 	loops:false
 };
 
-const yellowBossSpinKickData = {
-	name:STATE.SpinKick,
+const yellowBossH_KickData = {
+	name:STATE.H_Kick,
 	image:bossAtlas,
-	clipX:140,
-	clipY:ATLAS_ROW6 + 2,
-	clipWidth:66,
+	clipX:249,
+	clipY:ATLAS_ROW10 + 2,
+	clipWidth:294,
 	clipHeight:67,
-	frameWidth:36,
+	frameWidth:49,
 	frameCount:6,
 	frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-	frameTimes:[50],
+	frameTimes:[110],
 	reverses:false,
 	loops:false
 };
@@ -1778,27 +1778,27 @@ const tanBossJumpData = {
 	image:bossAtlas,
 	clipX:0,
 	clipY:ATLAS_ROW7 + 2,
-	clipWidth:108,
+	clipWidth:235,
 	clipHeight:67,
-	frameWidth:36,
-	frameCount:3,
-	frames:[0, 1, 2, 1],
+	frameWidth:47,
+	frameCount:5,
+	frames:[0, 1, 4],
 	frameTimes:[50],
 	reverses:false,
 	loops:false
 };
 
-const tanBossSpinKickData = {
-	name:STATE.SpinKick,
+const tanBossH_KickData = {
+	name:STATE.H_Kick,
 	image:bossAtlas,
-	clipX:140,
-	clipY:ATLAS_ROW6 + 2,
-	clipWidth:66,
+	clipX:249,
+	clipY:ATLAS_ROW10 + 2,
+	clipWidth:294,
 	clipHeight:67,
-	frameWidth:36,
+	frameWidth:49,
 	frameCount:6,
 	frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-	frameTimes:[50],
+	frameTimes:[110],
 	reverses:false,
 	loops:false
 };
@@ -1900,27 +1900,27 @@ const brownBossJumpData = {
 	image:bossAtlas,
 	clipX:0,
 	clipY:ATLAS_ROW8 + 2,
-	clipWidth:108,
+	clipWidth:235,
 	clipHeight:67,
-	frameWidth:36,
-	frameCount:3,
-	frames:[0, 1, 2, 1],
+	frameWidth:47,
+	frameCount:5,
+	frames:[0, 1, 4],
 	frameTimes:[50],
 	reverses:false,
 	loops:false
 };
 
-const brownBossSpinKickData = {
-	name:STATE.SpinKick,
+const brownBossH_KickData = {
+	name:STATE.H_Kick,
 	image:bossAtlas,
-	clipX:140,
-	clipY:ATLAS_ROW6 + 2,
-	clipWidth:66,
+	clipX:249,
+	clipY:ATLAS_ROW8 + 2,
+	clipWidth:294,
 	clipHeight:67,
-	frameWidth:36,
+	frameWidth:49,
 	frameCount:6,
 	frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-	frameTimes:[50],
+	frameTimes:[110],
 	reverses:false,
 	loops:false
 };
@@ -2022,27 +2022,27 @@ const redBossJumpData = {
 	image:bossAtlas,
 	clipX:0,
 	clipY:ATLAS_ROW9 + 2,
-	clipWidth:108,
+	clipWidth:235,
 	clipHeight:67,
-	frameWidth:36,
-	frameCount:3,
-	frames:[0, 1, 2, 1],
+	frameWidth:47,
+	frameCount:5,
+	frames:[0, 1, 4],
 	frameTimes:[50],
 	reverses:false,
 	loops:false
 };
 
-const redBossSpinKickData = {
-	name:STATE.SpinKick,
+const redBossH_KickData = {
+	name:STATE.H_Kick,
 	image:bossAtlas,
-	clipX:140,
-	clipY:ATLAS_ROW6 + 2,
-	clipWidth:66,
+	clipX:249,
+	clipY:ATLAS_ROW9 + 2,
+	clipWidth:294,
 	clipHeight:67,
-	frameWidth:36,
+	frameWidth:49,
 	frameCount:6,
 	frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-	frameTimes:[50],
+	frameTimes:[110],
 	reverses:false,
 	loops:false
 };
@@ -2144,27 +2144,27 @@ const blackBossJumpData = {
 	image:bossAtlas,
 	clipX:0,
 	clipY:ATLAS_ROW10 + 2,
-	clipWidth:108,
+	clipWidth:235,
 	clipHeight:67,
-	frameWidth:36,
-	frameCount:3,
-	frames:[0, 1, 2, 1],
+	frameWidth:47,
+	frameCount:5,
+	frames:[0, 1, 4],
 	frameTimes:[50],
 	reverses:false,
 	loops:false
 };
 
-const blackBossSpinKickData = {
-	name:STATE.SpinKick,
+const blackBossH_KickData = {
+	name:STATE.H_Kick,
 	image:bossAtlas,
-	clipX:140,
-	clipY:ATLAS_ROW6 + 2,
-	clipWidth:66,
+	clipX:249,
+	clipY:ATLAS_ROW10 + 2,
+	clipWidth:294,
 	clipHeight:67,
-	frameWidth:36,
+	frameWidth:49,
 	frameCount:6,
 	frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-	frameTimes:[50],
+	frameTimes:[110],
 	reverses:false,
 	loops:false
 };
