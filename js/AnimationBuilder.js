@@ -945,7 +945,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:playerSweepWhite,
+			frames:[0, 1, 2, 3, 4, 5, 6],
+			width:playerSweepWhite.width / 7,
+			height:playerSweepWhite.height,
+			frameTimes:[100],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
 		knockback:{
@@ -1032,7 +1041,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{},
+		sweep:{
+			name:STATE.Sweep,
+			image:playerSweepYellow,
+			frames:[0, 1, 2, 3, 4, 5, 6],
+			width:playerSweepYellow.width / 7,
+			height:playerSweepYellow.height,
+			frameTimes:[100],
+			reverses:false,
+			loops:false
+		},
 		j_kick:{},
 		h_kick:{},
 		knockback:{
@@ -1122,10 +1140,10 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:playerSweepTan,
-			frames:[0],
-			width:playerSweepTan.width,
+			frames:[0, 1, 2, 3, 4, 5, 6],
+			width:playerSweepTan.width / 7,
 			height:playerSweepTan.height,
-			frameTimes:[225],
+			frameTimes:[100],
 			reverses:false,
 			loops:false
 		},
@@ -1218,10 +1236,10 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:playerSweepBrown,
-			frames:[0],
-			width:playerSweepBrown.width,
+			frames:[0, 1, 2, 3, 4, 5, 6],
+			width:playerSweepBrown.width / 7,
 			height:playerSweepBrown.height,
-			frameTimes:[225],
+			frameTimes:[100],
 			reverses:false,
 			loops:false
 		},
@@ -1314,13 +1332,12 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:playerSweepRed,
-			frames:[0],
-			width:playerSweepRed.width,
+			frames:[0, 1, 2, 3, 4, 5, 6],
+			width:playerSweepRed.width / 7,
 			height:playerSweepRed.height,
-			frameTimes:[225],
+			frameTimes:[100],
 			reverses:false,
 			loops:false
-
 		},
 		j_kick:{},
 		h_kick:{},
@@ -1411,10 +1428,10 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:playerSweepBlack,
-			frames:[0],
-			width:playerSweepBlack.width,
+			frames:[0, 1, 2, 3, 4, 5, 6],
+			width:playerSweepBlack.width / 7,
 			height:playerSweepBlack.height,
-			frameTimes:[225],
+			frameTimes:[100],
 			reverses:false,
 			loops:false
 		},

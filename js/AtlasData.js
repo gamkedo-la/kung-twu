@@ -154,6 +154,21 @@ const playerKnockbackWhiteData = {
 	loops:false
 };
 
+const playerSweepWhiteData = {
+	name:STATE.Sweep,
+	image:characterAtlas,
+	clipX:602,
+	clipY:ATLAS_ROW0,
+	clipWidth:420,
+	clipHeight:69,
+	frameWidth:60,
+	frameCount:7,
+	frames:[0, 1, 2, 3, 4, 5, 6],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Player Yellow Belt Atlas Data--------//
 
 const playerIdleYellowData = {
@@ -242,6 +257,21 @@ const playerKnockbackYellowData = {
 	frameCount:4,
 	frames:[0, 1, 2, 3],
 	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
+const playerSweepYellowData = {
+	name:STATE.Sweep,
+	image:characterAtlas,
+	clipX:602,
+	clipY:ATLAS_ROW1,
+	clipWidth:420,
+	clipHeight:69,
+	frameWidth:60,
+	frameCount:7,
+	frames:[0, 1, 2, 3, 4, 5, 6],
+	frameTimes:[100],
 	reverses:false,
 	loops:false
 };
@@ -338,6 +368,21 @@ const playerKnockbackTanData = {
 	loops:false
 };
 
+const playerSweepTanData = {
+	name:STATE.Sweep,
+	image:characterAtlas,
+	clipX:602,
+	clipY:ATLAS_ROW2,
+	clipWidth:420,
+	clipHeight:69,
+	frameWidth:60,
+	frameCount:7,
+	frames:[0, 1, 2, 3, 4, 5, 6],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Player Brown Belt Atlas Data--------//
 
 const playerIdleBrownData = {
@@ -426,6 +471,21 @@ const playerKnockbackBrownData = {
 	frameCount:4,
 	frames:[0, 1, 2, 3],
 	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
+const playerSweepBrownData = {
+	name:STATE.Sweep,
+	image:characterAtlas,
+	clipX:602,
+	clipY:ATLAS_ROW3,
+	clipWidth:420,
+	clipHeight:69,
+	frameWidth:60,
+	frameCount:7,
+	frames:[0, 1, 2, 3, 4, 5, 6],
+	frameTimes:[100],
 	reverses:false,
 	loops:false
 };
@@ -522,6 +582,21 @@ const playerKnockbackRedData = {
 	loops:false
 };
 
+const playerSweepRedData = {
+	name:STATE.Sweep,
+	image:characterAtlas,
+	clipX:602,
+	clipY:ATLAS_ROW4,
+	clipWidth:420,
+	clipHeight:69,
+	frameWidth:60,
+	frameCount:7,
+	frames:[0, 1, 2, 3, 4, 5, 6],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Player Black Belt Atlas Data--------//
 
 const playerIdleBlackData = {
@@ -614,6 +689,21 @@ const playerKnockbackBlackData = {
 	loops:false
 };
 
+const playerSweepBlackData = {
+	name:STATE.Sweep,
+	image:characterAtlas,
+	clipX:602,
+	clipY:ATLAS_ROW5,
+	clipWidth:420,
+	clipHeight:69,
+	frameWidth:60,
+	frameCount:7,
+	frames:[0, 1, 2, 3, 4, 5, 6],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Basic Enemy Atlas Data--------//
 
 const wooshDashEnemyPicData = {
@@ -651,7 +741,7 @@ const wooshDashEnemyLPicData = {
 
 const basicEnemyIdleData = {
 	name:STATE.Idle,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW10,
 	clipWidth:80,
@@ -666,7 +756,7 @@ const basicEnemyIdleData = {
 
 const basicEnemyWalkData = {
 	name:STATE.WalkRight,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:750,
 	clipY:ATLAS_ROW5,
 	clipWidth:111,
@@ -681,7 +771,7 @@ const basicEnemyWalkData = {
 
 const basicEnemyDashData = {
 	name:STATE.Dash,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW0,
 	clipWidth:111,
@@ -696,7 +786,7 @@ const basicEnemyDashData = {
 
 const basicEnemyJumpData = {
 	name:STATE.Jump,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:424,
 	clipY:ATLAS_ROW6,
 	clipWidth:123,
@@ -711,7 +801,7 @@ const basicEnemyJumpData = {
 
 const basicEnemyCrouchData = {
 	name:STATE.Crouch,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:679,
 	clipY:ATLAS_ROW0,
 	clipWidth:55,
@@ -726,7 +816,7 @@ const basicEnemyCrouchData = {
 
 const basicEnemyPunchData = {
 	name:STATE.Punch,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:750,
 	clipY:ATLAS_ROW0,
 	clipWidth:159,
@@ -741,7 +831,7 @@ const basicEnemyPunchData = {
 
 const basicEnemyKickData = {
 	name:STATE.Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW5,
 	clipWidth:153,
@@ -756,7 +846,7 @@ const basicEnemyKickData = {
 
 const basicEnemyBlockData = {
 	name:STATE.Block,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:922,
 	clipY:ATLAS_ROW0,
 	clipWidth:39,
@@ -771,7 +861,7 @@ const basicEnemyBlockData = {
 
 const basicEnemyKnockbackData = {
 	name:STATE.KnockBack,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:875,
 	clipY:ATLAS_ROW5,
 	clipWidth:32,
@@ -786,7 +876,7 @@ const basicEnemyKnockbackData = {
 
 const basicEnemySweepData = {
 	name:STATE.Sweep,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:969,
 	clipY:ATLAS_ROW0,
 	clipWidth:55,
@@ -801,7 +891,7 @@ const basicEnemySweepData = {
 
 const basicEnemyJumpKickData = {
 	name:STATE.J_Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:922,
 	clipY:ATLAS_ROW5,
 	clipWidth:102,
@@ -816,7 +906,7 @@ const basicEnemyJumpKickData = {
 
 const basicEnemyHKickData = {
 	name:STATE.H_Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:660,
 	clipY:ATLAS_ROW10,
 	clipWidth:102,
@@ -833,7 +923,7 @@ const basicEnemyHKickData = {
 
 const yellowEnemyIdleData = {
 	name:STATE.Idle,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW11,
 	clipWidth:80,
@@ -848,7 +938,7 @@ const yellowEnemyIdleData = {
 
 const yellowEnemyWalkData = {
 	name:STATE.WalkRight,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:750,
 	clipY:ATLAS_ROW6,
 	clipWidth:111,
@@ -863,7 +953,7 @@ const yellowEnemyWalkData = {
 
 const yellowEnemyDashData = {
 	name:STATE.Dash,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW1,
 	clipWidth:111,
@@ -878,7 +968,7 @@ const yellowEnemyDashData = {
 
 const yellowEnemyJumpData = {
 	name:STATE.Jump,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:424,
 	clipY:ATLAS_ROW7,
 	clipWidth:123,
@@ -893,7 +983,7 @@ const yellowEnemyJumpData = {
 
 const yellowEnemyCrouchData = {
 	name:STATE.Crouch,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:679,
 	clipY:ATLAS_ROW1,
 	clipWidth:55,
@@ -908,7 +998,7 @@ const yellowEnemyCrouchData = {
 
 const yellowEnemyPunchData = {
 	name:STATE.Punch,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:750,
 	clipY:ATLAS_ROW1,
 	clipWidth:159,
@@ -923,7 +1013,7 @@ const yellowEnemyPunchData = {
 
 const yellowEnemyKickData = {
 	name:STATE.Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW6,
 	clipWidth:153,
@@ -938,7 +1028,7 @@ const yellowEnemyKickData = {
 
 const yellowEnemyBlockData = {
 	name:STATE.Block,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:922,
 	clipY:ATLAS_ROW1,
 	clipWidth:39,
@@ -953,7 +1043,7 @@ const yellowEnemyBlockData = {
 
 const yellowEnemyKnockbackData = {
 	name:STATE.KnockBack,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:875,
 	clipY:ATLAS_ROW6,
 	clipWidth:32,
@@ -968,7 +1058,7 @@ const yellowEnemyKnockbackData = {
 
 const yellowEnemySweepData = {
 	name:STATE.Sweep,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:969,
 	clipY:ATLAS_ROW1,
 	clipWidth:55,
@@ -983,7 +1073,7 @@ const yellowEnemySweepData = {
 
 const yellowEnemyJumpKickData = {
 	name:STATE.J_Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:922,
 	clipY:ATLAS_ROW6,
 	clipWidth:102,
@@ -998,7 +1088,7 @@ const yellowEnemyJumpKickData = {
 
 const yellowEnemyHKickData = {
 	name:STATE.H_Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:660,
 	clipY:ATLAS_ROW11,
 	clipWidth:102,
@@ -1015,7 +1105,7 @@ const yellowEnemyHKickData = {
 
 const tanEnemyIdleData = {
 	name:STATE.Idle,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW12,
 	clipWidth:80,
@@ -1030,7 +1120,7 @@ const tanEnemyIdleData = {
 
 const tanEnemyWalkData = {
 	name:STATE.WalkRight,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:750,
 	clipY:ATLAS_ROW7,
 	clipWidth:111,
@@ -1045,7 +1135,7 @@ const tanEnemyWalkData = {
 
 const tanEnemyDashData = {
 	name:STATE.Dash,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW2,
 	clipWidth:111,
@@ -1060,7 +1150,7 @@ const tanEnemyDashData = {
 
 const tanEnemyJumpData = {
 	name:STATE.Jump,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:424,
 	clipY:ATLAS_ROW8,
 	clipWidth:123,
@@ -1075,7 +1165,7 @@ const tanEnemyJumpData = {
 
 const tanEnemyCrouchData = {
 	name:STATE.Crouch,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:679,
 	clipY:ATLAS_ROW2,
 	clipWidth:55,
@@ -1090,7 +1180,7 @@ const tanEnemyCrouchData = {
 
 const tanEnemyPunchData = {
 	name:STATE.Punch,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:750,
 	clipY:ATLAS_ROW2,
 	clipWidth:159,
@@ -1105,7 +1195,7 @@ const tanEnemyPunchData = {
 
 const tanEnemyKickData = {
 	name:STATE.Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW7,
 	clipWidth:153,
@@ -1120,7 +1210,7 @@ const tanEnemyKickData = {
 
 const tanEnemyBlockData = {
 	name:STATE.Block,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:922,
 	clipY:ATLAS_ROW2,
 	clipWidth:39,
@@ -1135,7 +1225,7 @@ const tanEnemyBlockData = {
 
 const tanEnemyKnockbackData = {
 	name:STATE.KnockBack,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:875,
 	clipY:ATLAS_ROW7,
 	clipWidth:32,
@@ -1150,7 +1240,7 @@ const tanEnemyKnockbackData = {
 
 const tanEnemySweepData = {
 	name:STATE.Sweep,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:969,
 	clipY:ATLAS_ROW2,
 	clipWidth:55,
@@ -1165,7 +1255,7 @@ const tanEnemySweepData = {
 
 const tanEnemyJumpKickData = {
 	name:STATE.J_Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:922,
 	clipY:ATLAS_ROW7,
 	clipWidth:102,
@@ -1180,7 +1270,7 @@ const tanEnemyJumpKickData = {
 
 const tanEnemyHKickData = {
 	name:STATE.H_Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:660,
 	clipY:ATLAS_ROW12,
 	clipWidth:102,
@@ -1197,7 +1287,7 @@ const tanEnemyHKickData = {
 
 const brownEnemyIdleData = {
 	name:STATE.Idle,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW13,
 	clipWidth:80,
@@ -1212,7 +1302,7 @@ const brownEnemyIdleData = {
 
 const brownEnemyWalkData = {
 	name:STATE.WalkRight,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:750,
 	clipY:ATLAS_ROW8,
 	clipWidth:111,
@@ -1227,7 +1317,7 @@ const brownEnemyWalkData = {
 
 const brownEnemyDashData = {
 	name:STATE.Dash,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW3,
 	clipWidth:111,
@@ -1242,7 +1332,7 @@ const brownEnemyDashData = {
 
 const brownEnemyJumpData = {
 	name:STATE.Jump,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:424,
 	clipY:ATLAS_ROW9,
 	clipWidth:123,
@@ -1257,7 +1347,7 @@ const brownEnemyJumpData = {
 
 const brownEnemyCrouchData = {
 	name:STATE.Crouch,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:679,
 	clipY:ATLAS_ROW3,
 	clipWidth:55,
@@ -1272,7 +1362,7 @@ const brownEnemyCrouchData = {
 
 const brownEnemyPunchData = {
 	name:STATE.Punch,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:750,
 	clipY:ATLAS_ROW3,
 	clipWidth:159,
@@ -1287,7 +1377,7 @@ const brownEnemyPunchData = {
 
 const brownEnemyKickData = {
 	name:STATE.Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW8,
 	clipWidth:153,
@@ -1302,7 +1392,7 @@ const brownEnemyKickData = {
 
 const brownEnemyBlockData = {
 	name:STATE.Block,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:922,
 	clipY:ATLAS_ROW3,
 	clipWidth:39,
@@ -1317,7 +1407,7 @@ const brownEnemyBlockData = {
 
 const brownEnemyKnockbackData = {
 	name:STATE.KnockBack,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:875,
 	clipY:ATLAS_ROW8,
 	clipWidth:32,
@@ -1332,7 +1422,7 @@ const brownEnemyKnockbackData = {
 
 const brownEnemySweepData = {
 	name:STATE.Sweep,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:969,
 	clipY:ATLAS_ROW3,
 	clipWidth:55,
@@ -1347,7 +1437,7 @@ const brownEnemySweepData = {
 
 const brownEnemyJumpKickData = {
 	name:STATE.J_Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:922,
 	clipY:ATLAS_ROW8,
 	clipWidth:102,
@@ -1362,7 +1452,7 @@ const brownEnemyJumpKickData = {
 
 const brownEnemyHKickData = {
 	name:STATE.H_Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:660,
 	clipY:ATLAS_ROW13,
 	clipWidth:102,
@@ -1379,7 +1469,7 @@ const brownEnemyHKickData = {
 
 const redEnemyIdleData = {
 	name:STATE.Idle,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:426,
 	clipY:ATLAS_ROW11,
 	clipWidth:80,
@@ -1394,7 +1484,7 @@ const redEnemyIdleData = {
 
 const redEnemyWalkData = {
 	name:STATE.WalkRight,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:750,
 	clipY:ATLAS_ROW9,
 	clipWidth:111,
@@ -1409,7 +1499,7 @@ const redEnemyWalkData = {
 
 const redEnemyDashData = {
 	name:STATE.Dash,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW4,
 	clipWidth:111,
@@ -1424,7 +1514,7 @@ const redEnemyDashData = {
 
 const redEnemyJumpData = {
 	name:STATE.Jump,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:424,
 	clipY:ATLAS_ROW10,
 	clipWidth:123,
@@ -1439,7 +1529,7 @@ const redEnemyJumpData = {
 
 const redEnemyCrouchData = {
 	name:STATE.Crouch,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:679,
 	clipY:ATLAS_ROW4,
 	clipWidth:55,
@@ -1454,7 +1544,7 @@ const redEnemyCrouchData = {
 
 const redEnemyPunchData = {
 	name:STATE.Punch,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:750,
 	clipY:ATLAS_ROW4,
 	clipWidth:159,
@@ -1469,7 +1559,7 @@ const redEnemyPunchData = {
 
 const redEnemyKickData = {
 	name:STATE.Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:568,
 	clipY:ATLAS_ROW9,
 	clipWidth:153,
@@ -1484,7 +1574,7 @@ const redEnemyKickData = {
 
 const redEnemyBlockData = {
 	name:STATE.Block,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:922,
 	clipY:ATLAS_ROW9,
 	clipWidth:39,
@@ -1499,7 +1589,7 @@ const redEnemyBlockData = {
 
 const redEnemyKnockbackData = {
 	name:STATE.KnockBack,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:875,
 	clipY:ATLAS_ROW9,
 	clipWidth:32,
@@ -1514,7 +1604,7 @@ const redEnemyKnockbackData = {
 
 const redEnemySweepData = {
 	name:STATE.Sweep,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:969,
 	clipY:ATLAS_ROW4,
 	clipWidth:55,
@@ -1529,7 +1619,7 @@ const redEnemySweepData = {
 
 const redEnemyJumpKickData = {
 	name:STATE.J_Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:922,
 	clipY:ATLAS_ROW9,
 	clipWidth:102,
@@ -1544,7 +1634,7 @@ const redEnemyJumpKickData = {
 
 const redEnemyHKickData = {
 	name:STATE.H_Kick,
-	image:characterAtlas,
+	image:enemyAtlas,
 	clipX:762,
 	clipY:ATLAS_ROW10,
 	clipWidth:102,
