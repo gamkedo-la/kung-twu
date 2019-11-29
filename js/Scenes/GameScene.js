@@ -176,7 +176,6 @@ function GameScene() {
 		frontVases = [];
 		floorMidHeight = 0;
 		timeTilSpawn = 0;
-		score = 0;
 		rivalImageDeltaX = null;
 		bossIntroText = null;
 		UIRivals.length = 0;
