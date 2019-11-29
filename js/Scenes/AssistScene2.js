@@ -594,11 +594,11 @@ function AssistScene2() {
 			simultaneousEnemies: {
 				name:SLIDER_NAMES.GangCount,
 				titleKey:STRINGS_KEY.GangCount,
-				minValue:0,
+				minValue:1,
 				minTitle:"1",
 				storageKey:localStorageKey.GangCount,
 				default:ASSIST_DEFAULT.GangCount,
-				maxValue:5,
+				maxValue:6,
 				maxTitle:"6",
 				steps:5,
 				colors:[Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red]

@@ -361,7 +361,7 @@ function GameScene() {
 	const updateEnemies = function(deltaTime) {
 		const playerPos = player.getPosition();
 		for (let i = 0; i < enemies.length; i++) {
-			enemies[i].update(deltaTime, GRAVITY, playerPos, enemyMinX, enemyMaxX, floorMidHeight, i <= activeRivals);
+			enemies[i].update(deltaTime, GRAVITY, playerPos, enemyMinX, enemyMaxX, floorMidHeight, i < activeRivals);
 		}
 
 		if(bossHasBeenSpawned) {
