@@ -73,7 +73,8 @@ function LevelIntroScene() {
 		
 		switch (newKeyEvent) {
 		case ALIAS.POINTER:
-			checkButtons();
+			SceneState.setState(SCENE.GAME, {restartLevel:shouldRestart});
+			shouldRestart = true;
 			return true;
 		}
 		
@@ -145,14 +146,6 @@ function LevelIntroScene() {
 
 		selectorPosition.x = theseBounds.x + widthToUse;
 		selectorPosition.y = theseBounds.y + (buttonHeight / 2) - (selector.height / 2);
-	};
-
-	const checkButtons = function() {
-		let wasClicked = false;
-		for(let button of buttons) {
-			wasClicked = button.respondIfClicked(mouseX, mouseY);
-			if(wasClicked) {break;}
-		}
 	};
 
 	const buildDoneButton = function(x, y, height, padding) {
