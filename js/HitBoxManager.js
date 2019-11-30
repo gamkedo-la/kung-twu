@@ -147,13 +147,27 @@ function HitBoxManager(bodyData, attackData) {
 		case STATE.Sweep:
 			return true;
 		case STATE.J_Kick:
-			return (frame === 2);
+			if(aiType === AITYPE.Boss) {
+				return (frame === 3);
+			} else if(aiType === AITYPE.Standard) {
+				return (frame === 3);
+			} else {
+				return (frame === 2);
+			}
 		case STATE.H_Kick:
 			return (frame > 1);
 		case STATE.Punch: 
-			return (frame === 2);
+			if(aiType === AITYPE.Boss) {
+				return (frame === 3);
+			} else if(aiType === AITYPE.Standard) {
+				return (frame === 3);
+			} else {
+				return (frame === 2);
+			}	
 		case STATE.Kick: 
 			if(aiType === AITYPE.Boss) {
+				return (frame === 3);
+			} else if(aiType === AITYPE.Standard) {
 				return (frame === 3);
 			} else {
 				return (frame === 2);
