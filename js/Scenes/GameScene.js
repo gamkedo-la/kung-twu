@@ -81,7 +81,7 @@ function GameScene() {
 			camera = new Camera();
 			initializeCollisionManager(player);
 			initializeLevel();
-
+			
 			didReset = false;
 		}
 
@@ -144,6 +144,11 @@ function GameScene() {
 		didReset = true;
 
 		camera = new Camera();
+
+		// Don't reset score if player completed a level
+		if(currentLevel <= levelData.level) {
+			score = 0;
+		}
 
 		enemies = [];
 		displayPoints.length = 0;
