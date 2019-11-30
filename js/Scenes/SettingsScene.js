@@ -12,6 +12,9 @@ function SettingsScene() {
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
+	const slider = {};
+	let sliderData = null;
+	let sliderArray = null;
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -174,4 +177,65 @@ function SettingsScene() {
 	const drawTitle = function() {
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.SettingsScreenTitle), {x:canvas.width / 2, y:TITLE_Y_POS}, TextAlignment.Center, 1);
 	};
+
+	
+	const buildSliderButtons = function() {
+		/*First Column of Sliders */
+		// Music Vol
+		buttons.push(buildMusicButton(COL1_X, ROW1_Y, buttonHeight, buttonTitlePadding));
+
+		//SFX Vol
+		buttons.push(buildSFXButton(COL1_X, ROW2_Y, buttonHeight, buttonTitlePadding));
+	};
+
+	const buildMusicButton = function(x, y, height, padding) {
+		const thisClick = function() {
+			SceneState.setState(SCENE.SLIDER, sliderData.playerHealth);
+		};
+
+		return new UIButton(sliderData.playerHealth.titleKey, x, y, height, padding, thisClick, Color.Aqua);
+	};
+
+	const buildSFXButton = function(x, y, height, padding) {
+		const thisClick = function() {
+			SceneState.setState(SCENE.SLIDER, sliderData.enemyHealth);
+		};
+
+		return new UIButton(sliderData.enemyHealth.titleKey, x, y, height, padding, thisClick, Color.Aqua);
+	};
+
+
+	const buildSliderData = function() {
+		sliderData = {
+			MusicVolume: {
+				name:SLIDER_NAMES.MaxHealth,
+				titleKey:STRINGS_KEY.MaxHealth,
+				minValue:10,
+				minTitle:"10",
+				storageKey:localStorageKey.PlayerMaxHealth,
+				default:ASSIST_DEFAULT.MaxHealth,
+				maxValue:400,
+				maxTitle:"400",
+				steps:39,
+				colors:[Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue]
+			},
+			SFXVolume: {
+				name:SLIDER_NAMES.PlayerBaseDamage,
+				titleKey:STRINGS_KEY.PlayerDamage,
+				minValue:1,
+				minTitle:"1",
+				storageKey:localStorageKey.PlayerBaseDamage,
+				default:ASSIST_DEFAULT.PlayerBaseDamage,
+				maxValue:50,
+				maxTitle:"50",
+				steps:49,
+				colors:[Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue]
+			}
+		};
+
+		sliderArray = [
+			sliderData.musicVolume,
+			sliderData.SFXVolume,
+		];
+	}
 }
