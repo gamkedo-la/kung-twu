@@ -1,7 +1,7 @@
 // since attack animation frametimes are located on many different lines
 // this is used to scale all player punch+kick delays as set below
 // in order to quickly iterate on the player's attack speeds globally
-const PLR_ATK_DELAYSCALE = 0.5; // multiplies delay, so 0.5=fast 1=normal 2=slow
+const PLR_ATK_DELAYSCALE = 1.0; // multiplies delay, so 0.5=fast 1=normal 2=slow
 
 const RIVAL_TYPE = {
 	basic:"basic",
