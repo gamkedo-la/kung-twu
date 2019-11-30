@@ -1,7 +1,10 @@
 //Game Play scene
 function GameScene() {
-	this.name = "Game Play";
-	const GRAVITY = 1500;
+
+    this.name = "Game Play";
+
+    const TIME_SCALE = 1;// TODO: try 1.25 speed, see if you prefer it
+    const GRAVITY = 1500;
 	const VERTICAL_OFFSET = 50;
 	const FIRST_PLAYERSTART_OFFSET = -100; // on 1st load, levelData.playerStart not used - could be used to tweak start pos
 	const COLUMN_OFFSET = 200; // columns start from player start, so we need a small offset so the player doesn't spawn behind a column
@@ -237,7 +240,7 @@ function GameScene() {
 	};
 
 	const update = function(deltaTime) {
-		let time = deltaTime;
+		let time = deltaTime * TIME_SCALE;
 		if(gameOverPending) {
 			time /= 10;
 		}
