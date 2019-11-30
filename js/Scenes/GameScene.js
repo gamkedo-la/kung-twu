@@ -3,7 +3,7 @@ function GameScene() {
 
     this.name = "Game Play";
 
-    const TIME_SCALE = 1;// TODO: try 1.25 speed, see if you prefer it
+    const TIME_SCALE = 1.0;// TODO: try 1.25 speed, see if you prefer it
     const GRAVITY = 1500;
 	const VERTICAL_OFFSET = 50;
 	const FIRST_PLAYERSTART_OFFSET = -100; // on 1st load, levelData.playerStart not used - could be used to tweak start pos

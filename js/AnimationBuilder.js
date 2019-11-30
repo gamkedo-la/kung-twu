@@ -1,3 +1,8 @@
+// since attack animation frametimes are located on many different lines
+// this is used to scale all player punch+kick delays as set below
+// in order to quickly iterate on the player's attack speeds globally
+const PLR_ATK_DELAYSCALE = 0.5; // multiplies delay, so 0.5=fast 1=normal 2=slow
+
 const RIVAL_TYPE = {
 	basic:"basic",
 	tall:"tall",
@@ -915,13 +920,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		punch:{
+
+
+
+        punch:{
 			name:STATE.Punch,
 			image:playerPunchWhite,
 			frames:[0, 1, 2, 1],
 			width:playerPunchWhite.width / 3,
 			height:playerPunchWhite.height,
-			frameTimes:[30, 150, 150, 30],
+            frameTimes:[30*PLR_ATK_DELAYSCALE, 150*PLR_ATK_DELAYSCALE, 150*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -931,7 +939,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickWhite.width / 3,
 			height:playerKickWhite.height,
-			frameTimes:[60, 200, 150, 60],
+            frameTimes:[30*PLR_ATK_DELAYSCALE, 150*PLR_ATK_DELAYSCALE, 150*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1017,7 +1025,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchYellow.width / 3,
 			height:playerPunchYellow.height,
-			frameTimes:[30, 130, 130, 30],
+			frameTimes:[30*PLR_ATK_DELAYSCALE, 130*PLR_ATK_DELAYSCALE, 130*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1027,7 +1035,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickYellow.width / 3,
 			height:playerKickYellow.height,
-			frameTimes:[60, 170, 140, 60],
+			frameTimes:[60*PLR_ATK_DELAYSCALE, 170*PLR_ATK_DELAYSCALE, 140*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1113,7 +1121,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchTan.width / 3,
 			height:playerPunchTan.height,
-			frameTimes:[30, 110, 110, 30],
+			frameTimes:[30*PLR_ATK_DELAYSCALE, 110*PLR_ATK_DELAYSCALE, 110*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1123,7 +1131,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickTan.width / 3,
 			height:playerKickTan.height,
-			frameTimes:[60, 150, 130, 60],
+			frameTimes:[60*PLR_ATK_DELAYSCALE, 150*PLR_ATK_DELAYSCALE, 130*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1209,7 +1217,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchBrown.width / 3,
 			height:playerPunchBrown.height,
-			frameTimes:[30, 90, 100, 30],
+			frameTimes:[30*PLR_ATK_DELAYSCALE, 90*PLR_ATK_DELAYSCALE, 100*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1219,7 +1227,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickBrown.width / 3,
 			height:playerKickBrown.height,
-			frameTimes:[60, 120, 120, 60],
+			frameTimes:[60*PLR_ATK_DELAYSCALE, 120*PLR_ATK_DELAYSCALE, 120*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1305,7 +1313,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchRed.width / 3,
 			height:playerPunchRed.height,
-			frameTimes:[30, 70, 90, 30],
+			frameTimes:[30*PLR_ATK_DELAYSCALE, 70*PLR_ATK_DELAYSCALE, 90*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1315,7 +1323,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickRed.width / 3,
 			height:playerKickRed.height,
-			frameTimes:[60, 100, 110, 60],
+			frameTimes:[60*PLR_ATK_DELAYSCALE, 100*PLR_ATK_DELAYSCALE, 110*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1401,7 +1409,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchBlack.width / 3,
 			height:playerPunchBlack.height,
-			frameTimes:[30, 50, 80, 30],
+			frameTimes:[30*PLR_ATK_DELAYSCALE, 50*PLR_ATK_DELAYSCALE, 80*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1411,7 +1419,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickBlack.width / 3,
 			height:playerKickBlack.height,
-			frameTimes:[60, 90, 90, 60],
+			frameTimes:[60*PLR_ATK_DELAYSCALE, 90*PLR_ATK_DELAYSCALE, 90*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
