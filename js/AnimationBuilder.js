@@ -1550,10 +1550,10 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			//Placeholder until we have the actual boss knockback animation
-			image:yellowEnemyKnockback,
+			image:yellowBossKnockback,
 			frames:[0],
-			width:yellowEnemyKnockback.width,
-			height:yellowEnemyKnockback.height,
+			width:yellowBossKnockback.width,
+			height:yellowBossKnockback.height,
 			frameTimes:[625],
 			reverses:false,
 			loops:false
@@ -1655,10 +1655,10 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			//Placeholder until we have the actual boss knockback animation
-			image:tanEnemyKnockback,
+			image:tanBossKnockback,
 			frames:[0],
-			width:tanEnemyKnockback.width,
-			height:tanEnemyKnockback.height,
+			width:tanBossKnockback.width,
+			height:tanBossKnockback.height,
 			frameTimes:[625],
 			reverses:false,
 			loops:false
@@ -1769,10 +1769,10 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			//Placeholder until we have the actual boss knockback animation
-			image:brownEnemyKnockback,
+			image:brownBossKnockback,
 			frames:[0],
-			width:brownEnemyKnockback.width,
-			height:brownEnemyKnockback.height,
+			width:brownBossKnockback.width,
+			height:brownBossKnockback.height,
 			frameTimes:[625],
 			reverses:false,
 			loops:false
@@ -1883,10 +1883,10 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			//Placeholder until we have the actual boss knockback animation
-			image:redEnemyKnockback,
+			image:redBossKnockback,
 			frames:[0],
-			width:redEnemyKnockback.width,
-			height:redEnemyKnockback.height,
+			width:redBossKnockback.width,
+			height:redBossKnockback.height,
 			frameTimes:[625],
 			reverses:false,
 			loops:false
@@ -1997,10 +1997,10 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			//Placeholder until we have the actual boss knockback animation
-			image:basicEnemyKnockback,
+			image:blackBossKnockback,
 			frames:[0],
-			width:basicEnemyKnockback.width,
-			height:basicEnemyKnockback.height,
+			width:blackBossKnockback.width,
+			height:blackBossKnockback.height,
 			frameTimes:[625],
 			reverses:false,
 			loops:false

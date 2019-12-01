@@ -1771,6 +1771,21 @@ const yellowBossH_KickData = {
 	loops:false
 };
 
+const yellowBossKnockbackData = {
+	name:STATE.KnockBack,
+	image:bossAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW11 + 2,
+	clipWidth:51,
+	clipHeight:67,
+	frameWidth:51,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Boss Tan Belt Atlas Data--------//
 
 const tanBossIdleData = {
@@ -1889,6 +1904,21 @@ const tanBossH_KickData = {
 	frameCount:6,
 	frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
 	frameTimes:[110],
+	reverses:false,
+	loops:false
+};
+
+const tanBossKnockbackData = {
+	name:STATE.KnockBack,
+	image:bossAtlas,
+	clipX:51,
+	clipY:ATLAS_ROW11 + 2,
+	clipWidth:51,
+	clipHeight:67,
+	frameWidth:51,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[100],
 	reverses:false,
 	loops:false
 };
@@ -2015,6 +2045,21 @@ const brownBossH_KickData = {
 	loops:false
 };
 
+const brownBossKnockbackData = {
+	name:STATE.KnockBack,
+	image:bossAtlas,
+	clipX:102,
+	clipY:ATLAS_ROW11 + 2,
+	clipWidth:51,
+	clipHeight:67,
+	frameWidth:51,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Boss Red Belt Atlas Data--------//
 
 const redBossIdleData = {
@@ -2137,6 +2182,21 @@ const redBossH_KickData = {
 	loops:false
 };
 
+const redBossKnockbackData = {
+	name:STATE.KnockBack,
+	image:bossAtlas,
+	clipX:153,
+	clipY:ATLAS_ROW11 + 2,
+	clipWidth:51,
+	clipHeight:67,
+	frameWidth:51,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Boss Black Belt Atlas Data--------//
 
 const blackBossIdleData = {
@@ -2255,6 +2315,21 @@ const blackBossH_KickData = {
 	frameCount:6,
 	frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
 	frameTimes:[110],
+	reverses:false,
+	loops:false
+};
+
+const blackBossKnockbackData = {
+	name:STATE.KnockBack,
+	image:bossAtlas,
+	clipX:204,
+	clipY:ATLAS_ROW11 + 2,
+	clipWidth:51,
+	clipHeight:67,
+	frameWidth:51,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[100],
 	reverses:false,
 	loops:false
 };
