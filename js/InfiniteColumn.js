@@ -8,6 +8,8 @@ function InfiniteColumn(image, verticalOffset) {
 	const column2 = new Column();
 
 	let yPos;
+	let oldCameraX = null;
+	let isMovingLeft = true;
 
 	this.positionFirstColumn = function(xPos) {
 		yPos = canvas.height - COLUMN_HEIGHT - VERTICAL_INSET - verticalOffset;
@@ -16,13 +18,21 @@ function InfiniteColumn(image, verticalOffset) {
 	};
 
 	this.update = function(cameraXPos) {
+		if(oldCameraX === null) {
+			oldCameraX = cameraXPos;
+		} else {
+			isMovingLeft = (oldCameraX > cameraXPos);
+		}
+
 		if(!column1.isOnScreen(cameraXPos)) {
-			updateColumnLocation(column1, column2, cameraXPos);
+			updateColumnLocation(column1, column2);
 		}
 		
 		if(!column2.isOnScreen(cameraXPos)) {
-			updateColumnLocation(column2, column1, cameraXPos);
+			updateColumnLocation(column2, column1);
 		}
+
+		oldCameraX = cameraXPos;
 	};
 
 	this.draw = function(cameraXPos) {
@@ -30,21 +40,21 @@ function InfiniteColumn(image, verticalOffset) {
 		column2.draw(cameraXPos);
 	};
 
-	const updateColumnLocation = function(offscreen, onscreen, cameraXPos) {
-		const leftDist = onscreen.getPosition().x - (cameraXPos - canvas.width / 2) - COLUMN_WIDTH;
-		if(leftDist > COLUMN_SPACING) {
-			offscreen.setPosition(
-				(cameraXPos - canvas.width / 2) - COLUMN_WIDTH,
-				yPos
-			);
-		}
-
-		const rightDist = (cameraXPos + canvas.width / 2) - onscreen.getPosition().x;
-		if(rightDist > COLUMN_SPACING) {
-			offscreen.setPosition(
-				(cameraXPos + canvas.width / 2),
-				yPos
-			);
+	const updateColumnLocation = function(offscreen, onscreen) {
+		if(isMovingLeft) {
+			if(offscreen.getPosition().x > onscreen.getPosition().x) {
+				offscreen.setPosition(
+					onscreen.getPosition().x - COLUMN_SPACING,
+					yPos
+				);
+			}
+		} else {
+			if(offscreen.getPosition().x < onscreen.getPosition().x) {
+				offscreen.setPosition(
+					onscreen.getPosition().x + COLUMN_SPACING,
+					yPos
+				);
+			}
 		}
 	};
 
