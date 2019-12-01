@@ -566,9 +566,9 @@ const userStrings = {
 		[STRINGS_KEY.BossIntroText_Lvl4]:"Shīfù змея подходит.",
 		[STRINGS_KEY.BossIntroText_Lvl5]:"Shīfù дракон подходит.",
 		[STRINGS_KEY.ControlsText_Lvl2]:"[пробел] изворачиваться",
-		[STRINGS_KEY.ControlsText_Lvl3]:"[пресмыкаться + удар] подметание ног",
+		[STRINGS_KEY.ControlsText_Lvl3]:"[пресмыкаться + удар]\nподметание ног",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + удар] прыжок",
-		[STRINGS_KEY.ControlsText_Lvl5]:"[изворачиваться + удар] спиновой удар",
+		[STRINGS_KEY.ControlsText_Lvl5]:"[изворачиваться + удар]\nспиновой удар",
 
 		[STRINGS_KEY.GangCount]:"Active\nRivals",
 		[STRINGS_KEY.Default]:"Restore\nDefault",
