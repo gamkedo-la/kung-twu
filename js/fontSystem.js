@@ -577,7 +577,10 @@ function fontSystem(jpFont, charSize, context) {
 		case "Д":
 		case "д":
 			return {x:3 * charSize.width, y:17 * charSize.height};
-
+		case "À":
+		case "à":
+			return {x:15 * charSize.width, y:17 * charSize.height};
+		
 		default: return {x:18.5 * charSize.width, y:charSize.height};//18.5 so it doesn't crash, but you can tell something's not right
 		}
 	};

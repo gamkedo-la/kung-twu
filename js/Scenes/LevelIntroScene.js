@@ -26,10 +26,14 @@ function LevelIntroScene() {
 	let messageLines;
 	let controls;
 	let shouldRestart = false;
+	let msgScaleAdjust = 0;
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 
+		if(currentLanguage === Language.French) {
+			msgScaleAdjust = 0.1;
+		}
 		message = messageForNewLevel();
 		messageLines = message.split("\n");
 		controls = getLocalizedStringForKey(STRINGS_KEY.HelpScreenContents).split("\n");
@@ -247,7 +251,7 @@ function LevelIntroScene() {
 
 	const drawMessage = function() {
 		for (let num=0; num<messageLines.length; num++) {
-			JPFont.printTextAt(messageLines[num], {x:canvas.width / 2, y:MESSAGE_Y_POS + ((num - 1)*LINE_HEIGHT)}, TextAlignment.Center, MSG_SCALE);
+			JPFont.printTextAt(messageLines[num], {x:canvas.width / 2, y:MESSAGE_Y_POS + ((num - 1)*LINE_HEIGHT)}, TextAlignment.Center, MSG_SCALE - msgScaleAdjust);
 		}
 	};
 
