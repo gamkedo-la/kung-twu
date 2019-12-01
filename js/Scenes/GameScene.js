@@ -1,10 +1,10 @@
 //Game Play scene
 function GameScene() {
 
-    this.name = "Game Play";
+	this.name = "Game Play";
 
-    const TIME_SCALE = 1.0;// TODO: try 1.25 speed, see if you prefer it
-    const GRAVITY = 1500;
+	const TIME_SCALE = 1.0;// TODO: try 1.25 speed, see if you prefer it
+	const GRAVITY = 1500;
 	const VERTICAL_OFFSET = 50;
 	const FIRST_PLAYERSTART_OFFSET = -100; // on 1st load, levelData.playerStart not used - could be used to tweak start pos
 	const COLUMN_OFFSET = 200; // columns start from player start, so we need a small offset so the player doesn't spawn behind a column
@@ -803,7 +803,7 @@ function GameScene() {
 
 	const initializeTables = function(frontY, backY) {
 		for(let tableData of levelData.backTables) {
-			const thisTable = new Table(tableData.x, tableData.y, frontY, backY);
+			const thisTable = new Table(tableData.x, tableData.y, frontY, backY, tableData.hasStatue);
 			backTables.push(thisTable);
 		}
 
@@ -1034,7 +1034,7 @@ const Level1Data = {
 		return false;
 	},
 	playerStart:{x:300, y:500}, //x = cameraMax
-	backTables:[{x:-500, y: 590}, {x:-1500, y: 590}, {x:-2000, y: 590}, {x:-2500, y: 590}, {x:-3500, y: 590}, {x:-4000, y: 590}],
+	backTables:[{x:-500, y: 590, hasStatue:true}, {x:-1500, y: 590}, {x:-2000, y: 590, hasStatue:true}, {x:-2500, y: 590}, {x:-3500, y: 590}, {x:-4000, y: 590, hasStatue:true}],
 	tables:[],
 	frontTables:[{x:-700, y: 680}, {x:-1200, y: 680},{x:-2200, y: 680}, {x:-2700, y: 680}, {x:-3200, y: 680}, {x:-4200, y: 680}],
 	backVases:[{x:-200, y: 552, index:0}, {x:-1200, y: 552, index:2}, {x:-2200, y: 552, index:4}, {x:-3200, y: 552, index:6}],
@@ -1117,7 +1117,7 @@ const Level2Data = {
 		return false;
 	},
 	playerStart:{x:-100, y:500}, //x = cameraMin
-	backTables:[{x:-500, y: 590}, {x:-1000, y: 590}, {x:-1500, y: 590}, {x:-2500, y: 590}, {x:-3000, y: 590}, {x:-3500, y: 590}, {x:-4000, y: 590}],
+	backTables:[{x:-500, y: 590}, {x:-1000, y: 590, hasStatue:true}, {x:-1500, y: 590}, {x:-2500, y: 590, hasStatue:true}, {x:-3000, y: 590}, {x:-3500, y: 590, hasStatue:true}, {x:-4000, y: 590}],
 	tables:[{x:-1300, y: 635}, {x:-3300, y: 635}],
 	frontTables:[{x:-1200, y: 680}, {x:-2000, y: 680}, {x:-2700, y: 680}, {x:-3200, y: 680}, {x:-4200, y: 680}],
 	backVases:[{x:-200, y: 552, index:1}, {x:-1200, y: 552, index:3}, {x:-2200, y: 552, index:5}, {x:-3200, y: 552, index:7}],
@@ -1200,7 +1200,7 @@ const Level3Data = {
 		return false;
 	},
 	playerStart:{x:350, y:500}, //x = cameraMax
-	backTables:[{x:-1000, y: 590},{x:-2500, y: 590}, {x:-3000, y: 590}, {x:-3500, y: 590}, {x:-4000, y: 590}],
+	backTables:[{x:-1000, y: 590, hasStatue:true},{x:-2500, y: 590}, {x:-3000, y: 590}, {x:-3500, y: 590}, {x:-4000, y: 590, hasStatue:true}],
 	tables:[{x:-300, y: 635}, {x:-2000, y: 635}, {x:-3700, y: 635}],
 	frontTables:[{x:-700, y: 680}, {x:-1300, y: 680}, {x:-1500, y: 680}, {x:-2200, y: 680}, {x:-3000, y: 680}, {x:-4000, y: 680}, {x:-4900, y: 680}],
 	backVases:[{x:-125, y: 552, index:2}, {x:-900, y: 552, index:4}, {x:-1600, y: 552, index:6}, {x:-2100, y: 552, index:7}, {x:-2600, y: 552, index:7}, {x:-3700, y: 552, index:3}, {x:-4400, y: 552, index:5}],
@@ -1269,7 +1269,7 @@ const Level4Data = {
 		return false;
 	},
 	playerStart:{x:-100, y:500}, //x = cameraMin
-	backTables:[{x:-500, y: 590}, {x:-1500, y: 590}, {x:-2500, y: 590}, {x:-3200, y: 590}],
+	backTables:[{x:-500, y: 590}, {x:-1500, y: 590}, {x:-2500, y: 590, hasStatue:true}, {x:-3200, y: 590, hasStatue:true}],
 	tables:[{x:-300, y: 635}, {x:-1300, y: 635}, {x:-2300, y: 635}, {x:-3300, y: 635}],
 	frontTables:[{x:-1200, y: 680}, {x:-2700, y: 680}, {x:-3700, y: 680}, {x:-4200, y: 680}],
 	backVases:[{x:-125, y: 552, index:7}, {x:-900, y: 552, index:5}, {x:-1600, y: 552, index:3}, {x:-2100, y: 552, index:1}, {x:-2800, y: 552, index:6}, {x:-3700, y: 552, index:4}, {x:-4400, y: 552, index:2}],
@@ -1310,7 +1310,7 @@ const Level5Data = {
 		return false;
 	},
 	playerStart:{x:350, y:500}, //x = cameraMax
-	backTables:[{x:-500, y: 590}, {x:-1000, y: 590}, {x:-1500, y: 590}, {x:-2000, y: 590}, {x:-2500, y: 590}, {x:-3000, y: 590}, {x:-3600, y: 590}, {x:-4000, y: 590}],
+	backTables:[{x:-500, y: 590}, {x:-1000, y: 590, hasStatue:true}, {x:-1500, y: 590}, {x:-2000, y: 590, hasStatue:true}, {x:-2500, y: 590}, {x:-3000, y: 590, hasStatue:true}, {x:-3600, y: 590}, {x:-4000, y: 590, hasStatue:true}],
 	tables:[{x:-100, y: 635}, {x:-1300, y: 635}, {x:-2700, y: 635}, {x:-3800, y: 635}],
 	frontTables:[{x:-700, y: 680}, {x:-1200, y: 680}, {x:-1900, y: 680}, {x:-2000, y: 680}, {x:-2700, y: 680}, {x:-3000, y: 680}, {x:-3700, y: 680}, {x:-4200, y: 680}],
 	backVases:[{x:-125, y: 552, index:2}, {x:-900, y: 552, index:1}, {x:-1600, y: 552, index:0}, {x:-2100, y: 552, index:4}, {x:-2800, y: 552, index:6}, {x:-3400, y: 552, index:4}, {x:-4400, y: 552, index:5}],
