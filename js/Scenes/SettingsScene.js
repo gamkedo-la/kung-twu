@@ -1,7 +1,6 @@
 //Settings Scene
 function SettingsScene() {
 	this.name = "Settings";
-	const TITLE_Y_POS = 100;
 	let selectorPositionsIndex = 0;
 	const selectorPosition = {x:0, y:0};
 	const selections = [
@@ -16,6 +15,24 @@ function SettingsScene() {
 	let sliderData = null;
 	let sliderArray = null;
 
+	const TITLE_Y_POS = 100;
+	const TITLE_SCALE = 1;
+	const HEADER_SCALE = 0.7;
+
+	const SLIDER_W = 200;
+
+	const COL_DELTA = 63;
+	const COL1_X = 60;
+	const COL2_X = COL1_X + SLIDER_W + COL_DELTA;
+	const COL3_X = COL2_X + SLIDER_W + COL_DELTA;
+
+	const ROW_DELTA = 80;
+	const ROW1_Y = TITLE_Y_POS + 90 + ROW_DELTA;
+	const ROW2_Y = ROW1_Y + ROW_DELTA;
+	const ROW3_Y = ROW2_Y + ROW_DELTA;
+	const ROW4_Y = ROW3_Y + ROW_DELTA;
+	const ROW5_Y = ROW4_Y + ROW_DELTA;
+	
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 
@@ -234,7 +251,7 @@ function SettingsScene() {
 		};
 
 		sliderArray = [
-			sliderData.musicVolume,
+			sliderData.MusicVolume,
 			sliderData.SFXVolume,
 		];
 	}
