@@ -1,7 +1,6 @@
 //Modal Slider Scene
 function ModalSlider() {
 	this.name = "Sliders";
-	const TITLE_Y_POS = 100;
 	let selectorPositionsIndex = 0;
 	const selectorPosition = {x:0, y:0};
 	const buttonHeight = 25;

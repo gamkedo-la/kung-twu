@@ -1,10 +1,11 @@
 //Table Object
-function Table(posX, posY, frontY, backY) {
+function Table(posX, posY, frontY, backY, hasStatue = false) {
 	this.type = ENTITY_TYPE.Environment;
 	let oldCameraPos;
 	let position = {x:posX, y:posY};
 	const thisBottom = posY + table.height;
 	const thisRatio = 2 * ((frontY - thisBottom) / (frontY - backY));
+	const statueOffset = (table.width - statue.width) / 2;
 
 	const colliderData = {};
 	const colliderPoints = [
@@ -50,6 +51,10 @@ function Table(posX, posY, frontY, backY) {
 		if(position.x > oldCameraPos + (canvas.width / 2)) return;
 
 		canvasContext.drawImage(table, position.x, position.y);
+
+		if(hasStatue) {
+			canvasContext.drawImage(statue, position.x + statueOffset, position.y + (2 * table.height / 5) - statue.height);
+		}
 
 		this.collisionBody.draw(); //colliders know to draw only when DRAW_COLLIDERS = true;
 	};
