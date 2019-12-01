@@ -1039,7 +1039,7 @@ const Level1Data = {
 	frontTables:[{x:-700, y: 680}, {x:-1200, y: 680},{x:-2200, y: 680}, {x:-2700, y: 680}, {x:-3200, y: 680}, {x:-4200, y: 680}],
 	backVases:[{x:-200, y: 552, index:0}, {x:-1200, y: 552, index:2}, {x:-2200, y: 552, index:4}, {x:-3200, y: 552, index:6}],
 	vases:[],
-	frontVases:[{x:-125, y: 640, index:1}, {x:-900, y: 640, index:3}, {x:-1600, y: 640, index:5}, {x:-2100, y: 640, index:7}, {x:-2800, y: 640, index:2}, {x:-3500, y: 640, index:0}, {x:-4400, y: 640, index:0}],
+	frontVases:[{x:-125, y: 640, index:1}, {x:-900, y: 640, index:3}, {x:-1600, y: 640, index:5}, {x:-2100, y: 640, index:7}, {x:-2800, y: 640, index:2}, {x:-3300, y: 640, index:5}, {x:-4400, y: 640, index:0}],
 	backgroundImages:[
 		{image:temple, x:-100, y:250, depth:10, scrollOffscreen:true},
 		{image:bambooLight, x:0, y:250, depth:3, scrollOffscreen:false}, 
@@ -1119,10 +1119,10 @@ const Level2Data = {
 	playerStart:{x:-100, y:500}, //x = cameraMin
 	backTables:[{x:-500, y: 590}, {x:-1000, y: 590}, {x:-1500, y: 590}, {x:-2500, y: 590}, {x:-3000, y: 590}, {x:-3500, y: 590}, {x:-4000, y: 590}],
 	tables:[{x:-1300, y: 635}, {x:-3300, y: 635}],
-	frontTables:[{x:-1200, y: 680}, {x:-1700, y: 680}, {x:-2700, y: 680}, {x:-3200, y: 680}, {x:-4200, y: 680}],
+	frontTables:[{x:-1200, y: 680}, {x:-2000, y: 680}, {x:-2700, y: 680}, {x:-3200, y: 680}, {x:-4200, y: 680}],
 	backVases:[{x:-200, y: 552, index:1}, {x:-1200, y: 552, index:3}, {x:-2200, y: 552, index:5}, {x:-3200, y: 552, index:7}],
 	vases:[{x:-300, y: 590, index:1}, {x:-200, y: 590, index:1}, {x:-100, y: 590, index:1}, {x:0, y: 590, index:1}],
-	frontVases:[{x:-125, y: 640, index:2}, {x:-900, y: 640, index:4}, {x:-1600, y: 640, index:6}, {x:-2100, y: 640, index:7}, {x:-2800, y: 640, index:1}, {x:-3500, y: 640, index:3}, {x:-4400, y: 640, index:5}],
+	frontVases:[{x:-125, y: 640, index:2}, {x:-900, y: 640, index:4}, {x:-1600, y: 640, index:6}, {x:-2100, y: 640, index:7}, {x:-2800, y: 640, index:1}, {x:-3800, y: 640, index:3}, {x:-4400, y: 640, index:5}],
 	backgroundImages:[
 		{image:temple, x:-100, y:350, depth:10, scrollOffscreen:true},
 		{image:bambooLight, x:0, y:250, depth:3, scrollOffscreen:false}, 
@@ -1202,10 +1202,10 @@ const Level3Data = {
 	playerStart:{x:350, y:500}, //x = cameraMax
 	backTables:[{x:-1000, y: 590},{x:-2500, y: 590}, {x:-3000, y: 590}, {x:-3500, y: 590}, {x:-4000, y: 590}],
 	tables:[{x:-300, y: 635}, {x:-2000, y: 635}, {x:-3700, y: 635}],
-	frontTables:[{x:-700, y: 680}, {x:-1300, y: 680}, {x:-1700, y: 680}, {x:-3200, y: 680}, {x:-3500, y: 680}, {x:-4200, y: 680}, {x:-4700, y: 680}],
+	frontTables:[{x:-700, y: 680}, {x:-1300, y: 680}, {x:-1500, y: 680}, {x:-2200, y: 680}, {x:-3000, y: 680}, {x:-4000, y: 680}, {x:-4900, y: 680}],
 	backVases:[{x:-125, y: 552, index:2}, {x:-900, y: 552, index:4}, {x:-1600, y: 552, index:6}, {x:-2100, y: 552, index:7}, {x:-2600, y: 552, index:1}, {x:-3700, y: 552, index:3}, {x:-4400, y: 552, index:5}],
 	vases:[{x:-300, y: 590, index:1}, {x:-200, y: 590, index:1}, {x:-100, y: 590, index:1}, {x:0, y: 590, index:1}],
-	frontVases:[{x:-50, y: 640, index:1}, {x:-900, y: 640, index:7}, {x:-1900, y: 640, index:5}, {x:-2600, y: 640, index:3}, {x:-4000, y: 640, index:0}],
+	frontVases:[{x:0, y: 640, index:1}, {x:-900, y: 640, index:7}, {x:-1900, y: 640, index:5}, {x:-2600, y: 640, index:3}, {x:-3700, y: 640, index:0}],
 	backgroundImages:[
 		{image:temple, x:-100, y:450, depth:10, scrollOffscreen:true},
 		{image:bambooLight, x:0, y:250, depth:3, scrollOffscreen:false}, 
@@ -1271,10 +1271,10 @@ const Level4Data = {
 	playerStart:{x:-100, y:500}, //x = cameraMin
 	backTables:[{x:-500, y: 590}, {x:-1500, y: 590}, {x:-2500, y: 590}, {x:-3500, y: 590}],
 	tables:[{x:-300, y: 635}, {x:-1300, y: 635}, {x:-2300, y: 635}, {x:-3300, y: 635}],
-	frontTables:[{x:-1200, y: 680}, {x:-2200, y: 680}, {x:-3200, y: 680}, {x:-4200, y: 680}],
+	frontTables:[{x:-1200, y: 680}, {x:-2700, y: 680}, {x:-3700, y: 680}, {x:-4200, y: 680}],
 	backVases:[{x:-125, y: 552, index:7}, {x:-900, y: 552, index:5}, {x:-1600, y: 552, index:3}, {x:-2100, y: 552, index:1}, {x:-2800, y: 552, index:6}, {x:-3500, y: 552, index:4}, {x:-4400, y: 552, index:2}],
 	vases:[{x:-300, y: 590, index:1}, {x:-200, y: 590, index:1}, {x:-100, y: 590, index:1}, {x:0, y: 590, index:1}],
-	frontVases:[{x:-200, y: 640, index:5}, {x:-1200, y: 640, index:4}, {x:-2200, y: 640, index:1}, {x:-3200, y: 640, index:0}],
+	frontVases:[{x:-200, y: 640, index:5}, {x:-800, y: 640, index:4}, {x:-2200, y: 640, index:1}, {x:-3200, y: 640, index:0}],
 	backgroundImages:[
 		{image:templeDark, x:-250, y:500, depth:13, scrollOffscreen:true},
 	]
