@@ -663,7 +663,6 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Zryw + Kopnięcie] Kopnięcie z Obrotu",
 		[STRINGS_KEY.GangCount]:"Aktywni\nRywale",
 		[STRINGS_KEY.Default]:"Przywróć Domyślą Wartość",
-		
-		[STRINGS_KEY.Player]:"Player"
+		[STRINGS_KEY.Player]:"Gracz"
 	}
 };
