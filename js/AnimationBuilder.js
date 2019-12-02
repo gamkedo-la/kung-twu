@@ -3,6 +3,10 @@
 // in order to quickly iterate on the player's attack speeds globally
 const PLR_ATK_DELAYSCALE = 1.0; // multiplies delay, so 0.5=fast 1=normal 2=slow
 
+// an attempt to reduce player perception of "input lag"
+const PLR_WINDUP_DELAYSCALE = 0.2; // lower the delay between button press and attack (1st two frames only)
+//TODO const PLR_COOLDOWN_DELAYSCALE = 1.5; // and raise the cooldown trime to compensate (last 2 frames only)
+
 const RIVAL_TYPE = {
 	basic:"basic",
 	tall:"tall",
@@ -926,7 +930,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchWhite.width / 3,
 			height:playerPunchWhite.height,
-			frameTimes:[30*PLR_ATK_DELAYSCALE, 150*PLR_ATK_DELAYSCALE, 150*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
+			frameTimes:[30*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 150*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 150*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -936,7 +940,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickWhite.width / 3,
 			height:playerKickWhite.height,
-			frameTimes:[30*PLR_ATK_DELAYSCALE, 150*PLR_ATK_DELAYSCALE, 150*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
+			frameTimes:[30*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 150*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 150*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1022,7 +1026,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchYellow.width / 3,
 			height:playerPunchYellow.height,
-			frameTimes:[30*PLR_ATK_DELAYSCALE, 130*PLR_ATK_DELAYSCALE, 130*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
+			frameTimes:[30*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 130*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 130*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1032,7 +1036,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickYellow.width / 3,
 			height:playerKickYellow.height,
-			frameTimes:[60*PLR_ATK_DELAYSCALE, 170*PLR_ATK_DELAYSCALE, 140*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
+			frameTimes:[60*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 170*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 140*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1118,7 +1122,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchTan.width / 3,
 			height:playerPunchTan.height,
-			frameTimes:[30*PLR_ATK_DELAYSCALE, 110*PLR_ATK_DELAYSCALE, 110*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
+			frameTimes:[30*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 110*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 110*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1128,7 +1132,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickTan.width / 3,
 			height:playerKickTan.height,
-			frameTimes:[60*PLR_ATK_DELAYSCALE, 150*PLR_ATK_DELAYSCALE, 130*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
+			frameTimes:[60*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 150*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 130*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1214,7 +1218,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchBrown.width / 3,
 			height:playerPunchBrown.height,
-			frameTimes:[30*PLR_ATK_DELAYSCALE, 90*PLR_ATK_DELAYSCALE, 100*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
+			frameTimes:[30*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 90*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 100*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1224,7 +1228,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickBrown.width / 3,
 			height:playerKickBrown.height,
-			frameTimes:[60*PLR_ATK_DELAYSCALE, 120*PLR_ATK_DELAYSCALE, 120*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
+			frameTimes:[60*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 120*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 120*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1310,7 +1314,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchRed.width / 3,
 			height:playerPunchRed.height,
-			frameTimes:[30*PLR_ATK_DELAYSCALE, 70*PLR_ATK_DELAYSCALE, 90*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
+			frameTimes:[30*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 70*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 90*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1320,7 +1324,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickRed.width / 3,
 			height:playerKickRed.height,
-			frameTimes:[60*PLR_ATK_DELAYSCALE, 100*PLR_ATK_DELAYSCALE, 110*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
+			frameTimes:[60*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 110*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1406,7 +1410,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerPunchBlack.width / 3,
 			height:playerPunchBlack.height,
-			frameTimes:[30*PLR_ATK_DELAYSCALE, 50*PLR_ATK_DELAYSCALE, 80*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
+			frameTimes:[30*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 50*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 80*PLR_ATK_DELAYSCALE, 30*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
@@ -1416,7 +1420,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 1],
 			width:playerKickBlack.width / 3,
 			height:playerKickBlack.height,
-			frameTimes:[60*PLR_ATK_DELAYSCALE, 90*PLR_ATK_DELAYSCALE, 90*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
+			frameTimes:[60*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 90*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 90*PLR_ATK_DELAYSCALE, 60*PLR_ATK_DELAYSCALE],
 			reverses:false,
 			loops:false
 		},
