@@ -145,7 +145,11 @@ function HitBoxManager(bodyData, attackData) {
 		case STATE.KnockBack:
 			return false;
 		case STATE.Sweep:
-			return true;
+			if(aiType === AITYPE.Player) {
+				return (frame === 4);
+			} else {
+				return true;
+			}
 		case STATE.J_Kick:
 			if(aiType === AITYPE.Boss) {
 				return (frame === 3);
