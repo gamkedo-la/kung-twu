@@ -47,64 +47,36 @@ keyWordLookup[ keyLookup["punch"] ];
 keyWordLookup[ keyLookup["kick"] ];
 keyWordLookup[ keyLookup["crouch"] ];
 keyWordLookup[ keyLookup["dash"] ]; */
-
+const remapLeftX = 40;
+const remapTopY = 5;
+const remapButtonHeight = 95;
+const remapButtonWidth = 250;//Guess, should be width of remapSprite. 
+const remapButtonCount = 7;
+let remapKeyNext = -1;
 const showControls = function(){
 	var buttonList = [leftMoveSprite, rightMoveSprite, jumpSprite, punchSprite, kickSprite, crouchSprite, dashSprite];
-
-	var topElementY = 5;
-	var spacingElementY = 95;
 	for(var i=0;i<buttonList.length;i++) {
-		canvasContext.drawImage(buttonList[i], 40, topElementY + i * spacingElementY);
+		canvasContext.drawImage(buttonList[i], remapLeftX, remapTopY + i * remapButtonHeight);
 	}
 
 	for(var i=0; i<keyLookup.length; i++) {
-		iY = topElementY+spacingElementY*i;
+		iY = remapTopY+remapButtonHeight*i;
 
 		var inputNames = keyMapper.getInputCodes(keyLookup[i]);
 		for(var ii=0;ii<inputNames.length;ii++) {
 			var horizontalSpace = 100;
 			colorText(lookupKeyName(inputNames[ii]),
-				canvas.width/2+ii*horizontalSpace, iY+spacingElementY/2,
+				canvas.width/2+ii*horizontalSpace, iY+remapButtonHeight/2,
 				Color.White, Fonts.CreditsText);
 		}
 	}
-}
+	if (remapKeyNext!= -1){
+		colorText("Press new key", canvas.width / 2, canvas.height - 80, Color.White, Fonts.CreditsText);
 
-
-this.changeControls = function(){
-		//Input keydown code
-	if(changingKeyFor != null) {
-	keyLookup[changingKeyFor] = evt.keyCode; // will overwrite "left" as next key pressed
-	console.log("Enter Two Keys for changing");
-		switch(changingKeyFor) {
-			case "leftMoveSprite": changingKeyFor = "walkLeft";
-			case "rightMoveSprite": changingKeyFor = "walkRight";
-			case "jumpSprite":  changingKeyFor = "jump";
-			case "punchSprite": changingKeyFor = "punch";
-			case "kickSprite": changingKeyFor = "kick";
-			case "crouchSprite": changingKeyFor = "crouch";
-			case "dashSprite": changingKeyFor = "dash";
-			return true;
-		}
 	}
 }
 
-this.actionSelected = function(newKeyEvent, pressed) {
-	if((!didInteract) && ((newKeyEvent == MouseButton.LEFT) || (newKeyEvent == MouseButton.RIGHT))) {
-		didInteract = true;
-	}
-	switch (newKeyEvent) {
-		case leftMoveSprite:changeControls();
-		case rightMoveSprite:changeControls();
-		case jumpSprite:changeControls();
-		case punchSprite:changeControls();
-		case kickSprite:changeControls();
-		case crouchSprite:changeControls();
-		case dashSprite:changeControls();
-		return true;
 
-		}
-}
 
 this.transitionIn = function() {
 	canvasContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -145,6 +117,8 @@ this.transitionIn = function() {
 		if(buttons.length === 0) {
 			buttons.push(buildBackButton(canvas.width / 40, mainMenuY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildPlayButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
+			//trying another way inside of checkButton
+			//buttons.push(buildRemapButton(remapLeftX, remapTopY, remapButtonHeight * remapButtonCount, buttonTitlePadding));
 
 			updateButtonPositions();
 		} else {
@@ -175,7 +149,10 @@ this.transitionIn = function() {
 			checkButtons();
 			return true;
 		}
-        
+        if(remapKeyNext!= -1){
+			keyMapper.replaceKeyForAction(newKeyEvent, keyLookup[remapKeyNext]);
+			remapKeyNext = -1;
+		}
 		return false;
 	};
 
@@ -242,6 +219,12 @@ this.transitionIn = function() {
 			wasClicked = button.respondIfClicked(mouseX, mouseY);
 			if(wasClicked) {break;}
 		}
+		if(mouseX > remapLeftX && mouseX < remapLeftX + remapButtonWidth && 
+			mouseY > remapTopY && mouseY < remapTopY + remapButtonHeight * remapButtonCount){
+			console.log("clicked on remap");
+			remapKeyNext = Math.floor((mouseY - remapTopY) / remapButtonHeight);
+			console.log(remapKeyNext);
+		}
 	};
 
 	const buildPlayButton = function(x, y, height, padding) {
@@ -255,6 +238,14 @@ this.transitionIn = function() {
 	const buildBackButton = function(x, y, height, padding) {
 		const thisClick = function() {
 			SceneState.setState(SceneState.getPreviousState());
+		};
+
+		return new UIButton(STRINGS_KEY.Back, x, y, height, padding, thisClick, Color.Purple);
+	};
+
+	const buildRemapButton = function(x, y, height, padding) {
+		const thisClick = function() {
+			console.log("click remap button");
 		};
 
 		return new UIButton(STRINGS_KEY.Back, x, y, height, padding, thisClick, Color.Purple);

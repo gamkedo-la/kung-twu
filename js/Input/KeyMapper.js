@@ -339,6 +339,14 @@ function KeyMapper() {
 		}
 	};
 
+	this.replaceKeyForAction = function(inputCodeToAdd, actionToAddItTo){
+		const keySetManager = keySets;
+		const keySet = keySetManager.get(actionToAddItTo);
+		if (keySet) {
+			keySet.deleteAll();
+			this.addKeyToAction(inputCodeToAdd, actionToAddItTo);
+		}
+	}
 	/**
 	 * Removes an input code to a KeySet in the KeySetManager
 	 * @param inputCodeToRemove The input code, which is either a value in KeyCode, MouseButton or GamePad-related constants.
