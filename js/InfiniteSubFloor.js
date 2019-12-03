@@ -9,6 +9,9 @@ function InfiniteSubFloor(columnImage) {
 	const column2 = new Column(columnImage);
 	let isColumn = true;
 	let yPos;
+	let oldCameraX = null;
+	let isMovingLeft = true;
+
 
 	const BRICKS = [];
 	const BRICK_CLIP = {x:0, y:0, width:71, height:55};
@@ -30,6 +33,12 @@ function InfiniteSubFloor(columnImage) {
 	};
 
 	this.update = function(cameraXPos, shifts) {
+		if(oldCameraX === null) {
+			oldCameraX = cameraXPos;
+		} else {
+			isMovingLeft = (oldCameraX > cameraXPos);
+		}
+
 		if(isColumn && currentLevel > 1) {
 			this.initializeForLevel(currentLevel);
 		} else if(!isColumn && currentLevel === 1) {
@@ -42,6 +51,8 @@ function InfiniteSubFloor(columnImage) {
 		} else {
 			updateBricks(cameraXPos, shifts);
 		}
+
+		oldCameraX = cameraXPos;
 	};
 
 	const updateColumn = function(cameraXPos) {
@@ -55,20 +66,20 @@ function InfiniteSubFloor(columnImage) {
 	};
 
 	const updateColumnLocation = function(offscreen, onscreen, cameraXPos) {
-		const leftDist = onscreen.getPosition().x - (cameraXPos - canvas.width / 2) - COLUMN_CLIP.width;
-		if(leftDist > COLUMN_SPACING) {
-			offscreen.setPosition(
-				(cameraXPos - canvas.width / 2) - COLUMN_CLIP.width,
-				yPos
-			);
-		}
-
-		const rightDist = (cameraXPos + canvas.width / 2) - onscreen.getPosition().x;
-		if(rightDist > COLUMN_SPACING) {
-			offscreen.setPosition(
-				(cameraXPos + canvas.width / 2),
-				yPos
-			);
+		if(isMovingLeft) {
+			if(offscreen.getPosition().x > onscreen.getPosition().x) {
+				offscreen.setPosition(
+					onscreen.getPosition().x - COLUMN_SPACING,
+					yPos
+				);
+			}
+		} else {
+			if(offscreen.getPosition().x < onscreen.getPosition().x) {
+				offscreen.setPosition(
+					onscreen.getPosition().x + COLUMN_SPACING,
+					yPos
+				);
+			}
 		}
 	};
 
