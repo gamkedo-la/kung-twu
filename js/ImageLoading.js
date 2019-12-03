@@ -243,6 +243,20 @@ const playerKnockbackBrown = document.createElement("canvas");
 const playerKnockbackRed = document.createElement("canvas");
 const playerKnockbackBlack = document.createElement("canvas");
 
+const playerJumpWhite = document.createElement("canvas");
+const playerJumpYellow = document.createElement("canvas");
+const playerJumpTan = document.createElement("canvas");
+const playerJumpBrown = document.createElement("canvas");
+const playerJumpRed = document.createElement("canvas");
+const playerJumpBlack = document.createElement("canvas");
+
+const playerJ_KickWhite = document.createElement("canvas");
+const playerJ_KickYellow = document.createElement("canvas");
+const playerJ_KickTan = document.createElement("canvas");
+const playerJ_KickBrown = document.createElement("canvas");
+const playerJ_KickRed = document.createElement("canvas");
+const playerJ_KickBlack = document.createElement("canvas");
+
 
 const wooshDashPlayerPic = document.createElement("canvas");
 const wooshDashPlayerLPic = document.createElement("canvas");
@@ -338,6 +352,8 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(playerPunchWhite, playerPunchWhiteData, characterAtlas);
 		initializeCanvasFromAtlas(playerSweepWhite, playerSweepWhiteData, characterAtlas); 
 		initializeCanvasFromAtlas(playerKnockbackWhite, playerKnockbackWhiteData, characterAtlas);
+		initializeCanvasFromAtlas(playerJumpWhite, playerJumpWhiteData, characterAtlas);
+		initializeCanvasFromAtlas(playerJ_KickWhite, playerJ_KickWhiteData, characterAtlas);
 
 		initializeCanvasFromAtlas(playerIdleYellow, playerIdleYellowData, characterAtlas);
 		initializeCanvasFromAtlas(playerWalkYellow, playerWalkYellowData, characterAtlas);
@@ -345,6 +361,8 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(playerPunchYellow, playerPunchYellowData, characterAtlas);
 		initializeCanvasFromAtlas(playerSweepYellow, playerSweepYellowData, characterAtlas); 
 		initializeCanvasFromAtlas(playerKnockbackYellow, playerKnockbackYellowData, characterAtlas);
+		initializeCanvasFromAtlas(playerJumpYellow, playerJumpYellowData, characterAtlas);
+		initializeCanvasFromAtlas(playerJ_KickYellow, playerJ_KickYellowData, characterAtlas);
 
 		initializeCanvasFromAtlas(playerIdleTan, playerIdleTanData, characterAtlas);
 		initializeCanvasFromAtlas(playerWalkTan, playerWalkTanData, characterAtlas);
@@ -352,6 +370,8 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(playerPunchTan, playerPunchTanData, characterAtlas);
 		initializeCanvasFromAtlas(playerSweepTan, playerSweepTanData, characterAtlas); 
 		initializeCanvasFromAtlas(playerKnockbackTan, playerKnockbackTanData, characterAtlas);
+		initializeCanvasFromAtlas(playerJumpTan, playerJumpTanData, characterAtlas);
+		initializeCanvasFromAtlas(playerJ_KickTan, playerJ_KickTanData, characterAtlas);
 
 		initializeCanvasFromAtlas(playerIdleBrown, playerIdleBrownData, characterAtlas);
 		initializeCanvasFromAtlas(playerWalkBrown, playerWalkBrownData, characterAtlas);
@@ -359,6 +379,8 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(playerPunchBrown, playerPunchBrownData, characterAtlas);
 		initializeCanvasFromAtlas(playerSweepBrown, playerSweepBrownData, characterAtlas); 
 		initializeCanvasFromAtlas(playerKnockbackBrown, playerKnockbackBrownData, characterAtlas);
+		initializeCanvasFromAtlas(playerJumpBrown, playerJumpBrownData, characterAtlas);
+		initializeCanvasFromAtlas(playerJ_KickBrown, playerJ_KickBrownData, characterAtlas);
 
 		initializeCanvasFromAtlas(playerIdleRed, playerIdleRedData, characterAtlas);
 		initializeCanvasFromAtlas(playerWalkRed, playerWalkRedData, characterAtlas);
@@ -366,6 +388,8 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(playerPunchRed, playerPunchRedData, characterAtlas);
 		initializeCanvasFromAtlas(playerSweepRed, playerSweepRedData, characterAtlas); 
 		initializeCanvasFromAtlas(playerKnockbackRed, playerKnockbackRedData, characterAtlas);
+		initializeCanvasFromAtlas(playerJumpRed, playerJumpRedData, characterAtlas);
+		initializeCanvasFromAtlas(playerJ_KickRed, playerJ_KickRedData, characterAtlas);
 
 		initializeCanvasFromAtlas(playerIdleBlack, playerIdleBlackData, characterAtlas);
 		initializeCanvasFromAtlas(playerWalkBlack, playerWalkBlackData, characterAtlas);
@@ -373,6 +397,8 @@ function countLoadedImageAndLaunchIfReady() {
 		initializeCanvasFromAtlas(playerPunchBlack, playerPunchBlackData, characterAtlas);
 		initializeCanvasFromAtlas(playerSweepBlack, playerSweepBlackData, characterAtlas); 
 		initializeCanvasFromAtlas(playerKnockbackBlack, playerKnockbackBlackData, characterAtlas);
+		initializeCanvasFromAtlas(playerJumpBlack, playerJumpBlackData, characterAtlas);
+		initializeCanvasFromAtlas(playerJ_KickBlack, playerJ_KickBlackData, characterAtlas);
 
 		initializeCanvasFromAtlas(basicEnemyIdle, basicEnemyIdleData, enemyAtlas);
 		initializeCanvasFromAtlas(basicEnemyWalk, basicEnemyWalkData, enemyAtlas);

@@ -356,8 +356,14 @@ function Player(config) {
 	const respondToLanding = function() {
 		velocity.y = 0;
 		if (!stateManager.getIsOnGround()) {
-			stateManager.didLand();
-			wooshFX.triggerLanding(position.x,position.y);
+			if((stateManager.getCurrentState() === STATE.Jump) && 
+			(stateManager.getCurrentAnimationFrame() > 2)) {
+				stateManager.didLand();
+				wooshFX.triggerLanding(position.x,position.y);
+			} else if(stateManager.getCurrentState() === STATE.J_Kick) {
+				stateManager.didLand();
+				wooshFX.triggerLanding(position.x,position.y);
+			}
 		}
 	};
 
@@ -393,7 +399,7 @@ function Player(config) {
 	};
 
 	const jump = function() {
-		if (stateManager.getIsNewState()) {
+		if((stateManager.getCurrentAnimationFrame() === 2) && (velocity.y >= 0)) {
 			velocity.y = JUMP_SPEED;
 			sound.playSFX(Sounds.SFX_PlayerJump);
 			wooshFX.subtleFootstep(position.x,position.y);

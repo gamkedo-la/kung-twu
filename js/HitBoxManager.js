@@ -152,7 +152,7 @@ function HitBoxManager(bodyData, attackData) {
 			} else if(aiType === AITYPE.Standard) {
 				return (frame === 3);
 			} else {
-				return (frame === 2);
+				return (frame === 1);
 			}
 		case STATE.H_Kick:
 			return (frame > 1);

@@ -913,7 +913,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:playerJumpWhite,
+			frames:[0, 1, 2, 3, 4, 5, 6],
+			width:playerJumpWhite.width / 7,
+			height:playerJumpWhite.height,
+			frameTimes:[16, 125, 200, 150, 150, 250, 16],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:playerCrouch,
@@ -964,7 +973,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:playerJ_KickWhite,
+			frames:[0, 1, 0],
+			width:playerJ_KickWhite.width / 2,
+			height:playerJ_KickWhite.height,
+			frameTimes:[160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
@@ -1009,7 +1027,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:playerJumpYellow,
+			frames:[0, 1, 2, 3, 4, 5, 6],
+			width:playerJumpYellow.width / 7,
+			height:playerJumpYellow.height,
+			frameTimes:[16, 125, 200, 150, 150, 250, 16],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:playerCrouch,
@@ -1060,7 +1087,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:playerJ_KickYellow,
+			frames:[0, 1, 0],
+			width:playerJ_KickYellow.width / 2,
+			height:playerJ_KickYellow.height,
+			frameTimes:[160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
@@ -1105,7 +1141,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:playerJumpTan,
+			frames:[0, 1, 2, 3, 4, 5, 6],
+			width:playerJumpTan.width / 7,
+			height:playerJumpTan.height,
+			frameTimes:[16, 125, 200, 150, 150, 250, 16],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:playerCrouch,
@@ -1156,7 +1201,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:playerJ_KickTan,
+			frames:[0, 1, 0],
+			width:playerJ_KickTan.width / 2,
+			height:playerJ_KickTan.height,
+			frameTimes:[160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
@@ -1201,7 +1255,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:playerJumpBrown,
+			frames:[0, 1, 2, 3, 4, 5, 6],
+			width:playerJumpBrown.width / 7,
+			height:playerJumpBrown.height,
+			frameTimes:[16, 125, 200, 150, 150, 250, 16],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:playerCrouch,
@@ -1252,7 +1315,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:playerJ_KickBrown,
+			frames:[0, 1, 0],
+			width:playerJ_KickBrown.width / 2,
+			height:playerJ_KickBrown.height,
+			frameTimes:[200*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
@@ -1297,7 +1369,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:playerJumpRed,
+			frames:[0, 1, 2, 3, 4, 5, 6],
+			width:playerJumpRed.width / 7,
+			height:playerJumpRed.height,
+			frameTimes:[16, 125, 200, 150, 150, 250, 16],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:playerCrouch,
@@ -1348,7 +1429,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:playerJ_KickRed,
+			frames:[0, 1, 0],
+			width:playerJ_KickRed.width / 2,
+			height:playerJ_KickRed.height,
+			frameTimes:[180*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
@@ -1393,7 +1483,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{},
+		jump:{
+			name:STATE.Jump,
+			image:playerJumpBlack,
+			frames:[0, 1, 2, 3, 4, 5, 6],
+			width:playerJumpBlack.width / 7,
+			height:playerJumpBlack.height,
+			frameTimes:[16, 125, 200, 150, 150, 250, 16],
+			reverses:false,
+			loops:false
+		},
 		crouch:{
 			name:STATE.Crouch,
 			image:playerCrouch,
@@ -1444,7 +1543,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:playerJ_KickBlack,
+			frames:[0, 1, 0],
+			width:playerJ_KickBlack.width / 2,
+			height:playerJ_KickBlack.height,
+			frameTimes:[160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{},
 		knockback:{
 			name:STATE.KnockBack,
@@ -1553,7 +1661,6 @@ function AnimationBuilder() {
 		},
 		knockback:{
 			name:STATE.KnockBack,
-			//Placeholder until we have the actual boss knockback animation
 			image:yellowBossKnockback,
 			frames:[0],
 			width:yellowBossKnockback.width,
@@ -1658,7 +1765,6 @@ function AnimationBuilder() {
 		},
 		knockback:{
 			name:STATE.KnockBack,
-			//Placeholder until we have the actual boss knockback animation
 			image:tanBossKnockback,
 			frames:[0],
 			width:tanBossKnockback.width,
@@ -1772,7 +1878,6 @@ function AnimationBuilder() {
 		},
 		knockback:{
 			name:STATE.KnockBack,
-			//Placeholder until we have the actual boss knockback animation
 			image:brownBossKnockback,
 			frames:[0],
 			width:brownBossKnockback.width,
@@ -1886,7 +1991,6 @@ function AnimationBuilder() {
 		},
 		knockback:{
 			name:STATE.KnockBack,
-			//Placeholder until we have the actual boss knockback animation
 			image:redBossKnockback,
 			frames:[0],
 			width:redBossKnockback.width,
@@ -2000,7 +2104,6 @@ function AnimationBuilder() {
 		},
 		knockback:{
 			name:STATE.KnockBack,
-			//Placeholder until we have the actual boss knockback animation
 			image:blackBossKnockback,
 			frames:[0],
 			width:blackBossKnockback.width,

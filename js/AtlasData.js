@@ -169,6 +169,36 @@ const playerSweepWhiteData = {
 	loops:false
 };
 
+const playerJ_KickWhiteData = {
+	name:STATE.J_Kick,
+	image:characterAtlas,
+	clipX:426,
+	clipY:ATLAS_ROW6,
+	clipWidth:96,
+	clipHeight:69,
+	frameWidth:48,
+	frameCount:2,
+	frames:[0, 1, 0],
+	frameTimes:[32, 225, 150],
+	reverses:false,
+	loops:false
+};
+
+const playerJumpWhiteData = {
+	name:STATE.Jump,
+	image:characterAtlas,
+	clipX:522,
+	clipY:ATLAS_ROW6,
+	clipWidth:280,
+	clipHeight:69,
+	frameWidth:40,
+	frameCount:7,
+	frames:[0, 1, 2, 3, 4, 5, 6],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Player Yellow Belt Atlas Data--------//
 
 const playerIdleYellowData = {
@@ -269,6 +299,36 @@ const playerSweepYellowData = {
 	clipWidth:420,
 	clipHeight:69,
 	frameWidth:60,
+	frameCount:7,
+	frames:[0, 1, 2, 3, 4, 5, 6],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
+const playerJ_KickYellowData = {
+	name:STATE.J_Kick,
+	image:characterAtlas,
+	clipX:426,
+	clipY:ATLAS_ROW7,
+	clipWidth:96,
+	clipHeight:69,
+	frameWidth:48,
+	frameCount:2,
+	frames:[0, 1, 0],
+	frameTimes:[32, 225, 150],
+	reverses:false,
+	loops:false
+};
+
+const playerJumpYellowData = {
+	name:STATE.Jump,
+	image:characterAtlas,
+	clipX:522,
+	clipY:ATLAS_ROW7,
+	clipWidth:280,
+	clipHeight:69,
+	frameWidth:40,
 	frameCount:7,
 	frames:[0, 1, 2, 3, 4, 5, 6],
 	frameTimes:[100],
@@ -383,6 +443,36 @@ const playerSweepTanData = {
 	loops:false
 };
 
+const playerJ_KickTanData = {
+	name:STATE.J_Kick,
+	image:characterAtlas,
+	clipX:426,
+	clipY:ATLAS_ROW8,
+	clipWidth:96,
+	clipHeight:69,
+	frameWidth:48,
+	frameCount:2,
+	frames:[0, 1, 0],
+	frameTimes:[32, 225, 150],
+	reverses:false,
+	loops:false
+};
+
+const playerJumpTanData = {
+	name:STATE.Jump,
+	image:characterAtlas,
+	clipX:522,
+	clipY:ATLAS_ROW8,
+	clipWidth:280,
+	clipHeight:69,
+	frameWidth:40,
+	frameCount:7,
+	frames:[0, 1, 2, 3, 4, 5, 6],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Player Brown Belt Atlas Data--------//
 
 const playerIdleBrownData = {
@@ -483,6 +573,36 @@ const playerSweepBrownData = {
 	clipWidth:420,
 	clipHeight:69,
 	frameWidth:60,
+	frameCount:7,
+	frames:[0, 1, 2, 3, 4, 5, 6],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
+const playerJ_KickBrownData = {
+	name:STATE.J_Kick,
+	image:characterAtlas,
+	clipX:426,
+	clipY:ATLAS_ROW9,
+	clipWidth:96,
+	clipHeight:69,
+	frameWidth:48,
+	frameCount:2,
+	frames:[0, 1, 0],
+	frameTimes:[32, 225, 150],
+	reverses:false,
+	loops:false
+};
+
+const playerJumpBrownData = {
+	name:STATE.Jump,
+	image:characterAtlas,
+	clipX:522,
+	clipY:ATLAS_ROW9,
+	clipWidth:280,
+	clipHeight:69,
+	frameWidth:40,
 	frameCount:7,
 	frames:[0, 1, 2, 3, 4, 5, 6],
 	frameTimes:[100],
@@ -597,6 +717,36 @@ const playerSweepRedData = {
 	loops:false
 };
 
+const playerJ_KickRedData = {
+	name:STATE.J_Kick,
+	image:characterAtlas,
+	clipX:426,
+	clipY:ATLAS_ROW10,
+	clipWidth:96,
+	clipHeight:69,
+	frameWidth:48,
+	frameCount:2,
+	frames:[0, 1, 0],
+	frameTimes:[32, 225, 150],
+	reverses:false,
+	loops:false
+};
+
+const playerJumpRedData = {
+	name:STATE.Jump,
+	image:characterAtlas,
+	clipX:522,
+	clipY:ATLAS_ROW10,
+	clipWidth:280,
+	clipHeight:69,
+	frameWidth:40,
+	frameCount:7,
+	frames:[0, 1, 2, 3, 4, 5, 6],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
 //---------Start Player Black Belt Atlas Data--------//
 
 const playerIdleBlackData = {
@@ -697,6 +847,36 @@ const playerSweepBlackData = {
 	clipWidth:420,
 	clipHeight:69,
 	frameWidth:60,
+	frameCount:7,
+	frames:[0, 1, 2, 3, 4, 5, 6],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
+const playerJ_KickBlackData = {
+	name:STATE.J_Kick,
+	image:characterAtlas,
+	clipX:426,
+	clipY:ATLAS_ROW11,
+	clipWidth:96,
+	clipHeight:69,
+	frameWidth:48,
+	frameCount:2,
+	frames:[0, 1, 0],
+	frameTimes:[32, 225, 150],
+	reverses:false,
+	loops:false
+};
+
+const playerJumpBlackData = {
+	name:STATE.Jump,
+	image:characterAtlas,
+	clipX:522,
+	clipY:ATLAS_ROW11,
+	clipWidth:280,
+	clipHeight:69,
+	frameWidth:40,
 	frameCount:7,
 	frames:[0, 1, 2, 3, 4, 5, 6],
 	frameTimes:[100],
