@@ -312,14 +312,16 @@ function TitleScene() {
 		// render the menu background
 		drawBG();
 		
-		for(let bird of birds) {
+        titleParticles();
+
+        for(let bird of birds) {
 			if(bird.scale < 1.0) {
 				bird.draw();
 			}
 		}
 
-		drawTitle();
-
+        drawTitle();
+        
 		for(let bird of birds) {
 			if(bird.scale >= 1.0) {
 				bird.draw();
@@ -327,10 +329,19 @@ function TitleScene() {
 		}
 
 		// render menu
-		printMenu();
+        printMenu();
+        
 	};
 	
-	const drawBG = function() {
+    const titleParticles = function() {
+        if (!canvas || !wooshFX) return;
+        wooshFX.smokePuff(50+Math.random()*700, 100+Math.random()*100);
+        wooshFX.smokePuff(50+Math.random()*700, 100+Math.random()*100);
+        if (Math.random()<0.1) wooshFX.starPuff(50+Math.random()*700, 100+Math.random()*100);
+        wooshFX.draw();
+    };
+
+    const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(titleScreenDecore, 0, 0);
 		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlockPosition.x, titleBlockPosition.y, titleBlockWidth, titleBlock.height);
