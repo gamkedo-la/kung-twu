@@ -17,10 +17,13 @@ function HelpScene() {
 	const buttons = [];
 	let LINE_SCALE = 0.65;
 	let LINE_HEIGHT;
+	let previousState;
 
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
+
+		previousState = SceneState.getPreviousState();
 
 		LINE_SCALE = 0.65;
 		buttonPadding = canvas.width / 40;
@@ -63,7 +66,11 @@ function HelpScene() {
 			if(pauseManager.getIsPaused()) {
 				pauseManager.resumeGame(CAUSE.Keypress);
 			}
-			SceneState.setState(SCENE.LEVEL_INTRO);
+			if(previousState === SCENE.PAUSE) {
+				SceneState.setState(SCENE.GAME);
+			} else {
+				SceneState.setState(SCENE.LEVEL_INTRO);
+			}
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.POINTER:
@@ -104,10 +111,14 @@ function HelpScene() {
 					break;
 				case NAV_ACTION.SELECT:
 					if(selectorPositionsIndex === 0) {
-						SceneState.setState(SceneState.getPreviousState());
+						SceneState.setState(previousState);
 					} else {
 						pauseManager.resumeGame(CAUSE.Keypress);
-						SceneState.setState(selections[selectorPositionsIndex]);
+						if(previousState === SCENE.PAUSE) {
+							SceneState.setState(SCENE.GAME);
+						} else {
+							SceneState.setState(SCENE.LEVEL_INTRO);
+						}
 					}
 					sound.playSFX(Sounds.SFX_MenuSelect);
 					break;
@@ -144,7 +155,13 @@ function HelpScene() {
 			if(pauseManager.getIsPaused()) {
 				pauseManager.resumeGame(CAUSE.Keypress);
 			}
-			SceneState.setState(SCENE.LEVEL_INTRO);
+			
+			const previousState = SceneState.getPreviousState();
+			if(previousState === SCENE.PAUSE) {
+				SceneState.setState(SCENE.GAME);
+			} else {
+				SceneState.setState(SCENE.LEVEL_INTRO);
+			}
 		};
 
 		return new UIButton(STRINGS_KEY.Play, x, y, height, padding, thisClick, Color.Aqua);
