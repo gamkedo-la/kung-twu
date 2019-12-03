@@ -219,7 +219,7 @@ const GAME_FIELD = {
  */
 const DRAW_COLLIDERS = false;
 /**
- * Css color string for setting debug collider color. 
+ * CSS color string for setting debug collider color. 
  * Make sure DRAW_COLLIDERS global flag is set to true to see.
  */
 const COLLIDER_COLOR = "yellow";

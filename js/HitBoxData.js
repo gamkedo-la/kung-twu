@@ -27,8 +27,8 @@ const PlayerCollisionBodyData = {
 };
 
 const PlayerAttackBodyData = {
-	j_kick:{left:[{x:23, y:19}, {x:23, y:56}, {x:-23, y:56}, {x:-23, y:19}],
-		right:[{x:13, y:15}, {x:13, y:56}, {x:64, y:56}, {x:64, y:15}]},
+	j_kick:{left:[{x:23, y:29}, {x:23, y:70}, {x:-8, y:70}, {x:-8, y:29}],
+		right:[{x:13, y:29}, {x:13, y:70}, {x:49, y:70}, {x:49, y:29}]},
 	sweep:{left:[{x:23, y:45}, {x:23, y:72}, {x:-13, y:72}, {x:-13, y:45}],
 		right:[{x:13, y:45}, {x:13, y:72}, {x:52, y:72}, {x:52, y:45}]},
 	h_kick:{left:[{x:40, y:30}, {x:40, y:45}, {x:-20, y:45}, {x:-20, y:30}],
