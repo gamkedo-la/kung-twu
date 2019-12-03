@@ -12,6 +12,7 @@ function ControlsScene() {
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
+	didInteract = false;
 	/** @type UIProgressBar */
 	//let uiProgBarMusicVolume;
 	/** @type UIProgressBar */
@@ -74,6 +75,7 @@ this.changeControls = function(){
 		//Input keydown code
 	if(changingKeyFor != null) {
 	keyLookup[changingKeyFor] = evt.keyCode; // will overwrite "left" as next key pressed
+	console.log("Enter Two Keys for changing");
 		switch(changingKeyFor) {
 			case "leftMoveSprite": changingKeyFor = "walkLeft";
 			case "rightMoveSprite": changingKeyFor = "walkRight";
@@ -87,7 +89,22 @@ this.changeControls = function(){
 	}
 }
 
-console.log(keyLookup);
+this.actionSelected = function(newKeyEvent, pressed) {
+	if((!didInteract) && ((newKeyEvent == MouseButton.LEFT) || (newKeyEvent == MouseButton.RIGHT))) {
+		didInteract = true;
+	}
+	switch (newKeyEvent) {
+		case leftMoveSprite:changeControls();
+		case rightMoveSprite:changeControls();
+		case jumpSprite:changeControls();
+		case punchSprite:changeControls();
+		case kickSprite:changeControls();
+		case crouchSprite:changeControls();
+		case dashSprite:changeControls();
+		return true;
+
+		}
+}
 
 this.transitionIn = function() {
 	canvasContext.setTransform(1, 0, 0, 1, 0, 0);
