@@ -330,8 +330,24 @@ function BasicEnemy(config) {
 	};
 
 	const block = function() {
-		if(stateManager.getIsNewState()) {
+		if(KNOCK_BACK_SPEED !== null) {
+			if(velocity.x < 0) {
+				velocity.x += KNOCK_BACK_SPEED / 35;
+				if (velocity.x >= 0) {
+					velocity.x = 0;
+				}
+			} else if(velocity.x > 0) {
+				velocity.x -= KNOCK_BACK_SPEED / 35;
+				if (velocity.x <= 0) {
+					velocity.x = 0;
+				}
+			}	
+		} else {
 			velocity.x = 0;
+		}
+
+		if(stateManager.getIsNewState()) {
+
 		}
 	};
 
@@ -438,6 +454,13 @@ function BasicEnemy(config) {
 		if(stateManager.getCurrentState() === STATE.Block) {
 			if(otherEntity.type === ENTITY_TYPE.Player) {
 				this.health -= (Math.ceil(otherEntity.getCurrentDamage() / 10)); 
+				if(otherEntity.getPosition().x < position.x) {
+					//enemy is to the left
+					velocity.x = KNOCK_BACK_SPEED / 10;
+				} else {
+					//enemy is to the right
+					velocity.x = -KNOCK_BACK_SPEED / 10;
+				}
 				wooshFX.smokePuff(position.x,position.y);	
 			}
 		} else if(stateManager.getCurrentState() === STATE.KnockBack) {

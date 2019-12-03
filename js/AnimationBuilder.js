@@ -1637,7 +1637,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:yellowBossBlock,
+			frames:[0],
+			width:yellowBossBlock.width,
+			height:yellowBossBlock.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false
+		},
 		sweep:{
 			name:STATE.Sweep,
 			image:yellowBossSweep,
@@ -1741,7 +1750,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:tanBossBlock,
+			frames:[0],
+			width:tanBossBlock.width,
+			height:tanBossBlock.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false
+		},
 		sweep:{
 			name:STATE.Sweep,
 			image:tanBossSweep,
@@ -1845,7 +1863,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:brownBossBlock,
+			frames:[0],
+			width:brownBossBlock.width,
+			height:brownBossBlock.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false
+		},
 		sweep:{
 			name:STATE.Sweep,
 			image:brownBossSweep,
@@ -1958,7 +1985,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:redBossBlock,
+			frames:[0],
+			width:redBossBlock.width,
+			height:redBossBlock.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false
+		},
 		sweep:{
 			name:STATE.Sweep,
 			image:redBossSweep,
@@ -2071,7 +2107,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		block:{},
+		block:{
+			name:STATE.Block,
+			image:blackBossBlock,
+			frames:[0],
+			width:blackBossBlock.width,
+			height:blackBossBlock.height,
+			frameTimes:[50],
+			reverses:false,
+			loops:false
+		},
 		sweep:{
 			name:STATE.Sweep,
 			image:blackBossSweep,

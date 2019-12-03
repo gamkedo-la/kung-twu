@@ -549,7 +549,6 @@ function Player(config) {
 			if(otherEntity.getPosition().x < position.x) {
 				//enemy is to the left
 				velocity.x = KNOCK_BACK_SPEED / 10;
-				console.log(`OtherEntityPos: ${otherEntity.getPosition().x}, MyPos: ${position.x}, MyVel:${velocity.x}`);
 			} else {
 				//enemy is to the right
 				velocity.x = -KNOCK_BACK_SPEED / 10;
