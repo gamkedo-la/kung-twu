@@ -22,6 +22,13 @@ function PauseScene() {
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 
+		const previousState = SceneState.getPreviousState();
+		if((previousState === SCENE.HELP) || 
+		(previousState === SCENE.CONTROLS)) {
+			const logIndex = SceneState.log.length - 2;
+			SceneState.log.splice(logIndex, 2);
+		}
+			
 		let mainMenuX = 0;
 		const mainMenuY = BUTTON_PADDING + (canvas.height / 2);
 		const deltaY = 2 * BUTTON_PADDING;
@@ -67,10 +74,12 @@ function PauseScene() {
 			return false;
 		}
 		
+		let previousState;
 		switch (newKeyEvent) {
 		case ALIAS.PAUSE:
 			pauseManager.resumeGame(CAUSE.Keypress);
-			SceneState.setState(SceneState.getPreviousState());
+			previousState = SceneState.getPreviousState();
+			SceneState.setState(previousState);
 			sound.playSFX(Sounds.SFX_MenuSelect);
 			return true;
 		case ALIAS.BACK:
