@@ -1861,6 +1861,36 @@ const yellowBossWalkData = {
 	loops:true
 };
 
+const yellowBossDashData = {
+	name:STATE.Dash,
+	image:bossAtlas,
+	clipX:621,
+	clipY:ATLAS_ROW0 + 2,
+	clipWidth:120,
+	clipHeight:67,
+	frameWidth:36,
+	frameCount:3,
+	frames:[0, 1, 2],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
+const yellowBossCrouchData = {
+	name:STATE.Crouch,
+	image:bossAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW5 + 2,
+	clipWidth:31,
+	clipHeight:67,
+	frameWidth:31,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
 const yellowBossPunchData = {
 	name:STATE.Punch,
 	image:bossAtlas,
@@ -1891,14 +1921,14 @@ const yellowBossKickData = {
 	loops:false
 };
 
-const yellowBossCrouchData = {
-	name:STATE.Crouch,
+const yellowBossBlockData = {
+	name:STATE.Block,
 	image:bossAtlas,
-	clipX:0,
-	clipY:ATLAS_ROW5 + 2,
-	clipWidth:31,
+	clipX:920,
+	clipY:ATLAS_ROW0 + 2,
+	clipWidth:32,
 	clipHeight:67,
-	frameWidth:31,
+	frameWidth:32,
 	frameCount:1,
 	frames:[0],
 	frameTimes:[100],
@@ -1921,8 +1951,53 @@ const yellowBossSweepData = {
 	loops:false
 };
 
+const yellowBossC_PunchData = {
+	name:STATE.C_Punch,
+	image:bossAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW5 + 2,
+	clipWidth:31,
+	clipHeight:67,
+	frameWidth:31,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[100],
+	reverses:false,
+	loops:false
+};
+
 const yellowBossJumpData = {
 	name:STATE.Jump,
+	image:bossAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW6 + 2,
+	clipWidth:235,
+	clipHeight:67,
+	frameWidth:47,
+	frameCount:5,
+	frames:[0, 1, 4],
+	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
+const yellowBossJ_PunchData = {
+	name:STATE.J_Punch,
+	image:bossAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW6 + 2,
+	clipWidth:235,
+	clipHeight:67,
+	frameWidth:47,
+	frameCount:5,
+	frames:[0, 1, 4],
+	frameTimes:[50],
+	reverses:false,
+	loops:false
+};
+
+const yellowBossJ_KickData = {
+	name:STATE.J_Kick,
 	image:bossAtlas,
 	clipX:0,
 	clipY:ATLAS_ROW6 + 2,
@@ -1959,21 +2034,6 @@ const yellowBossKnockbackData = {
 	clipWidth:51,
 	clipHeight:67,
 	frameWidth:51,
-	frameCount:1,
-	frames:[0],
-	frameTimes:[100],
-	reverses:false,
-	loops:false
-};
-
-const yellowBossBlockData = {
-	name:STATE.Block,
-	image:bossAtlas,
-	clipX:920,
-	clipY:ATLAS_ROW0 + 2,
-	clipWidth:32,
-	clipHeight:67,
-	frameWidth:32,
 	frameCount:1,
 	frames:[0],
 	frameTimes:[100],
