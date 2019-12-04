@@ -1597,16 +1597,6 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		jump:{
-			name:STATE.Jump,
-			image:yellowBossJump,
-			frames:[0, 1, 4],
-			width:yellowBossJump.width / 5,
-			height:yellowBossJump.height,
-			frameTimes:[32, 380, 32],
-			reverses:false,
-			loops:false
-		},
 		crouch:{
 			name:STATE.Crouch,
 			image:yellowBossCrouch,
@@ -1657,6 +1647,18 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
+		c_punch:{},
+		jump:{
+			name:STATE.Jump,
+			image:yellowBossJump,
+			frames:[0, 1, 4],
+			width:yellowBossJump.width / 5,
+			height:yellowBossJump.height,
+			frameTimes:[32, 380, 32],
+			reverses:false,
+			loops:false
+		},
+		j_punch:{},
 		j_kick:{},
 		h_kick:{
 			name:STATE.H_Kick,
