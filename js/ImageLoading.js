@@ -143,15 +143,19 @@ const redEnemyHKick = document.createElement("canvas");
 
 const yellowBossIdle = document.createElement("canvas");
 const yellowBossWalk = document.createElement("canvas");
+//Dash uses 1 frame from yellowBossJump
+const yellowBossCrouch = document.createElement("canvas");
 const yellowBossPunch = document.createElement("canvas");
 const yellowBossKick = document.createElement("canvas");
-const yellowBossCrouch = document.createElement("canvas");
-const yellowBossCrouchPunch = document.createElement("canvas");
+const yellowBossBlock = document.createElement("canvas");
 const yellowBossSweep = document.createElement("canvas");
+const yellowBossC_Punch = document.createElement("canvas");
 const yellowBossJump = document.createElement("canvas");
+const yellowBossJ_Punch = document.createElement("canvas");
+const yellowBossJ_Kick = document.createElement("canvas");
 const yellowBossH_Kick = document.createElement("canvas");
 const yellowBossKnockback = document.createElement("canvas");
-const yellowBossBlock = document.createElement("canvas");
+
 
 const redYellowBossIdle = document.createElement("canvas");
 const redYellowBossWalk = document.createElement("canvas");
