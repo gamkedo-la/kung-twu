@@ -4,7 +4,9 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 	let TITLE_SCALE = scale;
 	let isHovering = false;
 	this.title = getLocalizedStringForKey(stringsKey);
-	let titleArray = [];
+    let titleArray = [];
+    
+    this.selectorIndex = 0; // if set, we know what uibutton corresponds to which menu item so we can move its cursor
     
 	this.onClick = onClick;
 
@@ -130,7 +132,13 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
             
 			drawRect(bounds.x, bounds.y, bounds.width, bounds.height, BGColor);
             
-			canvasContext.restore();
+            canvasContext.restore();
+            
+            // also move the menu cursor icon
+            if (this.selectorIndex!=null && SceneState.currentScene==SCENE.TITLE) {
+                SceneState.scenes[SCENE.TITLE].moveSelector(this.selectorIndex);
+            }
+
 		}
 
 		if(wasHit && !isHovering) {
