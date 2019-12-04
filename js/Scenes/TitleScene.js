@@ -5,6 +5,7 @@ function TitleScene() {
 	let selectorPosition = {x:0, y:0};
 	let titleBlockPosition = {x:0, y:0};
 	let titleBlockWidth = 0;
+	let waterfall = null;
 	const selections = [
 		SCENE.GAME,
 		SCENE.HELP,
@@ -38,6 +39,10 @@ function TitleScene() {
 				localStorageHelper.setInt(localStorageKey.StartingBelt, playerBelt);
 			}
 			player.setNewBelt(playerBelt);
+		}
+
+		if(waterfall === null) {
+			initializeWaterfall();
 		}
         
 		if(buttons.length === 0) {
@@ -240,6 +245,10 @@ function TitleScene() {
 		birds.push(new Bird({x:100, y: 100}, {x:7, y:7}, 0.75));
 	};
 
+	const initializeWaterfall = function() {
+		waterfall = new SpriteAnimation("waterfall", waterfallSheet, [0, 1, 2, 3], 200, 140, [128, 128, 128, 32], false, true);
+	};
+
 	const checkButtons = function() {
 		let wasClicked = false;
 		for(let button of buttons) {
@@ -269,6 +278,8 @@ function TitleScene() {
 		for(let bird of birds) {
 			bird.update(deltaTime);
 		}
+
+		waterfall.update(deltaTime);
 	};
 
 	const processUserInput = function() {
@@ -311,16 +322,18 @@ function TitleScene() {
 	const draw = function() {
 		// render the menu background
 		drawBG();
-		
-        titleParticles();
 
-        for(let bird of birds) {
+		waterfall.drawAt(canvas.width / 2 + 200, canvas.height / 2 + 200, false);
+		
+		titleParticles();
+
+		for(let bird of birds) {
 			if(bird.scale < 1.0) {
 				bird.draw();
 			}
 		}
 
-        drawTitle();
+		drawTitle();
         
 		for(let bird of birds) {
 			if(bird.scale >= 1.0) {
@@ -329,19 +342,19 @@ function TitleScene() {
 		}
 
 		// render menu
-        printMenu();
+		printMenu();
         
 	};
 	
-    const titleParticles = function() {
-        if (!canvas || !wooshFX) return;
-        wooshFX.smokePuff(50+Math.random()*700, 100+Math.random()*100);
-        wooshFX.smokePuff(50+Math.random()*700, 100+Math.random()*100);
-        if (Math.random()<0.1) wooshFX.starPuff(50+Math.random()*700, 100+Math.random()*100);
-        wooshFX.draw();
-    };
+	const titleParticles = function() {
+		if (!canvas || !wooshFX) return;
+		wooshFX.smokePuff(50+Math.random()*700, 100+Math.random()*100);
+		wooshFX.smokePuff(50+Math.random()*700, 100+Math.random()*100);
+		if (Math.random()<0.1) wooshFX.starPuff(50+Math.random()*700, 100+Math.random()*100);
+		wooshFX.draw();
+	};
 
-    const drawBG = function() {
+	const drawBG = function() {
 		canvasContext.drawImage(titleScreenBG, 0, 0);
 		canvasContext.drawImage(titleScreenDecore, 0, 0);
 		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlockPosition.x, titleBlockPosition.y, titleBlockWidth, titleBlock.height);
