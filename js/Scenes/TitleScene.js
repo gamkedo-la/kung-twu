@@ -20,14 +20,6 @@ function TitleScene() {
 	const languageButtons = [];
 	const birds = [];
 
-    this.moveSelector = function(num) {
-        // used to simulate arrow key press on mousemove so
-        // the cursor moves as appropriate when hovering menu
-        //console.log("Moving menu menu selector: " + num);
-        selectorPositionsIndex = num;
-        selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
-    };
-
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 		if(keyMapper === null) {//we've never initialied the input/key mapping objects
@@ -71,10 +63,10 @@ function TitleScene() {
 			buttons.push(buildCreditsButton(mainMenuX, mainMenuY + 3 * deltaY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildAssistButton(mainMenuX, mainMenuY + 4 * deltaY, buttonHeight, buttonTitlePadding));
 
-            // support mouse hovers that move the selector
-            for (var num=0; num<buttons.length; num++) {
-                buttons[num].selectorIndex = num;
-            }
+			// support mouse hovers that move the selector
+			for (var num=0; num<buttons.length; num++) {
+				buttons[num].selectorIndex = num;
+			}
 
 			buildLanguageButtons();
 
@@ -142,6 +134,14 @@ function TitleScene() {
 		}
         
 		return false;
+	};
+
+	this.moveSelector = function(num) {
+		// used to simulate arrow key press on mousemove so
+		// the cursor moves as appropriate when hovering menu
+		//console.log("Moving menu menu selector: " + num);
+		selectorPositionsIndex = num;
+		selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
 	};
 
 	const buildPlayButton = function(x, y, height, padding) {

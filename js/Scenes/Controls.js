@@ -121,6 +121,12 @@ this.transitionIn = function() {
 			//buttons.push(buildRemapButton(remapLeftX, remapTopY, remapButtonHeight * remapButtonCount, buttonTitlePadding));
 
 			updateButtonPositions();
+
+			// support mouse hovers that move the selector
+			for (var num=0; num<buttons.length; num++) {
+				buttons[num].selectorIndex = num;
+			}
+			
 		} else {
 			updateButtonTitles();
 			updateButtonPositions();
@@ -154,6 +160,14 @@ this.transitionIn = function() {
 			remapKeyNext = -1;
 		}
 		return false;
+	};
+
+	this.moveSelector = function(num) {
+		// used to simulate arrow key press on mousemove so
+		// the cursor moves as appropriate when hovering menu
+		//console.log("Moving menu menu selector: " + num);
+		selectorPositionsIndex = num;
+		selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
 	};
 
 	const update = function() {

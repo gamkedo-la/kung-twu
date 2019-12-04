@@ -30,6 +30,11 @@ function ModalSlider() {
 		if(buttons.length === 0) {
 			buttons.push(buildDefaultButton(canvas.width / 40, mainMenuY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildDoneButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
+
+			// support mouse hovers that move the selector
+			for (var num=0; num<buttons.length; num++) {
+				buttons[num].selectorIndex = num;
+			}
 		} else {
 			updateButtonTitles();
 		}
@@ -61,6 +66,14 @@ function ModalSlider() {
 		}
 		
 		return false;
+	};
+
+	this.moveSelector = function(num) {
+		// used to simulate arrow key press on mousemove so
+		// the cursor moves as appropriate when hovering menu
+		//console.log("Moving menu menu selector: " + num);
+		selectorPositionsIndex = num;
+		updateSelectorPosition();
 	};
 
 	const buildSlider = function() {

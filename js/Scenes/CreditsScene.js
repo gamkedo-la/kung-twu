@@ -50,6 +50,11 @@ function CreditsScene() {
 			buttons.push(buildPlayButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
 
 			updateButtonPositions();
+
+			// support mouse hovers that move the selector
+			for (var num=0; num<buttons.length; num++) {
+				buttons[num].selectorIndex = num;
+			}
 		} else {
 			updateButtonTitles();
 			updateButtonPositions();
@@ -87,6 +92,14 @@ function CreditsScene() {
 		}
 		
 		return false;
+	};
+
+	this.moveSelector = function(num) {
+		// used to simulate arrow key press on mousemove so
+		// the cursor moves as appropriate when hovering menu
+		//console.log("Moving menu menu selector: " + num);
+		selectorPositionsIndex = num;
+		updateSelectorPosition();
 	};
 
 	const update = function(deltaTime) {
