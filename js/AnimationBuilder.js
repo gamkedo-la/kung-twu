@@ -805,7 +805,7 @@ function AnimationBuilder() {
 			image:basicEnemyCrouch,
 			frames:[0],
 			width:basicEnemyCrouch.width,
-			height:basicEnemyCrouch.height,
+			height:69,
 			frameTimes:[200],
 			reverses:false,
 			loops:false
