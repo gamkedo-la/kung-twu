@@ -1589,11 +1589,11 @@ function AnimationBuilder() {
 		},
 		dash:{
 			name:STATE.Dash,
-			image:yellowBossWalk,
-			frames:[0, 1, 2, 3],
-			width:yellowBossWalk.width / 4,
-			height:yellowBossWalk.height,
-			frameTimes:[30, 300, 30],
+			image:yellowBossJump,
+			frames:[1],
+			width:yellowBossJump.width / 5,
+			height:yellowBossJump.height,
+			frameTimes:[300],
 			reverses:false,
 			loops:false
 		},
