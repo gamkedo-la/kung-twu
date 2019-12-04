@@ -58,6 +58,8 @@ function GameScene() {
 	let gameTimer;
 
 	this.transitionIn = function() {
+		loadMissingAnimations();//lazy load animations
+		animationManager = new AnimationBuilder();
 
 		gameOverPending = false;
 
@@ -67,15 +69,12 @@ function GameScene() {
 
 		didTransitionOut = false;
 
-		if((player !== null) && (player.getCurrentBelt() !== playerBelt)) {
+		if(player !== null) {
 			player.setNewBelt(playerBelt);
 		}
 
 		if (aiManager === null) {
-			//if aiManager === null, we've never initialized a GameScene
-			//			aiManager = new AIManager();
 			aiManager = new AIManager2();
-			animationManager = new AnimationBuilder();
 			timer.registerEvent(EVENT.EnemySpawn);
 			initializePlayerIfReqd();
 		}
@@ -618,15 +617,6 @@ function GameScene() {
 
 	const drawUITimeCounter = function(screenLeft, cameraX) {
 		hourglassManager.draw(cameraX);
-		/*		//Time Counter
-		// hourglass sand
-		//console.log("time left: " + gameTimer.getTime() + " of " + gameTimer.getStartTime());
-		var maxsize = 78;
-		var barsize = maxsize *  (gameTimer.getTime() / gameTimer.getStartTime());
-		//console.log("sand size: " + barsize);
-		drawRect(screenLeft + 304 + 24, 48 + 24, 56, barsize, Color.Orange);
-		// hourglass overlay
-		canvasContext.drawImage(hourglassSprite, screenLeft + 304, 48);*/
 	};
 
 	const drawUILevelName = function(screenLeft) {
@@ -1001,6 +991,89 @@ function GameScene() {
 	const buildBossIntroText = function() {
 		const text = getLocalizedStringForKey(levelData.bossIntroTextKey);
 		bossIntroText = new BossIntroText(text, {x:camera.getPosition().x, y:canvas.height / 2}, TextAlignment.Center, 0.55);
+	};
+
+	const loadMissingAnimations = function() {
+		const data = dataForCurrentLevel();
+		if((data.enemyBelt >= BELT.White) && (!InitializedImages.basicWhite)) {
+			initializeBasicWhite();
+			InitializedImages.basicWhite = true;
+		}
+
+		if((data.enemyBelt >= BELT.Yellow) && (!InitializedImages.basicYellow)) {
+			initializeBasicYellow();
+			InitializedImages.basicYellow = true;
+		}
+
+		if((data.enemyBelt >= BELT.Tan) && (!InitializedImages.basicTan)) {
+			initializeBasicTan();
+			InitializedImages.basicTan = true;
+		}
+
+		if((data.enemyBelt >= BELT.Brown) && (!InitializedImages.basicBrown)) {
+			initializeBasicBrown();
+			InitializedImages.basicBrown = true;
+		}
+
+		if((data.enemyBelt >= BELT.Red) && (!InitializedImages.basicRed)) {
+			initializeBasicRed();
+			InitializedImages.basicRed = true;
+		}
+
+		if((data.bossBelt === BELT.Yellow) && (!InitializedImages.bossYellow)) {
+			initializeBossYellow();
+			InitializedImages.bossYellow = true;
+		}
+
+		if((data.bossBelt === BELT.Tan) && (!InitializedImages.bossTan)) {
+			initializeBossTan();
+			InitializedImages.bossTan = true;
+		}
+
+		if((data.bossBelt === BELT.Brown) && (!InitializedImages.bossBrown)) {
+			initializeBossBrown();
+			InitializedImages.bossBrown = true;
+		}
+
+		if((data.bossBelt === BELT.Red) && (!InitializedImages.bossRed)) {
+			initializeBossRed();
+			InitializedImages.bossRed = true;
+		}
+
+		if((data.bossBelt === BELT.Black) && (!InitializedImages.bossBlack)) {
+			initializeBossBlack();
+			InitializedImages.bossBlack = true;
+		}
+
+		if((playerBelt === BELT.White) && (!InitializedImages.playerWhite)) {
+			initializePlayerWhite();
+			InitializedImages.playerWhite = true;
+		}
+
+		if((playerBelt === BELT.Yellow) && (!InitializedImages.playerYellow)) {
+			initializePlayerYellow();
+			InitializedImages.playerYellow = true;
+		}
+
+		if((playerBelt === BELT.Tan) && (!InitializedImages.playerTan)) {
+			initializePlayerTan();
+			InitializedImages.playerTan = true;
+		}
+
+		if((playerBelt === BELT.Brown) && (!InitializedImages.playerBrown)) {
+			initializePlayerBrown();
+			InitializedImages.playerBrown = true;
+		}
+
+		if((playerBelt === BELT.Red) && (!InitializedImages.playerRed)) {
+			initializePlayerRed();
+			InitializedImages.playerRed = true;
+		}
+
+		if((playerBelt === BELT.Black) && (!InitializedImages.playerBlack)) {
+			initializePlayerBlack();
+			InitializedImages.playerBlack = true;
+		}
 	};
 }
 

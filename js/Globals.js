@@ -29,6 +29,25 @@ const Color = {
 	DarkGrey:"darkgrey"
 };
 
+const InitializedImages = {
+	basicWhite:false,
+	basicYellow:false,
+	basicTan:false,
+	basicBrown:false,
+	basicRed:false,
+	bossYellow:false,
+	bossTan:false,
+	bossBrown:false,
+	bossRed:false,
+	bossBlack:false,
+	playerWhite:false,
+	playerYellow:false,
+	playerTan:false,
+	playerBrown:false,
+	playerRed:false,
+	playerBlack:false
+};
+
 /** @type IProgressBarConfig */
 let UIProgressBarDefaults;
 
