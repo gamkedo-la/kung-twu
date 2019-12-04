@@ -1647,7 +1647,16 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		c_punch:{},
+		c_punch:{
+			name:STATE.C_Punch,
+			image:yellowBossC_Punch,
+			frames:[0, 1, 0],
+			width:yellowBossC_Punch.width / 2,
+			height:yellowBossC_Punch.height,
+			frameTimes:[50, 150, 50],
+			reverses:false,
+			loops:false
+		},
 		jump:{
 			name:STATE.Jump,
 			image:yellowBossJump,
@@ -1658,8 +1667,26 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_punch:{},
-		j_kick:{},
+		j_punch:{
+			name:STATE.J_Punch,
+			image:yellowBossJ_Punch,
+			frames:[0, 1, 2, 1, 4],
+			width:yellowBossJ_Punch.width / 5,
+			height:yellowBossJ_Punch.height,
+			frameTimes:[32, 50, 300, 50, 32],
+			reverses:false,
+			loops:false
+		},
+		j_kick:{
+			name:STATE.J_Kick,
+			image:yellowBossJ_Kick,
+			frames:[0, 1, 3, 1, 4],
+			width:yellowBossJ_Kick.width / 5,
+			height:yellowBossJ_Kick.height,
+			frameTimes:[32, 50, 300, 50, 32],
+			reverses:false,
+			loops:false
+		},
 		h_kick:{
 			name:STATE.H_Kick,
 			image:yellowBossH_Kick,
