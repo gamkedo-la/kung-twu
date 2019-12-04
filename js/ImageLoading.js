@@ -289,6 +289,20 @@ const playerWalkBrown = document.createElement("canvas");
 const playerWalkRed = document.createElement("canvas");
 const playerWalkBlack = document.createElement("canvas");
 
+const playerBlockWhite = document.createElement("canvas");
+const playerBlockYellow = document.createElement("canvas");
+const playerBlockTan = document.createElement("canvas");
+const playerBlockBrown = document.createElement("canvas");
+const playerBlockRed = document.createElement("canvas");
+const playerBlockBlack = document.createElement("canvas");
+
+const playerCrouchWhite = document.createElement("canvas");
+const playerCrouchYellow = document.createElement("canvas");
+const playerCrouchTan = document.createElement("canvas");
+const playerCrouchBrown = document.createElement("canvas");
+const playerCrouchRed = document.createElement("canvas");
+const playerCrouchBlack = document.createElement("canvas");
+
 //const playerWalkBack = document.createElement("img");
 //TODO: Make all belt colors and incorporate into CharacterAtlas
 const playerBlock = document.createElement("img");
@@ -532,8 +546,8 @@ function loadImages() {
 
 		// player related
 		//		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
-		{ imgName: playerBlock, theFile: "Player_Block.png"},
-		{ imgName: playerCrouch, theFile: "Player_Crouch.png"},
+//		{ imgName: playerBlock, theFile: "Player_Block.png"},
+//		{ imgName: playerCrouch, theFile: "Player_Crouch.png"},
 
 		// UI
 		{ imgName: jpFontImg, theFile: "JPFont_Light.png"},
@@ -561,6 +575,8 @@ function loadImages() {
 function initializePlayerWhite() {
 	initializeCanvasFromAtlas(playerIdleWhite, playerIdleWhiteData, characterAtlas);
 	initializeCanvasFromAtlas(playerWalkWhite, playerWalkWhiteData, characterAtlas);
+	initializeCanvasFromAtlas(playerBlockWhite, playerBlockWhiteData, characterAtlas);
+	initializeCanvasFromAtlas(playerCrouchWhite, playerCrouchWhiteData, characterAtlas);
 	initializeCanvasFromAtlas(playerKickWhite, playerKickWhiteData, characterAtlas);
 	initializeCanvasFromAtlas(playerPunchWhite, playerPunchWhiteData, characterAtlas);
 	initializeCanvasFromAtlas(playerSweepWhite, playerSweepWhiteData, characterAtlas); 
@@ -572,6 +588,8 @@ function initializePlayerWhite() {
 function initializePlayerYellow() {
 	initializeCanvasFromAtlas(playerIdleYellow, playerIdleYellowData, characterAtlas);
 	initializeCanvasFromAtlas(playerWalkYellow, playerWalkYellowData, characterAtlas);
+	initializeCanvasFromAtlas(playerBlockYellow, playerBlockYellowData, characterAtlas);
+	initializeCanvasFromAtlas(playerCrouchYellow, playerCrouchYellowData, characterAtlas);
 	initializeCanvasFromAtlas(playerKickYellow, playerKickYellowData, characterAtlas);
 	initializeCanvasFromAtlas(playerPunchYellow, playerPunchYellowData, characterAtlas);
 	initializeCanvasFromAtlas(playerSweepYellow, playerSweepYellowData, characterAtlas); 
@@ -583,6 +601,8 @@ function initializePlayerYellow() {
 function initializePlayerTan() {
 	initializeCanvasFromAtlas(playerIdleTan, playerIdleTanData, characterAtlas);
 	initializeCanvasFromAtlas(playerWalkTan, playerWalkTanData, characterAtlas);
+	initializeCanvasFromAtlas(playerBlockTan, playerBlockTanData, characterAtlas);
+	initializeCanvasFromAtlas(playerCrouchTan, playerCrouchTanData, characterAtlas);
 	initializeCanvasFromAtlas(playerKickTan, playerKickTanData, characterAtlas);
 	initializeCanvasFromAtlas(playerPunchTan, playerPunchTanData, characterAtlas);
 	initializeCanvasFromAtlas(playerSweepTan, playerSweepTanData, characterAtlas); 
@@ -594,6 +614,8 @@ function initializePlayerTan() {
 function initializePlayerBrown() {
 	initializeCanvasFromAtlas(playerIdleBrown, playerIdleBrownData, characterAtlas);
 	initializeCanvasFromAtlas(playerWalkBrown, playerWalkBrownData, characterAtlas);
+	initializeCanvasFromAtlas(playerBlockBrown, playerBlockBrownData, characterAtlas);
+	initializeCanvasFromAtlas(playerCrouchBrown, playerCrouchBrownData, characterAtlas);
 	initializeCanvasFromAtlas(playerKickBrown, playerKickBrownData, characterAtlas);
 	initializeCanvasFromAtlas(playerPunchBrown, playerPunchBrownData, characterAtlas);
 	initializeCanvasFromAtlas(playerSweepBrown, playerSweepBrownData, characterAtlas); 
@@ -605,6 +627,8 @@ function initializePlayerBrown() {
 function initializePlayerRed() {
 	initializeCanvasFromAtlas(playerIdleRed, playerIdleRedData, characterAtlas);
 	initializeCanvasFromAtlas(playerWalkRed, playerWalkRedData, characterAtlas);
+	initializeCanvasFromAtlas(playerBlockRed, playerBlockRedData, characterAtlas);
+	initializeCanvasFromAtlas(playerCrouchRed, playerCrouchRedData, characterAtlas);
 	initializeCanvasFromAtlas(playerKickRed, playerKickRedData, characterAtlas);
 	initializeCanvasFromAtlas(playerPunchRed, playerPunchRedData, characterAtlas);
 	initializeCanvasFromAtlas(playerSweepRed, playerSweepRedData, characterAtlas); 
@@ -616,6 +640,8 @@ function initializePlayerRed() {
 function initializePlayerBlack() {
 	initializeCanvasFromAtlas(playerIdleBlack, playerIdleBlackData, characterAtlas);
 	initializeCanvasFromAtlas(playerWalkBlack, playerWalkBlackData, characterAtlas);
+	initializeCanvasFromAtlas(playerBlockBlack, playerBlockBlackData, characterAtlas);
+	initializeCanvasFromAtlas(playerCrouchBlack, playerCrouchBlackData, characterAtlas);
 	initializeCanvasFromAtlas(playerKickBlack, playerKickBlackData, characterAtlas);
 	initializeCanvasFromAtlas(playerPunchBlack, playerPunchBlackData, characterAtlas);
 	initializeCanvasFromAtlas(playerSweepBlack, playerSweepBlackData, characterAtlas); 

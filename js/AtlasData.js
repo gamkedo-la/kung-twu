@@ -199,6 +199,36 @@ const playerJumpWhiteData = {
 	loops:false
 };
 
+const playerBlockWhiteData = {
+	name:STATE.Block,
+	image:characterAtlas,
+	clipX:813,
+	clipY:ATLAS_ROW6,
+	clipWidth:39,
+	clipHeight:69,
+	frameWidth:39,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[50],
+	reverses:false,
+	loops:true
+};
+
+const playerCrouchWhiteData = {
+	name:STATE.Crouch,
+	image:characterAtlas,
+	clipX:852,
+	clipY:ATLAS_ROW6,
+	clipWidth:45,
+	clipHeight:69,
+	frameWidth:45,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[50],
+	reverses:false,
+	loops:true
+};
+
 //---------Start Player Yellow Belt Atlas Data--------//
 
 const playerIdleYellowData = {
@@ -334,6 +364,36 @@ const playerJumpYellowData = {
 	frameTimes:[100],
 	reverses:false,
 	loops:false
+};
+
+const playerBlockYellowData = {
+	name:STATE.Block,
+	image:characterAtlas,
+	clipX:813,
+	clipY:ATLAS_ROW7,
+	clipWidth:39,
+	clipHeight:69,
+	frameWidth:39,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[50],
+	reverses:false,
+	loops:true
+};
+
+const playerCrouchYellowData = {
+	name:STATE.Crouch,
+	image:characterAtlas,
+	clipX:852,
+	clipY:ATLAS_ROW7,
+	clipWidth:45,
+	clipHeight:69,
+	frameWidth:45,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[50],
+	reverses:false,
+	loops:true
 };
 
 //---------Start Player Tan Belt Atlas Data--------//
@@ -473,6 +533,36 @@ const playerJumpTanData = {
 	loops:false
 };
 
+const playerBlockTanData = {
+	name:STATE.Block,
+	image:characterAtlas,
+	clipX:813,
+	clipY:ATLAS_ROW8,
+	clipWidth:39,
+	clipHeight:69,
+	frameWidth:39,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[50],
+	reverses:false,
+	loops:true
+};
+
+const playerCrouchTanData = {
+	name:STATE.Crouch,
+	image:characterAtlas,
+	clipX:852,
+	clipY:ATLAS_ROW8,
+	clipWidth:45,
+	clipHeight:69,
+	frameWidth:45,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[50],
+	reverses:false,
+	loops:true
+};
+
 //---------Start Player Brown Belt Atlas Data--------//
 
 const playerIdleBrownData = {
@@ -608,6 +698,36 @@ const playerJumpBrownData = {
 	frameTimes:[100],
 	reverses:false,
 	loops:false
+};
+
+const playerBlockBrownData = {
+	name:STATE.Block,
+	image:characterAtlas,
+	clipX:813,
+	clipY:ATLAS_ROW9,
+	clipWidth:39,
+	clipHeight:69,
+	frameWidth:39,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[50],
+	reverses:false,
+	loops:true
+};
+
+const playerCrouchBrownData = {
+	name:STATE.Crouch,
+	image:characterAtlas,
+	clipX:852,
+	clipY:ATLAS_ROW9,
+	clipWidth:45,
+	clipHeight:69,
+	frameWidth:45,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[50],
+	reverses:false,
+	loops:true
 };
 
 //---------Start Player Red Belt Atlas Data--------//
@@ -747,6 +867,36 @@ const playerJumpRedData = {
 	loops:false
 };
 
+const playerBlockRedData = {
+	name:STATE.Block,
+	image:characterAtlas,
+	clipX:813,
+	clipY:ATLAS_ROW10,
+	clipWidth:39,
+	clipHeight:69,
+	frameWidth:39,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[50],
+	reverses:false,
+	loops:true
+};
+
+const playerCrouchRedData = {
+	name:STATE.Crouch,
+	image:characterAtlas,
+	clipX:852,
+	clipY:ATLAS_ROW10,
+	clipWidth:45,
+	clipHeight:69,
+	frameWidth:45,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[50],
+	reverses:false,
+	loops:true
+};
+
 //---------Start Player Black Belt Atlas Data--------//
 
 const playerIdleBlackData = {
@@ -882,6 +1032,36 @@ const playerJumpBlackData = {
 	frameTimes:[100],
 	reverses:false,
 	loops:false
+};
+
+const playerBlockBlackData = {
+	name:STATE.Block,
+	image:characterAtlas,
+	clipX:813,
+	clipY:ATLAS_ROW11,
+	clipWidth:39,
+	clipHeight:69,
+	frameWidth:39,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[50],
+	reverses:false,
+	loops:true
+};
+
+const playerCrouchBlackData = {
+	name:STATE.Crouch,
+	image:characterAtlas,
+	clipX:852,
+	clipY:ATLAS_ROW11,
+	clipWidth:45,
+	clipHeight:69,
+	frameWidth:45,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[50],
+	reverses:false,
+	loops:true
 };
 
 //---------Start Basic Enemy Atlas Data--------//

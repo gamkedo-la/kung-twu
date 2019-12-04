@@ -925,10 +925,10 @@ function AnimationBuilder() {
 		},
 		crouch:{
 			name:STATE.Crouch,
-			image:playerCrouch,
+			image:playerCrouchWhite,
 			frames:[0],
-			width:playerCrouch.width,
-			height:playerCrouch.height,
+			width:playerCrouchWhite.width,
+			height:playerCrouchWhite.height,
 			frameTimes:[275],
 			reverses:false,
 			loops:false
@@ -955,10 +955,10 @@ function AnimationBuilder() {
 		},
 		block:{
 			name:STATE.Block,
-			image:playerBlock,
+			image:playerBlockWhite,
 			frames:[0],
-			width:playerBlock.width,
-			height:playerBlock.height,
+			width:playerBlockWhite.width,
+			height:playerBlockWhite.height,
 			frameTimes:[275],
 			reverses:false,
 			loops:false
@@ -1039,10 +1039,10 @@ function AnimationBuilder() {
 		},
 		crouch:{
 			name:STATE.Crouch,
-			image:playerCrouch,
+			image:playerCrouchYellow,
 			frames:[0],
-			width:playerCrouch.width,
-			height:playerCrouch.height,
+			width:playerCrouchYellow.width,
+			height:playerCrouchYellow.height,
 			frameTimes:[275],
 			reverses:false,
 			loops:false
@@ -1069,10 +1069,10 @@ function AnimationBuilder() {
 		},
 		block:{
 			name:STATE.Block,
-			image:playerBlock,
+			image:playerBlockYellow,
 			frames:[0],
-			width:playerBlock.width,
-			height:playerBlock.height,
+			width:playerBlockYellow.width,
+			height:playerBlockYellow.height,
 			frameTimes:[275],
 			reverses:false,
 			loops:false
@@ -1153,10 +1153,10 @@ function AnimationBuilder() {
 		},
 		crouch:{
 			name:STATE.Crouch,
-			image:playerCrouch,
+			image:playerCrouchTan,
 			frames:[0],
-			width:playerCrouch.width,
-			height:playerCrouch.height,
+			width:playerCrouchTan.width,
+			height:playerCrouchTan.height,
 			frameTimes:[275],
 			reverses:false,
 			loops:false
@@ -1183,10 +1183,10 @@ function AnimationBuilder() {
 		},
 		block:{
 			name:STATE.Block,
-			image:playerBlock,
+			image:playerBlockTan,
 			frames:[0],
-			width:playerBlock.width,
-			height:playerBlock.height,
+			width:playerBlockTan.width,
+			height:playerBlockTan.height,
 			frameTimes:[275],
 			reverses:false,
 			loops:false
@@ -1267,10 +1267,10 @@ function AnimationBuilder() {
 		},
 		crouch:{
 			name:STATE.Crouch,
-			image:playerCrouch,
+			image:playerCrouchBrown,
 			frames:[0],
-			width:playerCrouch.width,
-			height:playerCrouch.height,
+			width:playerCrouchBrown.width,
+			height:playerCrouchBrown.height,
 			frameTimes:[275],
 			reverses:false,
 			loops:false
@@ -1297,10 +1297,10 @@ function AnimationBuilder() {
 		},
 		block:{
 			name:STATE.Block,
-			image:playerBlock,
+			image:playerBlockBrown,
 			frames:[0],
-			width:playerBlock.width,
-			height:playerBlock.height,
+			width:playerBlockBrown.width,
+			height:playerBlockBrown.height,
 			frameTimes:[275],
 			reverses:false,
 			loops:false
@@ -1381,10 +1381,10 @@ function AnimationBuilder() {
 		},
 		crouch:{
 			name:STATE.Crouch,
-			image:playerCrouch,
+			image:playerCrouchRed,
 			frames:[0],
-			width:playerCrouch.width,
-			height:playerCrouch.height,
+			width:playerCrouchRed.width,
+			height:playerCrouchRed.height,
 			frameTimes:[275],
 			reverses:false,
 			loops:false
@@ -1411,10 +1411,10 @@ function AnimationBuilder() {
 		},
 		block:{
 			name:STATE.Block,
-			image:playerBlock,
+			image:playerBlockRed,
 			frames:[0],
-			width:playerBlock.width,
-			height:playerBlock.height,
+			width:playerBlockRed.width,
+			height:playerBlockRed.height,
 			frameTimes:[275],
 			reverses:false,
 			loops:false
@@ -1495,10 +1495,10 @@ function AnimationBuilder() {
 		},
 		crouch:{
 			name:STATE.Crouch,
-			image:playerCrouch,
+			image:playerCrouchBlack,
 			frames:[0],
-			width:playerCrouch.width,
-			height:playerCrouch.height,
+			width:playerCrouchBlack.width,
+			height:playerCrouchBlack.height,
 			frameTimes:[275],
 			reverses:false,
 			loops:false
@@ -1525,10 +1525,10 @@ function AnimationBuilder() {
 		},
 		block:{
 			name:STATE.Block,
-			image:playerBlock,
+			image:playerBlockBlack,
 			frames:[0],
-			width:playerBlock.width,
-			height:playerBlock.height,
+			width:playerBlockBlack.width,
+			height:playerBlockBlack.height,
 			frameTimes:[275],
 			reverses:false,
 			loops:false
