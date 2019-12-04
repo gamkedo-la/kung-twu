@@ -1864,14 +1864,14 @@ const yellowBossWalkData = {
 const yellowBossDashData = {
 	name:STATE.Dash,
 	image:bossAtlas,
-	clipX:621,
+	clipX:47,
 	clipY:ATLAS_ROW6 + 2,
-	clipWidth:235,
+	clipWidth:47,
 	clipHeight:67,
 	frameWidth:47,
-	frameCount:5,
-	frames:[1],
-	frameTimes:[300],
+	frameCount:1,
+	frames:[0],
+	frameTimes:[150],
 	reverses:false,
 	loops:false
 };
@@ -2073,6 +2073,21 @@ const tanBossWalkData = {
 	loops:true
 };
 
+const tanBossDashData = {
+	name:STATE.Dash,
+	image:bossAtlas,
+	clipX:47,
+	clipY:ATLAS_ROW7 + 2,
+	clipWidth:47,
+	clipHeight:67,
+	frameWidth:47,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[150],
+	reverses:false,
+	loops:false
+};
+
 const tanBossPunchData = {
 	name:STATE.Punch,
 	image:bossAtlas,
@@ -2223,6 +2238,21 @@ const brownBossWalkData = {
 	frameTimes:[100],
 	reverses:false,
 	loops:true
+};
+
+const brownBossDashData = {
+	name:STATE.Dash,
+	image:bossAtlas,
+	clipX:47,
+	clipY:ATLAS_ROW8 + 2,
+	clipWidth:47,
+	clipHeight:67,
+	frameWidth:47,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[150],
+	reverses:false,
+	loops:false
 };
 
 const brownBossPunchData = {
@@ -2377,6 +2407,21 @@ const redBossWalkData = {
 	loops:true
 };
 
+const redBossDashData = {
+	name:STATE.Dash,
+	image:bossAtlas,
+	clipX:47,
+	clipY:ATLAS_ROW9 + 2,
+	clipWidth:47,
+	clipHeight:67,
+	frameWidth:47,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[150],
+	reverses:false,
+	loops:false
+};
+
 const redBossPunchData = {
 	name:STATE.Punch,
 	image:bossAtlas,
@@ -2527,6 +2572,21 @@ const blackBossWalkData = {
 	frameTimes:[100],
 	reverses:false,
 	loops:true
+};
+
+const blackBossDashData = {
+	name:STATE.Dash,
+	image:bossAtlas,
+	clipX:47,
+	clipY:ATLAS_ROW10 + 2,
+	clipWidth:47,
+	clipHeight:67,
+	frameWidth:47,
+	frameCount:1,
+	frames:[0],
+	frameTimes:[150],
+	reverses:false,
+	loops:false
 };
 
 const blackBossPunchData = {

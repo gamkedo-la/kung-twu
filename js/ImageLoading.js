@@ -143,6 +143,7 @@ const redEnemyHKick = document.createElement("canvas");
 
 const yellowBossIdle = document.createElement("canvas");
 const yellowBossWalk = document.createElement("canvas");
+const yellowBossDash = document.createElement("canvas");
 //Dash uses 1 frame from yellowBossJump
 const yellowBossCrouch = document.createElement("canvas");
 const yellowBossPunch = document.createElement("canvas");
@@ -159,6 +160,7 @@ const yellowBossKnockback = document.createElement("canvas");
 
 const redYellowBossIdle = document.createElement("canvas");
 const redYellowBossWalk = document.createElement("canvas");
+const redYellowBossDash = document.createElement("canvas");
 const redYellowBossPunch = document.createElement("canvas");
 const redYellowBossKick = document.createElement("canvas");
 const redYellowBossCrouch = document.createElement("canvas");
@@ -171,6 +173,7 @@ const redYellowBossBlock = document.createElement("canvas");
 
 const tanBossIdle = document.createElement("canvas");
 const tanBossWalk = document.createElement("canvas");
+const tanBossDash = document.createElement("canvas");
 const tanBossPunch = document.createElement("canvas");
 const tanBossKick = document.createElement("canvas");
 const tanBossCrouch = document.createElement("canvas");
@@ -183,6 +186,7 @@ const tanBossBlock = document.createElement("canvas");
 
 const redTanBossIdle = document.createElement("canvas");
 const redTanBossWalk = document.createElement("canvas");
+const redTanBossDash = document.createElement("canvas");
 const redTanBossPunch = document.createElement("canvas");
 const redTanBossKick = document.createElement("canvas");
 const redTanBossCrouch = document.createElement("canvas");
@@ -195,6 +199,7 @@ const redTanBossBlock = document.createElement("canvas");
 
 const brownBossIdle = document.createElement("canvas");
 const brownBossWalk = document.createElement("canvas");
+const brownBossDash = document.createElement("canvas");
 const brownBossPunch = document.createElement("canvas");
 const brownBossKick = document.createElement("canvas");
 const brownBossCrouch = document.createElement("canvas");
@@ -207,6 +212,7 @@ const brownBossBlock = document.createElement("canvas");
 
 const redBrownBossIdle = document.createElement("canvas");
 const redBrownBossWalk = document.createElement("canvas");
+const redBrownBossDash = document.createElement("canvas");
 const redBrownBossPunch = document.createElement("canvas");
 const redBrownBossKick = document.createElement("canvas");
 const redBrownBossCrouch = document.createElement("canvas");
@@ -219,6 +225,7 @@ const redBrownBossBlock = document.createElement("canvas");
 
 const redBossIdle = document.createElement("canvas");
 const redBossWalk = document.createElement("canvas");
+const redBossDash = document.createElement("canvas");
 const redBossPunch = document.createElement("canvas");
 const redBossKick = document.createElement("canvas");
 const redBossCrouch = document.createElement("canvas");
@@ -231,6 +238,7 @@ const redBossBlock = document.createElement("canvas");
 
 const redRedBossIdle = document.createElement("canvas");
 const redRedBossWalk = document.createElement("canvas");
+const redRedBossDash = document.createElement("canvas");
 const redRedBossPunch = document.createElement("canvas");
 const redRedBossKick = document.createElement("canvas");
 const redRedBossCrouch = document.createElement("canvas");
@@ -243,6 +251,7 @@ const redRedBossBlock = document.createElement("canvas");
 
 const blackBossIdle = document.createElement("canvas");
 const blackBossWalk = document.createElement("canvas");
+const blackBossDash = document.createElement("canvas");
 const blackBossPunch = document.createElement("canvas");
 const blackBossKick = document.createElement("canvas");
 const blackBossCrouch = document.createElement("canvas");
@@ -255,6 +264,7 @@ const blackBossBlock = document.createElement("canvas");
 
 const redBlackBossIdle = document.createElement("canvas");
 const redBlackBossWalk = document.createElement("canvas");
+const redBlackBossDash = document.createElement("canvas");
 const redBlackBossPunch = document.createElement("canvas");
 const redBlackBossKick = document.createElement("canvas");
 const redBlackBossCrouch = document.createElement("canvas");
@@ -693,6 +703,7 @@ function initializeBossYellow() {
 	initializeCanvasFromAtlas(yellowBossIdle, yellowBossIdleData, bossAtlas);
 //	makeRedImage(yellowBossIdle, redYellowBossIdle);
 	initializeCanvasFromAtlas(yellowBossWalk, yellowBossWalkData, bossAtlas);
+	initializeCanvasFromAtlas(yellowBossDash, yellowBossDashData, bossAtlas);
 	initializeCanvasFromAtlas(yellowBossKick, yellowBossKickData, bossAtlas);
 	initializeCanvasFromAtlas(yellowBossPunch, yellowBossPunchData, bossAtlas);
 	initializeCanvasFromAtlas(yellowBossCrouch, yellowBossCrouchData, bossAtlas);
@@ -706,6 +717,7 @@ function initializeBossYellow() {
 function initializeBossTan() {
 	initializeCanvasFromAtlas(tanBossIdle, tanBossIdleData, bossAtlas);
 	initializeCanvasFromAtlas(tanBossWalk, tanBossWalkData, bossAtlas);
+	initializeCanvasFromAtlas(tanBossDash, tanBossDashData, bossAtlas);
 	initializeCanvasFromAtlas(tanBossKick, tanBossKickData, bossAtlas);
 	initializeCanvasFromAtlas(tanBossPunch, tanBossPunchData, bossAtlas);
 	initializeCanvasFromAtlas(tanBossCrouch, tanBossCrouchData, bossAtlas);
@@ -719,6 +731,7 @@ function initializeBossTan() {
 function initializeBossBrown() {
 	initializeCanvasFromAtlas(brownBossIdle, brownBossIdleData, bossAtlas);
 	initializeCanvasFromAtlas(brownBossWalk, brownBossWalkData, bossAtlas);
+	initializeCanvasFromAtlas(brownBossDash, brownBossDashData, bossAtlas);
 	initializeCanvasFromAtlas(brownBossKick, brownBossKickData, bossAtlas);
 	initializeCanvasFromAtlas(brownBossPunch, brownBossPunchData, bossAtlas);
 	initializeCanvasFromAtlas(brownBossCrouch, brownBossCrouchData, bossAtlas);
@@ -732,6 +745,7 @@ function initializeBossBrown() {
 function initializeBossRed() {
 	initializeCanvasFromAtlas(redBossIdle, redBossIdleData, bossAtlas);
 	initializeCanvasFromAtlas(redBossWalk, redBossWalkData, bossAtlas);
+	initializeCanvasFromAtlas(redBossDash, redBossDashData, bossAtlas);
 	initializeCanvasFromAtlas(redBossKick, redBossKickData, bossAtlas);
 	initializeCanvasFromAtlas(redBossPunch, redBossPunchData, bossAtlas);
 	initializeCanvasFromAtlas(redBossCrouch, redBossCrouchData, bossAtlas);
@@ -745,6 +759,7 @@ function initializeBossRed() {
 function initializeBossBlack() {
 	initializeCanvasFromAtlas(blackBossIdle, blackBossIdleData, bossAtlas);
 	initializeCanvasFromAtlas(blackBossWalk, blackBossWalkData, bossAtlas);
+	initializeCanvasFromAtlas(blackBossDash, blackBossDashData, bossAtlas);
 	initializeCanvasFromAtlas(blackBossKick, blackBossKickData, bossAtlas);
 	initializeCanvasFromAtlas(blackBossPunch, blackBossPunchData, bossAtlas);
 	initializeCanvasFromAtlas(blackBossCrouch, blackBossCrouchData, bossAtlas);
