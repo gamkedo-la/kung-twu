@@ -159,7 +159,11 @@ function HitBoxManager(bodyData, attackData) {
 				return (frame === 1);
 			}
 		case STATE.H_Kick:
-			return (frame > 1);
+			if(aiType === AITYPE.Player) {
+				return ((frame > 3) || (frame < 8));
+			} else {
+				return (frame > 1);
+			}
 		case STATE.Punch: 
 			if(aiType === AITYPE.Boss) {
 				return (frame === 3);
