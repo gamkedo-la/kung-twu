@@ -12,6 +12,7 @@ function LevelIntroScene() {
 	let titleBlockWidth = 0;
 	let titleBlockPos = {x:0, y:0};
 	let titleBlock2Width = 0;
+	let titleBlock2Height = 0;
 	let titleBlock2Pos = {x:0, y:0};
 	let controlsXPos = 0;
 	let specialsXPos = 0;
@@ -63,6 +64,7 @@ function LevelIntroScene() {
 		findSpecialsText();
 		findControlsXPos();
 		findTitleBlockWidth();
+		findTitleBlockHeight();
 	};
 
 	this.transitionOut = function() {
@@ -199,7 +201,7 @@ function LevelIntroScene() {
 
 		titleBlockWidth = 30 + maxWidth;
 		titleBlockPos.x = canvas.width / 2 - titleBlockWidth / 2 + 4;
-		titleBlockPos.y = CONTROLS_Y_POS - 54;
+		titleBlockPos.y = CONTROLS_Y_POS - 60;
 
 		if(playerBelt !== BELT.White) {
 			let maxWidth = 0;
@@ -212,10 +214,15 @@ function LevelIntroScene() {
 	
 			titleBlock2Width = 30 + maxWidth;
 			titleBlock2Pos.x = 3 * canvas.width / 4 - titleBlock2Width / 2 + 4;
-			titleBlock2Pos.y = CONTROLS_Y_POS - 54;
+			titleBlock2Pos.y = CONTROLS_Y_POS - 60;
 
 			titleBlockPos.x = canvas.width / 4 - titleBlockWidth / 2 + 4;
 		}
+	};
+
+	const findTitleBlockHeight = function() {
+		const lineHeight = JPFont.getCharacterHeight(CONTROLS_SCALE);
+		titleBlock2Height = Math.max(1.5 * specialsTextArray.length * lineHeight, titleBlock.height);
 	};
 
 	const updateButtonPositions = function() {
@@ -257,7 +264,7 @@ function LevelIntroScene() {
 		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);
 		canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlockPos.x, titleBlockPos.y, titleBlockWidth, MSG_LINE_HEIGHT * controls.length + 30);   
 		if(playerBelt !== BELT.White) {
-			canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlock2Pos.x, titleBlock2Pos.y, titleBlock2Width, MSG_LINE_HEIGHT * controls.length + 30);
+			canvasContext.drawImage(titleBlock, 0, 0, titleBlock.width, titleBlock.height, titleBlock2Pos.x, titleBlock2Pos.y, titleBlock2Width, titleBlock2Height + 30);
 		}
 	};
 

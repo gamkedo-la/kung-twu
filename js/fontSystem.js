@@ -118,6 +118,8 @@ function fontSystem(jpFont, charSize, context) {
 		case "é":
 		case "É":
 		case "ё":
+		case "ó": 
+		case "Ó":
 			return (-10 * scale);
 		default: return 0;
 		}
