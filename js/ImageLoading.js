@@ -283,12 +283,26 @@ const playerIdleBrown = document.createElement("canvas");
 const playerIdleRed = document.createElement("canvas");
 const playerIdleBlack = document.createElement("canvas");
 
+let redPlayerIdleWhite = null;
+let redPlayerIdleYellow = null;
+let redPlayerIdleTan = null;
+let redPlayerIdleBrown = null;
+let redPlayerIdleRed = null;
+let redPlayerIdleBlack = null;
+
 const playerWalkWhite = document.createElement("canvas");
 const playerWalkYellow = document.createElement("canvas");
 const playerWalkTan = document.createElement("canvas");
 const playerWalkBrown = document.createElement("canvas");
 const playerWalkRed = document.createElement("canvas");
 const playerWalkBlack = document.createElement("canvas");
+
+let redPlayerWalkWhite = null;
+let redPlayerWalkYellow = null;
+let redPlayerWalkTan = null;
+let redPlayerWalkBrown = null;
+let redPlayerWalkRed = null;
+let redPlayerWalkBlack = null;
 
 const playerBlockWhite = document.createElement("canvas");
 const playerBlockYellow = document.createElement("canvas");
@@ -297,6 +311,13 @@ const playerBlockBrown = document.createElement("canvas");
 const playerBlockRed = document.createElement("canvas");
 const playerBlockBlack = document.createElement("canvas");
 
+let redPlayerBlockWhite = null;
+let redPlayerBlockYellow = null;
+let redPlayerBlockTan = null;
+let redPlayerBlockBrown = null;
+let redPlayerBlockRed = null;
+let redPlayerBlockBlack = null;
+
 const playerCrouchWhite = document.createElement("canvas");
 const playerCrouchYellow = document.createElement("canvas");
 const playerCrouchTan = document.createElement("canvas");
@@ -304,10 +325,12 @@ const playerCrouchBrown = document.createElement("canvas");
 const playerCrouchRed = document.createElement("canvas");
 const playerCrouchBlack = document.createElement("canvas");
 
-//const playerWalkBack = document.createElement("img");
-//TODO: Make all belt colors and incorporate into CharacterAtlas
-const playerBlock = document.createElement("img");
-const playerCrouch = document.createElement("img");
+let redPlayerCrouchWhite = null;
+let redPlayerCrouchYellow = null;
+let redPlayerCrouchTan = null;
+let redPlayerCrouchBrown = null;
+let redPlayerCrouchRed = null;
+let redPlayerCrouchBlack = null;
 
 const playerPunchWhite = document.createElement("canvas");
 const playerPunchYellow = document.createElement("canvas");
@@ -316,12 +339,26 @@ const playerPunchBrown = document.createElement("canvas");
 const playerPunchRed = document.createElement("canvas");
 const playerPunchBlack = document.createElement("canvas");
 
+let redPlayerPunchWhite = null;
+let redPlayerPunchYellow = null;
+let redPlayerPunchTan = null;
+let redPlayerPunchBrown = null;
+let redPlayerPunchRed = null;
+let redPlayerPunchBlack = null;
+
 const playerKickWhite = document.createElement("canvas");
 const playerKickYellow = document.createElement("canvas");
 const playerKickTan = document.createElement("canvas");
 const playerKickBrown = document.createElement("canvas");
 const playerKickRed = document.createElement("canvas");
 const playerKickBlack = document.createElement("canvas");
+
+let redPlayerKickWhite = null;
+let redPlayerKickYellow = null;
+let redPlayerKickTan = null;
+let redPlayerKickBrown = null;
+let redPlayerKickRed = null;
+let redPlayerKickBlack = null;
 
 const playerSweepWhite = document.createElement("canvas");
 const playerSweepYellow = document.createElement("canvas");
@@ -330,12 +367,26 @@ const playerSweepBrown = document.createElement("canvas");
 const playerSweepRed = document.createElement("canvas");
 const playerSweepBlack = document.createElement("canvas");
 
+let redPlayerSweepWhite = null;
+let redPlayerSweepYellow = null;
+let redPlayerSweepTan = null;
+let redPlayerSweepBrown = null;
+let redPlayerSweepRed = null;
+let redPlayerSweepBlack = null;
+
 const playerKnockbackWhite = document.createElement("canvas");
 const playerKnockbackYellow = document.createElement("canvas");
 const playerKnockbackTan = document.createElement("canvas");
 const playerKnockbackBrown = document.createElement("canvas");
 const playerKnockbackRed = document.createElement("canvas");
 const playerKnockbackBlack = document.createElement("canvas");
+
+let redPlayerKnockbackWhite = null;
+let redPlayerKnockbackYellow = null;
+let redPlayerKnockbackTan = null;
+let redPlayerKnockbackBrown = null;
+let redPlayerKnockbackRed = null;
+let redPlayerKnockbackBlack = null;
 
 const playerJumpWhite = document.createElement("canvas");
 const playerJumpYellow = document.createElement("canvas");
@@ -344,12 +395,40 @@ const playerJumpBrown = document.createElement("canvas");
 const playerJumpRed = document.createElement("canvas");
 const playerJumpBlack = document.createElement("canvas");
 
+let redPlayerJumpWhite = null;
+let redPlayerJumpYellow = null;
+let redPlayerJumpTan = null;
+let redPlayerJumpBrown = null;
+let redPlayerJumpRed = null;
+let redPlayerJumpBlack = null;
+
 const playerJ_KickWhite = document.createElement("canvas");
 const playerJ_KickYellow = document.createElement("canvas");
 const playerJ_KickTan = document.createElement("canvas");
 const playerJ_KickBrown = document.createElement("canvas");
 const playerJ_KickRed = document.createElement("canvas");
 const playerJ_KickBlack = document.createElement("canvas");
+
+let redPlayerJ_KickWhite = null;
+let redPlayerJ_KickYellow = null;
+let redPlayerJ_KickTan = null;
+let redPlayerJ_KickBrown = null;
+let redPlayerJ_KickRed = null;
+let redPlayerJ_KickBlack = null;
+
+const playerH_KickWhite = document.createElement("canvas");
+const playerH_KickYellow = document.createElement("canvas");
+const playerH_KickTan = document.createElement("canvas");
+const playerH_KickBrown = document.createElement("canvas");
+const playerH_KickRed = document.createElement("canvas");
+const playerH_KickBlack = document.createElement("canvas");
+
+let redPlayerH_KickWhite = null;
+let redPlayerH_KickYellow = null;
+let redPlayerH_KickTan = null;
+let redPlayerH_KickBrown = null;
+let redPlayerH_KickRed = null;
+let redPlayerH_KickBlack = null;
 
 
 const wooshDashPlayerPic = document.createElement("canvas");

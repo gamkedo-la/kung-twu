@@ -886,6 +886,7 @@ function AnimationBuilder() {
 		idle:{
 			name:STATE.Idle,
 			image:playerIdleWhite,
+			redImage:redPlayerIdleWhite,
 			frames:[0, 1],
 			width:playerIdleWhite.width / 2,
 			height:playerIdleWhite.height,
@@ -896,6 +897,7 @@ function AnimationBuilder() {
 		walk:{
 			name:STATE.WalkRight,
 			image:playerWalkWhite,
+			redImage:redPlayerWalkWhite,
 			frames:[0, 1, 2],
 			width:playerWalkWhite.width / 3,
 			height:playerWalkWhite.height,
@@ -906,6 +908,7 @@ function AnimationBuilder() {
 		dash:{
 			name:STATE.Dash,
 			image:playerWalkWhite,
+			redImage:redPlayerWalkWhite,
 			frames:[0, 1, 2],
 			width:playerWalkWhite.width / 3,
 			height:playerWalkWhite.height,
@@ -916,6 +919,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:playerJumpWhite,
+			redImage:redPlayerJumpWhite,
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerJumpWhite.width / 7,
 			height:playerJumpWhite.height,
@@ -926,6 +930,7 @@ function AnimationBuilder() {
 		crouch:{
 			name:STATE.Crouch,
 			image:playerCrouchWhite,
+			redImage:redPlayerCrouchWhite,
 			frames:[0],
 			width:playerCrouchWhite.width,
 			height:playerCrouchWhite.height,
@@ -936,6 +941,7 @@ function AnimationBuilder() {
 		punch:{
 			name:STATE.Punch,
 			image:playerPunchWhite,
+			redImage:redPlayerPunchWhite,
 			frames:[0, 1, 2, 1],
 			width:playerPunchWhite.width / 3,
 			height:playerPunchWhite.height,
@@ -946,6 +952,7 @@ function AnimationBuilder() {
 		kick:{
 			name:STATE.Kick,
 			image:playerKickWhite,
+			redImage:redPlayerKickWhite,
 			frames:[0, 1, 2, 1],
 			width:playerKickWhite.width / 3,
 			height:playerKickWhite.height,
@@ -956,6 +963,7 @@ function AnimationBuilder() {
 		block:{
 			name:STATE.Block,
 			image:playerBlockWhite,
+			redImage:redPlayerBlockWhite,
 			frames:[0],
 			width:playerBlockWhite.width,
 			height:playerBlockWhite.height,
@@ -966,6 +974,7 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:playerSweepWhite,
+			redImage:redPlayerSweepWhite,
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerSweepWhite.width / 7,
 			height:playerSweepWhite.height,
@@ -976,6 +985,7 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.J_Kick,
 			image:playerJ_KickWhite,
+			redImage:redPlayerJ_KickWhite,
 			frames:[0, 1, 0],
 			width:playerJ_KickWhite.width / 2,
 			height:playerJ_KickWhite.height,
@@ -987,6 +997,7 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			image:playerKnockbackWhite,
+			redImage:redPlayerKnockbackWhite,
 			frames:[0, 1, 2, 3],
 			width:playerKnockbackWhite.width / 4,
 			height:playerKnockbackWhite.height,
@@ -1000,6 +1011,7 @@ function AnimationBuilder() {
 		idle:{
 			name:STATE.Idle,
 			image:playerIdleYellow,
+			redImage:redPlayerIdleYellow,
 			frames:[0, 1],
 			width:playerIdleYellow.width / 2,
 			height:playerIdleYellow.height,
@@ -1010,6 +1022,7 @@ function AnimationBuilder() {
 		walk:{
 			name:STATE.WalkRight,
 			image:playerWalkYellow,
+			redImage:redPlayerWalkYellow,
 			frames:[0, 1, 2],
 			width:playerWalkYellow.width / 3,
 			height:playerWalkYellow.height,
@@ -1020,6 +1033,7 @@ function AnimationBuilder() {
 		dash:{
 			name:STATE.Dash,
 			image:playerWalkYellow,
+			redImage:redPlayerWalkYellow,
 			frames:[0, 1, 2],
 			width:playerWalkYellow.width / 3,
 			height:playerWalkYellow.height,
@@ -1030,6 +1044,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:playerJumpYellow,
+			redImage:redPlayerJumpYellow,
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerJumpYellow.width / 7,
 			height:playerJumpYellow.height,
@@ -1040,6 +1055,7 @@ function AnimationBuilder() {
 		crouch:{
 			name:STATE.Crouch,
 			image:playerCrouchYellow,
+			redImage:redPlayerCrouchYellow,
 			frames:[0],
 			width:playerCrouchYellow.width,
 			height:playerCrouchYellow.height,
@@ -1050,6 +1066,7 @@ function AnimationBuilder() {
 		punch:{
 			name:STATE.Punch,
 			image:playerPunchYellow,
+			redImage:redPlayerPunchYellow,
 			frames:[0, 1, 2, 1],
 			width:playerPunchYellow.width / 3,
 			height:playerPunchYellow.height,
@@ -1060,6 +1077,7 @@ function AnimationBuilder() {
 		kick:{
 			name:STATE.Kick,
 			image:playerKickYellow,
+			redImage:redPlayerKickYellow,
 			frames:[0, 1, 2, 1],
 			width:playerKickYellow.width / 3,
 			height:playerKickYellow.height,
@@ -1070,6 +1088,7 @@ function AnimationBuilder() {
 		block:{
 			name:STATE.Block,
 			image:playerBlockYellow,
+			redImage:redPlayerBlockYellow,
 			frames:[0],
 			width:playerBlockYellow.width,
 			height:playerBlockYellow.height,
@@ -1080,6 +1099,7 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:playerSweepYellow,
+			redImage:redPlayerSweepYellow,
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerSweepYellow.width / 7,
 			height:playerSweepYellow.height,
@@ -1090,6 +1110,7 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.J_Kick,
 			image:playerJ_KickYellow,
+			redImage:redPlayerJ_KickYellow,
 			frames:[0, 1, 0],
 			width:playerJ_KickYellow.width / 2,
 			height:playerJ_KickYellow.height,
@@ -1101,6 +1122,7 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			image:playerKnockbackYellow,
+			redImage:redPlayerKnockbackYellow,
 			frames:[0, 1, 2, 3],
 			width:playerKnockbackYellow.width / 4,
 			height:playerKnockbackYellow.height,
@@ -1114,6 +1136,7 @@ function AnimationBuilder() {
 		idle:{
 			name:STATE.Idle,
 			image:playerIdleTan,
+			redImage:redPlayerIdleTan,
 			frames:[0, 1],
 			width:playerIdleTan.width / 2,
 			height:playerIdleTan.height,
@@ -1124,6 +1147,7 @@ function AnimationBuilder() {
 		walk:{
 			name:STATE.WalkRight,
 			image:playerWalkTan,
+			redImage:redPlayerWalkTan,
 			frames:[0, 1, 2],
 			width:playerWalkTan.width / 3,
 			height:playerWalkTan.height,
@@ -1134,6 +1158,7 @@ function AnimationBuilder() {
 		dash:{
 			name:STATE.Dash,
 			image:playerWalkTan,
+			redImage:redPlayerWalkTan,
 			frames:[0, 1, 2],
 			width:playerWalkTan.width / 3,
 			height:playerWalkTan.height,
@@ -1144,6 +1169,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:playerJumpTan,
+			redImage:redPlayerJumpTan,
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerJumpTan.width / 7,
 			height:playerJumpTan.height,
@@ -1154,6 +1180,7 @@ function AnimationBuilder() {
 		crouch:{
 			name:STATE.Crouch,
 			image:playerCrouchTan,
+			redImage:redPlayerCrouchTan,
 			frames:[0],
 			width:playerCrouchTan.width,
 			height:playerCrouchTan.height,
@@ -1164,6 +1191,7 @@ function AnimationBuilder() {
 		punch:{
 			name:STATE.Punch,
 			image:playerPunchTan,
+			redImage:redPlayerPunchTan,
 			frames:[0, 1, 2, 1],
 			width:playerPunchTan.width / 3,
 			height:playerPunchTan.height,
@@ -1174,6 +1202,7 @@ function AnimationBuilder() {
 		kick:{
 			name:STATE.Kick,
 			image:playerKickTan,
+			redImage:redPlayerKickTan,
 			frames:[0, 1, 2, 1],
 			width:playerKickTan.width / 3,
 			height:playerKickTan.height,
@@ -1184,6 +1213,7 @@ function AnimationBuilder() {
 		block:{
 			name:STATE.Block,
 			image:playerBlockTan,
+			redImage:redPlayerBlockTan,
 			frames:[0],
 			width:playerBlockTan.width,
 			height:playerBlockTan.height,
@@ -1194,6 +1224,7 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:playerSweepTan,
+			redImage:redPlayerSweepTan,
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerSweepTan.width / 7,
 			height:playerSweepTan.height,
@@ -1204,6 +1235,7 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.J_Kick,
 			image:playerJ_KickTan,
+			redImage:redPlayerJ_KickTan,
 			frames:[0, 1, 0],
 			width:playerJ_KickTan.width / 2,
 			height:playerJ_KickTan.height,
@@ -1215,6 +1247,7 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			image:playerKnockbackTan,
+			redImage:redPlayerKnockbackTan,
 			frames:[0, 1, 2, 3],
 			width:playerKnockbackTan.width / 4,
 			height:playerKnockbackTan.height,
@@ -1228,6 +1261,7 @@ function AnimationBuilder() {
 		idle:{
 			name:STATE.Idle,
 			image:playerIdleBrown,
+			redImage:redPlayerIdleBrown,
 			frames:[0, 1],
 			width:playerIdleBrown.width / 2,
 			height:playerIdleBrown.height,
@@ -1238,6 +1272,7 @@ function AnimationBuilder() {
 		walk:{
 			name:STATE.WalkRight,
 			image:playerWalkBrown,
+			redImage:redPlayerWalkBrown,
 			frames:[0, 1, 2],
 			width:playerWalkBrown.width / 3,
 			height:playerWalkBrown.height,
@@ -1248,6 +1283,7 @@ function AnimationBuilder() {
 		dash:{
 			name:STATE.Dash,
 			image:playerWalkBrown,
+			redImage:redPlayerWalkBrown,
 			frames:[0, 1, 2],
 			width:playerWalkBrown.width / 3,
 			height:playerWalkBrown.height,
@@ -1258,6 +1294,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:playerJumpBrown,
+			redImage:redPlayerJumpBrown,
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerJumpBrown.width / 7,
 			height:playerJumpBrown.height,
@@ -1278,6 +1315,7 @@ function AnimationBuilder() {
 		punch:{
 			name:STATE.Punch,
 			image:playerPunchBrown,
+			redImage:redPlayerPunchBrown,
 			frames:[0, 1, 2, 1],
 			width:playerPunchBrown.width / 3,
 			height:playerPunchBrown.height,
@@ -1288,6 +1326,7 @@ function AnimationBuilder() {
 		kick:{
 			name:STATE.Kick,
 			image:playerKickBrown,
+			redImage:redPlayerKickBrown,
 			frames:[0, 1, 2, 1],
 			width:playerKickBrown.width / 3,
 			height:playerKickBrown.height,
@@ -1298,6 +1337,7 @@ function AnimationBuilder() {
 		block:{
 			name:STATE.Block,
 			image:playerBlockBrown,
+			redImage:redPlayerBlockBrown,
 			frames:[0],
 			width:playerBlockBrown.width,
 			height:playerBlockBrown.height,
@@ -1308,6 +1348,7 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:playerSweepBrown,
+			redImage:redPlayerSweepBrown,
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerSweepBrown.width / 7,
 			height:playerSweepBrown.height,
@@ -1318,6 +1359,7 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.J_Kick,
 			image:playerJ_KickBrown,
+			redImage:redPlayerJ_KickBrown,
 			frames:[0, 1, 0],
 			width:playerJ_KickBrown.width / 2,
 			height:playerJ_KickBrown.height,
@@ -1329,6 +1371,7 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			image:playerKnockbackBrown,
+			redImage:redPlayerKnockbackBrown,
 			frames:[0, 1, 2, 3],
 			width:playerKnockbackBrown.width / 4,
 			height:playerKnockbackBrown.height,
@@ -1342,6 +1385,7 @@ function AnimationBuilder() {
 		idle:{
 			name:STATE.Idle,
 			image:playerIdleRed,
+			redImage:redPlayerIdleRed,
 			frames:[0, 1],
 			width:playerIdleRed.width / 2,
 			height:playerIdleRed.height,
@@ -1352,6 +1396,7 @@ function AnimationBuilder() {
 		walk:{
 			name:STATE.WalkRight,
 			image:playerWalkRed,
+			redImage:redPlayerWalkRed,
 			frames:[0, 1, 2],
 			width:playerWalkRed.width / 3,
 			height:playerWalkRed.height,
@@ -1362,6 +1407,7 @@ function AnimationBuilder() {
 		dash:{
 			name:STATE.Dash,
 			image:playerWalkRed,
+			redImage:redPlayerWalkRed,
 			frames:[0, 1, 2],
 			width:playerWalkRed.width / 3,
 			height:playerWalkRed.height,
@@ -1372,6 +1418,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:playerJumpRed,
+			redImage:redPlayerJumpRed,
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerJumpRed.width / 7,
 			height:playerJumpRed.height,
@@ -1382,6 +1429,7 @@ function AnimationBuilder() {
 		crouch:{
 			name:STATE.Crouch,
 			image:playerCrouchRed,
+			redImage:redPlayerCrouchRed,
 			frames:[0],
 			width:playerCrouchRed.width,
 			height:playerCrouchRed.height,
@@ -1392,6 +1440,7 @@ function AnimationBuilder() {
 		punch:{
 			name:STATE.Punch,
 			image:playerPunchRed,
+			redImage:redPlayerPunchRed,
 			frames:[0, 1, 2, 1],
 			width:playerPunchRed.width / 3,
 			height:playerPunchRed.height,
@@ -1402,6 +1451,7 @@ function AnimationBuilder() {
 		kick:{
 			name:STATE.Kick,
 			image:playerKickRed,
+			redImage:redPlayerKickRed,
 			frames:[0, 1, 2, 1],
 			width:playerKickRed.width / 3,
 			height:playerKickRed.height,
@@ -1412,6 +1462,7 @@ function AnimationBuilder() {
 		block:{
 			name:STATE.Block,
 			image:playerBlockRed,
+			redImage:redPlayerBlockRed,
 			frames:[0],
 			width:playerBlockRed.width,
 			height:playerBlockRed.height,
@@ -1422,6 +1473,7 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:playerSweepRed,
+			redImage:redPlayerSweepRed,
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerSweepRed.width / 7,
 			height:playerSweepRed.height,
@@ -1432,6 +1484,7 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.J_Kick,
 			image:playerJ_KickRed,
+			redImage:redPlayerJ_KickRed,
 			frames:[0, 1, 0],
 			width:playerJ_KickRed.width / 2,
 			height:playerJ_KickRed.height,
@@ -1443,6 +1496,7 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			image:playerKnockbackRed,
+			redImage:redPlayerKnockbackRed,
 			frames:[0, 1, 2, 3],
 			width:playerKnockbackRed.width / 4,
 			height:playerKnockbackRed.height,
@@ -1456,6 +1510,7 @@ function AnimationBuilder() {
 		idle:{
 			name:STATE.Idle,
 			image:playerIdleBlack,
+			redImage:redPlayerIdleBlack,
 			frames:[0, 1],
 			width:playerIdleBlack.width / 2,
 			height:playerIdleBlack.height,
@@ -1466,6 +1521,7 @@ function AnimationBuilder() {
 		walk:{
 			name:STATE.WalkRight,
 			image:playerWalkBlack,
+			redImage:redPlayerWalkBlack,
 			frames:[0, 1, 2],
 			width:playerWalkBlack.width / 3,
 			height:playerWalkBlack.height,
@@ -1476,6 +1532,7 @@ function AnimationBuilder() {
 		dash:{
 			name:STATE.Dash,
 			image:playerWalkBlack,
+			redImage:redPlayerWalkBlack,
 			frames:[0, 1, 2],
 			width:playerWalkBlack.width / 3,
 			height:playerWalkBlack.height,
@@ -1486,6 +1543,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:playerJumpBlack,
+			redImage:redPlayerJumpBlack,
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerJumpBlack.width / 7,
 			height:playerJumpBlack.height,
@@ -1496,6 +1554,7 @@ function AnimationBuilder() {
 		crouch:{
 			name:STATE.Crouch,
 			image:playerCrouchBlack,
+			redImage:redPlayerCrouchBlack,
 			frames:[0],
 			width:playerCrouchBlack.width,
 			height:playerCrouchBlack.height,
@@ -1506,6 +1565,7 @@ function AnimationBuilder() {
 		punch:{
 			name:STATE.Punch,
 			image:playerPunchBlack,
+			redImage:redPlayerPunchBlack,
 			frames:[0, 1, 2, 1],
 			width:playerPunchBlack.width / 3,
 			height:playerPunchBlack.height,
@@ -1516,6 +1576,7 @@ function AnimationBuilder() {
 		kick:{
 			name:STATE.Kick,
 			image:playerKickBlack,
+			redImage:redPlayerKickBlack,
 			frames:[0, 1, 2, 1],
 			width:playerKickBlack.width / 3,
 			height:playerKickBlack.height,
@@ -1526,6 +1587,7 @@ function AnimationBuilder() {
 		block:{
 			name:STATE.Block,
 			image:playerBlockBlack,
+			redImage:redPlayerBlockBlack,
 			frames:[0],
 			width:playerBlockBlack.width,
 			height:playerBlockBlack.height,
@@ -1536,6 +1598,7 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:playerSweepBlack,
+			redImage:redPlayerSweepBlack,
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerSweepBlack.width / 7,
 			height:playerSweepBlack.height,
@@ -1546,6 +1609,7 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.J_Kick,
 			image:playerJ_KickBlack,
+			redImage:redPlayerJ_KickBlack,
 			frames:[0, 1, 0],
 			width:playerJ_KickBlack.width / 2,
 			height:playerJ_KickBlack.height,
@@ -1557,6 +1621,7 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			image:playerKnockbackBlack,
+			redImage:redPlayerKnockbackBlack,
 			frames:[0, 1, 2, 3],
 			width:playerKnockbackBlack.width / 4,
 			height:playerKnockbackBlack.height,

@@ -494,7 +494,6 @@ function Player(config) {
 	};
 
 	const sweep = function() {
-		console.log("Sweeping !!!");
 		if (stateManager.getIsNewState()) {
 			sound.playSFX(Sounds.SFX_Swish_02);
 			velocity.x = 0;
@@ -517,7 +516,7 @@ function Player(config) {
 				}
 			}
 			
-			if (this.health>0) { // if dead, don't draw since we have become a knockedOutBody particle
+			if (this.health > 0) { // if dead, don't draw since we have become a knockedOutBody particle
 				stateManager.drawAt(position.x, position.y, red);
 			}
 		}
