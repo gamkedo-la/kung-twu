@@ -993,7 +993,17 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		h_kick:{},
+		h_kick:{
+			name:STATE.H_Kick,
+			image:playerH_KickWhite,
+			redImage:redPlayerH_KickWhite,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+			width:playerH_KickWhite.width / 10,
+			height:playerH_KickWhite.height,
+			frameTimes:[160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE],
+			reverses:false,
+			loops:false
+		},
 		knockback:{
 			name:STATE.KnockBack,
 			image:playerKnockbackWhite,
@@ -1118,7 +1128,17 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		h_kick:{},
+		h_kick:{
+			name:STATE.H_Kick,
+			image:playerH_KickYellow,
+			redImage:redPlayerH_KickYellow,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+			width:playerH_KickYellow.width / 10,
+			height:playerH_KickYellow.height,
+			frameTimes:[160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE],
+			reverses:false,
+			loops:false
+		},
 		knockback:{
 			name:STATE.KnockBack,
 			image:playerKnockbackYellow,
@@ -1243,7 +1263,17 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		h_kick:{},
+		h_kick:{
+			name:STATE.H_Kick,
+			image:playerH_KickTan,
+			redImage:redPlayerH_KickTan,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+			width:playerH_KickTan.width / 10,
+			height:playerH_KickTan.height,
+			frameTimes:[160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE],
+			reverses:false,
+			loops:false
+		},
 		knockback:{
 			name:STATE.KnockBack,
 			image:playerKnockbackTan,
@@ -1367,7 +1397,17 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		h_kick:{},
+		h_kick:{
+			name:STATE.H_Kick,
+			image:playerH_KickBrown,
+			redImage:redPlayerH_KickBrown,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+			width:playerH_KickBrown.width / 10,
+			height:playerH_KickBrown.height,
+			frameTimes:[160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE],
+			reverses:false,
+			loops:false
+		},
 		knockback:{
 			name:STATE.KnockBack,
 			image:playerKnockbackBrown,
@@ -1492,7 +1532,17 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		h_kick:{},
+		h_kick:{
+			name:STATE.H_Kick,
+			image:playerH_KickRed,
+			redImage:redPlayerH_KickRed,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+			width:playerH_KickRed.width / 10,
+			height:playerH_KickRed.height,
+			frameTimes:[160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE],
+			reverses:false,
+			loops:false
+		},
 		knockback:{
 			name:STATE.KnockBack,
 			image:playerKnockbackRed,
@@ -1617,7 +1667,17 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		h_kick:{},
+		h_kick:{
+			name:STATE.H_Kick,
+			image:playerH_KickBlack,
+			redImage:redPlayerH_KickBlack,
+			frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+			width:playerH_KickBlack.width / 10,
+			height:playerH_KickBlack.height,
+			frameTimes:[160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 160*PLR_ATK_DELAYSCALE*PLR_WINDUP_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 167*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE, 100*PLR_ATK_DELAYSCALE*PLR_COOLDOWN_DELAYSCALE],
+			reverses:false,
+			loops:false
+		},
 		knockback:{
 			name:STATE.KnockBack,
 			image:playerKnockbackBlack,

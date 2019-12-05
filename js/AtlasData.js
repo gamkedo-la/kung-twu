@@ -13,6 +13,9 @@ const ATLAS_ROW11 = 782;
 const ATLAS_ROW12 = 853;
 const ATLAS_ROW13 = 924;
 const ATLAS_ROW14 = 995;
+const ATLAS_ROW15 = 1066;
+const ATLAS_ROW16 = 1137;
+const ATLAS_ROW17 = 1208;
 
 //Image Atlas Data
 /*
@@ -35,8 +38,8 @@ const ATLAS_ROW14 = 995;
 const wooshDashPlayerPicData = {
 	name:STATE.Dash,
 	image:characterAtlas,
-	clipX:0,
-	clipY:ATLAS_ROW12,
+	clipX:897,
+	clipY:ATLAS_ROW7,
 	clipWidth:142,
 	clipHeight:142,
 	frameWidth:142,
@@ -50,8 +53,8 @@ const wooshDashPlayerPicData = {
 const wooshDashPlayerLPicData = {
 	name:STATE.Dash,
 	image:characterAtlas,
-	clipX:142,
-	clipY:ATLAS_ROW12,
+	clipX:897,
+	clipY:ATLAS_ROW6,
 	clipWidth:142,
 	clipHeight:142,
 	frameWidth:142,
@@ -180,6 +183,21 @@ const playerJ_KickWhiteData = {
 	frameCount:2,
 	frames:[0, 1, 0],
 	frameTimes:[32, 225, 150],
+	reverses:false,
+	loops:false
+};
+
+const playerH_KickWhiteData = {
+	name:STATE.H_Kick,
+	image:characterAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW12,
+	clipWidth:790,
+	clipHeight:69,
+	frameWidth:79,
+	frameCount:10,
+	frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+	frameTimes:[50, 50, 50, 50, 50, 150, 150, 150, 50, 50],
 	reverses:false,
 	loops:false
 };
@@ -351,6 +369,21 @@ const playerJ_KickYellowData = {
 	loops:false
 };
 
+const playerH_KickYellowData = {
+	name:STATE.H_Kick,
+	image:characterAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW13,
+	clipWidth:790,
+	clipHeight:69,
+	frameWidth:79,
+	frameCount:10,
+	frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+	frameTimes:[50, 50, 50, 50, 50, 150, 150, 150, 50, 50],
+	reverses:false,
+	loops:false
+};
+
 const playerJumpYellowData = {
 	name:STATE.Jump,
 	image:characterAtlas,
@@ -514,6 +547,21 @@ const playerJ_KickTanData = {
 	frameCount:2,
 	frames:[0, 1, 0],
 	frameTimes:[32, 225, 150],
+	reverses:false,
+	loops:false
+};
+
+const playerH_KickTanData = {
+	name:STATE.H_Kick,
+	image:characterAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW14,
+	clipWidth:790,
+	clipHeight:69,
+	frameWidth:79,
+	frameCount:10,
+	frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+	frameTimes:[50, 50, 50, 50, 50, 150, 150, 150, 50, 50],
 	reverses:false,
 	loops:false
 };
@@ -685,6 +733,21 @@ const playerJ_KickBrownData = {
 	loops:false
 };
 
+const playerH_KickBrownData = {
+	name:STATE.H_Kick,
+	image:characterAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW15,
+	clipWidth:790,
+	clipHeight:69,
+	frameWidth:79,
+	frameCount:10,
+	frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+	frameTimes:[50, 50, 50, 50, 50, 150, 150, 150, 50, 50],
+	reverses:false,
+	loops:false
+};
+
 const playerJumpBrownData = {
 	name:STATE.Jump,
 	image:characterAtlas,
@@ -852,6 +915,21 @@ const playerJ_KickRedData = {
 	loops:false
 };
 
+const playerH_KickRedData = {
+	name:STATE.H_Kick,
+	image:characterAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW16,
+	clipWidth:790,
+	clipHeight:69,
+	frameWidth:79,
+	frameCount:10,
+	frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+	frameTimes:[50, 50, 50, 50, 50, 150, 150, 150, 50, 50],
+	reverses:false,
+	loops:false
+};
+
 const playerJumpRedData = {
 	name:STATE.Jump,
 	image:characterAtlas,
@@ -1015,6 +1093,21 @@ const playerJ_KickBlackData = {
 	frameCount:2,
 	frames:[0, 1, 0],
 	frameTimes:[32, 225, 150],
+	reverses:false,
+	loops:false
+};
+
+const playerH_KickBlackData = {
+	name:STATE.H_Kick,
+	image:characterAtlas,
+	clipX:0,
+	clipY:ATLAS_ROW17,
+	clipWidth:790,
+	clipHeight:69,
+	frameWidth:79,
+	frameCount:10,
+	frames:[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+	frameTimes:[50, 50, 50, 50, 50, 150, 150, 150, 50, 50],
 	reverses:false,
 	loops:false
 };

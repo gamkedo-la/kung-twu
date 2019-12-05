@@ -658,6 +658,7 @@ function initializePlayerWhite() {
 	initializeCanvasFromAtlas(playerKnockbackWhite, playerKnockbackWhiteData, characterAtlas);
 	initializeCanvasFromAtlas(playerJumpWhite, playerJumpWhiteData, characterAtlas);
 	initializeCanvasFromAtlas(playerJ_KickWhite, playerJ_KickWhiteData, characterAtlas);
+	initializeCanvasFromAtlas(playerH_KickWhite, playerH_KickWhiteData, characterAtlas);
 }
 
 function initializePlayerYellow() {
@@ -671,6 +672,7 @@ function initializePlayerYellow() {
 	initializeCanvasFromAtlas(playerKnockbackYellow, playerKnockbackYellowData, characterAtlas);
 	initializeCanvasFromAtlas(playerJumpYellow, playerJumpYellowData, characterAtlas);
 	initializeCanvasFromAtlas(playerJ_KickYellow, playerJ_KickYellowData, characterAtlas);
+	initializeCanvasFromAtlas(playerH_KickYellow, playerH_KickYellowData, characterAtlas);
 }
 
 function initializePlayerTan() {
@@ -684,6 +686,7 @@ function initializePlayerTan() {
 	initializeCanvasFromAtlas(playerKnockbackTan, playerKnockbackTanData, characterAtlas);
 	initializeCanvasFromAtlas(playerJumpTan, playerJumpTanData, characterAtlas);
 	initializeCanvasFromAtlas(playerJ_KickTan, playerJ_KickTanData, characterAtlas);
+	initializeCanvasFromAtlas(playerH_KickTan, playerH_KickTanData, characterAtlas);
 }
 
 function initializePlayerBrown() {
@@ -697,6 +700,7 @@ function initializePlayerBrown() {
 	initializeCanvasFromAtlas(playerKnockbackBrown, playerKnockbackBrownData, characterAtlas);
 	initializeCanvasFromAtlas(playerJumpBrown, playerJumpBrownData, characterAtlas);
 	initializeCanvasFromAtlas(playerJ_KickBrown, playerJ_KickBrownData, characterAtlas);
+	initializeCanvasFromAtlas(playerH_KickBrown, playerH_KickBrownData, characterAtlas);
 }
 
 function initializePlayerRed() {
@@ -710,6 +714,7 @@ function initializePlayerRed() {
 	initializeCanvasFromAtlas(playerKnockbackRed, playerKnockbackRedData, characterAtlas);
 	initializeCanvasFromAtlas(playerJumpRed, playerJumpRedData, characterAtlas);
 	initializeCanvasFromAtlas(playerJ_KickRed, playerJ_KickRedData, characterAtlas);
+	initializeCanvasFromAtlas(playerH_KickRed, playerH_KickRedData, characterAtlas);
 }
 
 function initializePlayerBlack() {
@@ -723,6 +728,7 @@ function initializePlayerBlack() {
 	initializeCanvasFromAtlas(playerKnockbackBlack, playerKnockbackBlackData, characterAtlas);
 	initializeCanvasFromAtlas(playerJumpBlack, playerJumpBlackData, characterAtlas);
 	initializeCanvasFromAtlas(playerJ_KickBlack, playerJ_KickBlackData, characterAtlas);
+	initializeCanvasFromAtlas(playerH_KickBlack, playerH_KickBlackData, characterAtlas);
 }
 
 function initializeBasicWhite() {
