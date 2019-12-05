@@ -37,7 +37,10 @@ function BasicEnemy(config) {
 	if(config != undefined) {
 		if(config.x != undefined) {position.x = config.x;}
 		if(config.y != undefined) {position.y = config.y;}
-		if(config.health != undefined) {this.health = config.health;}
+		if(config.health != undefined) {
+			this.health = config.health;
+			maxHealth = config.health;
+		}
 		if(config.scale != undefined) {scale = config.scale;}
 
 		let belt = BELT.White;
@@ -414,7 +417,6 @@ function BasicEnemy(config) {
 	};
 
 	this.draw = function() {
-        
 		let red = false;
 		if (this.health/maxHealth <= FLICKER_LOW_HP) {
 			if (Date.now() % 500 < 250) { // on/off twice per second

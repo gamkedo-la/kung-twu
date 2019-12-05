@@ -7,7 +7,7 @@ function SpriteAnimation(name, //string identifier for this animation
 	frameTimes = [64],//array of milliseconds to show each frame
 	reverses = false, //boolean indicates if animation reverses (true)
 	loops = false,
-	isPlayer = false,
+	redImage,
 	context = canvasContext) { //boolean indicates if animation loops (true) 
 
 	this.name = name;
@@ -21,7 +21,6 @@ function SpriteAnimation(name, //string identifier for this animation
 	let isInReverse = false;
 	let currentFrameIndex = frames[0];
 	const framesPerRow = Math.round(image.width / frameWidth);
-	let redImage;
     
 	let remainderTime = 0;
 
@@ -72,7 +71,7 @@ function SpriteAnimation(name, //string identifier for this animation
 			drawPosY = 0;
 		}
 
-		if((red) && (redImage !== null)) {
+		if((red) && (redImage !== undefined)) {
 			context.drawImage(redImage, 
 				thisFrameRect.x, thisFrameRect.y, thisFrameRect.width, thisFrameRect.height,
 				drawPosX, drawPosY, thisFrameRect.width * this.scale, thisFrameRect.height * this.scale);	
@@ -122,17 +121,13 @@ function SpriteAnimation(name, //string identifier for this animation
 			}
 		}
 	};
-    
-    // FIXME we now make a red image for every enemy,
-    // but this may be bad for performance. 
-    // Can we share a single one for all enemies of the same belt?
-    // ie cache using a hash based on img name
-    //if(isPlayer) {
+
+	if((redImage !== undefined) && (redImage === null)) {
 		redImage = document.createElement("canvas");
 		redImage.width = image.width;
 		redImage.height = image.height;
 		makeRedImage();
-	//} 
+	} 
 
 	const getCurrentFrameRect = function() {
 		const nowFrameIndex = frames[currentFrameIndex];

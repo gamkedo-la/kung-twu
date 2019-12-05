@@ -67,66 +67,66 @@ function AnimationBuilder() {
 		}
 	};
 
-	const getAnimationsWithData = function(data, scale, isPlayer = false) {
+	const getAnimationsWithData = function(data, scale) {
 		const result = {};
-		result.idle = getAnimationWithData(data.idle, isPlayer);
+		result.idle = getAnimationWithData(data.idle);
 		if(result.idle === null) {
 			console.error("Idle animations are required for all characters");
 		}
 
-		result.walk = getAnimationWithData(data.walk, isPlayer);
+		result.walk = getAnimationWithData(data.walk);
 		if(result.walk === null) {
-			result.walk = getAnimationWithData(data.idle, isPlayer);
+			result.walk = getAnimationWithData(data.idle);
 		}
 
-		result.dash = getAnimationWithData(data.dash, isPlayer);
+		result.dash = getAnimationWithData(data.dash);
 		if(result.dash === null) {
-			result.dash = getAnimationWithData(data.idle, isPlayer);
+			result.dash = getAnimationWithData(data.idle);
 		}
 
-		result.jump = getAnimationWithData(data.jump, isPlayer);
+		result.jump = getAnimationWithData(data.jump);
 		if(result.jump === null) {
-			result.jump = getAnimationWithData(data.idle, isPlayer);
+			result.jump = getAnimationWithData(data.idle);
 		}
 
-		result.crouch = getAnimationWithData(data.crouch, isPlayer);
+		result.crouch = getAnimationWithData(data.crouch);
 		if(result.crouch === null) {
-			result.crouch = getAnimationWithData(data.idle, isPlayer);
+			result.crouch = getAnimationWithData(data.idle);
 		}
 
-		result.punch = getAnimationWithData(data.punch, isPlayer);
+		result.punch = getAnimationWithData(data.punch);
 		if(result.punch === null) {
-			result.punch = getAnimationWithData(data.idle, isPlayer);
+			result.punch = getAnimationWithData(data.idle);
 		}
 
-		result.kick = getAnimationWithData(data.kick, isPlayer);
+		result.kick = getAnimationWithData(data.kick);
 		if(result.kick === null) {
-			result.kick = getAnimationWithData(data.idle, isPlayer);
+			result.kick = getAnimationWithData(data.idle);
 		}
 
-		result.block = getAnimationWithData(data.block, isPlayer);
+		result.block = getAnimationWithData(data.block);
 		if(result.block === null) {
-			result.block = getAnimationWithData(data.idle, isPlayer);
+			result.block = getAnimationWithData(data.idle);
 		}
 
-		result.sweep = getAnimationWithData(data.sweep, isPlayer);
+		result.sweep = getAnimationWithData(data.sweep);
 		if(result.sweep === null) {
-			result.sweep = getAnimationWithData(data.idle, isPlayer);
+			result.sweep = getAnimationWithData(data.idle);
 		}
 
-		result.j_kick = getAnimationWithData(data.j_kick, isPlayer);
+		result.j_kick = getAnimationWithData(data.j_kick);
 		if(result.j_kick === null) {
-			result.j_kick = getAnimationWithData(data.idle, isPlayer);
+			result.j_kick = getAnimationWithData(data.idle);
 		}
 
-		result.h_kick = getAnimationWithData(data.h_kick, isPlayer);
+		result.h_kick = getAnimationWithData(data.h_kick);
 		if(result.h_kick === null) {
-			result.h_kick = getAnimationWithData(data.idle, isPlayer);
+			result.h_kick = getAnimationWithData(data.idle);
 		}
 
-		result.knockback = getAnimationWithData(data.knockback, isPlayer);
+		result.knockback = getAnimationWithData(data.knockback);
 		if(result.knockback === null) {
-			result.knockback = getAnimationWithData(data.idle, isPlayer);
+			result.knockback = getAnimationWithData(data.idle);
 		}
 
 		const animationKeys = Object.keys(result);
@@ -139,9 +139,9 @@ function AnimationBuilder() {
 		return result;
 	};
 
-	const getAnimationWithData = function(data, isPlayer = false) {
+	const getAnimationWithData = function(data) {
 		if((data.name === undefined) || (data.name === null)) return null;
-		return new SpriteAnimation(data.name, data.image, data.frames, data.width, data.height, data.frameTimes, data.reverses, data.loops, isPlayer);
+		return new SpriteAnimation(data.name, data.image, data.frames, data.width, data.height, data.frameTimes, data.reverses, data.loops, data.redImage);
 	};
 
 	const basicWhiteBeltData = {
@@ -1570,6 +1570,7 @@ function AnimationBuilder() {
 		idle:{
 			name:STATE.Idle,
 			image:yellowBossIdle,
+			redImage:redYellowBossIdle,
 			frames:[0, 1, 2, 3, 4, 5, 6, 7],
 			width:yellowBossIdle.width / 8,
 			height:yellowBossIdle.height,
@@ -1580,6 +1581,7 @@ function AnimationBuilder() {
 		walk:{
 			name:STATE.WalkRight,
 			image:yellowBossWalk,
+			redImage:redYellowBossWalk,
 			frames:[0, 1, 2, 3],
 			width:yellowBossWalk.width / 4,
 			height:yellowBossWalk.height,
@@ -1590,6 +1592,7 @@ function AnimationBuilder() {
 		dash:{
 			name:STATE.Dash,
 			image:yellowBossDash,
+			redImage:redYellowBossDash,
 			frames:[0],
 			width:yellowBossDash.width,
 			height:yellowBossDash.height,
@@ -1600,6 +1603,7 @@ function AnimationBuilder() {
 		crouch:{
 			name:STATE.Crouch,
 			image:yellowBossCrouch,
+			redImage:redYellowBossCrouch,
 			frames:[0],
 			width:yellowBossCrouch.width,
 			height:yellowBossCrouch.height,
@@ -1610,6 +1614,7 @@ function AnimationBuilder() {
 		punch:{
 			name:STATE.Punch,
 			image:yellowBossPunch,
+			redImage:redYellowBossPunch,
 			frames:[0, 1, 2, 1],
 			width:yellowBossPunch.width / 3,
 			height:yellowBossPunch.height,
@@ -1620,6 +1625,7 @@ function AnimationBuilder() {
 		kick:{
 			name:STATE.Kick,
 			image:yellowBossKick,
+			redImage:redYellowBossKick,
 			frames:[0, 1, 2, 3, 2, 1],
 			width:yellowBossKick.width / 4,
 			height:yellowBossKick.height,
@@ -1630,6 +1636,7 @@ function AnimationBuilder() {
 		block:{
 			name:STATE.Block,
 			image:yellowBossBlock,
+			redImage:redYellowBossBlock,
 			frames:[0],
 			width:yellowBossBlock.width,
 			height:yellowBossBlock.height,
@@ -1637,19 +1644,11 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		sweep:{
-			name:STATE.Sweep,
-			image:yellowBossSweep,
-			frames:[0, 1, 0],
-			width:yellowBossSweep.width / 2,
-			height:yellowBossSweep.height,
-			frameTimes:[50, 150, 50],
-			reverses:false,
-			loops:false
-		},
+		sweep:{},//Yellow Bosses can't Sweep
 		c_punch:{
 			name:STATE.C_Punch,
 			image:yellowBossC_Punch,
+//			redImage:redYellowBossC_Punch,
 			frames:[0, 1, 0],
 			width:yellowBossC_Punch.width / 2,
 			height:yellowBossC_Punch.height,
@@ -1660,6 +1659,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:yellowBossJump,
+			redImage:redYellowBossJump,
 			frames:[0, 1, 4],
 			width:yellowBossJump.width / 5,
 			height:yellowBossJump.height,
@@ -1670,6 +1670,7 @@ function AnimationBuilder() {
 		j_punch:{
 			name:STATE.J_Punch,
 			image:yellowBossJ_Punch,
+//			redImage:redYellowBossJ_Punch,
 			frames:[0, 1, 2, 1, 4],
 			width:yellowBossJ_Punch.width / 5,
 			height:yellowBossJ_Punch.height,
@@ -1677,29 +1678,12 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{
-			name:STATE.J_Kick,
-			image:yellowBossJ_Kick,
-			frames:[0, 1, 3, 1, 4],
-			width:yellowBossJ_Kick.width / 5,
-			height:yellowBossJ_Kick.height,
-			frameTimes:[32, 50, 300, 50, 32],
-			reverses:false,
-			loops:false
-		},
-		h_kick:{
-			name:STATE.H_Kick,
-			image:yellowBossH_Kick,
-			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:yellowBossH_Kick.width / 6,
-			height:yellowBossH_Kick.height,
-			frameTimes:[100, 100, 75, 75, 75, 75, 75, 75, 50, 50],
-			reverses:false,
-			loops:false
-		},
+		j_kick:{},//Yellow Bosses can't Jump Kick
+		h_kick:{},//Yellow Bosses can't Helicopter Kick
 		knockback:{
 			name:STATE.KnockBack,
 			image:yellowBossKnockback,
+			redImage:redYellowBossKnockback,
 			frames:[0],
 			width:yellowBossKnockback.width,
 			height:yellowBossKnockback.height,
@@ -1713,6 +1697,7 @@ function AnimationBuilder() {
 		idle:{
 			name:STATE.Idle,
 			image:tanBossIdle,
+			redImage:redTanBossIdle,
 			frames:[0, 1, 2, 3, 4, 5, 6, 7],
 			width:tanBossIdle.width / 8,
 			height:tanBossIdle.height,
@@ -1723,6 +1708,7 @@ function AnimationBuilder() {
 		walk:{
 			name:STATE.WalkRight,
 			image:tanBossWalk,
+			redImage:redTanBossWalk,
 			frames:[0, 1, 2, 3],
 			width:tanBossWalk.width / 4,
 			height:tanBossWalk.height,
@@ -1733,6 +1719,7 @@ function AnimationBuilder() {
 		dash:{
 			name:STATE.Dash,
 			image:tanBossDash,
+			redImage:redTanBossDash,
 			frames:[0],
 			width:tanBossDash.width,
 			height:tanBossDash.height,
@@ -1743,6 +1730,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:tanBossJump,
+			redImage:redTanBossJump,
 			frames:[0, 1, 4],
 			width:tanBossJump.width / 5,
 			height:tanBossJump.height,
@@ -1753,6 +1741,7 @@ function AnimationBuilder() {
 		crouch:{
 			name:STATE.Crouch,
 			image:tanBossCrouch,
+			redImage:redTanBossCrouch,
 			frames:[0],
 			width:tanBossCrouch.width,
 			height:tanBossCrouch.height,
@@ -1762,6 +1751,7 @@ function AnimationBuilder() {
 		punch:{
 			name:STATE.Punch,
 			image:tanBossPunch,
+			redImage:redTanBossPunch,
 			frames:[0, 1, 2, 1],
 			width:tanBossPunch.width / 3,
 			height:tanBossPunch.height,
@@ -1772,6 +1762,7 @@ function AnimationBuilder() {
 		kick:{
 			name:STATE.Kick,
 			image:tanBossKick,
+			redImage:redTanBossKick,
 			frames:[0, 1, 2, 3, 2, 1],
 			width:tanBossKick.width / 4,
 			height:tanBossKick.height,
@@ -1782,6 +1773,7 @@ function AnimationBuilder() {
 		block:{
 			name:STATE.Block,
 			image:tanBossBlock,
+			redImage:redTanBossBlock,
 			frames:[0],
 			width:tanBossBlock.width,
 			height:tanBossBlock.height,
@@ -1792,6 +1784,7 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:tanBossSweep,
+			redImage:redTanBossSweep,
 			frames:[0, 1, 0],
 			width:tanBossSweep.width / 2,
 			height:tanBossSweep.height,
@@ -1799,20 +1792,12 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		j_kick:{},
-		h_kick:{
-			name:STATE.H_Kick,
-			image:tanBossH_Kick,
-			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:tanBossH_Kick.width / 6,
-			height:tanBossH_Kick.height,
-			frameTimes:[100, 100, 75, 75, 75, 75, 75, 75, 50, 50],
-			reverses:false,
-			loops:false
-		},
+		j_kick:{},//Tan bosses can't Jump Kick
+		h_kick:{},//Tan bosses can't Helicopter Kick
 		knockback:{
 			name:STATE.KnockBack,
 			image:tanBossKnockback,
+			redImage:redTanBossKnockback,
 			frames:[0],
 			width:tanBossKnockback.width,
 			height:tanBossKnockback.height,
@@ -1826,6 +1811,7 @@ function AnimationBuilder() {
 		idle:{
 			name:STATE.Idle,
 			image:brownBossIdle,
+			redImage:redBrownBossIdle,
 			frames:[0, 1, 2, 3, 4, 5, 6, 7],
 			width:brownBossIdle.width / 8,
 			height:brownBossIdle.height,
@@ -1836,6 +1822,7 @@ function AnimationBuilder() {
 		walk:{
 			name:STATE.WalkRight,
 			image:brownBossWalk,
+			redImage:redBrownBossWalk,
 			frames:[0, 1, 2, 3],
 			width:brownBossWalk.width / 4,
 			height:brownBossWalk.height,
@@ -1846,6 +1833,7 @@ function AnimationBuilder() {
 		dash:{
 			name:STATE.Dash,
 			image:brownBossDash,
+			redImage:redBrownBossDash,
 			frames:[0],
 			width:brownBossDash.width,
 			height:brownBossDash.height,
@@ -1856,6 +1844,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:brownBossJump,
+			redImage:redBrownBossJump,
 			frames:[0, 1, 4],
 			width:brownBossJump.width / 5,
 			height:brownBossJump.height,
@@ -1866,6 +1855,7 @@ function AnimationBuilder() {
 		crouch:{
 			name:STATE.Crouch,
 			image:brownBossCrouch,
+			redImage:redBrownBossCrouch,
 			frames:[0],
 			width:brownBossCrouch.width,
 			height:brownBossCrouch.height,
@@ -1875,6 +1865,7 @@ function AnimationBuilder() {
 		punch:{
 			name:STATE.Punch,
 			image:brownBossPunch,
+			redImage:redBrownBossPunch,
 			frames:[0, 1, 2, 1],
 			width:brownBossPunch.width / 3,
 			height:brownBossPunch.height,
@@ -1885,6 +1876,7 @@ function AnimationBuilder() {
 		kick:{
 			name:STATE.Kick,
 			image:brownBossKick,
+			redImage:redBrownBossKick,
 			frames:[0, 1, 2, 3, 2, 1],
 			width:brownBossKick.width / 4,
 			height:brownBossKick.height,
@@ -1895,6 +1887,7 @@ function AnimationBuilder() {
 		block:{
 			name:STATE.Block,
 			image:brownBossBlock,
+			redImage:redBrownBossBlock,
 			frames:[0],
 			width:brownBossBlock.width,
 			height:brownBossBlock.height,
@@ -1905,6 +1898,7 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:brownBossSweep,
+			redImage:redBrownBossSweep,
 			frames:[0, 1, 0],
 			width:brownBossSweep.width / 2,
 			height:brownBossSweep.height,
@@ -1915,6 +1909,7 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.Jump,
 			image:brownBossJump,
+			redImage:redBrownBossJump,
 			frames:[0, 1, 3, 4],
 			width:brownBossJump.width / 5,
 			height:brownBossJump.height,
@@ -1922,19 +1917,11 @@ function AnimationBuilder() {
 			reverses:false,
 			loops:false
 		},
-		h_kick:{
-			name:STATE.H_Kick,
-			image:brownBossH_Kick,
-			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
-			width:brownBossH_Kick.width / 6,
-			height:brownBossH_Kick.height,
-			frameTimes:[100, 100, 75, 75, 75, 75, 75, 75, 50, 50],
-			reverses:false,
-			loops:false
-		},
+		h_kick:{},//Brown Bosses can't Helicopter Kick
 		knockback:{
 			name:STATE.KnockBack,
 			image:brownBossKnockback,
+			redImage:redBrownBossKnockback,
 			frames:[0],
 			width:brownBossKnockback.width,
 			height:brownBossKnockback.height,
@@ -1948,6 +1935,7 @@ function AnimationBuilder() {
 		idle:{
 			name:STATE.Idle,
 			image:redBossIdle,
+			redImage:redRedBossIdle,
 			frames:[0, 1, 2, 3, 4, 5, 6, 7],
 			width:redBossIdle.width / 8,
 			height:redBossIdle.height,
@@ -1958,6 +1946,7 @@ function AnimationBuilder() {
 		walk:{
 			name:STATE.WalkRight,
 			image:redBossWalk,
+			redImage:redRedBossWalk,
 			frames:[0, 1, 2, 3],
 			width:redBossWalk.width / 4,
 			height:redBossWalk.height,
@@ -1968,6 +1957,7 @@ function AnimationBuilder() {
 		dash:{
 			name:STATE.Dash,
 			image:redBossDash,
+			redImage:redRedBossDash,
 			frames:[0],
 			width:redBossDash.width,
 			height:redBossDash.height,
@@ -1978,6 +1968,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:redBossJump,
+			redImage:redRedBossJump,
 			frames:[0, 1, 4],
 			width:redBossJump.width / 5,
 			height:redBossJump.height,
@@ -1988,6 +1979,7 @@ function AnimationBuilder() {
 		crouch:{
 			name:STATE.Crouch,
 			image:redBossCrouch,
+			redImage:redRedBossCrouch,
 			frames:[0],
 			width:redBossCrouch.width,
 			height:redBossCrouch.height,
@@ -1997,6 +1989,7 @@ function AnimationBuilder() {
 		punch:{
 			name:STATE.Punch,
 			image:redBossPunch,
+			redImage:redRedBossPunch,
 			frames:[0, 1, 2, 1],
 			width:redBossPunch.width / 3,
 			height:redBossPunch.height,
@@ -2007,6 +2000,7 @@ function AnimationBuilder() {
 		kick:{
 			name:STATE.Kick,
 			image:redBossKick,
+			redImage:redRedBossKick,
 			frames:[0, 1, 2, 3, 2, 1],
 			width:redBossKick.width / 4,
 			height:redBossKick.height,
@@ -2017,6 +2011,7 @@ function AnimationBuilder() {
 		block:{
 			name:STATE.Block,
 			image:redBossBlock,
+			redImage:redRedBossBlock,
 			frames:[0],
 			width:redBossBlock.width,
 			height:redBossBlock.height,
@@ -2027,6 +2022,7 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:redBossSweep,
+			redImage:redRedBossSweep,
 			frames:[0, 1, 0],
 			width:redBossSweep.width / 2,
 			height:redBossSweep.height,
@@ -2037,6 +2033,7 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.Jump,
 			image:redBossJump,
+			redImage:redRedBossJump,
 			frames:[0, 1, 3, 4],
 			width:redBossJump.width / 5,
 			height:redBossJump.height,
@@ -2047,6 +2044,7 @@ function AnimationBuilder() {
 		h_kick:{
 			name:STATE.H_Kick,
 			image:redBossH_Kick,
+			redImage:redRedBossH_Kick,
 			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
 			width:redBossH_Kick.width / 6,
 			height:redBossH_Kick.height,
@@ -2057,6 +2055,7 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			image:redBossKnockback,
+			redImage:redRedBossKnockback,
 			frames:[0],
 			width:redBossKnockback.width,
 			height:redBossKnockback.height,
@@ -2070,6 +2069,7 @@ function AnimationBuilder() {
 		idle:{
 			name:STATE.Idle,
 			image:blackBossIdle,
+			redImage:redBlackBossIdle,
 			frames:[0, 1, 2, 3, 4, 5, 6, 7],
 			width:blackBossIdle.width / 8,
 			height:blackBossIdle.height,
@@ -2080,6 +2080,7 @@ function AnimationBuilder() {
 		walk:{
 			name:STATE.WalkRight,
 			image:blackBossWalk,
+			redImage:redBlackBossWalk,
 			frames:[0, 1, 2, 3],
 			width:blackBossWalk.width / 4,
 			height:blackBossWalk.height,
@@ -2090,6 +2091,7 @@ function AnimationBuilder() {
 		dash:{
 			name:STATE.Dash,
 			image:blackBossDash,
+			redImage:redBlackBossDash,
 			frames:[0],
 			width:blackBossDash.width,
 			height:blackBossDash.height,
@@ -2100,6 +2102,7 @@ function AnimationBuilder() {
 		jump:{
 			name:STATE.Jump,
 			image:blackBossJump,
+			redImage:redBlackBossJump,
 			frames:[0, 1, 4],
 			width:blackBossJump.width / 5,
 			height:blackBossJump.height,
@@ -2110,6 +2113,7 @@ function AnimationBuilder() {
 		crouch:{
 			name:STATE.Crouch,
 			image:blackBossCrouch,
+			redImage:redBlackBossCrouch,
 			frames:[0],
 			width:blackBossCrouch.width,
 			height:blackBossCrouch.height,
@@ -2119,6 +2123,7 @@ function AnimationBuilder() {
 		punch:{
 			name:STATE.Punch,
 			image:blackBossPunch,
+			redImage:redBlackBossPunch,
 			frames:[0, 1, 2, 1],
 			width:blackBossPunch.width / 3,
 			height:blackBossPunch.height,
@@ -2129,6 +2134,7 @@ function AnimationBuilder() {
 		kick:{
 			name:STATE.Kick,
 			image:blackBossKick,
+			redImage:redBlackBossKick,
 			frames:[0, 1, 2, 3, 2, 1],
 			width:blackBossKick.width / 4,
 			height:blackBossKick.height,
@@ -2139,6 +2145,7 @@ function AnimationBuilder() {
 		block:{
 			name:STATE.Block,
 			image:blackBossBlock,
+			redImage:redBlackBossBlock,
 			frames:[0],
 			width:blackBossBlock.width,
 			height:blackBossBlock.height,
@@ -2149,6 +2156,7 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:blackBossSweep,
+			redImage:redBlackBossSweep,
 			frames:[0, 1, 0],
 			width:blackBossSweep.width / 2,
 			height:blackBossSweep.height,
@@ -2159,6 +2167,7 @@ function AnimationBuilder() {
 		j_kick:{
 			name:STATE.Jump,
 			image:blackBossJump,
+			redImage:redBlackBossJump,
 			frames:[0, 1, 3, 4],
 			width:blackBossJump.width / 5,
 			height:blackBossJump.height,
@@ -2169,6 +2178,7 @@ function AnimationBuilder() {
 		h_kick:{
 			name:STATE.H_Kick,
 			image:blackBossH_Kick,
+			redImage:redBlackBossH_Kick,
 			frames:[0, 1, 2, 3, 2, 3, 2, 3, 4, 5],
 			width:blackBossH_Kick.width / 6,
 			height:blackBossH_Kick.height,
@@ -2179,6 +2189,7 @@ function AnimationBuilder() {
 		knockback:{
 			name:STATE.KnockBack,
 			image:blackBossKnockback,
+			redImage:redBlackBossKnockback,
 			frames:[0],
 			width:blackBossKnockback.width,
 			height:blackBossKnockback.height,

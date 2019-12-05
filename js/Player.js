@@ -482,7 +482,6 @@ function Player(config) {
 	};
 
 	const j_Kick = function() {
-		console.log("Jump Kicking");
 		if (stateManager.getIsNewState()) {
 			sound.playSFX(Sounds.SFX_PlayerKick);
 		}

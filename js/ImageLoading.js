@@ -158,18 +158,19 @@ const yellowBossH_Kick = document.createElement("canvas");
 const yellowBossKnockback = document.createElement("canvas");
 
 
-const redYellowBossIdle = document.createElement("canvas");
-const redYellowBossWalk = document.createElement("canvas");
-const redYellowBossDash = document.createElement("canvas");
-const redYellowBossPunch = document.createElement("canvas");
-const redYellowBossKick = document.createElement("canvas");
-const redYellowBossCrouch = document.createElement("canvas");
-const redYellowBossCrouchPunch = document.createElement("canvas");
-const redYellowBossSweep = document.createElement("canvas");
-const redYellowBossJump = document.createElement("canvas");
-const redYellowBossH_Kick = document.createElement("canvas");
-const redYellowBossKnockback = document.createElement("canvas");
-const redYellowBossBlock = document.createElement("canvas");
+let redYellowBossIdle = null;
+let redYellowBossWalk = null;
+let redYellowBossDash = null;
+let redYellowBossPunch = null;
+let redYellowBossKick = null;
+let redYellowBossCrouch = null;
+let redYellowBossCrouchPunch = null;
+let redYellowBossSweep = null;
+let redYellowBossJump = null;
+let redYellowBossJ_Kick = null;
+let redYellowBossH_Kick = null;
+let redYellowBossKnockback = null;
+let redYellowBossBlock = null;
 
 const tanBossIdle = document.createElement("canvas");
 const tanBossWalk = document.createElement("canvas");
@@ -184,18 +185,18 @@ const tanBossH_Kick = document.createElement("canvas");
 const tanBossKnockback = document.createElement("canvas");
 const tanBossBlock = document.createElement("canvas");
 
-const redTanBossIdle = document.createElement("canvas");
-const redTanBossWalk = document.createElement("canvas");
-const redTanBossDash = document.createElement("canvas");
-const redTanBossPunch = document.createElement("canvas");
-const redTanBossKick = document.createElement("canvas");
-const redTanBossCrouch = document.createElement("canvas");
-const redTanBossCrouchPunch = document.createElement("canvas");
-const redTanBossSweep = document.createElement("canvas");
-const redTanBossJump = document.createElement("canvas");
-const redTanBossH_Kick = document.createElement("canvas");
-const redTanBossKnockback = document.createElement("canvas");
-const redTanBossBlock = document.createElement("canvas");
+let redTanBossIdle = null;
+let redTanBossWalk = null;
+let redTanBossDash = null;
+let redTanBossPunch = null;
+let redTanBossKick = null;
+let redTanBossCrouch = null;
+let redTanBossCrouchPunch = null;
+let redTanBossSweep = null;
+let redTanBossJump = null;
+let redTanBossH_Kick = null;
+let redTanBossKnockback = null;
+let redTanBossBlock = null;
 
 const brownBossIdle = document.createElement("canvas");
 const brownBossWalk = document.createElement("canvas");
@@ -210,18 +211,18 @@ const brownBossH_Kick = document.createElement("canvas");
 const brownBossKnockback = document.createElement("canvas");
 const brownBossBlock = document.createElement("canvas");
 
-const redBrownBossIdle = document.createElement("canvas");
-const redBrownBossWalk = document.createElement("canvas");
-const redBrownBossDash = document.createElement("canvas");
-const redBrownBossPunch = document.createElement("canvas");
-const redBrownBossKick = document.createElement("canvas");
-const redBrownBossCrouch = document.createElement("canvas");
-const redBrownBossCrouchPunch = document.createElement("canvas");
-const redBrownBossSweep = document.createElement("canvas");
-const redBrownBossJump = document.createElement("canvas");
-const redBrownBossH_Kick = document.createElement("canvas");
-const redBrownBossKnockback = document.createElement("canvas");
-const redBrownBossBlock = document.createElement("canvas");
+let redBrownBossIdle = null;
+let redBrownBossWalk = null;
+let redBrownBossDash = null;
+let redBrownBossPunch = null;
+let redBrownBossKick = null;
+let redBrownBossCrouch = null;
+let redBrownBossCrouchPunch = null;
+let redBrownBossSweep = null;
+let redBrownBossJump = null;
+let redBrownBossH_Kick = null;
+let redBrownBossKnockback = null;
+let redBrownBossBlock = null;
 
 const redBossIdle = document.createElement("canvas");
 const redBossWalk = document.createElement("canvas");
@@ -236,18 +237,18 @@ const redBossH_Kick = document.createElement("canvas");
 const redBossKnockback = document.createElement("canvas");
 const redBossBlock = document.createElement("canvas");
 
-const redRedBossIdle = document.createElement("canvas");
-const redRedBossWalk = document.createElement("canvas");
-const redRedBossDash = document.createElement("canvas");
-const redRedBossPunch = document.createElement("canvas");
-const redRedBossKick = document.createElement("canvas");
-const redRedBossCrouch = document.createElement("canvas");
-const redRedBossCrouchPunch = document.createElement("canvas");
-const redRedBossSweep = document.createElement("canvas");
-const redRedBossJump = document.createElement("canvas");
-const redRedBossH_Kick = document.createElement("canvas");
-const redRedBossKnockback = document.createElement("canvas");
-const redRedBossBlock = document.createElement("canvas");
+let redRedBossIdle = null;
+let redRedBossWalk = null;
+let redRedBossDash = null;
+let redRedBossPunch = null;
+let redRedBossKick = null;
+let redRedBossCrouch = null;
+let redRedBossCrouchPunch = null;
+let redRedBossSweep = null;
+let redRedBossJump = null;
+let redRedBossH_Kick = null;
+let redRedBossKnockback = null;
+let redRedBossBlock = null;
 
 const blackBossIdle = document.createElement("canvas");
 const blackBossWalk = document.createElement("canvas");
@@ -262,18 +263,18 @@ const blackBossH_Kick = document.createElement("canvas");
 const blackBossKnockback = document.createElement("canvas");
 const blackBossBlock = document.createElement("canvas");
 
-const redBlackBossIdle = document.createElement("canvas");
-const redBlackBossWalk = document.createElement("canvas");
-const redBlackBossDash = document.createElement("canvas");
-const redBlackBossPunch = document.createElement("canvas");
-const redBlackBossKick = document.createElement("canvas");
-const redBlackBossCrouch = document.createElement("canvas");
-const redBlackBossCrouchPunch = document.createElement("canvas");
-const redBlackBossSweep = document.createElement("canvas");
-const redBlackBossJump = document.createElement("canvas");
-const redBlackBossH_Kick = document.createElement("canvas");
-const redBlackBossKnockback = document.createElement("canvas");
-const redBlackBossBlock = document.createElement("canvas");
+let redBlackBossIdle = null;
+let redBlackBossWalk = null;
+let redBlackBossDash = null;
+let redBlackBossPunch = null;
+let redBlackBossKick = null;
+let redBlackBossCrouch = null;
+let redBlackBossCrouchPunch = null;
+let redBlackBossSweep = null;
+let redBlackBossJump = null;
+let redBlackBossH_Kick = null;
+let redBlackBossKnockback = null;
+let redBlackBossBlock = null;
 
 const playerIdleWhite = document.createElement("canvas");
 const playerIdleYellow = document.createElement("canvas");
@@ -544,11 +545,6 @@ function loadImages() {
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 		{ imgName: blueVaseStrip, theFile: "BrokenBlueVaseStrip.png"},
 
-		// player related
-		//		{ imgName: playerWalkBack, theFile: "Player_Walk-Backwards_Condensed.png"},
-//		{ imgName: playerBlock, theFile: "Player_Block.png"},
-//		{ imgName: playerCrouch, theFile: "Player_Crouch.png"},
-
 		// UI
 		{ imgName: jpFontImg, theFile: "JPFont_Light.png"},
 		{ imgName: hourglassAnimation, theFile: "hourglassStrip.png"},
@@ -796,7 +792,7 @@ function initializeBossBlack() {
 	initializeCanvasFromAtlas(blackBossBlock, blackBossBlockData, bossAtlas);
 }
 
-function makeRedImage(image, redImage) {
+/*function makeRedImage(image, redImage) {
 	redImage.width = image.width;
 	redImage.height = image.height;
 
@@ -827,4 +823,4 @@ function makeRedImage(image, redImage) {
 			return;
 		}
 	}
-}
+}*/
