@@ -3,7 +3,7 @@ function GameScene() {
 
 	this.name = "Game Play";
 
-	const TIME_SCALE = 1.0;// TODO: try 1.25 speed, see if you prefer it
+	let TIME_SCALE = 5;
 	const GRAVITY = 1500;
 	const VERTICAL_OFFSET = 50;
 	const FIRST_PLAYERSTART_OFFSET = -100; // on 1st load, levelData.playerStart not used - could be used to tweak start pos
@@ -60,6 +60,14 @@ function GameScene() {
 	this.transitionIn = function() {
 		loadMissingAnimations();//lazy load animations
 		animationManager = new AnimationBuilder();
+
+		TIME_SCALE = localStorageHelper.getInt(localStorageKey.GameSpeed);
+		if((TIME_SCALE === undefined) || (TIME_SCALE === null) || (isNaN(TIME_SCALE))) {
+			TIME_SCALE = ASSIST_DEFAULT.GameSpeed;
+			localStorageHelper.setInt(localStorageKey.GameSpeed, TIME_SCALE);
+		}
+
+		TIME_SCALE /= 4;
 
 		gameOverPending = false;
 

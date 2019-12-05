@@ -99,7 +99,10 @@ const STRINGS_KEY = {
 	ControlsText_Lvl4:"level4ControlsText",
 	ControlsText_Lvl5:"level5ControlsText",
 	GangCount:"gangCount",
-	Default:"default"
+	Default:"default",
+	GameSpeed:"gameSpeed",
+	Fast:"fast",
+	Slow:"slow"
 };
 
 function getLocalizedStringForKey(key) {
@@ -195,7 +198,10 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Dash + Kick] Spin Kick",
 		[STRINGS_KEY.GangCount]:"Active\nRivals",
 		[STRINGS_KEY.Default]:"Restore Default",
-		[STRINGS_KEY.Player]:"Player"
+		[STRINGS_KEY.Player]:"Player",
+		[STRINGS_KEY.GameSpeed]:"Game Speed",
+		[STRINGS_KEY.Fast]:"Fast",
+		[STRINGS_KEY.Slow]:"Slow"
 	},
 
 	Spanish: {
@@ -270,7 +276,6 @@ const userStrings = {
 		[STRINGS_KEY.EnemyStrength]:"Fuerza\nde Rival",
 		[STRINGS_KEY.BossStrength]:"Fuerza\nde Shīfù",
 		[STRINGS_KEY.BossHealth]:"Salud\nde Shīfù",
-
 		[STRINGS_KEY.TimesUp]:"¡Tiempo Terminó!",
 		[STRINGS_KEY.RivalsToBeat]:"Rivales\n para Derrotar",
 		[STRINGS_KEY.LevelTime]:"Límite\nde Tiempo",
@@ -290,7 +295,11 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Desplazamiento + Patada] Patade en Giro",
 		[STRINGS_KEY.GangCount]:"Rivales\nActivos",
 		[STRINGS_KEY.Default]:"Restaurar\nEstado Original",
-		[STRINGS_KEY.Player]:"Jugador"
+		[STRINGS_KEY.Player]:"Jugador",
+
+		[STRINGS_KEY.GameSpeed]:"Game Speed",
+		[STRINGS_KEY.Fast]:"Fast",
+		[STRINGS_KEY.Slow]:"Slow"
 	},
 
 	Japanese: {
@@ -386,7 +395,10 @@ const userStrings = {
 		[STRINGS_KEY.GangCount]:"のうどうてきのライバル",
 		[STRINGS_KEY.Default]:"せっていをきていちにもどす",
 
-		[STRINGS_KEY.Player]:"Player"
+		[STRINGS_KEY.Player]:"Player",
+		[STRINGS_KEY.GameSpeed]:"Game Speed",
+		[STRINGS_KEY.Fast]:"Fast",
+		[STRINGS_KEY.Slow]:"Slow"
 	},
 
 	French: {
@@ -478,7 +490,10 @@ const userStrings = {
 
 		[STRINGS_KEY.GangCount]:"Active Rivals",
 		[STRINGS_KEY.Default]:"Restore Default",
-		[STRINGS_KEY.Player]:"Player"
+		[STRINGS_KEY.Player]:"Player",
+		[STRINGS_KEY.GameSpeed]:"Game Speed",
+		[STRINGS_KEY.Fast]:"Fast",
+		[STRINGS_KEY.Slow]:"Slow"
 	},
 
 	Russian: {
@@ -572,7 +587,10 @@ const userStrings = {
 
 		[STRINGS_KEY.GangCount]:"Active\nRivals",
 		[STRINGS_KEY.Default]:"Restore\nDefault",
-		[STRINGS_KEY.Player]:"Player"
+		[STRINGS_KEY.Player]:"Player",
+		[STRINGS_KEY.GameSpeed]:"Game Speed",
+		[STRINGS_KEY.Fast]:"Fast",
+		[STRINGS_KEY.Slow]:"Slow"
 	},
 
 	Polish: {
@@ -663,6 +681,10 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl5]:"[Zryw + Kopnięcie] Kopnięcie z Obrotu",
 		[STRINGS_KEY.GangCount]:"Aktywni\nRywale",
 		[STRINGS_KEY.Default]:"Przywróć Domyślą Wartość",
-		[STRINGS_KEY.Player]:"Gracz"
+		[STRINGS_KEY.Player]:"Gracz",
+
+		[STRINGS_KEY.GameSpeed]:"Game Speed",
+		[STRINGS_KEY.Fast]:"Fast",
+		[STRINGS_KEY.Slow]:"Slow"
 	}
 };

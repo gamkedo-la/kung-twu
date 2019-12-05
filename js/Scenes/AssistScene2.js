@@ -142,6 +142,9 @@ function AssistScene2() {
 
 		//Active Rival Count
 		buttons.push(buildActiveRivalsButton(COL3_X, ROW4_Y, buttonHeight, buttonTitlePadding));
+
+		//Overall Game Speed
+		buttons.push(buildGameSpeedButton(COL3_X, ROW5_Y, buttonHeight, buttonTitlePadding));
 	};
 
 	const buildPlayerHealthButton = function(x, y, height, padding) {
@@ -241,6 +244,14 @@ function AssistScene2() {
 		};
 
 		return new UIButton(sliderData.simultaneousEnemies.titleKey, x, y, height, padding, thisClick, Color.Aqua);
+	};
+
+	const buildGameSpeedButton = function(x, y, height, padding) {
+		const thisClick = function() {
+			SceneState.setState(SCENE.SLIDER, sliderData.gameSpeed);
+		};
+
+		return new UIButton(sliderData.gameSpeed.titleKey, x, y, height, padding, thisClick, Color.Aqua);
 	};
 
 	const buildKnockbackButton = function(x, y, height, padding) {
@@ -614,6 +625,18 @@ function AssistScene2() {
 				maxValue:6,
 				maxTitle:"6",
 				steps:5,
+				colors:[Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red]
+			},
+			gameSpeed: {
+				name:SLIDER_NAMES.GameSpeed,
+				titleKey:STRINGS_KEY.GameSpeed,
+				minValue:2,
+				minTitle:getLocalizedStringForKey(STRINGS_KEY.Slow),
+				storageKey:localStorageKey.GameSpeed,
+				default:ASSIST_DEFAULT.GameSpeed,
+				maxValue:8,
+				maxTitle:getLocalizedStringForKey(STRINGS_KEY.Fast),
+				steps:6,
 				colors:[Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Red]
 			}
 		};

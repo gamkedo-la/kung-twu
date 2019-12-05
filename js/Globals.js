@@ -97,6 +97,7 @@ const localStorageKey = {
 	EnemiesPerLevel:"kungTwu-EnemiesPerLevel",
 	LevelTime:"kungTwu-LevelTime",
 	GangCount:"kungTwu-GangCount",
+	GameSpeed:"kungTwu-GameSpeed"
 };
 
 //----------State Management----------//
@@ -196,7 +197,8 @@ const ASSIST_DEFAULT = {
 	KnockbackSpeed:800,
 	EnemiesPerLevel:10,
 	LevelTime:600,
-	GangCount:1
+	GangCount:1,
+	GameSpeed:5
 };
 
 const SLIDER_NAMES = {
@@ -212,7 +214,8 @@ const SLIDER_NAMES = {
 	KnockbackSpeed:"knockbackSpeed",
 	EnemiesPerLevel:"enemiesPerLevel",
 	LevelTime:"levelTime",
-	GangCount:"gangCount"
+	GangCount:"gangCount",
+	GameSpeed:"gameSpeed"
 };
 
 //------------Asset Management----------//
