@@ -45,6 +45,9 @@ function AssistScene2() {
 			buildSliderButtons();
 			buttons.push(buildBackButton(buttonPadding, menuY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildPlayButton(canvas.width - buttonPadding, menuY, buttonHeight, buttonTitlePadding));
+			const titleWidth = getDefaultButtonWidth();
+			const defaultY = getDefaultButtonY(menuY);
+			buttons.push(buildRestoreDefaultButton((canvas.width - titleWidth) / 2, defaultY, buttonHeight, buttonTitlePadding));
 		
 			// support mouse hovers that move the selector
 			for (var num=0; num<buttons.length; num++) {
@@ -376,6 +379,33 @@ function AssistScene2() {
 		return new UIButton(STRINGS_KEY.Play, x, y, height, padding, thisClick, Color.Aqua);
 	};
 
+	const getDefaultButtonWidth = function() {
+		const titleLines = getLocalizedStringForKey(STRINGS_KEY.Default).split("\n");
+		let maxWidth = 0;
+		for(let aLine of titleLines) {
+			const thisWidth = JPFont.getStringWidth(aLine, 0.3);
+			if(thisWidth > maxWidth) maxWidth = thisWidth;
+		}
+
+		return maxWidth;
+	};
+
+	const getDefaultButtonY = function(menuY) {
+		const titleLines = getLocalizedStringForKey(STRINGS_KEY.Default).split("\n");
+		const adjustment = (titleLines.length - 1) * JPFont.getCharacterHeight(0.3);
+		return (menuY - (0.5 * adjustment));
+	};
+
+	const buildRestoreDefaultButton = function(x, y, height, padding) {
+		const thisClick = function() {
+			for(let slider of sliderArray) {
+				localStorageHelper.setInt(slider.storageKey, slider.default);
+			}		
+		};
+
+		return new UIButton(STRINGS_KEY.Default, x, y, height, padding, thisClick, Color.Aqua);
+	};
+
 	const buildBackButton = function(x, y, height, padding) {
 		const thisClick = function() {
 			SceneState.setState(SceneState.getPreviousState());
@@ -391,6 +421,11 @@ function AssistScene2() {
 				aButton.updateXPosition(canvas.width - (playButtonWidth + buttonPadding));
 			} else if(aButton.title === getLocalizedStringForKey(STRINGS_KEY.Back)) {
 				aButton.updateXPosition(buttonPadding);
+			} else if(aButton.title === getLocalizedStringForKey(STRINGS_KEY.Default)) {
+				const titleWidth = getDefaultButtonWidth();
+				const defaultY = getDefaultButtonY(canvas.height - (9 * buttonHeight / 2));
+				aButton.updateXPosition((canvas.width - titleWidth) / 2);
+				aButton.updateYPosition(defaultY);
 			}
 		}
 
@@ -654,7 +689,8 @@ function AssistScene2() {
 			sliderData.bossStrength,
 			sliderData.enemyStrength,
 			sliderData.timeLimit,
-			sliderData.simultaneousEnemies
+			sliderData.simultaneousEnemies,
+			sliderData.gameSpeed
 		];
 	};
 }
