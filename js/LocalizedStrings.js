@@ -681,9 +681,8 @@ const userStrings = {
 		[STRINGS_KEY.GangCount]:"Aktywni\nRywale",
 		[STRINGS_KEY.Default]:"Przywróć Domyślą Wartość",
 		[STRINGS_KEY.Player]:"Gracz",
-
-		[STRINGS_KEY.GameSpeed]:"Game Speed",
-		[STRINGS_KEY.Fast]:"Fast",
-		[STRINGS_KEY.Slow]:"Slow"
+		[STRINGS_KEY.GameSpeed]:"Prędkość Gry",
+		[STRINGS_KEY.Fast]:"Szybka",
+		[STRINGS_KEY.Slow]:"Wolna"
 	}
 };
