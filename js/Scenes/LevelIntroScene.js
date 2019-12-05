@@ -93,7 +93,6 @@ function LevelIntroScene() {
 	this.moveSelector = function(num) {
 		// used to simulate arrow key press on mousemove so
 		// the cursor moves as appropriate when hovering menu
-		//console.log("Moving menu menu selector: " + num);
 		selectorPositionsIndex = num;
 		updateSelectorPosition();
 	};

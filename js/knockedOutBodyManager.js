@@ -43,6 +43,7 @@ function knockedOutBodyManager() {
 		if (DEBUG_BODIES) console.log("New knocked out body " + max);
 
 		img[max] = thisSprite;
+		img[max].isPlayer = (enemy === player); 
 		xpos[max] = enemy.getPosition().x;
 		ypos[max] = enemy.getPosition().y;
 		xspd[max] = (X_KICKBACK + (Math.random()*(X_KICKBACK*2)-X_KICKBACK_RANDOMNESS)) / 17;
@@ -65,7 +66,7 @@ function knockedOutBodyManager() {
 			// gravity
 			yspd[num] += BODYGRAV;
 
-			if ((DOMINO_KNOCKBACKS) && (img[num] !== playerKickWhite)) { // just for fun
+			if ((DOMINO_KNOCKBACKS) && (!img[num].isPlayer)) { // just for fun
 				var enemies = SceneState.scenes[SCENE.GAME].getCurrentEnemyList();
 				for (let i = 0; i < enemies.length; i++) {
 					var dist = enemies[i].distanceFrom(xpos[num],ypos[num]);
@@ -74,13 +75,26 @@ function knockedOutBodyManager() {
 						if (enemies[i].getBumped) enemies[i].getBumped({type:ENTITY_TYPE.Enemy},xspd[num],yspd[num]);
 					}
 				}                    
-			} else if(img[num] === playerKickWhite) {
+			} else if(img[num].isPlayer) {
 				playerCount++;
 				if(playerCount % 17 === 0) {
 					playerCount = 0;
 				}
 			}
 		}
+
+		for(let num = max-1; num >= 0; num--) {
+			if(ypos[num] > 900) {
+				img.splice(num, 1);
+				xpos.splice(num, 1);
+				ypos.splice(num, 1);
+				xspd.splice(num, 1);
+				yspd.splice(num, 1);
+				age.splice(num, 1);
+				rotspd.splice(num, 1);
+				max--;
+			}
+		}		
 	};
 
 	this.draw = function () {
@@ -97,7 +111,7 @@ function knockedOutBodyManager() {
 				canvasContext.restore();
 
 				// little extra game over juice: if this is the player, spam particles
-				if ((img[num] === playerKickWhite) && (playerCount % 17 === 16)) { 
+				if ((img[num].isPlayer) && (playerCount % 17 === 16)) { 
 					wooshFX.smallPuff(xpos[num], ypos[num]);
 					wooshFX.starPuff(xpos[num], ypos[num]);
 				}

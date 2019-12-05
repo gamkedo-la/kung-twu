@@ -95,9 +95,7 @@ function AssistScene2() {
 	this.moveSelector = function(num) {
 		// used to simulate arrow key press on mousemove so
 		// the cursor moves as appropriate when hovering menu
-		//console.log("Moving menu menu selector: " + num);
 		selectorPositionsIndex = num;
-//		selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
 		updateSelectorPosition();
 	};
 
@@ -321,7 +319,7 @@ function AssistScene2() {
 					if(selectorPositionsIndex === buttons.length - 2) {
 						SceneState.setState(SceneState.getPreviousState());
 					} else if(selectorPositionsIndex === buttons.length - 1) {
-						SceneState.setState(SCENE.GAME);
+						SceneState.setState(SCENE.LEVEL_INTRO);
 					} else {
 						SceneState.setState(SCENE.SLIDER, sliderArray[selectorPositionsIndex]);
 					}

@@ -166,7 +166,8 @@ function GameScene() {
 		bossHealth = levelData.bossHealth;
 		bossMaxHealth = null;
 		if(player !== null) {
-			player.reset(levelData.playerStart);
+			const newHealth = localStorageHelper.getInt(localStorageKey.PlayerMaxHealth);
+			player.reset(levelData.playerStart, newHealth);
 		}
 		collisionManager = null;
 		subfloor = null;
@@ -224,7 +225,6 @@ function GameScene() {
 	};
 
 	const triggerPendingGameOver = function() {
-		console.log("Delay complete! Switching to GAME OVER state now.");
 		gameOverPending = false;
 		SceneState.setState(SCENE.GAMEOVER, {score:score});
 	};
@@ -233,8 +233,7 @@ function GameScene() {
 	const delayedTransitionToGameOver = function() { 
 		if (gameOverPending) return; // don't overlap
 		gameOverPending = true;
-		knockedOutBodies.add(player,playerKickWhite);  // the PLAYER'S BODY! spinning 
-		console.log("Delaying the transition to GAME OVER for " + GAMEOVER_TRANSITION_MS + "ms");
+		knockedOutBodies.add(player,player.getCurrentAnimation().image);  // the PLAYER'S BODY! spinning 
 		setTimeout(triggerPendingGameOver,GAMEOVER_TRANSITION_MS);
 	};
 
@@ -251,7 +250,6 @@ function GameScene() {
 		gameTimer.update(time);
 		hourglassManager.update(time);
 		if(hourglassManager.timeIsUp) {
-			//SceneState.setState(SCENE.GAMEOVER, {score:score});
 			delayedTransitionToGameOver();
 
 			sound.playEcho(Sounds.SFX_PlayerFail, [0.4, 1], [1, 0.3], 5, 200);
@@ -405,7 +403,6 @@ function GameScene() {
 					}
 					localStorageHelper.setObject(localStorageKey.HighScore, scoreString);
 				}
-				//SceneState.setState(SCENE.GAMEOVER, {score:score});
 				delayedTransitionToGameOver();
 			} else {
 				const enemyIndex = enemies.findIndex(function(element) {
@@ -692,7 +689,6 @@ function GameScene() {
 		});
 	
 		gameTimer.onZero.subscribe(() => {
-			//SceneState.setState(SCENE.GAMEOVER, {score:score});
 			delayedTransitionToGameOver();
 
 			sound.playEcho(Sounds.SFX_PlayerFail, [.4, 1], [1, .3], 5, 200);

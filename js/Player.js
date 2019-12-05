@@ -73,6 +73,10 @@ function Player(config) {
 		return velocity.x != 0 || velocity.y != 0;
 	};
 
+	this.getCurrentAnimation = function() {
+		return stateManager.getCurrentAnimation();
+	};
+
 	this.getWidth = function() {
 		return stateManager.getCurrentAnimation().getWidth();
 	};
@@ -144,21 +148,15 @@ function Player(config) {
 			}
 		}
 
-		this.reset(position);
 		playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
 		stateManager.setNewBelt(playerBelt);
 	};
 
-	this.reset = function(startPos) {
+	this.reset = function(startPos, newHealth) {
 		velocity = { x: 0, y: 0 };
 
-		this.health = ASSIST_DEFAULT.MaxHealth;
-		if(config != undefined) {
-			if (config.health != undefined) {
-				this.health = config.health;
-			} 
-		}
-
+		this.health = newHealth;
+		
 		position.x = startPos.x;
 		position.y = startPos.y;
 
@@ -235,7 +233,6 @@ function Player(config) {
 
 		// visual feedback if the player is about to die
 		if (this.health <= DIZZY_STARS_LOW_HP) {
-			//console.log("DANGER! HP is " + this.health);
 			if (Math.random() < 0.1) { // occasionally unless dead
 				wooshFX.trigger( // spawn a star near our head
 					position.x + 50 + randomRange(-20, 20),
@@ -501,11 +498,7 @@ function Player(config) {
 	};
 
 	this.draw = function() {
-        
-		// very spammy debug information to help locate the player if needed
-		//if (Math.random()<0.01) console.log("Player x:" + position.x);
-        
-		if((isInvincible) && (invincibleTime % 200 < 50)) {
+ 		if((isInvincible) && (invincibleTime % 200 < 50)) {
 			//do nothing for now
 		} else{
 			let red = false;
@@ -657,10 +650,10 @@ function Player(config) {
 		highX:-99999, 
 		lowY: -99999, 
 		highY:-99999
-	}
+	};
 
 	this.getColliderEdges = function() {
-		if (this.health<=0) 
+		if (this.health <= 0) 
 			return nocollision; // no effect
 		else return {
 			lowX: this.collisionBody.points[0].x, 

@@ -11,6 +11,7 @@ function SpriteAnimation(name, //string identifier for this animation
 	context = canvasContext) { //boolean indicates if animation loops (true) 
 
 	this.name = name;
+	this.image = image;
 	this.scale = 1;
 	let finished = false; //only becomes true if reverses is false and loops is false (i.e. does neither)
 	this.isFinished = function() {

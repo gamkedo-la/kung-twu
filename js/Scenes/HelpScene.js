@@ -9,7 +9,7 @@ function HelpScene() {
 	const selectorPosition = {x:0, y:0};
 	const selections = [
 		SCENE.TITLE,
-		SCENE.GAME
+		SCENE.LEVEL_INTRO
 	];
 	const buttonHeight = 25;
 	const buttonTitlePadding = 2;

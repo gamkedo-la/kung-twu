@@ -243,7 +243,7 @@ this.transitionIn = function() {
 
 	const buildPlayButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			SceneState.setState(SCENE.LEVEL_INTRO);
+			SceneState.setState(SCENE.GAME);
 		};
 
 		return new UIButton(STRINGS_KEY.Play, x, y, height, padding, thisClick, Color.Aqua);

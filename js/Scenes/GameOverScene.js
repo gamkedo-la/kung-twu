@@ -6,7 +6,7 @@ function GameOverScene() {
 	let titleBlockPosition = {x:0, y:0};
 	let titleBlockWidth = 0;
 	const selections = [
-		SCENE.GAME,
+		SCENE.LEVEL_INTRO,
 		SCENE.TITLE,
 		SCENE.SETTINGS,
 		SCENE.CREDITS
@@ -235,7 +235,7 @@ function GameOverScene() {
 					sound.playSFX(Sounds.SFX_MenuNav);
 					break;
 				case NAV_ACTION.SELECT:
-					if(selections[selectorPositionsIndex] === SCENE.GAME) {
+					if(selections[selectorPositionsIndex] === SCENE.LEVEL_INTRO) {
 						properties = {restartLevel:true};
 					} else if(selections[selectorPositionsIndex] === SCENE.TITLE) {
 						properties = {didQuit:true};

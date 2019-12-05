@@ -7,7 +7,7 @@ function TitleScene() {
 	let titleBlockWidth = 0;
 	let waterfall = null;
 	const selections = [
-		SCENE.GAME,
+		SCENE.LEVEL_INTRO,
 		SCENE.HELP,
 		SCENE.SETTINGS,
 		SCENE.CREDITS,
