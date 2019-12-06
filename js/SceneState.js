@@ -86,13 +86,21 @@ const SceneState = {
 		if((newKeyEvent === ALIAS.VOLUME_UP) && (!pressed)) {
 
 			// @SoundParam: Master Volume Increase
-			sound.setMasterVolume(clamp(sound.getMasterVolume() + .1, 0, 1));
+			const newMusicVolume = (sound.getBGMVolume() + 1);
+			sound.setBGMVolume(newMusicVolume);
+
+			const newSFXVolume = (sound.getSFXVolume() + 1);
+			sound.setSFXVolume(newSFXVolume);
 
 			return true;
 		} else if((newKeyEvent === ALIAS.VOLUME_DOWN) && (!pressed)) {
 
 			// @SoundParam: Master Volume Decrease
-			sound.setMasterVolume(clamp(sound.getMasterVolume() - .1, 0, 1));
+			const newMusicVolume = (sound.getBGMVolume() - 1);
+			sound.setBGMVolume(newMusicVolume);
+
+			const newSFXVolume = (sound.getSFXVolume() - 1);
+			sound.setSFXVolume(newSFXVolume);
 
 			return true;
 		} else if((newKeyEvent === ALIAS.MUTE) && (!pressed)) {

@@ -165,6 +165,13 @@ function ModalSlider() {
 				playerBelt = slider.getValue();
 			} else if(config.name === SLIDER_NAMES.StartLevel) {
 				currentLevel = slider.getValue();
+			} else if(config.name === SLIDER_NAMES.GameVolume) {
+				sound.setBGMVolume(slider.getValue());
+				sound.setSFXVolume(slider.getValue());
+			} else if(config.name === SLIDER_NAMES.MusicVolume) {
+				sound.setBGMVolume(slider.getValue());
+			} else if(config.name === SLIDER_NAMES.SFXVolume) {
+				sound.setSFXVolume(slider.getValue());
 			}
 		}
 	};

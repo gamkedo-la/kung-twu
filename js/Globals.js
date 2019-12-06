@@ -71,6 +71,7 @@ let localStorageHelper;
 /** Contains keys of data to store in the browser's local storage */
 const localStorageKey = {
 	Version: "kungTwu-Version",
+	GameVolume: "kungTwu-GameVolume",
 	MusicVolume: "kungTwu-MusicVolume",
 	SFXVolume: "kungTwu-EffectsVolume",
 	Language: "kungTwu-Language",
@@ -201,6 +202,9 @@ const ASSIST_DEFAULT = {
 	GameSpeed:5
 };
 
+const MUSIC_DEFAULT_VOLUME = 10;
+const SFX_DEFAULT_VOLUME = 10;
+
 const SLIDER_NAMES = {
 	MaxHealth:"maxHealth",
 	StartBelt:"startBelt",
@@ -215,7 +219,10 @@ const SLIDER_NAMES = {
 	EnemiesPerLevel:"enemiesPerLevel",
 	LevelTime:"levelTime",
 	GangCount:"gangCount",
-	GameSpeed:"gameSpeed"
+	GameSpeed:"gameSpeed",
+	GameVolume:"gameVolume",
+	MusicVolume:"musicVolume",
+	SFXVolume:"sfxVolume"
 };
 
 //------------Asset Management----------//

@@ -7,7 +7,8 @@ function SettingsScene() {
 		SCENE.TITLE,
 		SCENE.LEVEL_INTRO
 	];
-	const buttonHeight = 25;
+	const BUTTON_SCALE = 0.45;
+	let buttonHeight; 
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
@@ -19,33 +20,31 @@ function SettingsScene() {
 	const TITLE_SCALE = 1;
 	const HEADER_SCALE = 0.7;
 
-	const SLIDER_W = 200;
+	const SLIDER_W = 400;
 
 	const COL_DELTA = 63;
 	const COL1_X = 60;
-	const COL2_X = COL1_X + SLIDER_W + COL_DELTA;
-	const COL3_X = COL2_X + SLIDER_W + COL_DELTA;
 
-	const ROW_DELTA = 80;
-	const ROW1_Y = TITLE_Y_POS + 90 + ROW_DELTA;
+	const ROW_DELTA = 100;
+	const ROW1_Y = TITLE_Y_POS + ROW_DELTA;
 	const ROW2_Y = ROW1_Y + ROW_DELTA;
 	const ROW3_Y = ROW2_Y + ROW_DELTA;
-	const ROW4_Y = ROW3_Y + ROW_DELTA;
-	const ROW5_Y = ROW4_Y + ROW_DELTA;
 	
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 
+		buttonHeight = JPFont.getCharacterHeight(BUTTON_SCALE);
 		buttonPadding = canvas.width / 40;
 
 		let mainMenuX = 0;
-		const mainMenuY = canvas.height - (9 * buttonHeight / 2);
+		const mainMenuY = 700;
         
 		if(buttons.length === 0) {
 			buttons.push(buildBackButton(canvas.width / 40, mainMenuY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildPlayButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
 
-			updateButtonPositions();
+			buildSliderData();
+			buildSliderButtons();
 
 			// support mouse hovers that move the selector
 			for (var num=0; num<buttons.length; num++) {
@@ -53,10 +52,10 @@ function SettingsScene() {
 			}
 		} else {
 			updateButtonTitles();
-			updateButtonPositions();
 		}
 
 		selectorPositionsIndex = 0;
+		updateButtonPositions();
 	};
 
 	this.transitionOut = function() {
@@ -135,13 +134,13 @@ function SettingsScene() {
 
 	const updateSelectorPosition = function() {
 		const theseBounds = buttons[selectorPositionsIndex].getBounds();
-		let widthToUse = theseBounds.width + (buttonHeight / 2);
-		if(selectorPositionsIndex === 1) {
-			widthToUse = -(selector.width + (buttonHeight / 2));
+		let widthToUse = theseBounds.width + (theseBounds.height / 2);
+		if(selectorPositionsIndex >= 1) {
+			widthToUse = -(selector.width + (theseBounds.height / 2));
 		}
 
 		selectorPosition.x = theseBounds.x + widthToUse;
-		selectorPosition.y = theseBounds.y + (buttonHeight / 2) - (selector.height / 2);
+		selectorPosition.y = theseBounds.y + (theseBounds.height / 2) - (selector.height / 2);
 	};
 
 	const checkButtons = function() {
@@ -172,6 +171,12 @@ function SettingsScene() {
 		buttons[0].updateXPosition(buttonPadding);
 		const button1Width = buttons[1].getBounds().width;
 		buttons[1].updateXPosition(canvas.width - (button1Width + buttonPadding));
+
+		for(let i = 2; i < buttons.length; i++) {
+			const titleWidth = JPFont.getStringWidth(buttons[i].title, BUTTON_SCALE);
+			const x = canvas.width / 2 - titleWidth / 2;
+			buttons[i].updateXPosition(x);	
+		}
 
 		updateSelectorPosition();
 	};
@@ -210,62 +215,94 @@ function SettingsScene() {
 
 	
 	const buildSliderButtons = function() {
-		/*First Column of Sliders */
+		//Master Vol
+		buttons.push(buildGameVolumeButton(ROW1_Y, buttonHeight, buttonTitlePadding));
+		
 		// Music Vol
-		buttons.push(buildMusicButton(COL1_X, ROW1_Y, buttonHeight, buttonTitlePadding));
+		buttons.push(buildMusicButton(ROW2_Y, buttonHeight, buttonTitlePadding));
 
 		//SFX Vol
-		buttons.push(buildSFXButton(COL1_X, ROW2_Y, buttonHeight, buttonTitlePadding));
+		buttons.push(buildSFXButton(ROW3_Y, buttonHeight, buttonTitlePadding));
 	};
 
-	const buildMusicButton = function(x, y, height, padding) {
+	const buildGameVolumeButton = function(y, height, padding) {
 		const thisClick = function() {
-			SceneState.setState(SCENE.SLIDER, sliderData.playerHealth);
+			SceneState.setState(SCENE.SLIDER, sliderData.GameVolume);
 		};
 
-		return new UIButton(sliderData.playerHealth.titleKey, x, y, height, padding, thisClick, Color.Aqua);
+		const titleWidth = JPFont.getStringWidth(getLocalizedStringForKey(sliderData.GameVolume.titleKey), BUTTON_SCALE);
+		const x = canvas.width / 2 - titleWidth / 2;
+
+		return new UIButton(sliderData.GameVolume.titleKey, x, y, height, padding, thisClick, Color.Aqua, currentLanguage, BUTTON_SCALE);
 	};
 
-	const buildSFXButton = function(x, y, height, padding) {
+	const buildMusicButton = function(y, height, padding) {
 		const thisClick = function() {
-			SceneState.setState(SCENE.SLIDER, sliderData.enemyHealth);
+			SceneState.setState(SCENE.SLIDER, sliderData.MusicVolume);
 		};
 
-		return new UIButton(sliderData.enemyHealth.titleKey, x, y, height, padding, thisClick, Color.Aqua);
+		const titleWidth = JPFont.getStringWidth(getLocalizedStringForKey(sliderData.MusicVolume.titleKey), BUTTON_SCALE);
+		const x = canvas.width / 2 - titleWidth / 2;
+
+		return new UIButton(sliderData.MusicVolume.titleKey, x, y, height, padding, thisClick, Color.Aqua, currentLanguage, BUTTON_SCALE);
+	};
+
+	const buildSFXButton = function(y, height, padding) {
+		const thisClick = function() {
+			SceneState.setState(SCENE.SLIDER, sliderData.SFXVolume);
+		};
+
+		const titleWidth = JPFont.getStringWidth(getLocalizedStringForKey(sliderData.SFXVolume.titleKey), BUTTON_SCALE);
+		const x = canvas.width / 2 - titleWidth / 2;
+
+		return new UIButton(sliderData.SFXVolume.titleKey, x, y, height, padding, thisClick, Color.Aqua, currentLanguage, BUTTON_SCALE);
 	};
 
 
 	const buildSliderData = function() {
 		sliderData = {
+			GameVolume: {
+				name:SLIDER_NAMES.GameVolume,
+				titleKey:STRINGS_KEY.GameVolume,
+				minValue:0,
+				minTitle:"0",
+				storageKey:localStorageKey.GameVolume,
+				default:MUSIC_DEFAULT_VOLUME,
+				maxValue:10,
+				maxTitle:"10",
+				steps:10,
+				colors:[Color.Red, Color.Yellow, Color.Green, Color.Yellow, Color.Red]
+			},
 			MusicVolume: {
-				name:SLIDER_NAMES.MaxHealth,
-				titleKey:STRINGS_KEY.MaxHealth,
-				minValue:10,
-				minTitle:"10",
-				storageKey:localStorageKey.PlayerMaxHealth,
-				default:ASSIST_DEFAULT.MaxHealth,
-				maxValue:400,
-				maxTitle:"400",
-				steps:39,
-				colors:[Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue]
+				name:SLIDER_NAMES.MusicVolume,
+				titleKey:STRINGS_KEY.MusicVolume,
+				minValue:0,
+				minTitle:"0",
+				storageKey:localStorageKey.MusicVolume,
+				default:MUSIC_DEFAULT_VOLUME,
+				maxValue:10,
+				maxTitle:"10",
+				steps:10,
+				colors:[Color.Red, Color.Yellow, Color.Green, Color.Yellow, Color.Red]
 			},
 			SFXVolume: {
-				name:SLIDER_NAMES.PlayerBaseDamage,
-				titleKey:STRINGS_KEY.PlayerDamage,
-				minValue:1,
-				minTitle:"1",
-				storageKey:localStorageKey.PlayerBaseDamage,
-				default:ASSIST_DEFAULT.PlayerBaseDamage,
-				maxValue:50,
-				maxTitle:"50",
-				steps:49,
-				colors:[Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue]
+				name:SLIDER_NAMES.SFXVolume,
+				titleKey:STRINGS_KEY.SFXVolume,
+				minValue:0,
+				minTitle:"0",
+				storageKey:localStorageKey.SFXVolume,
+				default:SFX_DEFAULT_VOLUME,
+				maxValue:10,
+				maxTitle:"10",
+				steps:10,
+				colors:[Color.Red, Color.Yellow, Color.Green, Color.Yellow, Color.Red]
 			}
 		};
 
 		sliderArray = [
+			sliderData.GameVolume,
 			sliderData.MusicVolume,
 			sliderData.SFXVolume,
 		];
-	}
+	};
 }
