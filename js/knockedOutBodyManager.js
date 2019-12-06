@@ -9,8 +9,6 @@ function knockedOutBodyManager() {
 	const SPRX = 0; // sprite used is frame 2 of the kick animation
 	const SPRW = 40;
 	const SPRH = 69;
-	const BODYW = 40*2; // the sprites are stretched?!
-	const BODYH = 69*2;
 	const MAX_BODIES = 25; // oldest is overwritten
 	const MAX_AGE = 100 * 17; // time in milliseconds until it disappears
 	const SPINSPD = -12 * DEG_TO_RAD / 17; // degrees per millisecond
@@ -30,6 +28,7 @@ function knockedOutBodyManager() {
 	// these are "ring buffers" that never grow in size after hitting max
 	let max = 0;
 	const img = [];
+	const scale = [];
 	const xpos = [];
 	const ypos = [];
 	const xspd = [];
@@ -43,7 +42,8 @@ function knockedOutBodyManager() {
 		if (DEBUG_BODIES) console.log("New knocked out body " + max);
 
 		img[max] = thisSprite;
-		img[max].isPlayer = (enemy === player); 
+		img[max].isPlayer = (enemy === player);
+		scale[max] = enemy.getScale();
 		xpos[max] = enemy.getPosition().x;
 		ypos[max] = enemy.getPosition().y;
 		xspd[max] = (X_KICKBACK + (Math.random()*(X_KICKBACK*2)-X_KICKBACK_RANDOMNESS)) / 17;
@@ -86,6 +86,7 @@ function knockedOutBodyManager() {
 		for(let num = max-1; num >= 0; num--) {
 			if(ypos[num] > 900) {
 				img.splice(num, 1);
+				scale.splice(num, 1);
 				xpos.splice(num, 1);
 				ypos.splice(num, 1);
 				xspd.splice(num, 1);
@@ -106,8 +107,7 @@ function knockedOutBodyManager() {
 
 				canvasContext.rotate((xspd[num]>0?-1:1)*rotspd[num]*age[num]);
 				if (FADE_OUT) canvasContext.globalAlpha = 1-(age[num]/MAX_AGE);
-				// untranslated/unrotated version: canvasContext.drawImage(img[num],SPRX,0,SPRW,SPRH,xpos[num],ypos[num],BODYW,BODYH);
-				canvasContext.drawImage(img[num],SPRX,0,SPRW,SPRH,-BODYW/2,-BODYH/2,BODYW,BODYH);
+				canvasContext.drawImage(img[num],SPRX,0,SPRW,SPRH,-SPRW/2,-SPRH/2,SPRW * scale[num],SPRH * scale[num]);
 				canvasContext.restore();
 
 				// little extra game over juice: if this is the player, spam particles

@@ -109,6 +109,14 @@ function BasicEnemy(config) {
 		return stateManager.getAIType();
 	};
 
+	this.getCurrentAnimation = function() {
+		return stateManager.getCurrentAnimation();
+	};
+
+	this.getScale = function() {
+		return scale;
+	};
+
 	const damageForState = function() {
 		//Used to find out how much damage you do depending on what state you're in
 		//i.e. when you kick, you deal more damage than when you punch.

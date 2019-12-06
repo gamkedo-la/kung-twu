@@ -85,6 +85,10 @@ function Player(config) {
 		return stateManager.getCurrentAnimation().getHeight();
 	};
 
+	this.getScale = function() {
+		return SCALE
+	};
+
 	this.getCurrentDamage = function() {
 		return damageForState() + stateManager.getCurrentBelt() * DELTA_DAMAGE;
 	};

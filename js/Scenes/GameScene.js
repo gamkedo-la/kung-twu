@@ -14,7 +14,9 @@ function GameScene() {
 	// how long we wait after death to change game states to game over
 	// note: the game keeps running, which may cause unknown issues
 	const GAMEOVER_TRANSITION_MS = 2000; 
+	const BOSS_TRANSITION_MS = 2000;
 	let gameOverPending = false;
+	let bossDefeatPending = false;
 
 	let camera = null;
 	let enemies = [];
@@ -70,6 +72,7 @@ function GameScene() {
 		TIME_SCALE /= 4;
 
 		gameOverPending = false;
+		bossDefeatPending = false;
 
 		if((this.properties != undefined) && (this.properties.restartLevel)) {
 			this.reset();
@@ -148,8 +151,8 @@ function GameScene() {
 	};
 
 	this.reset = function() {
-        
 		gameOverPending = false;
+		bossDefeatPending = false;
 
 		didReset = true;
 
@@ -237,6 +240,17 @@ function GameScene() {
 		SceneState.setState(SCENE.GAMEOVER, {score:score});
 	};
 
+	const triggerPendingBossDefeat = function() {
+		bossDefeatPending = false;
+		if((currentLevel >= TOTAL_LEVELS) || (playerBelt === BELT.Black)) {
+			SceneState.setState(SCENE.ENDING);
+		} else {
+			currentLevel++;//Not sure if this is the right way to do this
+			player.incrementBelt();//playerBelt++;
+			SceneState.setState(SCENE.POWERUP);
+		}
+	};
+
 	// player just died: animate for a moment
 	const delayedTransitionToGameOver = function() { 
 		if (gameOverPending) return; // don't overlap
@@ -245,9 +259,17 @@ function GameScene() {
 		setTimeout(triggerPendingGameOver,GAMEOVER_TRANSITION_MS);
 	};
 
+	const delayedTransitionToNextLevel = function() {
+		if(bossDefeatPending) return; //don't overlap
+		bossDefeatPending = true;
+		setTimeout(triggerPendingBossDefeat, BOSS_TRANSITION_MS);
+	};
+
 	const update = function(deltaTime) {
 		let time = deltaTime * TIME_SCALE;
 		if(gameOverPending) {
+			time /= 20;
+		} else if(bossDefeatPending) {
 			time /= 10;
 		}
 
@@ -274,15 +296,7 @@ function GameScene() {
 		if(defeatedEnemyCount >= enemiesThisLevel) {
 			if(bossHasBeenSpawned) {
 				if((enemies[0] === undefined) || (enemies[0].getAIType() != AITYPE.Boss)) {
-					if(currentLevel === TOTAL_LEVELS) {
-						SceneState.setState(SCENE.ENDING);
-					} else {
-						currentLevel++;//Not sure if this is the right way to do this
-						player.incrementBelt();//playerBelt++;
-						SceneState.setState(SCENE.POWERUP);
-					}
-
-					return;//don't continue processing this frame
+					delayedTransitionToNextLevel();
 				}
 
 				spawnNewEnemies(newCameraX);
@@ -431,9 +445,9 @@ function GameScene() {
 				}
 
 				// spawn a "knocked out body" that falls to the floor and then fades out
-				if(defeatedEntity.getAIType() !== AITYPE.Boss) {
-					if (knockedOutBodies) knockedOutBodies.add(defeatedEntity);
-				}
+//				if(defeatedEntity.getAIType() !== AITYPE.Boss) {
+					if (knockedOutBodies) knockedOutBodies.add(anEnemy, anEnemy.getCurrentAnimation().image);
+//				}
 			}
 		}
 	};
