@@ -330,7 +330,7 @@ function CreditsScene() {
 					colorText(
 						creditsList[i],
 						canvas.width / 2, yPos + 30,
-						Color.White, Fonts.Subtitle, TextAlignment.Center);
+						"#54b0bd", Fonts.Subtitle, TextAlignment.Center);
 				} else {
 					colorText(
 						creditsList[i],
