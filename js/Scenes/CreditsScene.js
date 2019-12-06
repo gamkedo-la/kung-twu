@@ -1,3 +1,56 @@
+var creditsList = [
+"You can use arrow keys or mouse drag to manually scroll credits.",
+" ",
+"H Trayford: project lead, core gameplay (main movement, attacking, collision hitboxes, enemies, level structure), enemy AI, localization support, floor/roof parallax effect, foreground fade, assorted integratiion, game over and belt award screens, menu key support, addl gamepad support, assist mode options, prop collision, sprite atlas creation, tuning and bug fixes",
+"Marc Silva: Main player animations (idle, punch, kick, falling, walk, blocking, crouch, crouch block, sweep kick)",
+"Jeff \"Axphin\" Hanlon: boss sprites (most; adapted from player sprites), menu yin yang cursor, roof tiles, addl. sounds, title birds, columns, floor boards effect, wall shadow effect, plain wall, zen ink logo rasterization, image loading improvement, level wall scrolls (x5), UI section border, boss animation timing tweaks, knockback sprites, atlas boss states",
+"Vaan Hope Khani: Japanese letter support, controls remapping functionality, initial menu support, healthbar, sound effects (bone, low pain, steps, menu navigation, low health, 1up, swish), UI background, font system, art (lamp, table, statue, tapestry, carpet, tree, rock, bamboo, background speaker, building, painting, broken vase), addl. Japanese localization",
+"Christer \"McFunkypants\" Kaitila: whoosh air particles and related visual effects, decoration prop art system, keyboard control improvements, help screen, initial French localization, text drop shadow, sound debug toggle, body collision and knockout fade, dash blur, dush and smoke particles, knockout stars, hourglass for GUI, zen ink logo, performance optimizations, foosteps visuals, flash from damage, delay after player death, timing experimentation",
+"Aaron Ishibashi: event-based input handler and related UI scripting, music fade transition support, advanced timers implementation, improved debug output, addl. sound engine code",
+"Jaime Rivas: composed boss music",
+"Alan Zaring: composed main gameplay music",
+"Jeremiah Franczyk: spritesheets by belt color for knockback, basic player jump, and helicopter kick",
+"Michelly Oliveira: mute toggle, health meters, score reset bug fixes",
+"Stebs: spin kick implementation, enemy woosh dashes, localization tweaks",
+"Evan Lindsay: camera pan, gamepad movement, gitignore addition",
+"Tyler Funk: Idle animation hookup, addl. Japanese localization",
+"Simon J Hoffiz: Spanish localization, slide during crouch, credits scroll and related browse interactions",
+"Kornel: Polish localization",
+"Klaim (A. Joël Lamotte): French localization",
+"Valentin Lemière: Additional French localization",
+"Brian J. Boucher: waterfall paniting (based on in-game animationi), player sweep attack bug fix",
+"Andy King: Vase image, waterfall animation",
+"Oleksandr Dubrovskyi: Russian localization (initial), canvas CSS",
+"Stephanie Patterson: player kick sound effects",
+"Eugene Meidinger: background music integrated",
+"Randy Tan Shaoxian: Linux case sensitivity fix",
+" ",
+"Game made in HomeTeam GameDev, join us at HomeTeamGameDev.com",
+];
+
+function lineWrapCredits() { // note: gets calling immediately after definition!
+	var newCut = [];
+	var maxLineChar = 89;
+	var findEnd;
+	for(var i=0;i<creditsList.length;i++) {
+		while(creditsList[i].length > 0) {
+			findEnd = maxLineChar;
+			if(creditsList[i].length > maxLineChar) {
+				for(var ii=findEnd;ii>0;ii--) {
+					if(creditsList[i].charAt(ii) == " ") {
+						findEnd=ii;
+						break;
+					}
+				}
+			}
+			newCut.push(creditsList[i].substring(0, findEnd));
+			creditsList[i] = creditsList[i].substring(findEnd, creditsList[i].length);
+		}
+	}	
+	creditsList = newCut;
+}
+lineWrapCredits(); // note: calling immediately as part of init, outside the function
+
 //Credits Scene
 function CreditsScene() {
 	this.name = "Credits";
@@ -12,30 +65,6 @@ function CreditsScene() {
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
-	const creditsList = [
-		"line 01",				  
-		"line 02",
-		"line 03",
-		"line 03",
-		"line 03",
-		"line 02",
-		"line 0A",
-		"line 03",
-		"line 03",
-		"line 02",
-		"line 03",
-		"line 03",
-		"line 0B",
-		"line 02",
-		"line 03",
-		"line 02",
-		"line 03",
-		"line 03",
-		"line 03",
-		"line 02",
-		"line 03",
-		"line 03",
-		"END OF CREDITS"];
 
 	this.transitionIn = function() {
 		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
@@ -257,8 +286,8 @@ function CreditsScene() {
 			if (200 < yPos && yPos < 600) {
 				colorText(
 					creditsList[i],
-					canvas.width/2, yPos,
-					Color.White, Fonts.CreditsText, TextAlignment.Center);
+					90, yPos,
+					Color.White, Fonts.CreditsText, TextAlignment.Left);
 			}
 		}
 	};
