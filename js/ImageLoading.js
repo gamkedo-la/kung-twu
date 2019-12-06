@@ -76,6 +76,8 @@ const planksAtlas = document.createElement("img");
 const backWallAtlas = document.createElement("img");
 const upgradeAtlas = document.createElement("img");
 
+const waterfallPainting = document.createElement("img");
+
 const basicEnemyIdle = document.createElement("canvas");
 const basicEnemyWalk = document.createElement("canvas");
 const basicEnemyKick = document.createElement("canvas");
@@ -623,6 +625,7 @@ function loadImages() {
 		{ imgName: titleScreenDecore, theFile: "title_screen_decor.png"},
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 		{ imgName: blueVaseStrip, theFile: "BrokenBlueVaseStrip.png"},
+		{ imgName: waterfallPainting, theFile: "waterfall_painting.png"},
 
 		// UI
 		{ imgName: jpFontImg, theFile: "JPFont_Light.png"},

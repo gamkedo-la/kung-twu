@@ -734,7 +734,7 @@ function GameScene() {
 	};
 
 	const InitializeBackWall = function() {
-		wall = new InfiniteWall(canvas.height - tiledWall.height, levelData.wallScroll, levelData.wallArt, levelData.cameraMin, levelData.cameraMax);
+		wall = new InfiniteWall(canvas.height - tiledWall.height, levelData.wallScroll, levelData.wallArt, levelData.painting, levelData.cameraMin, levelData.cameraMax);
 	};
 
 	const initializePlayerIfReqd = function() {
@@ -1094,6 +1094,7 @@ const Level1Data = {
 	allowedTime: 30,
 	wallScroll:wallScrollTiger,
 	wallArt:wallArtTiger,
+	painting:painting,
 	roofTiles:roofboardSheet,
 	enemyBelt: BELT.White,
 	bossBelt: BELT.Yellow,
@@ -1177,6 +1178,7 @@ const Level2Data = {
 	allowedTime: 100,
 	wallScroll:wallScrollCrane,
 	wallArt:wallArtCrane,
+	painting:painting,
 	roofTiles:roofboardSheetWhite,
 	enemyBelt: BELT.Yellow,
 	bossBelt: BELT.Tan,
@@ -1260,6 +1262,7 @@ const Level3Data = {
 	allowedTime: 80,
 	wallScroll:wallScrollSnake,
 	wallArt:wallArtSnake,
+	painting:waterfallPainting,
 	roofTiles:roofboardSheetGreen,
 	enemyBelt: BELT.Tan,
 	bossBelt: BELT.Brown,
@@ -1329,6 +1332,7 @@ const Level4Data = {
 	allowedTime: 60,
 	wallScroll:wallScrollLeopard,
 	wallArt:wallArtLeopard,
+	painting:waterfallPainting,
 	roofTiles:roofboardSheetBlue,
 	enemyBelt: BELT.Brown,
 	bossBelt: BELT.Red,
@@ -1370,6 +1374,7 @@ const Level5Data = {
 	allowedTime: 40,
 	wallScroll:wallScrollDragon,
 	wallArt:wallArtDragon,
+	painting:waterfallPainting,
 	roofTiles:roofboardSheetRed,
 	enemyBelt: BELT.Red,
 	bossBelt: BELT.Black,
