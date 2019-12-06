@@ -1,5 +1,5 @@
 //Infinite Back Wall
-function InfiniteWall(posY, scroll, silhouette, minPos, maxPos) {
+function InfiniteWall(posY, scroll, silhouette, painting, minPos, maxPos) {
 	const TILE_WIDTH = 352;
 	const SHADOW_WIDTH = 200;
 	const TILES = [];
