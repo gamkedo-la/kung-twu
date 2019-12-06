@@ -296,8 +296,17 @@ function CreditsScene() {
 		canvasContext.fillRect(0,0,canvas.width,canvas.height);
 		canvasContext.restore();
 
+		let logoPos = creditPosY + creditsList.length * 30 + 20;
+		if(logoPos <= 0) {
+			creditStop();
+			logoPos = 0;
+		} else {
+			creditsRestart();
+		}
+		canvasContext.drawImage(HTGDLogoPic, 0, logoPos);
+
 		canvasContext.drawImage(titleScreenDecore, 0, 0); 
-		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);            
+		canvasContext.drawImage(selector, selectorPosition.x, selectorPosition.y);       
 	};
 	
 	const drawTitle = function() {
@@ -371,6 +380,11 @@ function CreditsScene() {
 	function creditStop () {
 		creditRun = false;
 		mouseToDrag = true;	
+	}
+
+	function creditsRestart() {
+		creditRun = true;
+//		mouseToDrag = false;
 	}
 
 	function noCreditMouseDrag() {
