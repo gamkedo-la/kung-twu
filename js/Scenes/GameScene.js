@@ -948,12 +948,7 @@ function GameScene() {
 			buildBossIntroText();
 		}
 
-		let atLeft = true;//levelData.scrollsLeft;
-		/*if(levelData.scrollsLeft) {
-			atLeft = false;
-		} else if(!levelData.scrollsLeft) {
-			atLeft = true;
-		}*/
+		let atLeft = true;
 
 		let xPos = cameraXPos + (1.5 * canvas.width) / 2;
 		if (atLeft) {
@@ -990,6 +985,8 @@ function GameScene() {
 		collisionManager.addEntity(aBoss);
 
 		enemies.unshift(aBoss);
+
+		sound.playBGM(Sounds.BGM_Boss, 0.15);
 	};
 
 	const buildBossIntroText = function() {

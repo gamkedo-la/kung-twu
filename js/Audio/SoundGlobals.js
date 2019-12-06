@@ -242,7 +242,7 @@ const soundSpriteConfigs = [
 	},
 	{
 		key: Sounds.BGM_Boss,
-		filepath: "./audio/Dragon Pulse_v2",
+		filepath: "./audio/Dragon_Pulse_v2",
 		baseVolume: .35,
 		audioBus: AudioBus.MUSIC,
 		isLoop: true,
