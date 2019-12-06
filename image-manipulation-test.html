@@ -1,0 +1,45 @@
+<html>
+<body>
+<canvas id="test" width="200" height="200" style="border:1px solid; width: 50vw;
+image-rendering: pixelated;">
+<script>
+    const image1 = document.createElement("img");
+    const image2 = document.createElement("img");
+    image1.onload = setbelt;
+	image1.src = "raw assets/Images/Sauce/belttest.png"
+    var ctx = test.getContext("2d")
+    
+
+    function setbelt() {
+        ctx.drawImage(image1,0,0);
+        
+        try {
+            const imageData = ctx.getImageData(0, 0, image1.width, image1.height);
+            const data = imageData.data;
+            //all dem pixels
+            for(let i = 0; i < data.length; i += 4) {
+                data[i] += 75;
+                //if magenta
+                if(data[i] == 255 && data[i + 1] == 0 && data[i + 2] == 0) {
+                    //set belt color
+                    data[i] = 0;
+                    data[i + 1] = 255;
+                    data[i + 2] = 0;
+                }
+
+            }
+            ctx.fillStyle = "white";
+            
+            ctx.putImageData(imageData, 80, 0);
+            
+        } catch(error) {
+            console.log("Need to run on a server");
+            return;
+        }
+        
+    }
+  
+</script>
+
+</body>
+</html>
