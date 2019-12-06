@@ -1,5 +1,7 @@
 //Main for Kung Twu
 window.onload = function() {
+	window.focus();//necessary to ensure the game receives keyboard input once it is uploaded to itch.io
+
 	window.addEventListener("focus", windowOnFocus);
 	window.addEventListener("blur", windowOnBlur);
 
@@ -51,7 +53,6 @@ window.onload = function() {
 	loadGamkedoLogo();
 };
 
-window.focus();//necessary to ensure the game receives keyboard input once it is uploaded to itch.io
 
 function configureGameField() {
 	GAME_FIELD.x = 0;
