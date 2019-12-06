@@ -267,7 +267,8 @@ const Fonts = {
 	MainTitle: "40px Tahoma",
 	Subtitle: "30px Tahoma",
 	ButtonTitle: "20px Tahoma",
-	CreditsText: "16px Tahoma"
+	CreditsText: "16px Tahoma",
+	BoldCredits: "bold 18px Tahoma"
 };
 
 /** @type fontSystem */
