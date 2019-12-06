@@ -583,13 +583,12 @@ const userStrings = {
 		[STRINGS_KEY.ControlsText_Lvl3]:"[пресмыкаться + удар]\nподметание ног",
 		[STRINGS_KEY.ControlsText_Lvl4]:"[Jump + удар] прыжок",
 		[STRINGS_KEY.ControlsText_Lvl5]:"[изворачиваться + удар]\nспиновой удар",
-
-		[STRINGS_KEY.GangCount]:"Active\nRivals",
-		[STRINGS_KEY.Default]:"Restore\nDefault",
-		[STRINGS_KEY.Player]:"Player",
-		[STRINGS_KEY.GameSpeed]:"Game Speed",
-		[STRINGS_KEY.Fast]:"Fast",
-		[STRINGS_KEY.Slow]:"Slow"
+		[STRINGS_KEY.GangCount]:"активные\nконкуренты",
+		[STRINGS_KEY.Default]:"сброс\nнастроек",
+		[STRINGS_KEY.Player]:"игрок",
+		[STRINGS_KEY.GameSpeed]:"скорость игры",
+		[STRINGS_KEY.Fast]:"быстро",
+		[STRINGS_KEY.Slow]:"медленный"
 	},
 
 	Polish: {
