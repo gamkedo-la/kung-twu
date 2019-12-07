@@ -26,7 +26,7 @@ function SpriteAnimation(name, //string identifier for this animation
 	let remainderTime = 0;
 
 	this.getCurrentFrame = function() {
-		return currentFrameIndex;//TODO: this may be too simplistic
+		return currentFrameIndex;
 	};
 
 	this.getContext = function() {

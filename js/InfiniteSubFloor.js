@@ -32,7 +32,7 @@ function InfiniteSubFloor(columnImage) {
 		}
 	};
 
-	this.update = function(cameraXPos, shifts) {
+	this.update = function(cameraXPos) {
 		if(oldCameraX === null) {
 			oldCameraX = cameraXPos;
 		} else {
@@ -49,7 +49,7 @@ function InfiniteSubFloor(columnImage) {
 			undergroundXPos = cameraXPos - canvas.width / 2;
 			updateColumn(cameraXPos);
 		} else {
-			updateBricks(cameraXPos, shifts);
+			updateBricks(cameraXPos);
 		}
 
 		oldCameraX = cameraXPos;
@@ -57,15 +57,15 @@ function InfiniteSubFloor(columnImage) {
 
 	const updateColumn = function(cameraXPos) {
 		if(!column1.isOnScreen(cameraXPos)) {
-			updateColumnLocation(column1, column2, cameraXPos);
+			updateColumnLocation(column1, column2);
 		}
 		
 		if(!column2.isOnScreen(cameraXPos)) {
-			updateColumnLocation(column2, column1, cameraXPos);
+			updateColumnLocation(column2, column1);
 		}
 	};
 
-	const updateColumnLocation = function(offscreen, onscreen, cameraXPos) {
+	const updateColumnLocation = function(offscreen, onscreen) {
 		if(isMovingLeft) {
 			if(offscreen.getPosition().x > onscreen.getPosition().x) {
 				offscreen.setPosition(

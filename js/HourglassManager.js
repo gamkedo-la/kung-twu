@@ -38,7 +38,7 @@ function HourglassManager(totalTime, pos, screenLeft, width) {
 	};
 
 	this.draw = function(cameraX) {
-		for(glass of GLASSES) {
+		for(let glass of GLASSES) {
 			glass.draw(cameraX);
 		}
 	};

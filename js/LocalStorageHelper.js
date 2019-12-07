@@ -69,7 +69,7 @@ function LocalStorageHelper() {
 	/**
 	 * Retrieves an integer value from localStorage.
 	 * @param {string} keyName A DOMString containing the name of the key you want to retrieve the value of.
-	 * @return {int}
+	 * @return {number}
 	 */
 	this.getInt = function(keyName) {
 		let storedValue = this.getItem(keyName);

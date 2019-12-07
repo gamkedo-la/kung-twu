@@ -241,10 +241,7 @@ const userStrings = {
 		[STRINGS_KEY.Level3]:"Serpiente",
 		[STRINGS_KEY.Level4]:"Leopardo",
 		[STRINGS_KEY.Level5]:"Dragón",
-
-		//TODO: Retranslate the end of this next line
 		[STRINGS_KEY.HelpScreenContents]:"[FLECHAS] Mover\n[ARRIBA ó C] Brincar\n[G ó X] Puño\n[H ó X] Patada\n[B] Bloqueo\n[S] or [ABAJO] Agachar", //\n[P] Pausa
-
 		[STRINGS_KEY.Resume]:"[ESC] Resumir",
 		[STRINGS_KEY.Controls]:"[C] Controles",
 		[STRINGS_KEY.Quit]:"[Q] Renunciar",
@@ -317,7 +314,7 @@ const userStrings = {
 		[STRINGS_KEY.Paused]:"- き ゅ う し -",
 		[STRINGS_KEY.Title]:"Kung Twu",
 		// see https://twitter.com/McFunkypants/status/1172283461559734272
-		[STRINGS_KEY.Subtitle]:"ぶげいでん", //"武芸伝", alternately: 武伝 or 武道伝説 or 武芸伝　（ぶげいでん）
+		[STRINGS_KEY.Subtitle]:"ぶげいでん", //"武芸伝", alternately: 武伝 or 武道伝説 or 武芸伝（ぶげいでん）
 		[STRINGS_KEY.English]:"English",
 		[STRINGS_KEY.Spanish]:"Español",
 		[STRINGS_KEY.Japanese]:"にほんご",
@@ -341,10 +338,7 @@ const userStrings = {
 		[STRINGS_KEY.Level3]:"ヘビ",
 		[STRINGS_KEY.Level4]:"ヒョウ",
 		[STRINGS_KEY.Level5]:"りゅう",
-
-		//TODO: Retranslate the end of this next line
 		[STRINGS_KEY.HelpScreenContents]:"[Arrows] うごく\n[UP or C] ジャンプ\n[G or X] パンチ\n[H or X] あしげ\n[B] ブロック\n[S] or [Down] しゃがむ", //\n[P] ポーズ
-
 		[STRINGS_KEY.Resume]:"[ESC] つづく",
 		[STRINGS_KEY.Controls]:"[C] コントロール",
 		[STRINGS_KEY.Quit]:"[Q] ゲームをやめる",

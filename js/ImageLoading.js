@@ -811,7 +811,7 @@ function initializeBasicRed() {
 
 function initializeBossYellow() {
 	initializeCanvasFromAtlas(yellowBossIdle, yellowBossIdleData, bossAtlas);
-//	makeRedImage(yellowBossIdle, redYellowBossIdle);
+	//makeRedImage(yellowBossIdle, redYellowBossIdle);
 	initializeCanvasFromAtlas(yellowBossWalk, yellowBossWalkData, bossAtlas);
 	initializeCanvasFromAtlas(yellowBossDash, yellowBossDashData, bossAtlas);
 	initializeCanvasFromAtlas(yellowBossKick, yellowBossKickData, bossAtlas);

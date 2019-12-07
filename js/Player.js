@@ -86,7 +86,7 @@ function Player(config) {
 	};
 
 	this.getScale = function() {
-		return SCALE
+		return SCALE;
 	};
 
 	this.getCurrentDamage = function() {

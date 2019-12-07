@@ -164,7 +164,7 @@ function gamepadAxisNameForIndexAndValue(index, value) {
 }
 
 function getWasAxisHeld(name) {
-	for(j = 0; j < gamepad.axes.held.length; j++) {
+	for(let j = 0; j < gamepad.axes.held.length; j++) {
 		if(name === gamepad.axes.held[j]) {
 			return {wasHeld:true, index:j};
 		}

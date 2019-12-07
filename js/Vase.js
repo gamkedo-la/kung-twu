@@ -63,8 +63,6 @@ function Vase(posX, posY, index, frontY, backY) {
 	};
 
 	this.update = function(deltaTime, gravity, cameraXPos, shifts) {
-		//if(VASE_PIECES.length === 0) populateVasePieces(); //TODO: make vases crumble
-
 		if(isBroken) {
 			timeSinceBroke += deltaTime;
 		}
@@ -109,7 +107,6 @@ function Vase(posX, posY, index, frontY, backY) {
 		if(position.x > oldCameraPos + (canvas.width / 2)) return;
 
 		if(!isBroken) {
-			//TODO: Need broken image
 			canvasContext.drawImage(decorationSpritesheet, clipXPos, 0, width, height, position.x, position.y, width, height);
 		} else {
 			if(timeSinceBroke >= BROKEN_TIME) {
@@ -158,9 +155,5 @@ function Vase(posX, posY, index, frontY, backY) {
 
 	this.didHit = function(otherEntity) {
 		return;
-	};
-
-	const populateVasePieces = function() {
-
 	};
 }

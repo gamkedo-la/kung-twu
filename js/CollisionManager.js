@@ -288,7 +288,7 @@ function CollisionManager(player) {
 		}
 
 		const body1Points = body1.points;
-		for(body1Point of body1Points) {
+		for(let body1Point of body1Points) {
 			if(pointInPolygon(body1Point, body2.points)) {
 				//at least 1 point of polygon2 is inside polygon1 => collision occurred
 

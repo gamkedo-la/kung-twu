@@ -14,7 +14,7 @@ function KeySet(key, actionType, action, inputCodes) {
 	 * Whether or not to log messages to the console with this class. 
 	 * Please set the value for testing pursposes in all KeySets directly here.
 	 */
-	const _DEBUG = true;
+//	const _DEBUG = true;
 
 	/**
 	 * The reference key or alias this keyset goes by for future reference in a KeySetManager.
@@ -35,7 +35,7 @@ function KeySet(key, actionType, action, inputCodes) {
 
 	/**
 	 * Add one or multiple KeyCodes, MouseButtons, or constants pertaining to GamePad buttons to the inner set.
-	 * @param {string | number | (string|number)[]} inputCode Either a single value or an array of input codes to add. 
+	 * @param {string | number | (string|number)[]} inputCodes Either a single value or an array of input codes to add. 
 	 */
 	this.add = (inputCodes) => {
 		if (Array.isArray(inputCodes)) {

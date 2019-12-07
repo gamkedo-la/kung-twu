@@ -400,9 +400,6 @@ function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 	this.didLand = function() {
 		landed = true;
 		isOnGround = true;
-//		if(currentState === KNOCK_BACK_STATE) {
-//			knockBackDidEnd = true;
-//		}
 	};
 
 	this.isFalling = function() {
@@ -625,20 +622,6 @@ function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 			(action === ACTION.Block) 
 		);
 	};
-
-/*Left:"left",
-	Right:"right",
-	Crouch:"crouch",
-	Hit:"hit",
-	Jump:"jump",
-	Release:"release",
-	Punch:"punch",
-	Kick:"kick",
-	Land:"land",
-	End:"end",
-	Block:"block",
-	Dash:"dash",
-	NoChange:"noChange" */
 
 	const setNewState = function(newState, action) {
 		if(newState != currentState) {

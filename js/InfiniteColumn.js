@@ -1,6 +1,5 @@
 //Infinite Columns
 function InfiniteColumn(image, verticalOffset) {
-	const COLUMN_WIDTH = 53;
 	const COLUMN_HEIGHT = 473;
 	const COLUMN_SPACING = 600;
 	const VERTICAL_INSET = 12;

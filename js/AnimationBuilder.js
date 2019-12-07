@@ -25,7 +25,6 @@ function AnimationBuilder() {
 			case BELT.Tan: return getAnimationsWithData(basicTanBeltData, scale);
 			case BELT.Brown: return getAnimationsWithData(basicBrownBeltData, scale);
 			case BELT.Red: return getAnimationsWithData(basicRedBeltData, scale);
-			//TODO: basic black belt enemy spritesheet doesn't exist
 			case BELT.Black: return getAnimationsWithData(basicBlackBeltData, scale);
 			}
 		} else if(rivalType === RIVAL_TYPE.tall) {
@@ -48,12 +47,12 @@ function AnimationBuilder() {
 			}
 		} else if(rivalType === RIVAL_TYPE.player) {
 			switch(belt) {
-			case BELT.White: return getAnimationsWithData(playerWhiteBeltData, scale, true);
-			case BELT.Yellow: return getAnimationsWithData(playerYellowBeltData, scale, true);
-			case BELT.Tan: return getAnimationsWithData(playerTanBeltData, scale, true);
-			case BELT.Brown: return getAnimationsWithData(playerBrownBeltData, scale, true);
-			case BELT.Red: return getAnimationsWithData(playerRedBeltData, scale, true);
-			case BELT.Black: return getAnimationsWithData(playerBlackBeltData, scale, true);
+			case BELT.White: return getAnimationsWithData(playerWhiteBeltData, scale);
+			case BELT.Yellow: return getAnimationsWithData(playerYellowBeltData, scale);
+			case BELT.Tan: return getAnimationsWithData(playerTanBeltData, scale);
+			case BELT.Brown: return getAnimationsWithData(playerBrownBeltData, scale);
+			case BELT.Red: return getAnimationsWithData(playerRedBeltData, scale);
+			case BELT.Black: return getAnimationsWithData(playerBlackBeltData, scale);
 			}
 		} else if(rivalType === RIVAL_TYPE.boss) {
 			switch(belt) {
@@ -1773,7 +1772,7 @@ function AnimationBuilder() {
 		c_punch:{
 			name:STATE.C_Punch,
 			image:yellowBossC_Punch,
-//			redImage:redYellowBossC_Punch,
+			//redImage:redYellowBossC_Punch,
 			frames:[0, 1, 0],
 			width:yellowBossC_Punch.width / 2,
 			height:yellowBossC_Punch.height,
@@ -1795,7 +1794,7 @@ function AnimationBuilder() {
 		j_punch:{
 			name:STATE.J_Punch,
 			image:yellowBossJ_Punch,
-//			redImage:redYellowBossJ_Punch,
+			//redImage:redYellowBossJ_Punch,
 			frames:[0, 1, 2, 1, 4],
 			width:yellowBossJ_Punch.width / 5,
 			height:yellowBossJ_Punch.height,

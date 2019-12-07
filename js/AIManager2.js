@@ -365,7 +365,7 @@ function AIManager2() {
 		if(newAction < 10) {
 			return ACTION.Crouch;//0-9
 		} else if(newAction < 20) {
-	  	return ACTION.Jump;//10-19
+			return ACTION.Jump;//10-19
 		} else if(newAction < 45) {
 			return ACTION.Punch;//20-44
 		} else if(newAction < 60) {

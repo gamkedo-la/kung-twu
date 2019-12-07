@@ -356,10 +356,6 @@ function BasicEnemy(config) {
 		} else {
 			velocity.x = 0;
 		}
-
-		if(stateManager.getIsNewState()) {
-
-		}
 	};
 
 	const dash = function() {

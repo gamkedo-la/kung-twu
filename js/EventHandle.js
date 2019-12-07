@@ -62,7 +62,7 @@ function EventHandle() {
 	 * Subscribes a callback to the event to fire it when it occurs.
 	 * It is best to pass a function reference instead of an anonymous one to keep track of it.
 	 * Will modify callback data if it already exists in case user wants to change 'isOnce' or 'context'
-	 * @param {T} callback The callback function to fire when the event happens
+	 * @param {T} callbackFn The callback function to fire when the event happens
 	 * @param {boolean} isOnce (default: false) Will set callback to auto-unsubscribe itself 
 	 * @param {any} context (optional) an explicit 'this' binding to call the event by
 	 * after event is called one time.

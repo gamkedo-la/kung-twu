@@ -28,9 +28,9 @@ function InfiniteLamp(verticalOffset) {
 		lamp2.shift(shifts);
 	};
 
-	this.draw = function(cameraXPos) {
-		lamp1.draw(cameraXPos);
-		lamp2.draw(cameraXPos);
+	this.draw = function() {
+		lamp1.draw();
+		lamp2.draw();
 	};
 
 	const updateLampLocation = function(offscreen, onscreen, cameraXPos) {
