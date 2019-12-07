@@ -32,7 +32,7 @@ function KTGamePad(inputManager) {
 	this.getActive = () => _active;
 
 	// =========== Public Properties ===========
-  // Need an input processor here for axes and buttons!
+	// Need an input processor here for axes and buttons!
   
 
 	// ========== Public Functions  ==============
@@ -42,10 +42,10 @@ function KTGamePad(inputManager) {
 			_input.onGamePadDisconnected.subscribe(disconnect, false, this);
 		} else {
 			if (_DEBUG) {
-				console.log('ERROR! The InputManager reference in the KTGamePad instance is either null or undefined. Could not initialize KTGamePad!');
+			//console.log('ERROR! The InputManager reference in the KTGamePad instance is either null or undefined. Could not initialize KTGamePad!');
 			}
 		}
-	}
+	};
 
 	// ================== Publicly Called Events =======================
 	this.update = function() {
@@ -66,7 +66,7 @@ function KTGamePad(inputManager) {
 		const controllerIndex = evt.gamepad.index;
 		_controllerIndex = controllerIndex;
 		_active = true;
-		if (_DEBUG) console.log('Gamepad Connected! Controller Index: ' + controllerIndex);
+		//if (_DEBUG) console.log('Gamepad Connected! Controller Index: ' + controllerIndex);
 	}
 
 	/**
@@ -81,7 +81,7 @@ function KTGamePad(inputManager) {
 			// Disconnect this controller
 			_controllerIndex = null;
 			_active = false;
-			if (_DEBUG) console.log('Gamepad Disconnected! Controller Index: ' + controllerIndex);
+			//if (_DEBUG) console.log('Gamepad Disconnected! Controller Index: ' + controllerIndex);
 		}	
 	}
 

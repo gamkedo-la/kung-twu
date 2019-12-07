@@ -117,7 +117,7 @@ function SpriteAnimation(name, //string identifier for this animation
 
 				redContext.putImageData(imageData, 0, 0);
 			} catch(error) {
-				console.log("Need to run on a server");
+				//console.log("Need to run on a server");
 				return;
 			}
 		}

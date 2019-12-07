@@ -22,7 +22,7 @@ function KeySetManager() {
 	 */
 	this.create = function(key, actionType, action, inputCodes) {
 		if (_keySets.has(key)) {
-			if (_DEBUG) console.trace("Warning! Duplicate reference keys! KeySetManager already contains the reference key: " + key + ".");
+			//if (_DEBUG) console.trace("Warning! Duplicate reference keys! KeySetManager already contains the reference key: " + key + ".");
 		}
 		_keySets.set(key, new KeySet(key, actionType, action, inputCodes));
 		return this;
@@ -49,7 +49,7 @@ function KeySetManager() {
 		if (_keySets.has(key)) {
 			_keySets.delete(key);
 		} else {
-			if (_DEBUG) console.trace("Warning! Tried to delete key: " + key + ", of a KeySet that does not exist on this KeySetManager!");
+			//if (_DEBUG) console.trace("Warning! Tried to delete key: " + key + ", of a KeySet that does not exist on this KeySetManager!");
 		}
 	};
 
@@ -67,7 +67,7 @@ function KeySetManager() {
 	 * @param {any} thisArg Explicit 'this' binding to callback
 	 */
 	this.forEach = _forEach;
-		/**
+	/**
 	 * Iterates a callback over each KeySet
 	 * @param {(keySet: KeySet, key: string) => void} callbackFn key is either an ACTION_KEYS or NAV_KEYS.
 	 * @param {any} thisArg Explicit 'this' binding to callback
@@ -86,9 +86,9 @@ function KeySetManager() {
 
 	/** Logs each KeySet stored in this manager's Sets */
 	this.log = function() {
-			_forEach((keyset) => {
-				console.log(keyset);
-				keyset.log();
-			});
+		_forEach((keyset) => {
+			//console.log(keyset);
+			keyset.log();
+		});
 	};
 };

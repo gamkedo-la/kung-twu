@@ -71,7 +71,7 @@ function AnimationBuilder() {
 		const result = {};
 		result.idle = getAnimationWithData(data.idle);
 		if(result.idle === null) {
-			console.error("Idle animations are required for all characters");
+			//console.error("Idle animations are required for all characters");
 		}
 
 		result.walk = getAnimationWithData(data.walk);

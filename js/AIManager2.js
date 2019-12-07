@@ -570,7 +570,7 @@ function AIManager2() {
 			case BELT.Black: return 75;//300;
 			}
 		} else {
-			console.error(`Called cooldowndForBeltAndType with invalid AIType: ${type} or belt: ${belt}`);
+			//console.error(`Called cooldowndForBeltAndType with invalid AIType: ${type} or belt: ${belt}`);
 			return 500;//This exists to prevent crashes
 		}
 	};

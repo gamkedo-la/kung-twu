@@ -1,7 +1,7 @@
 // Functions for testing stuff
 
 const Debug = {
-  /**
+	/**
    * Assert if something is equal as expected or not and receive that result in the console
    * ```javascript
    * let calories = "hamburger".length;
@@ -16,15 +16,15 @@ const Debug = {
    * @param expected The expected value or reference
    * @param {string} testName The name of the test to log to the console
    */
-  assertEqual (actual, expected, testName = 'Debug Test') {
-    if (actual === expected) {
-      console.log('[' + testName + '] PASSED with expected:', expected);
-    } else {
-      console.log('[' + testName + '] FAILED! Expected', expected, 'but got', actual);
-    }
-  },
+	assertEqual (actual, expected, testName = 'Debug Test') {
+		if (actual === expected) {
+			//console.log('[' + testName + '] PASSED with expected:', expected);
+		} else {
+			//console.log('[' + testName + '] FAILED! Expected', expected, 'but got', actual);
+		}
+	},
 
-  /**
+	/**
 	 * Type-checks a value to ensure it is a particular instanceof or typeof something. "null" is included.
 	 * Throws an error if test fails, but this can be reduced to a console log in param throwError.
 	 * Useful for checking parameters passed into a function, or any value at runtime during development. May be turned off by hard-coding value _DEBUG to false in function below.
@@ -50,7 +50,7 @@ const Debug = {
 		}
 
 		// Checking that expectedType is a valid typeof value
-    if (typeof expectedType === "string") {
+		if (typeof expectedType === "string") {
 			const typeofTypes = ["number", "undefined", "object", "boolean", "bigint", "string", "symbol", "function", "null"];
 			let isAValidTypeofType = false;
 			typeofTypes.forEach((type) => {
@@ -59,10 +59,10 @@ const Debug = {
 				}
 			});
 
-      if (!isAValidTypeofType) {
-        throw new Error("Could not check the validity of " + checkValue + "! The validator parameter must be a valid evaluation of typeof or 'null'");
-      }
-    }
+			if (!isAValidTypeofType) {
+				throw new Error("Could not check the validity of " + checkValue + "! The validator parameter must be a valid evaluation of typeof or 'null'");
+			}
+		}
 
 		// Check that the value is the expected type
 		if (expectedType === "null" && checkValue === null || // This checks 'null'
@@ -71,8 +71,8 @@ const Debug = {
 		{
 			// Success Condition
 			if (notifyOnValid) {
-				console.log("[TypeCheck in " + getFuncName() + "] PASSED\n", checkValue, "is " + 
-				getValidatorTypeDesc(expectedType));
+				//console.log("[TypeCheck in " + getFuncName() + "] PASSED\n", checkValue, "is " + 
+				//getValidatorTypeDesc(expectedType));
 			}
 		} else {
 			// Error Condition
@@ -81,29 +81,29 @@ const Debug = {
 			"!\nCheck log above for actual value.";
 
 			if (throwError) { // Throws error with actual value before
-				console.log("Actual value:", checkValue);
+				//console.log("Actual value:", checkValue);
 				throw new Error("\n" + message);
 			} else { // Just log a message with stack trace to the console
-				console.trace(message, "\nActual value:", checkValue);
+				//console.trace(message, "\nActual value:", checkValue);
 			}
 		}
 
 		// === Private Error Message Helpers ===
 		function getValidatorTypeDesc(value) {
 			return (typeof expectedType === "string")
-      ? (expectedType === "null")
-        ? "null"
-        :"a typeof " + value
-      : (typeof value === "object")
-				? "an instanceof" + value.constructor.name
-				: "an instanceof " + value.name;
+				? (expectedType === "null")
+					? "null"
+					:"a typeof " + value
+				: (typeof value === "object")
+					? "an instanceof" + value.constructor.name
+					: "an instanceof " + value.name;
 		}
 		function getActualTypeDesc(value) {
 			return (typeof expectedType === "string")
-      ? (expectedType === "null")
-        ? "null"
-        : typeof value
-			: "an instanceof " + value.constructor.name;
+				? (expectedType === "null")
+					? "null"
+					: typeof value
+				: "an instanceof " + value.constructor.name;
 		}
 		function getFuncName() {
 			const e = new Error();

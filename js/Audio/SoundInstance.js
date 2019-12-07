@@ -173,10 +173,10 @@ class SoundInstance {
 			.catch((err) => {
 				if (err instanceof DOMException) {
 					// Console message to display when sounds fire before the user has the opportunity to interact with the page.
-					console.log("For your enjoyment of the web, the game has prevented sounds from playing.\nPlease click or tap anywhere on the screen to allow sound.");
+					//console.log("For your enjoyment of the web, the game has prevented sounds from playing.\nPlease click or tap anywhere on the screen to allow sound.");
 				} else {
 					// Other errors
-					console.log("Audio Error:", err);
+					//console.log("Audio Error:", err);
 				}
 			});
 	}

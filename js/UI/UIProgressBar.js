@@ -249,7 +249,7 @@ function UIProgressBar(config) {
 			grad = canvasContext.createLinearGradient(0, bottom, 0, top);
 			break;
 		default:
-			console.log("Warning! Param direction in makeGradient was not a valid direction! Falling back to default destination.");
+			//console.log("Warning! Param direction in makeGradient was not a valid direction! Falling back to default destination.");
 			return this.makeGradient(_destination);
 		}
 

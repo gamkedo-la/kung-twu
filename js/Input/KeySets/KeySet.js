@@ -54,7 +54,7 @@ function KeySet(key, actionType, action, inputCodes) {
 	 */
 	function _add(inputCode) {
 		if (_set.has(inputCode)) {
-			if (_DEBUG) console.trace("Warning! This KeySet already contains the key: " + inputCode + ".");
+			//if (_DEBUG) console.trace("Warning! This KeySet already contains the key: " + inputCode + ".");
 		} else {
 			_set.add(inputCode);
 		}
@@ -114,8 +114,8 @@ function KeySet(key, actionType, action, inputCodes) {
 	};
 
 	this.log = function() {
-		console.log(_set);
-	}
+		//console.log(_set);
+	};
 	/**
 	 * Returns the inner input codes of the set as an array
 	 */

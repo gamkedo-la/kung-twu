@@ -178,7 +178,7 @@ function SFXRandomizerBox(soundManager, dontPlayLastNum, volRange, speedRange, k
 		if (_lastPlayed.indexOf(key) === -1) {
 			_lastPlayed.push(key);
 		} else {
-			if (_DEBUG) console.log("Warning! SFXRandomizerBox tried to add a value to the lastPlayed list, but it already exists!");
+			//if (_DEBUG) console.log("Warning! SFXRandomizerBox tried to add a value to the lastPlayed list, but it already exists!");
 		}
 
 		// Just double check that the array is at the right length.

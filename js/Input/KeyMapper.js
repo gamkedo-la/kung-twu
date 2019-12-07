@@ -177,15 +177,15 @@ function KeyMapper() {
 				keySet.deleteAll();
 				keySet.add(arr);
 			} else {
-				console.log("Error during getCurrentMapping! Could not set the keySet: \"" + keySet.key + "\" for the following reasons...");
+				//console.log("Error during getCurrentMapping! Could not set the keySet: \"" + keySet.key + "\" for the following reasons...");
 				if (!key) {
-					console.log("- Local storage key could not be retrieved.");
+					//console.log("- Local storage key could not be retrieved.");
 				}
 				if (!arr) {
-					console.log("- LocalStorageHelper could not find a value with key \"" + key + "\"");
+					//console.log("- LocalStorageHelper could not find a value with key \"" + key + "\"");
 				}
 				if (!Array.isArray(arr)) {
-					console.log("- Value stored in LocalStorageHelper at the key \"" + key + "\" was unexpectedly not the correct type: \"array\", rather it was \"" + typeof arr + "\"");
+					//console.log("- Value stored in LocalStorageHelper at the key \"" + key + "\" was unexpectedly not the correct type: \"array\", rather it was \"" + typeof arr + "\"");
 				}	
 			}
 		});
@@ -216,8 +216,8 @@ function KeyMapper() {
 		case ACTION_KEYS.PUNCH:
 			return keys.PunchKeys;
 		default:
-			console.trace("Warning! localStorageKey <- ACTION_KEY conversion " + 
-					"not available for: " + actionKey + "! Returning empty string.");
+			//console.trace("Warning! localStorageKey <- ACTION_KEY conversion " + 
+			//"not available for: " + actionKey + "! Returning empty string.");
 			return "";
 		}
 	};
@@ -317,8 +317,8 @@ function KeyMapper() {
 		if (keySet) {
 			return keySet.getAsArray();
 		}
-		console.trace("Warning! There is no KeySet with the ACTION_KEYS or NAV_KEYS value: " + 
-			actionKey + " stored on the KeySetManager! Returning an emtpy array");
+		//console.trace("Warning! There is no KeySet with the ACTION_KEYS or NAV_KEYS value: " + 
+		//actionKey + " stored on the KeySetManager! Returning an emtpy array");
 		return [];
 	};
 
@@ -334,8 +334,8 @@ function KeyMapper() {
 			keySet.add(inputCodeToAdd);
 			writeCurrentMappingToStorage(keySetManager);
 		} else {
-			console.trace("Warning! Tried to add key to a key set, but there is " +
-				"no KeySet with the key:", actionToAddItTo + ", stored in this manager.");
+			//console.trace("Warning! Tried to add key to a key set, but there is " +
+			//"no KeySet with the key:", actionToAddItTo + ", stored in this manager.");
 		}
 	};
 
@@ -359,8 +359,8 @@ function KeyMapper() {
 			keySet.delete(inputCodeToRemove);
 			writeCurrentMappingToStorage(keySetManager);
 		} else {
-			console.trace("Warning! Tried to add key to a key set, but there is " +
-				"no KeySet with the key:", actionToAddItTo + ", stored in this manager.");
+			//console.trace("Warning! Tried to add key to a key set, but there is " +
+			//"no KeySet with the key:", actionToAddItTo + ", stored in this manager.");
 		}
 	};
 }

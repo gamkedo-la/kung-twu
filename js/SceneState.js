@@ -56,7 +56,7 @@ const SceneState = {
 
 			inputProcessor.clear();
 		} else {
-			console.log("ERROR! The SceneState object tried to run state, but its reference was", typeof scene === "object" ? "null" : typeof scene, "!");
+			//console.log("ERROR! The SceneState object tried to run state, but its reference was", typeof scene === "object" ? "null" : typeof scene, "!");
 		}
 	},
 	runSegue: function(deltaTime, previousState) {

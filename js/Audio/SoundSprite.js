@@ -89,7 +89,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 	 */
 	this.play = function(volume, playbackspeed) {
 		if (!_engine.getDidInteract()) {
-			console.log("Did not interact yet, cancelling play!");
+			//console.log("Did not interact yet, cancelling play!");
 			return;
 		}
 
@@ -200,7 +200,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 		if (soundInstance) {
 			soundInstance.cancelFadeAll();
 		} else {
-			console.log("Warning! Tried _cancelFade, but soundInstance was null or undefined!");
+			//console.log("Warning! Tried _cancelFade, but soundInstance was null or undefined!");
 		}
 	}
 
@@ -268,7 +268,7 @@ function SoundSprite(key, filepath, baseVolume, audioBus, isLoop, maxInstances, 
 				}
 			});
 		} else {
-			console.log("SoundInstance setPaused was passed an invalid parameter! Must be a boolean");
+			//console.log("SoundInstance setPaused was passed an invalid parameter! Must be a boolean");
 		}
 	};
 

@@ -12,7 +12,7 @@ function UIButton(stringsKey, x, y, height, padding = 2, onClick, color = Color.
 
 	const setBounds = function(title, x, y, height, padding) {
 		if(JPFont === undefined) {
-			console.error(`JPFont undefined. Button Title:${title}`);
+			//console.error(`JPFont undefined. Button Title:${title}`);
 			return;
 		}
 

@@ -3,7 +3,7 @@
 
 
 function knockedOutBodyManager() {
-	const DEBUG_BODIES = false; // console logs
+//	const DEBUG_BODIES = false; // console logs
 	const DOMINO_KNOCKBACKS = true; // knockback other enemies, matrix-style
 	const DOMINO_RANGE = 64; // pixels from spinning body to a conscious enemy
 	const SPRX = 0; // sprite used is frame 2 of the kick animation
@@ -22,7 +22,7 @@ function knockedOutBodyManager() {
 
 	let playerCount = 0;
 	
-	if (DEBUG_BODIES) console.log("Creating the knockedOutBodyManager...");
+	//if (DEBUG_BODIES) console.log("Creating the knockedOutBodyManager...");
 
 	// experimenting with data-oriented style just for fun - no objects! =)
 	// these are "ring buffers" that never grow in size after hitting max
@@ -39,7 +39,7 @@ function knockedOutBodyManager() {
 	// called by processDefeatedEntities()
 	this.add = function (enemy, thisSprite = basicEnemyKick) {
 
-		if (DEBUG_BODIES) console.log("New knocked out body " + max);
+		//if (DEBUG_BODIES) console.log("New knocked out body " + max);
 
 		img[max] = thisSprite;
 		img[max].isPlayer = (enemy === player);
@@ -71,7 +71,7 @@ function knockedOutBodyManager() {
 				for (let i = 0; i < enemies.length; i++) {
 					var dist = enemies[i].distanceFrom(xpos[num],ypos[num]);
 					if (dist <= DOMINO_RANGE) {
-						if (DEBUG_BODIES) console.log('domino distance: ' + dist.toFixed(1));
+						//if (DEBUG_BODIES) console.log('domino distance: ' + dist.toFixed(1));
 						if (enemies[i].getBumped) enemies[i].getBumped({type:ENTITY_TYPE.Enemy},xspd[num],yspd[num]);
 					}
 				}                    

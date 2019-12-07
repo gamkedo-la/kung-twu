@@ -8,13 +8,12 @@ function fontSystem(jpFont, charSize, context) {
 	let letters = [];
 	let lettersStartPos = [];
 	
-	this.getString = function(text,position, alignment, drawwidth){
+	this.getString = function(text,position, alignment){
 		for(let i = 0; i < text.length; i++) {
 			let letter = text.charAt(i);
-			let letterPos = alignment(i, position, align, text.length);
+			let letterPos = alignment(i, position, alignment, text.length);
 			letters.push(letter, charSize, {x:position.x, y:position.y}, context);
 			lettersStartPos.push(letterPos);
-			console.log(letters);
 		}
 	};
 

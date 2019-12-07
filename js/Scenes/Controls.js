@@ -231,9 +231,9 @@ this.transitionIn = function() {
 		}
 		if(mouseX > remapLeftX && mouseX < remapLeftX + remapButtonWidth && 
 			mouseY > remapTopY && mouseY < remapTopY + remapButtonHeight * remapButtonCount){
-			console.log("clicked on remap");
+			//console.log("clicked on remap");
 			remapKeyNext = Math.floor((mouseY - remapTopY) / remapButtonHeight);
-			console.log(remapKeyNext);
+			//console.log(remapKeyNext);
 		}
 	};
 
@@ -255,7 +255,7 @@ this.transitionIn = function() {
 
 	const buildRemapButton = function(x, y, height, padding) {
 		const thisClick = function() {
-			console.log("click remap button");
+			//console.log("click remap button");
 		};
 
 		return new UIButton(STRINGS_KEY.Back, x, y, height, padding, thisClick, Color.Purple);

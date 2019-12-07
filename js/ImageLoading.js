@@ -879,36 +879,3 @@ function initializeBossBlack() {
 	initializeCanvasFromAtlas(blackBossKnockback, blackBossKnockbackData, bossAtlas);
 	initializeCanvasFromAtlas(blackBossBlock, blackBossBlockData, bossAtlas);
 }
-
-/*function makeRedImage(image, redImage) {
-	redImage.width = image.width;
-	redImage.height = image.height;
-
-	if(image.getContext != undefined) {
-		const normalContext = image.getContext("2d");
-		const redContext = redImage.getContext("2d");
-		try {
-			const imageData = normalContext.getImageData(0, 0, redImage.width, redImage.height);
-			const data = imageData.data;
-			for(let i = 0; i < data.length; i += 4) {
-				data[i] += 75;
-				if(data[i] > 255) {
-					data[i] = 255;
-				}
-				data[i + 1] -= 50;
-				if(data[i + 1] < 0) {
-					data[i + 1] = 0;
-				}
-				data[i + 2] -= 50;
-				if(data[i + 2] < 0) {
-					data[i + 2] = 0;
-				}
-			}
-
-			redContext.putImageData(imageData, 0, 0);
-		} catch(error) {
-			console.log("Need to run on a server");
-			return;
-		}
-	}
-}*/
