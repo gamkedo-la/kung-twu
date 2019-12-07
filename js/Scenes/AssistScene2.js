@@ -44,10 +44,10 @@ function AssistScene2() {
 		if(buttons.length === 0) {
 			buildSliderButtons();
 			buttons.push(buildBackButton(buttonPadding, menuY, buttonHeight, buttonTitlePadding));
-			buttons.push(buildPlayButton(canvas.width - buttonPadding, menuY, buttonHeight, buttonTitlePadding));
 			const titleWidth = getDefaultButtonWidth();
 			const defaultY = getDefaultButtonY(menuY);
 			buttons.push(buildRestoreDefaultButton((canvas.width - titleWidth) / 2, defaultY, buttonHeight, buttonTitlePadding));
+			buttons.push(buildPlayButton(canvas.width - buttonPadding, menuY, buttonHeight, buttonTitlePadding));
 		
 			// support mouse hovers that move the selector
 			for (var num=0; num<buttons.length; num++) {
@@ -276,9 +276,20 @@ function AssistScene2() {
 			if(newNavAction != null) {
 				switch(newNavAction) {
 				case NAV_ACTION.UP:
-					selectorPositionsIndex--;
-					if (selectorPositionsIndex < 0) {
-						selectorPositionsIndex += buttons.length;
+					if(selectorPositionsIndex === 0) {
+						selectorPositionsIndex = buttons.length - 1;
+					} else if(selectorPositionsIndex === 5) {
+						selectorPositionsIndex = 14;
+					} else if(selectorPositionsIndex === 9) {
+						selectorPositionsIndex = 15;
+					} else if(selectorPositionsIndex === buttons.length - 1) {
+						selectorPositionsIndex = 13;
+					} else if(selectorPositionsIndex === 15) {
+						selectorPositionsIndex = 8;
+					} else if(selectorPositionsIndex === 14) {
+						selectorPositionsIndex = 4;
+					} else {
+						selectorPositionsIndex--;
 					}
 					updateSelectorPosition();
 					sound.playSFX(Sounds.SFX_MenuNav);
@@ -286,24 +297,32 @@ function AssistScene2() {
 				case NAV_ACTION.LEFT:
 					if(selectorPositionsIndex === 0) {
 						selectorPositionsIndex = buttons.length - 1;
-					} else if(selectorPositionsIndex < 4) {
+					} else if(selectorPositionsIndex <= 4) {
 						selectorPositionsIndex += 8;
-					} else if(selectorPositionsIndex === 4) {
-						selectorPositionsIndex = 12;
 					}  else if(selectorPositionsIndex < 9) {
 						selectorPositionsIndex -= 5;
+					} else if(selectorPositionsIndex === 9) {
+						selectorPositionsIndex -= 4;
 					} else if(selectorPositionsIndex < 13) {
 						selectorPositionsIndex -= 4;
-					} else if(selectorPositionsIndex <= 14) {
+					} else if(selectorPositionsIndex === 13) {
+						selectorPositionsIndex -= 9;
+					} else if(selectorPositionsIndex < buttons.length) {
 						selectorPositionsIndex--;
 					}
 					updateSelectorPosition();
 					break;
 				case NAV_ACTION.DOWN:
-					if((selectorPositionsIndex === 4) || (selectorPositionsIndex === 8)) {
-						selectorPositionsIndex = 13;
+					if(selectorPositionsIndex === 4) {
+						selectorPositionsIndex = 14;
+					} else if(selectorPositionsIndex === 8) {
+						selectorPositionsIndex = 15;
 					} else if(selectorPositionsIndex === 12) {
 						selectorPositionsIndex = buttons.length - 1;
+					} else if(selectorPositionsIndex === 14) {
+						selectorPositionsIndex = 5;
+					} else if(selectorPositionsIndex === 15) {
+						selectorPositionsIndex = 9;
 					} else {
 						selectorPositionsIndex++;
 						if (selectorPositionsIndex >= buttons.length) {
@@ -316,13 +335,13 @@ function AssistScene2() {
 				case NAV_ACTION.RIGHT:
 					if(selectorPositionsIndex < 4) {
 						selectorPositionsIndex += 5;
-					} else if(selectorPositionsIndex < 5) {
-						selectorPositionsIndex = buttons.length - 2;
+					} else if(selectorPositionsIndex === 4) {
+						selectorPositionsIndex = 13;
 					} else if(selectorPositionsIndex < 9) {
 						selectorPositionsIndex += 4;
 					} else if(selectorPositionsIndex < 13) {
 						selectorPositionsIndex -= 8;
-					} else if(selectorPositionsIndex === buttons.length - 2) {
+					}  else if(selectorPositionsIndex <= buttons.length - 2) {
 						selectorPositionsIndex++;
 					} else if(selectorPositionsIndex === buttons.length - 1) {
 						selectorPositionsIndex = 0;
