@@ -158,10 +158,12 @@ function GameScene() {
 
 		camera = new Camera();
 
-		// Don't reset score if player completed a level
-		if(currentLevel <= levelData.level) {
-			score = 0;
-		}
+        if (levelData) { // avoid bug when losing focus (pause menu) before playing
+            // Don't reset score if player completed a level
+	    	if(currentLevel <= levelData.level) {
+		    	score = 0;
+            }
+        }
 
 		enemies = [];
 		displayPoints.length = 0;

@@ -38,7 +38,9 @@ function TitleScene() {
 				playerBelt = ASSIST_DEFAULT.StartBelt;
 				localStorageHelper.setInt(localStorageKey.StartingBelt, playerBelt);
 			}
-			player.setNewBelt(playerBelt);
+            if (player) { // avoid bug when game loses focus, gets pause menu, before game has started
+                player.setNewBelt(playerBelt);
+            }
 		}
 
 		if(waterfall === null) {
