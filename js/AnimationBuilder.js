@@ -923,7 +923,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerJumpWhite.width / 7,
 			height:playerJumpWhite.height,
-			frameTimes:[16, 125, 200, 150, 150, 250, 16],
+			frameTimes:[16, 225, 200, 150, 150, 250, 16],
 			reverses:false,
 			loops:false
 		},
@@ -1058,7 +1058,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerJumpYellow.width / 7,
 			height:playerJumpYellow.height,
-			frameTimes:[16, 125, 200, 150, 150, 250, 16],
+			frameTimes:[16, 225, 200, 150, 150, 250, 16],
 			reverses:false,
 			loops:false
 		},
@@ -1193,7 +1193,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerJumpTan.width / 7,
 			height:playerJumpTan.height,
-			frameTimes:[16, 125, 200, 150, 150, 250, 16],
+			frameTimes:[16, 225, 200, 150, 150, 250, 16],
 			reverses:false,
 			loops:false
 		},
@@ -1328,7 +1328,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerJumpBrown.width / 7,
 			height:playerJumpBrown.height,
-			frameTimes:[16, 125, 200, 150, 150, 250, 16],
+			frameTimes:[16, 225, 200, 150, 150, 250, 16],
 			reverses:false,
 			loops:false
 		},
@@ -1462,7 +1462,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerJumpRed.width / 7,
 			height:playerJumpRed.height,
-			frameTimes:[16, 125, 200, 150, 150, 250, 16],
+			frameTimes:[16, 225, 200, 150, 150, 250, 16],
 			reverses:false,
 			loops:false
 		},
@@ -1597,7 +1597,7 @@ function AnimationBuilder() {
 			frames:[0, 1, 2, 3, 4, 5, 6],
 			width:playerJumpBlack.width / 7,
 			height:playerJumpBlack.height,
-			frameTimes:[16, 125, 200, 150, 150, 250, 16],
+			frameTimes:[16, 225, 200, 150, 150, 250, 16],
 			reverses:false,
 			loops:false
 		},

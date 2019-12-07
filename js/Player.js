@@ -329,6 +329,11 @@ function Player(config) {
 				stateManager.isFalling();
 			}
 		}
+
+		if((position.y >= floorHeight - animHeight) && (!stateManager.getIsOnGround())) {
+			respondToLanding();
+			console.log("Landing in a special case");
+		}
 	};
 
 	const whooshForState = function(state) {
@@ -357,13 +362,16 @@ function Player(config) {
 	const respondToLanding = function() {
 		velocity.y = 0;
 		if (!stateManager.getIsOnGround()) {
-			if((stateManager.getCurrentState() === STATE.Jump) && 
-			(stateManager.getCurrentAnimationFrame() > 2)) {
-				stateManager.didLand();
-				wooshFX.triggerLanding(position.x,position.y);
+			if(stateManager.getCurrentState() === STATE.Jump) { 
+				if(stateManager.getCurrentAnimationFrame() > 2) {
+					stateManager.didLand();
+					wooshFX.triggerLanding(position.x,position.y);
+				}
 			} else if(stateManager.getCurrentState() === STATE.J_Kick) {
 				stateManager.didLand();
 				wooshFX.triggerLanding(position.x,position.y);
+			} else {
+				stateManager.didLand();
 			}
 		}
 	};
@@ -623,6 +631,7 @@ function Player(config) {
 		if(!stateManager.getIsOnGround()) {
 			//land on top of the other object
 			position.y -= (myEdges.highY - otherEdges.lowY);
+			console.log(`reset player position`);
 			if(velocity.y >= 0) {
 				respondToLanding();
 			}
