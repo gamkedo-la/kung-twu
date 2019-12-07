@@ -410,7 +410,7 @@ const userStrings = {
 		[STRINGS_KEY.Credits]:"[C] Crédits",
 		[STRINGS_KEY.Settings]:"[S] Options",
 		[STRINGS_KEY.Play]:"[ESPACE] Jouer",
-		[STRINGS_KEY.GameVolume]:"Volume de jeu",
+		[STRINGS_KEY.GameVolume]:"Volume principal",
 		[STRINGS_KEY.MusicVolume]:"Volume de la musique",
 		[STRINGS_KEY.SFXVolume]:"Volume des effets sonores",
 		[STRINGS_KEY.Loading]:"CHARGEMENT...",
