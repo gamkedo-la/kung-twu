@@ -65,7 +65,7 @@ let animationManager = null;
 const deadZoneHalfWidth = 25;
 
 //---------------Persistence-----------//
-const version = 0.27;
+const version = 1.0;
 /** @type LocalStorageHelper */
 let localStorageHelper;
 /** Contains keys of data to store in the browser's local storage */
@@ -197,7 +197,7 @@ const ASSIST_DEFAULT = {
 	InvincibleDuration:1000,
 	KnockbackSpeed:800,
 	EnemiesPerLevel:10,
-	LevelTime:600,
+	LevelTime:100,
 	GangCount:1,
 	GameSpeed:5
 };

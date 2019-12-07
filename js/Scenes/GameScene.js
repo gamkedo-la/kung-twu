@@ -124,7 +124,6 @@ function GameScene() {
 				activeRivals = ASSIST_DEFAULT.GangCount;
 				localStorageHelper.setInt(localStorageKey.GangCount, activeRivals);
 			}
-			// FIXME: should we player.reset() here so it moves to levelData.playerstart x/y?
 		}
 
 		if (sound.getCurrentBGMKey() !== Sounds.BGM_GamePlay) {
@@ -158,12 +157,12 @@ function GameScene() {
 
 		camera = new Camera();
 
-        if (levelData) { // avoid bug when losing focus (pause menu) before playing
-            // Don't reset score if player completed a level
-	    	if(currentLevel <= levelData.level) {
-		    	score = 0;
-            }
-        }
+		if (levelData) { // avoid bug when losing focus (pause menu) before playing
+			// Don't reset score if player completed a level
+			if(currentLevel <= levelData.level) {
+				score = 0;
+			}
+		}
 
 		enemies = [];
 		displayPoints.length = 0;
@@ -405,8 +404,6 @@ function GameScene() {
 	const spawnNewEnemies = function(cameraXPos) {
 		if (enemies.length >= levelData.maxEnemies) return;
 
-		//		if(enemies.length >= 1) return;//TODO: Remove after testing
-
 		const timeSince = timer.timeSinceUpdateForEvent(EVENT.EnemySpawn);
 		if (timeSince > timeTilSpawn) {
 			timer.updateEvent(EVENT.EnemySpawn);
@@ -447,9 +444,9 @@ function GameScene() {
 				}
 
 				// spawn a "knocked out body" that falls to the floor and then fades out
-//				if(defeatedEntity.getAIType() !== AITYPE.Boss) {
-					if (knockedOutBodies) knockedOutBodies.add(anEnemy, anEnemy.getCurrentAnimation().image);
-//				}
+				//				if(defeatedEntity.getAIType() !== AITYPE.Boss) {
+				if (knockedOutBodies) knockedOutBodies.add(anEnemy, anEnemy.getCurrentAnimation().image);
+				//				}
 			}
 		}
 	};
@@ -721,7 +718,7 @@ function GameScene() {
 	
 		gameTimer.onWarningCount.subscribe(() => {
 			// Play some kind of beep here!
-			sound.playSFX(Sounds.SFX_ResumeLow); // TODO: Pick something else
+			sound.playSFX(Sounds.SFX_ResumeLow);
 		});
 	};
 
@@ -739,7 +736,7 @@ function GameScene() {
 		subfloor = new InfiniteSubFloor(subfloorColumnImage);
 		subfloor.initializeForLevel(currentLevel);
 		const colPos = 100 + camera.getPosition().x + (2 * canvas.width) / 3;
-		subfloor.positionFirstColumn(colPos + COLUMN_OFFSET); // FIXME no effect?
+		subfloor.positionFirstColumn(colPos + COLUMN_OFFSET);
 
 		floor = new InfiniteSurface(FLOOR_CONFIG, verticalOffset);
 		floorMidHeight = floor.getMidHeight();
@@ -768,16 +765,7 @@ function GameScene() {
 			}
 
 			const config = {
-                
-				// FIXME should this respect levelData.playerStart here? 
-				// is that data even populated at this point? (NO)
-				// it does use levelData.playerStart during player.reset()
-				// level data has not loaded yet:
-				// x:levelData.playerStart.x, 
-				// y:levelData.playerStart.y,
-
-				// because the above doesn't work, let's just nudge
-				x: (2 * canvas.width) / 3 + FIRST_PLAYERSTART_OFFSET, // FIXME no effect because columns follow the player
+				x: (2 * canvas.width) / 3 + FIRST_PLAYERSTART_OFFSET,
 				y: (3 * canvas.height) / 5,
 				health:health
 			};
@@ -1104,7 +1092,7 @@ const Level1Data = {
 		return (1250 + rnd1 + rnd2);
 	},
 	scrollsLeft: true,
-	allowedTime: 30,
+	allowedTime: 120,
 	wallScroll:wallScrollTiger,
 	wallArt:wallArtTiger,
 	painting:painting,
@@ -1335,7 +1323,7 @@ const Level3Data = {
 const Level4Data = {
 	level: 4,
 	maxEnemies: 5,
-	totalEnemies:1,//8, TODO: Restore this after testing boss spin kick
+	totalEnemies: 8,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1175 * Math.random());
 		const rnd2 = Math.ceil(1175 * Math.random());
@@ -1377,7 +1365,7 @@ const Level4Data = {
 const Level5Data = {
 	level: 5,
 	maxEnemies: 6,
-	totalEnemies:16,
+	totalEnemies:10,
 	spawnRate: function() {
 		const rnd1 = Math.ceil(1150 * Math.random());
 		const rnd2 = Math.ceil(1150 * Math.random());

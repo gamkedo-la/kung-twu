@@ -42,7 +42,7 @@ function PowerUpScene() {
 	};
 
 	this.run = function(deltaTime) {
-		update(deltaTime);
+		update();
 
 		draw();
 	};
@@ -119,7 +119,7 @@ function PowerUpScene() {
 	};
 
 	const updateButtonPositions = function() {
-		for(button of buttons) {
+		for(let button of buttons) {
 			button.updateXPosition(canvas.width / 2);
 		}
 

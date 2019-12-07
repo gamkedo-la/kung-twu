@@ -12,18 +12,9 @@ function SettingsScene() {
 	const buttonTitlePadding = 2;
 	let buttonPadding;
 	const buttons = [];
-	const slider = {};
 	let sliderData = null;
-	let sliderArray = null;
 
 	const TITLE_Y_POS = 100;
-	const TITLE_SCALE = 1;
-	const HEADER_SCALE = 0.7;
-
-	const SLIDER_W = 400;
-
-	const COL_DELTA = 63;
-	const COL1_X = 60;
 
 	const ROW_DELTA = 100;
 	const ROW1_Y = TITLE_Y_POS + ROW_DELTA;
@@ -298,11 +289,5 @@ function SettingsScene() {
 				colors:[Color.Red, Color.Yellow, Color.Green, Color.Yellow, Color.Red]
 			}
 		};
-
-		sliderArray = [
-			sliderData.GameVolume,
-			sliderData.MusicVolume,
-			sliderData.SFXVolume,
-		];
 	};
 }

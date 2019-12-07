@@ -1,32 +1,33 @@
 var creditsList = [
-"You can use arrow keys or mouse drag to manually scroll credits.",
-"H Trayford: project lead, core gameplay (main movement, attacking, collision hitboxes, enemies, level structure), enemy AI, localization support, floor/roof parallax effect, foreground fade, assorted integration, game over and belt award screens, menu key support, gamepad support, assist mode options, prop collision, sprite atlas creation, tuning and bug fixes",
-"Marc Silva: Main player animations (idle, punch, kick, falling, walk, blocking, crouch, crouch block, sweep kick), gameplay feedback",
-"Jeff \"Axphin\" Hanlon: title screen background art, boss sprites (most - adapted from player sprites), menu yin yang cursor, roof tiles, combat sound effects, title bird art, columns, floor boards effect, wall shadow effect, plain wall, zen ink logo rasterization, image loading improvement, level wall scrolls (x5), UI section border, boss animation timing tweaks, knockback sprites, atlas boss states, gameplay feedback",
-"Vaan Hope Khani: Japanese letter support, controls remapping functionality, initial menu support, healthbar, sound effects (bone, low pain, steps, menu navigation, low health, 1up, swish), UI background, font system, art (lamp, table, statue, tapestry, carpet, tree, rock, bamboo, background spears, building, painting, broken vase), addl. Japanese localization, gameplay feedback",
-"Christer \"McFunkypants\" Kaitila: whoosh air particles and related visual effects, decoration prop art system, keyboard control improvements, help screen, initial French localization, text drop shadow, sound debug toggle, knockouted out body collision and fade, dash blur, dust and smoke particles, knockout stars, hourglass for GUI, zen ink logo, performance optimizations, foosteps visuals, flash from damage, delay after player death, timing experimentation, gameplay feedback",
-"Aaron Ishibashi: event-based input handler and related UI scripting, music fade transition support, advanced timers implementation, improved debug output, addl. extensive sound engine code",
-"Jaime Rivas: composed boss music",
-"Alan Zaring: composed main gameplay music",
-"Jeremiah Franczyk: spritesheets by belt color for player knockback, jump, and helicopter kick",
-"Michelly Oliveira: mute toggle, all health meters, score reset bug fixes",
-"Stebs: boss spin kick implementation, enemy woosh dashes, localization tweaks",
-"Evan Lindsay: camera movement, gamepad movement, gitignore addition",
-"Tyler Funk: Idle animation hookup, addl. Japanese localization",
-"Simon J Hoffiz: Spanish localization, slide during crouch, credits scroll and related browser interactions",
-"Kornel: Polish localization, extensive gameplay feedback",
-"Klaim (A. Joël Lamotte): French localization",
-"Valentin Lemière: Additional French localization",
-"Brian J. Boucher: waterfall painting (based on in-game animation), player sweep attack bug fix",
-"Andy King: vase image, waterfall animation",
-"Oleksandr Dubrovskyi: Russian localization (initial), canvas CSS fixes",
-"Stephanie Patterson: player kick sound effects integration",
-"Eugene Meidinger: background music integration",
-"Bilal A. Cheema: gamplay feedback",
-"Randy Tan Shaoxian: Linux case sensitivity fix",
-" ",
-"Game made in HomeTeam GameDev, join us at",
-"HomeTeamGameDev.com"
+	"You can use arrow keys or mouse drag to manually scroll credits.",
+	"H Trayford: project lead, core gameplay (main movement, attacking, collision hitboxes, enemies, level structure), enemy AI, localization support, floor/roof parallax effect, foreground fade, assorted integration, game over and belt award screens, menu key support, gamepad support, assist mode options, prop collision, sprite atlas creation, tuning and bug fixes",
+	"Marc Silva: Main player animations (idle, punch, kick, falling, walk, blocking, crouch, crouch block, sweep kick), gameplay feedback",
+	"Jeff \"Axphin\" Hanlon: title screen background art, boss sprites (most - adapted from player sprites), menu yin yang cursor, roof tiles, combat sound effects, title bird art, columns, floor boards effect, wall shadow effect, plain wall, zen ink logo rasterization, image loading improvement, level wall scrolls (x5), UI section border, boss animation timing tweaks, knockback sprites, atlas boss states, gameplay feedback",
+	"Vaan Hope Khani: Japanese letter support, controls remapping functionality, initial menu support, healthbar, sound effects (bone, low pain, steps, menu navigation, low health, 1up, swish), UI background, font system, art (lamp, table, statue, tapestry, carpet, tree, rock, bamboo, background spears, building, painting, broken vase), addl. Japanese localization, gameplay feedback",
+	"Christer \"McFunkypants\" Kaitila: whoosh air particles and related visual effects, decoration prop art system, keyboard control improvements, help screen, initial French localization, text drop shadow, sound debug toggle, knockouted out body collision and fade, dash blur, dust and smoke particles, knockout stars, hourglass for GUI, zen ink logo, performance optimizations, foosteps visuals, flash from damage, delay after player death, timing experimentation, gameplay feedback",
+	"Aaron Ishibashi: event-based input handler and related UI scripting, music fade transition support, advanced timers implementation, improved debug output, addl. extensive sound engine code",
+	"Jaime Rivas: composed boss music",
+	"Alan Zaring: composed main gameplay music",
+	"Jeremiah Franczyk: spritesheets by belt color for player knockback, jump, and helicopter kick",
+	"Michelly Oliveira: mute toggle, all health meters, score reset bug fixes",
+	"Stebs: boss spin kick implementation, enemy woosh dashes, localization tweaks",
+	"Evan Lindsay: camera movement, gamepad movement, gitignore addition",
+	"Tyler Funk: Idle animation hookup, addl. Japanese localization",
+	"Simon J Hoffiz: Spanish localization, slide during crouch, credits scroll and related browser interactions",
+	"Kornel: Polish localization, extensive gameplay feedback",
+	"Klaim (A. Joël Lamotte): French localization",
+	"Valentin Lemière: Additional French localization",
+	"Brian J. Boucher: waterfall painting (based on in-game animation), player sweep attack bug fix",
+	"Andy King: vase image, waterfall animation",
+	"Oleksandr Dubrovskyi: Russian localization (initial), canvas CSS fixes",
+	"Stephanie Patterson: player kick sound effects integration",
+	"Eugene Meidinger: background music integration",
+	"Bilal A. Cheema: gamplay feedback",
+	"Randy Tan Shaoxian: Linux case sensitivity fix",
+	"Chris DeLeon: Credits compilation, game development consultation, general awesomeness",
+	" ",
+	"Game made in HomeTeam GameDev, join us at",
+	"HomeTeamGameDev.com"
 ];
 
 function lineWrapCredits() { // note: gets calling immediately after definition!
@@ -384,7 +385,6 @@ function CreditsScene() {
 
 	function creditsRestart() {
 		creditRun = true;
-//		mouseToDrag = false;
 	}
 
 	function noCreditMouseDrag() {

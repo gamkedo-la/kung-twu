@@ -72,7 +72,7 @@ function LevelIntroScene() {
 	};
 
 	this.run = function(deltaTime) {
-		update(deltaTime);
+		update();
 
 		draw();
 	};
