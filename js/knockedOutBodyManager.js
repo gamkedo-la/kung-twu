@@ -107,7 +107,7 @@ function knockedOutBodyManager() {
 
 				canvasContext.rotate((xspd[num]>0?-1:1)*rotspd[num]*age[num]);
 				if (FADE_OUT) canvasContext.globalAlpha = 1-(age[num]/MAX_AGE);
-				canvasContext.drawImage(img[num],SPRX,0,SPRW,SPRH,-SPRW/2,-SPRH/2,SPRW * scale[num],SPRH * scale[num]);
+				canvasContext.drawImage(img[num],SPRX,0,SPRW - 2,SPRH,-SPRW/2,-SPRH/2,SPRW * scale[num],SPRH * scale[num]);
 				canvasContext.restore();
 
 				// little extra game over juice: if this is the player, spam particles
