@@ -160,7 +160,7 @@ function HitBoxManager(bodyData, attackData) {
 			}
 		case STATE.H_Kick:
 			if(aiType === AITYPE.Player) {
-				return ((frame > 3) || (frame < 8));
+				return (((frame > 3) && (frame < 5)) || ((frame > 5) && (frame < 8)));
 			} else {
 				return (frame > 1);
 			}

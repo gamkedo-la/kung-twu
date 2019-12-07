@@ -330,9 +330,11 @@ function Player(config) {
 			}
 		}
 
-		if((position.y >= floorHeight - animHeight) && (!stateManager.getIsOnGround())) {
+		if((position.y >= floorHeight - animHeight) && 
+		(!stateManager.getIsOnGround())
+		// && (stateManager.getCurrentState() != STATE.H_Kick)
+		) {
 			respondToLanding();
-			console.log("Landing in a special case");
 		}
 	};
 
@@ -345,16 +347,13 @@ function Player(config) {
 			wooshFX.triggerSweep(position,stateManager.getIsFacingLeft(),wooshKickPic);
 			break;
 		case STATE.H_Kick:
-			wooshFX.triggerHKick(position,stateManager.getIsFacingLeft());
+			wooshFX.triggerSpinKick(position,stateManager.getIsFacingLeft());
 			break;
 		case STATE.Punch:
 			wooshFX.triggerPunch(position,stateManager.getIsFacingLeft());
 			break;
 		case STATE.Kick:
 			wooshFX.triggerKick(position,stateManager.getIsFacingLeft());
-			break;
-		case STATE.SpinKick: // dual woosh woo hoo
-			wooshFX.triggerSpinKick(position,stateManager.getIsFacingLeft());
 			break;
 		}
 	};
@@ -370,7 +369,7 @@ function Player(config) {
 			} else if(stateManager.getCurrentState() === STATE.J_Kick) {
 				stateManager.didLand();
 				wooshFX.triggerLanding(position.x,position.y);
-			} else {
+			} else if(stateManager.getCurrentState() != STATE.H_Kick) {
 				stateManager.didLand();
 			}
 		}
@@ -430,9 +429,6 @@ function Player(config) {
 			}	
 		} else {
 			velocity.x = 0;
-		}
-
-		if (stateManager.getIsNewState()) {
 		}
 	};
 
@@ -497,9 +493,7 @@ function Player(config) {
 	};
 
 	const h_kick = function() {
-		console.log("Helicopter Kicking");
-		if (stateManager.getIsNewState()) {
-		}
+		return;
 	};
 
 	const sweep = function() {
@@ -510,7 +504,7 @@ function Player(config) {
 	};
 
 	this.draw = function() {
- 		if((isInvincible) && (invincibleTime % 200 < 50)) {
+		if((isInvincible) && (invincibleTime % 200 < 50)) {
 			//do nothing for now
 		} else{
 			let red = false;
@@ -631,7 +625,6 @@ function Player(config) {
 		if(!stateManager.getIsOnGround()) {
 			//land on top of the other object
 			position.y -= (myEdges.highY - otherEdges.lowY);
-			console.log(`reset player position`);
 			if(velocity.y >= 0) {
 				respondToLanding();
 			}

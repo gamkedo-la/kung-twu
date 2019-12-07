@@ -13,7 +13,7 @@ function WooshFXManager(wooshImage) {
 
 	var wooshPool = [];
 
-	if (DEBUG_WOOSHES) console.log("Creating the WooshFXManager...");
+	//if (DEBUG_WOOSHES) console.log("Creating the WooshFXManager...");
 
 	this.puff = function (x,y,img) {
 		var num = irandomRange(MIN_PUFFS,MAX_PUFFS);
@@ -47,7 +47,7 @@ function WooshFXManager(wooshImage) {
 		}
 	};
     
-    this.tinyPuff = function (x,y,img) {
+	this.tinyPuff = function (x,y,img) {
 		var num = irandomRange(1,3);
 		for (var i=0; i<num; i++) {
 			this.trigger(
@@ -59,17 +59,17 @@ function WooshFXManager(wooshImage) {
 				randomRange(-4,0),
 				-4, // gravity
 				0.7, // friction
-                50, // frame lifespan
-                0.333 // maxalpha
-                ); 
+				50, // frame lifespan
+				0.333 // maxalpha
+			); 
 		}
-    };
+	};
     
-    this.subtleFootstep = function (x,y) {
+	this.subtleFootstep = function (x,y) {
 		this.tinyPuff(x+40,y+132,dustSprite);
 	};
     
-    this.triggerLanding = function (x,y) {
+	this.triggerLanding = function (x,y) {
 		this.smallPuff(x+40,y+132,smokeSprite);
 	};
 
@@ -92,7 +92,6 @@ function WooshFXManager(wooshImage) {
 			this.trigger(pos.x+40,pos.y+64,0,wooshKickPic2);
 	};
 	this.triggerSweep = function (pos,left) {
-		//TODO: Fix me, this is a copy of this.triggerJKick added to prevent errors
 		if (left)
 			this.trigger(pos.x+30,pos.y+94,0,wooshKickPic);
 		else
@@ -144,11 +143,11 @@ function WooshFXManager(wooshImage) {
 			this.trigger(pos.x+30,pos.y+64,0,wooshDashEnemyLPic);
 		else
 			this.trigger(pos.x+40,pos.y+64,0,wooshDashEnemyPic);
-    };
+	};
     
 	this.triggerSpinKick = function (pos,left) { // dual woosh!
-        this.trigger(pos.x+30,pos.y+94,0,wooshKickPic);
-        this.trigger(pos.x+40,pos.y+84,0,wooshKickPic2);
+		this.trigger(pos.x-30,pos.y,0,wooshKickPic);
+		this.trigger(pos.x+40,pos.y,0,wooshKickPic2);
 	};
 
 
@@ -159,14 +158,14 @@ function WooshFXManager(wooshImage) {
 		for (var num = 0; num < wooshPool.length; num++) {
 			if (!wooshPool[num].active) {
 				aWoosh = wooshPool[num]; // reuse an old one
-				if (DEBUG_WOOSHES) console.log("Reusing woosh " + num);
+				//if (DEBUG_WOOSHES) console.log("Reusing woosh " + num);
 				break; // found one, don't need to look further
 			}
 		}
 		if (!aWoosh) { // need to create a new one?
 			aWoosh = new Woosh(wooshImage);
 			wooshPool.push(aWoosh); // pool gets bigger
-            if (DEBUG_WOOSHES) console.log("Creating new woosh " + (wooshPool.length-1));
+			//if (DEBUG_WOOSHES) console.log("Creating new woosh " + (wooshPool.length-1));
 		}
 		// make it happen
 		aWoosh.trigger(x, y, r, img, vx, vy, gravity, friction, frames, maxalpha);
@@ -199,12 +198,12 @@ function Woosh(wooshImage) { // a single woosh, reused often
 	this.vx = 0;
 	this.vy = 0;
 	this.friction = 0.9; // slowdown per frame
-    this.gravity = 0;
-    this.maxalpha = MAX_ALPHA;
+	this.gravity = 0;
+	this.maxalpha = MAX_ALPHA;
 
 	// you can change images
 	this.trigger = function (x, y, r, img, vx=0, vy=0, gravity=0, friction=1, frames=WOOSH_FRAMECOUNT, maxalpha=MAX_ALPHA) {
-		if (DEBUG_WOOSHES) console.log("Woosh pos:" + x + "," +  y + " ang:" + r);
+		//if (DEBUG_WOOSHES) console.log("Woosh pos:" + x + "," +  y + " ang:" + r);
 		this.active = true;
 		this.frame = 0;
 		this.frameCount = frames;
@@ -214,8 +213,8 @@ function Woosh(wooshImage) { // a single woosh, reused often
 		this.vx = vx;
 		this.vy = vy;
 		this.grav = gravity;
-        this.friction = friction;
-        this.maxalpha = maxalpha;
+		this.friction = friction;
+		this.maxalpha = maxalpha;
 		if (img) this.img = img; // switching allowed
 	};
     
