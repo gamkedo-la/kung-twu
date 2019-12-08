@@ -77,6 +77,7 @@ const backWallAtlas = document.createElement("img");
 const upgradeAtlas = document.createElement("img");
 
 const waterfallPainting = document.createElement("img");
+const templePainting = document.createElement("img");
 
 const basicEnemyIdle = document.createElement("canvas");
 const basicEnemyWalk = document.createElement("canvas");
@@ -626,6 +627,7 @@ function loadImages() {
 		{ imgName: decorationSpritesheet, theFile: "decorations.png"},
 		{ imgName: blueVaseStrip, theFile: "BrokenBlueVaseStrip.png"},
 		{ imgName: waterfallPainting, theFile: "waterfall_painting.png"},
+		{ imgName: templePainting, theFile: "temple_painting.png"},
 
 		// UI
 		{ imgName: jpFontImg, theFile: "JPFont_Light.png"},
