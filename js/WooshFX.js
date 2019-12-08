@@ -31,7 +31,17 @@ function WooshFXManager(wooshImage) {
 		}
 	};
     
-	this.smallPuff = function (x,y,img,xspeed=0,yspeed=0) {
+	this.smallPuff = function (x,y,img,xspeed=0,yspeed=0, lifespan = 30) {
+		let speedX = xspeed;
+		let speedY = yspeed;
+		if((speedX === 0) || (speedX = undefined)) {
+			speedX = randomRange(-6,6);
+		}
+
+		if((speedY === 0) || (speedY = undefined)) {
+			speedY = randomRange(-6,6);
+		}
+
 		var num = irandomRange(MIN_PUFFS,MAX_PUFFS);
 		for (var i=0; i<num; i++) {
 			this.trigger(
@@ -39,11 +49,11 @@ function WooshFXManager(wooshImage) {
 				y + irandomRange(-2,2),
 				Math.random()*360*DEG_TO_RAD, // rot
 				img,
-				randomRange(-6,6),
-				randomRange(-4,0),
+				speedX,
+				speedY,
 				-2, // gravity
 				0.8, // friction
-				30); // frame lifespan
+				lifespan); // frame lifespan
 		}
 	};
     
