@@ -902,11 +902,6 @@ function GameScene() {
 		//Position the new enemy at one side of the screen or the other
 		//depending on whether the level scrolls left or right
 		let xPos = cameraXPos - (1.5 * canvas.width) / 2;
-		/*if (levelData.scrollsLeft) {
-			xPos = cameraXPos - (1.5 * canvas.width) / 2;
-		} else {
-			xPos = cameraXPos + (1.5 * canvas.width) / 2;
-		}*/
 
 		//If player is at one edge of the level, spawn enemy from
 		//other side so enemy doesn't pop into existence on screen
@@ -1179,7 +1174,7 @@ const Level2Data = {
 	allowedTime: 100,
 	wallScroll:wallScrollCrane,
 	wallArt:wallArtCrane,
-	painting:painting,
+	painting:templePainting,
 	roofTiles:roofboardSheetWhite,
 	enemyBelt: BELT.Yellow,
 	bossBelt: BELT.Tan,
@@ -1333,7 +1328,7 @@ const Level4Data = {
 	allowedTime: 60,
 	wallScroll:wallScrollLeopard,
 	wallArt:wallArtLeopard,
-	painting:waterfallPainting,
+	painting:painting,
 	roofTiles:roofboardSheetBlue,
 	enemyBelt: BELT.Brown,
 	bossBelt: BELT.Red,
@@ -1375,7 +1370,7 @@ const Level5Data = {
 	allowedTime: 40,
 	wallScroll:wallScrollDragon,
 	wallArt:wallArtDragon,
-	painting:waterfallPainting,
+	painting:templePainting,
 	roofTiles:roofboardSheetRed,
 	enemyBelt: BELT.Red,
 	bossBelt: BELT.Black,
