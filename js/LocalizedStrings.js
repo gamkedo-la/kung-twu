@@ -395,8 +395,8 @@ const userStrings = {
 		[STRINGS_KEY.Player]:"キャラクター",
 
 		[STRINGS_KEY.GameSpeed]:"Game Speed",
-		[STRINGS_KEY.Fast]:"Fast",
-		[STRINGS_KEY.Slow]:"Slow"
+		[STRINGS_KEY.Fast]:"はやい",
+		[STRINGS_KEY.Slow]:"おそい"
 	},
 
 	French: {
