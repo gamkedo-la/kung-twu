@@ -297,9 +297,9 @@ const userStrings = {
 		[STRINGS_KEY.Default]:"Restaurar\nEstado Original",
 		[STRINGS_KEY.Player]:"Jugador",
 
-		[STRINGS_KEY.GameSpeed]:"Game Speed",
-		[STRINGS_KEY.Fast]:"Fast",
-		[STRINGS_KEY.Slow]:"Slow"
+		[STRINGS_KEY.GameSpeed]:"Velocidad del juego", // Google-translated
+		[STRINGS_KEY.Fast]:"Rápido", // Google-translated
+		[STRINGS_KEY.Slow]:"Lento" // Google-translated
 	},
 
 	Japanese: {
