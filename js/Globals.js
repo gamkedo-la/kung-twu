@@ -192,7 +192,7 @@ const ASSIST_DEFAULT = {
 	BaseEnemyHealth:20,
 	EnemyBaseStrength:5,
 	BossBaseHealth:100,
-	BossBaseStrength:20,
+	BossBaseStrength:10,
 	PlayerBaseDamage:10,
 	InvincibleDuration:1000,
 	KnockbackSpeed:800,
