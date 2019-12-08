@@ -7,7 +7,7 @@ function BasicEnemy(config) {
 	const FLICKER_LOW_HP = 0.25; // % health
 
 	let BASE_DAMAGE = null;
-	const DELTA_DAMAGE = 5;
+	const DELTA_DAMAGE = 2;
 
 	let scale = 2;
 	let stateManager;
