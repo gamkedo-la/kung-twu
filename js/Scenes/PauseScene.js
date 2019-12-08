@@ -46,8 +46,8 @@ function PauseScene() {
 			titleBlockPosition.y = canvas.height/2;
 
 			buttons.push(buildQuitButton(mainMenuX, mainMenuY + deltaY, buttonHeight, buttonTitlePadding));
-			buttons.push(buildControlsButton(mainMenuX, mainMenuY + 2 * deltaY, buttonHeight, buttonTitlePadding));
-			buttons.push(buildHelpButton(mainMenuX, mainMenuY + 3 * deltaY, buttonHeight, buttonTitlePadding));
+			buttons.push(buildHelpButton(mainMenuX, mainMenuY + 2 * deltaY, buttonHeight, buttonTitlePadding));
+//			buttons.push(buildControlsButton(mainMenuX, mainMenuY + 3 * deltaY, buttonHeight, buttonTitlePadding));
 
 
 			buildBirds();
