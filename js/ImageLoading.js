@@ -610,7 +610,7 @@ function loadImages() {
 	const imageList = [
 		// atlases
 		{ imgName: characterAtlas, theFile: "CharacterAtlas.png" },
-		{ imgName: enemyAtlas, theFile: "EnemyAtlas.png" },
+		{ imgName: enemyAtlas, theFile: "EnemyAtlasBU.png" },
 		{ imgName: bossAtlas, theFile: "BossAtlas.png" },
 		{ imgName: environmentAtlas, theFile: "EnvironmentAtlas.png" },
 		{ imgName: planksAtlas, theFile: "PlanksAtlas.png" },
