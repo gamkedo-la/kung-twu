@@ -27,6 +27,10 @@ function TitleScene() {
 			inputProcessor = new InputProcessor();
 		}
 
+		if(didInteract) {
+			sound.playSFX(Sounds.SFX_Waterfall);
+		}
+
 		let mainMenuX = 0;
 		
 		const mainMenuY = BUTTON_PADDING + (canvas.height / 2);
@@ -82,7 +86,7 @@ function TitleScene() {
 	};
 
 	this.transitionOut = function() {
-
+		sound.stopSound(Sounds.SFX_Waterfall);
 	};
 
 	this.run = function(deltaTime) {
@@ -95,6 +99,7 @@ function TitleScene() {
 		if((!didInteract) && ((newKeyEvent == MouseButton.LEFT) || (newKeyEvent == MouseButton.RIGHT))) {
 			didInteract = true;
 			sound.playBGM(Sounds.BGM_Title);
+			sound.playSFX(Sounds.SFX_Waterfall);
 		}
 
 		if (pressed) {//only act on key released events => prevent multiple changes on single press

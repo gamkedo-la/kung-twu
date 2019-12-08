@@ -28,6 +28,7 @@ const Sounds = {
 	SFX_ResumeLow: "SFX_ResumeLow",
 	SFX_Swish_01: "SFX_Swish_01",
 	SFX_Swish_02: "SFX_Swish_02",
+	SFX_Waterfall: "WaterfallSound",
 	BGM_Boss: "BGM_Boss",
 	BGM_GamePlay: "BGM_GamePlay",
 	BGM_Title: "BGM_Title",
@@ -221,6 +222,15 @@ const soundSpriteConfigs = [
 		isLoop: false,
 		maxInstances: 3,
 		fadeOutTime: 0
+	},
+	{
+		key: Sounds.SFX_Waterfall,
+		filepath: "./audio/WaterfallSound",
+		baseVolume: .65,
+		audioBus: AudioBus.SFX,
+		isLoop: true,
+		maxInstances: 3,
+		fadeOutTime: 1.5
 	},
 	{
 		key: Sounds.BGM_Title,
