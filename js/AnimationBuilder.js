@@ -227,8 +227,8 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:basicEnemySweep,
-			frames:[0],
-			width:basicEnemySweep.width,
+			frames:[0, 1],
+			width:basicEnemySweep.width /2,
 			height:basicEnemySweep.height,
 			frameTimes:[225],
 			reverses:false,
@@ -350,9 +350,9 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:yellowEnemySweep,
-			frames:[0],
-			width:yellowEnemySweep.width,
-			height:yellowEnemySweep.height,
+			frames:[0, 1],
+			width:basicEnemySweep.width /2,
+			height:basicEnemySweep.height,
 			frameTimes:[225],
 			reverses:false,
 			loops:false
@@ -473,10 +473,10 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:tanEnemySweep,
-			frames:[0, 0],
-			width:tanEnemySweep.width,
-			height:tanEnemySweep.height,
-			frameTimes:[36, 225],
+			frames:[0, 1],
+			width:basicEnemySweep.width /2,
+			height:basicEnemySweep.height,
+			frameTimes:[225],
 			reverses:false,
 			loops:false
 		},
@@ -596,10 +596,10 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:brownEnemySweep,
-			frames:[0, 0],
-			width:brownEnemySweep.width,
-			height:brownEnemySweep.height,
-			frameTimes:[36, 225],
+			frames:[0, 1],
+			width:basicEnemySweep.width /2,
+			height:basicEnemySweep.height,
+			frameTimes:[225],
 			reverses:false,
 			loops:false
 		},
@@ -719,10 +719,10 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:redEnemySweep,
-			frames:[0, 0],
-			width:redEnemySweep.width,
-			height:redEnemySweep.height,
-			frameTimes:[36, 225],
+			frames:[0, 1],
+			width:basicEnemySweep.width /2,
+			height:basicEnemySweep.height,
+			frameTimes:[225],
 			reverses:false,
 			loops:false
 		},
@@ -842,10 +842,10 @@ function AnimationBuilder() {
 		sweep:{
 			name:STATE.Sweep,
 			image:basicEnemySweep,
-			frames:[0, 0],
+			frames:[0, 1],
 			width:basicEnemySweep.width,
 			height:basicEnemySweep.height,
-			frameTimes:[36, 225],
+			frameTimes:[225],
 			reverses:false,
 			loops:false
 		},
