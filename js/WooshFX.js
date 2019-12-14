@@ -103,9 +103,9 @@ function WooshFXManager(wooshImage) {
 	};
 	this.triggerSweep = function (pos,left) {
 		if (left)
-			this.trigger(pos.x+30,pos.y+94,0,wooshKickPic);
+			this.trigger(pos.x+30,pos.y+114,0,wooshKickPic);
 		else
-			this.trigger(pos.x+50,pos.y+94,0,wooshKickPic2);
+			this.trigger(pos.x+50,pos.y+114,0,wooshKickPic2);
 	};
 	this.triggerJKick = function (pos,left) {
 		if (left)

@@ -147,6 +147,8 @@ function HitBoxManager(bodyData, attackData) {
 		case STATE.Sweep:
 			if(aiType === AITYPE.Player) {
 				return (frame === 4);
+			} else if(aiType === AITYPE.Standard) {
+				return (frame === 1);
 			} else {
 				return true;
 			}

@@ -12,8 +12,8 @@ const PlayerCollisionBodyData = {
 		right:[{x:4, y:2}, {x:4, y:69}, {x:22, y:69}, {x:22, y:2}]},
 	j_kick:{left:[{x:17, y:3}, {x:17, y:69}, {x:32, y:69}, {x:32, y:3}],
 		right:[{x:4, y:2}, {x:4, y:69}, {x:22, y:69}, {x:22, y:2}]},
-	sweep:{left:[{x:17, y:3}, {x:17, y:69}, {x:32, y:69}, {x:32, y:3}],
-		right:[{x:4, y:2}, {x:4, y:69}, {x:22, y:69}, {x:22, y:2}]},
+	sweep:{left:[{x:17, y:33}, {x:17, y:69}, {x:32, y:69}, {x:32, y:33}],
+		right:[{x:4, y:33}, {x:4, y:69}, {x:22, y:69}, {x:22, y:33}]},
 	h_kick:{left:[{x:0, y:3}, {x:0, y:69}, {x:20, y:69}, {x:20, y:3}],
 		right:[{x:17, y:2}, {x:17, y:69}, {x:37, y:69}, {x:37, y:2}]},
 	punch:{left:[{x:12, y:3}, {x:12, y:69}, {x:22, y:69}, {x:22, y:3}],
@@ -29,8 +29,8 @@ const PlayerCollisionBodyData = {
 const PlayerAttackBodyData = {
 	j_kick:{left:[{x:23, y:29}, {x:23, y:70}, {x:-8, y:70}, {x:-8, y:29}],
 		right:[{x:13, y:29}, {x:13, y:70}, {x:49, y:70}, {x:49, y:29}]},
-	sweep:{left:[{x:23, y:50}, {x:23, y:72}, {x:-23, y:72}, {x:-23, y:50}],
-		right:[{x:13, y:50}, {x:13, y:72}, {x:62, y:72}, {x:62, y:50}]},
+	sweep:{left:[{x:23, y:50}, {x:23, y:72}, {x:-28, y:72}, {x:-28, y:50}],
+		right:[{x:13, y:50}, {x:13, y:72}, {x:67, y:72}, {x:67, y:50}]},
 	h_kick:{left:[{x:40, y:0}, {x:40, y:20}, {x:-20, y:20}, {x:-20, y:0}],
 		right:[{x:-5, y:0}, {x:-5, y:20}, {x:65, y:20}, {x:65, y:0}]},
 	punch:{left:[{x:20, y:15}, {x:20, y:43}, {x:-19, y:43}, {x:-19, y:15}],
@@ -40,7 +40,6 @@ const PlayerAttackBodyData = {
 };
 
 const BasicEnemyAttackBodyData = {
-
 	j_kick:{left:[{x:23, y:29}, {x:23, y:70}, {x:-8, y:70}, {x:-8, y:29}],
 		right:[{x:13, y:29}, {x:13, y:70}, {x:49, y:70}, {x:49, y:29}]},
 	sweep:{left:[{x:23, y:50}, {x:23, y:72}, {x:-23, y:72}, {x:-23, y:50}],

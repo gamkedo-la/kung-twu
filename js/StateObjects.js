@@ -600,13 +600,19 @@ function StateManager(theAnimations, beltColor, rivalType, scale = 2) {
 		}
 
 		const activeKeys = inputProcessor.getCurrentlyActiveKeys();
+		let isCrouching = false;
 		for(let activeKey of activeKeys) {
 			const activeAction = keyMapper.getAction(activeKey);
+			if(activeAction === ACTION.Crouch) isCrouching = true;
 			if(isContinuousAction(activeAction)) {//something I care about is pressed
 				const thisState = stateTranslator(currentState.nextStateForActionWithBelt(belt, activeAction));
 				setNewState(thisState, activeAction);
-				if((thisState === BLOCK_STATE) || (thisState === CROUCH_STATE)) {break;}
+				if(thisState === BLOCK_STATE) {break;}
 			}
+		}
+
+		if((currentState === CROUCH_STATE) &&(!isCrouching)) {
+			setNewState(IDLE_STATE);
 		}
 
 		if(shouldReverse) {
