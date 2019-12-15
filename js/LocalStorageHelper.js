@@ -3,6 +3,8 @@
  */
 function LocalStorageHelper() {
 
+	/**@type {boolean} */
+	let isAllowed = true;
 	// Typeless values
   
 	/**
@@ -12,11 +14,22 @@ function LocalStorageHelper() {
 	 * @return {string} A DOMString containing the value of the key. If the key does not exist, null is returned.
 	 */
 	this.getItem = function(keyName) {
-		try {
-			return window.localStorage.getItem(keyName);
-		}
-		catch(e) {
-			return null;
+		if(isAllowed) {
+			try {
+				let value = window.localStorage.getItem(keyName);
+				if((value === undefined) || (value === null) || (value === "undefined")) {
+					value = valueForKeyName(keyName);
+					this.setItem(keyName, value);
+				}
+
+				return value;
+			}
+			catch(e) {
+				isAllowed = false;
+				return this.getItem(keyName);
+			}	
+		} else {
+			return valueForKeyName(keyName); 
 		}
 	};
   
@@ -27,11 +40,22 @@ function LocalStorageHelper() {
 	 * @param {string} keyValue A DOMString containing the value you want to give the key you are creating/updating.
 	 */
 	this.setItem = function(keyName, keyValue) {
-		try {
-			window.localStorage.setItem(keyName, keyValue);
-		}
-		catch(e) {
-			return null;
+		if(isAllowed) {
+			try {
+				let valueToStore = keyValue
+				if(typeof valueToStore !== "string") {
+					valueToStore = JSON.stringify(keyValue);
+				}
+
+				window.localStorage.setItem(keyName, valueToStore);
+				setValueForKeyName(keyName, keyValue);
+			}
+			catch(e) {
+				isAllowed = false;
+				this.setItem(keyName, keyValue);
+			}
+		} else {
+			setValueForKeyName(keyName, keyValue);
 		}
 	};
 
@@ -48,6 +72,13 @@ function LocalStorageHelper() {
 			return null;
 		}
 	};
+
+	this.resetDefaults = function() {
+		const keyNames = Object.keys();
+		for(let keyName of keyNames) {
+			this.setItem(keyName, valueForKeyName(keyName));
+		}
+	};
   
 	// Boolean values
   
@@ -57,9 +88,13 @@ function LocalStorageHelper() {
 	 * @return {boolean}
 	 */
 	this.getBoolean = function(keyName) {
-		let storedValue = this.getItem(keyName);
-		if(storedValue === null) {return storedValue;}
-		return storedValue === "true";
+		if(isAllowed) {
+			let storedValue = this.getItem(keyName);
+			if(storedValue === null) {return storedValue;}
+			return storedValue === "true";	
+		} else {
+			return valueForKeyName(keyName);
+		}
 	};
   
 	this.setBoolean = this.setItem;
@@ -72,9 +107,13 @@ function LocalStorageHelper() {
 	 * @return {number}
 	 */
 	this.getInt = function(keyName) {
-		let storedValue = this.getItem(keyName);
-		if(storedValue === null) {return storedValue;}
-		return parseInt(storedValue);
+		if(isAllowed) {
+			let storedValue = this.getItem(keyName);
+			if(storedValue === null) {return storedValue;}
+			return parseInt(storedValue);	
+		} else {
+			return valueForKeyName(keyName);
+		}
 	};
   
 	this.setInt = this.setItem;
@@ -87,9 +126,13 @@ function LocalStorageHelper() {
 	 * @return {number}
 	 */
 	this.getFloat = function(keyName) {
-		let storedValue = this.getItem(keyName);
-		if(storedValue === null) {return storedValue;}
-		return parseFloat(storedValue);
+		if(isAllowed) {
+			let storedValue = this.getItem(keyName);
+			if(storedValue === null) {return storedValue;}
+			return parseFloat(storedValue);	
+		} else {
+			return valueForKeyName(keyName);
+		}
 	};
   
 	this.setFloat = this.setItem;
@@ -102,11 +145,15 @@ function LocalStorageHelper() {
 	 * @return {Object}
 	 */
 	this.getObject = function(keyName) {
-		let storedValue = this.getItem(keyName);
-		if (typeof storedValue !== "string") {
-			return null;
+		if(isAllowed) {
+			let storedValue = this.getItem(keyName);
+			if (typeof storedValue !== "string") {
+				return null;
+			}
+			return JSON.parse(storedValue);	
+		} else {
+			return valueForKeyName(keyName);
 		}
-		return JSON.parse(storedValue);
 	};
   
 	/**
@@ -115,7 +162,10 @@ function LocalStorageHelper() {
 	 * @param {Object} keyValue A JavaScript object containing the value you want to give the key you are creating/updating.
 	 */
 	this.setObject = function(keyName, keyValue) {
-		let valueToStore = JSON.stringify(keyValue);
-		this.setItem(keyName, valueToStore);
+		if(isAllowed) {
+			this.setItem(keyName, keyValue);
+		} else {
+			setValueForKeyName(keyName, keyValue);
+		}
 	};
 }

@@ -14,20 +14,10 @@ window.onload = function() {
 	drawRect(0, 0, canvas.width, canvas.height, Color.White);
 
 	localStorageHelper = new LocalStorageHelper();
-
-	firstLoad = localStorage.getItem(localStorageKey.FirstLoad);
 	
 	currentLanguage = localStorageHelper.getItem(localStorageKey.Language);
-	if((currentLanguage === null) || (currentLanguage === undefined)) {
-		currentLanguage = Language.English;
-		localStorageHelper.setItem(localStorageKey.Language, currentLanguage);
-	}
 
 	currentLevel = localStorageHelper.getInt(localStorageKey.StartingLevel);
-	if((currentLevel === undefined) || (currentLevel === null) || (isNaN(currentLevel))) {
-		currentLevel = ASSIST_DEFAULT.StartLevel;
-		localStorageHelper.setInt(localStorageKey.StartingLevel, currentLevel);
-	}
 
 	pauseManager = new PauseManager();
 		
@@ -88,20 +78,23 @@ function update() {
 }
 
 function startGame() {
-	const lastVersion = localStorageHelper.getFloat(localStorageKey.Version);
-	if((lastVersion == undefined) || (lastVersion == null) || (lastVersion < version)) {
-		const storageKeys = Object.keys(localStorageKey);
-		for(let storageKey of storageKeys) {
-			localStorageHelper.removeItem(storageKey);
+	initializeStorageValues();
+}
+
+function initializeStorageValues() {
+	const keyNames = Object.keys();
+	for(let keyName of keyNames) {
+		if(keyName === "Version") {
+			const version = localStorageHelper.getFloat(localStorageKey.Version);
+			if(version < VALUES.Version) {
+				localStorageHelper.resetDefaults();
+			}
+		} else if(typeof VALUES[keyName] === "number") {
+			VALUES[KeyName] = localStorageHelper.getInt(localStorageKey[keyName]);
+		} else if(typeof VALUES[keyName] === "string") {
+			VALUES[KeyName] = localStorageHelper.getItem(localStorageKey[keyName]);
 		}
-
-		localStorageHelper.setItem(localStorageKey.Version, version.toString());
 	}
-
-	if((firstLoad === null) || (firstLoad === undefined)) {
-		firstLoad = false;
-		localStorageHelper.setItem(localStorageKey.FirstLoad, firstLoad.toString());
-	} 
 }
 
 function windowOnFocus() {

@@ -19,10 +19,7 @@ function BasicEnemy(config) {
 	let shadowy = 0;
 
 	let baseHealth = localStorageHelper.getInt(localStorageKey.BaseEnemyHealth);
-	if((baseHealth === undefined) || (baseHealth === null) || (isNaN(baseHealth))) {
-		baseHealth = ASSIST_DEFAULT.BaseEnemyHealth;
-		localStorageHelper.setInt(localStorageKey.BaseEnemyHealth, baseHealth);
-	}
+	
 	this.health = null;//initialized when first hit by player
 	let maxHealth = null;
 	let healthColor = Color.White;//Correct color set below
@@ -85,16 +82,8 @@ function BasicEnemy(config) {
 		if(BASE_DAMAGE === null) {
 			if(this.getAIType() === AITYPE.Boss) {
 				BASE_DAMAGE = localStorageHelper.getInt(localStorageKey.BossStrength);
-				if((BASE_DAMAGE === undefined) || (BASE_DAMAGE === null) || (isNaN(BASE_DAMAGE))) {
-					BASE_DAMAGE = ASSIST_DEFAULT.BossBaseStrength;
-					localStorageHelper.setInt(localStorageKey.BossStrength, BASE_DAMAGE);
-				}
 			} else {
-				BASE_DAMAGE = localStorageHelper.getInt(localStorageKey.EnemyStrength);
-				if((BASE_DAMAGE === undefined) || (BASE_DAMAGE === null) || (isNaN(BASE_DAMAGE))) {
-					BASE_DAMAGE = ASSIST_DEFAULT.EnemyBaseStrength;
-					localStorageHelper.setInt(localStorageKey.EnemyStrength, BASE_DAMAGE);
-				}	
+				BASE_DAMAGE = localStorageHelper.getInt(localStorageKey.EnemyStrength);	
 			}
 		}
 

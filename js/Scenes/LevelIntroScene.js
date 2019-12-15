@@ -118,10 +118,6 @@ function LevelIntroScene() {
 		let colorToUse = belt;
 		if(belt === undefined) {
 			playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
-			if((playerBelt === undefined) || (playerBelt === null) || (isNaN(playerBelt))) {
-				playerBelt = ASSIST_DEFAULT.StartBelt;
-				localStorageHelper.setInt(localStorageKey.StartingBelt, playerBelt);
-			}
 
 			colorToUse = playerBelt;
 		}

@@ -18,19 +18,11 @@ function SoundManager() {
 	 * Internal sfx bus volume value
 	 */
 	let _sfxBusVolume = localStorageHelper.getInt(localStorageKey.SFXVolume);
-	if((_sfxBusVolume === undefined) || (_sfxBusVolume === null) || (isNaN(_sfxBusVolume))) {
-		_sfxBusVolume = SFX_DEFAULT_VOLUME;
-		localStorageHelper.setInt(localStorageKey.SFXVolume, _sfxBusVolume);
-	}
 
 	/**
 	 * Internal bgm bus volume value
 	 */
 	let _bgmBusVolume = localStorageHelper.getInt(localStorageKey.MusicVolume);
-	if((_bgmBusVolume === undefined) || (_bgmBusVolume === null) || (isNaN(_bgmBusVolume))) {
-		_bgmBusVolume = MUSIC_DEFAULT_VOLUME;
-		localStorageHelper.setInt(localStorageKey.MusicVolume, _bgmBusVolume);
-	}
 
 	// Local function to get bus volumes from localStorageHelper
 	_setBusVolumesFromLocalStorage();
@@ -148,9 +140,9 @@ function SoundManager() {
 			_currentMusic.setVolume();
 		}
 		// update local storage value
-		if (localStorage && localStorageHelper) {
+//		if (localStorage && localStorageHelper) {
 			localStorageHelper.setInt(localStorageKey.MusicVolume, newVol * 10);
-		}
+//		}
 	};
 	this.setBGMVolume(_bgmBusVolume); // initilize bgm volume
 
@@ -172,9 +164,9 @@ function SoundManager() {
 		const newVol = clamp(vol, 0, 1);
 		_sfxBusVolume = newVol * 10;
 		// update local storage value
-		if (localStorage && localStorageHelper) {
+//		if (localStorage && localStorageHelper) {
 			localStorageHelper.setFloat(localStorageKey.SFXVolume, newVol * 10);
-		}
+//		}
 		_engine.setBusVolume(AudioBus.SFX, newVol);
 	};
 	this.setSFXVolume(_sfxBusVolume); // initialize sfx volume
@@ -278,7 +270,7 @@ function SoundManager() {
 
 	// ==== HELPERS ==== //
 	function _setBusVolumesFromLocalStorage() {
-		if (localStorage && localStorageHelper) {
+//		if (localStorage && localStorageHelper) {
 			const sfxVol = localStorageHelper.getFloat(localStorageKey.SFXVolume);
 			const bgmVol = localStorageHelper.getFloat(localStorageKey.MusicVolume);
 			if (sfxVol !== null && sfxVol !== undefined && typeof sfxVol === "number" && !isNaN(sfxVol)) {
@@ -287,6 +279,6 @@ function SoundManager() {
 			if (bgmVol !== null && bgmVol !== undefined && typeof bgmVol === "number" && !isNaN(bgmVol)) {
 				_bgmBusVolume = bgmVol;
 			}
-		}
+//		}
 	}
 }

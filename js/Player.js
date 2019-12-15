@@ -15,10 +15,7 @@ function Player(config) {
 	let shadowy = 0;
 
 	let baseDamage = localStorageHelper.getInt(localStorageKey.PlayerBaseDamage);
-	if((baseDamage === undefined) || (baseDamage === null) || (isNaN(baseDamage))) {
-		baseDamage = ASSIST_DEFAULT.PlayerBaseDamage;
-		localStorageHelper.setInt(localStorageKey.PlayerBaseDamage, baseDamage);
-	}
+	
 	const DELTA_DAMAGE = 5;
 
 	let stateManager;
@@ -593,20 +590,12 @@ function Player(config) {
 	const initializeKnockbackSpeed = function() {
 		if(KNOCK_BACK_SPEED === null) {
 			KNOCK_BACK_SPEED = localStorageHelper.getInt(localStorageKey.KnockbackSpeed);
-			if((KNOCK_BACK_SPEED === undefined) || (KNOCK_BACK_SPEED === null) || (isNaN(KNOCK_BACK_SPEED))) {
-				KNOCK_BACK_SPEED = ASSIST_DEFAULT.KnockbackSpeed;
-				localStorageHelper.setInt(localStorageKey.KnockbackSpeed, KNOCK_BACK_SPEED);
-			}
 		}
 	};
 
 	const initializeInvincibleTime = function() {
 		if(INVINCIBLE_DURATION === null) {
 			INVINCIBLE_DURATION = localStorageHelper.getInt(localStorageKey.InvincibleDuration);
-			if((INVINCIBLE_DURATION === undefined) || (INVINCIBLE_DURATION === null) || (isNaN(INVINCIBLE_DURATION))) {
-				INVINCIBLE_DURATION = ASSIST_DEFAULT.InvincibleDuration;
-				localStorageHelper.setInt(localStorageKey.InvincibleDuration, INVINCIBLE_DURATION);
-			}
 		}
 	};
 

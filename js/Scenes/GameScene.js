@@ -64,10 +64,6 @@ function GameScene() {
 		animationManager = new AnimationBuilder();
 
 		TIME_SCALE = localStorageHelper.getInt(localStorageKey.GameSpeed);
-		if((TIME_SCALE === undefined) || (TIME_SCALE === null) || (isNaN(TIME_SCALE))) {
-			TIME_SCALE = ASSIST_DEFAULT.GameSpeed;
-			localStorageHelper.setInt(localStorageKey.GameSpeed, TIME_SCALE);
-		}
 
 		TIME_SCALE /= 4;
 
@@ -120,10 +116,6 @@ function GameScene() {
 			initializeVases(frontY, backY);
 			setBossHealth();
 			activeRivals = localStorageHelper.getInt(localStorageKey.GangCount);
-			if((activeRivals === undefined) || (activeRivals === null) || (isNaN(activeRivals))) {
-				activeRivals = ASSIST_DEFAULT.GangCount;
-				localStorageHelper.setInt(localStorageKey.GangCount, activeRivals);
-			}
 		}
 
 		if (sound.getCurrentBGMKey() !== Sounds.BGM_GamePlay) {
@@ -138,10 +130,6 @@ function GameScene() {
 
 	this.quit = function() {
 		currentLevel = localStorageHelper.getInt(localStorageKey.StartingLevel);
-		if((currentLevel === undefined) || (currentLevel === null) || (isNaN(currentLevel))) {
-			currentLevel = ASSIST_DEFAULT.StartLevel;
-			localStorageHelper.setInt(localStorageKey.StartingLevel, currentLevel);
-		}
 
 		this.reset();
 		if(player !== null) {
@@ -416,7 +404,6 @@ function GameScene() {
 		for (let defeatedEntity of defeatedEntities) {
 			if (defeatedEntity === player) {
 				let highScore = parseInt(localStorageHelper.getObject(localStorageKey.HighScore));
-				if((isNaN(highScore)) || (highScore === null) || (highScore === undefined)) {highScore = -1;}
 				if(score > highScore) {
 					let scoreString = score.toString();
 					while(scoreString.length < 9) {
@@ -689,10 +676,6 @@ function GameScene() {
 
 	const initializeGameTimer = function(cameraX) {
 		let initialTime = localStorageHelper.getInt(localStorageKey.LevelTime);
-		if((initialTime === undefined) || (initialTime === null) || (isNaN(initialTime))) {
-			initialTime = ASSIST_DEFAULT.LevelTime;
-			localStorageHelper.setInt(localStorageKey.LevelTime, initialTime);
-		}
 
 		initialTime += levelData.allowedTime;
 
@@ -724,10 +707,6 @@ function GameScene() {
 
 	const getEnemiesThisLevel = function() {
 		let theseLevelEnemies = localStorageHelper.getInt(localStorageKey.EnemiesPerLevel);
-		if((theseLevelEnemies === undefined) || (theseLevelEnemies === null) || (isNaN(theseLevelEnemies))) {
-			theseLevelEnemies = ASSIST_DEFAULT.EnemiesPerLevel;
-			localStorageHelper.setInt(localStorageKey.EnemiesPerLevel, theseLevelEnemies);
-		}
 
 		return theseLevelEnemies + levelData.totalEnemies;
 	};
@@ -753,16 +732,8 @@ function GameScene() {
 	const initializePlayerIfReqd = function() {
 		if (player === null) {
 			let health = localStorageHelper.getInt(localStorageKey.PlayerMaxHealth);
-			if((health === undefined) || (health === null) || (isNaN(health))) {
-				health = ASSIST_DEFAULT.MaxHealth;
-				localStorageHelper.setInt(localStorageKey.PlayerMaxHealth, health);
-			}
 
 			playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
-			if((playerBelt === undefined) || (playerBelt === null) || (isNaN(playerBelt))) {
-				playerBelt = ASSIST_DEFAULT.StartBelt;
-				localStorageHelper.setInt(localStorageKey.StartingBelt, playerBelt);
-			}
 
 			const config = {
 				x: (2 * canvas.width) / 3 + FIRST_PLAYERSTART_OFFSET,
@@ -837,10 +808,6 @@ function GameScene() {
 
 	const setBossHealth = function() {
 		let baseHealth = localStorageHelper.getInt(localStorageKey.BossHealth);
-		if((baseHealth === undefined) || (baseHealth === null) || (isNaN(baseHealth))) {
-			baseHealth = ASSIST_DEFAULT.BossBaseHealth;
-			localStorageHelper.setInt(localStorageKey.BossHealth,  baseHealth);
-		}
 
 		bossMaxHealth = baseHealth + levelData.bossHealth;
 		bossHealth = bossMaxHealth;
@@ -963,10 +930,6 @@ function GameScene() {
 		}
 
 		let baseHealth = localStorageHelper.getInt(localStorageKey.BossHealth);
-		if((baseHealth === undefined) || (baseHealth === null) || (isNaN(baseHealth))) {
-			baseHealth = ASSIST_DEFAULT.BossBaseHealth;
-			localStorageHelper.setInt(localStorageKey.BossHealth,  baseHealth);
-		}
 
 		const config = {
 			x: xPos,

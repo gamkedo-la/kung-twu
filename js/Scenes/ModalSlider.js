@@ -78,10 +78,7 @@ function ModalSlider() {
 
 	const buildSlider = function() {
 		let initialValue = localStorageHelper.getInt(config.storageKey);
-		if((initialValue === undefined) || (initialValue === null) || (isNaN(initialValue))) {
-			initialValue = config.default;
-			localStorageHelper.setInt(config.storageKey, initialValue);
-		}
+
 		const thisColor =  colorForValue(initialValue);
 		slider = new UISlider(100, 400, 600, 20, getLocalizedStringForKey(config.titleKey), config.minValue, config.minTitle, config.maxValue, config.maxTitle, initialValue, config.steps, true, thisColor, config.valueLabels);
 	};

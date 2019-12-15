@@ -289,10 +289,6 @@ function GameOverScene() {
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.GameOverTitle), {x:canvas.width / 2, y:canvas.height / 3 - 100}, TextAlignment.Center, 1);
 		
 		let highScore = localStorageHelper.getObject(localStorageKey.HighScore);
-		if((highScore === undefined) || (highScore === null) || (isNaN(highScore))) {
-			highScore = 0;
-			localStorageHelper.setInt(localStorageKey.HighScore, highScore);
-		}
 
 		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.HighScore), {x:canvas.width / 2, y:canvas.height / 3}, TextAlignment.Right, TEXT_SCALE);
 		JPFont.printTextAt(highScore, {x:canvas.width / 2, y:canvas.height / 3}, TextAlignment.Left, TEXT_SCALE);

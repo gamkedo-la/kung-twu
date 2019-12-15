@@ -38,10 +38,7 @@ function TitleScene() {
 
 		if((this.properties != undefined) && (this.properties.didQuit)) {
 			playerBelt = localStorageHelper.getInt(localStorageKey.StartingBelt);
-			if((playerBelt === undefined) || (playerBelt === null) || (isNaN(playerBelt))) {
-				playerBelt = ASSIST_DEFAULT.StartBelt;
-				localStorageHelper.setInt(localStorageKey.StartingBelt, playerBelt);
-			}
+
 			if (player) { // avoid bug when game loses focus, gets pause menu, before game has started
 				player.setNewBelt(playerBelt);
 			}

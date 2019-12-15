@@ -1,4 +1,14 @@
 //Globals
+//----------Localization---------------//
+const Language = {
+	English:"English",
+	Spanish:"Spanish",
+	Japanese:"Japanese",
+	French:"French",
+	Russian:"Russian",
+	Polish:"Polish"
+};
+
 //----------Drawing and Canvas---------//
 let canvas;
 /** @type CanvasRenderingContext2D */
@@ -65,7 +75,32 @@ let animationManager = null;
 const deadZoneHalfWidth = 25;
 
 //---------------Persistence-----------//
-const version = 1.0;
+const BELT = {
+	White:0,
+	Yellow:1,
+	Tan:2,
+	Brown:3,
+	Red:4,
+	Black:5
+};
+
+const ASSIST_DEFAULT = {
+	MaxHealth:100,
+	StartBelt:BELT.White,
+	StartLevel:1,
+	BaseEnemyHealth:20,
+	EnemyBaseStrength:5,
+	BossBaseHealth:100,
+	BossBaseStrength:10,
+	PlayerBaseDamage:10,
+	InvincibleDuration:1000,
+	KnockbackSpeed:800,
+	EnemiesPerLevel:10,
+	LevelTime:100,
+	GangCount:1,
+	GameSpeed:5
+};
+
 /** @type LocalStorageHelper */
 let localStorageHelper;
 /** Contains keys of data to store in the browser's local storage */
@@ -99,6 +134,164 @@ const localStorageKey = {
 	LevelTime:"kungTwu-LevelTime",
 	GangCount:"kungTwu-GangCount",
 	GameSpeed:"kungTwu-GameSpeed"
+};
+
+const VALUES = {
+	Version: 1.1,
+	GameVolume: 10,
+	MusicVolume: 10,
+	SFXVolume: 10,
+	Language: Language.English,
+	FirstLoad: true,
+	WalkLeftKeys: undefined,
+	WalkRightKeys: undefined,
+	JumpKeys: undefined,
+	DashKeys: undefined,
+	BlockKeys: undefined,
+	CrouchKeys: undefined,
+	KickKeys: undefined,
+	PunchKeys: undefined,
+	HighScore: 0,
+	PlayerMaxHealth: ASSIST_DEFAULT.MaxHealth,
+	StartingBelt: ASSIST_DEFAULT.StartBelt,
+	StartingLevel: ASSIST_DEFAULT.StartLevel,
+	BaseEnemyHealth: ASSIST_DEFAULT.BaseEnemyHealth,
+	PlayerBaseDamage: ASSIST_DEFAULT.PlayerBaseDamage,
+	InvincibleDuration: ASSIST_DEFAULT.InvincibleDuration,
+	KnockbackSpeed: ASSIST_DEFAULT.KnockbackSpeed,
+	EnemyStrength: ASSIST_DEFAULT.EnemyBaseStrength,
+	BossStrength: ASSIST_DEFAULT.BossBaseStrength,
+	BossHealth: ASSIST_DEFAULT.BossBaseHealth,
+	EnemiesPerLevel: ASSIST_DEFAULT.EnemiesPerLevel,
+	LevelTime: ASSIST_DEFAULT.LevelTime,
+	GangCount: ASSIST_DEFAULT.GangCount,
+	GameSpeed: ASSIST_DEFAULT.GameSpeed,
+};
+
+const setValueForKeyName = function(keyName, value) {
+	switch(keyName) {
+	case localStorageKey.Version: 
+		VALUES.Version = value;
+		break;
+	case localStorageKey.GameVolume: 
+		VALUES.GameVolume = value;
+		break;
+	case localStorageKey.MusicVolume: 
+		VALUES.MusicVolume = value;
+		break;
+	case localStorageKey.SFXVolume: 
+		VALUES.SFXVolume = value;
+		break;
+	case localStorageKey.Language: 
+		VALUES.Language = value;
+		break;
+	case localStorageKey.FirstLoad: 
+		VALUES.FirstLoad = value;
+		break;
+	case localStorageKey.WalkLeftKeys: 
+		VALUES.WalkLeftKeys = value;
+		break;
+	case localStorageKey.WalkRightKeys: 
+		VALUES.WalkRightKeys = value;
+		break;
+	case localStorageKey.JumpKeys: 
+		VALUES.JumpKeys = value;
+		break;
+	case localStorageKey.DashKeys: 
+		VALUES.DashKeys = value;
+		break;
+	case localStorageKey.BlockKeys: 
+		VALUES.BlockKeys = value;
+		break;
+	case localStorageKey.CrouchKeys: 
+		VALUES.CrouchKeys = value;
+		break;
+	case localStorageKey.KickKeys: 
+		VALUES.KickKeys = value;
+		break;
+	case localStorageKey.PunchKeys: 
+		VALUES.PunchKeys = value;
+		break;
+	case localStorageKey.HighScore: 
+		VALUES.HighScore = value;
+		break;
+	case localStorageKey.PlayerMaxHealth: 
+		VALUES.PlayerMaxHealth = value;
+		break;
+	case localStorageKey.StartingBelt: 
+		VALUES.StartingBelt = value;
+		break;
+	case localStorageKey.StartingLevel: 
+		VALUES.StartingLevel = value;
+		break;
+	case localStorageKey.BaseEnemyHealth: 
+		VALUES.BaseEnemyHealth = value;
+		break;
+	case localStorageKey.PlayerBaseDamage: 
+		VALUES.PlayerBaseDamage = value;
+		break;
+	case localStorageKey.InvincibleDuration: 
+		VALUES.InvincibleDuration = value;
+		break;
+	case localStorageKey.KnockbackSpeed: 
+		VALUES.KnockbackSpeed = value;
+		break;
+	case localStorageKey.EnemyStrength: 
+		VALUES.EnemyStrength = value;
+		break;
+	case localStorageKey.BossStrength: 
+		VALUES.BossStrength = value;
+		break;
+	case localStorageKey.BossHealth: 
+		VALUES.BossHealth = value;
+		break;
+	case localStorageKey.EnemiesPerLevel: 
+		VALUES.EnemiesPerLevel = value;
+		break;
+	case localStorageKey.LevelTime: 
+		VALUES.LevelTime = value;
+		break;
+	case localStorageKey.GangCount: 
+		VALUES.GangCount = value;
+		break;
+	case localStorageKey.GameSpeed: 
+		VALUES.GameSpeed = value;
+		break;
+	}
+};
+
+const valueForKeyName = function(keyName) {
+	switch(keyName) {
+	case localStorageKey.Version: return VALUES.Version;
+	case localStorageKey.GameVolume: return VALUES.GameVolume;
+	case localStorageKey.MusicVolume: return VALUES.MusicVolume;
+	case localStorageKey.SFXVolume: return VALUES.SFXVolume;
+	case localStorageKey.Language: return VALUES.Language;
+	case localStorageKey.FirstLoad: return VALUES.FirstLoad;
+	case localStorageKey.WalkLeftKeys: return VALUES.WalkLeftKeys;
+	case localStorageKey.WalkRightKeys: return VALUES.WalkRightKeys;
+	case localStorageKey.JumpKeys: return VALUES.JumpKeys;
+	case localStorageKey.DashKeys: return VALUES.DashKeys;
+	case localStorageKey.BlockKeys: return VALUES.BlockKeys;
+	case localStorageKey.CrouchKeys: return VALUES.CrouchKeys;
+	case localStorageKey.KickKeys: return VALUES.KickKeys;
+	case localStorageKey.PunchKeys: return VALUES.PunchKeys;
+	case localStorageKey.HighScore: return VALUES.HighScore;
+	case localStorageKey.PlayerMaxHealth: return VALUES.PlayerMaxHealth;
+	case localStorageKey.StartingBelt: return VALUES.StartingBelt;
+	case localStorageKey.StartingLevel: return VALUES.StartingLevel;
+	case localStorageKey.BaseEnemyHealth: return VALUES.BaseEnemyHealth;
+	case localStorageKey.PlayerBaseDamage: return VALUES.PlayerBaseDamage;
+	case localStorageKey.InvincibleDuration: return VALUES.InvincibleDuration;
+	case localStorageKey.KnockbackSpeed: return VALUES.KnockbackSpeed;
+	case localStorageKey.EnemyStrength: return VALUES.EnemyStrength;
+	case localStorageKey.BossStrength: return VALUES.BossStrength;
+	case localStorageKey.BossHealth: return VALUES.BossHealth;
+	case localStorageKey.EnemiesPerLevel: return VALUES.EnemiesPerLevel;
+	case localStorageKey.LevelTime: return VALUES.LevelTime;
+	case localStorageKey.GangCount: return VALUES.GangCount;
+	case localStorageKey.GameSpeed: return VALUES.GameSpeed;
+	}
 };
 
 //----------State Management----------//
@@ -164,7 +357,7 @@ const ACTION = {
  * Scope: Global
  */
 let didInteract = false;
-let firstLoad;
+
 /** 
  * Global Chronogram instance
  * Register your event for stopwatch-like timing in milliseconds.
@@ -175,35 +368,6 @@ let timer;
 
 const TOTAL_LEVELS = 5;
 let currentLevel = 1;
-
-const BELT = {
-	White:0,
-	Yellow:1,
-	Tan:2,
-	Brown:3,
-	Red:4,
-	Black:5
-};
-
-const ASSIST_DEFAULT = {
-	MaxHealth:100,
-	StartBelt:BELT.White,
-	StartLevel:1,
-	BaseEnemyHealth:20,
-	EnemyBaseStrength:5,
-	BossBaseHealth:100,
-	BossBaseStrength:10,
-	PlayerBaseDamage:10,
-	InvincibleDuration:1000,
-	KnockbackSpeed:800,
-	EnemiesPerLevel:10,
-	LevelTime:100,
-	GangCount:1,
-	GameSpeed:5
-};
-
-const MUSIC_DEFAULT_VOLUME = 10;
-const SFX_DEFAULT_VOLUME = 10;
 
 const SLIDER_NAMES = {
 	MaxHealth:"maxHealth",

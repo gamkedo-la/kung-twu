@@ -3,15 +3,6 @@
 // Refer to Polyglot db for common words (but please translate by hand):
 // https://docs.google.com/spreadsheets/d/17f0dQawb-s_Fd7DHgmVvJoEGDMH_yoSd8EYigrb0zmM/edit#gid=310116733
 
-const Language = {
-	English:"English",
-	Spanish:"Spanish",
-	Japanese:"Japanese",
-	French:"French",
-	Russian:"Russian",
-	Polish:"Polish"
-};
-
 const STRINGS_KEY = {
 	Help:"[H] for Help",
 	Credits:"[C] for Credits",
