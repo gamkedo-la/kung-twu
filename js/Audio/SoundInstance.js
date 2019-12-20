@@ -143,7 +143,11 @@ class SoundInstance {
 	 * @param {number} vol 
 	 */
 	_setInnerVolume(vol) {
-		this._element.volume = clamp(vol, 0, 1);
+		let volTouse = vol;
+		if((vol === undefined) || (vol === null) || (isNaN(vol))) {
+			volTouse = 1;
+		}
+		this._element.volume = clamp(volTouse, 0, 1);
 	}
 
 	/**

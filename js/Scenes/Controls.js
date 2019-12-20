@@ -11,103 +11,52 @@ function ControlsScene() {
 	const buttonHeight = 25;
 	const buttonTitlePadding = 2;
 	let buttonPadding;
-	const buttons = [];
+	let buttons = [];
 	didInteract = false;
-	/** @type UIProgressBar */
-	//let uiProgBarMusicVolume;
-	/** @type UIProgressBar */
-	//let uiProgBarEffectsVolume;
 
-//original keys
-	var keyLookup = [
-		"walkLeft",
-		"walkRight",
-		"jump",
-		"punch",
-		"kick",
-		"crouch",
-		"dash"
+	//original keys
+	let keyLookup = [
+		ACTION_KEYS.WALK_LEFT, 
+		ACTION_KEYS.WALK_RIGHT, 
+		ACTION_KEYS.JUMP, 
+		ACTION_KEYS.PUNCH, 
+		ACTION_KEYS.KICK, 
+		ACTION_KEYS.CROUCH, 
+		ACTION_KEYS.DASH, 
+		ACTION_KEYS.BLOCK
 	];
-//changing keys
-	keyLookup["left"] = ACTION_KEYS.WALK_LEFT;
-	keyLookup["right"] = ACTION_KEYS.WALK_RIGHT;
-	keyLookup["jump"] = ACTION_KEYS.JUMP;
-	keyLookup["punch"] = ACTION_KEYS.PUNCH;
-	keyLookup["kick"] = ACTION_KEYS.KICK;
-	keyLookup["crouch"] = ACTION_KEYS.CROUCH;
-	keyLookup["dash"] = ACTION_KEYS.DASH;
-	keyLookup["dash"] = ACTION_KEYS.BLOCK
 
-//fetch recorded keys 
-/*
-keyWordLookup[ keyLookup["left"] ];
-keyWordLookup[ keyLookup["right"] ];
-keyWordLookup[ keyLookup["jump"] ];
-keyWordLookup[ keyLookup["punch"] ];
-keyWordLookup[ keyLookup["kick"] ];
-keyWordLookup[ keyLookup["crouch"] ];
-keyWordLookup[ keyLookup["dash"] ]; */
-const remapLeftX = 40;
-const remapTopY = 5;
-const remapButtonHeight = 95;
-const remapButtonWidth = 250;//Guess, should be width of remapSprite. 
-const remapButtonCount = 7;
-let remapKeyNext = -1;
-const showControls = function(){
-	var buttonList = [leftMoveSprite, rightMoveSprite, jumpSprite, punchSprite, kickSprite, crouchSprite, dashSprite];
-	for(var i=0;i<buttonList.length;i++) {
-		canvasContext.drawImage(buttonList[i], remapLeftX, remapTopY + i * remapButtonHeight);
-	}
+	const remapLeftX = 40;
+	const remapTopY = 200;
+	const remapButtonHeight = 95;
+	const remapButtonWidth = 250;//Guess, should be width of remapSprite. 
+	const remapButtonCount = 7;
+	let remapKeyNext = -1;
 
-	for(var i=0; i<keyLookup.length; i++) {
-		iY = remapTopY+remapButtonHeight*i;
+	const showControls = function(){
+		var buttonList = [leftMoveSprite, rightMoveSprite, jumpSprite, punchSprite, kickSprite, crouchSprite, dashSprite];
+//		for(let i=0;i<buttonList.length;i++) {
+//			canvasContext.drawImage(buttonList[i], remapLeftX, remapTopY + i * remapButtonHeight);
+//		}
 
-		var inputNames = keyMapper.getInputCodes(keyLookup[i]);
-		for(var ii=0;ii<inputNames.length;ii++) {
-			var horizontalSpace = 100;
-			colorText(lookupKeyName(inputNames[ii]),
-				canvas.width/2+ii*horizontalSpace, iY+remapButtonHeight/2,
-				Color.White, Fonts.CreditsText);
+		for(let i=0; i<keyLookup.length; i++) {
+			const iY = remapTopY+remapButtonHeight*i;
+
+			const inputNames = keyMapper.getInputCodes(keyLookup[i]);
+			for(let ii=0;ii<inputNames.length;ii++) {
+				const horizontalSpace = 100;
+				colorText(lookupKeyName(inputNames[ii]),
+					canvas.width/2+ii*horizontalSpace, iY+remapButtonHeight/2,
+					Color.White, Fonts.CreditsText);
+			}
+		} 
+		if (remapKeyNext != -1){
+			colorText(getLocalizedStringForKey(STRINGS_KEY.PressNewKey), canvas.width / 2, canvas.height - 80, Color.White, Fonts.CreditsText);
 		}
-	}
-	if (remapKeyNext!= -1){
-		colorText("Press new key", canvas.width / 2, canvas.height - 80, Color.White, Fonts.CreditsText);
+	};
 
-	}
-}
-
-
-
-this.transitionIn = function() {
-	canvasContext.setTransform(1, 0, 0, 1, 0, 0);
-
-/*		// Testing new UIProgressBar
-		uiProgBarMusicVolume = new UIProgressBar({
-			x: 40,
-			y: 200,
-			width: 700,
-			height: 5,
-			destination: "RIGHT",
-			bgColor: rgba(0, 0, 0, 0),
-			bgOutlineColor: "black",
-			startingValue: 0.0
-		});
-		let grad = uiProgBarMusicVolume.makeGradient("RIGHT", rgba(200, 200, 200, 1), "gold");
-		uiProgBarMusicVolume.setProgressBarColor(grad);
-
-		uiProgBarEffectsVolume = new UIProgressBar({
-			x: 40,
-			y: 240,
-			width: 700,
-			height: 5,
-			destination: "RIGHT",
-			bgColor: rgba(0, 0, 0, 0),
-			bgOutlineColor: "black",
-			startingValue: 0.0
-		});
-		let grad2 = uiProgBarEffectsVolume.makeGradient("RIGHT", rgba(200, 200, 200, 1), "gold");
-		uiProgBarEffectsVolume.setProgressBarColor(grad2);
-		// End instantiating progress bars*/
+	this.transitionIn = function() {
+		canvasContext.setTransform(1, 0, 0, 1, 0, 0);
 
 		buttonPadding = canvas.width / 40;
 
@@ -118,9 +67,7 @@ this.transitionIn = function() {
 			buttons.push(buildBackButton(canvas.width / 40, mainMenuY, buttonHeight, buttonTitlePadding));
 			buttons.push(buildPlayButton(mainMenuX, mainMenuY, buttonHeight, buttonTitlePadding));
 			//trying another way inside of checkButton
-			//buttons.push(buildRemapButton(remapLeftX, remapTopY, remapButtonHeight * remapButtonCount, buttonTitlePadding));
-
-			updateButtonPositions();
+			buttons = buttons.concat(buildRemapButtons(remapLeftX, remapTopY, remapButtonHeight * remapButtonCount, buttonTitlePadding));
 
 			// support mouse hovers that move the selector
 			for (var num=0; num<buttons.length; num++) {
@@ -129,9 +76,9 @@ this.transitionIn = function() {
 			
 		} else {
 			updateButtonTitles();
-			updateButtonPositions();
 		}
 
+		updateButtonPositions();
 		selectorPositionsIndex = 0;
 	};
 
@@ -155,7 +102,8 @@ this.transitionIn = function() {
 			checkButtons();
 			return true;
 		}
-        if(remapKeyNext!= -1){
+
+		if(remapKeyNext != -1){
 			keyMapper.replaceKeyForAction(newKeyEvent, keyLookup[remapKeyNext]);
 			remapKeyNext = -1;
 		}
@@ -165,7 +113,6 @@ this.transitionIn = function() {
 	this.moveSelector = function(num) {
 		// used to simulate arrow key press on mousemove so
 		// the cursor moves as appropriate when hovering menu
-		//console.log("Moving menu menu selector: " + num);
 		selectorPositionsIndex = num;
 		selectorPosition.y = buttons[selectorPositionsIndex].getBounds().y + (buttonHeight / 2) - (selector.height / 2);
 	};
@@ -253,12 +200,51 @@ this.transitionIn = function() {
 		return new UIButton(STRINGS_KEY.Back, x, y, height, padding, thisClick, Color.Purple);
 	};
 
-	const buildRemapButton = function(x, y, height, padding) {
-		const thisClick = function() {
-			//console.log("click remap button");
+	const buildRemapButtons = function(x, y, height, padding) {
+		const remapButtons = [];
+
+		const remapClick = function() {
+			remapKeyNext = this.index;
 		};
 
-		return new UIButton(STRINGS_KEY.Back, x, y, height, padding, thisClick, Color.Purple);
+		const leftButton = new UIButton(STRINGS_KEY.Left, x, y, height, padding, remapClick, Color.Purple, null, 0.5);
+		leftButton.index = remapButtons.length;
+		remapButtons.push(leftButton);
+
+		const BUTTON_DELTA = 60;
+		let currentY = y + BUTTON_DELTA;
+
+		const rightButton = new UIButton(STRINGS_KEY.Right, x, currentY, height, padding, remapClick, Color.Purple, null, 0.5);
+		rightButton.index = remapButtons.length;
+		remapButtons.push(rightButton);
+		currentY += BUTTON_DELTA;
+
+		const punchButton = new UIButton(STRINGS_KEY.Punch, x, currentY, height, padding, remapClick, Color.Purple, null, 0.5);
+		punchButton.index = remapButtons.length;
+		remapButtons.push(punchButton);
+		currentY += BUTTON_DELTA;
+
+		const kickButton = new UIButton(STRINGS_KEY.Kick, x, currentY, height, padding, remapClick, Color.Purple, null, 0.5);
+		kickButton.index = remapButtons.length;
+		remapButtons.push(kickButton);
+		currentY += BUTTON_DELTA;
+
+		const jumpButton = new UIButton(STRINGS_KEY.Jump, x, currentY, height, padding, remapClick, Color.Purple, null, 0.5);
+		jumpButton.index = remapButtons.length;
+		remapButtons.push(jumpButton);
+		currentY += BUTTON_DELTA;
+
+		const blockButton = new UIButton(STRINGS_KEY.Block, x, currentY, height, padding, remapClick, Color.Purple, null, 0.5);
+		blockButton.index = remapButtons.length;
+		remapButtons.push(blockButton);
+		currentY += BUTTON_DELTA;
+
+		const crouchButton = new UIButton(STRINGS_KEY.Crouch, x, currentY, height, padding, remapClick, Color.Purple, null, 0.5);
+		crouchButton.index = remapButtons.length;
+		remapButtons.push(crouchButton);
+		currentY += BUTTON_DELTA;
+		
+		return remapButtons;
 	};
 
 	const updateButtonPositions = function() {
@@ -292,7 +278,7 @@ this.transitionIn = function() {
 
 		showControls();
 
-/*		uiProgBarMusicVolume.draw();
+		/*		uiProgBarMusicVolume.draw();
 		uiProgBarEffectsVolume.draw();*/
 	};
 	
@@ -303,6 +289,6 @@ this.transitionIn = function() {
 	};
     
 	const drawTitle = function() {
-		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.SettingsScreenTitle), {x:canvas.width / 2, y:TITLE_Y_POS}, TextAlignment.Center, 1);
+		JPFont.printTextAt(getLocalizedStringForKey(STRINGS_KEY.ControlsScreenTitle), {x:canvas.width / 2, y:TITLE_Y_POS}, TextAlignment.Center, 1);
 	};
 }

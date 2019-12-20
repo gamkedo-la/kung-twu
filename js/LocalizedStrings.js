@@ -36,6 +36,7 @@ const STRINGS_KEY = {
 	HelpScreenContents:"Help Screen Contents",
 	AssistSceneTitle: "Assist Title",
 	SettingsScreenTitle:"Settings Title",
+	ControlsScreenTitle:"Controls Title",
 	CreditsScreenTitle:"Credits Title",
 	GameOverTitle:"GameOverTitle",
 	HighScore:"HighScore",
@@ -94,7 +95,15 @@ const STRINGS_KEY = {
 	Default:"default",
 	GameSpeed:"gameSpeed",
 	Fast:"fast",
-	Slow:"slow"
+	Slow:"slow",
+	PressNewKey:"pressNewKey",
+	Left:"left",
+	Right:"right",
+	Punch:"punch",
+	Kick:"kick",
+	Jump:"jump",
+	Block:"block",
+	Crouch:"crouch"
 };
 
 function getLocalizedStringForKey(key) {
@@ -134,6 +143,7 @@ const userStrings = {
 		[STRINGS_KEY.HelpScreenTitle]:"HELP",
 		[STRINGS_KEY.AssistSceneTitle]:"ASSIST MODE",
 		[STRINGS_KEY.SettingsScreenTitle]:"SETTINGS",
+		[STRINGS_KEY.ControlsScreenTitle]:"CONTROLS",
 		[STRINGS_KEY.CreditsScreenTitle]:"CREDITS",
 		[STRINGS_KEY.GameOverTitle]:"GAME OVER",
 		[STRINGS_KEY.HighScore]:"HIGH SCORE:",
@@ -194,7 +204,15 @@ const userStrings = {
 		[STRINGS_KEY.Player]:"Player",
 		[STRINGS_KEY.GameSpeed]:"Game Speed",
 		[STRINGS_KEY.Fast]:"Fast",
-		[STRINGS_KEY.Slow]:"Slow"
+		[STRINGS_KEY.Slow]:"Slow",
+		[STRINGS_KEY.PressNewKey]:"Press New Key",
+		[STRINGS_KEY.Left]:"Walk Left",
+		[STRINGS_KEY.Right]:"Walk Right",
+		[STRINGS_KEY.Punch]:"Punch",
+		[STRINGS_KEY.Kick]:"Kick",
+		[STRINGS_KEY.Jump]:"Jump",
+		[STRINGS_KEY.Block]:"Block",
+		[STRINGS_KEY.Crouch]:"Crouch"
 	},
 
 	Spanish: {
@@ -220,8 +238,9 @@ const userStrings = {
 		[STRINGS_KEY.Muted]:"Silenciado",
 		[STRINGS_KEY.Back]:"[ESC] Retroceder",
 		[STRINGS_KEY.HelpScreenTitle]:"AYUDA",
-		[STRINGS_KEY.SettingsScreenTitle]:"[CONFIGURACIONES]",
-		[STRINGS_KEY.CreditsScreenTitle]:"[CRÉDITOS]",
+		[STRINGS_KEY.SettingsScreenTitle]:"CONFIGURACIONES",
+		[STRINGS_KEY.ControlsScreenTitle]:"Controles",
+		[STRINGS_KEY.CreditsScreenTitle]:"CRÉDITOS",
 		[STRINGS_KEY.Score]:"PUNTAJE:",
 		[STRINGS_KEY.Health]:"SALUD:",
 		[STRINGS_KEY.Time]:"TIEMPO:",
@@ -287,10 +306,18 @@ const userStrings = {
 		[STRINGS_KEY.GangCount]:"Rivales\nActivos",
 		[STRINGS_KEY.Default]:"Restaurar\nEstado Original",
 		[STRINGS_KEY.Player]:"Jugador",
-
 		[STRINGS_KEY.GameSpeed]:"Velocidad del juego", // Google-translated
 		[STRINGS_KEY.Fast]:"Rápido", // Google-translated
-		[STRINGS_KEY.Slow]:"Lento" // Google-translated
+		[STRINGS_KEY.Slow]:"Lento", // Google-translated
+
+		[STRINGS_KEY.PressNewKey]:"Press New Key",
+		[STRINGS_KEY.Left]:"Walk Left",
+		[STRINGS_KEY.Right]:"Walk Right",
+		[STRINGS_KEY.Punch]:"Punch",
+		[STRINGS_KEY.Kick]:"Kick",
+		[STRINGS_KEY.Jump]:"Jump",
+		[STRINGS_KEY.Block]:"Block",
+		[STRINGS_KEY.Crouch]:"Crouch"
 	},
 
 	Japanese: {
@@ -318,6 +345,7 @@ const userStrings = {
 		[STRINGS_KEY.Back]:"[ESC] リターン",//"[ESC] まえのがめんにもどす",
 		[STRINGS_KEY.HelpScreenTitle]:"てつだい",
 		[STRINGS_KEY.SettingsScreenTitle]:"せってい",
+		[STRINGS_KEY.ControlsScreenTitle]:"コントロール",
 		[STRINGS_KEY.CreditsScreenTitle]:"クレジット",
 		[STRINGS_KEY.Score]:"とくてん:",
 		[STRINGS_KEY.Health]:"けんこ:",
@@ -387,7 +415,16 @@ const userStrings = {
 
 		[STRINGS_KEY.GameSpeed]:"Game Speed",
 		[STRINGS_KEY.Fast]:"はやい",
-		[STRINGS_KEY.Slow]:"おそい"
+		[STRINGS_KEY.Slow]:"おそい",
+
+		[STRINGS_KEY.PressNewKey]:"Press New Key",
+		[STRINGS_KEY.Left]:"Walk Left",
+		[STRINGS_KEY.Right]:"Walk Right",
+		[STRINGS_KEY.Punch]:"Punch",
+		[STRINGS_KEY.Kick]:"Kick",
+		[STRINGS_KEY.Jump]:"Jump",
+		[STRINGS_KEY.Block]:"Block",
+		[STRINGS_KEY.Crouch]:"Crouch"
 	},
 
 	French: {
@@ -414,6 +451,7 @@ const userStrings = {
 		[STRINGS_KEY.Back]:"[ÉCHAP] Retour",
 		[STRINGS_KEY.HelpScreenTitle]:"AIDE",
 		[STRINGS_KEY.SettingsScreenTitle]:"OPTIONS",
+		[STRINGS_KEY.ControlsScreenTitle]:"Contrôles",
 		[STRINGS_KEY.CreditsScreenTitle]:"CRÉDITS",
 		[STRINGS_KEY.Score]:"SCORE:",
 		[STRINGS_KEY.Health]:"SANTÉ:",
@@ -482,7 +520,16 @@ const userStrings = {
 		[STRINGS_KEY.Player]:"Joueur",
 		[STRINGS_KEY.GameSpeed]:"Vitesse de jeu",
 		[STRINGS_KEY.Fast]:"Rapide",
-		[STRINGS_KEY.Slow]:"Lent"
+		[STRINGS_KEY.Slow]:"Lent",
+
+		[STRINGS_KEY.PressNewKey]:"Press New Key",
+		[STRINGS_KEY.Left]:"Walk Left",
+		[STRINGS_KEY.Right]:"Walk Right",
+		[STRINGS_KEY.Punch]:"Punch",
+		[STRINGS_KEY.Kick]:"Kick",
+		[STRINGS_KEY.Jump]:"Jump",
+		[STRINGS_KEY.Block]:"Block",
+		[STRINGS_KEY.Crouch]:"Crouch"
 	},
 
 	Russian: {
@@ -509,6 +556,7 @@ const userStrings = {
 		[STRINGS_KEY.Back]:"[ESC] Вернуться",
 		[STRINGS_KEY.HelpScreenTitle]:"ПОМОЩЬ",
 		[STRINGS_KEY.SettingsScreenTitle]:"ОПЦИИ",
+		[STRINGS_KEY.ControlsScreenTitle]:"управления",
 		[STRINGS_KEY.CreditsScreenTitle]:"ТИТРЫ",
 
 		//After this, the Russian translations are from Google Translate, feel free to correct
@@ -579,7 +627,16 @@ const userStrings = {
 		[STRINGS_KEY.Player]:"игрок",
 		[STRINGS_KEY.GameSpeed]:"скорость игры",
 		[STRINGS_KEY.Fast]:"быстро",
-		[STRINGS_KEY.Slow]:"медленный"
+		[STRINGS_KEY.Slow]:"медленный",
+
+		[STRINGS_KEY.PressNewKey]:"Press New Key",
+		[STRINGS_KEY.Left]:"Walk Left",
+		[STRINGS_KEY.Right]:"Walk Right",
+		[STRINGS_KEY.Punch]:"Punch",
+		[STRINGS_KEY.Kick]:"Kick",
+		[STRINGS_KEY.Jump]:"Jump",
+		[STRINGS_KEY.Block]:"Block",
+		[STRINGS_KEY.Crouch]:"Crouch"
 	},
 
 	Polish: {
@@ -611,6 +668,7 @@ const userStrings = {
 		[STRINGS_KEY.Resume]:"[ESC] Kontynuuj",
 		[STRINGS_KEY.HelpScreenTitle]:"POMOC",
 		[STRINGS_KEY.SettingsScreenTitle]:"USTAWIENIA",
+		[STRINGS_KEY.ControlsScreenTitle]:"Sterowanie",
 		[STRINGS_KEY.CreditsScreenTitle]:"O AUTORACH",
 		[STRINGS_KEY.GameOverTitle]:"KONIEC GRY",
 		[STRINGS_KEY.HighScore]:"NAJLEPSZE WYNIKI:",
@@ -674,6 +732,15 @@ const userStrings = {
 		[STRINGS_KEY.Player]:"Gracz",
 		[STRINGS_KEY.GameSpeed]:"Prędkość Gry",
 		[STRINGS_KEY.Fast]:"Szybka",
-		[STRINGS_KEY.Slow]:"Wolna"
+		[STRINGS_KEY.Slow]:"Wolna",
+
+		[STRINGS_KEY.PressNewKey]:"Press New Key",
+		[STRINGS_KEY.Left]:"Walk Left",
+		[STRINGS_KEY.Right]:"Walk Right",
+		[STRINGS_KEY.Punch]:"Punch",
+		[STRINGS_KEY.Kick]:"Kick",
+		[STRINGS_KEY.Jump]:"Jump",
+		[STRINGS_KEY.Block]:"Block",
+		[STRINGS_KEY.Crouch]:"Crouch"
 	}
 };
