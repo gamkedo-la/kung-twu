@@ -22,13 +22,12 @@ function ControlsScene() {
 		ACTION_KEYS.PUNCH, 
 		ACTION_KEYS.KICK, 
 		ACTION_KEYS.CROUCH, 
-		ACTION_KEYS.DASH, 
 		ACTION_KEYS.BLOCK
 	];
 
 	const remapLeftX = 40;
 	const remapTopY = 200;
-	const remapButtonHeight = 95;
+	const remapButtonHeight = 60;
 	const remapButtonWidth = 250;//Guess, should be width of remapSprite. 
 	const remapButtonCount = 7;
 	let remapKeyNext = -1;
@@ -207,6 +206,14 @@ function ControlsScene() {
 			remapKeyNext = this.index;
 		};
 
+		ACTION_KEYS.WALK_LEFT, 
+		ACTION_KEYS.WALK_RIGHT, 
+		ACTION_KEYS.JUMP, 
+		ACTION_KEYS.PUNCH, 
+		ACTION_KEYS.KICK, 
+		ACTION_KEYS.CROUCH, 
+		ACTION_KEYS.BLOCK
+
 		const leftButton = new UIButton(STRINGS_KEY.Left, x, y, height, padding, remapClick, Color.Purple, null, 0.5);
 		leftButton.index = remapButtons.length;
 		remapButtons.push(leftButton);
@@ -219,6 +226,11 @@ function ControlsScene() {
 		remapButtons.push(rightButton);
 		currentY += BUTTON_DELTA;
 
+		const jumpButton = new UIButton(STRINGS_KEY.Jump, x, currentY, height, padding, remapClick, Color.Purple, null, 0.5);
+		jumpButton.index = remapButtons.length;
+		remapButtons.push(jumpButton);
+		currentY += BUTTON_DELTA;
+
 		const punchButton = new UIButton(STRINGS_KEY.Punch, x, currentY, height, padding, remapClick, Color.Purple, null, 0.5);
 		punchButton.index = remapButtons.length;
 		remapButtons.push(punchButton);
@@ -229,20 +241,14 @@ function ControlsScene() {
 		remapButtons.push(kickButton);
 		currentY += BUTTON_DELTA;
 
-		const jumpButton = new UIButton(STRINGS_KEY.Jump, x, currentY, height, padding, remapClick, Color.Purple, null, 0.5);
-		jumpButton.index = remapButtons.length;
-		remapButtons.push(jumpButton);
+		const crouchButton = new UIButton(STRINGS_KEY.Crouch, x, currentY, height, padding, remapClick, Color.Purple, null, 0.5);
+		crouchButton.index = remapButtons.length;
+		remapButtons.push(crouchButton);
 		currentY += BUTTON_DELTA;
 
 		const blockButton = new UIButton(STRINGS_KEY.Block, x, currentY, height, padding, remapClick, Color.Purple, null, 0.5);
 		blockButton.index = remapButtons.length;
 		remapButtons.push(blockButton);
-		currentY += BUTTON_DELTA;
-
-		const crouchButton = new UIButton(STRINGS_KEY.Crouch, x, currentY, height, padding, remapClick, Color.Purple, null, 0.5);
-		crouchButton.index = remapButtons.length;
-		remapButtons.push(crouchButton);
-		currentY += BUTTON_DELTA;
 		
 		return remapButtons;
 	};
