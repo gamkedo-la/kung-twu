@@ -426,6 +426,8 @@ const ENTITY_TYPE = {
 
 //---------------Audio------------------//
 let isMuted = false;
+const MUSIC_DEFAULT_VOLUME = 8;
+const SFX_DEFAULT_VOLUME = 8;
 
 //------------Text------------------//
 const TextAlignment = {
